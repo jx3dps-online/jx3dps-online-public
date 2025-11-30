@@ -1,11 +1,12 @@
 // 技能循环显示技能单元
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Badge, Dropdown, Space, Tooltip } from 'antd'
 import { CloseCircleFilled } from '@ant-design/icons'
 import classNames from 'classnames'
 import { Buff枚举 } from '../../通用框架/类型定义/Buff'
 import { 模拟信息类型 } from '../../通用框架/类型定义/模拟'
 import { 显示循环技能类型 } from '../../通用框架/类型定义/技能'
+import 多段倒读条作用次数弹窗 from '../多段倒读条作用次数弹窗'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import BuffItem from './BuffItem'
 import styles from './index.module.less'
@@ -20,6 +21,7 @@ interface CycleSkillItemProps {
   点击下拉菜单: (e: any) => void
   原始Buff数据: Buff枚举
   允许操作列表?: string[]
+  修改技能信息?: (e: 显示循环技能类型) => void
 }
 
 function CycleSkillItem(props: CycleSkillItemProps) {
@@ -32,6 +34,7 @@ function CycleSkillItem(props: CycleSkillItemProps) {
     更新buff覆盖数据,
     原始Buff数据,
     点击下拉菜单,
+    修改技能信息,
     允许操作列表 = ['插入技能', '删除后续'],
   } = props
 
@@ -53,6 +56,8 @@ function CycleSkillItem(props: CycleSkillItemProps) {
   const 当前异常 = 模拟信息?.循环执行结果 === '异常' ? (技能?.index || 0) === 索引 : false
 
   const 技能释放结果 = 技能?.技能释放记录结果 || {}
+
+  const [多段作用次数弹窗, 修改多段作用次数弹窗] = useState(false)
 
   const 判断有无重要buff标记 = () => {
     if (技能释放结果?.造成buff数据?.buff名称) {
@@ -130,13 +135,42 @@ function CycleSkillItem(props: CycleSkillItemProps) {
           </span>
         ),
       },
+      {
+        key: '修改作用次数',
+        disabled: !技能?.可中断倒读条最大跳数,
+        label: (
+          <span>
+            修改
+            <span className={styles.tipBefore}>倒读条</span>作用
+            <span className={styles.tipAfter}>跳数</span>
+          </span>
+        ),
+      },
     ]
     return list.filter((item) => !item?.disabled)
   }, [])
 
+  const beforeOnClick = (e) => {
+    if (e.key === '修改作用次数') {
+      修改多段作用次数弹窗(true)
+    } else {
+      点击下拉菜单(e)
+    }
+  }
+
+  const 修改多段作用次数 = (e) => {
+    修改技能信息?.({
+      ...技能,
+      额外信息: {
+        ...技能?.额外信息,
+        作用次数: e,
+      },
+    })
+  }
+
   return (
     <Badge count={剩余秒} offset={[-52, 8]} className={'cycle-simulator-setting-skill-drag'}>
-      <Dropdown menu={{ items: 下拉菜单, onClick: 点击下拉菜单 }} trigger={['contextMenu']}>
+      <Dropdown menu={{ items: 下拉菜单, onClick: beforeOnClick }} trigger={['contextMenu']}>
         <div className={cls} onMouseEnter={判断有无重要buff标记} onMouseLeave={卸除重要buff标记}>
           <Tooltip
             title={
@@ -200,6 +234,14 @@ function CycleSkillItem(props: CycleSkillItemProps) {
           ) : null}
         </div>
       </Dropdown>
+      <多段倒读条作用次数弹窗
+        key='in-cycle-wrapper-modal'
+        open={多段作用次数弹窗}
+        defaulValue={技能?.额外信息?.作用次数 || 0}
+        onCancel={() => 修改多段作用次数弹窗(false)}
+        onSubmit={修改多段作用次数}
+        maxHit={技能?.可中断倒读条最大跳数 || 1}
+      />
     </Badge>
   )
 }

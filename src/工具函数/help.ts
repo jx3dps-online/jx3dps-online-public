@@ -176,3 +176,52 @@ export function downloadCSV(data) {
   document.body.appendChild(link)
   link.click()
 }
+
+/**
+ * 将数字或字符串数字转换为千分位格式
+ * @param value - 需要转换的数字或字符串数字
+ * @returns 千分位格式的字符串
+ */
+export function 千分位转换(value: number | string): string {
+  // 转换为字符串并去除空格
+  const stringValue = String(value).trim()
+
+  // 分离整数部分和小数部分
+  const [integerPart, decimalPart] = stringValue.split('.')
+
+  // 检查是否为有效数字
+  if (!/^-?\d+$/.test(integerPart.replace(/^-/, ''))) {
+    throw new Error('Invalid number format')
+  }
+
+  // 处理整数部分的千分位分隔
+  const isNegative = integerPart.startsWith('-')
+  const absIntegerPart = isNegative ? integerPart.slice(1) : integerPart
+
+  // 添加千分位分隔符
+  let formattedInteger = ''
+  for (let i = 0; i < absIntegerPart.length; i++) {
+    if (i > 0 && (absIntegerPart.length - i) % 3 === 0) {
+      formattedInteger += ','
+    }
+    formattedInteger += absIntegerPart[i]
+  }
+
+  // 组合结果
+  let result = isNegative ? '-' + formattedInteger : formattedInteger
+
+  // 如果有小数部分，则添加小数部分
+  if (decimalPart !== undefined) {
+    result += '.' + decimalPart
+  }
+
+  return result
+}
+
+export function 数组求和(数字数组: number[]): number {
+  let 总和 = 0
+  for (let i = 0; i < 数字数组.length; i++) {
+    总和 += 数字数组[i]
+  }
+  return 总和
+}

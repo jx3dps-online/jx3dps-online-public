@@ -142,24 +142,28 @@ const getSkillBuffs = (buffs: Buff[], skillData: 技能基础数据模型) => {
   buffs.forEach((buff) => {
     // 技能伤害不计算快照伤害
     if (buff.buff_type === 'Snapshot') return
-    const findBuff = skillBelongBuff.find((skillBuff) => {
-      const stackCheck = skillBuff.Buff层数 ? buff.stack === skillBuff.Buff层数 : true
-      const levelCheck = skillBuff.Buff等级 ? buff.buff_level === skillBuff.Buff等级 : true
-      const idCheck = buff.buff_id === skillBuff.BuffId
-      return levelCheck && idCheck && stackCheck
-    })
-    if (findBuff) {
-      if (!allBuff?.includes(findBuff?.增益名称)) {
-        allBuff.push(findBuff?.增益名称)
-      }
+    if (buff.buff_id === 29268) {
+      allBuff.push('风特效_快照', '风特效_英雄_快照')
     } else {
-      if (!notFoundBuff?.some((a) => a?.buff_id === buff?.buff_id)) {
-        notFoundBuff.push({
-          skill_name: skillData.技能名称,
-          belong: buff.belong,
-          skill_id: skillData.技能ID,
-          buff_id: buff.buff_id,
-        })
+      const findBuff = skillBelongBuff.find((skillBuff) => {
+        const stackCheck = skillBuff.Buff层数 ? buff.stack === skillBuff.Buff层数 : true
+        const levelCheck = skillBuff.Buff等级 ? buff.buff_level === skillBuff.Buff等级 : true
+        const idCheck = buff.buff_id === skillBuff.BuffId
+        return levelCheck && idCheck && stackCheck
+      })
+      if (findBuff) {
+        if (!allBuff?.includes(findBuff?.增益名称)) {
+          allBuff.push(findBuff?.增益名称)
+        }
+      } else {
+        if (!notFoundBuff?.some((a) => a?.buff_id === buff?.buff_id)) {
+          notFoundBuff.push({
+            skill_name: skillData.技能名称,
+            belong: buff.belong,
+            skill_id: skillData.技能ID,
+            buff_id: buff.buff_id,
+          })
+        }
       }
     }
   })

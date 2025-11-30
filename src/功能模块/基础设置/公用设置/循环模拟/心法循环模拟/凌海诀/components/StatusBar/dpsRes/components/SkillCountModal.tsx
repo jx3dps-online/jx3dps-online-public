@@ -16,58 +16,11 @@ interface SkillCountModalProps {
 const SkillCountModal: React.FC<SkillCountModalProps> = (props) => {
   const { open, onCancel, total, dpsList, 日志信息 } = props
 
-  const { 引窍总倍率, 绝脉总倍率, 引窍统计数组, 绝脉统计数组 } = useMemo(() => {
-    const 引窍数组 = (日志信息 || [])?.filter((item) => {
-      return item?.日志?.includes('引窍') && item?.日志类型?.includes('造成伤害')
-    })
-    const 绝脉数组 = (日志信息 || [])?.filter((item) => {
-      return item?.日志?.includes('绝脉') && item?.日志类型?.includes('造成伤害')
-    })
-    const { 总倍率: 引窍总倍率, 统计数组: 引窍统计数组 } = 获取总倍率数组(引窍数组)
-    const { 总倍率: 绝脉总倍率, 统计数组: 绝脉统计数组 } = 获取总倍率数组(绝脉数组)
-    return {
-      引窍总倍率,
-      引窍统计数组,
-      绝脉总倍率,
-      绝脉统计数组,
-    }
-  }, [日志信息])
-
   return (
     <结果统计
       title={
         <div className={'cycle-simulator-modal-header space-between'}>
           <h1 className={'cycle-simulator-modal-title'}>技能统计</h1>
-          <Popover
-            content={
-              <div className='lhj-cycle-simulator-skill-count-warp'>
-                <div className='lhj-cycle-simulator-skill-count-item'>
-                  <p>引窍倍率：{引窍总倍率}</p>
-                  <Divider style={{ margin: '4px 0' }} />
-                  {Object.keys(引窍统计数组).map((item) => {
-                    return (
-                      <p key={`引窍统计${item}`}>
-                        引窍·{item}：{引窍统计数组[item]}次
-                      </p>
-                    )
-                  })}
-                </div>
-                <div className='lhj-cycle-simulator-skill-count-item'>
-                  <p>绝脉倍率：{绝脉总倍率}</p>
-                  <Divider style={{ margin: '4px 0' }} />
-                  {Object.keys(绝脉统计数组).map((item) => {
-                    return (
-                      <p key={`绝脉统计${item}`}>
-                        绝脉·{item}：{绝脉统计数组[item]}次
-                      </p>
-                    )
-                  })}
-                </div>
-              </div>
-            }
-          >
-            <span className={'cycle-simulator-help'}>技能细节</span>
-          </Popover>
         </div>
       }
       计算结果={{

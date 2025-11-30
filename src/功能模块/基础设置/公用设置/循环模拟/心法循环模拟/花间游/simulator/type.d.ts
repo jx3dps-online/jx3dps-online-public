@@ -143,6 +143,10 @@ export interface 循环基础技能数据类型 {
    */
   最大充能层数?: number
   /**
+   * 可中断倒读条最大跳数
+   */
+  可中断倒读条最大跳数?: number
+  /**
    * 技能CD(帧)
    */
   技能CD?: number
@@ -343,21 +347,6 @@ export type 日志类型 =
   | '等CD'
   | '循环异常'
 
-export interface 模拟信息类型 {
-  角色状态信息: 角色状态信息类型
-  当前自身buff列表: Buff枚举
-  当前目标buff列表: Buff枚举
-  当前时间: number
-  循环执行结果: '成功' | '异常'
-  循环异常信息: { 异常索引?: number; 异常信息?: any }
-  技能释放记录: 技能释放记录数据[] = []
-  当前各技能运行状态: { [key: string]: 技能运行数据类型 }
-  当前DOT运行状态: { [key: string]: DOT运行数据类型 }
-  当前GCD组: 技能GCD组
-  技能基础数据: 循环基础技能数据类型[]
-  待生效事件队列: 待生效事件[]
-}
-
 export interface 技能释放记录数据 {
   技能名称: string
   计划释放时间: number
@@ -366,12 +355,27 @@ export interface 技能释放记录数据 {
   开始读条时间?: number
   技能释放记录结果: 技能释放记录结果
 }
+export interface 模拟信息类型 {
+  角色状态信息: 角色状态信息类型
+  当前自身buff列表: Buff枚举
+  当前目标buff列表: Buff枚举
+  当前时间: number
+  循环执行结果: '成功' | '异常'
+  循环异常信息: { 异常索引?: number; 异常信息?: any }
+  技能释放记录: 技能释放记录数据[]
+  当前各技能运行状态: { [key: string]: 技能运行数据类型 }
+  当前DOT运行状态: { [key: string]: DOT运行数据类型 }
+  当前GCD组: 技能GCD组
+  技能基础数据: 循环基础技能数据类型[]
+  待生效事件队列: 待生效事件[]
+}
 
 export interface 技能释放记录结果 {
   实际伤害技能?: string // 针对造成伤害的实际名称
   伤害段数?: number // 针对行、沧的实际伤害段数
   重要buff列表?: string[] // 影响技能结果的重要buff列表
   释放时标鹄层数?: number
+  特殊标记?: number
   造成buff数据?: {
     // 针对吃影子、灭这种会添加有益buff的情况
     buff名称: string

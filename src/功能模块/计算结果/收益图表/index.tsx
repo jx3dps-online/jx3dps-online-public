@@ -23,6 +23,7 @@ import { 渲染属性收益柱状图, 获取属性收益柱状图数据, 附魔�
 import 属性置换收益, { 附魔属性置换收益信息 } from './自定义图表/属性置换'
 import { 获取角色需要展示的面板数据 } from '@/功能模块/基础设置/面板信息/工具'
 import './index.css'
+import { QuestionCircleFilled } from '@ant-design/icons'
 
 const 收益列表 = 获取当前各属性最大附魔()
 
@@ -71,7 +72,8 @@ function 收益图表(_, ref) {
             ...装备基础属性,
           },
         },
-      })
+        计算技能详情: false,
+      }),
     )
     return 计算结果
   }
@@ -83,7 +85,8 @@ function 收益图表(_, ref) {
       const { 秒伤: 旧秒伤 } = dispatch(
         秒伤计算({
           是否郭氏计算,
-        })
+          计算技能详情: false,
+        }),
       )
       return 获取属性收益柱状图数据(
         list,
@@ -91,7 +94,7 @@ function 收益图表(_, ref) {
         装备信息,
         收益增益属性计算,
         计算增加后收益,
-        是否郭氏计算
+        是否郭氏计算,
       )
     } else if (['会心收益下降点']?.includes(type)) {
       return 获取会心收益下降点图表数据(
@@ -99,7 +102,7 @@ function 收益图表(_, ref) {
         currentIncomeList?.current,
         装备信息,
         计算增加后收益,
-        增益后面板
+        增益后面板,
       )
     } else if (['攻击破招']?.includes(type)) {
       return 获取攻击破招图表数据(currentIncomeList?.current, 装备信息, 计算增加后收益, 增益后面板)
@@ -211,6 +214,23 @@ function 收益图表(_, ref) {
             )
           })}
         </Radio.Group>
+        <Popover
+          content={
+            <div>
+              <p>由于本图表采用的收益策略为：额外获得一个紫色附魔对应属性后的秒伤变化</p>
+              <p>
+                存在部分情况添加该附魔后。导致某装备特效的判定阈值发生变化，进而导致在一个附魔提升量情况下的收益变为负数
+              </p>
+              <p>如：无双在90%临界值附近因附魔的影响导致特效裤子从无双增益变为会心</p>
+              <p>对本收益计算策略而言属于正常情况，特此说明</p>
+            </div>
+          }
+        >
+          <div className='income-type-select-button' onClick={() => handleChangeType('属性置换')}>
+            <QuestionCircleFilled style={{ marginRight: 8 }} />
+            为什么会出现负数收益
+          </div>
+        </Popover>
       </div>
     </div>
   )

@@ -1,13 +1,22 @@
-import { map as 数据源 } from './equipment.mjs'
+// import { map as 数据源 } from './equipment.mjs'
+
+import weapons from './weapons.json' with { type: 'json' }
+import armors from './armors.json' with { type: 'json' }
+import trinkets from './trinkets.json' with { type: 'json' }
 import iconv from 'iconv-lite'
-import { attrMap as 装备属性枚举, 精简特效Map, 装备特效枚举, 装备类型枚举, 精简特效区分等级 } from './attrMap.mjs'
+import {
+  attrMap as 装备属性枚举,
+  精简特效Map,
+  装备特效枚举,
+  装备类型枚举,
+  精简特效区分等级,
+  暂不处理属性,
+} from './attrMap.mjs'
 import fs from 'fs'
 // import path from 'path'
 // 导入本地装备数据
 
 const 赛季英雄普通区分品级 = 35300
-const 导入最低品级 = 15500
-const 导入最高品级 = 99999
 
 const 装备部位枚举 = {
   primary_weapon: '武器',
@@ -26,6 +35,16 @@ const 装备部位枚举 = {
 const 功法枚举 = {
   外功: ['外功', '力道', '身法'],
   内功: ['内功', '元气', '根骨'],
+  防御: ['防御'],
+}
+
+const usage导入范围 = {
+  PVE: [30200, 99999],
+  ALL: [15500, 99999],
+}
+
+const school导入范围 = {
+  精简: [28000, 99999],
 }
 
 const 装备ID索引映射 = new Map()
@@ -34,7 +53,7 @@ function 获取部位索引(部位, 部位门派分类) {
   if (部位 === 'primary_weapon' && 部位门派分类 === '藏剑') {
     return undefined
   }
-  if (部位 === 'secondary_weapon' && 部位门派分类 === '藏剑') {
+  if (部位 === 'big_sword' && 部位门派分类 === '藏剑') {
     return '武器'
   }
   return 装备部位枚举[部位]
@@ -42,89 +61,98 @@ function 获取部位索引(部位, 部位门派分类) {
 
 // 获取全部部位的数据
 async function 获取全部部位的数据(本次导入功法) {
+  const 数据源 = [
+    weapons,
+    armors,
+    trinkets,
+  ]
   let 数据结果 = {}
-  Object.keys(数据源).forEach((部位) => {
-    const 该部位数据 = 数据源[部位]
-    Object.keys(该部位数据).forEach((部位门派分类) => {
-      const 部位索引 = 获取部位索引(部位, 部位门派分类)
-      if (!部位索引) {
+  for (let i = 0; i < 数据源.length; i++) {
+    Object.values(数据源[i]).forEach((装备数据) => {
+      const usageRange = usage导入范围[装备数据?.usage] || []
+      const schoolRange = school导入范围[装备数据?.school] || []
+      const 装备品级 = 装备数据.level
+      const 部位索引 = 获取部位索引(装备数据?.position, 装备数据?.school)
+      const 实际装备名 = 装备数据?.name
+      const 符合功法 = 功法枚举[本次导入功法]?.includes(装备数据.kind)
+      if (
+        !(
+          (装备品级 >= usageRange[0] && 装备品级 <= usageRange[1]) ||
+          (装备品级 >= schoolRange[0] && 装备品级 <= schoolRange[1])
+        )
+      ) {
         return
       }
-      Object.keys(该部位数据[部位门派分类]).forEach((部位内外功分类) => {
-        Object.keys(该部位数据[部位门派分类][部位内外功分类]).forEach((装备名) => {
-          const 实际装备名 = 装备名?.split('#')?.[0]
-          const 装备数据 = 该部位数据[部位门派分类][部位内外功分类][装备名]
-          const 符合功法 = 功法枚举[本次导入功法]?.includes(装备数据.kind)
-          const 装备品级 = 装备数据.level
-          if (符合功法 && 装备品级 >= 导入最低品级 && 装备品级 <= 导入最高品级) {
-            const 武器伤害对象 = {}
-            if (装备数据?.base?.weapon_damage_base) {
-              武器伤害对象.武器伤害_最小值 = 装备数据?.base?.weapon_damage_base
-              武器伤害对象.武器伤害_最大值 =
-                装备数据?.base?.weapon_damage_base + 装备数据?.base?.weapon_damage_rand
-            }
-            const { 特效效果: 装备特效, 特效等级 } = 判断装备特效(装备数据, 部位索引, 装备名)
-            const 装备增益 = 获取增益(装备数据?.magic)
-            const 装备增益数据列表 = Object.keys(装备数据?.magic)
-            // const 装备来源对象 = 装备来源映射.get(
-            //   `${装备数据?.id}${装备数据?.level}`
-            // )
-            装备ID索引映射.set(`${装备数据?.id}_${装备数据?.level}`, true)
-            let 装备详情 = {
-              id: 装备数据?.id,
-              图标ID: 装备数据?.icon_id,
-              uid: 装备数据?.id,
-              装备名称: 实际装备名?.replace('_测试用', ''),
-              所属门派:
-                装备数据.school !== '通用' && 装备数据.school !== '精简' ? 装备数据.school : '通用',
-              装备主属性:
-                装备数据.kind === '内功' || 装备数据.kind === '外功' ? '通用' : 装备数据.kind,
-              装备品级: 装备数据.level,
-              ...(特效等级 ? {特效等级: 特效等级} : null),
-              ...武器伤害对象,
-              ...(装备特效 ? { 装备特效 } : null),
-              装备类型: 装备增益数据列表?.includes('pvx_round')
-                ? '装备类型枚举.PVX'
-                : 装备数据?.max_strength === 8
+      
+      if (符合功法 && 部位索引) {
+        const 武器伤害对象 = {}
+        if (装备数据?.base?.some((a) => a?.attr_type === 'weapon_damage_base')) {
+          const base = 装备数据?.base?.find((a) => a?.attr_type === 'weapon_damage_base')?.value
+          const rand = 装备数据?.base?.find((a) => a?.attr_type === 'weapon_damage_rand')?.value
+          武器伤害对象.武器伤害_最小值 = base
+          武器伤害对象.武器伤害_最大值 = base + rand
+        }
+        const { 特效效果: 装备特效, 特效等级 } = 判断装备特效(装备数据, 部位索引)
+        const 装备增益 = 获取增益(装备数据?.magic)
+        装备ID索引映射.set(`${装备数据?.id}_${装备数据?.level}`, true)
+        let 装备详情 = {
+          id: 装备数据?.id,
+          图标ID: 装备数据?.icon_id,
+          uid: 装备数据?.id,
+          装备名称: 实际装备名?.replace('_测试用', ''),
+          所属门派:
+            装备数据.school !== '通用' && 装备数据.school !== '精简' ? 装备数据.school : '通用',
+          装备主属性:
+            装备数据.kind === '内功' || 装备数据.kind === '外功'
+              ? '通用'
+              : 装备数据.kind === '防御'
+                ? '体质'
+                : 装备数据.kind,
+          装备品级: 装备数据.level,
+          ...(特效等级 ? { 特效等级: 特效等级 } : null),
+          ...武器伤害对象,
+          ...(装备特效 ? { 装备特效 } : null),
+          装备类型:
+            装备数据?.usage === 'PVX'
+              ? '装备类型枚举.PVX'
+              : 装备数据?.max_strength === 8
                 ? '装备类型枚举.橙武'
                 : 装备特效 === '装备特效枚举.大橙武特效'
-                ? '装备类型枚举.橙武'
-                : 装备特效?.includes('门派套装')
-                ? '装备类型枚举.门派套装'
-                : 装备特效?.includes('切糕')
-                ? '装备类型枚举.切糕'
-                : 装备特效?.includes('水特效') || 装备特效?.includes('龙门飞剑武器')
-                ? '装备类型枚举.特效武器'
-                : 装备特效?.includes('门派特效武器')
-                ? '装备类型枚举.门派特效武器'
-                : 装备特效?.includes('风特效')
-                ? '装备类型枚举.副本精简'
-                : 装备数据.school === '精简'
-                ? '装备类型枚举.副本精简'
-                : '装备类型枚举.普通',
-              装备增益: 装备增益,
-              镶嵌孔数组: 获取镶嵌(装备数据?.embed),
-            }
-            // if (装备来源对象?.装备来源) {
-            //   装备详情.装备来源 = 装备来源对象?.装备来源
-            // }
-            // if (装备特效 === '装备特效枚举.大橙武特效') {
-            //   装备详情.装备来源 = [{ 来源类型: '稀世神兵', 来源描述: '玄晶' }]
-            // } else if (实际装备名?.includes('无修')) {
-            //   装备详情.装备来源 = [{ 来源类型: '试炼', 来源描述: '试炼之地' }]
-            // } else if (实际装备名?.includes('寻踪觅宝')) {
-            //   装备详情.装备来源 = [{ 来源类型: '挖宝', 来源描述: '寻踪觅宝' }]
-            // }
-            if (数据结果[部位索引]) {
-              数据结果[部位索引].push(装备详情)
-            } else {
-              数据结果[部位索引] = [装备详情]
-            }
-          }
-        })
-      })
+                  ? '装备类型枚举.橙武'
+                  : 装备特效?.includes('门派套装')
+                    ? '装备类型枚举.门派套装'
+                    : 装备特效?.includes('切糕')
+                      ? '装备类型枚举.切糕'
+                      : 装备特效?.includes('水特效') || 装备特效?.includes('龙门飞剑武器')
+                        ? '装备类型枚举.特效武器'
+                        : 装备特效?.includes('门派特效武器')
+                          ? '装备类型枚举.门派特效武器'
+                          : 装备特效?.includes('风特效')
+                            ? '装备类型枚举.副本精简'
+                            : 装备数据.school === '精简'
+                              ? '装备类型枚举.副本精简'
+                              : '装备类型枚举.普通',
+          装备增益: 装备增益,
+          镶嵌孔数组: 获取镶嵌(装备数据?.embed),
+        }
+        // if (装备来源对象?.装备来源) {
+        //   装备详情.装备来源 = 装备来源对象?.装备来源
+        // }
+        // if (装备特效 === '装备特效枚举.大橙武特效') {
+        //   装备详情.装备来源 = [{ 来源类型: '稀世神兵', 来源描述: '玄晶' }]
+        // } else if (实际装备名?.includes('无修')) {
+        //   装备详情.装备来源 = [{ 来源类型: '试炼', 来源描述: '试炼之地' }]
+        // } else if (实际装备名?.includes('寻踪觅宝')) {
+        //   装备详情.装备来源 = [{ 来源类型: '挖宝', 来源描述: '寻踪觅宝' }]
+        // }
+        if (数据结果[部位索引]) {
+          数据结果[部位索引].push(装备详情)
+        } else {
+          数据结果[部位索引] = [装备详情]
+        }
+      }
     })
-  })
+  }
 
   Object.keys(数据结果).forEach((部位) => {
     导出成文件(数据结果[部位], 部位, 本次导入功法)
@@ -133,14 +161,17 @@ async function 获取全部部位的数据(本次导入功法) {
 
 function 获取增益(装备增益) {
   let list = []
-  Object.keys(装备增益).forEach((key) => {
-    if (装备属性枚举[key]) {
-      list.push({
-        属性: 装备属性枚举[key],
-        值: 装备增益[key],
-      })
-    } else {
-      console.log(`存在未识别装备属性：${key}`)
+  装备增益?.forEach((data) => {
+    const attr_type = data?.attr_type
+    if (attr_type && !暂不处理属性?.includes(attr_type)) {
+      if (装备属性枚举[attr_type]) {
+        list.push({
+          属性: 装备属性枚举[attr_type],
+          值: data?.value,
+        })
+      } else {
+        console.log(`存在未识别装备属性：${attr_type}`)
+      }
     }
   })
   return list
@@ -148,54 +179,60 @@ function 获取增益(装备增益) {
 
 function 获取镶嵌(装备增益) {
   let list = []
-  Object.keys(装备增益).forEach((key) => {
-    if (装备属性枚举[key]) {
-      list.push({
-        镶嵌类型: 装备属性枚举[key],
-      })
-    } else {
-      console.log(`存在未识别镶嵌属性：${key}`)
+  装备增益?.forEach((data) => {
+    const attr_type = data?.attr_type
+    if (attr_type && !暂不处理属性?.includes(attr_type)) {
+      if (装备属性枚举[attr_type]) {
+        list.push({
+          镶嵌类型: 装备属性枚举[attr_type],
+        })
+      } else {
+        console.log(`存在未识别镶嵌属性：${attr_type}`)
+      }
     }
   })
   return list
 }
 
-function 判断装备特效(装备数据, 部位索引, 装备名) {
+function 判断装备特效(装备数据, 部位索引) {
   let 特效效果 = undefined
   let 特效等级 = undefined
+  const atSkillEventHandlerData = 装备数据?.magic?.find((a) => a?.attr === 'atSkillEventHandler')
   // 大CW
   if (装备数据.max_strength === 8 && 部位索引 === '武器') {
-    if (Object.keys(装备数据?.recipes)?.length && !Object.keys(装备数据?.gains)?.length) {
-      特效效果 = '装备特效枚举.小橙武特效'
-    } else {
+    if (装备数据.usage === 'ALL' && atSkillEventHandlerData) {
       特效效果 = '装备特效枚举.大橙武特效'
+    } else if (装备数据?.magic?.find((a) => a?.attr === 'atSetEquipmentRecipe')) {
+      特效效果 = '装备特效枚举.小橙武特效'
     }
-  }
-  else if (部位索引 === '武器' && 装备名.includes('特效') && !装备名?.includes('寻踪觅宝')) {
-    // 处理水特效和门派特效武器
-    if (装备数据?.gains?.length < 2) {
+  } else if (部位索引 === '武器' && atSkillEventHandlerData) {
+    if (atSkillEventHandlerData?.value?.includes('4877')) {
       特效效果 = '装备特效枚举.水特效武器'
-    } else {
+    } else if (
+      atSkillEventHandlerData?.attr_type === 'event' &&
+      !装备数据?.name?.includes('寻踪觅宝')
+    ) {
       特效效果 = '装备特效枚举.门派特效武器'
     }
-  }
-  else if (装备数据?.sets) {
-    if (装备数据?.sets?.['2']?.attributes?.all_critical_power_base && 装备数据?.sets?.['4']?.recipes) {
+  } else if (装备数据?.sets) {
+    if (
+      (装备数据?.sets?.['2']?.[0]?.attr_type === 'all_critical_strike_base' ||
+        装备数据?.sets?.['2']?.[0]?.attr_type === 'all_critical_power_base') &&
+      装备数据?.sets?.['4']?.[0]?.attr_type === 'recipe'
+    ) {
       特效效果 = '装备特效枚举.门派套装'
-    }
-    else if (装备数据?.sets?.['2']?.attributes?.['all_critical_strike_base']) {
+    } else if (装备数据?.sets?.['4']?.[0]?.attr_type === 'strain_base') {
       if (装备数据.level > 赛季英雄普通区分品级) {
         特效效果 = '装备特效枚举.切糕_英雄'
       } else {
         特效效果 = '装备特效枚举.切糕_普通'
       }
-    }
-    else if (装备数据?.sets?.['2']?.attributes?.['all_major_base']) {
+    } else if (装备数据?.sets?.['2']?.[0]?.attr_type === 'all_major_base') {
       特效效果 = '装备特效枚举.冬至套装'
     }
   }
-  if (装备数据?.gains && !特效效果) {
-    const 特效key = 装备数据?.gains?.[0]
+  if (atSkillEventHandlerData && !特效效果) {
+    const 特效key = atSkillEventHandlerData?.value
     if (特效key && 特效key?.includes('gain_')) {
       Object.keys(精简特效Map).forEach((key) => {
         if (特效key.includes(key)) {
@@ -214,7 +251,7 @@ function 判断装备特效(装备数据, 部位索引, 装备名) {
   }
   // 特效腰坠
   if (部位索引 === '腰坠' && !特效效果) {
-    if (装备名.includes('特效')) {
+    if (装备数据?.skill?.includes(38578)) {
       特效效果 = '装备特效枚举.风特效腰坠'
     }
   }
@@ -312,7 +349,7 @@ export default ${部位}装备数据
       if (err) {
         console.info('err', err)
       }
-    }
+    },
   )
   console.info(`【${功法}】【${部位}】文件导入成功，成功导入${数据?.length}件装备`)
 }
@@ -321,11 +358,11 @@ export default ${部位}装备数据
 function 生成装备来源映射() {
   try {
     // const __dirname = path.dirname(new URL(import.meta.url).pathname)
-    const filePath = ''
+    const filePath = 'D:/software/work/code/jx3-package/ui/Scheme/Case/equipdb.txt'
     if (!filePath) {
       throw new Error('equipdb.txt 文件路径未找到')
     }
-    const mapfilePath = ''
+    const mapfilePath = 'D:/software/work/code/jx3-package/settings/maplist.tab'
     if (!mapfilePath) {
       throw new Error('mapfilePath.tab 文件路径未找到')
     }
@@ -444,7 +481,7 @@ function 生成装备来源映射() {
 let 装备来源映射 = new Map()
 
 async function 获取装备数据() {
-  const 本次导入功法列表 = ['外功', '内功']
+  const 本次导入功法列表 = ['外功', '内功', '防御']
   for (let i = 0; i < 本次导入功法列表.length; i++) {
     console.info(`----------开始导入${本次导入功法列表[i]}----------`)
     await 获取全部部位的数据(本次导入功法列表[i])

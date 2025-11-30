@@ -6,6 +6,8 @@ import { 按数字生成数组 } from '@/工具函数/help'
 interface 心法特殊配制类型 {
   显示涓流层数: boolean
   更新显示涓流层数: (e: boolean) => void
+  断快雪延迟: number
+  更新断快雪延迟: (e: number) => void
   起手临源: number
   更新起手临源: (e: number) => void
   忽略延迟技能: string[]
@@ -13,11 +15,40 @@ interface 心法特殊配制类型 {
 }
 
 function 心法特殊配置(props: 心法特殊配制类型) {
-  const { 显示涓流层数, 更新显示涓流层数, 起手临源, 更新起手临源, 忽略延迟技能, 更新忽略延迟技能 } =
-    props
+  const {
+    显示涓流层数,
+    更新显示涓流层数,
+    断快雪延迟,
+    更新断快雪延迟,
+    起手临源,
+    更新起手临源,
+    忽略延迟技能,
+    更新忽略延迟技能,
+  } = props
 
   return (
     <>
+      <span className={styles.label}>断快雪延迟</span>
+      <Tooltip title='断快雪人为延迟损失' placement='left'>
+        <Select
+          size='small'
+          className={'cycle-simulator-header-select'}
+          value={断快雪延迟}
+          style={{ width: 120 }}
+          showSearch
+          popupMatchSelectWidth={120}
+          filterOption={(input, option) => {
+            return option?.value?.toString()?.includes(input) || false
+          }}
+          onChange={(e) => 更新断快雪延迟(e)}
+          options={按数字生成数组(5).map((a) => {
+            return {
+              value: a - 1,
+              label: a - 1,
+            }
+          })}
+        />
+      </Tooltip>
       <Checkbox checked={显示涓流层数} onChange={(e) => 更新显示涓流层数(e.target.checked)}>
         显示涓流层数
       </Checkbox>

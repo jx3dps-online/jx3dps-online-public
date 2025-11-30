@@ -20,10 +20,6 @@ function Buff(props: BuffProps) {
   const 当前buff列表 = Object.keys(buff列表).map((item) => buff列表[item])
   const 最终显示buff列表 = useMemo(() => {
     const res = [...(当前buff列表 || [])]
-    // 判断经脉循行
-    if (奇穴信息?.includes('玉枕') && buff列表?.['经脉循行']?.当前层数) {
-      res.push(原始Buff数据?.['玉枕'])
-    }
     return res
   }, [当前buff列表, buff列表, 奇穴信息])
 

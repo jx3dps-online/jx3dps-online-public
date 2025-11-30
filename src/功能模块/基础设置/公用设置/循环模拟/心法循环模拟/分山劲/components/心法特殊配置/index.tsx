@@ -1,28 +1,30 @@
 import React from 'react'
 import styles from './index.module.less'
-import { Select, Tooltip } from 'antd'
+import { Checkbox, Select, Tooltip } from 'antd'
 import { 按数字生成数组 } from '@/工具函数/help'
 interface 心法特殊配制类型 {
   起手怒气: number
   设置起手怒气: (e: number) => void
   // 起手体态: '擎盾' | '擎刀'
   // 设置起手体态: (e: '擎盾' | '擎刀') => void
-  // 显示虚弱层数: boolean
-  // 更新显示虚弱层数: (e: boolean) => void
+  // 显示破绽层数: boolean
+  // 更新显示破绽层数: (e: boolean) => void
+  显示绝刀怒气: boolean
+  更新显示绝刀怒气: (e: boolean) => void
 }
 
 function 心法特殊配置(props: 心法特殊配制类型) {
-  const { 起手怒气, 设置起手怒气 } = props
+  const { 显示绝刀怒气, 更新显示绝刀怒气, 起手怒气, 设置起手怒气 } = props
 
   return (
     <>
-      {/* <Checkbox
+      <Checkbox
         style={{ marginLeft: 12 }}
-        checked={显示虚弱层数}
-        onChange={(e) => 更新显示虚弱层数(e?.target?.checked)}
+        checked={显示绝刀怒气}
+        onChange={(e) => 更新显示绝刀怒气(e?.target?.checked)}
       >
-        <Tooltip title='显示技能开始释放时的虚弱层数'>显示虚弱层数</Tooltip>
-      </Checkbox> */}
+        <Tooltip title='显示释放绝刀消耗的怒气'>显示绝刀怒气</Tooltip>
+      </Checkbox>
       <span className={styles.label}>起手怒气</span>
       <Tooltip title='起手怒气' placement='left'>
         <Select

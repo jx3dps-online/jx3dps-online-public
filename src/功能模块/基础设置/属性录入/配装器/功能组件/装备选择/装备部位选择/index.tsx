@@ -39,6 +39,7 @@ interface 装备部位选择入参 {
   默认镶嵌宝石等级: number
   form: any
   开启装备智能对比: boolean
+  对比显示百分比: boolean
   装备选择范围: 装备选择范围类型
 }
 
@@ -51,6 +52,7 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
     allValue,
     form,
     开启装备智能对比,
+    对比显示百分比,
     装备选择范围,
     onChange,
     ...options
@@ -124,7 +126,9 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
       const 当前装备列表信息 = form?.getFieldsValue()
       const 当前装备信息 = 根据表单选项获取装备信息(当前装备列表信息)
 
-      const { 秒伤: 旧秒伤 } = dispatch(秒伤计算({ 更新装备信息: 当前装备信息 }))
+      const { 秒伤: 旧秒伤 } = dispatch(
+        秒伤计算({ 更新装备信息: 当前装备信息, 计算技能详情: false }),
+      )
 
       // 传入新的装备
       const newDpsUpList = 实际装备列表
@@ -132,7 +136,7 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
           if (获取最佳装备) {
             // CW只和CW对比
             if (当前装备信息?.装备增益?.大橙武特效) {
-              if (item?.武器伤害_最大值) {
+              if (部位 === '武器') {
                 return (
                   item?.装备品级 >= (装备选择范围?.品级范围?.[0] || 0) &&
                   item?.装备品级 <= (装备选择范围?.品级范围?.[1] || 0) &&
@@ -142,7 +146,7 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
                 return item.装备品级 >= 18900
               }
             } else {
-              if (item?.武器伤害_最大值) {
+              if (部位 === '武器') {
                 return item.装备品级 >= 18900 && item.装备类型 !== '橙武'
               }
               return item.装备品级 >= 18900
@@ -172,7 +176,9 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
             [`${部位索引}`]: 新装备数据,
           })
 
-          const { 秒伤: 更新后秒伤 } = dispatch(秒伤计算({ 更新装备信息: 更新后装备信息 }))
+          const { 秒伤: 更新后秒伤 } = dispatch(
+            秒伤计算({ 更新装备信息: 更新后装备信息, 计算技能详情: false }),
+          )
 
           const 旧伤害 = 旧秒伤 || 当前计算结果?.秒伤
 
@@ -324,13 +330,10 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
                 <div>
                   {upItem?.dpsUp !== 0 ? (
                     <span
-                      className={`zhuangbei-diff ${
-                        +upItem?.dpsUp > 0 ? 'dps-up-color' : 'dps-low-color'
-                      }`}
+                      className={`zhuangbei-diff ${+upItem?.dpsUp > 0 ? 'dps-up-color' : 'dps-low-color'}`}
                     >
                       {+upItem?.dpsUp > 0 ? '+' : ''}
-                      {upItem?.dpsUp}
-                      {/* {`(${upItem?.dpsPercent}%)`} */}
+                      {对比显示百分比 ? `${upItem?.dpsPercent}%` : `${upItem?.dpsUp}`}
                     </span>
                   ) : null}
                   <span className={'zhuangbei-select-level'}>{item.装备品级}</span>

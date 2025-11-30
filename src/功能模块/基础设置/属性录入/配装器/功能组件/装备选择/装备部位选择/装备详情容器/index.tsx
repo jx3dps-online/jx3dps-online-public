@@ -23,14 +23,12 @@ const 装备详情容器: React.FC<装备详情容器类型> = (props) => {
   }, [装备数据])
 
   const 装备背景 =
-    装备数据?.装备类型 === 装备类型枚举?.橙武
-      ? 图标?.橙色装备边框
-      : 图标?.紫色装备边框
+    装备数据?.装备类型 === 装备类型枚举?.橙武 ? 图标?.橙色装备边框 : 图标?.紫色装备边框
 
   return (
     <Popover
       className={styles.wrap}
-      placement="right"
+      placement='right'
       mouseEnterDelay={1}
       destroyTooltipOnHide
       // open={当前装备信息?.装备部位 === '帽子'}
@@ -46,7 +44,7 @@ const 装备详情容器: React.FC<装备详情容器类型> = (props) => {
             <img className={styles.border} src={装备背景} />
           </div>
           <装备属性 装备数据={装备数据} 当前装备信息={当前装备信息} />
-          <装备镶嵌 当前装备信息={当前装备信息} />
+          <装备镶嵌 装备数据={装备数据} 当前装备信息={当前装备信息} />
           <装备特效 装备数据={装备数据} />
           <装备来源 装备数据={装备数据} />
         </div>

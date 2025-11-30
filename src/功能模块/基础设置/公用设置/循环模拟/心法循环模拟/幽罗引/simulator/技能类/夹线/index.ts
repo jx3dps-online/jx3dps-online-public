@@ -19,6 +19,12 @@ class 挑丝 extends 有CD技能通用类 {
         异常信息: { 信息: ERROR_ACTION.心络错误?.信息 },
       }
     }
+    if (!this.模拟循环.当前自身buff列表?.['橙武']?.当前层数) {
+      return {
+        可以释放: false,
+        异常信息: { 信息: '橙武buff到期,无法释放夹线' },
+      }
+    }
     return { 可以释放: true }
   }
 

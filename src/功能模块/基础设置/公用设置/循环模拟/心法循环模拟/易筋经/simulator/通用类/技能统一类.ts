@@ -54,7 +54,10 @@ class 技能统一类 {
 
   回复禅那(来源: string, 回复数量) {
     let 实际回复数量 = 回复数量
-    if (this.模拟循环.当前自身buff列表?.擒龙?.当前层数 && this.模拟循环.秘籍.擒龙决.includes('不再恢复禅那')) {
+    if (
+      this.模拟循环.当前自身buff列表?.擒龙?.当前层数 &&
+      this.模拟循环?.秘籍?.擒龙决?.includes('不再恢复禅那')
+    ) {
       实际回复数量 = 回复数量 + 1
     }
     const 变化后禅那 = Math.min(3, this.模拟循环.角色状态信息.禅那 + 实际回复数量)
@@ -98,7 +101,7 @@ class 技能统一类 {
 
   获取DOT快照检测Buff列表(伤害名称) {
     if (伤害名称?.includes('DOT')) {
-      return ['连环慢', '钤束',]
+      return ['连环慢', '钤束']
     } else {
       return []
     }
@@ -109,7 +112,7 @@ class 技能统一类 {
     伤害次数 = 1,
     额外增益列表: string[] = [],
     触发伤害时间: number | undefined = undefined,
-    技能等级 = 1
+    技能等级 = 1,
   ) {
     // 判断玉枕
     const 增益列表 = [...额外增益列表]
@@ -137,7 +140,7 @@ class 技能统一类 {
       触发伤害时间,
       false,
       技能等级,
-      快照检测Buff列表
+      快照检测Buff列表,
     )
   }
 
@@ -168,10 +171,10 @@ class 技能统一类 {
 
     return buff对象
       ? {
-        buff名称: buff名称,
-        buff开始时间: 当前时间,
-        buff结束时间: 当前时间 + (buff对象?.最大持续时间 || 0),
-      }
+          buff名称: buff名称,
+          buff开始时间: 当前时间,
+          buff结束时间: 当前时间 + (buff对象?.最大持续时间 || 0),
+        }
       : null
   }
 }

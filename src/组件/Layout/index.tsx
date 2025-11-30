@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { Alert } from 'antd'
 import { useAppSelector } from '@/hooks'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
@@ -27,6 +27,8 @@ const Layout: React.FC<LayoutProps> = (props) => {
     return arr[randomIndex]
   }
 
+  const 允许访问 = true
+
   const 是否展示迁移公告 = location?.href?.includes?.('jx3.btcsg.top')
 
   const routerToNew = () => {
@@ -34,7 +36,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
     window.open(`https://dps.btcsg.top?xf=${简写}`)
   }
 
-  return (
+  return 允许访问 ? (
     <>
       <div className='layout' translate='no'>
         {是否展示迁移公告 ? (
@@ -70,7 +72,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
         )}
       </div>
     </>
-  )
+  ) : null
 }
 
 export default memo(Layout)

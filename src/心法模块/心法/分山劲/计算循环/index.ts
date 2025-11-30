@@ -6,25 +6,12 @@ import type { 循环数据 } from '@/@types/循环'
  */
 
 // 循环
-// import 北漠阵云 from './北漠阵云.json'
-// import 测试 from './测试.json'
-import 橙武临时 from './橙武临时.json'
-// import 血魄 from './血魄.json'
-// import 橙武 from './橙武.json'
-// import 橙武 from './橙武.json'
-// import 测试 from './测试.json'
-// import 橙武测试 from './橙武测试.json'
-// import 新紫武 from './新紫武.json'
-// import 新奇穴2 from './新奇穴2.json'
+import 绝云 from './绝云.json'
+import 极天绝云 from './极天绝云.json'
 
 const 计算循环: 循环数据[] = [
-  //测试,
-  橙武临时,
-  // 血魄,
-  // 橙武,
-  // 橙武测试,
-  // 橙武,
-  // 新紫武,
+  绝云, 极天绝云,
 ] as 循环数据[]
 
 export default 计算循环
+

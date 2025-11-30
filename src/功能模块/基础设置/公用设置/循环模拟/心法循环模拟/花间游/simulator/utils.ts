@@ -20,37 +20,37 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍: 选中秘
       case 'DOT_商阳指':
         if (商阳指秘籍多一跳) {
           // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          (obj as DotDTO).最大作用次数 = 7
+          ;(obj as DotDTO).最大作用次数 = 7
           ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 21
         } else {
           // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          (obj as DotDTO).最大作用次数 = 6
+          ;(obj as DotDTO).最大作用次数 = 6
           ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 18
         }
         break
       case 'DOT_钟林毓秀':
         if (钟林毓秀秘籍多一跳) {
           // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          (obj as DotDTO).最大作用次数 = 7
+          ;(obj as DotDTO).最大作用次数 = 7
           ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 21
         } else {
           // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          (obj as DotDTO).最大作用次数 = 6
+          ;(obj as DotDTO).最大作用次数 = 6
           ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 18
         }
         break
       case 'DOT_兰摧玉折':
         if (兰摧玉折秘籍多一跳) {
           // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          (obj as DotDTO).最大作用次数 = 7
+          ;(obj as DotDTO).最大作用次数 = 7
           ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 21
         } else {
           // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          (obj as DotDTO).最大作用次数 = 6
+          ;(obj as DotDTO).最大作用次数 = 6
           ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 18
         }
         break
-      case '乱洒青荷': 
+      case '乱洒青荷':
         if (判断奇穴('渲青')) {
           obj.最大层数 = 2
         }
@@ -66,7 +66,7 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍: 选中秘
 
 export const 根据奇穴秘籍修改技能数据 = (
   奇穴: string[],
-  秘籍: 选中秘籍信息
+  秘籍: 选中秘籍信息,
 ): 循环基础技能数据类型[] => {
   const 判断奇穴 = (val) => {
     return 奇穴?.includes(val)
@@ -86,14 +86,17 @@ export const 根据奇穴秘籍修改技能数据 = (
     } else if (技能?.技能名称 === '快雪时晴') {
       let 技能原始CD = 技能.技能CD || 0
       let 最大充能层数 = 技能.最大充能层数 || 1
+      let 可中断倒读条最大跳数 = 技能.可中断倒读条最大跳数 || undefined
       if (判断奇穴('丹鼎')) {
         技能原始CD = 每秒郭氏帧 * 20
         最大充能层数 = 2
+        可中断倒读条最大跳数 = undefined
       }
       return {
         ...技能,
         技能CD: 技能原始CD,
         最大充能层数,
+        可中断倒读条最大跳数,
       }
     } else {
       return 技能

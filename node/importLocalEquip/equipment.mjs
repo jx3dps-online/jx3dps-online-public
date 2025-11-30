@@ -1,6 +1,356 @@
-export const map ={
+export const map = {
     "wrist": {
         "通用": {
+            "防御": {
+                "江瀚护腕#107017 (35900 破招 无双)": {
+                    "id": 107017,
+                    "name": "江瀚护腕",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 6500,
+                    "icon_id": 25258,
+                    "base": {
+                        "physical_shield_base": 1028,
+                        "magical_shield_base": 1028
+                    },
+                    "magic": {
+                        "vitality_base": 20381,
+                        "physical_shield_base": 8780,
+                        "magical_shield_base": 8780,
+                        "surplus_base": 3763,
+                        "strain_base": 7525
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 3494
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 3494
+                            }
+                        }
+                    }
+                },
+                "长关护腕#107119 (35300 加速 破招 无双)": {
+                    "id": 107119,
+                    "name": "长关护腕",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9686,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "magical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "客行江湖·嵯峨护腕#107053 (35300 加速 破招 无双)": {
+                    "id": 107053,
+                    "name": "客行江湖·嵯峨护腕",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 23143,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石护手#106870 (35300 加速 无双)": {
+                    "id": 106870,
+                    "name": "穹石护手",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25252,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "haste_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "magical_shield_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌护手#106834 (35300 破招 无双)": {
+                    "id": 106834,
+                    "name": "洪涌护手",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25252,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "surplus_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "月钟袖#104973 (30700 破招 无双)": {
+                    "id": 104973,
+                    "name": "月钟袖",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 6286,
+                    "icon_id": 24116,
+                    "base": {
+                        "physical_shield_base": 879,
+                        "magical_shield_base": 879
+                    },
+                    "magic": {
+                        "vitality_base": 17429,
+                        "physical_shield_base": 7508,
+                        "magical_shield_base": 7508,
+                        "surplus_base": 3218,
+                        "strain_base": 6435
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 2992
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 2992
+                            }
+                        }
+                    }
+                },
+                "孤城惊梦·昂藏护腕#108223 (30200 加速 破招 无双)": {
+                    "id": 108223,
+                    "name": "孤城惊梦·昂藏护腕",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 6478,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "magical_shield_base": 10551,
+                        "haste_base": 2110,
+                        "surplus_base": 2110,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寻踪觅宝·横关护手#106644 (30200 加速 破招 无双)": {
+                    "id": 106644,
+                    "name": "寻踪觅宝·横关护手",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6462,
+                    "icon_id": 7987,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "magical_shield_base": 10551,
+                        "haste_base": 2110,
+                        "surplus_base": 2110,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "4": {
+                            "gains": []
+                        }
+                    }
+                },
+                "坠欢袖#105075 (30200 无双)": {
+                    "id": 105075,
+                    "name": "坠欢袖",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 13280,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "magical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "客行江湖·常盛袖#105009 (30200 无双)": {
+                    "id": 105009,
+                    "name": "客行江湖·常盛袖",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 23143,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "登科护手#104847 (30200 加速 无双)": {
+                    "id": 104847,
+                    "name": "登科护手",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24110,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "haste_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "magical_shield_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三元护手#104811 (30200 破招 无双)": {
+                    "id": 104811,
+                    "name": "三元护手",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24110,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "surplus_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "身法": {
                 "江舟护腕#107015 (35900 破防 无双)": {
                     "id": 107015,
@@ -3092,6 +3442,238 @@ export const map ={
                     "recipes": [],
                     "sets": {}
                 }
+            },
+            "防御": {
+                "承天固#107003 (35300 精简 特效 破招 无双)": {
+                    "id": 107003,
+                    "name": "承天固",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25252,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "surplus_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [
+                        "gain_42895_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "破锋御#107002 (35300 精简 特效 加速 无双)": {
+                    "id": 107002,
+                    "name": "破锋御",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25252,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "haste_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "magical_shield_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_42895_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "御霜风#107001 (35300 精简 特效 加速 破招 无双)": {
+                    "id": 107001,
+                    "name": "御霜风",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25252,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "magical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [
+                        "gain_42895_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "磐涛护#107000 (35300 精简 特效 加速 破招 无双)": {
+                    "id": 107000,
+                    "name": "磐涛护",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25252,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_42895_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "锁南天#106630 (30200 精简 特效 破招 无双)": {
+                    "id": 106630,
+                    "name": "锁南天",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24110,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "surplus_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [
+                        "gain_41062_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "镇朔风#106629 (30200 精简 特效 加速 无双)": {
+                    "id": 106629,
+                    "name": "镇朔风",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24110,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "haste_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "magical_shield_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41062_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "破天关#106628 (30200 精简 特效 无双)": {
+                    "id": 106628,
+                    "name": "破天关",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24110,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "magical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [
+                        "gain_41062_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "界南北#106627 (30200 精简 特效 无双)": {
+                    "id": 106627,
+                    "name": "界南北",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24110,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41062_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                }
             }
         },
         "无相": {
@@ -3969,6 +4551,84 @@ export const map ={
             }
         },
         "苍云": {
+            "防御": {
+                "牧川·仞横护手#106688 (35300 加速 破招 无双)": {
+                    "id": 106688,
+                    "name": "牧川·仞横护手",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6482,
+                    "icon_id": 25120,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_13"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1976_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·铸铁护手#104670 (30200 无双)": {
+                    "id": 104670,
+                    "name": "天极·铸铁护手",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6482,
+                    "icon_id": 23987,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_13"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1976_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "外功": {
                 "牧川·秋塞护手#106687 (35300 破招 无双)": {
                     "id": 106687,
@@ -4057,6 +4717,84 @@ export const map ={
             }
         },
         "明教": {
+            "防御": {
+                "牧川·长燃护手#106686 (35300 加速 破招 无双)": {
+                    "id": 106686,
+                    "name": "牧川·长燃护手",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6480,
+                    "icon_id": 25162,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_12"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1974_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·燃浊护手#104668 (30200 无双)": {
+                    "id": 104668,
+                    "name": "天极·燃浊护手",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6480,
+                    "icon_id": 24029,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_12"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1974_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "内功": {
                 "牧川·明沙护手#106685 (35300 破招 无双)": {
                     "id": 106685,
@@ -4835,6 +5573,84 @@ export const map ={
             }
         },
         "天策": {
+            "防御": {
+                "牧川·千山护手#106674 (35300 加速 破招 无双)": {
+                    "id": 106674,
+                    "name": "牧川·千山护手",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6468,
+                    "icon_id": 25192,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_10"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1973_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·截岳护手#104656 (30200 无双)": {
+                    "id": 104656,
+                    "name": "天极·截岳护手",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6468,
+                    "icon_id": 24059,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_10"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1973_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "外功": {
                 "牧川·餐虏护手#106673 (35300 破招 无双)": {
                     "id": 106673,
@@ -5009,6 +5825,86 @@ export const map ={
             }
         },
         "少林": {
+            "防御": {
+                "牧川·斥魔护手#106670 (35300 加速 破招 无双)": {
+                    "id": 106670,
+                    "name": "牧川·斥魔护手",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6464,
+                    "icon_id": 25180,
+                    "base": {
+                        "physical_shield_base": 1011,
+                        "magical_shield_base": 1011
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "magical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_11"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1975_1",
+                                "recipe_4517_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·梵劫护手#104652 (30200 无双)": {
+                    "id": 104652,
+                    "name": "天极·梵劫护手",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6464,
+                    "icon_id": 24047,
+                    "base": {
+                        "physical_shield_base": 865,
+                        "magical_shield_base": 865
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "magical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_11"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1975_1",
+                                "recipe_4517_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "内功": {
                 "牧川·真宇护手#106669 (35300 破招 无双)": {
                     "id": 106669,
@@ -5099,6 +5995,288 @@ export const map ={
     },
     "shoes": {
         "通用": {
+            "防御": {
+                "江瀚靴#107029 (35900 加速 破招 无双)": {
+                    "id": 107029,
+                    "name": "江瀚靴",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 6500,
+                    "icon_id": 25261,
+                    "base": {
+                        "physical_shield_base": 734,
+                        "magical_shield_base": 734
+                    },
+                    "magic": {
+                        "vitality_base": 20381,
+                        "physical_shield_base": 12542,
+                        "haste_base": 2508,
+                        "surplus_base": 2508,
+                        "strain_base": 7525
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 3494
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 3494
+                            }
+                        }
+                    }
+                },
+                "长关靴#107131 (35300 加速 破招 无双)": {
+                    "id": 107131,
+                    "name": "长关靴",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9689,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石靴#106882 (35300 加速 破招 无双)": {
+                    "id": 106882,
+                    "name": "穹石靴",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25255,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "magical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌靴#106846 (35300 加速 无双)": {
+                    "id": 106846,
+                    "name": "洪涌靴",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25255,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "haste_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "月钟履#104985 (30700 无双)": {
+                    "id": 104985,
+                    "name": "月钟履",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 6286,
+                    "icon_id": 24119,
+                    "base": {
+                        "physical_shield_base": 628,
+                        "magical_shield_base": 628
+                    },
+                    "magic": {
+                        "vitality_base": 17429,
+                        "physical_shield_base": 10725,
+                        "strain_base": 6435
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 2992
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 2992
+                            }
+                        }
+                    }
+                },
+                "孤城惊梦·昂藏靴#108235 (30200 加速 破招 无双)": {
+                    "id": 108235,
+                    "name": "孤城惊梦·昂藏靴",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 6551,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "haste_base": 2110,
+                        "surplus_base": 2110,
+                        "strain_base": 6330
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寻踪觅宝·横关靴#106656 (30200 加速 破招 无双)": {
+                    "id": 106656,
+                    "name": "寻踪觅宝·横关靴",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6462,
+                    "icon_id": 7991,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "haste_base": 2110,
+                        "surplus_base": 2110,
+                        "strain_base": 6330
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "4": {
+                            "gains": []
+                        }
+                    }
+                },
+                "坠欢靴#105087 (30200 无双)": {
+                    "id": 105087,
+                    "name": "坠欢靴",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 13283,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "登科鞋#104859 (30200 无双)": {
+                    "id": 104859,
+                    "name": "登科鞋",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24113,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "magical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三元靴#104823 (30200 加速 无双)": {
+                    "id": 104823,
+                    "name": "三元靴",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24113,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "haste_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "身法": {
                 "江舟靴#107027 (35900 破招 无双)": {
                     "id": 107027,
@@ -8269,6 +9447,88 @@ export const map ={
             }
         },
         "苍云": {
+            "防御": {
+                "牧川·仞横靴#106752 (35300 破招 无双)": {
+                    "id": 106752,
+                    "name": "牧川·仞横靴",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6482,
+                    "icon_id": 25123,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "surplus_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_13"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1976_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·铸铁靴#104732 (30200 破招 无双)": {
+                    "id": 104732,
+                    "name": "天极·铸铁靴",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6482,
+                    "icon_id": 23990,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "surplus_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_13"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1976_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "外功": {
                 "牧川·秋塞靴#106751 (35300 破防 无双)": {
                     "id": 106751,
@@ -8357,6 +9617,88 @@ export const map ={
             }
         },
         "明教": {
+            "防御": {
+                "牧川·长燃靴#106750 (35300 破招 无双)": {
+                    "id": 106750,
+                    "name": "牧川·长燃靴",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6480,
+                    "icon_id": 25165,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "surplus_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_12"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1974_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·燃浊靴#104730 (30200 破招 无双)": {
+                    "id": 104730,
+                    "name": "天极·燃浊靴",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6480,
+                    "icon_id": 24032,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "surplus_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_12"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1974_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "内功": {
                 "牧川·明沙靴#106749 (35300 破防 无双)": {
                     "id": 106749,
@@ -9135,6 +10477,88 @@ export const map ={
             }
         },
         "天策": {
+            "防御": {
+                "牧川·千山靴#106738 (35300 破招 无双)": {
+                    "id": 106738,
+                    "name": "牧川·千山靴",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6468,
+                    "icon_id": 25195,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "surplus_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_10"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1973_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·截岳靴#104718 (30200 破招 无双)": {
+                    "id": 104718,
+                    "name": "天极·截岳靴",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6468,
+                    "icon_id": 24062,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "surplus_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_10"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1973_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "外功": {
                 "牧川·餐虏靴#106737 (35300 破防 无双)": {
                     "id": 106737,
@@ -9309,6 +10733,90 @@ export const map ={
             }
         },
         "少林": {
+            "防御": {
+                "牧川·斥魔靴#106734 (35300 破招 无双)": {
+                    "id": 106734,
+                    "name": "牧川·斥魔靴",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6464,
+                    "icon_id": 25183,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "surplus_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_11"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1975_1",
+                                "recipe_4517_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·梵劫靴#104714 (30200 破招 无双)": {
+                    "id": 104714,
+                    "name": "天极·梵劫靴",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6464,
+                    "icon_id": 24050,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "surplus_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_11"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1975_1",
+                                "recipe_4517_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "内功": {
                 "牧川·真宇靴#106733 (35300 破防 无双)": {
                     "id": 106733,
@@ -9399,6 +10907,406 @@ export const map ={
     },
     "bottoms": {
         "通用": {
+            "防御": {
+                "江瀚下裳#107035 (35900 破招 无双)": {
+                    "id": 107035,
+                    "name": "江瀚下裳",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 6500,
+                    "icon_id": 25260,
+                    "base": {
+                        "physical_shield_base": 1322,
+                        "magical_shield_base": 1322
+                    },
+                    "magic": {
+                        "vitality_base": 29116,
+                        "physical_shield_base": 12542,
+                        "magical_shield_base": 12542,
+                        "surplus_base": 5375,
+                        "strain_base": 10750
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 3494
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 3494
+                            }
+                        }
+                    }
+                },
+                "长关下裳#107137 (35300 破招 无双)": {
+                    "id": 107137,
+                    "name": "长关下裳",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9688,
+                    "base": {
+                        "physical_shield_base": 1300,
+                        "magical_shield_base": 1300
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "physical_shield_base": 12333,
+                        "magical_shield_base": 12333,
+                        "surplus_base": 5285,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "客行江湖·嵯峨下裳#107059 (35300 破招 无双)": {
+                    "id": 107059,
+                    "name": "客行江湖·嵯峨下裳",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 23145,
+                    "base": {
+                        "physical_shield_base": 1300,
+                        "magical_shield_base": 1300
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "physical_shield_base": 12333,
+                        "magical_shield_base": 12333,
+                        "surplus_base": 5285,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "深岩裤#106906 (35300 加速 无双)": {
+                    "id": 106906,
+                    "name": "深岩裤",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25254,
+                    "base": {
+                        "physical_shield_base": 1300,
+                        "magical_shield_base": 1300
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "physical_shield_base": 12333,
+                        "magical_shield_base": 12333,
+                        "haste_base": 5285,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石裤#106888 (35300 加速 破招 无双)": {
+                    "id": 106888,
+                    "name": "穹石裤",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25254,
+                    "base": {
+                        "physical_shield_base": 1300,
+                        "magical_shield_base": 1300
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "magical_shield_base": 17618,
+                        "haste_base": 3524,
+                        "surplus_base": 3524,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌裤#106852 (35300 加速 破招 无双)": {
+                    "id": 106852,
+                    "name": "洪涌裤",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25254,
+                    "base": {
+                        "physical_shield_base": 1300,
+                        "magical_shield_base": 1300
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "physical_shield_base": 17618,
+                        "haste_base": 3524,
+                        "surplus_base": 3524,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "娄刚下裳#108664 (32500 加速 破招 无双)": {
+                    "id": 108664,
+                    "name": "娄刚下裳",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 32500,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 11602,
+                    "base": {
+                        "physical_shield_base": 1197,
+                        "magical_shield_base": 1197
+                    },
+                    "magic": {
+                        "vitality_base": 26358,
+                        "physical_shield_base": 16220,
+                        "haste_base": 3244,
+                        "surplus_base": 3244,
+                        "strain_base": 9732
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "月钟下裳#104991 (30700 破招 无双)": {
+                    "id": 104991,
+                    "name": "月钟下裳",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 6286,
+                    "icon_id": 24118,
+                    "base": {
+                        "physical_shield_base": 1130,
+                        "magical_shield_base": 1130
+                    },
+                    "magic": {
+                        "vitality_base": 24898,
+                        "physical_shield_base": 10725,
+                        "magical_shield_base": 10725,
+                        "surplus_base": 4597,
+                        "strain_base": 9193
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 2992
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 2992
+                            }
+                        }
+                    }
+                },
+                "孤城惊梦·昂藏下裳#108241 (30200 破招 无双)": {
+                    "id": 108241,
+                    "name": "孤城惊梦·昂藏下裳",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 6479,
+                    "base": {
+                        "physical_shield_base": 1112,
+                        "magical_shield_base": 1112
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 10551,
+                        "magical_shield_base": 10551,
+                        "surplus_base": 4522,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "坠欢裤#105093 (30200 破招 无双)": {
+                    "id": 105093,
+                    "name": "坠欢裤",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 13282,
+                    "base": {
+                        "physical_shield_base": 1112,
+                        "magical_shield_base": 1112
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 10551,
+                        "magical_shield_base": 10551,
+                        "surplus_base": 4522,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "客行江湖·常盛下裳#105015 (30200 破招 无双)": {
+                    "id": 105015,
+                    "name": "客行江湖·常盛下裳",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 23145,
+                    "base": {
+                        "physical_shield_base": 1112,
+                        "magical_shield_base": 1112
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 10551,
+                        "magical_shield_base": 10551,
+                        "surplus_base": 4522,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "裁霜裤#104883 (30200 加速 无双)": {
+                    "id": 104883,
+                    "name": "裁霜裤",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24112,
+                    "base": {
+                        "physical_shield_base": 1112,
+                        "magical_shield_base": 1112
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 10551,
+                        "magical_shield_base": 10551,
+                        "haste_base": 4522,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "登科下裳#104865 (30200 无双)": {
+                    "id": 104865,
+                    "name": "登科下裳",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24112,
+                    "base": {
+                        "physical_shield_base": 1112,
+                        "magical_shield_base": 1112
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "magical_shield_base": 15073,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三元下裳#104829 (30200 无双)": {
+                    "id": 104829,
+                    "name": "三元下裳",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24112,
+                    "base": {
+                        "physical_shield_base": 1112,
+                        "magical_shield_base": 1112
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 15073,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "身法": {
                 "江舟下裳#107033 (35900 会心 无双)": {
                     "id": 107033,
@@ -12688,11 +14596,547 @@ export const map ={
                     "recipes": [],
                     "sets": {}
                 }
+            },
+            "防御": {
+                "千狂力#107011 (35300 精简 特效 破招 无双)": {
+                    "id": 107011,
+                    "name": "千狂力",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25254,
+                    "base": {
+                        "physical_shield_base": 1300,
+                        "magical_shield_base": 1300
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "physical_shield_base": 12333,
+                        "magical_shield_base": 12333,
+                        "surplus_base": 5285,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41064_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "玉障尘#107010 (35300 精简 特效 加速 无双)": {
+                    "id": 107010,
+                    "name": "玉障尘",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25254,
+                    "base": {
+                        "physical_shield_base": 1300,
+                        "magical_shield_base": 1300
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "physical_shield_base": 12333,
+                        "magical_shield_base": 12333,
+                        "haste_base": 5285,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41064_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "不倾峦#107009 (35300 精简 特效 加速 破招 无双)": {
+                    "id": 107009,
+                    "name": "不倾峦",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25254,
+                    "base": {
+                        "physical_shield_base": 1300,
+                        "magical_shield_base": 1300
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "magical_shield_base": 17618,
+                        "haste_base": 3524,
+                        "surplus_base": 3524,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41064_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "苍石骨#107008 (35300 精简 特效 加速 破招 无双)": {
+                    "id": 107008,
+                    "name": "苍石骨",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25254,
+                    "base": {
+                        "physical_shield_base": 1300,
+                        "magical_shield_base": 1300
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "physical_shield_base": 17618,
+                        "haste_base": 3524,
+                        "surplus_base": 3524,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41064_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "腾龙脊#106638 (30200 精简 特效 破招 无双)": {
+                    "id": 106638,
+                    "name": "腾龙脊",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24112,
+                    "base": {
+                        "physical_shield_base": 1112,
+                        "magical_shield_base": 1112
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 10551,
+                        "magical_shield_base": 10551,
+                        "surplus_base": 4522,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41064_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "擎天阙#106637 (30200 精简 特效 加速 无双)": {
+                    "id": 106637,
+                    "name": "擎天阙",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24112,
+                    "base": {
+                        "physical_shield_base": 1112,
+                        "magical_shield_base": 1112
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 10551,
+                        "magical_shield_base": 10551,
+                        "haste_base": 4522,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41064_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "镇狂澜#106636 (30200 精简 特效 无双)": {
+                    "id": 106636,
+                    "name": "镇狂澜",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24112,
+                    "base": {
+                        "physical_shield_base": 1112,
+                        "magical_shield_base": 1112
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "magical_shield_base": 15073,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41064_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "奔海沧#106635 (30200 精简 特效 无双)": {
+                    "id": 106635,
+                    "name": "奔海沧",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24112,
+                    "base": {
+                        "physical_shield_base": 1112,
+                        "magical_shield_base": 1112
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 15073,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41064_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                }
             }
         }
     },
     "belt": {
         "通用": {
+            "防御": {
+                "江瀚护腰#107023 (35900 加速 破招 无双)": {
+                    "id": 107023,
+                    "name": "江瀚护腰",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 6500,
+                    "icon_id": 25262,
+                    "base": {
+                        "physical_shield_base": 734,
+                        "magical_shield_base": 734
+                    },
+                    "magic": {
+                        "vitality_base": 20381,
+                        "magical_shield_base": 12542,
+                        "haste_base": 2508,
+                        "surplus_base": 2508,
+                        "strain_base": 7525
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 3494
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 3494
+                            }
+                        }
+                    }
+                },
+                "长关护腰#107125 (35300 加速 破招 无双)": {
+                    "id": 107125,
+                    "name": "长关护腰",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9687,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "magical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石护腰#106876 (35300 破招 无双)": {
+                    "id": 106876,
+                    "name": "穹石护腰",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25256,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "surplus_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌护腰#106840 (35300 加速 无双)": {
+                    "id": 106840,
+                    "name": "洪涌护腰",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25256,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "haste_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "magical_shield_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "月钟护腰#104979 (30700 无双)": {
+                    "id": 104979,
+                    "name": "月钟护腰",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 6286,
+                    "icon_id": 24120,
+                    "base": {
+                        "physical_shield_base": 628,
+                        "magical_shield_base": 628
+                    },
+                    "magic": {
+                        "vitality_base": 17429,
+                        "magical_shield_base": 10725,
+                        "strain_base": 6435
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 2992
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 2992
+                            }
+                        }
+                    }
+                },
+                "孤城惊梦·昂藏护腰#108229 (30200 加速 破招 无双)": {
+                    "id": 108229,
+                    "name": "孤城惊梦·昂藏护腰",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 6552,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "magical_shield_base": 10551,
+                        "haste_base": 2110,
+                        "surplus_base": 2110,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寻踪觅宝·横关护腰#106650 (30200 加速 无双)": {
+                    "id": 106650,
+                    "name": "寻踪觅宝·横关护腰",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6462,
+                    "icon_id": 7988,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "haste_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "magical_shield_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "4": {
+                            "gains": []
+                        }
+                    }
+                },
+                "坠欢护腰#105081 (30200 无双)": {
+                    "id": 105081,
+                    "name": "坠欢护腰",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 13284,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "magical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "登科护腰#104853 (30200 破招 无双)": {
+                    "id": 104853,
+                    "name": "登科护腰",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24114,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "surplus_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三元腰带#104817 (30200 加速 无双)": {
+                    "id": 104817,
+                    "name": "三元腰带",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24114,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "haste_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "magical_shield_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "身法": {
                 "江舟护腰#107021 (35900 会心 无双)": {
                     "id": 107021,
@@ -15552,6 +17996,242 @@ export const map ={
                     "recipes": [],
                     "sets": {}
                 }
+            },
+            "防御": {
+                "守坤载#107007 (35300 精简 特效 破招 无双)": {
+                    "id": 107007,
+                    "name": "守坤载",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25256,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "surplus_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [
+                        "gain_41063_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "镇岳心#107006 (35300 精简 特效 加速 无双)": {
+                    "id": 107006,
+                    "name": "镇岳心",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25256,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 8633,
+                        "magical_shield_base": 8633,
+                        "haste_base": 3700,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "magical_shield_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41063_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "金鳞遮#107005 (35300 精简 特效 加速 破招 无双)": {
+                    "id": 107005,
+                    "name": "金鳞遮",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25256,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "magical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [
+                        "gain_41063_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "万山静#107004 (35300 精简 特效 加速 破招 无双)": {
+                    "id": 107004,
+                    "name": "万山静",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25256,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [
+                        "gain_41063_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "靖边尘#106634 (30200 精简 特效 破招 无双)": {
+                    "id": 106634,
+                    "name": "靖边尘",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24114,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "surplus_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [
+                        "gain_41063_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "铭烽烟#106633 (30200 精简 特效 加速 无双)": {
+                    "id": 106633,
+                    "name": "铭烽烟",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24114,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 7386,
+                        "magical_shield_base": 7386,
+                        "haste_base": 3165,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "magical_shield_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_41063_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "千秋业#106632 (30200 精简 特效 无双)": {
+                    "id": 106632,
+                    "name": "千秋业",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24114,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "magical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [
+                        "gain_41063_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "据雄关#106631 (30200 精简 特效 无双)": {
+                    "id": 106631,
+                    "name": "据雄关",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24114,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [
+                        "gain_41063_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                }
             }
         },
         "无相": {
@@ -16429,6 +19109,84 @@ export const map ={
             }
         },
         "苍云": {
+            "防御": {
+                "牧川·仞横护腰#106720 (35300 加速 破招 无双)": {
+                    "id": 106720,
+                    "name": "牧川·仞横护腰",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6482,
+                    "icon_id": 25124,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_13"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1976_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·铸铁腰带#104701 (30200 无双)": {
+                    "id": 104701,
+                    "name": "天极·铸铁腰带",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6482,
+                    "icon_id": 23991,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_13"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1976_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "外功": {
                 "牧川·秋塞护腰#106719 (35300 会心 无双)": {
                     "id": 106719,
@@ -16517,6 +19275,84 @@ export const map ={
             }
         },
         "明教": {
+            "防御": {
+                "牧川·长燃护腰#106718 (35300 加速 破招 无双)": {
+                    "id": 106718,
+                    "name": "牧川·长燃护腰",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6480,
+                    "icon_id": 25166,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_12"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1974_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·燃浊腰带#104699 (30200 无双)": {
+                    "id": 104699,
+                    "name": "天极·燃浊腰带",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6480,
+                    "icon_id": 24033,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_12"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1974_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "内功": {
                 "牧川·明沙护腰#106717 (35300 会心 无双)": {
                     "id": 106717,
@@ -17295,6 +20131,84 @@ export const map ={
             }
         },
         "天策": {
+            "防御": {
+                "牧川·千山护腰#106706 (35300 加速 破招 无双)": {
+                    "id": 106706,
+                    "name": "牧川·千山护腰",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6468,
+                    "icon_id": 25196,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "physical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_10"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1973_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·截岳腰带#104687 (30200 无双)": {
+                    "id": 104687,
+                    "name": "天极·截岳腰带",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6468,
+                    "icon_id": 24063,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "physical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_10"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1973_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "外功": {
                 "牧川·餐虏护腰#106705 (35300 会心 无双)": {
                     "id": 106705,
@@ -17469,6 +20383,88 @@ export const map ={
             }
         },
         "少林": {
+            "防御": {
+                "牧川·斥魔护腰#106702 (35300 加速 破招 无双)": {
+                    "id": 106702,
+                    "name": "牧川·斥魔护腰",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6464,
+                    "icon_id": 25184,
+                    "base": {
+                        "physical_shield_base": 722,
+                        "magical_shield_base": 722
+                    },
+                    "magic": {
+                        "vitality_base": 20040,
+                        "magical_shield_base": 12333,
+                        "haste_base": 2467,
+                        "surplus_base": 2467,
+                        "strain_base": 7400
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_11"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1975_1",
+                                "recipe_4517_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·梵劫腰带#104683 (30200 无双)": {
+                    "id": 104683,
+                    "name": "天极·梵劫腰带",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6464,
+                    "icon_id": 24051,
+                    "base": {
+                        "physical_shield_base": 618,
+                        "magical_shield_base": 618
+                    },
+                    "magic": {
+                        "vitality_base": 17145,
+                        "magical_shield_base": 10551,
+                        "strain_base": 6330
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_11"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1975_1",
+                                "recipe_4517_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "内功": {
                 "牧川·真宇护腰#106701 (35300 会心 无双)": {
                     "id": 106701,
@@ -17559,6 +20555,360 @@ export const map ={
     },
     "hat": {
         "通用": {
+            "防御": {
+                "江瀚帽#107041 (35900 加速 破招 无双)": {
+                    "id": 107041,
+                    "name": "江瀚帽",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 6500,
+                    "icon_id": 25259,
+                    "base": {
+                        "physical_shield_base": 1175,
+                        "magical_shield_base": 1175
+                    },
+                    "magic": {
+                        "vitality_base": 26204,
+                        "magical_shield_base": 16126,
+                        "haste_base": 3225,
+                        "surplus_base": 3225,
+                        "strain_base": 9675
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 3494
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 3494
+                            }
+                        }
+                    }
+                },
+                "长关帽#107143 (35300 加速 无双)": {
+                    "id": 107143,
+                    "name": "长关帽",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9684,
+                    "base": {
+                        "physical_shield_base": 1155,
+                        "magical_shield_base": 1155
+                    },
+                    "magic": {
+                        "vitality_base": 25766,
+                        "physical_shield_base": 11099,
+                        "magical_shield_base": 11099,
+                        "haste_base": 4757,
+                        "strain_base": 9514
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "客行江湖·嵯峨帽#107065 (35300 加速 破招 无双)": {
+                    "id": 107065,
+                    "name": "客行江湖·嵯峨帽",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 23144,
+                    "base": {
+                        "physical_shield_base": 1155,
+                        "magical_shield_base": 1155
+                    },
+                    "magic": {
+                        "vitality_base": 25766,
+                        "magical_shield_base": 15856,
+                        "haste_base": 3171,
+                        "surplus_base": 3171,
+                        "strain_base": 9514
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石冠#106894 (35300 破招 无双)": {
+                    "id": 106894,
+                    "name": "穹石冠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25253,
+                    "base": {
+                        "physical_shield_base": 1155,
+                        "magical_shield_base": 1155
+                    },
+                    "magic": {
+                        "vitality_base": 25766,
+                        "physical_shield_base": 11099,
+                        "magical_shield_base": 11099,
+                        "surplus_base": 4757,
+                        "strain_base": 9514
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌冠#106858 (35300 加速 破招 无双)": {
+                    "id": 106858,
+                    "name": "洪涌冠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25253,
+                    "base": {
+                        "physical_shield_base": 1155,
+                        "magical_shield_base": 1155
+                    },
+                    "magic": {
+                        "vitality_base": 25766,
+                        "physical_shield_base": 15856,
+                        "haste_base": 3171,
+                        "surplus_base": 3171,
+                        "strain_base": 9514
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "月钟冠#104997 (30700 无双)": {
+                    "id": 104997,
+                    "name": "月钟冠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 6286,
+                    "icon_id": 24117,
+                    "base": {
+                        "physical_shield_base": 1005,
+                        "magical_shield_base": 1005
+                    },
+                    "magic": {
+                        "vitality_base": 22409,
+                        "magical_shield_base": 13790,
+                        "strain_base": 8274
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 2992
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 2992
+                            }
+                        }
+                    }
+                },
+                "孤城惊梦·昂藏帽#108247 (30200 加速 无双)": {
+                    "id": 108247,
+                    "name": "孤城惊梦·昂藏帽",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 6480,
+                    "base": {
+                        "physical_shield_base": 988,
+                        "magical_shield_base": 988
+                    },
+                    "magic": {
+                        "vitality_base": 22044,
+                        "physical_shield_base": 9496,
+                        "magical_shield_base": 9496,
+                        "haste_base": 4070,
+                        "strain_base": 8139
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寻踪觅宝·横关冠#106662 (30200 加速 无双)": {
+                    "id": 106662,
+                    "name": "寻踪觅宝·横关冠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6462,
+                    "icon_id": 7986,
+                    "base": {
+                        "physical_shield_base": 988,
+                        "magical_shield_base": 988
+                    },
+                    "magic": {
+                        "vitality_base": 22044,
+                        "physical_shield_base": 9496,
+                        "magical_shield_base": 9496,
+                        "haste_base": 4070,
+                        "strain_base": 8139
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "4": {
+                            "gains": []
+                        }
+                    }
+                },
+                "坠欢帽#105099 (30200 加速 无双)": {
+                    "id": 105099,
+                    "name": "坠欢帽",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 13281,
+                    "base": {
+                        "physical_shield_base": 988,
+                        "magical_shield_base": 988
+                    },
+                    "magic": {
+                        "vitality_base": 22044,
+                        "physical_shield_base": 9496,
+                        "magical_shield_base": 9496,
+                        "haste_base": 4070,
+                        "strain_base": 8139
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "客行江湖·常盛冠#105021 (30200 无双)": {
+                    "id": 105021,
+                    "name": "客行江湖·常盛冠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 23144,
+                    "base": {
+                        "physical_shield_base": 988,
+                        "magical_shield_base": 988
+                    },
+                    "magic": {
+                        "vitality_base": 22044,
+                        "magical_shield_base": 13565,
+                        "strain_base": 8139
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "登科冠#104871 (30200 破招 无双)": {
+                    "id": 104871,
+                    "name": "登科冠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24111,
+                    "base": {
+                        "physical_shield_base": 988,
+                        "magical_shield_base": 988
+                    },
+                    "magic": {
+                        "vitality_base": 22044,
+                        "physical_shield_base": 9496,
+                        "magical_shield_base": 9496,
+                        "surplus_base": 4070,
+                        "strain_base": 8139
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三元冠#104835 (30200 无双)": {
+                    "id": 104835,
+                    "name": "三元冠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24111,
+                    "base": {
+                        "physical_shield_base": 988,
+                        "magical_shield_base": 988
+                    },
+                    "magic": {
+                        "vitality_base": 22044,
+                        "physical_shield_base": 13565,
+                        "strain_base": 8139
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "身法": {
                 "江舟帽#107039 (35900 破招 无双)": {
                     "id": 107039,
@@ -20957,6 +24307,86 @@ export const map ={
             }
         },
         "苍云": {
+            "防御": {
+                "牧川·仞横冠#106784 (35300 加速 无双)": {
+                    "id": 106784,
+                    "name": "牧川·仞横冠",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6482,
+                    "icon_id": 25121,
+                    "base": {
+                        "physical_shield_base": 1155,
+                        "magical_shield_base": 1155
+                    },
+                    "magic": {
+                        "vitality_base": 25766,
+                        "physical_shield_base": 11099,
+                        "magical_shield_base": 11099,
+                        "haste_base": 4757,
+                        "strain_base": 9514
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_13"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1976_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·铸铁冠#104763 (30200 加速 无双)": {
+                    "id": 104763,
+                    "name": "天极·铸铁冠",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6482,
+                    "icon_id": 23988,
+                    "base": {
+                        "physical_shield_base": 988,
+                        "magical_shield_base": 988
+                    },
+                    "magic": {
+                        "vitality_base": 22044,
+                        "physical_shield_base": 9496,
+                        "magical_shield_base": 9496,
+                        "haste_base": 4070,
+                        "strain_base": 8139
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_13"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1976_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "外功": {
                 "牧川·秋塞冠#106783 (35300 破防 无双)": {
                     "id": 106783,
@@ -21045,6 +24475,86 @@ export const map ={
             }
         },
         "明教": {
+            "防御": {
+                "牧川·长燃冠#106782 (35300 加速 无双)": {
+                    "id": 106782,
+                    "name": "牧川·长燃冠",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6480,
+                    "icon_id": 25163,
+                    "base": {
+                        "physical_shield_base": 1155,
+                        "magical_shield_base": 1155
+                    },
+                    "magic": {
+                        "vitality_base": 25766,
+                        "physical_shield_base": 11099,
+                        "magical_shield_base": 11099,
+                        "haste_base": 4757,
+                        "strain_base": 9514
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_12"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1974_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·燃浊冠#104761 (30200 加速 无双)": {
+                    "id": 104761,
+                    "name": "天极·燃浊冠",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6480,
+                    "icon_id": 24030,
+                    "base": {
+                        "physical_shield_base": 988,
+                        "magical_shield_base": 988
+                    },
+                    "magic": {
+                        "vitality_base": 22044,
+                        "physical_shield_base": 9496,
+                        "magical_shield_base": 9496,
+                        "haste_base": 4070,
+                        "strain_base": 8139
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_12"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1974_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "内功": {
                 "牧川·明沙冠#106781 (35300 破防 无双)": {
                     "id": 106781,
@@ -21823,6 +25333,86 @@ export const map ={
             }
         },
         "天策": {
+            "防御": {
+                "牧川·千山冠#106770 (35300 加速 无双)": {
+                    "id": 106770,
+                    "name": "牧川·千山冠",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6468,
+                    "icon_id": 25193,
+                    "base": {
+                        "physical_shield_base": 1155,
+                        "magical_shield_base": 1155
+                    },
+                    "magic": {
+                        "vitality_base": 25766,
+                        "physical_shield_base": 11099,
+                        "magical_shield_base": 11099,
+                        "haste_base": 4757,
+                        "strain_base": 9514
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_10"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1973_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·截岳冠#104749 (30200 加速 无双)": {
+                    "id": 104749,
+                    "name": "天极·截岳冠",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6468,
+                    "icon_id": 24060,
+                    "base": {
+                        "physical_shield_base": 988,
+                        "magical_shield_base": 988
+                    },
+                    "magic": {
+                        "vitality_base": 22044,
+                        "physical_shield_base": 9496,
+                        "magical_shield_base": 9496,
+                        "haste_base": 4070,
+                        "strain_base": 8139
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_10"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1973_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "外功": {
                 "牧川·餐虏冠#106769 (35300 破防 无双)": {
                     "id": 106769,
@@ -21997,6 +25587,88 @@ export const map ={
             }
         },
         "少林": {
+            "防御": {
+                "牧川·斥魔冠#106766 (35300 加速 无双)": {
+                    "id": 106766,
+                    "name": "牧川·斥魔冠",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6464,
+                    "icon_id": 25181,
+                    "base": {
+                        "physical_shield_base": 1155,
+                        "magical_shield_base": 1155
+                    },
+                    "magic": {
+                        "vitality_base": 25766,
+                        "physical_shield_base": 11099,
+                        "magical_shield_base": 11099,
+                        "haste_base": 4757,
+                        "strain_base": 9514
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_11"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1975_1",
+                                "recipe_4517_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·梵劫冠#104745 (30200 加速 无双)": {
+                    "id": 104745,
+                    "name": "天极·梵劫冠",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6464,
+                    "icon_id": 24048,
+                    "base": {
+                        "physical_shield_base": 988,
+                        "magical_shield_base": 988
+                    },
+                    "magic": {
+                        "vitality_base": 22044,
+                        "physical_shield_base": 9496,
+                        "magical_shield_base": 9496,
+                        "haste_base": 4070,
+                        "strain_base": 8139
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_11"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1975_1",
+                                "recipe_4517_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "内功": {
                 "牧川·真宇冠#106765 (35300 破防 无双)": {
                     "id": 106765,
@@ -22087,6 +25759,302 @@ export const map ={
     },
     "jacket": {
         "通用": {
+            "防御": {
+                "江瀚衫#107047 (35900 加速 无双)": {
+                    "id": 107047,
+                    "name": "江瀚衫",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 6500,
+                    "icon_id": 25257,
+                    "base": {
+                        "physical_shield_base": 1469,
+                        "magical_shield_base": 1469
+                    },
+                    "magic": {
+                        "vitality_base": 29116,
+                        "physical_shield_base": 12542,
+                        "magical_shield_base": 12542,
+                        "haste_base": 5375,
+                        "strain_base": 10750
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 3494
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 3494
+                            }
+                        }
+                    }
+                },
+                "长关衫#107149 (35300 加速 破招 无双)": {
+                    "id": 107149,
+                    "name": "长关衫",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9685,
+                    "base": {
+                        "physical_shield_base": 1444,
+                        "magical_shield_base": 1444
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "magical_shield_base": 17618,
+                        "haste_base": 3524,
+                        "surplus_base": 3524,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石衣#106900 (35300 破招 无双)": {
+                    "id": 106900,
+                    "name": "穹石衣",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25251,
+                    "base": {
+                        "physical_shield_base": 1444,
+                        "magical_shield_base": 1444
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "physical_shield_base": 12333,
+                        "magical_shield_base": 12333,
+                        "surplus_base": 5285,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌衣#106864 (35300 加速 破招 无双)": {
+                    "id": 106864,
+                    "name": "洪涌衣",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25251,
+                    "base": {
+                        "physical_shield_base": 1444,
+                        "magical_shield_base": 1444
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "physical_shield_base": 17618,
+                        "haste_base": 3524,
+                        "surplus_base": 3524,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "月钟衣#105003 (30700 加速 无双)": {
+                    "id": 105003,
+                    "name": "月钟衣",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 6286,
+                    "icon_id": 24115,
+                    "base": {
+                        "physical_shield_base": 1256,
+                        "magical_shield_base": 1256
+                    },
+                    "magic": {
+                        "vitality_base": 24898,
+                        "physical_shield_base": 10725,
+                        "magical_shield_base": 10725,
+                        "haste_base": 4597,
+                        "strain_base": 9193
+                    },
+                    "embed": {
+                        "physical_shield_base": 161,
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "attributes": {
+                                "surplus_base": 2992
+                            }
+                        },
+                        "4": {
+                            "attributes": {
+                                "haste_base": 2992
+                            }
+                        }
+                    }
+                },
+                "孤城惊梦·昂藏衫#108253 (30200 加速 破招 无双)": {
+                    "id": 108253,
+                    "name": "孤城惊梦·昂藏衫",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 6553,
+                    "base": {
+                        "physical_shield_base": 1235,
+                        "magical_shield_base": 1235
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "magical_shield_base": 15073,
+                        "haste_base": 3015,
+                        "surplus_base": 3015,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寻踪觅宝·横关衣#106668 (30200 加速 破招 无双)": {
+                    "id": 106668,
+                    "name": "寻踪觅宝·横关衣",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6462,
+                    "icon_id": 7989,
+                    "base": {
+                        "physical_shield_base": 1235,
+                        "magical_shield_base": 1235
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 15073,
+                        "haste_base": 3015,
+                        "surplus_base": 3015,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "4": {
+                            "gains": []
+                        }
+                    }
+                },
+                "坠欢衫#105105 (30200 无双)": {
+                    "id": 105105,
+                    "name": "坠欢衫",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 13285,
+                    "base": {
+                        "physical_shield_base": 1235,
+                        "magical_shield_base": 1235
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "magical_shield_base": 15073,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "登科衣#104877 (30200 破招 无双)": {
+                    "id": 104877,
+                    "name": "登科衣",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24109,
+                    "base": {
+                        "physical_shield_base": 1235,
+                        "magical_shield_base": 1235
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 10551,
+                        "magical_shield_base": 10551,
+                        "surplus_base": 4522,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三元衣#104841 (30200 无双)": {
+                    "id": 104841,
+                    "name": "三元衣",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24109,
+                    "base": {
+                        "physical_shield_base": 1235,
+                        "magical_shield_base": 1235
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 15073,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "身法": {
                 "江舟衫#107045 (35900 破防 无双)": {
                     "id": 107045,
@@ -24195,6 +28163,84 @@ export const map ={
             }
         },
         "苍云": {
+            "防御": {
+                "牧川·仞横衣#106816 (35300 加速 破招 无双)": {
+                    "id": 106816,
+                    "name": "牧川·仞横衣",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6482,
+                    "icon_id": 25119,
+                    "base": {
+                        "physical_shield_base": 1444,
+                        "magical_shield_base": 1444
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "magical_shield_base": 17618,
+                        "haste_base": 3524,
+                        "surplus_base": 3524,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_13"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1976_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·铸铁衣#104794 (30200 无双)": {
+                    "id": 104794,
+                    "name": "天极·铸铁衣",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6482,
+                    "icon_id": 23986,
+                    "base": {
+                        "physical_shield_base": 1235,
+                        "magical_shield_base": 1235
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "magical_shield_base": 15073,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_13"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1976_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "外功": {
                 "牧川·秋塞衣#106815 (35300 会心 无双)": {
                     "id": 106815,
@@ -24283,6 +28329,84 @@ export const map ={
             }
         },
         "明教": {
+            "防御": {
+                "牧川·长燃衣#106814 (35300 加速 破招 无双)": {
+                    "id": 106814,
+                    "name": "牧川·长燃衣",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6480,
+                    "icon_id": 25161,
+                    "base": {
+                        "physical_shield_base": 1444,
+                        "magical_shield_base": 1444
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "magical_shield_base": 17618,
+                        "haste_base": 3524,
+                        "surplus_base": 3524,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_12"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1974_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·燃浊衣#104792 (30200 无双)": {
+                    "id": 104792,
+                    "name": "天极·燃浊衣",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6480,
+                    "icon_id": 24028,
+                    "base": {
+                        "physical_shield_base": 1235,
+                        "magical_shield_base": 1235
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "magical_shield_base": 15073,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_12"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1974_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "内功": {
                 "牧川·明沙衣#106813 (35300 会心 无双)": {
                     "id": 106813,
@@ -25061,6 +29185,84 @@ export const map ={
             }
         },
         "天策": {
+            "防御": {
+                "牧川·千山衣#106802 (35300 加速 破招 无双)": {
+                    "id": 106802,
+                    "name": "牧川·千山衣",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6468,
+                    "icon_id": 25191,
+                    "base": {
+                        "physical_shield_base": 1444,
+                        "magical_shield_base": 1444
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "physical_shield_base": 17618,
+                        "haste_base": 3524,
+                        "surplus_base": 3524,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_10"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1973_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·截岳衣#104780 (30200 无双)": {
+                    "id": 104780,
+                    "name": "天极·截岳衣",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6468,
+                    "icon_id": 24058,
+                    "base": {
+                        "physical_shield_base": 1235,
+                        "magical_shield_base": 1235
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "physical_shield_base": 15073,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_10"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1973_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "外功": {
                 "牧川·餐虏衣#106801 (35300 会心 无双)": {
                     "id": 106801,
@@ -25235,6 +29437,86 @@ export const map ={
             }
         },
         "少林": {
+            "防御": {
+                "牧川·斥魔衣#106798 (35300 加速 破招 无双)": {
+                    "id": 106798,
+                    "name": "牧川·斥魔衣",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 6464,
+                    "icon_id": 25179,
+                    "base": {
+                        "physical_shield_base": 1444,
+                        "magical_shield_base": 1444
+                    },
+                    "magic": {
+                        "vitality_base": 28629,
+                        "magical_shield_base": 17618,
+                        "haste_base": 3524,
+                        "surplus_base": 3524,
+                        "strain_base": 10571
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_11"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1975_1",
+                                "recipe_4517_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                },
+                "天极·梵劫衣#104776 (30200 无双)": {
+                    "id": 104776,
+                    "name": "天极·梵劫衣",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 6464,
+                    "icon_id": 24046,
+                    "base": {
+                        "physical_shield_base": 1235,
+                        "magical_shield_base": 1235
+                    },
+                    "magic": {
+                        "vitality_base": 24493,
+                        "magical_shield_base": 15073,
+                        "strain_base": 9044
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {
+                        "2": {
+                            "gains": [
+                                "gain_1322_11"
+                            ]
+                        },
+                        "4": {
+                            "recipes": [
+                                "recipe_1975_1",
+                                "recipe_4517_1",
+                                "recipe_17250_1"
+                            ]
+                        }
+                    }
+                }
+            },
             "内功": {
                 "牧川·真宇衣#106797 (35300 会心 无双)": {
                     "id": 106797,
@@ -25325,6 +29607,340 @@ export const map ={
     },
     "pendant": {
         "通用": {
+            "防御": {
+                "郁垒坠#47814 (32800 破招 无双)": {
+                    "id": 47814,
+                    "name": "郁垒坠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 32800,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 4254,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14779,
+                        "physical_shield_base": 6366,
+                        "magical_shield_base": 6366,
+                        "surplus_base": 2728,
+                        "strain_base": 5457
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "绝沧溟#47808 (32300 特效 加速 破招 无双)": {
+                    "id": 47808,
+                    "name": "绝沧溟",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 32300,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 22905,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14553,
+                        "physical_shield_base": 8956,
+                        "haste_base": 1791,
+                        "surplus_base": 1791,
+                        "strain_base": 5374
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_38786_3"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石佩#47802 (32300 加速 无双)": {
+                    "id": 47802,
+                    "name": "穹石佩",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 32300,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 1216,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14553,
+                        "physical_shield_base": 6269,
+                        "magical_shield_base": 6269,
+                        "haste_base": 2687,
+                        "strain_base": 5374
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌佩#47796 (32300 加速 破招 无双)": {
+                    "id": 47796,
+                    "name": "洪涌佩",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 32300,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 1214,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14553,
+                        "magical_shield_base": 8956,
+                        "haste_base": 1791,
+                        "surplus_base": 1791,
+                        "strain_base": 5374
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "郁垒坠#44423 (35900 破招 无双)": {
+                    "id": 44423,
+                    "name": "郁垒坠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 4254,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14558,
+                        "physical_shield_base": 6271,
+                        "magical_shield_base": 6271,
+                        "surplus_base": 2688,
+                        "strain_base": 5375
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "绝沧溟#44340 (35300 特效 加速 破招 无双)": {
+                    "id": 44340,
+                    "name": "绝沧溟",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 22905,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "physical_shield_base": 8809,
+                        "haste_base": 1762,
+                        "surplus_base": 1762,
+                        "strain_base": 5285
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_38786_3"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石佩#44316 (35300 加速 无双)": {
+                    "id": 44316,
+                    "name": "穹石佩",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1216,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "physical_shield_base": 6166,
+                        "magical_shield_base": 6166,
+                        "haste_base": 2643,
+                        "strain_base": 5285
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌佩#44298 (35300 加速 破招 无双)": {
+                    "id": 44298,
+                    "name": "洪涌佩",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1214,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "magical_shield_base": 8809,
+                        "haste_base": 1762,
+                        "surplus_base": 1762,
+                        "strain_base": 5285
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "郁垒坠#44411 (33000 破招 无双)": {
+                    "id": 44411,
+                    "name": "郁垒坠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 33000,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 4254,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 13382,
+                        "physical_shield_base": 5765,
+                        "magical_shield_base": 5765,
+                        "surplus_base": 2471,
+                        "strain_base": 4941
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "远集坠#43068 (30700 破招 无双)": {
+                    "id": 43068,
+                    "name": "远集坠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1221,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12449,
+                        "physical_shield_base": 5363,
+                        "magical_shield_base": 5363,
+                        "surplus_base": 2298,
+                        "strain_base": 4597
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "郁垒坠#44399 (30300 破招 无双)": {
+                    "id": 44399,
+                    "name": "郁垒坠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 4254,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12287,
+                        "physical_shield_base": 5293,
+                        "magical_shield_base": 5293,
+                        "surplus_base": 2268,
+                        "strain_base": 4537
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "兴王师#42992 (30200 特效 无双)": {
+                    "id": 42992,
+                    "name": "兴王师",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24382,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "physical_shield_base": 7536,
+                        "strain_base": 4522
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_38786_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "登科坠#42968 (30200 加速 无双)": {
+                    "id": 42968,
+                    "name": "登科坠",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1219,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "physical_shield_base": 5275,
+                        "magical_shield_base": 5275,
+                        "haste_base": 2261,
+                        "strain_base": 4522
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三元佩#42950 (30200 无双)": {
+                    "id": 42950,
+                    "name": "三元佩",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1218,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "magical_shield_base": 7536,
+                        "strain_base": 4522
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "身法": {
                 "崔错坠#47812 (32800 会心 无双)": {
                     "id": 47812,
@@ -29442,6 +34058,202 @@ export const map ={
                     "recipes": [],
                     "sets": {}
                 }
+            },
+            "防御": {
+                "客行江湖·嵯峨指环#44429 (35300 破招 无双)": {
+                    "id": 44429,
+                    "name": "客行江湖·嵯峨指环",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1237,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "physical_shield_base": 6166,
+                        "magical_shield_base": 6166,
+                        "surplus_base": 2643,
+                        "strain_base": 5285
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "深岩指环#44334 (35300 加速 无双)": {
+                    "id": 44334,
+                    "name": "深岩指环",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1235,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "physical_shield_base": 6166,
+                        "magical_shield_base": 6166,
+                        "haste_base": 2643,
+                        "strain_base": 5285
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石指环#44322 (35300 加速 破招 无双)": {
+                    "id": 44322,
+                    "name": "穹石指环",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1233,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "physical_shield_base": 8809,
+                        "haste_base": 1762,
+                        "surplus_base": 1762,
+                        "strain_base": 5285
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌指环#44304 (35300 加速 破招 无双)": {
+                    "id": 44304,
+                    "name": "洪涌指环",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1228,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "magical_shield_base": 8809,
+                        "haste_base": 1762,
+                        "surplus_base": 1762,
+                        "strain_base": 5285
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "娄刚指环#45576 (32500 加速 破招 无双)": {
+                    "id": 45576,
+                    "name": "娄刚指环",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 32500,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 2845,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 13179,
+                        "magical_shield_base": 8110,
+                        "haste_base": 1622,
+                        "surplus_base": 1622,
+                        "strain_base": 4866
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "客行江湖·常盛指环#43074 (30200 破招 无双)": {
+                    "id": 43074,
+                    "name": "客行江湖·常盛指环",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1227,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "physical_shield_base": 5275,
+                        "magical_shield_base": 5275,
+                        "surplus_base": 2261,
+                        "strain_base": 4522
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "裁霜戒#42986 (30200 加速 无双)": {
+                    "id": 42986,
+                    "name": "裁霜戒",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 2846,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "physical_shield_base": 5275,
+                        "magical_shield_base": 5275,
+                        "haste_base": 2261,
+                        "strain_base": 4522
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "登科戒#42974 (30200 无双)": {
+                    "id": 42974,
+                    "name": "登科戒",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1231,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "physical_shield_base": 7536,
+                        "strain_base": 4522
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三元指环#42956 (30200 无双)": {
+                    "id": 42956,
+                    "name": "三元指环",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1230,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "magical_shield_base": 7536,
+                        "strain_base": 4522
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
             }
         },
         "精简": {
@@ -30736,11 +35548,439 @@ export const map ={
                     "recipes": [],
                     "sets": {}
                 }
+            },
+            "防御": {
+                "青瑛缀#44375 (35300 精简 特效 破招 无双)": {
+                    "id": 44375,
+                    "name": "青瑛缀",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1233,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "physical_shield_base": 6166,
+                        "magical_shield_base": 6166,
+                        "surplus_base": 2643,
+                        "strain_base": 5285
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_41065_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "纹守隅#44374 (35300 精简 特效 加速 无双)": {
+                    "id": 44374,
+                    "name": "纹守隅",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1229,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "physical_shield_base": 6166,
+                        "magical_shield_base": 6166,
+                        "haste_base": 2643,
+                        "strain_base": 5285
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_41065_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "凝珀心#44373 (35300 精简 特效 加速 破招 无双)": {
+                    "id": 44373,
+                    "name": "凝珀心",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1228,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "magical_shield_base": 8809,
+                        "haste_base": 1762,
+                        "surplus_base": 1762,
+                        "strain_base": 5285
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_41065_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "承竹韧#44372 (35300 精简 特效 加速 破招 无双)": {
+                    "id": 44372,
+                    "name": "承竹韧",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 4258,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "physical_shield_base": 8809,
+                        "haste_base": 1762,
+                        "surplus_base": 1762,
+                        "strain_base": 5285
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_41065_2"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "照孤烽#44209 (30200 精简 特效 破招 无双)": {
+                    "id": 44209,
+                    "name": "照孤烽",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1233,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "physical_shield_base": 5275,
+                        "magical_shield_base": 5275,
+                        "surplus_base": 2261,
+                        "strain_base": 4522
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_41065_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "贯西东#44208 (30200 精简 特效 加速 无双)": {
+                    "id": 44208,
+                    "name": "贯西东",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1229,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "physical_shield_base": 5275,
+                        "magical_shield_base": 5275,
+                        "haste_base": 2261,
+                        "strain_base": 4522
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_41065_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "志沧海#44207 (30200 精简 特效 无双)": {
+                    "id": 44207,
+                    "name": "志沧海",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1228,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "magical_shield_base": 7536,
+                        "strain_base": 4522
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_41065_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "立沧桑#44206 (30200 精简 特效 无双)": {
+                    "id": 44206,
+                    "name": "立沧桑",
+                    "school": "精简",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 4258,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "physical_shield_base": 7536,
+                        "strain_base": 4522
+                    },
+                    "embed": {},
+                    "gains": [
+                        "gain_41065_1"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                }
             }
         }
     },
     "necklace": {
         "通用": {
+            "防御": {
+                "雉楼链#44417 (35900 加速 无双)": {
+                    "id": 44417,
+                    "name": "雉楼链",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 4248,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14558,
+                        "physical_shield_base": 6271,
+                        "magical_shield_base": 6271,
+                        "haste_base": 2688,
+                        "strain_base": 5375
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "深岩链#44328 (35300 加速 破招 无双)": {
+                    "id": 44328,
+                    "name": "深岩链",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1207,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "physical_shield_base": 8809,
+                        "haste_base": 1762,
+                        "surplus_base": 1762,
+                        "strain_base": 5285
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石链#44310 (35300 破招 无双)": {
+                    "id": 44310,
+                    "name": "穹石链",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1201,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "physical_shield_base": 6166,
+                        "magical_shield_base": 6166,
+                        "surplus_base": 2643,
+                        "strain_base": 5285
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌链#44292 (35300 加速 破招 无双)": {
+                    "id": 44292,
+                    "name": "洪涌链",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1200,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14315,
+                        "magical_shield_base": 8809,
+                        "haste_base": 1762,
+                        "surplus_base": 1762,
+                        "strain_base": 5285
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "雉楼链#44405 (33000 加速 无双)": {
+                    "id": 44405,
+                    "name": "雉楼链",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 33000,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 4248,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 13382,
+                        "physical_shield_base": 5765,
+                        "magical_shield_base": 5765,
+                        "haste_base": 2471,
+                        "strain_base": 4941
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "远集链#43062 (30700 加速 无双)": {
+                    "id": 43062,
+                    "name": "远集链",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24371,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12449,
+                        "physical_shield_base": 5363,
+                        "magical_shield_base": 5363,
+                        "haste_base": 2298,
+                        "strain_base": 4597
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "雉楼链#44393 (30300 加速 无双)": {
+                    "id": 44393,
+                    "name": "雉楼链",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 4248,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12287,
+                        "physical_shield_base": 5293,
+                        "magical_shield_base": 5293,
+                        "haste_base": 2268,
+                        "strain_base": 4537
+                    },
+                    "embed": {
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "裁霜链#42980 (30200 无双)": {
+                    "id": 42980,
+                    "name": "裁霜链",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24373,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "physical_shield_base": 7536,
+                        "strain_base": 4522
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "登科项饰#42962 (30200 破招 无双)": {
+                    "id": 42962,
+                    "name": "登科项饰",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 2837,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "physical_shield_base": 5275,
+                        "magical_shield_base": 5275,
+                        "surplus_base": 2261,
+                        "strain_base": 4522
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三元链#42944 (30200 无双)": {
+                    "id": 42944,
+                    "name": "三元链",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 1911,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 12246,
+                        "magical_shield_base": 7536,
+                        "strain_base": 4522
+                    },
+                    "embed": {
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "身法": {
                 "斜月链#44415 (35900 破招 无双)": {
                     "id": 44415,
@@ -32631,6 +37871,232 @@ export const map ={
     },
     "tertiary_weapon": {
         "通用": {
+            "防御": {
+                "长关囊#42809 (35300 加速 破招 无双)": {
+                    "id": 42809,
+                    "name": "长关囊",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 811,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 17177,
+                        "magical_shield_base": 10571,
+                        "haste_base": 2114,
+                        "surplus_base": 2114,
+                        "strain_base": 6342
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "大夜弥天#42746 (35300 加速 无双)": {
+                    "id": 42746,
+                    "name": "大夜弥天",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 2903,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 17177,
+                        "physical_shield_base": 7400,
+                        "magical_shield_base": 7400,
+                        "haste_base": 3171,
+                        "strain_base": 6342
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "穹石囊#42672 (35300 加速 破招 无双)": {
+                    "id": 42672,
+                    "name": "穹石囊",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 803,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 17177,
+                        "physical_shield_base": 10571,
+                        "haste_base": 2114,
+                        "surplus_base": 2114,
+                        "strain_base": 6342
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "洪涌囊#42631 (35300 破招 无双)": {
+                    "id": 42631,
+                    "name": "洪涌囊",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 803,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 17177,
+                        "physical_shield_base": 7400,
+                        "magical_shield_base": 7400,
+                        "surplus_base": 3171,
+                        "strain_base": 6342
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "娄刚囊#43770 (32500 加速 无双)": {
+                    "id": 43770,
+                    "name": "娄刚囊",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 32500,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 2903,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 15815,
+                        "physical_shield_base": 6813,
+                        "magical_shield_base": 6813,
+                        "haste_base": 2920,
+                        "strain_base": 5839
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "孤城惊梦·昂藏囊#43374 (30200 加速 无双)": {
+                    "id": 43374,
+                    "name": "孤城惊梦·昂藏囊",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 2900,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14696,
+                        "physical_shield_base": 6330,
+                        "magical_shield_base": 6330,
+                        "haste_base": 2713,
+                        "strain_base": 5426
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "坠欢囊#41356 (30200 无双)": {
+                    "id": 41356,
+                    "name": "坠欢囊",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 811,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14696,
+                        "magical_shield_base": 9044,
+                        "strain_base": 5426
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "德厚流光#41294 (30200 加速 无双)": {
+                    "id": 41294,
+                    "name": "德厚流光",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 2903,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14696,
+                        "physical_shield_base": 6330,
+                        "magical_shield_base": 6330,
+                        "haste_base": 2713,
+                        "strain_base": 5426
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "登科囊#41222 (30200 无双)": {
+                    "id": 41222,
+                    "name": "登科囊",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 804,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14696,
+                        "physical_shield_base": 9044,
+                        "strain_base": 5426
+                    },
+                    "embed": {},
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三元囊#41182 (30200 破招 无双)": {
+                    "id": 41182,
+                    "name": "三元囊",
+                    "school": "通用",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 803,
+                    "base": {},
+                    "magic": {
+                        "vitality_base": 14696,
+                        "physical_shield_base": 6330,
+                        "magical_shield_base": 6330,
+                        "surplus_base": 2713,
+                        "strain_base": 5426
+                    },
+                    "embed": {
+                        "vitality_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "身法": {
                 "蒙鸠囊#42807 (35300 会心 无双)": {
                     "id": 42807,
@@ -40514,6 +45980,613 @@ export const map ={
             }
         },
         "苍云": {
+            "防御": {
+                "驭焰#43587 (29700 特效 加速 破招 无双)": {
+                    "id": 43587,
+                    "name": "驭焰",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 29700,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23383,
+                    "base": {
+                        "weapon_damage_base": 9596,
+                        "weapon_damage_rand": 6397
+                    },
+                    "magic": {
+                        "vitality_base": 40146,
+                        "physical_shield_base": 28075,
+                        "magical_shield_base": 28075,
+                        "haste_base": 22460,
+                        "surplus_base": 22460,
+                        "strain_base": 22460
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25797_1",
+                        "gain_13410_16"
+                    ],
+                    "recipes": [
+                        "recipe_1939_1",
+                        "recipe_1940_1",
+                        "recipe_17453_1",
+                        "recipe_17246_1",
+                        "recipe_17455_1",
+                        "recipe_17456_1"
+                    ],
+                    "sets": {}
+                },
+                "驭焰#43554 (27500 特效 加速 破招 无双)": {
+                    "id": 43554,
+                    "name": "驭焰",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 27500,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23383,
+                    "base": {
+                        "weapon_damage_base": 8885,
+                        "weapon_damage_rand": 5924
+                    },
+                    "magic": {
+                        "vitality_base": 37172,
+                        "physical_shield_base": 25996,
+                        "magical_shield_base": 25996,
+                        "haste_base": 20796,
+                        "surplus_base": 20796,
+                        "strain_base": 20796
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25797_1",
+                        "gain_13410_16"
+                    ],
+                    "recipes": [
+                        "recipe_1939_1",
+                        "recipe_1940_1",
+                        "recipe_17453_1",
+                        "recipe_17246_1",
+                        "recipe_17455_1",
+                        "recipe_17456_1"
+                    ],
+                    "sets": {}
+                },
+                "万里关河#42767 (35900 破招 无双)": {
+                    "id": 42767,
+                    "name": "万里关河",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25466,
+                    "base": {
+                        "weapon_damage_base": 8352,
+                        "weapon_damage_rand": 5568
+                    },
+                    "magic": {
+                        "vitality_base": 34939,
+                        "physical_shield_base": 22805,
+                        "magical_shield_base": 22805,
+                        "surplus_base": 9774,
+                        "strain_base": 19547
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "孤征客#42830 (35300 加速 破招 无双)": {
+                    "id": 42830,
+                    "name": "孤征客",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9768,
+                    "base": {
+                        "weapon_damage_base": 8212,
+                        "weapon_damage_rand": 5475
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 32034,
+                        "haste_base": 6407,
+                        "surplus_base": 6407,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "塞上危城#42728 (35300 特效 加速 破招 无双)": {
+                    "id": 42728,
+                    "name": "塞上危城",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25465,
+                    "base": {
+                        "weapon_damage_base": 8212,
+                        "weapon_damage_rand": 5475
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 32034,
+                        "haste_base": 6407,
+                        "surplus_base": 6407,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_4877_81"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "扬旌盾刀#42693 (35300 加速 无双)": {
+                    "id": 42693,
+                    "name": "扬旌盾刀",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25465,
+                    "base": {
+                        "weapon_damage_base": 8212,
+                        "weapon_damage_rand": 5475
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 22424,
+                        "magical_shield_base": 22424,
+                        "haste_base": 9610,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "豪客盾刀#42652 (35300 破招 无双)": {
+                    "id": 42652,
+                    "name": "豪客盾刀",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25465,
+                    "base": {
+                        "weapon_damage_base": 8212,
+                        "weapon_damage_rand": 5475
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 22424,
+                        "magical_shield_base": 22424,
+                        "surplus_base": 9610,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "驭焰#42161 (25300 特效 加速 破招 无双)": {
+                    "id": 42161,
+                    "name": "驭焰",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 25300,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23383,
+                    "base": {
+                        "weapon_damage_base": 8174,
+                        "weapon_damage_rand": 5450
+                    },
+                    "magic": {
+                        "vitality_base": 34198,
+                        "physical_shield_base": 23916,
+                        "magical_shield_base": 23916,
+                        "haste_base": 19133,
+                        "surplus_base": 19133,
+                        "strain_base": 19133
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25797_1",
+                        "gain_13410_16"
+                    ],
+                    "recipes": [
+                        "recipe_1939_1",
+                        "recipe_1940_1",
+                        "recipe_17453_1",
+                        "recipe_17246_1",
+                        "recipe_17455_1",
+                        "recipe_17456_1"
+                    ],
+                    "sets": {}
+                },
+                "驭焰#42129 (23650 特效 加速 破招 无双)": {
+                    "id": 42129,
+                    "name": "驭焰",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 23650,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23383,
+                    "base": {
+                        "weapon_damage_base": 7641,
+                        "weapon_damage_rand": 5094
+                    },
+                    "magic": {
+                        "vitality_base": 31968,
+                        "physical_shield_base": 22356,
+                        "magical_shield_base": 22356,
+                        "haste_base": 17885,
+                        "surplus_base": 17885,
+                        "strain_base": 17885
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25797_1",
+                        "gain_13410_16"
+                    ],
+                    "recipes": [
+                        "recipe_1939_1",
+                        "recipe_1940_1",
+                        "recipe_17453_1",
+                        "recipe_17246_1",
+                        "recipe_17455_1",
+                        "recipe_17456_1"
+                    ],
+                    "sets": {}
+                },
+                "娄朔盾刀#43791 (32500 加速 破招 无双)": {
+                    "id": 43791,
+                    "name": "娄朔盾刀",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 32500,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 11755,
+                    "base": {
+                        "weapon_damage_base": 7561,
+                        "weapon_damage_rand": 5040
+                    },
+                    "magic": {
+                        "vitality_base": 31630,
+                        "physical_shield_base": 29493,
+                        "haste_base": 5899,
+                        "surplus_base": 5899,
+                        "strain_base": 17696
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "斩马刑天#42506 (30700 特效 破招 无双)": {
+                    "id": 42506,
+                    "name": "斩马刑天",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 8626,
+                    "base": {
+                        "weapon_damage_base": 7142,
+                        "weapon_damage_rand": 4761
+                    },
+                    "magic": {
+                        "vitality_base": 29878,
+                        "physical_shield_base": 19502,
+                        "magical_shield_base": 19502,
+                        "surplus_base": 8358,
+                        "strain_base": 16716
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_19_1",
+                        "gain_23291_1"
+                    ],
+                    "recipes": [
+                        "recipe_17457_1"
+                    ],
+                    "sets": {}
+                },
+                "寂照#41315 (30700 破招 无双)": {
+                    "id": 41315,
+                    "name": "寂照",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24201,
+                    "base": {
+                        "weapon_damage_base": 7142,
+                        "weapon_damage_rand": 4761
+                    },
+                    "magic": {
+                        "vitality_base": 29878,
+                        "physical_shield_base": 19502,
+                        "magical_shield_base": 19502,
+                        "surplus_base": 8358,
+                        "strain_base": 16716
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "驭焰#40310 (22000 特效 加速 破招 无双)": {
+                    "id": 40310,
+                    "name": "驭焰",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 22000,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23383,
+                    "base": {
+                        "weapon_damage_base": 7108,
+                        "weapon_damage_rand": 4739
+                    },
+                    "magic": {
+                        "vitality_base": 29738,
+                        "physical_shield_base": 20796,
+                        "magical_shield_base": 20796,
+                        "haste_base": 16637,
+                        "surplus_base": 16637,
+                        "strain_base": 16637
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25797_1",
+                        "gain_13410_16"
+                    ],
+                    "recipes": [
+                        "recipe_1939_1",
+                        "recipe_1940_1",
+                        "recipe_17453_1",
+                        "recipe_17246_1",
+                        "recipe_17455_1",
+                        "recipe_17456_1"
+                    ],
+                    "sets": {}
+                },
+                "孤城惊梦·望雁盾刀#43395 (30200 加速 破招 无双)": {
+                    "id": 43395,
+                    "name": "孤城惊梦·望雁盾刀",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9182,
+                    "base": {
+                        "weapon_damage_base": 7026,
+                        "weapon_damage_rand": 4684
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 27406,
+                        "haste_base": 5481,
+                        "surplus_base": 5481,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寻踪觅宝·横山盾刀#42613 (30200 破招 无双)": {
+                    "id": 42613,
+                    "name": "寻踪觅宝·横山盾刀",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 6844,
+                    "base": {
+                        "weapon_damage_base": 7026,
+                        "weapon_damage_rand": 4684
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "surplus_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寒山草#41377 (30200 无双)": {
+                    "id": 41377,
+                    "name": "寒山草",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 12926,
+                    "base": {
+                        "weapon_damage_base": 7026,
+                        "weapon_damage_rand": 4684
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 27406,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "孤雪征鸿#41277 (30200 特效 无双)": {
+                    "id": 41277,
+                    "name": "孤雪征鸿",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24180,
+                    "base": {
+                        "weapon_damage_base": 7026,
+                        "weapon_damage_rand": 4684
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 27406,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_4877_77"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "修能盾刀#41243 (30200 加速 无双)": {
+                    "id": 41243,
+                    "name": "修能盾刀",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24180,
+                    "base": {
+                        "weapon_damage_base": 7026,
+                        "weapon_damage_rand": 4684
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "haste_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "肃烈盾刀#41203 (30200 破招 无双)": {
+                    "id": 41203,
+                    "name": "肃烈盾刀",
+                    "school": "苍云",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24180,
+                    "base": {
+                        "weapon_damage_base": 7026,
+                        "weapon_damage_rand": 4684
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "surplus_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "外功": {
                 "天下宏愿#43586 (29700 特效 会心 破防 加速)": {
                     "id": 43586,
@@ -41138,6 +47211,608 @@ export const map ={
             }
         },
         "明教": {
+            "防御": {
+                "圣辉月雪#43585 (29700 特效 加速 破招 无双)": {
+                    "id": 43585,
+                    "name": "圣辉月雪",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 29700,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23397,
+                    "base": {
+                        "weapon_damage_base": 6397,
+                        "weapon_damage_rand": 4265
+                    },
+                    "magic": {
+                        "vitality_base": 40146,
+                        "physical_shield_base": 28075,
+                        "magical_shield_base": 28075,
+                        "haste_base": 22460,
+                        "surplus_base": 22460,
+                        "strain_base": 22460
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25796_1",
+                        "gain_4941_8"
+                    ],
+                    "recipes": [
+                        "recipe_1544_1",
+                        "recipe_1545_1",
+                        "recipe_17333_1",
+                        "recipe_17246_1",
+                        "recipe_17337_1",
+                        "recipe_17343_1"
+                    ],
+                    "sets": {}
+                },
+                "圣辉月雪#43552 (27500 特效 加速 破招 无双)": {
+                    "id": 43552,
+                    "name": "圣辉月雪",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 27500,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23397,
+                    "base": {
+                        "weapon_damage_base": 5924,
+                        "weapon_damage_rand": 3949
+                    },
+                    "magic": {
+                        "vitality_base": 37172,
+                        "physical_shield_base": 25996,
+                        "magical_shield_base": 25996,
+                        "haste_base": 20796,
+                        "surplus_base": 20796,
+                        "strain_base": 20796
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25796_1",
+                        "gain_4941_8"
+                    ],
+                    "recipes": [
+                        "recipe_1544_1",
+                        "recipe_1545_1",
+                        "recipe_17333_1",
+                        "recipe_17246_1",
+                        "recipe_17337_1",
+                        "recipe_17343_1"
+                    ],
+                    "sets": {}
+                },
+                "日落荒丘#42765 (35900 破招 无双)": {
+                    "id": 42765,
+                    "name": "日落荒丘",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25506,
+                    "base": {
+                        "weapon_damage_base": 5568,
+                        "weapon_damage_rand": 3712
+                    },
+                    "magic": {
+                        "vitality_base": 34939,
+                        "physical_shield_base": 22805,
+                        "magical_shield_base": 22805,
+                        "surplus_base": 9774,
+                        "strain_base": 19547
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "日华金光#42828 (35300 加速 破招 无双)": {
+                    "id": 42828,
+                    "name": "日华金光",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9770,
+                    "base": {
+                        "weapon_damage_base": 5475,
+                        "weapon_damage_rand": 3650
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 32034,
+                        "haste_base": 6407,
+                        "surplus_base": 6407,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "照寰中#42726 (35300 特效 加速 破招 无双)": {
+                    "id": 42726,
+                    "name": "照寰中",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25505,
+                    "base": {
+                        "weapon_damage_base": 5475,
+                        "weapon_damage_rand": 3650
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 32034,
+                        "haste_base": 6407,
+                        "surplus_base": 6407,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_4877_81"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "燎照双刀#42691 (35300 加速 无双)": {
+                    "id": 42691,
+                    "name": "燎照双刀",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25505,
+                    "base": {
+                        "weapon_damage_base": 5475,
+                        "weapon_damage_rand": 3650
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 22424,
+                        "magical_shield_base": 22424,
+                        "haste_base": 9610,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "烜赫双刀#42650 (35300 破招 无双)": {
+                    "id": 42650,
+                    "name": "烜赫双刀",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25505,
+                    "base": {
+                        "weapon_damage_base": 5475,
+                        "weapon_damage_rand": 3650
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 22424,
+                        "magical_shield_base": 22424,
+                        "surplus_base": 9610,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "圣辉月雪#42159 (25300 特效 加速 破招 无双)": {
+                    "id": 42159,
+                    "name": "圣辉月雪",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 25300,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23397,
+                    "base": {
+                        "weapon_damage_base": 5450,
+                        "weapon_damage_rand": 3633
+                    },
+                    "magic": {
+                        "vitality_base": 34198,
+                        "physical_shield_base": 23916,
+                        "magical_shield_base": 23916,
+                        "haste_base": 19133,
+                        "surplus_base": 19133,
+                        "strain_base": 19133
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25796_1",
+                        "gain_4941_8"
+                    ],
+                    "recipes": [
+                        "recipe_1544_1",
+                        "recipe_1545_1",
+                        "recipe_17333_1",
+                        "recipe_17246_1",
+                        "recipe_17337_1",
+                        "recipe_17343_1"
+                    ],
+                    "sets": {}
+                },
+                "圣辉月雪#42127 (23650 特效 加速 破招 无双)": {
+                    "id": 42127,
+                    "name": "圣辉月雪",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 23650,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23397,
+                    "base": {
+                        "weapon_damage_base": 5094,
+                        "weapon_damage_rand": 3396
+                    },
+                    "magic": {
+                        "vitality_base": 31968,
+                        "physical_shield_base": 22356,
+                        "magical_shield_base": 22356,
+                        "haste_base": 17885,
+                        "surplus_base": 17885,
+                        "strain_base": 17885
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25796_1",
+                        "gain_4941_8"
+                    ],
+                    "recipes": [
+                        "recipe_1544_1",
+                        "recipe_1545_1",
+                        "recipe_17333_1",
+                        "recipe_17246_1",
+                        "recipe_17337_1",
+                        "recipe_17343_1"
+                    ],
+                    "sets": {}
+                },
+                "娄赫双刀#43789 (32500 加速 破招 无双)": {
+                    "id": 43789,
+                    "name": "娄赫双刀",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 32500,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 11753,
+                    "base": {
+                        "weapon_damage_base": 5040,
+                        "weapon_damage_rand": 3360
+                    },
+                    "magic": {
+                        "vitality_base": 31630,
+                        "physical_shield_base": 29493,
+                        "haste_base": 5899,
+                        "surplus_base": 5899,
+                        "strain_base": 17696
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "圆月双角#42504 (30700 特效 破招 无双)": {
+                    "id": 42504,
+                    "name": "圆月双角",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 12493,
+                    "base": {
+                        "weapon_damage_base": 4761,
+                        "weapon_damage_rand": 3174
+                    },
+                    "magic": {
+                        "vitality_base": 29878,
+                        "physical_shield_base": 19502,
+                        "magical_shield_base": 19502,
+                        "surplus_base": 8358,
+                        "strain_base": 16716
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_19_1",
+                        "gain_5210_1"
+                    ],
+                    "recipes": [
+                        "recipe_17350_1"
+                    ],
+                    "sets": {}
+                },
+                "一念间#41313 (30700 破招 无双)": {
+                    "id": 41313,
+                    "name": "一念间",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24209,
+                    "base": {
+                        "weapon_damage_base": 4761,
+                        "weapon_damage_rand": 3174
+                    },
+                    "magic": {
+                        "vitality_base": 29878,
+                        "physical_shield_base": 19502,
+                        "magical_shield_base": 19502,
+                        "surplus_base": 8358,
+                        "strain_base": 16716
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "圣辉月雪#40308 (22000 特效 加速 破招 无双)": {
+                    "id": 40308,
+                    "name": "圣辉月雪",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 22000,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23397,
+                    "base": {
+                        "weapon_damage_base": 4739,
+                        "weapon_damage_rand": 3159
+                    },
+                    "magic": {
+                        "vitality_base": 29738,
+                        "physical_shield_base": 20796,
+                        "magical_shield_base": 20796,
+                        "haste_base": 16637,
+                        "surplus_base": 16637,
+                        "strain_base": 16637
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25796_1",
+                        "gain_4941_8"
+                    ],
+                    "recipes": [
+                        "recipe_1544_1",
+                        "recipe_1545_1",
+                        "recipe_17333_1",
+                        "recipe_17246_1",
+                        "recipe_17337_1",
+                        "recipe_17343_1"
+                    ],
+                    "sets": {}
+                },
+                "孤城惊梦·煌赫双刀#43393 (30200 加速 破招 无双)": {
+                    "id": 43393,
+                    "name": "孤城惊梦·煌赫双刀",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9181,
+                    "base": {
+                        "weapon_damage_base": 4684,
+                        "weapon_damage_rand": 3122
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 27406,
+                        "haste_base": 5481,
+                        "surplus_base": 5481,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寻踪觅宝·烈阳双刀#42611 (30200 破招 无双)": {
+                    "id": 42611,
+                    "name": "寻踪觅宝·烈阳双刀",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 6842,
+                    "base": {
+                        "weapon_damage_base": 4684,
+                        "weapon_damage_rand": 3122
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "surplus_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "慈波流#41375 (30200 无双)": {
+                    "id": 41375,
+                    "name": "慈波流",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 12924,
+                    "base": {
+                        "weapon_damage_base": 4684,
+                        "weapon_damage_rand": 3122
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 27406,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "风锁雪#41275 (30200 特效 无双)": {
+                    "id": 41275,
+                    "name": "风锁雪",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24188,
+                    "base": {
+                        "weapon_damage_base": 4684,
+                        "weapon_damage_rand": 3122
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 27406,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_4877_77"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "幻焱双刀#41241 (30200 加速 无双)": {
+                    "id": 41241,
+                    "name": "幻焱双刀",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24188,
+                    "base": {
+                        "weapon_damage_base": 4684,
+                        "weapon_damage_rand": 3122
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "haste_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "煜耀双刀#41201 (30200 破招 无双)": {
+                    "id": 41201,
+                    "name": "煜耀双刀",
+                    "school": "明教",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24188,
+                    "base": {
+                        "weapon_damage_base": 4684,
+                        "weapon_damage_rand": 3122
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "surplus_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "内功": {
                 "瀚海引#43584 (29700 特效 会心 破防 加速)": {
                     "id": 43584,
@@ -46856,6 +53531,608 @@ export const map ={
             }
         },
         "天策": {
+            "防御": {
+                "朱曦重明#43572 (29700 特效 加速 破招 无双)": {
+                    "id": 43572,
+                    "name": "朱曦重明",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 29700,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23406,
+                    "base": {
+                        "weapon_damage_base": 10876,
+                        "weapon_damage_rand": 7250
+                    },
+                    "magic": {
+                        "vitality_base": 40146,
+                        "physical_shield_base": 28075,
+                        "magical_shield_base": 28075,
+                        "haste_base": 22460,
+                        "surplus_base": 22460,
+                        "strain_base": 22460
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25795_1",
+                        "gain_1851_8"
+                    ],
+                    "recipes": [
+                        "recipe_1510_1",
+                        "recipe_1511_1",
+                        "recipe_17395_1",
+                        "recipe_17246_1",
+                        "recipe_17397_1",
+                        "recipe_17398_1"
+                    ],
+                    "sets": {}
+                },
+                "朱曦重明#43539 (27500 特效 加速 破招 无双)": {
+                    "id": 43539,
+                    "name": "朱曦重明",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 27500,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23406,
+                    "base": {
+                        "weapon_damage_base": 10070,
+                        "weapon_damage_rand": 6713
+                    },
+                    "magic": {
+                        "vitality_base": 37172,
+                        "physical_shield_base": 25996,
+                        "magical_shield_base": 25996,
+                        "haste_base": 20796,
+                        "surplus_base": 20796,
+                        "strain_base": 20796
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25795_1",
+                        "gain_1851_8"
+                    ],
+                    "recipes": [
+                        "recipe_1510_1",
+                        "recipe_1511_1",
+                        "recipe_17395_1",
+                        "recipe_17246_1",
+                        "recipe_17397_1",
+                        "recipe_17398_1"
+                    ],
+                    "sets": {}
+                },
+                "万马腾凌#42752 (35900 破招 无双)": {
+                    "id": 42752,
+                    "name": "万马腾凌",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25531,
+                    "base": {
+                        "weapon_damage_base": 9465,
+                        "weapon_damage_rand": 6310
+                    },
+                    "magic": {
+                        "vitality_base": 34939,
+                        "physical_shield_base": 22805,
+                        "magical_shield_base": 22805,
+                        "surplus_base": 9774,
+                        "strain_base": 19547
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "暮烟古戍#42815 (35300 加速 破招 无双)": {
+                    "id": 42815,
+                    "name": "暮烟古戍",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9764,
+                    "base": {
+                        "weapon_damage_base": 9307,
+                        "weapon_damage_rand": 6205
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 32034,
+                        "haste_base": 6407,
+                        "surplus_base": 6407,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "角声吹断#42713 (35300 特效 加速 破招 无双)": {
+                    "id": 42713,
+                    "name": "角声吹断",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25530,
+                    "base": {
+                        "weapon_damage_base": 9307,
+                        "weapon_damage_rand": 6205
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 32034,
+                        "haste_base": 6407,
+                        "surplus_base": 6407,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_4877_81"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "紫渊枪#42678 (35300 加速 无双)": {
+                    "id": 42678,
+                    "name": "紫渊枪",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25530,
+                    "base": {
+                        "weapon_damage_base": 9307,
+                        "weapon_damage_rand": 6205
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 22424,
+                        "magical_shield_base": 22424,
+                        "haste_base": 9610,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "策勋枪#42637 (35300 破招 无双)": {
+                    "id": 42637,
+                    "name": "策勋枪",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25530,
+                    "base": {
+                        "weapon_damage_base": 9307,
+                        "weapon_damage_rand": 6205
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 22424,
+                        "magical_shield_base": 22424,
+                        "surplus_base": 9610,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "朱曦重明#42146 (25300 特效 加速 破招 无双)": {
+                    "id": 42146,
+                    "name": "朱曦重明",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 25300,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23406,
+                    "base": {
+                        "weapon_damage_base": 9264,
+                        "weapon_damage_rand": 6176
+                    },
+                    "magic": {
+                        "vitality_base": 34198,
+                        "physical_shield_base": 23916,
+                        "magical_shield_base": 23916,
+                        "haste_base": 19133,
+                        "surplus_base": 19133,
+                        "strain_base": 19133
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25795_1",
+                        "gain_1851_8"
+                    ],
+                    "recipes": [
+                        "recipe_1510_1",
+                        "recipe_1511_1",
+                        "recipe_17395_1",
+                        "recipe_17246_1",
+                        "recipe_17397_1",
+                        "recipe_17398_1"
+                    ],
+                    "sets": {}
+                },
+                "朱曦重明#42114 (23650 特效 加速 破招 无双)": {
+                    "id": 42114,
+                    "name": "朱曦重明",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 23650,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23406,
+                    "base": {
+                        "weapon_damage_base": 8660,
+                        "weapon_damage_rand": 5773
+                    },
+                    "magic": {
+                        "vitality_base": 31968,
+                        "physical_shield_base": 22356,
+                        "magical_shield_base": 22356,
+                        "haste_base": 17885,
+                        "surplus_base": 17885,
+                        "strain_base": 17885
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25795_1",
+                        "gain_1851_8"
+                    ],
+                    "recipes": [
+                        "recipe_1510_1",
+                        "recipe_1511_1",
+                        "recipe_17395_1",
+                        "recipe_17246_1",
+                        "recipe_17397_1",
+                        "recipe_17398_1"
+                    ],
+                    "sets": {}
+                },
+                "娄旗枪#43776 (32500 加速 破招 无双)": {
+                    "id": 43776,
+                    "name": "娄旗枪",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 32500,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 11749,
+                    "base": {
+                        "weapon_damage_base": 8569,
+                        "weapon_damage_rand": 5713
+                    },
+                    "magic": {
+                        "vitality_base": 31630,
+                        "physical_shield_base": 29493,
+                        "haste_base": 5899,
+                        "surplus_base": 5899,
+                        "strain_base": 17696
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "炎枪重黎#42491 (30700 特效 破招 无双)": {
+                    "id": 42491,
+                    "name": "炎枪重黎",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 12494,
+                    "base": {
+                        "weapon_damage_base": 8094,
+                        "weapon_damage_rand": 5396
+                    },
+                    "magic": {
+                        "vitality_base": 29878,
+                        "physical_shield_base": 19502,
+                        "magical_shield_base": 19502,
+                        "surplus_base": 8358,
+                        "strain_base": 16716
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_19_1",
+                        "gain_5216_1"
+                    ],
+                    "recipes": [
+                        "recipe_17420_1"
+                    ],
+                    "sets": {}
+                },
+                "念胡笳#41300 (30700 破招 无双)": {
+                    "id": 41300,
+                    "name": "念胡笳",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24214,
+                    "base": {
+                        "weapon_damage_base": 8094,
+                        "weapon_damage_rand": 5396
+                    },
+                    "magic": {
+                        "vitality_base": 29878,
+                        "physical_shield_base": 19502,
+                        "magical_shield_base": 19502,
+                        "surplus_base": 8358,
+                        "strain_base": 16716
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "朱曦重明#40295 (22000 特效 加速 破招 无双)": {
+                    "id": 40295,
+                    "name": "朱曦重明",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 22000,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23406,
+                    "base": {
+                        "weapon_damage_base": 8056,
+                        "weapon_damage_rand": 5370
+                    },
+                    "magic": {
+                        "vitality_base": 29738,
+                        "physical_shield_base": 20796,
+                        "magical_shield_base": 20796,
+                        "haste_base": 16637,
+                        "surplus_base": 16637,
+                        "strain_base": 16637
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25795_1",
+                        "gain_1851_8"
+                    ],
+                    "recipes": [
+                        "recipe_1510_1",
+                        "recipe_1511_1",
+                        "recipe_17395_1",
+                        "recipe_17246_1",
+                        "recipe_17397_1",
+                        "recipe_17398_1"
+                    ],
+                    "sets": {}
+                },
+                "孤城惊梦·连营枪#43380 (30200 加速 破招 无双)": {
+                    "id": 43380,
+                    "name": "孤城惊梦·连营枪",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9177,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 27406,
+                        "haste_base": 5481,
+                        "surplus_base": 5481,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寻踪觅宝·不折枪#42598 (30200 破招 无双)": {
+                    "id": 42598,
+                    "name": "寻踪觅宝·不折枪",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 6840,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "surplus_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寒声柝#41362 (30200 无双)": {
+                    "id": 41362,
+                    "name": "寒声柝",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 12916,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 27406,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "青山魂#41262 (30200 特效 无双)": {
+                    "id": 41262,
+                    "name": "青山魂",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24193,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 27406,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_4877_77"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "戎昭枪#41228 (30200 加速 无双)": {
+                    "id": 41228,
+                    "name": "戎昭枪",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24193,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "haste_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "桓威枪#41188 (30200 破招 无双)": {
+                    "id": 41188,
+                    "name": "桓威枪",
+                    "school": "天策",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24193,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "surplus_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "外功": {
                 "掠炎#43571 (29700 特效 会心 破防 加速)": {
                     "id": 43571,
@@ -48104,6 +55381,619 @@ export const map ={
             }
         },
         "少林": {
+            "防御": {
+                "降魔境#43568 (29700 特效 加速 破招 无双)": {
+                    "id": 43568,
+                    "name": "降魔境",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 29700,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23402,
+                    "base": {
+                        "weapon_damage_base": 10876,
+                        "weapon_damage_rand": 7250
+                    },
+                    "magic": {
+                        "vitality_base": 40146,
+                        "physical_shield_base": 28075,
+                        "magical_shield_base": 28075,
+                        "haste_base": 22460,
+                        "surplus_base": 22460,
+                        "strain_base": 22460
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25794_1",
+                        "gain_1855_8"
+                    ],
+                    "recipes": [
+                        "recipe_1514_1",
+                        "recipe_1515_1",
+                        "recipe_17356_1",
+                        "recipe_17246_1",
+                        "recipe_17360_1",
+                        "recipe_17361_1"
+                    ],
+                    "sets": {}
+                },
+                "降魔境#43535 (27500 特效 加速 破招 无双)": {
+                    "id": 43535,
+                    "name": "降魔境",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 27500,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23402,
+                    "base": {
+                        "weapon_damage_base": 10070,
+                        "weapon_damage_rand": 6713
+                    },
+                    "magic": {
+                        "vitality_base": 37172,
+                        "physical_shield_base": 25996,
+                        "magical_shield_base": 25996,
+                        "haste_base": 20796,
+                        "surplus_base": 20796,
+                        "strain_base": 20796
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25794_1",
+                        "gain_1855_8"
+                    ],
+                    "recipes": [
+                        "recipe_1514_1",
+                        "recipe_1515_1",
+                        "recipe_17356_1",
+                        "recipe_17246_1",
+                        "recipe_17360_1",
+                        "recipe_17361_1"
+                    ],
+                    "sets": {}
+                },
+                "威仪妙相#42748 (35900 破招 无双)": {
+                    "id": 42748,
+                    "name": "威仪妙相",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 35900,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25521,
+                    "base": {
+                        "weapon_damage_base": 9465,
+                        "weapon_damage_rand": 6310
+                    },
+                    "magic": {
+                        "vitality_base": 34939,
+                        "physical_shield_base": 22805,
+                        "magical_shield_base": 22805,
+                        "surplus_base": 9774,
+                        "strain_base": 19547
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "古壁空廊#42811 (35300 加速 破招 无双)": {
+                    "id": 42811,
+                    "name": "古壁空廊",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9765,
+                    "base": {
+                        "weapon_damage_base": 9307,
+                        "weapon_damage_rand": 6205
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "magical_shield_base": 32034,
+                        "haste_base": 6407,
+                        "surplus_base": 6407,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "入云空#42709 (35300 特效 加速 破招 无双)": {
+                    "id": 42709,
+                    "name": "入云空",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25520,
+                    "base": {
+                        "weapon_damage_base": 9307,
+                        "weapon_damage_rand": 6205
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "magical_shield_base": 32034,
+                        "haste_base": 6407,
+                        "surplus_base": 6407,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_4877_81"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "醍醐棍#42674 (35300 加速 无双)": {
+                    "id": 42674,
+                    "name": "醍醐棍",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25520,
+                    "base": {
+                        "weapon_damage_base": 9307,
+                        "weapon_damage_rand": 6205
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 22424,
+                        "magical_shield_base": 22424,
+                        "haste_base": 9610,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "三昧棍#42633 (35300 破招 无双)": {
+                    "id": 42633,
+                    "name": "三昧棍",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 35300,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 25520,
+                    "base": {
+                        "weapon_damage_base": 9307,
+                        "weapon_damage_rand": 6205
+                    },
+                    "magic": {
+                        "vitality_base": 34355,
+                        "physical_shield_base": 22424,
+                        "magical_shield_base": 22424,
+                        "surplus_base": 9610,
+                        "strain_base": 19220
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "降魔境#42142 (25300 特效 加速 破招 无双)": {
+                    "id": 42142,
+                    "name": "降魔境",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 25300,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23402,
+                    "base": {
+                        "weapon_damage_base": 9264,
+                        "weapon_damage_rand": 6176
+                    },
+                    "magic": {
+                        "vitality_base": 34198,
+                        "physical_shield_base": 23916,
+                        "magical_shield_base": 23916,
+                        "haste_base": 19133,
+                        "surplus_base": 19133,
+                        "strain_base": 19133
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25794_1",
+                        "gain_1855_8"
+                    ],
+                    "recipes": [
+                        "recipe_1514_1",
+                        "recipe_1515_1",
+                        "recipe_17356_1",
+                        "recipe_17246_1",
+                        "recipe_17360_1",
+                        "recipe_17361_1"
+                    ],
+                    "sets": {}
+                },
+                "降魔境#42110 (23650 特效 加速 破招 无双)": {
+                    "id": 42110,
+                    "name": "降魔境",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 23650,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23402,
+                    "base": {
+                        "weapon_damage_base": 8660,
+                        "weapon_damage_rand": 5773
+                    },
+                    "magic": {
+                        "vitality_base": 31968,
+                        "physical_shield_base": 22356,
+                        "magical_shield_base": 22356,
+                        "haste_base": 17885,
+                        "surplus_base": 17885,
+                        "strain_base": 17885
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25794_1",
+                        "gain_1855_8"
+                    ],
+                    "recipes": [
+                        "recipe_1514_1",
+                        "recipe_1515_1",
+                        "recipe_17356_1",
+                        "recipe_17246_1",
+                        "recipe_17360_1",
+                        "recipe_17361_1"
+                    ],
+                    "sets": {}
+                },
+                "娄觉棍#43772 (32500 加速 破招 无双)": {
+                    "id": 43772,
+                    "name": "娄觉棍",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 32500,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 11756,
+                    "base": {
+                        "weapon_damage_base": 8569,
+                        "weapon_damage_rand": 5713
+                    },
+                    "magic": {
+                        "vitality_base": 31630,
+                        "magical_shield_base": 29493,
+                        "haste_base": 5899,
+                        "surplus_base": 5899,
+                        "strain_base": 17696
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "金刚#42487 (30700 特效 破招 无双)": {
+                    "id": 42487,
+                    "name": "金刚",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 12496,
+                    "base": {
+                        "weapon_damage_base": 8094,
+                        "weapon_damage_rand": 5396
+                    },
+                    "magic": {
+                        "vitality_base": 29878,
+                        "physical_shield_base": 19502,
+                        "magical_shield_base": 19502,
+                        "surplus_base": 8358,
+                        "strain_base": 16716
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_19_1",
+                        "gain_22096_1"
+                    ],
+                    "recipes": [
+                        "recipe_17424_1"
+                    ],
+                    "sets": {}
+                },
+                "善守#41296 (30700 破招 无双)": {
+                    "id": 41296,
+                    "name": "善守",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30700,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24212,
+                    "base": {
+                        "weapon_damage_base": 8094,
+                        "weapon_damage_rand": 5396
+                    },
+                    "magic": {
+                        "vitality_base": 29878,
+                        "physical_shield_base": 19502,
+                        "magical_shield_base": 19502,
+                        "surplus_base": 8358,
+                        "strain_base": 16716
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "降魔境#40291 (22000 特效 加速 破招 无双)": {
+                    "id": 40291,
+                    "name": "降魔境",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 22000,
+                    "max_strength": 8,
+                    "set_id": 0,
+                    "icon_id": 23402,
+                    "base": {
+                        "weapon_damage_base": 8056,
+                        "weapon_damage_rand": 5370
+                    },
+                    "magic": {
+                        "vitality_base": 29738,
+                        "physical_shield_base": 20796,
+                        "magical_shield_base": 20796,
+                        "haste_base": 16637,
+                        "surplus_base": 16637,
+                        "strain_base": 16637
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_25794_1",
+                        "gain_1855_8"
+                    ],
+                    "recipes": [
+                        "recipe_1514_1",
+                        "recipe_1515_1",
+                        "recipe_17356_1",
+                        "recipe_17246_1",
+                        "recipe_17360_1",
+                        "recipe_17361_1"
+                    ],
+                    "sets": {}
+                },
+                "孤城惊梦·劫沙棍#43376 (30200 加速 破招 无双)": {
+                    "id": 43376,
+                    "name": "孤城惊梦·劫沙棍",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 9170,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "magical_shield_base": 27406,
+                        "haste_base": 5481,
+                        "surplus_base": 5481,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "寻踪觅宝·金钟棍#42594 (30200 破招 无双)": {
+                    "id": 42594,
+                    "name": "寻踪觅宝·金钟棍",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 6841,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "surplus_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "云生空相#41358 (30200 无双)": {
+                    "id": 41358,
+                    "name": "云生空相",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 12915,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "magical_shield_base": 27406,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "疏暮听蝉#41258 (30200 特效 无双)": {
+                    "id": 41258,
+                    "name": "疏暮听蝉",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24191,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "magical_shield_base": 27406,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [
+                        "gain_4877_77"
+                    ],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "苦劫棍#41224 (30200 加速 无双)": {
+                    "id": 41224,
+                    "name": "苦劫棍",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24191,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "haste_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                },
+                "慈云棍#41184 (30200 破招 无双)": {
+                    "id": 41184,
+                    "name": "慈云棍",
+                    "school": "少林",
+                    "kind": "防御",
+                    "level": 30200,
+                    "max_strength": 6,
+                    "set_id": 0,
+                    "icon_id": 24191,
+                    "base": {
+                        "weapon_damage_base": 7962,
+                        "weapon_damage_rand": 5308
+                    },
+                    "magic": {
+                        "vitality_base": 29391,
+                        "physical_shield_base": 19184,
+                        "magical_shield_base": 19184,
+                        "surplus_base": 8222,
+                        "strain_base": 16444
+                    },
+                    "embed": {
+                        "vitality_base": 161,
+                        "physical_shield_base": 161,
+                        "magical_shield_base": 161
+                    },
+                    "gains": [],
+                    "recipes": [],
+                    "sets": {}
+                }
+            },
             "内功": {
                 "昭佛光#43567 (29700 特效 会心 破防 加速)": {
                     "id": 43567,

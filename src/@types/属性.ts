@@ -42,7 +42,6 @@ export enum 属性类型 {
   郭氏身法 = 'atAgilityBasePercentAdd',
   郭氏根骨 = 'atSpiritBasePercentAdd',
   郭氏元气 = 'atSpunkBasePercentAdd',
-
   // 会心
   全会心等级 = 'atAllTypeCriticalStrike',
   外功会心等级 = 'atPhysicsCriticalStrike',
@@ -118,6 +117,11 @@ export enum 属性类型 {
   系数增伤 = 'atSkillCoefficientAdd',
   系数置换函数 = 'atSkillCoefficientReplace',
   破招转非侠 = 'atSurplusToPveAddition',
+
+  // T增益
+  郭氏体质转基础攻击 = 'atVitalityToAttackPower',
+  郭氏体质转全会心 = 'atVitalityToCriticalStrike',
+  郭氏体质转全破防 = 'atVitalityToOvercome',
 }
 
 export interface 属性加成 {

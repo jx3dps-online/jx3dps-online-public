@@ -21,7 +21,7 @@ async function loadSkillIconMap() {
     const headers = lines[0].split('\t');
     const skillIdIndex = headers.indexOf('SkillID');
     const iconIdIndex = headers.indexOf('IconID');
-    
+
     if (skillIdIndex === -1 || iconIdIndex === -1) {
       throw new Error('skill.txt文件中找不到SkillID或IconID列');
     }

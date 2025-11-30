@@ -18,6 +18,7 @@ export interface 完整技能伤害入参类型 {
   郭氏属性无视防御?: number
   技能增伤?: 技能增伤类型
   最终计算属性?: 最终计算属性类型
+  计算技能详情?: boolean
 }
 
 export type 计算类型 = '普通伤害' | '端游破招' | '无界破招' | '真实伤害' | '毒经宠物伤害'
@@ -33,6 +34,7 @@ export interface 技能总伤害计算入参类型 {
   快照计算: 快照类型[]
   计算循环详情?: 循环详情
   奇穴数据?: string[]
+  计算技能详情?: boolean
 }
 
 // 最终计算属性 用于统计、合并、区分各类型增益做统一计算
@@ -76,6 +78,11 @@ export interface 最终计算属性类型 {
    * @description 各种类型的技能增伤
    */
   技能增伤: 技能增伤类型
+  /**
+   * @name 坦克转换类型
+   * @description 技能增伤
+   */
+  坦克转换: 坦克转换类型
   /**
    * @name 气血加成
    * @description 各种类型的气血加成
@@ -157,6 +164,12 @@ export interface 技能增伤类型 {
   职业最终增伤: number
   系数增伤: number // 这里的系数增伤直接修改系数，不乘在最后
   系数置换函数?: (level: number) => number
+}
+
+export interface 坦克转换类型 {
+  郭氏体质转基础攻击: number
+  郭氏体质转全会心: number
+  郭氏体质转全破防: number
 }
 
 export interface 气血加成类型 {

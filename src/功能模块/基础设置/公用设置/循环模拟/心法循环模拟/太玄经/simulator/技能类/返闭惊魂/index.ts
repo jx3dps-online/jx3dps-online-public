@@ -13,7 +13,7 @@ class 返闭惊魂 extends 有CD技能通用类 {
   命中() {
     this.添加灯()
     this.保存释放记录()
-    this.刷新鬼遁()
+    this.刷新鬼遁(true)
   }
 
   延长持续时间(Buff名称) {

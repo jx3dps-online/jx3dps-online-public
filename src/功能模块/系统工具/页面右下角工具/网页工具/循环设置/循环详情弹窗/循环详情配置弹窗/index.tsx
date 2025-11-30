@@ -23,7 +23,7 @@ const 循环详情配置弹窗: React.FC<循环详情配置弹窗类型> = (prop
   useEffect(() => {
     if (open) {
       form?.setFieldsValue({
-        ...(默认数据 || {}),
+        ...默认数据,
       })
       设置循环详情列表(默认数据?.技能详情 || [])
     } else {

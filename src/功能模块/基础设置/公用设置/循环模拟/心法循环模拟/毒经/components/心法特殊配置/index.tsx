@@ -1,45 +1,44 @@
-import { Checkbox } from 'antd'
+import { Select, Tooltip } from 'antd'
+import styles from './index.module.less'
 import React from 'react'
 
 interface 心法特殊配制类型 {
-  启用斩杀: boolean
-  更新启用斩杀: (e: boolean) => void
-  五十血以下: boolean
-  更新五十血以下: (e: boolean) => void
-  显示龙牙龙驭层数: boolean
-  更新显示龙牙龙驭层数: (e: boolean) => void
-  启用血量消耗计算: boolean
-  更新启用血量消耗计算: (e: boolean) => void
+  忽略延迟技能: string[],
+  更新忽略延迟技能: (e: string[]) => void
 }
 
 function 心法特殊配置(props: 心法特殊配制类型) {
   const {
-    启用斩杀,
-    更新启用斩杀,
-    五十血以下,
-    更新五十血以下,
-    显示龙牙龙驭层数,
-    更新显示龙牙龙驭层数,
-    启用血量消耗计算,
-    更新启用血量消耗计算,
+    忽略延迟技能,
+    更新忽略延迟技能
   } = props
 
   return (
     <>
-      <Checkbox checked={显示龙牙龙驭层数} onChange={(e) => 更新显示龙牙龙驭层数(e.target.checked)}>
-        显示龙牙龙驭层数
-      </Checkbox>
-      <Checkbox checked={启用斩杀} onChange={(e) => 更新启用斩杀(e.target.checked)}>
-        <b>目标</b>
-        血量低于80%
-      </Checkbox>
-      <Checkbox checked={五十血以下} onChange={(e) => 更新五十血以下(e.target.checked)}>
-        <b>自身</b>
-        血量低于50%
-      </Checkbox>
-      <Checkbox checked={启用血量消耗计算} onChange={(e) => 更新启用血量消耗计算(e.target.checked)}>
-        启用血量消耗计算
-      </Checkbox>
+
+      <span className={styles.label}>忽略延迟</span>
+      <Tooltip title='以下技能计算时忽略延迟影响' placement='left'>
+        <Select
+          size='small'
+          className={'cycle-simulator-header-select'}
+          value={忽略延迟技能}
+          style={{ minWidth: 120 }}
+          showSearch
+          popupMatchSelectWidth={120}
+          placeholder={'无设置'}
+          filterOption={(input, option) => {
+            return option?.value?.toString()?.includes(input) || false
+          }}
+          mode={'multiple'}
+          onChange={(e) => 更新忽略延迟技能(e)}
+          options={['蝎心', '蛇影', '百足', '千丝', '蟾啸', '蛊虫献祭', '灵蛊', '凤凰蛊', '降厄', '连缘蛊', '触发橙武', '特效腰坠'].map((a) => {
+            return {
+              value: a,
+              label: a,
+            }
+          })}
+        />
+      </Tooltip>
     </>
   )
 }

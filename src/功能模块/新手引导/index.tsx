@@ -207,7 +207,7 @@ const 新手引导 = () => {
   }, [])
 
   const 记录跳过 = () => {
-    if (skipCount.current >= 10) {
+    if (skipCount.current >= 5) {
       修改引导状态(false)
       修改引导步骤(0)
       localStorage.setItem(缓存映射.新手引导, 'true')

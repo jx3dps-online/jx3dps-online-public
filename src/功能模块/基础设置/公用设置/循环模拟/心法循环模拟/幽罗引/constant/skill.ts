@@ -2,6 +2,7 @@ import { Buff枚举, 循环基础技能数据类型, 日志类型 } from '../sim
 import { 基础GCD帧 } from '.'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import { 通用Buff数据, 通用循环模拟技能基础数据 } from '../../通用/通用技能/通用技能定义'
+import huanhangIcon from '../assets/Skill/huanhangIcon.svg'
 
 // 技能图标引入
 
@@ -13,22 +14,14 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     技能CD: 0,
     技能GCD组: '公共',
     技能类型: '织心谣',
-    图标: 'https://icon.jx3box.com/icon/648.png',
+    图标: 'https://icon.jx3box.com/icon/24875.png',
   },
   {
     技能名称: '绊线',
     技能释放后添加GCD: 基础GCD帧,
     技能CD: 0,
     技能GCD组: '公共',
-    图标: 'https://icon.jx3box.com/icon/650.png',
-    技能类型: '织心谣',
-  },
-  {
-    技能名称: '夹线',
-    技能释放后添加GCD: 基础GCD帧,
-    技能CD: 0,
-    技能GCD组: '公共',
-    图标: 'https://icon.jx3box.com/icon/656.png',
+    图标: 'https://icon.jx3box.com/icon/24872.png',
     技能类型: '织心谣',
   },
   {
@@ -38,7 +31,15 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     最大充能层数: 2,
     技能GCD组: '公共',
     技能类型: '织心谣',
-    图标: 'https://icon.jx3box.com/icon/637.png',
+    图标: 'https://icon.jx3box.com/icon/24873.png',
+  },
+  {
+    技能名称: '夹线',
+    技能释放后添加GCD: 基础GCD帧,
+    技能CD: 0,
+    技能GCD组: '公共',
+    图标: 'https://icon.jx3box.com/icon/24895.png',
+    技能类型: '织心谣',
   },
   {
     技能名称: '障幕虚影',
@@ -46,7 +47,7 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     技能CD: 每秒郭氏帧 * 90,
     技能GCD组: '自身',
     技能类型: '爆发',
-    图标: 'https://icon.jx3box.com/icon/635.png',
+    图标: 'https://icon.jx3box.com/icon/24891.png',
   },
   {
     技能名称: '连环慢',
@@ -55,7 +56,15 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     最大充能层数: 2,
     技能GCD组: '自身',
     技能类型: '傀儡调',
-    图标: 'https://icon.jx3box.com/icon/2985.png',
+    图标: 'https://icon.jx3box.com/icon/24865.png',
+  },
+  {
+    技能名称: '落笼簿',
+    技能释放后添加GCD: 每秒郭氏帧 * 1,
+    技能CD: 0,
+    技能GCD组: '自身',
+    技能类型: '傀儡调',
+    图标: 'https://icon.jx3box.com/icon/24893.png',
   },
   {
     技能名称: '生地狱',
@@ -63,7 +72,7 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     技能CD: 每秒郭氏帧 * 30,
     技能GCD组: '傀儡',
     技能类型: '傀儡调',
-    图标: 'https://icon.jx3box.com/icon/638.png',
+    图标: 'https://icon.jx3box.com/icon/24863.png',
   },
   {
     技能名称: '千里急',
@@ -71,15 +80,7 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     技能CD: 0,
     技能GCD组: '傀儡',
     技能类型: '傀儡调',
-    图标: 'https://icon.jx3box.com/icon/102299.png',
-  },
-  {
-    技能名称: '落笼簿',
-    技能释放后添加GCD: 基础GCD帧,
-    技能CD: 0,
-    技能GCD组: '自身',
-    技能类型: '傀儡调',
-    图标: 'https://icon.jx3box.com/icon/23048.png',
+    图标: 'https://icon.jx3box.com/icon/24860.png',
   },
   {
     技能名称: '应天长',
@@ -88,7 +89,7 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     最大充能层数: 3,
     技能GCD组: '公共',
     技能类型: '奇穴',
-    图标: 'https://icon.jx3box.com/icon/636.png',
+    图标: 'https://icon.jx3box.com/icon/25058.png',
   },
   {
     技能名称: '换行',
@@ -96,7 +97,7 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     技能CD: 0,
     技能GCD组: '自身',
     技能类型: '其他',
-    图标: 'https://icon.jx3box.com/icon/6932.png',
+    图标: huanhangIcon,
     说明: '插入换行将只以”换行“作为展示换行。 ',
   },
   {
@@ -137,24 +138,24 @@ export const 原始Buff数据: Buff枚举 = {
     名称: '钤束',
     最大层数: 1,
     最大持续时间: 每秒郭氏帧 * 18,
-    图标: 'https://icon.jx3box.com/icon/648.png',
+    图标: 'https://icon.jx3box.com/icon/25038.png',
     备注: '攻击提高15%，无双提高30%',
   },
-  寄线: {
-    //
-    类型: '目标',
-    名称: '寄线',
-    最大层数: 5,
-    最大持续时间: 每秒郭氏帧 * 5,
-    图标: 'https://icon.jx3box.com/icon/648.png',
-    备注: '“寄线”命中目标时使其在5秒内受到的“寄线”伤害增加20%，最多叠加5层。',
-  },
+  // 寄线: {
+  //   //
+  //   类型: '目标',
+  //   名称: '寄线',
+  //   最大层数: 5,
+  //   最大持续时间: 每秒郭氏帧 * 5,
+  //   图标: 'https://icon.jx3box.com/icon/648.png',
+  //   备注: '“寄线”命中目标时使其在5秒内受到的“寄线”伤害增加20%，最多叠加5层。',
+  // },
   迭影: {
     类型: '自身',
     名称: '迭影',
     最大层数: 1,
     最大持续时间: 每秒郭氏帧 * 5,
-    图标: 'https://icon.jx3box.com/icon/13434.png',
+    图标: 'https://icon.jx3box.com/icon/25074.png',
     备注: '5秒内绊线伤害提高50%，返还0.5秒调息',
   },
   // 谐调: {
@@ -170,7 +171,7 @@ export const 原始Buff数据: Buff枚举 = {
     名称: '连环慢',
     最大层数: 1,
     最大持续时间: 每秒郭氏帧 * 15,
-    图标: 'https://icon.jx3box.com/icon/637.png',
+    图标: 'https://icon.jx3box.com/icon/24865.png',
     备注: '连环慢',
   },
   缠绞: {
@@ -179,7 +180,7 @@ export const 原始Buff数据: Buff枚举 = {
     名称: '缠绞',
     最大层数: 5,
     最大持续时间: 每秒郭氏帧 * 12,
-    图标: 'https://icon.jx3box.com/icon/637.png',
+    图标: 'https://icon.jx3box.com/icon/24870.png',
     备注: '缠绞',
   },
   虚影: {
@@ -188,7 +189,7 @@ export const 原始Buff数据: Buff枚举 = {
     名称: '虚影',
     最大层数: 1,
     最大持续时间: 每秒郭氏帧 * 10,
-    图标: 'https://icon.jx3box.com/icon/637.png',
+    图标: 'https://icon.jx3box.com/icon/24891.png',
     备注: '“障幕虚影”',
   },
   拘意DOT: {
@@ -198,7 +199,7 @@ export const 原始Buff数据: Buff枚举 = {
     最大作用次数: 6,
     伤害频率: 48,
     最大持续时间: 每秒郭氏帧 * 18,
-    图标: 'https://icon.jx3box.com/icon/3111.png',
+    图标: 'https://icon.jx3box.com/icon/25050.png',
     备注: '“拘意”',
   },
   千里急DOT: {
@@ -208,7 +209,7 @@ export const 原始Buff数据: Buff枚举 = {
     最大作用次数: 5,
     伤害频率: 16,
     最大持续时间: 每秒郭氏帧 * 5,
-    图标: 'https://icon.jx3box.com/icon/13430.png',
+    图标: 'https://icon.jx3box.com/icon/25058.png',
     备注: '“千里急”',
   },
   夹线DOT: {
@@ -218,7 +219,7 @@ export const 原始Buff数据: Buff枚举 = {
     最大作用次数: 5,
     伤害频率: 48,
     最大持续时间: 每秒郭氏帧 * 15,
-    图标: 'https://icon.jx3box.com/icon/13430.png',
+    图标: 'https://icon.jx3box.com/icon/24895.png',
     备注: '“夹线”',
   },
   橙武: {

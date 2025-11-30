@@ -68,16 +68,31 @@ export const 精简特效Map = {
   41065: '特效_41065', // 2982
 }
 
-export const 精简特效区分等级 = [40794,
+export const 精简特效区分等级 = [
+  40794,
   41065,
-38944,
-38934,
-38946,
-38948,
-38950,
-38945,
-38939,
-38949,
+  38944,
+  38934,
+  38946,
+  38948,
+  38950,
+  38945,
+  38939,
+  38949,
+]
+
+export const 暂不处理属性 = [
+  'event', // 触发
+  'recipe', // 秘籍
+  // --
+  'physical_shield_base', // 外防
+  'magical_shield_base', // 内防
+  'toughness_base', // 御劲
+  'decritical_power_base', // 化劲等级提高
+  "dodge", //  "闪避",
+  "parry_value", //  "拆招值",
+  "parry", //  "拆招",
+  'parry_base', // 赵家
 ]
   
 

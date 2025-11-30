@@ -12,9 +12,7 @@ import { CrownFilled } from '@ant-design/icons'
 import './index.css'
 
 // 会效收益从175%至300%
-const 收益列表 = 获取当前各属性最大附魔()?.filter(
-  (item) => !['武伤', '会效']?.includes(item?.收益)
-)
+const 收益列表 = 获取当前各属性最大附魔()?.filter((item) => !['武伤', '会效']?.includes(item?.收益))
 // 过滤武伤和会效
 
 function 属性置换收益() {
@@ -54,10 +52,7 @@ function 属性置换收益() {
             收益: 0,
           }
           结果数据.forEach((item) => {
-            if (
-              item.减少属性 === obj.减少属性 &&
-              (item.收益 || 0) > (最大值对象?.收益 || 0)
-            ) {
+            if (item.减少属性 === obj.减少属性 && (item.收益 || 0) > (最大值对象?.收益 || 0)) {
               最大值对象 = item
             }
           })
@@ -85,7 +80,8 @@ function 属性置换收益() {
             ...装备基础属性,
           },
         },
-      })
+        计算技能详情: false,
+      }),
     )
     return 计算结果
   }
@@ -98,13 +94,13 @@ function 属性置换收益() {
         const 增益后装备基础数据 = 收益增益属性计算(
           增加数据?.收益,
           增加数据?.值,
-          装备信息?.装备基础属性
+          装备信息?.装备基础属性,
         )
         // 减少对应数值
         const 减少数据后装备基础数据 = 收益增益属性计算(
           减少数据?.收益,
           -减少数据?.值,
-          增益后装备基础数据
+          增益后装备基础数据,
         )
         const { 秒伤: 新秒伤 } = 计算增加后收益(减少数据后装备基础数据)
         const 收益 = Number(新秒伤 - 当前计算结果?.秒伤)
@@ -135,14 +131,12 @@ function 属性置换收益() {
       }
     } else if (收益 > 0) {
       // 获取三个等级的数值
-      const 亮度 =
-        亮度最大值 - (收益 / 置换数据信息?.最大值) * (亮度最大值 - 亮度最小值)
+      const 亮度 = 亮度最大值 - (收益 / 置换数据信息?.最大值) * (亮度最大值 - 亮度最小值)
       return {
         backgroundColor: `hsl(140 60% ${亮度}% / 1)`,
       }
     } else if (收益 < 0) {
-      const 亮度 =
-        亮度最大值 - (收益 / 置换数据信息?.最小值) * (亮度最大值 - 亮度最小值)
+      const 亮度 = 亮度最大值 - (收益 / 置换数据信息?.最小值) * (亮度最大值 - 亮度最小值)
       return {
         backgroundColor: `hsl(0 60% ${亮度}% / 0.9)`,
       }
@@ -181,8 +175,7 @@ function 属性置换收益() {
     if (!显示结果) {
       return false
     }
-    const 该行数据 =
-      置换数据信息?.每行收益最高对象?.[显示结果?.减少属性] || undefined
+    const 该行数据 = 置换数据信息?.每行收益最高对象?.[显示结果?.减少属性] || undefined
     if (该行数据) {
       return 该行数据?.增加属性 === 显示结果?.增加属性
     } else {
@@ -193,8 +186,7 @@ function 属性置换收益() {
   const 获取属性置换排序展示 = (减少属性) => {
     const 结果数据 = useMemo(() => {
       const 全部该属性数据 = 置换结果数据?.filter(
-        (item) =>
-          item?.减少属性 === `-${减少属性?.收益}` && item?.收益 !== undefined
+        (item) => item?.减少属性 === `-${减少属性?.收益}` && item?.收益 !== undefined,
       )
       全部该属性数据.sort((a, b) => {
         return (b.收益 || 0) - (a.收益 || 0)
@@ -206,15 +198,10 @@ function 属性置换收益() {
       <div>
         {结果数据?.map((item, index) => {
           return (
-            <div
-              className="attr-replace-tip-item"
-              key={`减少属性_${减少属性?.收益}_${index}`}
-            >
+            <div className='attr-replace-tip-item' key={`减少属性_${减少属性?.收益}_${index}`}>
               <span
                 className={`attr-replace-tip-label ${
-                  item?.收益 && item?.收益 > 0
-                    ? 'attr-replace-tip-label-up'
-                    : ''
+                  item?.收益 && item?.收益 > 0 ? 'attr-replace-tip-label-up' : ''
                 }`}
               >
                 {item?.增加属性}
@@ -235,11 +222,11 @@ function 属性置换收益() {
   }
 
   return (
-    <div className="attr-replace">
-      <div className="attr-replace-btns">
-        <Tooltip title="切换图表的颜色展示模式，详细颜色模式和简易颜色模式">
+    <div className='attr-replace'>
+      <div className='attr-replace-btns'>
+        <Tooltip title='切换图表的颜色展示模式，详细颜色模式和简易颜色模式'>
           <Switch
-            size="small"
+            size='small'
             checkedChildren={'详细'}
             unCheckedChildren={'简易'}
             value={详细颜色显示}
@@ -247,17 +234,14 @@ function 属性置换收益() {
           />
         </Tooltip>
       </div>
-      <Row className="attr-replace-table">
-        <Col className="attr-replace-header">收益</Col>
+      <Row className='attr-replace-table'>
+        <Col className='attr-replace-header'>收益</Col>
         {收益列表.map((附魔) => {
           return (
-            <Col
-              className="attr-replace-header-item"
-              key={`header_${附魔?.收益}`}
-            >
+            <Col className='attr-replace-header-item' key={`header_${附魔?.收益}`}>
               <div>
-                <h1 className="attr-replace-name">{附魔?.收益}</h1>
-                <p className="attr-replace-name-value">+{附魔?.值}</p>
+                <h1 className='attr-replace-name'>{附魔?.收益}</h1>
+                <p className='attr-replace-name-value'>+{附魔?.值}</p>
               </div>
             </Col>
           )
@@ -266,15 +250,15 @@ function 属性置换收益() {
       {收益列表.map((减少属性, 索引) => {
         return (
           <Row key={`减少属性_${索引}`}>
-            <Col className="attr-replace-item attr-replace-sider">
+            <Col className='attr-replace-item attr-replace-sider'>
               <Popover
                 overlayStyle={{ width: 130 }}
-                title="属性置换排序"
+                title='属性置换排序'
                 content={获取属性置换排序展示(减少属性)}
               >
                 <div>
-                  <h1 className="attr-replace-name">{减少属性?.收益}</h1>
-                  <p className="attr-replace-name-value">-{减少属性?.值}</p>
+                  <h1 className='attr-replace-name'>{减少属性?.收益}</h1>
+                  <p className='attr-replace-name-value'>-{减少属性?.值}</p>
                 </div>
               </Popover>
             </Col>
@@ -282,7 +266,7 @@ function 属性置换收益() {
               const 显示结果 = 置换结果数据?.find(
                 (item) =>
                   item?.增加属性 === `+${增加属性?.收益}` &&
-                  item?.减少属性 === `-${减少属性?.收益}`
+                  item?.减少属性 === `-${减少属性?.收益}`,
               )
               const 颜色样式名函数 = 获取颜色样式名函数(显示结果)
               const 具体样式函数 = 获取具体样式函数(显示结果)
@@ -294,16 +278,13 @@ function 属性置换收益() {
                   key={`减少属性_${增加属性?.收益}_${索引}`}
                 >
                   {单行最高值 ? (
-                    <CrownFilled className="attr-repace-icon attr-repace-item-icon" />
+                    <CrownFilled className='attr-repace-icon attr-repace-item-icon' />
                   ) : null}
                   <div className={`attr-replace-res-text`}>
                     {显示结果?.收益 && 显示结果?.收益 > 0 ? '+' : ''}
                     {显示结果?.收益 || '-'}
                   </div>
-                  <div
-                    className={`attr-replace-res-bg ${颜色样式名函数}`}
-                    style={具体样式函数}
-                  />
+                  <div className={`attr-replace-res-bg ${颜色样式名函数}`} style={具体样式函数} />
                 </Col>
               )
             })}
@@ -328,11 +309,9 @@ export const 附魔属性置换收益信息 = [
         <p>X轴：增加对应属性附魔数值</p>
         <p>Y轴：减少增加对应属性附魔数值</p>
         <p>
-          <CrownFilled className="attr-repace-icon" />： 同行内提升最高的数值
+          <CrownFilled className='attr-repace-icon' />： 同行内提升最高的数值
         </p>
-        <p>
-          表格数值不共轭的原因为：计算采用游戏内的郭氏算法进行计算，各属性存在计算阈值。
-        </p>
+        <p>表格数值不共轭的原因为：计算采用游戏内的郭氏算法进行计算，各属性存在计算阈值。</p>
       </div>
     ),
   },

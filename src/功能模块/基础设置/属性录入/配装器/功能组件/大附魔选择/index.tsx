@@ -27,12 +27,12 @@ const 大附魔选择: ForwardRefExoticComponent<大附魔选择类型> = forwar
       {
         label: `英雄·${type}`,
         value: 2,
-        iconId: '23950', // TODO 魔盒未更新英雄的图标
+        iconId: '23948', 
       },
       {
         label: `普通·${type}`,
         value: 1,
-        iconId: '22871',
+        iconId: '23950',
       },
     ]
   }, [type])
@@ -44,7 +44,9 @@ const 大附魔选择: ForwardRefExoticComponent<大附魔选择类型> = forwar
       const 当前装备列表信息 = form?.getFieldsValue()
       const 当前装备信息 = 根据表单选项获取装备信息(当前装备列表信息)
 
-      const { 秒伤: 旧秒伤 } = dispatch(秒伤计算({ 更新装备信息: 当前装备信息 }))
+      const { 秒伤: 旧秒伤 } = dispatch(
+        秒伤计算({ 更新装备信息: 当前装备信息, 计算技能详情: false }),
+      )
 
       // 传入新的装备
       const newDpsUpList = list.map((item) => {
@@ -53,7 +55,9 @@ const 大附魔选择: ForwardRefExoticComponent<大附魔选择类型> = forwar
           [`大附魔_伤${type}`]: item?.value,
         })
 
-        const { 秒伤: 更新后秒伤 } = dispatch(秒伤计算({ 更新装备信息: 更新后装备信息 }))
+        const { 秒伤: 更新后秒伤 } = dispatch(
+          秒伤计算({ 更新装备信息: 更新后装备信息, 计算技能详情: false }),
+        )
 
         return {
           value: item?.value,

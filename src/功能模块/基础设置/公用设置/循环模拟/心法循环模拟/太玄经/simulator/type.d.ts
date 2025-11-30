@@ -60,10 +60,13 @@ export interface 技能类实例集合 {
   镇星入舆?: any
   镇星二段?: any
   奇门飞宫?: any
+  连极阵?: any
+  连极阵_解?: any
+  DOT_知微?: any
+  太白蚀昴?: any
   换行?: 换行类型
   触发橙武?: 触发橙武类型
   特效腰坠?: any
-  凌然天风?: any
 }
 
 export interface 技能GCD组 {
@@ -190,6 +193,7 @@ export interface 循环基础技能数据类型 {
   释放依赖Buff?: string[]
   Buff存在不可释放?: string[]
   奇穴存在不可释放?: string[]
+  可中断倒读条最大跳数?: number
 }
 
 export interface 额外信息类型 {
@@ -377,7 +381,7 @@ export interface 模拟信息类型 {
   当前时间: number
   循环执行结果: '成功' | '异常'
   循环异常信息: { 异常索引?: number; 异常信息?: any }
-  技能释放记录: 技能释放记录数据[] = []
+  技能释放记录: 技能释放记录数据[]
   当前各技能运行状态: { [key: string]: 技能运行数据类型 }
   当前DOT运行状态: { [key: string]: DOT运行数据类型 }
   当前GCD组: 技能GCD组
@@ -397,6 +401,7 @@ export interface 技能释放记录数据 {
 export interface 技能释放记录结果 {
   实际伤害技能?: string // 针对造成伤害的实际名称
   伤害段数?: number // 针对行、沧的实际伤害段数
+  特殊标记?: number // 特殊标记
   重要buff列表?: string[] // 影响技能结果的重要buff列表
   释放时标鹄层数?: number
   造成buff数据?: {

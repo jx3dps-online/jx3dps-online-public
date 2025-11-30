@@ -91,7 +91,7 @@ function CycleSimulator() {
     当前DOT运行状态: {},
     当前GCD组: {},
   })
-
+  const [显示绝刀怒气, 更新显示绝刀怒气] = useState<boolean>(false)
   const [起手怒气, 设置起手怒气] = useState<number>(0)
   // const [起手体态, 设置起手体态] = useState<'擎刀' | '擎盾'>('擎盾')
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
@@ -211,13 +211,9 @@ function CycleSimulator() {
   }
 
   // 向循环内新增技能
-  const 新增循环技能 = (item: 循环基础技能数据类型, extra?) => {
+  const 新增循环技能 = (item: 循环基础技能数据类型) => {
     let newCycle: 循环基础技能数据类型[] = []
-    let newSkill: 循环基础技能数据类型 = item
-    if (extra) {
-      newSkill = { ...item, 额外信息: extra }
-    }
-    newCycle = [...(cycle || []), newSkill]
+    newCycle = [...(cycle || []), item]
     setCycle(newCycle)
   }
 
@@ -257,7 +253,15 @@ function CycleSimulator() {
         ...找到当前技能释放记录,
         技能释放记录结果: {
           ...找到当前技能释放记录?.技能释放记录结果,
+          特殊标记: undefined,
         },
+      }
+      if (item?.技能名称 === '绝刀') {
+        if (显示绝刀怒气) {
+          data.技能释放记录结果.特殊标记 = 找到当前技能释放记录?.技能释放记录结果?.特殊标记
+        }
+      } else if (找到当前技能释放记录?.技能释放记录结果?.特殊标记) {
+        data.技能释放记录结果.特殊标记 = 找到当前技能释放记录?.技能释放记录结果?.特殊标记
       }
       if (index === 0) {
         res[res?.length] = [{ ...data, index: index || 0 }]
@@ -274,7 +278,7 @@ function CycleSimulator() {
     })
 
     return { 显示循环: res, 完整循环: cycle }
-  }, [cycle, 模拟信息])
+  }, [cycle, 模拟信息, 显示绝刀怒气])
 
   const 点击下拉菜单 = (data, index) => {
     if (data?.key === '设置延迟时间') {
@@ -344,12 +348,14 @@ function CycleSimulator() {
             原始Buff数据={根据奇穴秘籍修改buff数据(奇穴信息, 秘籍信息)}
             配置区={
               <心法特殊配置
-                // 显示虚弱层数={显示虚弱层数}
-                // 更新显示虚弱层数={更新显示虚弱层数}
+                // 显示破绽层数={显示破绽层数}
+                // 更新显示破绽层数={更新显示破绽层数}
+                显示绝刀怒气={显示绝刀怒气}
+                更新显示绝刀怒气={更新显示绝刀怒气}
                 起手怒气={起手怒气}
                 设置起手怒气={设置起手怒气}
-              // 起手体态={起手体态}
-              // 设置起手体态={设置起手体态}
+                // 起手体态={起手体态}
+                // 设置起手体态={设置起手体态}
               />
             }
           />

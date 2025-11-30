@@ -19,6 +19,10 @@ class 寒更晓箭 extends 技能统一类 {
 
     this.模拟循环.角色状态信息.箭袋信息 = 新箭袋信息
   }
+
+  命中() {
+    this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8)
+  }
 }
 
 export default 寒更晓箭

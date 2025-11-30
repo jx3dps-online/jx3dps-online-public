@@ -79,7 +79,7 @@ export const 数据模块 = createSlice({
       localStorage?.setItem(缓存映射.当前输出计算目标名称, action.payload)
     },
     更新当前秘籍信息: (state, action: PayloadAction<选中秘籍信息>) => {
-      state.当前秘籍信息 = { ...(action.payload || {}) }
+      state.当前秘籍信息 = { ...action.payload }
       localStorage.setItem(缓存映射.当前秘籍信息, JSON.stringify(action.payload))
     },
     更新当前方案名称: (state, action: PayloadAction<string>) => {

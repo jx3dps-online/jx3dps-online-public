@@ -47,7 +47,7 @@ import { 宠物基础数据, 换灵印基础数据 } from '../constant/skill'
 import { 箭形态枚举 } from '../constant/enum'
 import 空弦惊雁 from './技能类/空弦惊雁'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
-import { 获取加速等级 } from '@/工具函数/data'
+import { 获取加速等级, 获取实际帧数 } from '@/工具函数/data'
 import { 团队增益轴类型 } from '@/@types/团队增益'
 import 判断团队增益快照Buff from '@/数据/团队增益/tools'
 import { 起手Buff配置 } from '../../通用/通用框架/类型定义/Buff'
@@ -523,6 +523,7 @@ class 循环主类 {
 
   // 增加技能GCD
   增加技能GCD(当前技能: 循环基础技能数据类型) {
+    let 实际添加GCD = 获取实际帧数(当前技能?.技能释放后添加GCD, this.加速值)
     // GCD处理
     if (当前技能?.技能GCD组) {
       let 待更新GCD组: string = 当前技能.技能GCD组 as string
@@ -530,8 +531,7 @@ class 循环主类 {
         待更新GCD组 = 当前技能?.技能名称
       }
       if (待更新GCD组) {
-        this.GCD组[待更新GCD组] =
-          (this.GCD组[待更新GCD组] || 0) + 当前技能?.技能释放后添加GCD - 获取加速等级(this.加速值)
+        this.GCD组[待更新GCD组] = (this.GCD组[待更新GCD组] || 0) + 实际添加GCD
       }
     }
   }
@@ -888,13 +888,13 @@ class 循环主类 {
             技能实例,
             i,
           )
+          this.待生效事件结算(技能预估释放时间)
+          this.技能GCD和CD处理(等待CD, 技能预估释放时间, 当前技能, 技能实例)
           const 读条时间 = 技能实例?.获取读条时间?.(i) || 0
           const 是否为读条技能 = !!读条时间
           if (读条时间) {
             技能实例?.读条?.(技能预估释放时间)
           }
-          this.待生效事件结算(技能预估释放时间)
-          this.技能GCD和CD处理(等待CD, 技能预估释放时间, 当前技能, 技能实例)
           // this.清空已经消失的buff()
           const 开始读条时间 = 是否为读条技能 ? 技能预估释放时间 : undefined
           const 结束读条时间 = 是否为读条技能 ? 技能预估释放时间 + 读条时间 : 0

@@ -28,7 +28,8 @@ export const attrMap = {
   spirit_gain:'属性类型.郭氏根骨',
   poison_attack_power_base: "属性类型.内功基础攻击",
   poison_overcome_base: "属性类型.内功破防等级",
-  // all_major_base: "全属性",
+  all_major_base: "属性类型.全属性",
+  vitality_gain:'属性类型.郭氏体质',
 }
 
 export const WuCaiShiGainNameMeiju = {
@@ -57,6 +58,10 @@ export const WuCaiShiGainNameMeiju = {
   agility_gain:'五彩石增益类型枚举.身法百分比',
   spunk_gain:'五彩石增益类型枚举.元气百分比',
   spirit_gain:'五彩石增益类型枚举.根骨百分比',
+  vitality_gain:'五彩石增益类型枚举.体质百分比',
+
+  vitality_base:'五彩石增益类型枚举.体质',
+  all_major_base:'五彩石增益类型枚举.全属性',
 
   poison_attack_power_base: "五彩石增益类型枚举.内功基础攻击",
   poison_overcome_base: "五彩石增益类型枚举.破防等级",
@@ -72,4 +77,11 @@ export const filterNames = [
   "magical_shield_base",
   "all_major_base",
   "vitality_gain"
+]
+
+export const tankFilterNames = [
+  'strength',
+  'agility',
+  'spunk',
+  'spirit',
 ]

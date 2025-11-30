@@ -19,14 +19,27 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
   const 当前奇穴信息 = value ? value : useAppSelector((state) => state?.data?.当前奇穴信息)
 
   const handleChangeQixue = (_, values) => {
+    const 特殊奇穴索引 = 奇穴数据.findIndex((item) => item.是否为特殊奇穴)
+
     const newArray = Object.keys(values)
-      ?.filter((key, index) => key !== 'mix' && index < 8)
+      ?.filter((key, index) => {
+        // 排除 'mix' 和特殊奇穴的索引
+        if (key === 'mix') return false
+        if (特殊奇穴索引 !== -1 && +key === 特殊奇穴索引) return false
+        // 只保留常规奇穴（索引 0-6）
+        return +key < 7
+      })
       .map((key) => {
         return values[key]
       })
 
     if (values?.mix) {
       newArray.push(...(values?.mix || []))
+    }
+
+    // 特殊奇穴（索引10，只有1个）
+    if (特殊奇穴索引 !== -1 && values[特殊奇穴索引]) {
+      newArray.push(values[特殊奇穴索引])
     }
 
     if (onChange) {
@@ -39,12 +52,19 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
 
   // 监听表单变化
   useEffect(() => {
+    const 特殊奇穴索引 = 奇穴数据.findIndex((item) => item.是否为特殊奇穴)
+
     const obj = {}
     const misList: string[] = []
     当前奇穴信息?.forEach((item, index) => {
-      if (index >= 7) {
+      if (index >= 7 && index < 10) {
+        // 混池奇穴 (索引7-9)
         misList.push(item)
+      } else if (特殊奇穴索引 !== -1 && index === 10) {
+        // 特殊奇穴（索引8，但实际在数组中的位置）
+        obj[特殊奇穴索引] = item
       } else {
+        // 常规奇穴 (索引0-6)
         obj[index] = item
       }
     })
@@ -72,9 +92,8 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
       <Form
         onValuesChange={handleChangeQixue}
         form={form}
-        className={`qixue-set-drawer-wrap ${
-          奇穴数据?.length === 4 ? 'qixue-set-drawer-wrap-small' : ''
-        }`}
+        className={`qixue-set-drawer-wrap ${奇穴数据?.length === 4 ? 'qixue-set-drawer-wrap-small' : ''
+          }`}
       >
         {奇穴数据.map((重, index) => {
           return 重?.是否为混池 ? (
@@ -84,7 +103,10 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
           ) : (
             <Form.Item
               className={'qixue-set-item'}
-              style={index === 0 || index === 6 ? { marginRight: 24 } : {}}
+              style={{
+                ...(index === 0 || index === 6 ? { marginRight: 24 } : {}),
+                ...(重?.是否为特殊奇穴 ? { marginLeft: 240 } : {}),  // 特殊奇穴右移至混池奇穴栏右侧
+              }}
               name={index}
               key={index + 1}
             >

@@ -96,4 +96,9 @@ export enum 属性类型 {
   系数增伤 = 'atSkillCoefficientAdd',
   系数置换函数 = 'atSkillCoefficientReplace',
   破招转非侠 = 'atSurplusToPveAddition',
+
+  // T
+  郭氏体质转基础攻击 = 'atVitalityToAttackPower',
+  郭氏体质转全会心 = 'atVitalityToCriticalStrike',
+  郭氏体质转全破防 = 'atVitalityToOvercome',
 }

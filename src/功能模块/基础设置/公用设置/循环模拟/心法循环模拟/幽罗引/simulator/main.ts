@@ -25,7 +25,7 @@ import {
 } from './type'
 
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
-import { 获取加速等级 } from '@/工具函数/data'
+import { 获取加速等级, 获取实际帧数 } from '@/工具函数/data'
 import { 团队增益轴类型 } from '@/@types/团队增益'
 import 判断团队增益快照Buff from '@/数据/团队增益/tools'
 
@@ -401,9 +401,6 @@ class 循环主类 {
         this.技能类实例集合?.['勾线']?.更新技能运行数据({
           待充能时间点: 新待充能时间点,
         })
-        this.技能类实例集合?.['勾线三跳']?.更新技能运行数据({
-          待充能时间点: 新待充能时间点,
-        })
       } else {
         技能实例?.更新技能运行数据({
           待充能时间点: 新待充能时间点,
@@ -539,7 +536,7 @@ class 循环主类 {
     }
 
     const 是否是倒读条技能 = 当前技能?.是否为倒读条技能
-    const 延迟等待 = this.当前时间 && !是否是倒读条技能 && GCD ? this.网络延迟 : 0
+    const 延迟等待 = this.当前时间 !== undefined && !是否是倒读条技能 && GCD ? this.网络延迟 : 0
     const 技能计划释放时间 = this.当前时间 + GCD + 延迟等待
 
     return {
@@ -553,16 +550,18 @@ class 循环主类 {
   增加技能GCD(当前技能: 循环基础技能数据类型) {
     // GCD处理
     if (当前技能?.技能GCD组) {
+      let 实际添加GCD = 获取实际帧数(当前技能?.技能释放后添加GCD, this.加速值)
+      // if (当前技能?.最小GCD) {
+      //   实际添加GCD = Math.max(实际添加GCD, 当前技能?.最小GCD)
+      // }
       let 待更新GCD组: string = 当前技能.技能GCD组 as string
       if (当前技能.技能GCD组 === '自身') {
         待更新GCD组 = 当前技能?.技能名称
       }
-      const 加速等级 = 获取加速等级(this.加速值)
       if (待更新GCD组) {
         const GCD减少时间 =
           this.技能类实例集合?.[当前技能?.技能名称]?.获取释放后GCD减少时间?.() || 0
-        this.GCD组[待更新GCD组] =
-          (this.GCD组[待更新GCD组] || 0) + 当前技能?.技能释放后添加GCD - 加速等级 - GCD减少时间
+        this.GCD组[待更新GCD组] = (this.GCD组[待更新GCD组] || 0) + 实际添加GCD - GCD减少时间
       }
     }
   }

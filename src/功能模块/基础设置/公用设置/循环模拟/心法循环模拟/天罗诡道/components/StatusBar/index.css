@@ -1,0 +1,26 @@
+.cycle-status-bar {
+  display: flex;
+  border: 1px solid var(--ant-primary-color);
+  padding: 16px 24px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
+}
+
+.cycle-status-bar-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(3, 10, 26, 0.85);
+  line-height: 22px;
+  margin-bottom: 8px;
+}
+
+.cycle-status-bar-content + .cycle-status-bar-content {
+  margin-left: 24px;
+}
+
+.cycle-status-bar-body {
+  height: 36px;
+  display: flex;
+  align-items: center;
+}

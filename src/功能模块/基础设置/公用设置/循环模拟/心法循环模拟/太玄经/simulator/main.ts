@@ -44,8 +44,12 @@ import 列宿游 from './技能类/列宿游'
 import 御前星 from './技能类/御前星'
 import 镇星入舆 from './技能类/镇星入舆'
 import 镇星二段 from './技能类/镇星二段'
+import 连极阵 from './技能类/连极阵'
+import 连极阵_解 from './技能类/连极阵_解'
+import 太白蚀昴 from './技能类/太白蚀昴'
 import 特效腰坠 from '../../通用/通用技能/特效腰坠'
 import DOT_祝由_火离 from './DOT类/祝由_火离'
+import DOT_知微 from './DOT类/知微'
 
 // import { 箭形态枚举 } from '../constant/enum'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
@@ -73,7 +77,6 @@ export interface SimulatorCycleProps {
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
   起手Buff配置?: 起手Buff配置
-  自动三才: boolean
 }
 
 class 循环主类 {
@@ -106,8 +109,6 @@ class 循环主类 {
   待生效事件队列: 待生效事件[] = []
   启用团队增益快照 = false
   团队增益轴: 团队增益轴类型 = {}
-  自动三才 = false
-
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
     // 模拟开始后不会变动的数据
@@ -117,7 +118,6 @@ class 循环主类 {
     this.奇穴 = props.奇穴
     this.秘籍 = props.秘籍
     this.加速值 = props.加速值
-    this.自动三才 = props.自动三才
     this.网络延迟 = props.网络延迟
     this.启用团队增益快照 = !!props.启用团队增益快照
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
@@ -164,12 +164,16 @@ class 循环主类 {
       祝由_山艮: new 祝由_山艮(this),
       祝由_火离: new 祝由_火离(this),
       DOT_祝由_火离: new DOT_祝由_火离(this),
+      DOT_知微: new DOT_知微(this),
       奇门飞宫: new 奇门飞宫(this),
       返闭惊魂: new 返闭惊魂(this),
       列宿游: new 列宿游(this),
       御前星: new 御前星(this),
       镇星入舆: new 镇星入舆(this),
       镇星二段: new 镇星二段(this),
+      连极阵: new 连极阵(this),
+      连极阵_解: new 连极阵_解(this),
+      太白蚀昴: new 太白蚀昴(this),
       换行: new 换行(this),
       触发橙武: new 触发橙武(this),
       特效腰坠: new 特效腰坠(this),
@@ -615,7 +619,6 @@ class 循环主类 {
 
   清空buff调用函数(对象: '自身' | '目标') {
     const buff列表 = 对象 === '自身' ? this.当前自身buff列表 : this.当前目标buff列表
-
     // 更新目标buff
     Object.keys(buff列表).forEach((key) => {
       const buff对象 = buff列表[key]
@@ -638,6 +641,7 @@ class 循环主类 {
   // 对当前的DOT进行已过期的结算和剩余时间更新
   DOT结算与更新() {
     this.技能类实例集合?.DOT_祝由_火离?.结算伤害()
+    this.技能类实例集合?.DOT_知微?.结算伤害()
   }
 
   // 模拟轮次开始
@@ -720,7 +724,9 @@ class 循环主类 {
               })
             }
           } else if (当前事件.事件名称?.includes('自动三才')) {
-            this.技能类实例集合.纵横三才.自动三才()
+            this.技能类实例集合.纵横三才.自动三才触发()
+          } else if (当前事件.事件名称?.includes('太白蚀昴')) {
+            this.技能类实例集合.太白蚀昴.太白蚀昴触发()
           } else if (当前事件.事件名称 === '起卦') {
             this.技能类实例集合?.['起卦']?.出卦(当前事件?.事件备注?.卦象名称)
           }
@@ -790,12 +796,7 @@ class 循环主类 {
           console.error('e', e)
         }
       }
-      // 初始化自动三才
-      if (i === 0 && this.自动三才 && this.技能类实例集合?.['奇门飞宫']?.灯存在判定()) {
-        this.技能类实例集合?.['纵横三才']?.释放自动三才()
-      }
       const 当前技能 = this?.技能基础数据?.find((item) => item?.技能名称 === 实际技能名称)
-      const 跳过运行 = 当前技能?.技能名称 === '纵横三才' && this.自动三才
 
       if (当前技能 && 当前技能?.技能名称) {
         const 技能实例 = this.技能类实例集合[当前技能?.技能名称]
@@ -811,6 +812,8 @@ class 循环主类 {
           作用实例 = this.技能类实例集合['变卦']
           作用技能 = this?.技能基础数据?.find((item) => item?.技能名称 === '变卦')
         }
+
+        const 跳过运行 = false
 
         if (技能实例) {
           if (!跳过运行) {

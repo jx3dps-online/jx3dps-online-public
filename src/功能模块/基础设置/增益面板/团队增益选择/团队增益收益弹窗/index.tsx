@@ -15,7 +15,7 @@ function 团队增益轴设置弹窗({ open, onCancel }) {
   const 当前计算结果 = useAppSelector((state) => state.data.当前计算结果)
   const dispatch = useAppDispatch()
   const [团队增益类型过滤, 设置团队增益类型过滤] = useState<团队增益类型枚举[]>(
-    Object.keys(团队增益类型枚举) as any
+    Object.keys(团队增益类型枚举) as any,
   )
   const [仅看已启用, 设置仅看已启用] = useState<boolean>(true)
   const [仅看旗舰, 设置仅看旗舰] = useState<boolean>(true)
@@ -49,7 +49,8 @@ function 团队增益轴设置弹窗({ open, onCancel }) {
     const { 秒伤 } = dispatch(
       秒伤计算({
         更新增益数据: 更新后增益数据,
-      })
+        计算技能详情: false,
+      }),
     )
     return 秒伤 || 0
   }

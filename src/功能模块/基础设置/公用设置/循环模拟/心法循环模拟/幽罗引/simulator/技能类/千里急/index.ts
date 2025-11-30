@@ -21,7 +21,6 @@ class 千里急 extends 有CD技能通用类 {
   }
 
   命中() {
-    console.log(this.模拟循环?.GCD组?.['傀儡'], this.模拟循环?.GCD组?.['傀儡'], '命中', this.模拟循环.当前时间)
     this.自动释放('千里急')
   }
 

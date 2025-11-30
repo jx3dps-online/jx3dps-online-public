@@ -139,7 +139,9 @@ const 识别装备对比: React.FC<ModalProps> = () => {
         装备增益: { 大附魔_伤帽, 大附魔_伤衣, 大附魔_伤腰, 大附魔_伤腕, 大附魔_伤鞋 },
       })
 
-      const { 秒伤: 更新后秒伤 } = dispatch(秒伤计算({ 更新装备信息: 更新后装备信息 }))
+      const { 秒伤: 更新后秒伤 } = dispatch(
+        秒伤计算({ 更新装备信息: 更新后装备信息, 计算技能详情: false }),
+      )
       return 更新后秒伤 - 当前计算结果?.秒伤
     } else {
       return undefined
@@ -260,7 +262,9 @@ const 识别装备对比: React.FC<ModalProps> = () => {
       装备增益: { 大附魔_伤帽, 大附魔_伤衣, 大附魔_伤腰, 大附魔_伤腕, 大附魔_伤鞋 },
     })
 
-    const { 秒伤: 更新后秒伤 } = dispatch(秒伤计算({ 更新装备信息: 更新后装备信息 }))
+    const { 秒伤: 更新后秒伤 } = dispatch(
+      秒伤计算({ 更新装备信息: 更新后装备信息, 计算技能详情: false }),
+    )
     return 更新后秒伤 - 当前计算结果?.秒伤
   }, [组合计算装备, 当前计算结果, 角色默认基础属性, 装备信息])
 
@@ -433,8 +437,8 @@ const 识别装备对比: React.FC<ModalProps> = () => {
                         v >= 高性价比常数
                           ? 'dps-hight-dps-price'
                           : v <= 低性价比常数
-                          ? 'dps-low-dps-price'
-                          : ''
+                            ? 'dps-low-dps-price'
+                            : ''
                       } dps-price-number`}
                     >
                       {v}

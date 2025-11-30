@@ -11,7 +11,7 @@ const { 缓存映射 } = 获取当前数据()
 
 export function 数据埋点(行为: string) {
   const 数据埋点 = localStorage.getItem(缓存映射.数据埋点) || '{}'
-  const 数据埋点对象 = { ...(JSON.parse(数据埋点) || {}) }
+  const 数据埋点对象 = { ...JSON.parse(数据埋点) }
   const 行为次数 = 数据埋点对象[行为] || 0
   数据埋点对象[行为] = 行为次数 + 1
 
@@ -21,7 +21,7 @@ export function 数据埋点(行为: string) {
 
 export function 记录时间() {
   const 数据埋点 = localStorage.getItem(缓存映射.数据埋点) || '{}'
-  const 数据埋点对象 = { ...(JSON.parse(数据埋点) || {}) }
+  const 数据埋点对象 = { ...JSON.parse(数据埋点) }
   let 最晚使用时间 = 数据埋点对象?.最晚使用时间 || 0
   let 最早使用时间 = 数据埋点对象?.最早使用时间 || 0
   const now = new Date()
@@ -46,7 +46,7 @@ export function 记录时间() {
   }
 
   数据埋点对象.日期使用次数 = {
-    ...(数据埋点对象.日期使用次数 || {}),
+    ...数据埋点对象.日期使用次数,
     [DateKey]: (数据埋点对象?.日期使用次数?.[DateKey] || 0) + 1,
   }
 

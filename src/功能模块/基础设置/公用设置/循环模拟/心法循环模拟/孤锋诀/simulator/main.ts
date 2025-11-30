@@ -630,15 +630,14 @@ class 循环主类 {
   增加技能GCD(当前技能: 循环基础技能数据类型) {
     // GCD处理
     if (当前技能?.技能GCD组) {
+      let 实际添加GCD = 获取实际帧数(当前技能?.技能释放后添加GCD, this.加速值)
+
       let 待更新GCD组: string = 当前技能.技能GCD组 as string
       if (当前技能.技能GCD组 === '自身') {
         待更新GCD组 = 当前技能?.技能名称
       }
       if (待更新GCD组) {
-        const 新GCD = Math.max(
-          (this.GCD组[待更新GCD组] || 0) + 当前技能?.技能释放后添加GCD - this.加速等级,
-          0,
-        )
+        const 新GCD = Math.max((this.GCD组[待更新GCD组] || 0) + 实际添加GCD, 0)
         this.GCD组[待更新GCD组] = 新GCD
       }
     }

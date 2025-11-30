@@ -24,9 +24,9 @@ function DecompressLUAData(compressedBase64) {
 
   // 3. 反序列化数据（假设原始数据为JSON字符串）
   const luaString = new TextDecoder().decode(decompressed)
-
   // 4. 解析Lua数据格式为对象格式
   const res = luadata.serializer.unserialize(luaString, { dictType: 'object' })
+  console.log('=====解析结果=====', res)
   return res
 }
 

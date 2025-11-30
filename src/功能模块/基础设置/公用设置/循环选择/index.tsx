@@ -136,7 +136,7 @@ function 循环选择(props) {
               item.标记 === '紫武' ? 'cycle-select-item-tag-purple' : '',
               item.标记 === '橙武' ? 'cycle-select-item-tag-orange' : '',
               item.标记 === '特效' ? 'cycle-select-item-tag-texiao' : '',
-              item.标记 === '助手' ? 'cycle-select-item-tag-green' : ''
+              item.标记 === '助手' ? 'cycle-select-item-tag-green' : '',
             )
 
             const 快照计算列表 = 根据循环判断快照计算列表(item?.循环详情?.[0]?.技能详情 || [])
@@ -153,7 +153,7 @@ function 循环选择(props) {
                         <>
                           {item.提供者 !== '模拟' ? (
                             <p>
-                              该循环计算数据JCL由
+                              该循环计算数据由
                               <span className='cycle-select-provider'> {item.提供者} </span>
                               提供
                             </p>
@@ -212,7 +212,7 @@ const TagItem = ({ val }) => {
   const cls = classNames(
     val === '紫武' ? 'cycle-select-item-tag-purple' : '',
     val === '橙武' ? 'cycle-select-item-tag-orange' : '',
-    val === '特效' ? 'cycle-select-item-tag-texiao' : ''
+    val === '特效' ? 'cycle-select-item-tag-texiao' : '',
   )
   return <b className={cls}>{val}</b>
 }

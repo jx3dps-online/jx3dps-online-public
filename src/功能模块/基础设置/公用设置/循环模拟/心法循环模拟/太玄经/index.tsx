@@ -91,7 +91,6 @@ function CycleSimulator() {
   })
 
   const [起手星运, 更新起手星运] = useState<number>(100) // 5寒
-  const [自动三才, 更新自动三才] = useState<boolean>(false) // 5寒
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
   const dispatch = useAppDispatch()
 
@@ -116,7 +115,6 @@ function CycleSimulator() {
     奇穴信息,
     团队增益轴,
     起手Buff配置,
-    自动三才,
   ])
 
   const simulator = (props?) => {
@@ -138,7 +136,6 @@ function CycleSimulator() {
       启用团队增益快照,
       团队增益轴,
       起手Buff配置,
-      自动三才,
     })
 
     const {
@@ -321,9 +318,8 @@ function CycleSimulator() {
             大橙武模拟={大橙武模拟}
             设置自定义循环保存弹窗={设置自定义循环保存弹窗}
             清空循环={() => setCycle([])}
-            快速导入循环={(循环, 额外信息) => {
+            快速导入循环={(循环) => {
               setCycle(循环)
-              更新自动三才(额外信息?.自动三才)
             }}
             更新奇穴信息={更新奇穴信息}
             更新奇穴弹窗展示={更新奇穴弹窗展示}
@@ -346,14 +342,7 @@ function CycleSimulator() {
         <div className={'cycle-simulator-setting'}>
           <心法配置
             原始Buff数据={根据奇穴修改buff数据(奇穴信息)}
-            配置区={
-              <心法特殊配置
-                起手星运={起手星运}
-                更新起手星运={更新起手星运}
-                自动三才={自动三才}
-                更新自动三才={更新自动三才}
-              />
-            }
+            配置区={<心法特殊配置 起手星运={起手星运} 更新起手星运={更新起手星运} />}
           />
           {/* 角色状态栏 */}
           <StatusBar
@@ -383,7 +372,6 @@ function CycleSimulator() {
           模拟信息={模拟信息}
           大橙武模拟={大橙武模拟}
           奇穴信息={奇穴信息}
-          自动三才={自动三才}
         />
         {/* 保存自定义循环弹窗 */}
         <保存自定义循环弹窗
@@ -394,7 +382,6 @@ function CycleSimulator() {
           循环模拟={simulator}
           技能序列={cycle}
           启用团队增益快照={启用团队增益快照}
-          额外配置信息={{ 自动三才 }}
         />
         {/* 循环自定义奇穴弹窗 */}
         <奇穴设置组件

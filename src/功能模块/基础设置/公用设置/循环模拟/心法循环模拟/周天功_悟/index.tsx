@@ -214,13 +214,11 @@ function CycleSimulator() {
         ['换行'].includes(cycle[i]?.技能名称) ||
         i === cycle.length - 1
       ) {
-        res.push([
-          ...cycle.slice(start, i + 1).map((j, index) => ({
+        res.push(cycle.slice(start, i + 1).map((j, index) => ({
             ...j,
             ...模拟信息?.技能释放记录?.[start + index],
             index: start + index,
-          })),
-        ])
+          })))
         start = i + 1
       }
     }

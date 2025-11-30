@@ -14,5 +14,11 @@
   // "files.autoSaveWhenNoErrors": true,
   // "files.autoSaveWorkspaceFilesOnly": true,
   "editor.formatOnSave": true,
-  "prettier.requireConfig": false // 允许无配置文件时使用 Prettier 默认规则
+  "prettier.requireConfig": false, // 允许无配置文件时使用 Prettier 默认规则
+
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  }
 }

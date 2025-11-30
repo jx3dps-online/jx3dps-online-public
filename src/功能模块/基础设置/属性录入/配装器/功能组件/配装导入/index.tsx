@@ -2,7 +2,6 @@ import { Modal, Tabs } from 'antd'
 import React, { useMemo, useState } from 'react'
 
 import Jx3BoxImport from './Jx3BoxImport'
-import AccountImport from './AccountImport'
 import JCL装备导入 from './JCL装备导入'
 import 配装器装备导入 from './配装器装备导入'
 import Generator装备导入 from './Generator装备导入'
@@ -33,7 +32,6 @@ function 配装方案导入({ visible, onClose, onOk }) {
   const CycleComponent = useMemo(() => {
     const CycleMap = {
       jx3box: <Jx3BoxImport onOk={beforeOk} />,
-      account: <AccountImport onOk={beforeOk} />,
       my: <MYImport onOk={beforeOk} />,
       jcl: <JCL装备导入 onOk={beforeOk} />,
       jx3dps: <配装器装备导入 onOk={beforeOk} />,

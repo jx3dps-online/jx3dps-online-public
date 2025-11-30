@@ -7,3 +7,7 @@ export const 获取全局伤害因子 = (系数) => {
 export const 获取破招实际系数 = (系数) => {
   return 获取全局伤害因子(系数) * 7.421
 }
+
+export const 从Generator获取破招实际系数 = (系数: number) => {
+  return 系数 * 7.421
+}

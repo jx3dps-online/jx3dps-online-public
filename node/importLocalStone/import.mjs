@@ -1,7 +1,13 @@
 import { map as 数据源 } from './stone.mjs'
-import { attrMap as 五彩石属性枚举, filterNames, WuCaiShiGainNameMeiju } from './attrMap.mjs'
+import {
+  attrMap as 五彩石属性枚举,
+  filterNames,
+  WuCaiShiGainNameMeiju,
+  tankFilterNames,
+} from './attrMap.mjs'
 import fs from 'fs'
-let id列表 = {}
+let item_id列表 = {}
+let enchant_id列表 = {}
 // 导入本地五彩石数据
 
 function 校验属性名称允许导入(属性, type, 导出五彩石映射) {
@@ -10,6 +16,12 @@ function 校验属性名称允许导入(属性, type, 导出五彩石映射) {
   }
   if (type === '天罗诡道') {
     return !filterNames?.filter((a) => a !== 'poison')?.some((item) => 属性?.includes(item))
+  }
+  if (type === '防御') {
+    return !filterNames
+      ?.filter((a) => a !== 'vitality' && a !== 'vitality_gain' && a !== 'all_major_base')
+      ?.concat(tankFilterNames)
+      ?.some((item) => 属性?.includes(item))
   }
   return !filterNames?.some((item) => 属性?.includes(item))
 }
@@ -21,19 +33,40 @@ async function 获取全部部位的数据(type, 导出五彩石映射) {
       ? {
           天罗诡道: { 5: [], 6: [] },
         }
-      : {
-          内功: { 5: [], 6: [] },
-          外功: { 5: [], 6: [] },
-        }
+      : type === '防御'
+        ? {
+            防御_内功: { 5: [], 6: [] },
+            防御_外功: { 5: [], 6: [] },
+            防御_通用: { 5: [], 6: [] },
+          }
+        : {
+            内功: { 5: [], 6: [] },
+            外功: { 5: [], 6: [] },
+          }
 
   function 生成数据(完整key, 五彩石数据, 五彩石等级, 导出五彩石映射) {
     const 外功五彩石 =
       完整key?.includes('physical') || 完整key?.includes('strength') || 完整key?.includes('agility')
-    const 功法 = 外功五彩石 ? '外功' : '内功'
+
+    const 外功 = 完整key?.includes('physical')
+    const 内功 = 完整key?.includes('magical')
+    const 功法 =
+      type === '防御'
+        ? 外功
+          ? '防御_外功'
+          : 内功
+            ? '防御_内功'
+            : '防御_通用'
+        : 外功五彩石
+          ? '外功'
+          : '内功'
     if (五彩石等级 >= 5) {
       if (导出五彩石映射) {
-        if (五彩石数据?.id?.[0]) {
-          id列表[五彩石数据?.id?.[0]] = 五彩石数据?.name
+        if (五彩石数据?.item_id?.[0]) {
+          item_id列表[五彩石数据?.item_id?.[0]] = 五彩石数据?.name
+        }
+        if (五彩石数据?.enchant_id?.[0]) {
+          enchant_id列表[五彩石数据?.enchant_id?.[0]] = 五彩石数据?.name
         }
       } else {
         // 判断是否为天罗诡道五彩石
@@ -55,7 +88,7 @@ async function 获取全部部位的数据(type, 导出五彩石映射) {
             const 数据 = {
               五彩石名称: 五彩石数据?.name,
               五彩石等级: 五彩石数据?.level,
-              装备增益: 获取五彩石增益(五彩石数据?.attr),
+              装备增益: 获取五彩石增益(五彩石数据?.attributes),
             }
             数据结果?.['天罗诡道']?.[五彩石等级].push(数据)
           }
@@ -63,7 +96,7 @@ async function 获取全部部位的数据(type, 导出五彩石映射) {
           const 数据 = {
             五彩石名称: 五彩石数据?.name,
             五彩石等级: 五彩石数据?.level,
-            装备增益: 获取五彩石增益(五彩石数据?.attr),
+            装备增益: 获取五彩石增益(五彩石数据?.attributes),
           }
           数据结果?.[功法]?.[五彩石等级].push(数据)
         }
@@ -89,7 +122,7 @@ async function 获取全部部位的数据(type, 导出五彩石映射) {
                     const 五彩石数据 =
                       数据源[第一条属性名称][第二条属性名称][第三条属性名称][五彩石等级]
                     生成数据(完整key, 五彩石数据, 五彩石等级, 导出五彩石映射)
-                  }
+                  },
                 )
               }
             })
@@ -159,13 +192,14 @@ export default 五彩石_${等级key}
       if (err) {
         console.info('err', err)
       }
-    }
+    },
   )
   console.info(`【${功法}】【${等级key}】文件导入成功，成功导入${数据?.length}个五彩石`)
 }
 
 function 生成五彩石映射文件() {
-  const 生成文本 = JSON.stringify(id列表)
+  const 生成 = { item_id: item_id列表, enchant_id: enchant_id列表 }
+  const 生成文本 = JSON.stringify(生成)
   fs.writeFile('五彩石映射.json', 生成文本, (err) => {
     if (err) {
       console.info('err', err)
@@ -175,9 +209,11 @@ function 生成五彩石映射文件() {
 }
 
 async function 获取五彩石数据() {
-  id列表 = {}
+  item_id列表 = {}
+  enchant_id列表 = {}
   await 获取全部部位的数据()
   await 获取全部部位的数据('天罗诡道')
+  await 获取全部部位的数据('防御')
   await 获取全部部位的数据('默认', true)
   生成五彩石映射文件()
 }

@@ -1,10 +1,8 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import { 循环基础技能数据类型, 技能GCD组, 模拟信息类型 } from '../../simulator/type'
 import { 每秒郭氏帧 } from '@/数据/常量'
-import classNames from 'classnames'
-import { Badge, Tooltip } from 'antd'
 import { ERROR_ACTION } from '../../simulator/utils'
-import DelaySettingModal from '../../../通用/通用组件/技能延迟弹窗'
+import CommonAddCycleSkillBtn from '../../../通用/通用组件/循环技能添加按钮'
 
 interface AddCycleSkillBtnProps {
   技能: 循环基础技能数据类型
@@ -24,28 +22,44 @@ interface 异常信息数据 {
 
 // 添加循环技能按钮组件
 const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
-  const { 技能, 模拟信息, onClick, className, 插入技能, ...rest } = props
+  const { 技能, 模拟信息, onClick: propsClick, className, 插入技能, ...rest } = props
 
   const 释放等待CD = 计算可以释放时技能CD(模拟信息, 技能)
   const 技能当前层数 = 计算技能当前层数(模拟信息, 技能)
 
-  // const 技能运行状态 = 模拟信息?.当前各技能运行状态?.[技能?.技能名称]
-  const [延迟弹窗, 设置延迟弹窗] = useState<boolean>(false)
-
   // 在盾飞Buff未出现前且体态已经切换为擎刀时，依然可以释放盾击、盾压、盾刀
+  // 偃守孤旌直接切换至擎刀
   const 飞击校验 = () => {
     if (
       ['盾击', '盾压', '盾刀']?.includes(技能?.技能名称) &&
-      !模拟信息?.当前自身buff列表?.['盾飞']?.当前层数
+      !模拟信息?.当前自身buff列表?.['盾飞']?.当前层数 &&
+      !模拟信息?.当前自身buff列表?.['战绝']?.当前层数
     ) {
       return { 可以释放: true }
     }
   }
-
+  // 偃守孤旌期间无法使用非苍雪刀套路招式（可以使用轻功）
+  const 偃守孤旌禁用非苍雪刀技能 = () => {
+    if (
+      ['盾回', '血怒']?.includes(技能?.技能名称) &&
+      模拟信息?.当前自身buff列表?.['战绝']?.当前层数
+    ) {
+      return { 可以释放: false }
+    }
+  }
   const 异常信息: 异常信息数据 = useMemo(() => {
     let 禁用信息 = {}
     if (!插入技能) {
-      if (技能?.技能类型 !== '其他' && 模拟信息?.角色状态信息?.体态 !== 技能?.体态 && !飞击校验()) {
+      // if (技能?.技能类型 !== '其他' && 模拟信息?.角色状态信息?.体态 !== 技能?.体态 && !飞击校验()) {
+      // 把血怒、阵云、业火归类为另一类，并且在擎刀、擎盾体态都能释放
+      // 偃守孤旌期间无法使用非苍雪刀套路招式（可以使用轻功）
+      if (
+        (技能?.技能类型 !== '其他' &&
+          技能?.体态 &&
+          模拟信息?.角色状态信息?.体态 !== 技能?.体态 &&
+          !飞击校验()) ||
+        偃守孤旌禁用非苍雪刀技能()
+      ) {
         禁用信息 = {
           是否禁用: true,
           异常描述: ERROR_ACTION?.体态错误?.信息,
@@ -79,24 +93,26 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
     }
   }, [释放等待CD, 技能, 模拟信息, 插入技能])
 
-  // 点击前判断是否可以释放
-  const beforeOnClick = () => {
+  const onClick = (额外信息) => {
     if (异常信息?.是否禁用) {
       return
     }
-    onClick()
-  }
-
-  const 使用延迟添加 = (data) => {
-    if (data) {
-      onClick?.({ 延迟: data })
-    } else {
-      onClick?.()
-    }
+    propsClick?.({
+      ...技能,
+      额外信息: {
+        ...技能.额外信息,
+        ...额外信息,
+      },
+    })
   }
 
   const 技能图标 = useMemo(() => {
-
+    if (技能?.技能名称 === '盾飞') {
+      return 'https://icon.jx3box.com/icon/6344.png'
+    }
+    if (技能?.技能名称 === '盾回') {
+      return 'https://icon.jx3box.com/icon/6699.png'
+    }
     if (技能?.技能名称 === '盾刀') {
       if (模拟信息?.当前自身buff列表?.['盾刀标记']?.当前层数 === 1) {
         return 'https://icon.jx3box.com/icon/6328.png'
@@ -110,29 +126,15 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
     }
   }, [技能, 模拟信息])
 
-
-  const cls = classNames(className, 异常信息?.是否禁用 ? 'cycle-simulator-setting-btn-error' : '')
-
   return (
-    <>
-      <div onClick={beforeOnClick} className={cls} {...rest}>
-        <Tooltip title={异常信息?.异常描述 || 技能?.说明 || ''}>
-          <Badge count={异常信息?.角标数字} className={'cycle-add-btn-wrap'} offset={[0, 0]}>
-            <img className={`cycle-add-btn`} src={技能图标} />
-            {技能?.最大充能层数 && 技能?.最大充能层数 !== 1 ? (
-              <span className={'cycle-add-btn-count'}>{技能当前层数}</span>
-            ) : null}
-          </Badge>
-        </Tooltip>
-        <p className={'cycle-add-btn-text'}>{技能?.技能原始名称 || 技能?.技能名称}</p>
-      </div>
-      <DelaySettingModal
-        等待最大值={48}
-        open={延迟弹窗}
-        onCancel={() => 设置延迟弹窗(false)}
-        保存={使用延迟添加}
-      />
-    </>
+    <CommonAddCycleSkillBtn
+      {...rest}
+      模拟信息={模拟信息 as any}
+      技能={{ ...技能, 图标: 技能图标 }}
+      技能当前层数={技能当前层数}
+      onClick={onClick}
+      异常信息={异常信息}
+    />
   )
 }
 

@@ -35,7 +35,7 @@ const 数据迁移: React.FC<ModalProps> = (props) => {
       const element = document.createElement('a')
       element.setAttribute(
         'href',
-        'data:text/plain;charset=utf-8,' + encodeURIComponent(localStorageString)
+        'data:text/plain;charset=utf-8,' + encodeURIComponent(localStorageString),
       )
       element.setAttribute('download', '计算器数据迁移.txt')
 
@@ -86,8 +86,8 @@ const 数据迁移: React.FC<ModalProps> = (props) => {
           <div>
             <p>
               在当前域名点击
-              <span style={{ color: 'red' }}>「复制当前数据」</span>
-              按钮，复制数据至剪切板
+              <span style={{ color: 'red' }}>「下载当前数据」</span>
+              按钮，下载迁移文件。用记事本打开后，复制数据至剪切板
             </p>
             <p>
               在你要迁移数据的域名点击
@@ -98,16 +98,16 @@ const 数据迁移: React.FC<ModalProps> = (props) => {
         }
       />
       <div className='copy-data-wrap'>
-        <Button block style={{ marginBottom: 24 }} onClick={() => 复制当前数据('复制')}>
+        {/* <Button block style={{ marginBottom: 24 }} onClick={() => 复制当前数据('复制')}>
           复制当前数据
-        </Button>
-        <Button block style={{ marginBottom: 24 }} onClick={() => 复制当前数据('下载')}>
+        </Button> */}
+        <Button block onClick={() => 复制当前数据('下载')}>
           下载当前数据
         </Button>
+        <Button block type='primary' onClick={导入数据前确认}>
+          导入粘贴板数据
+        </Button>
       </div>
-      <Button block type='primary' onClick={导入数据前确认}>
-        导入粘贴板数据
-      </Button>
     </Modal>
   )
 }

@@ -28,9 +28,9 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
           模拟信息?.技能基础数据?.find((a) => a.技能名称 === 实际技能名称) || ({} as any)
         return 技能数据
           ? {
-              ...技能数据,
-              额外信息,
-            }
+            ...技能数据,
+            额外信息,
+          }
           : null
       })
       .filter((item) => item)
@@ -51,6 +51,10 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
     })
     return 存在
   }
+  // 用来隐藏盾飞和盾回，只有擎盾的时候显示盾飞，擎刀的时候显示盾回
+  // const 判断当前体态 = (当前体态: string) => {
+  //   return 模拟信息?.角色状态信息?.体态 === 当前体态
+  // }
 
   return (
     <div className={'cycle-simulator-setting-btns'}>
@@ -81,7 +85,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             .map((item) => {
               return (
                 <AddCycleSkillBtn
-                  onClick={(extra) => 新增循环技能(item, extra)}
+                  onClick={(data) => 新增循环技能(data)}
                   key={item?.技能名称}
                   className={'daozong-cycle-simulator-setting-btn'}
                   完整循环={处理循环结果对象?.完整循环 || []}
@@ -120,7 +124,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             .map((item) => {
               return (
                 <AddCycleSkillBtn
-                  onClick={(extra) => 新增循环技能(item, extra)}
+                  onClick={(data) => 新增循环技能(data)}
                   key={item?.技能名称}
                   className={'daozong-cycle-simulator-setting-btn'}
                   完整循环={处理循环结果对象?.完整循环 || []}
@@ -132,6 +136,67 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             })}
         </Space>
       </div>
+      <div className={'cycle-simulator-setting-item'}>
+        <span className={'daozong-cycle-btn-type'}>通用</span>
+        <Space className={'cycle-simulator-setting-skills'} size={[8, 16]} wrap>
+          {模拟信息?.技能基础数据
+            ?.filter((item) => {
+              if (item?.显示类型 === '奇穴技能') {
+                const 依赖名称 = item?.依赖奇穴名 || item?.技能名称
+                return 奇穴信息?.includes(依赖名称)
+              }
+              return !item?.创建循环不可选
+            })
+            ?.filter((item) => !item?.创建循环不可选 && item?.技能类型 === '通用')
+            ?.filter((item) => {
+              // 未点出阵云结晦时，不显示月照连营和雁门迢递
+              if (
+                (item.技能名称 === '月照连营' || item.技能名称 === '雁门迢递') &&
+                !奇穴信息?.includes('阵云结晦')
+              ) {
+                return false
+              }
+              // 未点出陷阵时，不显示撼地
+              if (item.技能名称 === '撼地' && !奇穴信息?.includes('陷阵')) {
+                return false
+              }
+              // 先做隐藏的铁骨技能，放在一个分山必不可能点的奇穴里，方便攻略组的铁骨兄弟用来排轴
+              if (
+                (item.技能名称 === '寒啸千军' || item.技能名称 === '盾挡') &&
+                !奇穴信息?.includes('肃驾')) {
+                return false
+              }
+              if (插入技能) {
+                return true
+              }
+              // 用来隐藏盾飞和盾回，只有擎盾的时候显示盾飞，擎刀的时候显示盾回
+              // if (item?.体态 && !判断当前体态(item?.体态)) {
+              //   return false
+              // }
+              if (item?.释放依赖Buff) {
+                return 判断技能依赖buff存在(item?.释放依赖Buff)
+              } else if (item?.Buff存在不可释放) {
+                return !判断技能依赖buff存在(item?.Buff存在不可释放)
+              } else {
+                return true
+              }
+            })
+            .map((item) => {
+              return (
+                <AddCycleSkillBtn
+                  onClick={(data) => 新增循环技能(data)}
+                  key={item?.技能名称}
+                  className={'daozong-cycle-simulator-setting-btn'}
+                  完整循环={处理循环结果对象?.完整循环 || []}
+                  技能={item}
+                  模拟信息={模拟信息}
+                  插入技能={插入技能}
+                />
+              )
+            })}
+        </Space>
+      </div>
+
       <div className={'cycle-simulator-setting-item'}>
         <span className={'daozong-cycle-btn-type'}>其他</span>
         <Space className={'cycle-simulator-setting-skills'} size={[8, 16]} wrap>
@@ -164,7 +229,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             .map((item) => {
               return (
                 <AddCycleSkillBtn
-                  onClick={(extra) => 新增循环技能(item, extra)}
+                  onClick={(data) => 新增循环技能(data)}
                   key={item?.技能名称}
                   style={大橙武模拟 ? { padding: '0 6px' } : { padding: '0 8px' }}
                   className={'daozong-cycle-simulator-setting-btn'}
@@ -177,7 +242,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             })}
         </Space>
       </div>
-      <div className={'cycle-simulator-setting-item cycle-simulator-setting-quick-wrap'}>
+      {/* <div className={'cycle-simulator-setting-item cycle-simulator-setting-quick-wrap'}>
         <span className={'daozong-cycle-btn-type'}>快捷添加</span>
         <Row className={'cycle-simulator-setting-quick'} gutter={[16, 8]}>
           {快捷添加数据.map((item) => {
@@ -194,7 +259,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             )
           })}
         </Row>
-      </div>
+      </div> */}
     </div>
   )
 }

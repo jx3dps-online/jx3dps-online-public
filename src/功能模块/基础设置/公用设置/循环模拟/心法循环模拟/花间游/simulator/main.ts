@@ -45,7 +45,7 @@ import DOT_钟林毓秀 from './DOT类/钟林毓秀'
 
 // import { 箭形态枚举 } from '../constant/enum'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
-import { 获取加速等级 } from '@/工具函数/data'
+import { 获取加速等级, 获取实际帧数 } from '@/工具函数/data'
 import 触发橙武 from './技能类/触发橙武'
 import 换行 from './技能类/换行'
 import { 团队增益轴类型 } from '@/@types/团队增益'
@@ -70,6 +70,7 @@ export interface SimulatorCycleProps {
   显示涓流层数?: boolean
   起手临源?: number
   忽略延迟技能?: string[]
+  断快雪延迟?: number
 }
 
 class 循环主类 {
@@ -106,6 +107,7 @@ class 循环主类 {
   团队增益轴: 团队增益轴类型 = {}
   显示涓流层数 = false
   忽略延迟技能: string[] = []
+  断快雪延迟 = 0
 
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
@@ -121,6 +123,7 @@ class 循环主类 {
     this.启用团队增益快照 = !!props.启用团队增益快照
     this.忽略延迟技能 = props?.忽略延迟技能 || []
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
+    this.断快雪延迟 = props.断快雪延迟 || 0
     // 根据奇穴和装备情况修改buff的数据
     this.Buff和Dot数据 = 根据奇穴修改buff数据(this.奇穴, this.秘籍)
     // 根据奇穴和装备情况修改技能的数据
@@ -347,7 +350,7 @@ class 循环主类 {
     等待CD,
     技能预估释放时间,
     当前技能: 循环基础技能数据类型,
-    技能实例: 检查运行数据实例类型
+    技能实例: 检查运行数据实例类型,
   ) {
     // 判断在处理完特殊事件以后，剩余的待定时间还有多少
     const 时间差 = 技能预估释放时间 - this.当前时间
@@ -404,7 +407,7 @@ class 循环主类 {
     造成时间 = this.当前时间,
     隐藏日志 = false,
     技能等级 = 1,
-    快照检测Buff列表: string[] = []
+    快照检测Buff列表: string[] = [],
   ) {
     if (this.初次伤害时间 === undefined) {
       this.初次伤害时间 = 造成时间
@@ -448,7 +451,7 @@ class 循环主类 {
         ?.filter((item) => !额外增益列表?.includes(item)) || []
 
     let 总增益列表 = 有关的buff列表.concat(
-      额外增益列表?.filter((a) => !有关的buff列表?.includes(a))
+      额外增益列表?.filter((a) => !有关的buff列表?.includes(a)),
     )
 
     if (this.启用团队增益快照) {
@@ -520,14 +523,16 @@ class 循环主类 {
   增加技能GCD(当前技能: 循环基础技能数据类型) {
     // GCD处理
     if (当前技能?.技能GCD组) {
+      let 实际添加GCD = 获取实际帧数(当前技能?.技能释放后添加GCD, this.加速值)
+      // if (当前技能?.最小GCD) {
+      //   实际添加GCD = Math.max(实际添加GCD, 当前技能?.最小GCD)
+      // }
       let 待更新GCD组: string = 当前技能.技能GCD组 as string
       if (当前技能.技能GCD组 === '自身') {
         待更新GCD组 = 当前技能?.技能名称
       }
-      const 加速等级 = 获取加速等级(this.加速值)
       if (待更新GCD组) {
-        this.GCD组[待更新GCD组] =
-          (this.GCD组[待更新GCD组] || 0) + 当前技能?.技能释放后添加GCD - 加速等级
+        this.GCD组[待更新GCD组] = (this.GCD组[待更新GCD组] || 0) + 实际添加GCD
       }
     }
   }
@@ -567,7 +572,7 @@ class 循环主类 {
     开始读条时间,
     开始释放时间,
     是否为读条技能,
-    技能实例
+    技能实例,
   ) {
     const 技能释放记录结果 = 技能实例?.获取技能释放记录结果?.() || {}
 
@@ -735,7 +740,7 @@ class 循环主类 {
 
   删除待生效事件队列(事件名称) {
     const 新待生效事件队列: 待生效事件[] = [...(this.待生效事件队列 || [])].filter(
-      (item) => item.事件名称 !== 事件名称
+      (item) => item.事件名称 !== 事件名称,
     )
     // 由于不确定待生效事件时间分布，重新排序
     新待生效事件队列.sort((a, b) => {
@@ -772,12 +777,12 @@ class 循环主类 {
       if (当前技能) {
         const 技能实例 = this.技能类实例集合[当前技能?.技能名称]
         if (技能实例) {
-          技能实例?.释放前初始化?.(额外信息)
+          技能实例?.释放前初始化?.(额外信息, i)
           // 获取预估技能释放时间，处理预估时间前的所有待生效事件，推进时间轴
           const { 技能计划释放时间, 等待CD, 技能预估释放时间 } = this.技能释放前(
             当前技能,
             技能实例,
-            i
+            i,
           )
           const 读条时间 = 技能实例?.获取读条时间?.(i) || 0
           const 是否为读条技能 = !!读条时间
@@ -812,7 +817,7 @@ class 循环主类 {
             开始读条时间,
             开始释放时间,
             是否为读条技能,
-            技能实例
+            技能实例,
           )
         }
       }

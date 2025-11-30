@@ -32,7 +32,8 @@ const 阵眼选择: React.FC<阵眼选择类型> = (props) => {
     const { 秒伤 } = dispatch(
       秒伤计算({
         更新增益数据: { ...增益数据, 阵眼: 阵眼名称 },
-      })
+        计算技能详情: false,
+      }),
     )
     return 秒伤 || 0
   }

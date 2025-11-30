@@ -7,14 +7,14 @@ import type { 循环数据 } from '@/@types/循环'
 
 // 循环
 // import 测试循环 from './测试循环.json'
-import 紫武_155 from './紫武_155.json'
-import 紫武_142 from './紫武_142.json'
+import 紫武_锁神一段 from './紫武_锁神一段.json'
+import 紫武_无锁 from './紫武_无锁.json'
 import 橙武 from './橙武.json'
 
 const 计算循环: 循环数据[] = [
   // 测试循环,
-  紫武_142,
-  紫武_155,
+  紫武_锁神一段,
+  紫武_无锁,
   橙武,
 ] as 循环数据[]
 

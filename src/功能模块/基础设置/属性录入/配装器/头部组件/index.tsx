@@ -45,6 +45,15 @@ interface 头部组件类型 {
   /**
    * 表单实例
    */
+  /**
+   * @name 对比显示百分比
+   * 对比显示百分比
+   * */
+  对比显示百分比: boolean
+  /**
+   * 设置对比显示百分比
+   */
+  设置对比显示百分比: (e: boolean) => void
   form: any
 }
 
@@ -56,6 +65,8 @@ function 头部组件(props: 头部组件类型) {
     更换装备计算秒伤,
     开启装备智能对比,
     设置开启装备智能对比,
+    对比显示百分比,
+    设置对比显示百分比,
     遍历寻优,
   } = props
   const { modal } = App.useApp()
@@ -169,6 +180,13 @@ function 头部组件(props: 头部组件类型) {
         </span>
         {开启装备智能对比 ? (
           <>
+            <Checkbox
+              checked={对比显示百分比}
+              onChange={(e) => 设置对比显示百分比(e?.target?.checked)}
+              className={'zhuangbei-diff-btn'}
+            >
+              <span>显示百分比</span>
+            </Checkbox>
             <Button onClick={遍历寻优提示} size='small'>
               遍历寻优
             </Button>

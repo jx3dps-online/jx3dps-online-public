@@ -6,6 +6,8 @@ import { Button, Form, Select, Slider, Table, Tag, Tooltip } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
 import { 获取装备数据描述 } from '@/功能模块/基础设置/属性录入/配装器/功能组件/装备选择/装备部位选择'
+import 装备详情容器 from '@/功能模块/基础设置/属性录入/配装器/功能组件/装备选择/装备部位选择/装备详情容器'
+
 import { useEffect, useState } from 'react'
 import { 装备类型枚举 } from '@/@types/装备'
 import { 装备速查数据 } from './interface'
@@ -16,8 +18,10 @@ import styles from './index.module.less'
 import classNames from 'classnames'
 import { 属性简写枚举 } from '@/@types/枚举'
 import { QuestionCircleOutlined } from '@ant-design/icons'
+import { 获取武伤附魔数据 } from '@/数据/附魔/武器伤害附魔'
+import { 属性类型 } from '@/@types/属性'
 
-const { 装备数据 } = 获取当前数据()
+const { 附魔, 装备数据 } = 获取当前数据()
 
 const 英雄品 = [30800, 35900]
 const 普通品 = [25200, 30799]
@@ -28,27 +32,50 @@ const 装备速查 = () => {
   const [品级范围, 设置品级范围] = useState<number[]>(英雄品)
   const [展示数据, 更新展示数据] = useState<装备速查数据[]>([])
   const [最大容量, 更新最大容量] = useState<number>(1)
+  const [自定义容量系数, 更新自定义容量系数] = useState<Record<string, number>>({})
 
   useEffect(() => {
+    初始化容量系数()
+  }, [])
+
+  const 初始化容量系数 = () => {
+    const 附魔 = 获取当前各属性最大附魔()
+    const 武伤附魔 = 获取武伤附魔数据('力道')
+    const 武伤最大附魔 = 武伤附魔?.[0]
+    附魔.push({
+      属性: 属性类型.武器伤害,
+      值: 武伤最大附魔?.增益集合?.[0]?.值 || 0,
+    })
+    const 容量对象 = 附魔
+      ?.filter((a) => a.属性 !== 属性类型.额外气血上限)
+      .reduce(
+        (acc, cur) => {
+          acc[cur.属性] = cur.值
+          return acc
+        },
+        {} as Record<string, any>,
+      )
+
+    更新自定义容量系数(容量对象)
     form.setFieldsValue({
       部位: Object.keys(装备数据)?.[0],
       品级范围: 英雄品,
       类型: 类型,
+      容量计算属性: Object.keys(容量对象),
     })
-  }, [form])
-
-  useEffect(() => {
     更换表单筛选(
       {},
       {
         部位: Object.keys(装备数据)?.[0],
         品级范围: 英雄品,
         类型: 类型,
+        容量计算属性: Object.keys(容量对象),
       },
+      容量对象,
     )
-  }, [])
+  }
 
-  const 更换表单筛选 = (_, values) => {
+  const 更换表单筛选 = (_, values, 容量对象?) => {
     const 目标部位数据 = 装备数据[values.部位]
     const 筛选后数据 = 目标部位数据
       .filter((item) => {
@@ -70,7 +97,12 @@ const 装备速查 = () => {
         return values?.类型?.includes('散件')
       })
 
-    const 最终数据 = 计算装备容量(筛选后数据, values.部位)
+    const 最终数据 = 计算装备容量(
+      筛选后数据,
+      values.部位,
+      values.容量计算属性,
+      容量对象 || 自定义容量系数,
+    )
 
     最终数据.sort((a, b) => {
       return (b.属性容量 || 0) + (b?.特效容量 || 0) - ((a.属性容量 || 0) + (a?.特效容量 || 0))
@@ -96,45 +128,61 @@ const 装备速查 = () => {
       key: 'name',
       render: (text, record) => {
         return (
-          <div className={styles.nameWrapper}>
-            {record?.图标ID ? (
-              <ImageComponent
-                key={`装备图标_${record?.id}`}
-                src={`https://icon.jx3box.com/icon/${record?.图标ID}.png`}
-                fallback={'https://icon.jx3box.com/icon/13.png'}
-                className={styles.image}
-              />
-            ) : null}
-            <div
-              className={`${styles.name}
+          <装备详情容器
+            装备数据={record}
+            当前装备信息={{
+              当前精炼等级: 8,
+              镶嵌孔数组: record?.镶嵌孔数组?.map((a) => {
+                return {
+                  ...a,
+                  镶嵌宝石等级: 8,
+                }
+              }),
+            }}
+          >
+            <div className={styles.nameWrapper}>
+              {record?.图标ID ? (
+                <ImageComponent
+                  key={`装备图标_${record?.id}`}
+                  src={`https://icon.jx3box.com/icon/${record?.图标ID}.png`}
+                  fallback={'https://icon.jx3box.com/icon/13.png'}
+                  className={styles.image}
+                />
+              ) : null}
+              <div
+                className={`${styles.name}
                       ${[装备类型枚举.橙武].includes(record.装备类型) ? styles.nameCW : ''}
             `}
-            >
-              {record?.装备名称}
-            </div>
-            <span className={'zhuangbei-select-shuoming'}>
-              {`(`}
-              {(获取装备数据描述(record) || []).map((a) => {
-                const 装备描述文本样式 = classNames(
-                  'zhuangbei-miaoshu-label',
-                  a === '精简' ? 'zhuangbei-miaoshu-label-jingjian' : '',
-                  // a === '特效' ? 'zhuangbei-miaoshu-label-texiao' : '',
-                  a === 'PVX' ? 'zhuangbei-miaoshu-label-pvx' : '',
-                )
+              >
+                {record?.装备名称}
+              </div>
+              <span className={'zhuangbei-select-shuoming'}>
+                {`(`}
+                {(获取装备数据描述(record) || []).map((a) => {
+                  const 装备描述文本样式 = classNames(
+                    'zhuangbei-miaoshu-label',
+                    a === '精简' ? 'zhuangbei-miaoshu-label-jingjian' : '',
+                    // a === '特效' ? 'zhuangbei-miaoshu-label-texiao' : '',
+                    a === 'PVX' ? 'zhuangbei-miaoshu-label-pvx' : '',
+                  )
 
-                return (
-                  <span className={装备描述文本样式} key={`${record.装备名称}-${record?.id}-${a}`}>
-                    {a === '特效' ? (
-                      <渐变特效文字 className='zhuangbei-miaoshu-label-texiao-text' text={a} />
-                    ) : (
-                      a
-                    )}
-                  </span>
-                )
-              })}
-              {`)`}
-            </span>
-          </div>
+                  return (
+                    <span
+                      className={装备描述文本样式}
+                      key={`${record.装备名称}-${record?.id}-${a}`}
+                    >
+                      {a === '特效' ? (
+                        <渐变特效文字 className='zhuangbei-miaoshu-label-texiao-text' text={a} />
+                      ) : (
+                        a
+                      )}
+                    </span>
+                  )
+                })}
+                {`)`}
+              </span>
+            </div>
+          </装备详情容器>
         )
       },
     },
@@ -371,6 +419,22 @@ const 装备速查 = () => {
               onChange={(e) => 设置品级范围(e)}
             />
           </Form.Item>
+          <Form.Item
+            label='容量计算属性'
+            name='容量计算属性'
+            className={styles.formItem}
+            style={{ flex: 1 }}
+          >
+            <Select mode='multiple'>
+              {Object.keys(自定义容量系数).map((key) => {
+                return (
+                  <Select.Option key={key} value={key}>
+                    {属性简写枚举[key]}
+                  </Select.Option>
+                )
+              })}
+            </Select>
+          </Form.Item>
         </Form>
       </div>
       {展示数据?.length ? (
@@ -427,4 +491,32 @@ const ColorMap = {
   加速: 'blue',
   武伤: 'geekblue',
   全能: 'purple',
+}
+
+export const 获取当前各属性最大附魔 = () => {
+  const res = {}
+  附魔?.forEach((item) => {
+    if (item?.挑战附魔) {
+      return
+    }
+    const 附魔属性 = item?.增益集合?.[0]?.属性 || ''
+    const 附魔数值 = item?.增益集合?.[0]?.值 || 0
+    if (!res?.[附魔属性] || res[附魔属性] < 附魔数值) {
+      res[附魔属性] = 附魔数值
+    }
+  })
+  const resList = Object.keys(res).map((key) => {
+    return {
+      属性: key,
+      值: res[key],
+    }
+  })
+
+  const 无双数据 = resList?.find((item) => item?.属性 === 属性类型.无双等级)?.值
+  resList.push({
+    属性: 属性类型.全能等级,
+    值: Math.floor(无双数据 / 2),
+  })
+
+  return resList
 }

@@ -13,23 +13,23 @@
 
 .log {
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .log-wrap .log:hover {
   color: #ddd;
 }
 
-.log-modal .ant-modal-body{
+.log-modal .ant-modal-body {
   min-height: 400px;
 }
 
 .log-modal .ant-modal-body,
-.new-log-modal .ant-modal-body{
+.new-log-modal .ant-modal-body {
   padding-top: 16px;
 }
 
-.log-line .ant-timeline-item-content{
+.log-line .ant-timeline-item-content {
   top: -6px;
   display: flex;
   justify-content: space-between;
@@ -39,10 +39,14 @@
   flex: 1;
 }
 
+.log-content-item {
+  margin-bottom: 4px;
+}
+
 .log-right {
   line-height: 20px;
   font-size: 14px;
-  width: 150px;;
+  width: 150px;
   text-align: right;
 }
 
@@ -77,4 +81,14 @@
 .question-link-img-text {
   margin-bottom: 16px;
   margin-left: 16px;
+}
+
+.log-title {
+  display: flex;
+  align-items: center;
+}
+
+.log-title-image {
+  margin-right: 6px;
+  width: 16px;
 }

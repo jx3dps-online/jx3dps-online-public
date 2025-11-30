@@ -8,8 +8,6 @@ const JCL战斗记录解析 = React.lazy(() => import('./JCL战斗记录解析')
 const 循环设置 = React.lazy(() => import('./循环设置'))
 const 装备速查 = React.lazy(() => import('./装备速查'))
 const 触发率分析 = React.lazy(() => import('./触发率分析'))
-const 循环伤害校验 = React.lazy(() => import('./循环伤害校验'))
-const 截断时间获取 = React.lazy(() => import('./截断时间获取'))
 
 function DeveloperModal({ visible, onClose }) {
   const [activeKey, setActiveKey] = useState<string>('Generator解析')
@@ -25,10 +23,6 @@ function DeveloperModal({ visible, onClose }) {
       <装备速查 />
     ) : activeKey === '触发率分析' ? (
       <触发率分析 />
-    ) : activeKey === '循环伤害校验' ? (
-      <循环伤害校验 />
-    ) : activeKey === '截断时间获取' ? (
-      <截断时间获取 />
     ) : (
       ''
     )
@@ -60,11 +54,6 @@ function DeveloperModal({ visible, onClose }) {
     },
     ...(DEV
       ? [
-          {
-            label: '截断时间获取',
-            key: '截断时间获取',
-            children: <React.Suspense>{CycleComponent}</React.Suspense>,
-          },
           {
             label: '触发率分析',
             key: '触发率分析',

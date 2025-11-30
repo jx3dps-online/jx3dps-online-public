@@ -1,11 +1,11 @@
 function findCombinationsBag(arr, target, limit = 20) {
   const maxValue = target + Math.max(...arr.map((i) => i.value))
   const minValue = Math.min(...arr.map((i) => i.value))
-  const results = [...new Array(maxValue)].fill(undefined)
+  const results = new Array(maxValue).fill(undefined).fill(undefined)
   const conbinations: any[] = []
 
   for (let i = minValue; i < maxValue; i++) {
-    const rowResults = [...new Array(arr.length)].fill(undefined)
+    const rowResults = new Array(arr.length).fill(undefined).fill(undefined)
     for (let j = 0; j < arr.length; j++) {
       if (arr[j].value === i) {
         // 当前加速值刚好等于i
@@ -15,11 +15,7 @@ function findCombinationsBag(arr, target, limit = 20) {
         } else {
           rowResults[j] = [[j]]
         }
-      } else if (
-        i - arr[j].value > 0 &&
-        i - arr[j].value < target &&
-        results[i - arr[j].value]
-      ) {
+      } else if (i - arr[j].value > 0 && i - arr[j].value < target && results[i - arr[j].value]) {
         // 加上当前加速值
         rowResults[j] = [
           ...results[i - arr[j].value]
@@ -33,11 +29,7 @@ function findCombinationsBag(arr, target, limit = 20) {
     }
 
     results[i] = Array.from(
-      new Set(
-        rowResults[arr.length - 1]
-          ?.map((k) => k.sort((i, j) => i - j))
-          .map(JSON.stringify)
-      ) // 转换数组为字符串并去重
+      new Set(rowResults[arr.length - 1]?.map((k) => k.sort((i, j) => i - j)).map(JSON.stringify)), // 转换数组为字符串并去重
     ).map(JSON.parse as any)
 
     if (results[i]?.length && i >= target) {
@@ -45,7 +37,7 @@ function findCombinationsBag(arr, target, limit = 20) {
         ...results[i].map((j) => ({
           组合: j.map((k) => arr[k]),
           sum: i,
-        }))
+        })),
       )
     }
     if (conbinations.length > limit) {

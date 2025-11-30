@@ -26,7 +26,7 @@ function WuCaiShiXuanZe(props: WuCaiShiXuanZeProps) {
 
   const mingzi = useMemo(() => {
     const jibie = value?.includes('伍') ? 5 : 6
-    const list = 五彩石[jibie]
+    const list = 五彩石[jibie] || []
     const findObj = list.find((item) => {
       return item.五彩石名称 === value
     })
@@ -41,7 +41,7 @@ function WuCaiShiXuanZe(props: WuCaiShiXuanZeProps) {
     if (!e) {
       onChange && onChange(undefined)
     } else {
-      const list = 五彩石[jibie]
+      const list = 五彩石[jibie] || []
       const findObj = list.find((item) => {
         return (
           item.装备增益?.[0]?.增益名称 === e?.[0] &&

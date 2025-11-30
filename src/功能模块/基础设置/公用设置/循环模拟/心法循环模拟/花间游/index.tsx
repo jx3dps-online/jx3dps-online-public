@@ -93,6 +93,7 @@ function CycleSimulator() {
   })
   const [显示涓流层数, 更新显示涓流层数] = useState<boolean>(false)
   const [起手临源, 更新起手临源] = useState<number>(0)
+  const [断快雪延迟, 更新断快雪延迟] = useState<number>(0)
   const [忽略延迟技能, 更新忽略延迟技能] = useState<string[]>([])
 
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
@@ -115,6 +116,7 @@ function CycleSimulator() {
     启用团队增益快照,
     显示涓流层数,
     起手临源,
+    断快雪延迟,
     加速值,
     奇穴信息,
     团队增益轴,
@@ -143,6 +145,7 @@ function CycleSimulator() {
       显示涓流层数,
       起手临源,
       忽略延迟技能,
+      断快雪延迟,
     })
 
     const {
@@ -353,6 +356,8 @@ function CycleSimulator() {
                 更新显示涓流层数={更新显示涓流层数}
                 起手临源={起手临源}
                 更新起手临源={更新起手临源}
+                断快雪延迟={断快雪延迟}
+                更新断快雪延迟={更新断快雪延迟}
                 忽略延迟技能={忽略延迟技能}
                 更新忽略延迟技能={更新忽略延迟技能}
               />

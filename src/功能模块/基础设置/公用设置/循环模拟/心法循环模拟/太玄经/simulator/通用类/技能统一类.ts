@@ -58,6 +58,7 @@ class 技能统一类 {
     // 判断玉枕
     const 增益列表 = [...额外增益列表]
     const 快照检测Buff列表 = this.获取DOT快照检测Buff列表(伤害名称)
+
     this.模拟循环.技能造成伤害?.(
       伤害名称,
       伤害次数,
@@ -71,7 +72,8 @@ class 技能统一类 {
 
   获取DOT快照检测Buff列表(伤害名称) {
     if (伤害名称?.includes('DOT')) {
-      return this.获取当前快照buff()
+      const list = this.获取当前快照buff().concat(['荧入白'])
+      return list
     } else {
       return []
     }
@@ -189,9 +191,11 @@ class 技能统一类 {
     }
   }
 
-  刷新鬼遁() {
-    if (this.模拟循环.校验奇穴是否存在('鬼遁') && this.连局判定()) {
-      this.模拟循环.添加buff({ 名称: '鬼遁', 对象: '自身' })
+  刷新鬼遁(不判定连局 = false) {
+    if (this.模拟循环.校验奇穴是否存在('鬼遁')) {
+      if (不判定连局 || this.连局判定()) {
+        this.模拟循环.添加buff({ 名称: '鬼遁', 对象: '自身' })
+      }
     }
   }
 
@@ -202,7 +206,10 @@ class 技能统一类 {
   }
 
   获取当前快照buff(类型 = 'DOT') {
-    const buff列表: string[] = []
+    const buff列表: string[] = ['祝祷', '鬼遁', '镇星', '明灯']
+    if (this?.模拟循环?.当前自身buff列表?.['荧入白']?.当前层数) {
+      buff列表.push('荧入白_快照')
+    }
     // buff列表.push('相使')
     return buff列表
     // TODO

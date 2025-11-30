@@ -4,7 +4,8 @@
   position: relative;
 }
 
-.income-custom,.income-chart {
+.income-custom,
+.income-chart {
   position: absolute;
   left: 0;
   right: 0;
@@ -20,7 +21,7 @@
 }
 
 .income-chart {
-  z-index: 0
+  z-index: 0;
 }
 
 .income-chart-tooltip .ant-tooltip-inner {
@@ -48,7 +49,8 @@
   align-items: center;
 }
 
-.income-type-select-radio .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+.income-type-select-radio
+  .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
   background: #fff;
   color: var(--ant-primary-color);
 }
@@ -56,4 +58,10 @@
 .income-type-select-radio .ant-radio-button-wrapper {
   color: #fff;
   background: none;
+}
+
+.income-type-select-button {
+  color: #fff;
+  cursor: pointer;
+  margin-left: 12px;
 }

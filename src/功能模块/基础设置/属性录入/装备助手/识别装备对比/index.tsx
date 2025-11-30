@@ -51,7 +51,7 @@ const 识别装备对比: React.FC<ModalProps> = () => {
   const [inputVal, setInputVal] = useState<string | undefined>(undefined)
   const equipData = useRef<装备属性信息模型[]>([])
   const [matchList, setMatchList] = useState<Array<{ name: string; id: number[]; price?: number }>>(
-    []
+    [],
   )
   const [dpsDiffMap, setDpsDiffMap] = useState<{ [key: string]: number } | undefined>(undefined)
   const dispatch = useAppDispatch()
@@ -124,7 +124,7 @@ const 识别装备对比: React.FC<ModalProps> = () => {
             name: item,
             id: uuidV4(),
           }
-        })
+        }),
       )
       getDpsDiff(list)
     } else {
@@ -152,11 +152,11 @@ const 识别装备对比: React.FC<ModalProps> = () => {
   // 获取装备dps差
   const getEquipDiffDps = (name): number | undefined => {
     const 找到对应装备数据 = equipData?.current?.find(
-      (item: any) => item?.装备名称 === name || item?.装备牌子映射 === name
+      (item: any) => item?.装备名称 === name || item?.装备牌子映射 === name,
     )
     if (找到对应装备数据 && !name?.includes('无修')) {
       const 被替换的装备 = 装备信息.装备列表.find(
-        (item) => item.装备部位 === 找到对应装备数据?.装备部位
+        (item) => item.装备部位 === 找到对应装备数据?.装备部位,
       )
       const 装备最大精炼等级 = 获取最大精炼等级(找到对应装备数据)
 
@@ -190,7 +190,9 @@ const 识别装备对比: React.FC<ModalProps> = () => {
         装备增益: { 大附魔_伤帽, 大附魔_伤衣, 大附魔_伤腰, 大附魔_伤腕, 大附魔_伤鞋 },
       })
 
-      const { 秒伤: 更新后秒伤 } = dispatch(秒伤计算({ 更新装备信息: 更新后装备信息 }))
+      const { 秒伤: 更新后秒伤 } = dispatch(
+        秒伤计算({ 更新装备信息: 更新后装备信息, 计算技能详情: false }),
+      )
       return 更新后秒伤 - 当前计算结果?.秒伤
     } else {
       return undefined
@@ -390,8 +392,8 @@ const 识别装备对比: React.FC<ModalProps> = () => {
                         v >= 高性价比常数
                           ? 'dps-hight-dps-price'
                           : v <= 低性价比常数
-                          ? 'dps-low-dps-price'
-                          : ''
+                            ? 'dps-low-dps-price'
+                            : ''
                       } dps-price-number`}
                     >
                       {v}

@@ -119,10 +119,16 @@ export interface 循环基础技能数据类型 {
    * 额外信息
    */
   额外信息?: 额外信息类型
+  /**
+   * 额外信息
+   */
+  技能原始名称?: string
+  可中断倒读条最大跳数?: number
 }
 
 export interface 额外信息类型 {
   延迟?: number | 'GCD'
+  作用次数?: number
 }
 
 // 用来显示的循环技能类型类型

@@ -1,5 +1,5 @@
-import 起手爆发 from './快速导入默认循环/起手爆发'
+import 紫武 from './快速导入默认循环/紫武'
 
 export default [
-  起手爆发
+  紫武
 ]

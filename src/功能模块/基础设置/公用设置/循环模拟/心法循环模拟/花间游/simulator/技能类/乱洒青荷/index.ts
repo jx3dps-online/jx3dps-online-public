@@ -4,6 +4,7 @@ import 有CD技能通用类 from '../../通用类/有CD技能通用类'
 class 乱洒青荷 extends 有CD技能通用类 {
   // scripts/skill/万花\万花_养心决_乱洒青荷.lua
   static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '乱洒青荷')
+  static 是否强化过水佩 = true
 
   constructor(模拟循环) {
     super(模拟循环)
@@ -16,6 +17,10 @@ class 乱洒青荷 extends 有CD技能通用类 {
     this.模拟循环?.添加buff({ 名称: '乱洒青荷', 对象: '自身' })
     if (this?.模拟循环?.校验奇穴是否存在('渲青')) {
       this?.模拟循环?.添加buff({ 名称: '乱洒青荷', 对象: '自身', 新增层数: 1 })
+    }
+    this.模拟循环?.添加buff({ 名称: '青荷', 对象: '自身' })
+    if (this?.模拟循环?.校验奇穴是否存在('水佩')) {
+      乱洒青荷.是否强化过水佩 = false
     }
 
     this.墨意变化(20)

@@ -8,15 +8,17 @@ import type { 循环数据 } from '@/@types/循环'
 // 循环
 import 连令 from './紫武连令.json'
 import 降厄 from './紫武降厄.json'
+import 悸心 from './紫武悸心.json'
 import 橙武连令 from './橙武连令.json'
-import 橙武降厄简易 from './橙武降厄简易.json'
+import 橙武悸心 from './橙武悸心.json'
 import 橙武降厄乱轴 from './橙武降厄乱轴.json'
 
 const 计算循环: 循环数据[] = [
-  降厄,
   连令,
+  悸心,
+  降厄,
   橙武连令,
-  橙武降厄简易,
+  橙武悸心,
   橙武降厄乱轴
 ] as 循环数据[]
 

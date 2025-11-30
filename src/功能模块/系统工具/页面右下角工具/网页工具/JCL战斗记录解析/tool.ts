@@ -16,6 +16,7 @@ import 无方悟 from './职业技能映射枚举/无方悟.json'
 import 毒经 from './职业技能映射枚举/毒经.json'
 import 易筋经 from './职业技能映射枚举/易筋经.json'
 import 北傲诀 from './职业技能映射枚举/北傲诀.json'
+import 焚影圣诀 from './职业技能映射枚举/焚影圣诀.json'
 import 紫霞功 from './职业技能映射枚举/紫霞功.json'
 import 周天功 from './职业技能映射枚举/周天功.json'
 import 周天功悟 from './职业技能映射枚举/周天功悟.json'
@@ -23,6 +24,8 @@ import 笑尘诀 from './职业技能映射枚举/笑尘诀.json'
 import 天罗诡道 from './职业技能映射枚举/天罗诡道.json'
 import 判断团队增益快照Buff from '@/数据/团队增益/tools'
 import { 每秒郭氏帧 } from '@/数据/常量'
+
+const hrefDev = location?.href?.includes?.('localhost')
 
 export const 心法枚举 = {
   周天功: 周天功,
@@ -43,6 +46,7 @@ export const 心法枚举 = {
   '凌海诀·悟': 凌海诀悟,
   '花间游·悟': 花间游悟,
   '周天功·悟': 周天功悟,
+  焚影圣诀: 焚影圣诀,
 }
 
 const 无界统一buff = ['70161', '70188', '70163', '70162', '70167', '70345', '70729', '70973']
@@ -56,6 +60,7 @@ const DOT直接生成层数心法 = [
   '易筋经',
   '分山劲',
   '北傲诀',
+  '焚影圣诀',
   '笑尘诀',
   '天罗诡道',
 ]
@@ -367,7 +372,7 @@ export const 战斗数据转换 = ({
                           // 判定引窍
                           if (
                             引窍阵眼时间轴?.some(
-                              (item) => 距初始时间帧数 > item[0] && 距初始时间帧数 < item[1]
+                              (item) => 距初始时间帧数 > item[0] && 距初始时间帧数 < item[1],
                             )
                           ) {
                             团队增益列表.push('含章挺秀阵')

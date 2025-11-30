@@ -96,7 +96,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             .map((item) => {
               return (
                 <AddCycleSkillBtn
-                  onClick={() => 新增循环技能(item)}
+                  onClick={(data) => 新增循环技能(data)}
                   key={item?.技能名称}
                   className={'ztg-cycle-simulator-setting-btn'}
                   完整循环={处理循环结果对象?.完整循环 || []}
@@ -131,7 +131,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             .map((item) => {
               return (
                 <AddCycleSkillBtn
-                  onClick={() => 新增循环技能(item)}
+                  onClick={(data) => 新增循环技能(data)}
                   key={item?.技能名称}
                   className={'ztg-cycle-simulator-setting-btn'}
                   完整循环={处理循环结果对象?.完整循环 || []}
@@ -181,7 +181,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             .map((item) => {
               return (
                 <AddCycleSkillBtn
-                  onClick={() => 新增循环技能(item)}
+                  onClick={(data) => 新增循环技能(data)}
                   key={item?.技能名称}
                   className={'ztg-cycle-simulator-setting-btn'}
                   完整循环={处理循环结果对象?.完整循环 || []}
@@ -227,7 +227,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             .map((item) => {
               return (
                 <AddCycleSkillBtn
-                  onClick={() => 新增循环技能(item)}
+                  onClick={(data) => 新增循环技能(data)}
                   key={item?.技能名称}
                   className={'ztg-cycle-simulator-setting-btn'}
                   完整循环={处理循环结果对象?.完整循环 || []}

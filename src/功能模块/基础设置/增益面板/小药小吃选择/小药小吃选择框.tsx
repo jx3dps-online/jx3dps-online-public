@@ -16,9 +16,7 @@ const 小药小吃选择框: React.FC<小药小吃选择框入参> = (props) => 
   const 增益数据 = useAppSelector((state) => state?.data?.增益数据)
   const 增益启用 = useAppSelector((state) => state?.data?.增益启用)
   const 当前计算结果 = useAppSelector((state) => state?.data?.当前计算结果)
-  const [dpsUpList, setDpsUpList] = useState<
-    Array<{ key: string; dpsUp: number }>
-  >([])
+  const [dpsUpList, setDpsUpList] = useState<Array<{ key: string; dpsUp: number }>>([])
   const dispatch = useAppDispatch()
 
   const getDpsUpList = () => {
@@ -36,16 +34,15 @@ const 小药小吃选择框: React.FC<小药小吃选择框入参> = (props) => 
 
   // 计算阵眼收益
   const getAfterChangeXiaochiDps = (小吃名称) => {
-    const 过滤原小吃数组 = 增益数据.小吃.filter(
-      (item) => !data?.some((a) => a.小吃名称 === item)
-    )
+    const 过滤原小吃数组 = 增益数据.小吃.filter((item) => !data?.some((a) => a.小吃名称 === item))
     const { 秒伤 } = dispatch(
       秒伤计算({
         更新增益数据: {
           ...增益数据,
           小吃: [...(过滤原小吃数组 || []), 小吃名称],
         },
-      })
+        计算技能详情: false,
+      }),
     )
     return 秒伤 || 0
   }
@@ -53,9 +50,9 @@ const 小药小吃选择框: React.FC<小药小吃选择框入参> = (props) => 
   return (
     <Select
       allowClear
-      placeholder="请选择"
-      className="zengyi-xiaochi-select"
-      optionFilterProp="label"
+      placeholder='请选择'
+      className='zengyi-xiaochi-select'
+      optionFilterProp='label'
       {...rest}
       onDropdownVisibleChange={(e) => {
         if (e) {
@@ -90,34 +87,22 @@ const 小药小吃选择框: React.FC<小药小吃选择框入参> = (props) => 
         )
 
         return (
-          <Select.Option
-            key={item?.小吃名称}
-            value={item?.小吃名称}
-            label={item.小吃名称}
-          >
+          <Select.Option key={item?.小吃名称} value={item?.小吃名称} label={item.小吃名称}>
             <div className={'xiaochi-diff-item'}>
-              <Tooltip title={小吃详情} placement="left">
+              <Tooltip title={小吃详情} placement='left'>
                 <div className={'xiaochi-diff-item-name'}>
-                  {item?.图标 ? (
-                    <img className={'xiaochi-diff-item-img'} src={item?.图标} />
-                  ) : null}
+                  {item?.图标 ? <img className={'xiaochi-diff-item-img'} src={item?.图标} /> : null}
                   {item?.小吃名称?.split('（')?.[0]}
                   {/* {item?.小吃名称} */}
                   {item?.小吃名称?.split('（')?.[1] ? (
-                    <span
-                      className={`${
-                        item?.小吃品级 === '紫' ? 'xiaochi-zi' : 'xiaochi-lan'
-                      }`}
-                    >
+                    <span className={`${item?.小吃品级 === '紫' ? 'xiaochi-zi' : 'xiaochi-lan'}`}>
                       （{item?.小吃名称?.split('（')?.[1]}
                     </span>
                   ) : null}
                 </div>
               </Tooltip>
               {upDps !== 0 ? (
-                <span
-                  className={`${upDps > 0 ? 'dps-up-color' : 'dps-low-color'}`}
-                >
+                <span className={`${upDps > 0 ? 'dps-up-color' : 'dps-low-color'}`}>
                   {upDps > 0 ? '+' : ''}
                   {upDps}
                 </span>

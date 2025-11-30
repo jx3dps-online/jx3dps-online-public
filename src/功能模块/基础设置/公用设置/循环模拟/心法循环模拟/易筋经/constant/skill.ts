@@ -1,6 +1,7 @@
 import { Buff枚举, 循环基础技能数据类型, 日志类型 } from '../simulator/type'
 import { 基础GCD帧 } from '.'
 import { 每秒郭氏帧 } from '@/数据/常量'
+import huanhangIcon from '../assets/Skill/huanhangIcon.svg'
 import { 通用Buff数据, 通用循环模拟技能基础数据 } from '../../通用/通用技能/通用技能定义'
 
 // 技能图标引入
@@ -122,7 +123,7 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     技能CD: 0,
     技能GCD组: '自身',
     技能类型: '其他',
-    图标: 'https://icon.jx3box.com/icon/6932.png',
+    图标: huanhangIcon,
     说明: '插入换行将只以”换行“作为展示换行。 ',
   },
 ]

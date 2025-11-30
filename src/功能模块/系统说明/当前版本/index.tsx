@@ -1,7 +1,8 @@
 import { Button, Modal, Timeline } from 'antd'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import log_data from '@/更新日志'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import 心法枚举 from '@/数据/静态数据/心法枚举.json'
 import { useAppDispatch } from '@/hooks'
 import { 更新当前引导步骤, 更新新手引导流程状态 } from '@/store/system'
 import 计算记录对比 from './计算记录对比'
@@ -62,6 +63,28 @@ function Log() {
     dispatch(更新当前引导步骤(0))
   }
 
+  const iconMap = useMemo(() => {
+    let obj = {
+      综合: 'https://jx3.xoyo.com/p/zt/2023/10/26/index/favicon-200x200.png',
+    }
+    Object.keys(心法枚举).forEach((i) => {
+      obj[心法枚举[i].name] = 心法枚举[i].icon
+    })
+    return obj
+  }, [心法枚举])
+
+  const LogItem = ({ data }) => {
+    if (typeof data === 'string' && (data === '综合' || iconMap[data])) {
+      return (
+        <div className='log-title'>
+          <img className='log-title-image' src={iconMap[data]} alt='' />
+          <b>{data}</b>
+        </div>
+      )
+    }
+    return data
+  }
+
   return (
     <div className='log-wrap'>
       <span>当前版本: {log_data?.[0]?.version}</span>
@@ -88,7 +111,11 @@ function Log() {
             <div className='log-content-text'>
               {Array.isArray(log_data?.[0].content)
                 ? log_data?.[0].content.map((a, index) => {
-                    return <div key={index}>{a}</div>
+                    return (
+                      <div key={`${log_data[0]?.date}${index}`} className='log-content-item'>
+                        <LogItem data={a} />
+                      </div>
+                    )
                   })
                 : log_data?.[0].content}
             </div>
@@ -98,7 +125,7 @@ function Log() {
             </div>
           </Timeline.Item>
         </Timeline>
-        <计算记录对比 />
+        {/* <计算记录对比 /> */}
       </Modal>
       <Modal
         width={800}
@@ -128,8 +155,12 @@ function Log() {
               <Timeline.Item key={item.version}>
                 <div className='log-content-text'>
                   {Array.isArray(item.content)
-                    ? item.content.map((a: any) => {
-                        return <div key={a}>{a}</div>
+                    ? item.content.map((a: any, index) => {
+                        return (
+                          <div key={`${item.date}${index}`} className='log-content-item'>
+                            <LogItem data={a} />
+                          </div>
+                        )
                       })
                     : item.content}
                 </div>

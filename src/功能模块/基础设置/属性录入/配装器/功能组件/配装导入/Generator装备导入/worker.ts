@@ -81,7 +81,7 @@ export const Generator装备导入 = (原序列: string) => {
           }
         }
         if (五彩石ID) {
-          let 五彩石名称 = 五彩石映射?.[五彩石ID]
+          let 五彩石名称 = 五彩石映射?.item_id?.[五彩石ID]
           if (五彩石名称) {
             if (功法 !== '天罗诡道') {
               // 对内功五彩石做映射

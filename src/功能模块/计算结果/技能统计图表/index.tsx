@@ -6,7 +6,7 @@ import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } f
 import * as G2 from '@antv/g2'
 import { useAppSelector } from '@/hooks'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
-import { 获取技能统计数据 } from '../结果统计'
+import { 获取技能统计数据 } from '../结果统计/util'
 import './index.css'
 
 const { 系统配置 } = 获取当前数据()

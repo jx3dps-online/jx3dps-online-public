@@ -17,6 +17,8 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍?: 选中�
       case '横扫六合DOT':
         if (判断奇穴('我闻')) {
           (obj as DotDTO).最大层数 = 2
+        } else {
+          (obj as DotDTO).最大层数 = 1
         }
         if (obj.最大持续时间) {
           obj.最大持续时间 = 每秒郭氏帧 * 12 + 秘籍加持续时间('横扫六合', 秘籍);
@@ -24,6 +26,16 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍?: 选中�
         }
         break
       case '擒龙':
+        if (判断奇穴('系珠')) {
+          obj.最大持续时间 = 每秒郭氏帧 * 12
+        } else {
+          obj.最大持续时间 = 每秒郭氏帧 * 15
+        }
+        if (obj.最大持续时间) {
+          obj.最大持续时间 = obj.最大持续时间 + 秘籍加持续时间('擒龙决', 秘籍)
+        }
+        break
+      case '正念':
         if (判断奇穴('系珠')) {
           obj.最大持续时间 = 每秒郭氏帧 * 12
         } else {

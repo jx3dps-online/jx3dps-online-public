@@ -11,15 +11,17 @@ interface 附魔选择入参 extends SelectProps {
   list: 附魔数据类型[]
   form: any
   开启装备智能对比: boolean
+  对比显示百分比: boolean
   allValue?: any // 选择装备的全部信息包含附魔等
   部位索引: string
 }
 
 function 附魔选择(props: 附魔选择入参) {
-  const { list, 开启装备智能对比, form, allValue, 部位索引, ...rest } = props
+  const { list, 开启装备智能对比, form, allValue, 部位索引, 对比显示百分比, ...rest } = props
 
   const 当前计算结果 = useAppSelector((state) => state?.data?.当前计算结果)
-  const [dpsUpList, setDpsUpList] = useState<{ uuid: string; dpsUp: number }[]>()
+  const [dpsUpList, setDpsUpList] =
+    useState<{ uuid: string; dpsUp: string | number; dpsPercent: string }[]>()
   const [loading, setLoading] = useState<boolean>(false)
   const dispatch = useAppDispatch()
 
@@ -31,7 +33,9 @@ function 附魔选择(props: 附魔选择入参) {
       const 当前装备列表信息 = form?.getFieldsValue()
       const 当前装备信息 = 根据表单选项获取装备信息(当前装备列表信息)
 
-      const { 秒伤: 旧秒伤 } = dispatch(秒伤计算({ 更新装备信息: 当前装备信息 }))
+      const { 秒伤: 旧秒伤 } = dispatch(
+        秒伤计算({ 更新装备信息: 当前装备信息, 计算技能详情: false }),
+      )
 
       // 传入新的装备
       const newDpsUpList = list.map((item) => {
@@ -45,11 +49,19 @@ function 附魔选择(props: 附魔选择入参) {
           [`${部位索引}`]: 新装备数据,
         })
 
-        const { 秒伤: 更新后秒伤 } = dispatch(秒伤计算({ 更新装备信息: 更新后装备信息 }))
+        const { 秒伤: 更新后秒伤 } = dispatch(
+          秒伤计算({ 更新装备信息: 更新后装备信息, 计算技能详情: false }),
+        )
+
+        const 旧伤害 = 旧秒伤 || 当前计算结果?.秒伤
+
+        const 秒伤差异 = 更新后秒伤 ? 更新后秒伤 - 旧伤害 : 旧伤害 ? '更换后加速不匹配' : ''
+        const dpsPercent = 更新后秒伤 ? (旧伤害 ? ((+秒伤差异 / 旧伤害) * 100).toFixed(2) : '') : ''
 
         return {
           uuid: `${item?.附魔名称}${item?.附魔支持部位}` || '',
-          dpsUp: 更新后秒伤 - (旧秒伤 || 当前计算结果?.秒伤),
+          dpsUp: 秒伤差异,
+          dpsPercent: dpsPercent,
         }
       })
 
@@ -69,7 +81,7 @@ function 附魔选择(props: 附魔选择入参) {
       filterOption={(input, option) => {
         return option?.value?.toString()?.includes(input) || false
       }}
-      popupMatchSelectWidth={开启装备智能对比 ? 240 : 200}
+      popupMatchSelectWidth={开启装备智能对比 ? 260 : 200}
       optionFilterProp='label'
       onDropdownVisibleChange={(e) => {
         if (e) {
@@ -83,27 +95,40 @@ function 附魔选择(props: 附魔选择入参) {
     >
       {list.map((item) => {
         const upItem = dpsUpList?.find(
-          (up) => up.uuid === `${item?.附魔名称}${item?.附魔支持部位}`
+          (up) => up.uuid === `${item?.附魔名称}${item?.附魔支持部位}`,
         ) || {
           dpsUp: 0,
+          dpsPercent: 0,
         }
+
+        const 附魔名称数组 = item.附魔名称?.split('+')
+
+        const 附魔属性 = 附魔名称数组[0]
+        const 附魔值 = 附魔名称数组[1]
+        const 颜色: any = item?.挑战附魔 ? '橙' : item?.附魔颜色 || '紫'
 
         return (
           <Select.Option key={item.附魔名称} value={item.附魔名称} label={item.附魔名称}>
             <div className='fumo-diff-wrap'>
-              <span>{item.附魔名称}</span>
-              <div>
-                {item?.挑战附魔 ? <span className={styles.callenge}>挑战</span> : null}
-                {upItem?.dpsUp !== 0 ? (
+              <span className='fumo-diff-name-wrap'>
+                {附魔属性}
+                {'+'}
+                {附魔值}
+              </span>
+              <div className='fumo-diff-right'>
+                {upItem?.dpsUp !== 0 && 开启装备智能对比 ? (
                   <span
                     className={`zhuangbei-diff ${
-                      upItem?.dpsUp > 0 ? 'dps-up-color' : 'dps-low-color'
+                      +upItem?.dpsUp > 0 ? 'dps-up-color' : 'dps-low-color'
                     }`}
                   >
-                    {upItem?.dpsUp > 0 ? '+' : ''}
-                    {upItem?.dpsUp}
+                    {+upItem?.dpsUp > 0 ? '+' : ''}
+                    {对比显示百分比 ? `${upItem?.dpsPercent}%` : `${upItem?.dpsUp}`}
                   </span>
                 ) : null}
+                <span className={`fumo-name-number fumo-name-${颜色枚举?.[颜色]?.样式}`}>
+                  {颜色枚举?.[颜色]?.名称}
+                </span>
               </div>
             </div>
           </Select.Option>
@@ -114,3 +139,9 @@ function 附魔选择(props: 附魔选择入参) {
 }
 
 export default 附魔选择
+
+const 颜色枚举 = {
+  橙: { 样式: 'orange', 名称: '挑战' },
+  紫: { 样式: 'purple', 名称: '珍奇' },
+  蓝: { 样式: 'blue', 名称: '卓越' },
+}

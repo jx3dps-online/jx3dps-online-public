@@ -86,6 +86,14 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
       </Tooltip>
       <p className={'cycle-add-btn-text'}>{技能显示信息?.技能原始名称 || 技能显示信息?.技能名称}</p>
     </div>
+    // <CommonAddCycleSkillBtn
+    //   {...rest}
+    //   模拟信息={模拟信息 as any}
+    //   技能={技能}
+    //   技能当前层数={技能当前层数}
+    //   onClick={onClick}
+    //   异常信息={异常信息}
+    // />
   )
 }
 

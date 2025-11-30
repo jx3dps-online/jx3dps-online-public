@@ -134,6 +134,17 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
     setCycle(newCycle)
   }
 
+  const 修改技能信息 = (技能信息) => {
+    const newCycle = cycle.map((item, index) => {
+      if (index === 技能信息.index) {
+        return { ...技能信息 }
+      } else {
+        return item
+      }
+    })
+    setCycle(newCycle)
+  }
+
   return (
     <div className={styles.wrap}>
       {处理循环结果对象?.显示循环?.length ? (
@@ -173,6 +184,7 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
                           点击下拉菜单(e, item?.index)
                         }
                       }}
+                      修改技能信息={修改技能信息}
                     />
                   )
                 })}

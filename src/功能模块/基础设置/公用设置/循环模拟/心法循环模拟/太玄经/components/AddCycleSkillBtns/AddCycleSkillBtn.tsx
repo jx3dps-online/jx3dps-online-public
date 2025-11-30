@@ -1,9 +1,8 @@
 import React, { useMemo } from 'react'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import { 循环基础技能数据类型, 技能GCD组, 模拟信息类型 } from '../../simulator/type'
-import classNames from 'classnames'
-import { Badge, Tooltip } from 'antd'
 import { ERROR_ACTION } from '../../simulator/utils'
+import CommonAddCycleSkillBtn from '../../../通用/通用组件/循环技能添加按钮'
 
 interface AddCycleSkillBtnProps {
   技能: 循环基础技能数据类型
@@ -23,7 +22,7 @@ interface 异常信息数据 {
 
 // 添加循环技能按钮组件
 const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
-  const { 技能, 模拟信息, onClick, className, 插入技能, ...rest } = props
+  const { 技能, 模拟信息, onClick: propsClick, 插入技能, ...rest } = props
 
   const 释放等待CD = 计算可以释放时技能CD(模拟信息, 技能)
   const 技能当前层数 = 计算技能当前层数(模拟信息, 技能)
@@ -71,32 +70,25 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
     }
   }, [释放等待CD, 技能, 模拟信息, 插入技能])
 
-  // 点击前判断是否可以释放
-  const beforeOnClick = () => {
-    if (异常信息?.是否禁用) {
-      return
-    }
-    onClick()
+  const onClick = (额外信息) => {
+    propsClick?.({
+      ...技能,
+      额外信息: {
+        ...技能.额外信息,
+        ...额外信息,
+      },
+    })
   }
 
-  const cls = classNames(className, 异常信息?.是否禁用 ? 'cycle-simulator-setting-btn-error' : '')
-
-  const 技能显示信息 = useMemo(() => {
-    return 技能
-  }, [技能, 模拟信息])
-
   return (
-    <div onClick={beforeOnClick} className={cls} {...rest}>
-      <Tooltip title={异常信息?.异常描述 || 技能?.说明 || ''}>
-        <Badge count={异常信息?.角标数字} className={'cycle-add-btn-wrap'} offset={[0, 0]}>
-          <img className={`cycle-add-btn`} src={技能显示信息?.图标} />
-          {技能?.最大充能层数 && 技能?.最大充能层数 !== 1 ? (
-            <span className={'cycle-add-btn-count'}>{技能当前层数}</span>
-          ) : null}
-        </Badge>
-      </Tooltip>
-      <p className={'cycle-add-btn-text'}>{技能显示信息?.技能原始名称 || 技能显示信息?.技能名称}</p>
-    </div>
+    <CommonAddCycleSkillBtn
+      {...rest}
+      模拟信息={模拟信息 as any}
+      技能={技能}
+      技能当前层数={技能当前层数}
+      onClick={onClick}
+      异常信息={异常信息}
+    />
   )
 }
 

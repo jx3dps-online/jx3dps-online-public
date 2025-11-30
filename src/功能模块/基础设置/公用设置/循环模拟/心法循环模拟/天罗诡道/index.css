@@ -1,0 +1,302 @@
+.cycle-simulator-modal {
+  max-width: 100%;
+}
+
+.cycle-simulator-modal .ant-modal-body {
+  max-height: calc(100vh - 48px - 28px);
+  min-height: calc(100vh - 48px - 28px);
+  overflow-y: auto;
+  padding-top: 16px;
+}
+
+.cycle-simulator-modal .ant-modal-header {
+  margin-top: -2px;
+}
+
+.cycle-simulator-modal-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  /* justify-content: space-between; */
+}
+
+.cycle-simulator-modal-header,.space-between {
+  justify-content: space-between;
+  padding-right: 20px;
+  height: 22px;
+}
+
+.cycle-simulator-modal-title {
+  font-size: 16px;
+  margin:0;
+  margin-right: 12px;
+}
+
+.cycle-simulator-modal-header-select {
+  margin-right: 12px;
+}
+
+.cycle-simulator-skill-count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 12px;
+}
+
+.cycle-simulator-setting-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+}
+
+.cycle-simulator-setting-header-left {
+  display: flex;
+  align-items: center;
+}
+
+.cycle-simulator-modal-title-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.cycle-simulator-setting-header h1 {
+  font-size: 16px;
+}
+
+.cycle-simulator-help {
+  color: #f90;
+  margin-right: 12px;
+  font-size: 14px;
+}
+
+.cycle-not-support {
+  color: #F34242;
+  font-size: 14px;
+}
+
+
+.cycle-simulator-setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cycle-simulator-setting-item + .cycle-simulator-setting-item {
+  margin-left: 4px;
+}
+
+.ztg-cycle-simulator-setting-btn {
+  padding: 0px 4px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+}
+
+.cycle-qixue-set-button {
+  width: unset
+}
+
+.cycle-simulator-setting-res {
+  max-height: calc(100vh - 328px);
+  min-height: calc(100vh - 610px);
+  overflow-y: auto;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--ant-primary-color);
+  padding: 16px;
+}
+
+.cycle-simulator-setting-tip {
+  color: rgba(3, 10, 26, 0.45);
+  font-size: 20px;
+}
+
+.cycle-simulator-setting-turn {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 4px;
+  width: 100%;
+  margin: -4px;
+  transition: .2s;
+  position: relative;
+}
+
+.cycle-simulator-setting-turn:hover {
+  border: 1px solid var(--ant-primary-color-deprecated-border);
+  /* background-color: var(--ant-success-color-deprecated-bg); */
+}
+
+.cycle-turn-time {
+  opacity: 1;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  margin-top: -16px;
+  height: 32px;
+  pointer-events: none;
+  text-align: right;
+}
+
+.cycle-turn-operate {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  margin-top: -16px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  transition: .2s;
+}
+
+.cycle-turn-operate-btn {
+  margin-left: 8px;
+  cursor: pointer;
+  color: #555;
+}
+
+.cycle-turn-operate-btn:hover {
+  color: var(--ant-primary-color);
+}
+
+.cycle-simulator-setting-turn:hover .cycle-turn-operate {
+  opacity: 1;
+  pointer-events: unset;
+}
+
+.cycle-simulator-setting-turn:hover  .cycle-turn-time {
+  opacity: 0;
+}
+
+.cycle-simulator-setting-turn-drop {
+  width: 100%;
+}
+
+.cycle-simulator-setting-change {
+  font-size: 14px;
+  padding: 3px 12px;
+  display: inline-flex;
+  align-items: center;
+  margin: 8px;
+  cursor: pointer;
+}
+
+.cycle-simulator-setting-change {
+  cursor: unset;
+}
+
+.ant-tag-close-icon {
+  vertical-align: 0;
+}
+
+.cycle-simulator-modal-footer {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* justify-content: flex-end; */
+}
+
+.cycle-simulator-modal-footer .ant-btn {
+  margin-left: 8px;
+}
+
+.cycle-simulator-dps-res-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin: 0 0 0 12px; */
+}
+
+.cycle-simulator-dps-res-text > span {
+  margin-right: 8px;
+}
+
+.cycle-simulator-operate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cycle-simulator-operate-btn {
+  margin: 0 12px;
+}
+
+.cycle-simulator-dps-res {
+  color: #F34242;
+  font-size: 16px;
+}
+
+.dps-res-chart {
+  width: 100%;
+  margin: 0 auto;
+  height: calc(100vh - 350px);
+}
+
+.cycle-simulator-setting-skills {
+  margin: 0 12px;
+}
+
+.ztg-cycle-btn-type {
+  display: block;
+  width: 24px;
+  height: 70px;
+  line-height: 70px;
+  background: url('./assets/fenlei.png');
+  background-size: cover;
+  writing-mode: vertical-lr;
+  text-align: center;
+  line-height: 24px;
+  color: #fff;
+  font-weight: 500;
+  /* -webkit-filter: hue-rotate(20deg); */
+}
+
+.cycle-simulator-setting-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.ztg-cycle-simulator-setting-btn:hover .cycle-add-btn-text{
+  color: var(--ant-primary-color);
+}
+
+.ztg-cycle-simulator-setting-btn:hover .cycle-add-btn {
+  -webkit-filter: saturate(110%) brightness(110%);
+}
+
+.ztg-cycle-simulator-setting-btn.cycle-simulator-setting-btn-error .cycle-add-btn-text,
+.ztg-cycle-simulator-setting-btn.cycle-simulator-setting-btn-error .cycle-add-btn {
+  color: rgba(3, 10, 26, 0.85);
+  -webkit-filter: grayscale(1) saturate(10%) contrast(50%);
+}
+
+.cycle-add-btn {
+  width: 50px;
+  height: 50px;
+  display: block;
+}
+
+.cycle-add-btn {
+  transition: .2s;
+}
+
+.cycle-add-btn-text {
+  text-align: center;
+  transition: .2s;
+  font-weight: 500;
+  line-height: 14px;
+  padding-top: 4px;
+  color: rgba(3, 10, 26, 0.85);
+}

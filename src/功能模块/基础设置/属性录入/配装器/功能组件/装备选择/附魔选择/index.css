@@ -7,3 +7,28 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.fumo-diff-name-wrap {
+  min-width: 80px;
+}
+
+.fumo-diff-right {
+  margin-left: 32px;
+}
+
+.fumo-name-number {
+  margin-left: 2px;
+  padding-right: 8px;
+}
+
+.fumo-name-orange {
+  color: #f90;
+}
+
+.fumo-name-purple {
+  color: #ff2dff;
+}
+
+.fumo-name-blue {
+  color: rgb(0, 126, 255);
+}

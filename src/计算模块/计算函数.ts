@@ -35,6 +35,9 @@ interface CurrentDpsFunctionProps {
   更新计算循环详情?: 循环详情
   更新循环技能列表?: 循环技能详情[]
   更新计算时间?: number
+
+  // 是否计算技能详细情况
+  计算技能详情?: boolean
 }
 
 export const 秒伤计算 =
@@ -55,12 +58,13 @@ export const 秒伤计算 =
       更新秘籍信息,
       更新快照计算,
       更新网络延迟,
+      计算技能详情 = true,
     } = props || {}
 
     // 是否郭氏计算 && console.time('计算耗时')
     const currentState: RootState = getState?.() || {}
 
-    const 网络延迟 = 更新网络延迟 ? 更新网络延迟 : currentState?.data?.网络延迟 ?? 1
+    const 网络延迟 = 更新网络延迟 ? 更新网络延迟 : (currentState?.data?.网络延迟 ?? 1)
     const 当前装备信息 = { ...currentState?.data?.装备信息, ...更新装备信息 }
     const 奇穴数据 = 更新奇穴数据?.length ? 更新奇穴数据 : currentState.data.当前奇穴信息
 
@@ -105,7 +109,7 @@ export const 秒伤计算 =
     })
 
     const 技能数据映射 = new Map<string, 技能基础数据模型>(
-      技能基础数据.map((item) => [item.技能名称, item])
+      技能基础数据.map((item) => [item.技能名称, item]),
     )
 
     if (!当前循环技能列表?.length || !当前装备信息?.装备基础属性?.基础攻击) {
@@ -131,6 +135,7 @@ export const 秒伤计算 =
       快照计算: 团队快照计算列表,
       计算循环详情: 实际计算循环详情,
       奇穴数据,
+      计算技能详情,
     })
 
     // 每秒dps

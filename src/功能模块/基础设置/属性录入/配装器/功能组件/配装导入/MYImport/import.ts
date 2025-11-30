@@ -89,7 +89,7 @@ export const getEquipData = (data) => {
         if (装备部位 === '武器') {
           // 处理五彩石
           if (五彩石ID) {
-            let 五彩石名称 = 五彩石映射?.[五彩石ID]
+            let 五彩石名称 = 五彩石映射?.enchant_id?.[五彩石ID]
             if (五彩石名称) {
               if (功法 !== '天罗诡道') {
                 // 对内功五彩石做映射
