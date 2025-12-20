@@ -74,24 +74,26 @@ function 循环模拟() {
     索引: 0,
   })
   const [起手Buff配置, 更新起手Buff配置] = useState<起手Buff配置>({})
+  const [增益启用, 更新增益启用] = useState<boolean>(false)
 
   // 当前面板加速值
   const 外部加速值 = useAppSelector((state) => state?.data?.装备信息?.装备基础属性)?.加速等级 || 0
   const 外部延迟 = useAppSelector((state) => state?.data?.网络延迟) || 0
   const 外部奇穴信息 = useAppSelector((state) => state?.data?.当前奇穴信息)
   const 外部秘籍信息 = useAppSelector((state) => state?.data?.当前秘籍信息)
-  const 增益启用 = useAppSelector((state) => state?.data?.增益启用)
+  const 外部增益启用 = useAppSelector((state) => state?.data?.增益启用)
   const 增益数据 = useAppSelector((state) => state?.data?.增益数据)
 
   useEffect(() => {
     if (模拟器弹窗展示) {
       // 设置外面选择的默认奇穴信息
-      const 增益加速值 = 增益启用 ? 计算增益数据中加速值(增益数据) : 0
+      const 增益加速值 = 外部增益启用 ? 计算增益数据中加速值(增益数据) : 0
       const 最终加速值 = 外部加速值 + 增益加速值
       更新奇穴信息(外部奇穴信息)
       更新加速值(最终加速值)
       更新秘籍信息(外部秘籍信息)
       更新网络延迟(外部延迟)
+      更新增益启用(外部增益启用)
     } else {
       更新日志信息([])
       更新模拟器弹窗展示(false)
@@ -103,7 +105,7 @@ function 循环模拟() {
         计算结果技能列表: [],
       })
     }
-  }, [模拟器弹窗展示, 外部奇穴信息, 外部加速值, 外部秘籍信息, 增益数据, 增益启用])
+  }, [模拟器弹窗展示, 外部奇穴信息, 外部加速值, 外部秘籍信息, 增益数据, 外部增益启用])
 
   const 打开循环模拟器 = () => {
     数据埋点('打开循环模拟器')
@@ -165,6 +167,8 @@ function 循环模拟() {
               更新起手Buff配置,
               秘籍信息,
               更新秘籍信息,
+              增益启用,
+              更新增益启用,
             }}
           >
             <CycleComponent 打开循环模拟器={打开循环模拟器} />

@@ -17,6 +17,7 @@ interface 规划加速函数类型 {
   锁定装备: 装备属性信息模型[]
   品级范围: number[]
   计算范围: string[]
+  装备类型: 装备类型枚举[]
   包含蓝色附魔小药: boolean
   当前数据: any
 }
@@ -26,6 +27,7 @@ export interface 加速数据类型 {
   label: string // 用于展示的名字
   value: number // 提供加速值
   type: string // 计算类型 相同类型不可重复选择
+  equip?: any // 额外数据
 }
 
 const 规划加速函数 = (props: 规划加速函数类型) => {
@@ -34,6 +36,7 @@ const 规划加速函数 = (props: 规划加速函数类型) => {
     目标加速 = 0,
     计算范围,
     包含装备部位,
+    装备类型,
     品级范围,
     包含蓝色附魔小药 = false,
     当前数据,
@@ -52,7 +55,7 @@ const 规划加速函数 = (props: 规划加速函数类型) => {
         const 五彩石最终数据 = 获取五彩石加速情况分类(当前数据)
         最终计算加速总数组 = 最终计算加速总数组?.concat(五彩石最终数据)
       } else if (范围 === '装备') {
-        const 装备最终数据 = 获取装备加速模型(当前数据, 包含装备部位, 品级范围)
+        const 装备最终数据 = 获取装备加速模型(当前数据, 包含装备部位, 品级范围, 装备类型)
         最终计算加速总数组 = 最终计算加速总数组?.concat(装备最终数据)
       } else if (范围 === '附魔') {
         const 包含挑战暗器附魔 = 计算范围?.includes('挑战附魔')
@@ -176,13 +179,13 @@ const 获取挑战附魔加速模型 = (当前数据) => {
     })
     ?.map((item) => item?.增益集合?.[0]?.值)
 
-  const 挑战附魔数值 = Math.max(...加速附魔数据)
+  const 挑战附魔数值 = [...加速附魔数据]
   加速附魔数据 = [...加速附魔数据, 0]
   const 附魔排列组合 = generateCombinations(加速附魔数据, 1)
   const res: 加速数据类型[] = []
   附魔排列组合?.forEach((组合) => {
     const 加速值 = sumArray(组合)
-    const 挑战附魔数量 = countOccurrences(组合, 挑战附魔数值)
+    const 挑战附魔数量 = countOccurrences(组合, 挑战附魔数值?.[0], 挑战附魔数值?.[1])
     const 组合名称 = `${挑战附魔数量}个挑战附魔`
     res.push({
       id: `挑战附魔_${组合名称}`,
@@ -229,7 +232,12 @@ const 获取附魔加速模型 = (当前数据, 包含蓝色附魔小药, 包含
   return res
 }
 
-const 获取装备加速模型 = (当前数据, 包含装备部位: 装备位置部位枚举[], 品级范围: number[]) => {
+const 获取装备加速模型 = (
+  当前数据,
+  包含装备部位: 装备位置部位枚举[],
+  品级范围: number[],
+  装备类型: 装备类型枚举[],
+) => {
   const res: 加速数据类型[] = []
   const { 装备数据 } = 当前数据
   包含装备部位?.forEach((部位key) => {
@@ -240,7 +248,8 @@ const 获取装备加速模型 = (当前数据, 包含装备部位: 装备位置
         if (
           (装备?.装备品级 >= 品级范围?.[0] || 0) &&
           装备?.装备品级 < 品级范围?.[1] &&
-          ![装备类型枚举.PVX, 装备类型枚举.橙武]?.includes(装备?.装备类型)
+          装备类型?.includes(装备?.装备类型)
+          // ![装备类型枚举.PVX, 装备类型枚举.橙武]?.includes(装备?.装备类型)
         ) {
           const 装备最大精炼等级 = 获取最大精炼等级(装备)
           let 加速值 = 0
@@ -252,12 +261,13 @@ const 获取装备加速模型 = (当前数据, 包含装备部位: 装备位置
           })
           if (加速值 > 0) {
             const 判断当前是否有type已经完全一样加速 = res?.some(
-              (old) => old?.type === 部位key && old?.value === 加速值
+              (old) => old?.type === 部位key && old?.value === 加速值,
             )
             if (!判断当前是否有type已经完全一样加速) {
               res.push({
                 id: `装备_${装备?.id || ''}`,
                 label: 装备?.装备名称,
+                equip: 装备,
                 value: 加速值,
                 type: 部位key,
               })
@@ -295,10 +305,12 @@ function sumArray(arr) {
   return total
 }
 
-function countOccurrences(arr, num) {
+function countOccurrences(arr, num, num2?) {
   let count = 0
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === num) {
+      count++
+    } else if (num2 && arr[i] === num2) {
       count++
     }
   }

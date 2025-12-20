@@ -16,7 +16,7 @@ class 劲风簇 extends 技能统一类 {
   }
 
   命中() {
-    this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8)
+    this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8, 0)
   }
 
   释放后() {

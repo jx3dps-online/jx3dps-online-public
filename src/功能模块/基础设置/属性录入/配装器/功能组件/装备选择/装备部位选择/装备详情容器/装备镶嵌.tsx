@@ -14,7 +14,7 @@ const { 镶嵌孔: 镶嵌孔数据 } = 获取当前数据()
 const 装备镶嵌: React.FC<装备镶嵌类型> = (props) => {
   const { 装备数据, 当前装备信息 } = props
 
-  return (
+  return 装备数据?.镶嵌孔数组?.length ? (
     <div className={styles.data}>
       <h1 className={styles.title}>镶嵌</h1>
       <div className={styles.stoneContent}>
@@ -41,7 +41,7 @@ const 装备镶嵌: React.FC<装备镶嵌类型> = (props) => {
         })}
       </div>
     </div>
-  )
+  ) : null
 }
 
 export default memo(装备镶嵌)

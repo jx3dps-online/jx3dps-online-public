@@ -12,10 +12,14 @@ interface 装备属性类型 {
 
 const 装备属性: React.FC<装备属性类型> = (props) => {
   const { 装备数据, 当前装备信息 } = props
-
   return (
     <div className={styles.data}>
-      <h1 className={styles.title}>属性</h1>
+      <div className={styles.header}>
+        <h1 className={styles.mainTitle}>属性 - {装备数据?.装备名称}</h1>
+        {当前装备信息?.装备部位 ? (
+          <Tag color={PositionMap[当前装备信息?.装备部位]}>{当前装备信息?.装备部位}</Tag>
+        ) : null}
+      </div>
       <div className={styles.dataContent}>
         {获取属性列表(装备数据)
           ?.filter((a) => a?.名称 !== '体质')
@@ -23,22 +27,14 @@ const 装备属性: React.FC<装备属性类型> = (props) => {
             return (
               <div key={index} className={styles.dataItem}>
                 {/* <div className={styles.dataItemLabel}>{item?.名称}</div> */}
-                <Tag
-                  className={styles.attrLabel}
-                  color={ColorMap?.[item?.名称]}
-                >
+                <Tag className={styles.attrLabel} color={ColorMap?.[item?.名称]}>
                   {item?.名称}
                 </Tag>
                 <Tag className={styles.dataItemValueNum}>
                   <div className={styles.dataItemValueWrap}>{item?.数值}</div>
                   {item?.名称 !== '武伤' ? (
                     <span className={styles.dataItemValueText}>
-                      {`+ ${
-                        精炼加成系数算法(
-                          item?.数值,
-                          当前装备信息?.当前精炼等级
-                        ) - item?.数值
-                      }`}
+                      {`+ ${精炼加成系数算法(item?.数值, 当前装备信息?.当前精炼等级) - item?.数值}`}
                     </span>
                   ) : null}
                 </Tag>
@@ -67,6 +63,20 @@ const ColorMap = {
   加速: 'blue',
   武伤: 'geekblue',
   全能: 'purple',
+}
+
+const PositionMap = {
+  帽子: 'magenta',
+  衣服: 'red',
+  腰带: 'purple',
+  护腕: 'orange',
+  下装: 'gold',
+  鞋子: 'lime',
+  项链: 'green',
+  腰坠: 'cyan',
+  戒指: 'geekblue',
+  暗器: 'gray',
+  武器: 'blue',
 }
 
 const 获取属性列表 = (装备: 装备属性信息模型) => {

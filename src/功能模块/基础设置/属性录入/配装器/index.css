@@ -54,6 +54,11 @@
   font-weight: 400;
 }
 
+.zhuangbei-diff-btn-wrap {
+  display: flex;
+  align-items: center;
+}
+
 .zhuangbei-diff-tip {
   font-size: 14px;
   color: #666;
@@ -120,7 +125,7 @@
   margin-bottom: 16px;
 }
 
-.dps-diff-item+.dps-diff-item {
+.dps-diff-item + .dps-diff-item {
   margin: 0;
 }
 

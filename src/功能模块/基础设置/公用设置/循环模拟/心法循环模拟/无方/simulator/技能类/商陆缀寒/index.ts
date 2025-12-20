@@ -69,7 +69,7 @@ class 商陆缀寒 extends 技能统一类 {
     }
 
     if (this.模拟循环.校验奇穴是否存在('熟地')) {
-      this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8)
+      this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8, 0)
     }
   }
 

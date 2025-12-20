@@ -77,6 +77,7 @@ export interface SimulatorCycleProps {
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
   起手Buff配置?: 起手Buff配置
+  断御前星延迟?: number
 }
 
 class 循环主类 {
@@ -109,6 +110,7 @@ class 循环主类 {
   待生效事件队列: 待生效事件[] = []
   启用团队增益快照 = false
   团队增益轴: 团队增益轴类型 = {}
+  断御前星延迟 = 0
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
     // 模拟开始后不会变动的数据
@@ -120,6 +122,7 @@ class 循环主类 {
     this.加速值 = props.加速值
     this.网络延迟 = props.网络延迟
     this.启用团队增益快照 = !!props.启用团队增益快照
+    this.断御前星延迟 = props.断御前星延迟 || 0
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
     // 根据奇穴和装备情况修改buff的数据
     this.Buff和Dot数据 = 根据奇穴修改buff数据(this.奇穴)

@@ -24,7 +24,7 @@ class 三星临 extends 技能统一类 {
     }
 
     if (this.模拟循环.当前目标buff列表?.['连极阵']?.当前层数) {
-      this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8)
+      this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8, 0)
     }
 
     this.保存释放记录('三星临')

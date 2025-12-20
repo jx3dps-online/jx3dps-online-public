@@ -35,6 +35,8 @@ interface CycleSimulatorContextProps {
   更新起手Buff配置: (e: 起手Buff配置) => void
   秘籍信息: 选中秘籍信息
   更新秘籍信息: (e: 选中秘籍信息) => void
+  增益启用: boolean
+  更新增益启用: (e: boolean) => void
 }
 
 const CycleSimulatorContext = React.createContext<CycleSimulatorContextProps>({} as any)

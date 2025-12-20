@@ -82,3 +82,7 @@
 .zhuangbei-diff {
   margin-right: 8px;
 }
+
+.equip-diff-change .ant-select-selector {
+  border-color: #f34242 !important;
+}

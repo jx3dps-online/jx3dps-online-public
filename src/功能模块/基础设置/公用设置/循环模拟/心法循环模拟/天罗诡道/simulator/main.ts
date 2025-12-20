@@ -58,7 +58,6 @@ import { 按数字生成数组 } from '@/工具函数/help'
 
 const { 技能系数 } = 获取当前数据()
 
-
 export interface SimulatorCycleProps {
   测试循环: string[]
   加速值: number
@@ -106,6 +105,7 @@ class 循环主类 {
   忽略延迟技能: string[] = []
   暴雨梨花针次数 = 0
   已添加每秒神机回复事件 = false
+  第一次鬼斧: boolean
 
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
@@ -136,9 +136,10 @@ class 循环主类 {
     // 模拟初始化
     this.初始化技能实例类()
     this.重置循环执行结果()
+    this.第一次鬼斧 = true
   }
   添加神机每秒回复事件(初始时间 = 16) {
-    if (this.已添加每秒神机回复事件){
+    if (this.已添加每秒神机回复事件) {
       return
     }
     let 当前时间 = this.当前时间 || 0
@@ -154,7 +155,7 @@ class 循环主类 {
       }
     })
     this.添加待生效事件队列(待生效事件)
-    this.已添加每秒神机回复事件 =true
+    this.已添加每秒神机回复事件 = true
   }
 
   神机值变化(来源?: any) {
@@ -170,7 +171,7 @@ class 循环主类 {
     if (消耗神机值) {
       变化量 = -消耗神机值
     }
-    if (来源 !== '每秒' && 来源 !== '连弩'){
+    if (来源 !== '每秒' && 来源 !== '连弩') {
       技能名称 = 来源?.技能名称
     }
     // 执行神机值变化
@@ -267,7 +268,11 @@ class 循环主类 {
     //暗藏续费5秒扬威
     if (名称 === '扬威' && 延长buff时间 !== 0) {
       const 扬威当前数据 = this.当前自身buff列表[名称]
-      if (扬威当前数据 && 扬威当前数据.刷新时间 !== undefined && 扬威当前数据.最大持续时间 !== undefined) {
+      if (
+        扬威当前数据 &&
+        扬威当前数据.刷新时间 !== undefined &&
+        扬威当前数据.最大持续时间 !== undefined
+      ) {
         const 上次释放时间 = 扬威当前数据.刷新时间
         const 消耗时间 = this.当前时间 - 上次释放时间
         const 剩余时间 = 扬威当前数据.最大持续时间 - 消耗时间
@@ -488,7 +493,7 @@ class 循环主类 {
     额外增益列表: string[] = [],
     造成时间 = this.当前时间,
     隐藏日志 = false,
-    技能等级 = 1
+    技能等级 = 1,
   ) {
     const 当前技能数据 = 技能系数?.find((item) => item.技能名称 === 来源)
     const 技能增益列表 = 当前技能数据?.技能增益列表 || []
@@ -508,7 +513,7 @@ class 循环主类 {
             if (item.增益名称.includes('·')) {
               const 当前增益数据 = 转化buff和增益名称(
                 item.增益名称.split('·')[0],
-                this.当前自身buff列表
+                this.当前自身buff列表,
               )
               return 当前增益数据?.当前层数 === +item.增益名称.split('·')[1]
             }
@@ -516,8 +521,9 @@ class 循环主类 {
           }
         })
         ?.map((item) => item.增益名称) || []
-    let 总增益列表 = 有关的buff列表
-      .concat(额外增益列表?.filter((a) => !有关的buff列表?.includes(a)))
+    let 总增益列表 = 有关的buff列表.concat(
+      额外增益列表?.filter((a) => !有关的buff列表?.includes(a)),
+    )
     if (this.启用团队增益快照) {
       const 团队增益buff列表 = 判断团队增益快照Buff({
         团队增益轴: this.团队增益轴,
@@ -779,7 +785,7 @@ class 循环主类 {
             this.技能类实例集合.天女散花.触发伤害(当前事件)
           } else if (当前事件.事件名称?.includes('神机每秒回复')) {
             this.神机值变化('每秒')
-          }else if (当前事件.事件名称?.includes('天绝延迟触发')) {
+          } else if (当前事件.事件名称?.includes('天绝延迟触发')) {
             this.技能类实例集合?.DOT_天绝地灭?.获得天绝()
           }
           this.待生效事件队列?.shift()

@@ -65,6 +65,7 @@ function CycleSimulator() {
     添加设置,
     更新添加设置,
     起手Buff配置,
+    增益启用,
   } = useContext(CycleSimulatorContext)
 
   const [延迟弹窗设置, 设置延迟弹窗设置] = useState<{
@@ -113,6 +114,7 @@ function CycleSimulator() {
     启用团队增益快照,
     起手Buff配置,
     起手怒气,
+    增益启用,
   ])
 
   const simulator = (props?) => {
@@ -170,6 +172,7 @@ function CycleSimulator() {
       更新计算时间: 战斗时间 / 每秒郭氏帧,
       更新奇穴数据: 奇穴信息,
       更新秘籍信息: 秘籍信息,
+      更新增益启用: 增益启用,
     }
     const { 秒伤, 计算结果技能列表, 秒伤计算时间, 总伤 } = dispatch(秒伤计算(计算参数))
     更新模拟DPS结果({

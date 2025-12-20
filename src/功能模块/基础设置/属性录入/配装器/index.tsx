@@ -48,6 +48,7 @@ function 配装器(props: ModalProps) {
     品级范围: 普通至英雄,
   })
   const [对比显示百分比, 设置对比显示百分比] = useState<boolean>(false)
+  const [对比加速, 设置对比加速] = useState<boolean>(true)
   const 装备部位组件调用索引 = useRef<Array<React.RefObject<any>>>([])
 
   useEffect(() => {
@@ -242,6 +243,8 @@ function 配装器(props: ModalProps) {
           对比装备信息={当前装备信息 || 装备信息}
           form={form}
           遍历寻优={遍历寻优}
+          对比加速={对比加速}
+          设置对比加速={设置对比加速}
         />
       }
       className={'zhuangbei-input-set-modal'}
@@ -309,8 +312,10 @@ function 配装器(props: ModalProps) {
                     默认镶嵌宝石等级={默认镶嵌宝石等级}
                     部位={部位名称}
                     部位索引={部位索引}
+                    排序索引={排序索引}
                     开启装备智能对比={开启装备智能对比}
                     对比显示百分比={对比显示百分比}
+                    对比加速={对比加速}
                     装备选择范围={装备选择范围}
                     ref={装备部位组件调用索引?.current?.[排序索引]}
                   />

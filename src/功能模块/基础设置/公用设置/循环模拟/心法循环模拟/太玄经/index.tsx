@@ -63,6 +63,7 @@ function CycleSimulator() {
     添加设置,
     更新添加设置,
     起手Buff配置,
+    增益启用,
   } = useContext(CycleSimulatorContext)
 
   const [模拟信息, 更新模拟信息] = useState<模拟信息类型>({
@@ -91,6 +92,7 @@ function CycleSimulator() {
   })
 
   const [起手星运, 更新起手星运] = useState<number>(100) // 5寒
+  const [断御前星延迟, 更新断御前星延迟] = useState<number>(0)
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
   const dispatch = useAppDispatch()
 
@@ -106,6 +108,7 @@ function CycleSimulator() {
     }
   }, [
     模拟器弹窗展示,
+    增益启用,
     cycle,
     网络延迟,
     秘籍信息,
@@ -115,6 +118,7 @@ function CycleSimulator() {
     奇穴信息,
     团队增益轴,
     起手Buff配置,
+    断御前星延迟,
   ])
 
   const simulator = (props?) => {
@@ -136,6 +140,7 @@ function CycleSimulator() {
       启用团队增益快照,
       团队增益轴,
       起手Buff配置,
+      断御前星延迟,
     })
 
     const {
@@ -179,6 +184,7 @@ function CycleSimulator() {
       更新计算时间: 当前时间 / 每秒郭氏帧,
       更新奇穴数据: 奇穴信息,
       更新秘籍信息: 秘籍信息,
+      更新增益启用: 增益启用,
     }
     const { 秒伤, 计算结果技能列表, 秒伤计算时间, 总伤 } = dispatch(秒伤计算(计算参数))
     更新模拟DPS结果({
@@ -342,7 +348,14 @@ function CycleSimulator() {
         <div className={'cycle-simulator-setting'}>
           <心法配置
             原始Buff数据={根据奇穴修改buff数据(奇穴信息)}
-            配置区={<心法特殊配置 起手星运={起手星运} 更新起手星运={更新起手星运} />}
+            配置区={
+              <心法特殊配置
+                起手星运={起手星运}
+                更新起手星运={更新起手星运}
+                断御前星延迟={断御前星延迟}
+                更新断御前星延迟={更新断御前星延迟}
+              />
+            }
           />
           {/* 角色状态栏 */}
           <StatusBar

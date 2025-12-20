@@ -27,7 +27,7 @@ const 大附魔选择: ForwardRefExoticComponent<大附魔选择类型> = forwar
       {
         label: `英雄·${type}`,
         value: 2,
-        iconId: '23948', 
+        iconId: '23948',
       },
       {
         label: `普通·${type}`,

@@ -12,11 +12,7 @@ import 心法配置 from '../通用/通用组件/心法配置'
 import 模拟器头部组件 from '../通用/通用组件/模拟器头部组件'
 import 奇穴设置组件 from '../通用/通用组件/奇穴设置组件'
 
-import 循环模拟技能基础数据, {
-  宠物基础数据,
-  原始Buff数据,
-  换灵印基础数据,
-} from './constant/skill'
+import 循环模拟技能基础数据, { 宠物基础数据, 原始Buff数据, 换灵印基础数据 } from './constant/skill'
 import { getDpsCycle } from './utils'
 import {
   循环日志数据类型,
@@ -67,6 +63,7 @@ function CycleSimulator() {
     添加设置,
     更新添加设置,
     起手Buff配置,
+    增益启用,
   } = useContext(CycleSimulatorContext)
 
   const [模拟信息, 更新模拟信息] = useState<模拟信息类型>({
@@ -116,6 +113,7 @@ function CycleSimulator() {
     }
   }, [
     模拟器弹窗展示,
+    增益启用,
     cycle,
     网络延迟,
     秘籍信息,
@@ -177,16 +175,14 @@ function CycleSimulator() {
   // 计算DPS日志
   const 计算dps = (data: 循环日志数据类型[], 当前时间) => {
     const 获取用于计算的技能组 = getDpsCycle(data)
-
     const 计算参数: any = {
       更新循环技能列表: 获取用于计算的技能组,
       更新计算时间: 当前时间 / 每秒郭氏帧,
       更新奇穴数据: 奇穴信息,
       更新秘籍信息: 秘籍信息,
+      更新增益启用: 增益启用,
     }
-    const { 秒伤, 计算结果技能列表, 秒伤计算时间, 总伤 } = dispatch(
-      秒伤计算(计算参数)
-    )
+    const { 秒伤, 计算结果技能列表, 秒伤计算时间, 总伤 } = dispatch(秒伤计算(计算参数))
 
     更新模拟DPS结果({
       秒伤: 当前时间 > 0 ? 秒伤 : 0,
@@ -231,8 +227,7 @@ function CycleSimulator() {
         技能释放记录结果: {
           ...找到当前技能释放记录?.技能释放记录结果,
           特殊标记:
-            显示标鹄层数 &&
-            !['换行', '寒更晓箭', '金乌见坠']?.includes(item?.技能名称)
+            显示标鹄层数 && !['换行', '寒更晓箭', '金乌见坠']?.includes(item?.技能名称)
               ? 找到当前技能释放记录?.技能释放记录结果?.特殊标记
               : undefined,
         },
@@ -241,10 +236,7 @@ function CycleSimulator() {
       if (index === 0) {
         res[res?.length] = [{ ...data, index: index || 0 }]
       } else {
-        res[res?.length - 1] = [
-          ...(res[res?.length - 1] || []),
-          { ...data, index: index || 0 },
-        ]
+        res[res?.length - 1] = [...(res[res?.length - 1] || []), { ...data, index: index || 0 }]
 
         const 打完本技能换箭 = data?.技能名称 === '寒更晓箭'
 
@@ -274,19 +266,13 @@ function CycleSimulator() {
     setCycle(newCycle)
   }
 
-  const 向循环内插入技能 = (
-    item: 循环基础技能数据类型[],
-    插入位置,
-    插入索引
-  ) => {
+  const 向循环内插入技能 = (item: 循环基础技能数据类型[], 插入位置, 插入索引) => {
     let newCycle: 循环基础技能数据类型[] = [...(cycle || [])]
     let addCycle: 循环基础技能数据类型[] = []
 
     if (插入位置 === '前部插入') {
       // 在索引 2 前插入多个元素
-      addCycle = newCycle
-        .slice(0, 插入索引)
-        .concat(item, newCycle.slice(插入索引))
+      addCycle = newCycle.slice(0, 插入索引).concat(item, newCycle.slice(插入索引))
       更新添加设置({ ...添加设置, 索引: 添加设置.索引 + item.length })
     } else {
       // 在索引 2 后插入多个元素
@@ -358,7 +344,7 @@ function CycleSimulator() {
   return (
     <>
       <Modal
-        className="cycle-simulator-modal simulator-shxj"
+        className='cycle-simulator-modal simulator-shxj'
         maskClosable={false}
         width={'100%'}
         title={
@@ -395,10 +381,7 @@ function CycleSimulator() {
           <心法配置
             原始Buff数据={根据奇穴修改buff数据(奇穴信息)}
             配置区={
-              <心法特殊配置
-                显示标鹄层数={显示标鹄层数}
-                更新显示标鹄层数={更新显示标鹄层数}
-              />
+              <心法特殊配置 显示标鹄层数={显示标鹄层数} 更新显示标鹄层数={更新显示标鹄层数} />
             }
           />
           {/* 角色状态栏 */}

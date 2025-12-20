@@ -27,7 +27,7 @@ class 骤风令 extends 有CD技能通用类 {
       this.模拟循环.添加buff({ 名称: '茫缈', 对象: '自身' })
     }
 
-    this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8)
+    this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8, 0)
   }
 
   减少调息时间(减少帧数) {

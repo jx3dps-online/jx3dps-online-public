@@ -63,6 +63,7 @@ function CycleSimulator() {
     添加设置,
     更新添加设置,
     起手Buff配置,
+    增益启用,
   } = useContext(CycleSimulatorContext)
 
   const [模拟信息, 更新模拟信息] = useState<模拟信息类型>({
@@ -96,7 +97,14 @@ function CycleSimulator() {
   })
 
   const [启用斩杀, 更新启用斩杀] = useState<boolean>(false)
-  const [忽略延迟技能, 更新忽略延迟技能] = useState<string[]>(['灵蛊', '凤凰蛊', '蛊虫献祭', '触发橙武', '特效腰坠'])
+  const [忽略延迟技能, 更新忽略延迟技能] = useState<string[]>([
+    '灵蛊',
+    '凤凰蛊',
+    '蛊虫献祭',
+    '触发橙武',
+    '特效腰坠',
+  ])
+  const [周期性忽略延迟, 更新周期性忽略延迟] = useState<number>(0)
 
   // 奇穴
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
@@ -109,6 +117,7 @@ function CycleSimulator() {
     }
   }, [
     模拟器弹窗展示,
+    增益启用,
     cycle,
     网络延迟,
     秘籍信息,
@@ -119,6 +128,7 @@ function CycleSimulator() {
     团队增益轴,
     起手Buff配置,
     忽略延迟技能,
+    周期性忽略延迟,
   ])
 
   const simulator = (props?) => {
@@ -141,6 +151,7 @@ function CycleSimulator() {
       团队增益轴,
       起手Buff配置,
       忽略延迟技能,
+      周期性忽略延迟,
     })
 
     const {
@@ -201,6 +212,7 @@ function CycleSimulator() {
       更新计算时间: 当前时间 / 每秒郭氏帧,
       更新奇穴数据: 奇穴信息,
       更新秘籍信息: 秘籍信息,
+      更新增益启用: 增益启用,
     }
     const { 秒伤, 计算结果技能列表, 秒伤计算时间, 总伤 } = dispatch(秒伤计算(计算参数))
     更新模拟DPS结果({
@@ -229,10 +241,7 @@ function CycleSimulator() {
         if (!是否存在换行技能 && data?.技能名称 === '蛇影') {
           res[res?.length] = [{ ...data, index: index || 0 }]
         } else {
-          res[res?.length - 1] = [
-            ...(res[res?.length - 1] || []),
-            { ...data, index: index || 0 },
-          ]
+          res[res?.length - 1] = [...(res[res?.length - 1] || []), { ...data, index: index || 0 }]
           if (data?.技能名称 === '换行') {
             res[res?.length] = []
           }
@@ -344,14 +353,16 @@ function CycleSimulator() {
               <心法特殊配置
                 忽略延迟技能={忽略延迟技能}
                 更新忽略延迟技能={更新忽略延迟技能}
-              //     启用斩杀={启用斩杀}
-              //     更新启用斩杀={更新启用斩杀}
-              //     五十血以下={五十血以下}
-              //     更新五十血以下={更新五十血以下}
-              //     显示龙牙龙驭层数={显示龙牙龙驭层数}
-              //     更新显示龙牙龙驭层数={更新显示龙牙龙驭层数}
-              //     启用血量消耗计算={启用血量消耗计算}
-              //     更新启用血量消耗计算={更新启用血量消耗计算}
+                周期性忽略延迟={周期性忽略延迟}
+                更新周期性忽略延迟={更新周期性忽略延迟}
+                //     启用斩杀={启用斩杀}
+                //     更新启用斩杀={更新启用斩杀}
+                //     五十血以下={五十血以下}
+                //     更新五十血以下={更新五十血以下}
+                //     显示龙牙龙驭层数={显示龙牙龙驭层数}
+                //     更新显示龙牙龙驭层数={更新显示龙牙龙驭层数}
+                //     启用血量消耗计算={启用血量消耗计算}
+                //     更新启用血量消耗计算={更新启用血量消耗计算}
               />
             }
           />

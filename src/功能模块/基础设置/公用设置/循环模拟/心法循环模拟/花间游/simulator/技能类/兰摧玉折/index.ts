@@ -73,7 +73,7 @@ class 兰摧玉折 extends 有CD技能通用类 {
       this.兰摧玉折命中()
     }
     if (this.模拟循环.校验奇穴是否存在('生风')) {
-      this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8)
+      this.模拟循环.GCD组.公共 = Math.max((this.模拟循环.GCD组.公共 || 0) - 8, 0)
     }
   }
 

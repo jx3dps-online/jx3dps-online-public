@@ -21,6 +21,17 @@ const 品级范围 = {
 }
 
 const 计算范围 = ['装备', '附魔', '挑战附魔', '五彩石', '小药', '家园酒']
+const 装备类型范围 = [
+  装备类型枚举.普通,
+  装备类型枚举.副本精简,
+  装备类型枚举.门派套装,
+  装备类型枚举.切糕,
+  装备类型枚举.橙武,
+  装备类型枚举.特效武器,
+  装备类型枚举.试炼精简,
+  // 装备类型枚举.门派特效武器,
+  // 装备类型枚举.PVX,
+]
 
 const 当前数据 = 获取当前数据()
 const { 装备数据 } = 当前数据
@@ -30,6 +41,7 @@ function 加速规划() {
   const [加速值参考弹窗展示, 设置加速值参考弹窗展示] = useState<boolean>(false)
   const [当前品级范围, 设置当前品级范围] = useState<string>('英雄品')
   const [锁定装备, 设置锁定装备] = useState<装备属性信息模型[]>()
+  const [装备类型, 设置装备类型] = useState<装备类型枚举[]>()
   const [包含部位, 设置包含部位] = useState<装备位置部位枚举[]>([])
   const [计算组合结果, 设置计算组合结果] = useState<计算组合结果类型>()
   const [计算组合结果弹窗展示, 设置计算组合结果弹窗展示] = useState<boolean>(false)
@@ -87,7 +99,7 @@ function 加速规划() {
           (装备) =>
             装备?.装备品级 >= 限制品级范围[0] &&
             装备?.装备品级 < 限制品级范围[1] &&
-            ![装备类型枚举.PVX, 装备类型枚举.橙武]?.includes(装备?.装备类型)
+            ![装备类型枚举.PVX, 装备类型枚举.橙武]?.includes(装备?.装备类型),
         )
         .some((装备) => {
           const 装备增益列表 = 装备?.装备增益
@@ -101,6 +113,8 @@ function 加速规划() {
       form?.setFieldValue('计算范围', 计算范围)
     } else if (类型 === '包含装备部位') {
       form?.setFieldValue('包含装备部位', 包含加速的装备部位)
+    } else if (类型 === '装备类型') {
+      form?.setFieldValue('装备类型', 装备类型范围)
     }
   }
 
@@ -131,12 +145,16 @@ function 加速规划() {
         message.error('请设置目标加速值')
         return
       }
-      if (!values?.计算范围) {
+      if (!values?.计算范围?.length) {
         message.error('请设置计算范围')
         return
       }
-      if (!values?.包含装备部位) {
+      if (values?.计算范围?.includes('装备') && !values?.包含装备部位?.length) {
         message.error('请设置包含部位')
+        return
+      }
+      if (values?.计算范围?.includes('装备') && !values?.装备类型?.length) {
+        message.error('请设置装备类型')
         return
       }
       const 数据 = {
@@ -152,6 +170,7 @@ function 加速规划() {
           包含装备部位: values?.包含装备部位,
           锁定装备: values?.锁定装备?.length ? values?.锁定装备 : 锁定装备 || [],
           计算范围: values?.计算范围 || [],
+          装备类型: values?.装备类型 || [],
           品级范围: 品级范围?.[当前品级范围],
           包含蓝色附魔小药: !!values?.包含蓝色附魔小药?.[0],
           当前数据: 数据,
@@ -280,6 +299,31 @@ function 加速规划() {
               >
                 <Checkbox.Group>
                   <Checkbox value={true}>包含</Checkbox>
+                </Checkbox.Group>
+              </Form.Item>
+              <Form.Item
+                className={'haste-project-form-item-100'}
+                name='装备类型'
+                label={
+                  <div className={'haste-project-target-header'}>
+                    <span>装备类型</span>
+                    <span className={'haste-project-target-operate'}>
+                      <a onClick={() => 全选('装备类型')}>全选</a>
+                      <a className='haste-project-operate-delete' onClick={() => 清空('装备类型')}>
+                        清空
+                      </a>
+                    </span>
+                  </div>
+                }
+              >
+                <Checkbox.Group>
+                  {装备类型范围?.map((item) => {
+                    return (
+                      <Checkbox value={item} key={`装备类型${item}`}>
+                        {item}
+                      </Checkbox>
+                    )
+                  })}
                 </Checkbox.Group>
               </Form.Item>
               <Form.Item

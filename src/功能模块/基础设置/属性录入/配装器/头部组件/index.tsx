@@ -8,6 +8,7 @@ import 最佳附魔设置 from './最佳附魔设置'
 import 最佳五彩石设置 from './最佳五彩石设置'
 import 加速规划 from './加速规划'
 import 遍历寻优跳过弹窗 from './遍历寻优跳过弹窗'
+import 智能对比设置弹窗 from './智能对比设置弹窗'
 
 const { 缓存映射 } = 获取当前数据()
 
@@ -54,6 +55,15 @@ interface 头部组件类型 {
    * 设置对比显示百分比
    */
   设置对比显示百分比: (e: boolean) => void
+  /**
+   * @name 对比加速
+   * 对比加速
+   * */
+  对比加速: boolean
+  /**
+   * 设置对比加速
+   */
+  设置对比加速: (e: boolean) => void
   form: any
 }
 
@@ -67,6 +77,8 @@ function 头部组件(props: 头部组件类型) {
     设置开启装备智能对比,
     对比显示百分比,
     设置对比显示百分比,
+    对比加速,
+    设置对比加速,
     遍历寻优,
   } = props
   const { modal } = App.useApp()
@@ -75,6 +87,7 @@ function 头部组件(props: 头部组件类型) {
 
   const [当前选择计算部位, 更新当前选择计算部位] = useState<string[]>(全部部位)
   const [遍历寻优跳过弹窗展示, 设置遍历寻优跳过弹窗展示] = useState<boolean>(false)
+  const [智能对比设置弹窗展示, 设置智能对比设置弹窗展示] = useState<boolean>(false)
 
   const 一键替换附魔 = (附魔信息) => {
     form?.validateFields().then((values) => {
@@ -159,42 +172,38 @@ function 头部组件(props: 头部组件类型) {
             onChange={(e) => 设置开启装备智能对比(e?.target?.checked)}
             className={'zhuangbei-diff-btn'}
           >
-            <span>智能对比</span>
-            <Tooltip
-              // overlayInnerStyle={{ width: 350 }}
-              styles={{
-                body: { width: 350 },
-              }}
-              title={
-                <div>
-                  <p>对比默认精炼等级下切换至另一件装备dps波动。</p>
-                  <p>注意：目标为橙武时不会自动切换循环。</p>
-                  {/* <p>考虑性能，暂时只开放13200品以上装备的智能对比。</p> */}
-                  <p>开启后打开装备选择框时会略微卡顿。</p>
-                </div>
-              }
-            >
-              <QuestionCircleOutlined className={'zhuangbei-diff-tip'} />
-            </Tooltip>
+            <div className={'zhuangbei-diff-btn-wrap'}>
+              <Button size='small' onClick={() => 设置开启装备智能对比(!开启装备智能对比)}>
+                智能对比
+              </Button>
+              <Button onClick={() => 设置智能对比设置弹窗展示(true)} size='small'>
+                <SettingOutlined />
+              </Button>
+              <Tooltip
+                // overlayInnerStyle={{ width: 350 }}
+                styles={{
+                  body: { width: 350 },
+                }}
+                title={
+                  <div>
+                    <p>对比默认精炼等级下切换至另一件装备dps波动。</p>
+                    <p>注意：目标为橙武时不会自动切换循环。</p>
+                    {/* <p>考虑性能，暂时只开放13200品以上装备的智能对比。</p> */}
+                    <p>开启后打开装备选择框时会略微卡顿。</p>
+                  </div>
+                }
+              >
+                <QuestionCircleOutlined className={'zhuangbei-diff-tip'} />
+              </Tooltip>
+            </div>
           </Checkbox>
         </span>
         {开启装备智能对比 ? (
           <>
-            <Checkbox
-              checked={对比显示百分比}
-              onChange={(e) => 设置对比显示百分比(e?.target?.checked)}
-              className={'zhuangbei-diff-btn'}
-            >
-              <span>显示百分比</span>
-            </Checkbox>
             <Button onClick={遍历寻优提示} size='small'>
               遍历寻优
             </Button>
-            <Button
-              onClick={() => 设置遍历寻优跳过弹窗展示(true)}
-              size='small'
-              style={{ marginLeft: 4 }}
-            >
+            <Button onClick={() => 设置遍历寻优跳过弹窗展示(true)} size='small'>
               <SettingOutlined />
               {当前选择计算部位?.length < 全部部位?.length
                 ? `${当前选择计算部位?.length} / ${全部部位?.length}`
@@ -219,6 +228,14 @@ function 头部组件(props: 头部组件类型) {
         onCancel={() => 设置遍历寻优跳过弹窗展示(false)}
         当前选择计算部位={当前选择计算部位}
         更新当前选择计算部位={更新当前选择计算部位}
+      />
+      <智能对比设置弹窗
+        open={智能对比设置弹窗展示}
+        onCancel={() => 设置智能对比设置弹窗展示(false)}
+        对比显示百分比={对比显示百分比}
+        设置对比显示百分比={设置对比显示百分比}
+        对比加速={对比加速}
+        设置对比加速={设置对比加速}
       />
     </div>
   )

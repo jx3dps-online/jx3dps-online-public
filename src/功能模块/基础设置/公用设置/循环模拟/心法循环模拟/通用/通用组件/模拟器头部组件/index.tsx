@@ -1,5 +1,6 @@
 import {
   Button,
+  Checkbox,
   Divider,
   Dropdown,
   InputNumber,
@@ -58,7 +59,8 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
     快速导入默认循环 = [],
   } = props
 
-  const { 秘籍信息, 更新秘籍信息, 更新起手Buff配置 } = useContext(CycleSimulatorContext)
+  const { 秘籍信息, 更新秘籍信息, 更新起手Buff配置, 增益启用, 更新增益启用 } =
+    useContext(CycleSimulatorContext)
 
   const 自定义循环 = useAppSelector((state) => state?.data?.自定义循环列表)
 
@@ -155,6 +157,10 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
     })
   }, [])
 
+  const 切换增益启用状态 = (checked) => {
+    更新增益启用(checked)
+  }
+
   return (
     <div className={styles.header}>
       <div className={styles.wrapper}>
@@ -178,6 +184,15 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
         </Popover>
       </div>
       <div className={styles.btns}>
+        <div className={styles.btnItem}>
+          <Checkbox
+            style={{ fontWeight: 400 }}
+            checked={!!增益启用}
+            onChange={(e) => 切换增益启用状态(e?.target?.checked)}
+          >
+            增益启用
+          </Checkbox>
+        </div>
         <div className={styles.btnItem}>
           <span className={styles.btnLabel}>团队增益</span>
           <团队增益快照

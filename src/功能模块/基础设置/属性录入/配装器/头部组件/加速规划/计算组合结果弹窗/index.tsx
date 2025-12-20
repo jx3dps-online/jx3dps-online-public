@@ -6,6 +6,7 @@ import { 装备属性信息模型 } from '@/@types/装备'
 import { color_list } from '../加速装备选择'
 import { 获取最大精炼等级 } from '../../../功能组件/装备选择'
 import { 精炼加成系数算法 } from '../../../工具函数/根据装备信息获取基础属性'
+import 装备详情容器 from '@/功能模块/基础设置/属性录入/配装器/功能组件/装备选择/装备部位选择/装备详情容器'
 import './index.css'
 
 interface 加速数据类型 {
@@ -13,6 +14,7 @@ interface 加速数据类型 {
   label: string // 用于展示的名字
   value: number // 提供加速值
   type: string // 计算类型 相同类型不可重复选择
+  equip?: any // 额外装备数据
 }
 
 export interface 计算组合结果类型 {
@@ -31,7 +33,6 @@ interface 计算组合结果弹窗类型 extends ModalProps {
 
 function 计算组合结果弹窗(props: 计算组合结果弹窗类型) {
   const { onCancel, 计算组合结果, 锁定装备, ...rest } = props
-
   return (
     <Modal
       title={
@@ -88,22 +89,39 @@ function 计算组合结果弹窗(props: 计算组合结果弹窗类型) {
                       const 组合样式 = item?.label?.includes('五彩')
                         ? 'h-result-wucai'
                         : item?.label?.includes('附魔')
-                        ? item?.label?.includes('挑战')
-                          ? 'h-result-fumo-tz'
-                          : item?.label?.includes('紫')
-                          ? 'h-result-fumo-zi'
-                          : 'h-result-fumo-lan'
-                        : typeof item?.id === 'string' && item?.id?.includes('家园酒')
-                        ? 'h-result-jiu'
-                        : item?.label?.includes('辅助') || item?.label?.includes('增强')
-                        ? item?.label?.includes('紫')
-                          ? 'h-result-xiaoyao-zi'
-                          : 'h-result-xiaoyao-lan'
-                        : 'h-result-zhuangbei'
+                          ? item?.label?.includes('挑战')
+                            ? 'h-result-fumo-tz'
+                            : item?.label?.includes('紫')
+                              ? 'h-result-fumo-zi'
+                              : 'h-result-fumo-lan'
+                          : typeof item?.id === 'string' && item?.id?.includes('家园酒')
+                            ? 'h-result-jiu'
+                            : item?.label?.includes('辅助') || item?.label?.includes('增强')
+                              ? item?.label?.includes('紫')
+                                ? 'h-result-xiaoyao-zi'
+                                : 'h-result-xiaoyao-lan'
+                              : 'h-result-zhuangbei'
                       return (
                         <div className='haste-project-result-item' key={item?.id}>
                           <div className={`haste-project-result-label ${组合样式}`}>
-                            {item?.label}
+                            {item?.equip ? (
+                              <装备详情容器
+                                装备数据={item?.equip}
+                                当前装备信息={{
+                                  当前精炼等级: 8,
+                                  镶嵌孔数组: item?.equip?.镶嵌孔数组?.map((a) => {
+                                    return {
+                                      ...a,
+                                      镶嵌宝石等级: 8,
+                                    }
+                                  }),
+                                }}
+                              >
+                                <span className='haste-project-result-equip'>{item?.label}</span>
+                              </装备详情容器>
+                            ) : (
+                              item?.label
+                            )}
                           </div>
                           <div className='haste-project-result-value'>+{item?.value}</div>
                           {/* {index !== row?.组合?.length - 1 ? '｜' : ''} */}

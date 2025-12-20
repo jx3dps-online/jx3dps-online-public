@@ -63,6 +63,7 @@ function CycleSimulator() {
     添加设置,
     更新添加设置,
     起手Buff配置,
+    增益启用,
   } = useContext(CycleSimulatorContext)
 
   const [模拟信息, 更新模拟信息] = useState<模拟信息类型>({
@@ -105,6 +106,7 @@ function CycleSimulator() {
     }
   }, [
     模拟器弹窗展示,
+    增益启用,
     cycle,
     网络延迟,
     秘籍信息,
@@ -178,6 +180,7 @@ function CycleSimulator() {
       更新计算时间: 当前时间 / 每秒郭氏帧,
       更新奇穴数据: 奇穴信息,
       更新秘籍信息: 秘籍信息,
+      更新增益启用: 增益启用,
     }
     const { 秒伤, 计算结果技能列表, 秒伤计算时间, 总伤 } = dispatch(秒伤计算(计算参数))
     更新模拟DPS结果({
@@ -334,15 +337,13 @@ function CycleSimulator() {
         footer={null}
         open={模拟器弹窗展示}
         onCancel={() => 更新模拟器弹窗展示(false)}
-        destroyOnClose>
+        destroyOnClose
+      >
         <div className={'cycle-simulator-setting'}>
           <心法配置
             原始Buff数据={根据奇穴修改buff数据(奇穴信息, 秘籍信息)}
             配置区={
-              <心法特殊配置
-                忽略延迟技能={忽略延迟技能}
-                更新忽略延迟技能={更新忽略延迟技能}
-              />
+              <心法特殊配置 忽略延迟技能={忽略延迟技能} 更新忽略延迟技能={更新忽略延迟技能} />
             }
           />
           {/* 角色状态栏 */}

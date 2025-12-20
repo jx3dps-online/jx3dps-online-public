@@ -1,7 +1,7 @@
 /**
  * 装备选择
  */
-import React, { forwardRef, useImperativeHandle, useMemo, useState } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from 'react'
 import classnames from 'classnames'
 import { Button, message, Popover, Select } from 'antd'
 import { BulbOutlined } from '@ant-design/icons'
@@ -28,6 +28,7 @@ import 装备详情容器 from './装备详情容器'
 import 渐变特效文字 from './渐变特效文字'
 import styles from './index.module.less'
 import './index.css'
+import classNames from 'classnames'
 
 interface 装备部位选择入参 {
   value?: number // 装备ID
@@ -36,10 +37,12 @@ interface 装备部位选择入参 {
   装备数据列表: 装备属性信息模型[]
   部位: 装备部位枚举
   部位索引: string
+  排序索引: number
   默认镶嵌宝石等级: number
   form: any
   开启装备智能对比: boolean
   对比显示百分比: boolean
+  对比加速: boolean
   装备选择范围: 装备选择范围类型
 }
 
@@ -48,17 +51,20 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
     装备数据列表,
     部位,
     部位索引,
+    排序索引,
     默认镶嵌宝石等级,
     allValue,
     form,
     开启装备智能对比,
     对比显示百分比,
+    对比加速,
     装备选择范围,
     onChange,
     ...options
   } = props
 
   const 当前计算结果 = useAppSelector((state) => state?.data?.当前计算结果)
+  const 当前装备信息 = useAppSelector((state) => state?.data?.装备信息)
   const [dpsUpList, setDpsUpList] = useState<
     {
       uuid: string
@@ -69,6 +75,21 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
   >()
   const [loading, setLoading] = useState<boolean>(false)
   const dispatch = useAppDispatch()
+  // 组件初始化存储第一次进入得装备ID
+
+  const 原始装备ID = useMemo(() => {
+    const 装备ID = 当前装备信息?.装备列表?.find(
+      (a: any, index) => 装备位置部位枚举[部位索引] === a?.装备部位 && index === 排序索引,
+    )?.id
+    return 装备ID
+  }, [当前装备信息, 排序索引])
+
+  const 是否更换装备 = useMemo(() => {
+    if (allValue?.id && 原始装备ID) {
+      return 原始装备ID !== allValue?.id
+    }
+    return false
+  }, [原始装备ID, allValue])
 
   const 实际装备列表 = useMemo(() => {
     if (
@@ -118,6 +139,10 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
     return allValue?.镶嵌孔数组?.map((item) => item.镶嵌宝石等级) || []
   }, [allValue])
 
+  const 当前选择装备 = useMemo(() => {
+    return 实际装备列表.find((a) => a.id === allValue?.id)
+  }, [allValue, 实际装备列表])
+
   // 获取dps提升装备列表
   const getDpsUpList = (获取最佳装备?) => {
     if (开启装备智能对比) {
@@ -133,6 +158,16 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
       // 传入新的装备
       const newDpsUpList = 实际装备列表
         .filter((item) => {
+          let 加速对比条件 = false
+          if (!对比加速) {
+            if (当前选择装备 && 获取装备数据描述(当前选择装备)?.includes('加速')) {
+              加速对比条件 = 获取装备数据描述(item)?.includes('加速')
+            } else if (当前选择装备 && !获取装备数据描述(当前选择装备)?.includes('加速')) {
+              加速对比条件 = !获取装备数据描述(item)?.includes('加速')
+            }
+          } else {
+            加速对比条件 = true
+          }
           if (获取最佳装备) {
             // CW只和CW对比
             if (当前装备信息?.装备增益?.大橙武特效) {
@@ -140,19 +175,22 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
                 return (
                   item?.装备品级 >= (装备选择范围?.品级范围?.[0] || 0) &&
                   item?.装备品级 <= (装备选择范围?.品级范围?.[1] || 0) &&
-                  item.装备类型 === '橙武'
+                  item.装备类型 === '橙武' &&
+                  加速对比条件
                 )
               } else {
-                return item.装备品级 >= 18900
+                return item.装备品级 >= 18900 && 加速对比条件
               }
             } else {
               if (部位 === '武器') {
                 return item.装备品级 >= 18900 && item.装备类型 !== '橙武'
               }
-              return item.装备品级 >= 18900
+              return item.装备品级 >= 18900 && 加速对比条件
             }
           }
-          return item.装备品级 >= 18900 || item.装备类型 === '橙武'
+          const 基本条件 = item.装备品级 >= 18900 || item.装备类型 === '橙武'
+
+          return 基本条件 && 加速对比条件
         })
         .map((item) => {
           const 装备最大精炼等级 = 获取最大精炼等级(item)
@@ -238,12 +276,14 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
     选择最佳装备: 选择最佳装备,
   }))
 
+  const cls = classNames('zhuangbei-select', { 'equip-diff-change': 是否更换装备 })
+
   return (
     <div id='Guide_4' className={styles.zhuangbeiSelectWrapper}>
       <Select
         showSearch
         loading={loading}
-        className='zhuangbei-select'
+        className={cls}
         placeholder={`请选择${部位}`}
         popupMatchSelectWidth={440}
         optionFilterProp='label'
@@ -333,7 +373,9 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
                       className={`zhuangbei-diff ${+upItem?.dpsUp > 0 ? 'dps-up-color' : 'dps-low-color'}`}
                     >
                       {+upItem?.dpsUp > 0 ? '+' : ''}
-                      {对比显示百分比 ? `${upItem?.dpsPercent}%` : `${upItem?.dpsUp}`}
+                      {对比显示百分比 && upItem?.dpsPercent
+                        ? `${upItem?.dpsPercent}%`
+                        : `${upItem?.dpsUp}`}
                     </span>
                   ) : null}
                   <span className={'zhuangbei-select-level'}>{item.装备品级}</span>

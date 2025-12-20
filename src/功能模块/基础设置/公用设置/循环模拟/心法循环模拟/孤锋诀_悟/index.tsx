@@ -57,6 +57,7 @@ function CycleSimulator() {
     添加设置,
     更新添加设置,
     起手Buff配置,
+    增益启用,
   } = useContext(CycleSimulatorContext)
 
   const [模拟信息, 更新模拟信息] = useState<模拟信息类型>({
@@ -87,6 +88,7 @@ function CycleSimulator() {
     }
   }, [
     模拟器弹窗展示,
+    增益启用,
     cycle,
     网络延迟,
     加速值,
@@ -173,10 +175,9 @@ function CycleSimulator() {
       更新循环技能列表: 获取用于计算的技能组,
       更新计算时间: 战斗时间 / 每秒郭氏帧,
       更新奇穴数据: 奇穴信息,
+      更新增益启用: 增益启用,
     }
-    const { 秒伤, 计算结果技能列表, 秒伤计算时间, 总伤 } = dispatch(
-      秒伤计算(计算参数)
-    )
+    const { 秒伤, 计算结果技能列表, 秒伤计算时间, 总伤 } = dispatch(秒伤计算(计算参数))
     更新模拟DPS结果({
       秒伤: 战斗时间 > 0 ? 秒伤 : 0,
       总伤: 战斗时间 > 0 ? 总伤 : 0,
@@ -210,10 +211,7 @@ function CycleSimulator() {
       if (index === 0) {
         res[res?.length] = [{ ...data, index: index || 0 }]
       } else {
-        res[res?.length - 1] = [
-          ...(res[res?.length - 1] || []),
-          { ...data, index: index || 0 },
-        ]
+        res[res?.length - 1] = [...(res[res?.length - 1] || []), { ...data, index: index || 0 }]
 
         const 打完本技能换行 = 是否存在换行技能
           ? data?.技能名称 === '换行'
@@ -231,19 +229,13 @@ function CycleSimulator() {
     return { 显示循环: res, 完整循环: cycle }
   }, [cycle, 模拟信息])
 
-  const 向循环内插入技能 = (
-    item: 循环基础技能数据类型[],
-    插入位置,
-    插入索引
-  ) => {
+  const 向循环内插入技能 = (item: 循环基础技能数据类型[], 插入位置, 插入索引) => {
     let newCycle: 循环基础技能数据类型[] = [...(cycle || [])]
     let addCycle: 循环基础技能数据类型[] = []
 
     if (插入位置 === '前部插入') {
       // 在索引 2 前插入多个元素
-      addCycle = newCycle
-        .slice(0, 插入索引)
-        .concat(item, newCycle.slice(插入索引))
+      addCycle = newCycle.slice(0, 插入索引).concat(item, newCycle.slice(插入索引))
       更新添加设置({ ...添加设置, 索引: 添加设置.索引 + item.length })
     } else {
       // 在索引 2 后插入多个元素
@@ -264,7 +256,7 @@ function CycleSimulator() {
   return (
     <>
       <Modal
-        className="cycle-simulator-modal"
+        className='cycle-simulator-modal'
         maskClosable={false}
         width={'100%'}
         title={
