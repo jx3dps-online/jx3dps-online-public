@@ -184,7 +184,7 @@ function 面板信息() {
               >
                 <div className='character-content'>
                   <span className='character-content-normal'>
-                    {获取面板显示数据(item, 显示数据, 显示数据?.装分)}
+                    {获取面板显示数据(item, 显示数据, 显示数据?.装分, true)}
                   </span>
                   {开启优化算法 && 最优属性 && 最优属性?.value !== '-1' ? (
                     <span
@@ -211,7 +211,8 @@ export default React.memo(面板信息)
 export const 获取面板显示数据 = (
   key: string,
   角色最终属性: 角色基础属性类型,
-  装备分数?: number
+  装备分数?: number,
+  显示加速等级?: boolean,
 ) => {
   switch (key) {
     case '装分':
@@ -242,6 +243,13 @@ export const 获取面板显示数据 = (
           <span>
             {(Math.min((角色最终属性.加速等级 || 0) / 自身属性系数.急速, 0.25) * 100).toFixed(2) +
               `%`}
+            {显示加速等级 ? (
+              <span className='character-jiasu-num'>
+                {'('}
+                {角色最终属性.加速等级}
+                {')'}
+              </span>
+            ) : null}
           </span>
           <span>{加速等级枚举[获取加速等级(角色最终属性.加速等级 || 0)]}</span>
         </>
@@ -255,7 +263,7 @@ const 加速等级枚举 = ['零段加速', '一段加速', '二段加速', '三
 export const 获取面板显示数据数值 = (
   key: string,
   角色最终属性: 角色基础属性类型,
-  装备分数?: number
+  装备分数?: number,
 ) => {
   switch (key) {
     case '装分':

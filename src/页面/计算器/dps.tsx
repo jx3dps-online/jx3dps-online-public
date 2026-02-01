@@ -54,9 +54,6 @@ const 已完成心法 = [
   '焚影圣诀',
 ]
 
-// 待完成心法
-// 焚影
-
 function 主页面() {
   useEffect(() => {
     if (!已完成心法.includes(名称)) {

@@ -17,7 +17,6 @@
     "html2canvas": "^1.4.1",
     "jwt-decode": "^4.0.0",
     "jwt-encode": "^1.0.1",
-    "jx3api": "^0.0.4",
     "luadata": "^1.0.3",
     "node-localstorage": "^3.0.5",
     "numeric": "^1.2.6",

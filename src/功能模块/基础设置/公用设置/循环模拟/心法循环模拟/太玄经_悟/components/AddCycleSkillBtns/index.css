@@ -1,0 +1,74 @@
+.cycle-simulator-setting-quick {
+  width: 280px;
+  padding-left: 24px;
+}
+
+.cycle-simulator-setting-quick-item {
+  display: block;
+  width: 100%;
+  padding: 4px 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cycle-simulator-setting-quick-item:hover {
+  font-weight: 500;
+}
+
+.cycle-add-btn {
+  border-radius: 4px;
+}
+
+.cycle-add-btn {
+  border-radius: 4px;
+}
+
+.cycle-add-btn-wrap {
+  position: relative;
+}
+
+.cycle-add-btn-count {
+  position: absolute;
+  right: -7px;
+  bottom: -5px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--ant-primary-color);
+  opacity: 0.9;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  border: 1px solid #fff;
+}
+
+.cycle-add-btn {
+  border-radius: 4px;
+}
+
+.daozong-cycle-simulator-setting-btn.cycle-simulator-setting-btn-error .cycle-add-btn-text,
+.daozong-cycle-simulator-setting-btn.cycle-simulator-setting-btn-error .cycle-add-btn {
+  color: rgba(3, 10, 26, 0.85);
+  -webkit-filter: grayscale(1) saturate(10%) contrast(50%);
+}
+
+.cycle-simulator-radio-item {
+  max-width: 150px;
+  height: 70px;
+  flex: 1;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid var(--ant-primary-color);
+  margin-left: 24px;
+}
+
+.cycle-simulator-radio-item-title {
+  font-size: 14px;
+  line-height: 32px;
+}

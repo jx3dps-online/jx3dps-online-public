@@ -1,0 +1,50 @@
+.cycle-status-bar-buff-img {
+  width: 36px;
+}
+
+.cycle-status-bar-buff-content {
+  width: calc((100% - 400px - (24px * 3)) / 2);
+}
+
+.cycle-status-bar-buff-item {
+  position: relative;
+}
+
+.cycle-status-bar-buff-count {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--ant-primary-color);
+  opacity: 0.9;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  border: 1px solid #fff;
+}
+
+.cycle-status-bar-buff-second {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  color: rgba(3, 10, 26, 0.85);
+}
+
+.cycle-status-bar-buff-second-limit {
+  font-weight: 500;
+  color: #fe632f;
+}
+
+.cycle-buff-empty {
+  font-size: 14px;
+  line-height: 36px;
+  font-weight: 500;
+  color: rgba(3, 10, 26, 0.45);
+}

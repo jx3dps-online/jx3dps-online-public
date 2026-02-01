@@ -112,7 +112,7 @@
     "icon": "https://icon.jx3box.com/icon/17633.png"
   },
   "101375": {
-    "name": "移动端_孤锋诀",
+    "name": "孤锋诀_悟",
     "icon": "https://icon.jx3box.com/icon/101375.png"
   },
   "10756": {
@@ -128,7 +128,7 @@
     "icon": "https://icon.jx3box.com/icon/22823.png"
   },
   "102278": {
-    "name": "移动端_段氏_心法",
+    "name": "周天功_悟",
     "icon": "https://icon.jx3box.com/icon/22823.png"
   },
   "10062": {
@@ -170,5 +170,9 @@
   "10821": {
     "name": "幽罗引",
     "icon": "https://img.jx3box.com/image/xf/10821.png"
+  },
+  "101450": {
+    "name": "太玄经_悟",
+    "icon": "https://icon.jx3box.com/icon/101450.png"
   }
 }

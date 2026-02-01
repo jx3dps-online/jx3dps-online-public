@@ -8075,14 +8075,6 @@ jwt-encode@^1.0.1:
   dependencies:
     ts.cryptojs256 "^1.0.1"
 
-jx3api@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/jx3api/-/jx3api-0.0.4.tgz#bac41bfef925b322b6322a15c4dfc64d2d01a7c6"
-  integrity sha512-zMk0WShOZU001tbZS8XMeu/FmbSIM0YtAYSZvKIfFFvRjPt2RomM7sil0l6s2QjLC1yx0pF6UmF8q94IowLjgA==
-  dependencies:
-    axios "^1.6.8"
-    ws "^8.16.0"
-
 keyv@^4.5.3:
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-4.5.4.tgz#a879a99e29452f942439f2a405e3af8b31d4de93"

@@ -7,7 +7,7 @@ import { 按数字生成数组 } from '@/工具函数/help'
 
 class 抟风令 extends 有CD技能通用类 {
   static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '抟风令')
-  static 总作用帧 = 32
+  static 总作用帧 = 24
 
   constructor(模拟循环) {
     super(模拟循环)
@@ -15,7 +15,7 @@ class 抟风令 extends 有CD技能通用类 {
     //
     抟风令.技能数据 = 模拟循环?.技能基础数据?.find((item) => item.技能名称 === '抟风令')
     const 循环加速值 = this.模拟循环.加速值
-    抟风令.总作用帧 = 获取实际帧数(32, 循环加速值)
+    抟风令.总作用帧 = 获取实际帧数(24, 循环加速值)
 
     if (抟风令?.技能数据?.技能CD) {
       const 原始CD = 每秒郭氏帧 * 55

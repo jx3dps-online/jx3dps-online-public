@@ -14,7 +14,7 @@ const 解析Generator主函数 = (value) => {
   return {
     talentData,
     loopData,
-    totalDuration,
+    totalDuration: Number(totalDuration.toFixed(5)), // 避免计算精度问题导致的000000001
     notFoundSkill,
     notFoundBuff,
   }

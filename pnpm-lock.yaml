@@ -50,9 +50,6 @@ importers:
       jwt-encode:
         specifier: ^1.0.1
         version: 1.0.1
-      jx3api:
-        specifier: ^0.0.4
-        version: 0.0.4
       luadata:
         specifier: ^1.0.3
         version: 1.0.3
@@ -4798,9 +4795,6 @@ packages:
 
   jwt-encode@1.0.1:
     resolution: {integrity: sha512-QrGiNhynbAYyFdbC1GbjborzenSFs5Ga+2nE0uBokGXsH11xrgd1AX55HR7P+wGQyyZOn6LUO5iKlh74dlhBkA==}
-
-  jx3api@0.0.4:
-    resolution: {integrity: sha512-zMk0WShOZU001tbZS8XMeu/FmbSIM0YtAYSZvKIfFFvRjPt2RomM7sil0l6s2QjLC1yx0pF6UmF8q94IowLjgA==}
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -13768,15 +13762,6 @@ snapshots:
   jwt-encode@1.0.1:
     dependencies:
       ts.cryptojs256: 1.0.1
-
-  jx3api@0.0.4:
-    dependencies:
-      axios: 1.12.2
-      ws: 8.18.3
-    transitivePeerDependencies:
-      - bufferutil
-      - debug
-      - utf-8-validate
 
   keyv@4.5.4:
     dependencies:

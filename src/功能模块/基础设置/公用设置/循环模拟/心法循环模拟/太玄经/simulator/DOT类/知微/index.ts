@@ -7,11 +7,11 @@ class DOT_知微 extends 通用DOT类 {
 
   获得和刷新DOT_知微() {
     const 当前DOT_知微层数 = this.获取当前DOT层数()
-    const 青DOT_知微最大层数 = this?.模拟循环?.Buff和Dot数据?.DOT_知微?.最大层数 || 1
-    const 添加青DOT_知微层数 = 1
-    const 新青DOT_知微层数 = Math.min(当前DOT_知微层数 + 添加青DOT_知微层数, 青DOT_知微最大层数)
+    const DOT_知微最大层数 = this?.模拟循环?.Buff和Dot数据?.DOT_知微?.最大层数 || 1
+    const 添加DOT_知微层数 = 1
+    const 新DOT_知微层数 = Math.min(当前DOT_知微层数 + 添加DOT_知微层数, DOT_知微最大层数)
     const 数据 = this.获取当前DOT数据('DOT_知微')
-    this.更新待生效数据(新青DOT_知微层数, 数据)
+    this.更新待生效数据(新DOT_知微层数, 数据)
   }
 
   引爆并重新刷新(引爆跳数, 来源) {

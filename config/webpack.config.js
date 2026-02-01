@@ -98,6 +98,7 @@ const xinfaNameMap = {
   周天功_悟: 'ztg',
   焚影圣诀: 'fysj',
   幽罗引: 'yly',
+  太玄经_悟: 'w_txj',
 }
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin

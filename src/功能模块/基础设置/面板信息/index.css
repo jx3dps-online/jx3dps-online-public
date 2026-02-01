@@ -16,7 +16,7 @@
   margin-left: 8px;
 }
 
-.character-title-wrapper .ant-checkbox+span {
+.character-title-wrapper .ant-checkbox + span {
   padding-inline-end: 0;
 }
 
@@ -73,11 +73,17 @@
 .character-content-max {
   font-size: 14px;
   font-weight: 600;
-  color: #666
+  color: #666;
 }
 
 .character-max-title-tip {
   font-size: 14px;
   color: #666;
   margin-left: 8px;
+}
+
+.character-jiasu-num {
+  font-size: 14px;
+  color: #999;
+  margin-left: 4px;
 }

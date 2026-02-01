@@ -48,7 +48,7 @@ export const 秒伤计算 =
       更新装备信息 = {},
       更新增益数据 = {},
       是否郭氏计算 = true,
-      更新增益启用 = false,
+      更新增益启用 = undefined,
       更新计算循环名称 = '',
       // 是否郭氏计算 = false,
       更新计算时间,
@@ -69,7 +69,7 @@ export const 秒伤计算 =
     const 奇穴数据 = 更新奇穴数据?.length ? 更新奇穴数据 : currentState.data.当前奇穴信息
 
     const 当前目标 = 获取计算目标信息(currentState?.data?.当前输出计算目标名称)
-    const 增益启用 = 更新增益启用 || currentState?.data?.增益启用
+    const 增益启用 = 更新增益启用 === undefined ? currentState?.data?.增益启用 : 更新增益启用
     const 当前计算循环名称 = 更新计算循环名称 || currentState?.data?.当前计算循环名称
     const 当前秘籍信息 = 更新秘籍信息 || currentState?.data?.当前秘籍信息
     const 增益数据 = { ...currentState?.data?.增益数据, ...更新增益数据 }

@@ -1,23 +1,8 @@
 import { 技能增益列表类型 } from '@/@types/技能'
-import 通用增益 from './通用增益/通用增益'
+import 通用增益, { 玉枕无视防御函数 } from './通用增益/通用增益'
 import { 属性类型 } from '@/@types/属性'
 import 门派套装增益 from './通用增益/门派套装增益'
 import 大橙武技能增益 from './通用增益/大橙武技能增益'
-import { 按数字生成数组 } from '@/工具函数/help'
-
-const 玉枕无视防御函数 = () => {
-  const 数组 = 按数字生成数组(100)
-  return 数组.map((item) => {
-    return {
-      BuffId: 30487,
-      Buff层数: item,
-      增益名称: `玉枕·${item}`,
-      增益所在位置: '技能',
-      增益类型: '部分启用',
-      增益集合: [{ 属性: 属性类型.郭氏全无视防御, 值: 5 * item }],
-    } as 技能增益列表类型
-  })
-}
 
 const 引窍增益: 技能增益列表类型[] = [
   ...通用增益,

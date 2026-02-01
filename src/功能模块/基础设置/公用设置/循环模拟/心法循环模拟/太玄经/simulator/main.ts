@@ -484,6 +484,16 @@ class 循环主类 {
       额外增益列表?.filter((a) => !有关的buff列表?.includes(a)),
     )
 
+    if (来源?.includes('DOT')) {
+      总增益列表 = 总增益列表.map((item) => {
+        if (item === '荧入白') {
+          return '荧入白_常驻'
+        } else {
+          return item
+        }
+      })
+    }
+
     if (this.启用团队增益快照) {
       const 团队增益buff列表 = 判断团队增益快照Buff({
         团队增益轴: this.团队增益轴,

@@ -1,3 +1,4 @@
+import { 获取实际技能数据 } from '../../../通用/通用函数'
 import 循环主类类型 from '../main'
 import { 循环基础技能数据类型, 技能释放记录结果 } from '../type'
 
@@ -16,14 +17,16 @@ class 技能统一类 {
     const GCD组 = 当前技能?.技能GCD组 === '自身' ? 当前技能?.技能名称 : 当前技能?.技能GCD组 || ''
     let GCD = this.模拟循环?.GCD组?.[GCD组] || 0
     let 等待GCD = 0
-
     if (this.本次释放延迟) {
       if (GCD组 === '公共') {
         GCD = GCD + this.本次释放延迟
       }
       // 如果存在后面的技能，判断后面的技能当前的GCD为多少，推进到后一个技能。这样可以让灭卡在后面的技能释放前释放
       else if (this.本次释放延迟 === 'GCD' && 后一个技能) {
-        const 当前技能 = this?.模拟循环?.技能基础数据?.find((item) => item?.技能名称 === 后一个技能)
+        const 实际技能名称 = 获取实际技能数据(后一个技能)?.实际技能名称 || 后一个技能
+        const 当前技能 = this?.模拟循环?.技能基础数据?.find(
+          (item) => item?.技能名称 === 实际技能名称,
+        )
         if (当前技能 && 当前技能?.技能GCD组) {
           const 技能实例 = this?.模拟循环?.技能类实例集合?.[当前技能?.技能名称]
           const 后一个技能GCD = this.模拟循环?.检查GCD?.(当前技能, 技能实例, 索引 + 1) || 0
@@ -72,7 +75,7 @@ class 技能统一类 {
 
   获取DOT快照检测Buff列表(伤害名称) {
     if (伤害名称?.includes('DOT')) {
-      const list = this.获取当前快照buff().concat(['荧入白'])
+      const list = this.获取当前快照buff()
       return list
     } else {
       return []
