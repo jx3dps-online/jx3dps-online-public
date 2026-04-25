@@ -84,7 +84,7 @@ function CycleSimulator() {
   })
 
   const [自动鸟啄, 更新自动鸟啄] = useState<boolean>(false)
-
+  const [显示翼绝云天覆盖, 更新显示翼绝云天覆盖] = useState<boolean>(false)
   const [延迟弹窗设置, 设置延迟弹窗设置] = useState<{
     open: boolean
     index?: number
@@ -221,16 +221,13 @@ function CycleSimulator() {
       if (index === 0) {
         res[res?.length] = [{ ...data, index: index || 0 }]
       } else {
-        const 打完本技能换轮次 = 是否存在换行技能
-          ? data?.技能名称 === '换行'
-          : data?.技能名称 === '跃潮斩波'
-        // const 本技能为起点 = data?.技能名称 === '跃潮斩波'
-
-        if (打完本技能换轮次) {
-          res[res?.length - 1] = [...(res[res?.length - 1] || []), { ...data, index: index || 0 }]
-          res[res?.length] = []
+        if (!是否存在换行技能 && data?.技能名称 === '浮游天地') {
+          res[res?.length] = [{ ...data, index: index || 0 }]
         } else {
           res[res?.length - 1] = [...(res[res?.length - 1] || []), { ...data, index: index || 0 }]
+          if (data?.技能名称 === '换行') {
+            res[res?.length] = []
+          }
         }
       }
       return data
@@ -305,6 +302,17 @@ function CycleSimulator() {
     }
   }
 
+  const 背景容器函数 = (e: 循环基础技能数据类型, index: number) => {
+    if (!显示翼绝云天覆盖) {
+      return null
+    }
+    const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+    if (找到当前技能释放记录?.技能释放记录结果?.背景容器) {
+      return <div className='lhj-cycle-item-background-wrap'></div>
+    }
+    return null
+  }
+
   return (
     <>
       <Modal
@@ -342,7 +350,14 @@ function CycleSimulator() {
         <div className={'cycle-simulator-setting'}>
           <心法配置
             原始Buff数据={根据奇穴修改buff数据(奇穴信息)}
-            配置区={<心法特殊配置 自动鸟啄={自动鸟啄} 更新自动鸟啄={更新自动鸟啄} />}
+            配置区={
+              <心法特殊配置
+                自动鸟啄={自动鸟啄}
+                更新自动鸟啄={更新自动鸟啄}
+                显示翼绝云天覆盖={显示翼绝云天覆盖}
+                更新显示翼绝云天覆盖={更新显示翼绝云天覆盖}
+              />
+            }
           />
           {/* 角色状态栏 */}
           <StatusBar
@@ -361,6 +376,7 @@ function CycleSimulator() {
             原始Buff数据={原始Buff数据}
             点击下拉菜单={点击下拉菜单}
             允许操作列表={['插入技能', '删除后续', '设置延迟']}
+            背景容器={背景容器函数}
           />
         </div>
         {/* 添加循环按钮组 */}
@@ -382,6 +398,7 @@ function CycleSimulator() {
           循环模拟={simulator}
           技能序列={cycle}
           启用团队增益快照={启用团队增益快照}
+          额外配置信息={{ 自动鸟啄 }}
         />
         {/* 循环自定义奇穴弹窗 */}
         <奇穴设置组件

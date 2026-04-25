@@ -97,6 +97,9 @@ function 配装器(props: ModalProps) {
   const [form] = Form.useForm()
 
   const 初始化表单 = (装备信息: 装备信息数据类型) => {
+    if (!装备信息) {
+      return
+    }
     const newObj = {
       五彩石: 装备信息.五彩石,
       大附魔_伤帽: 装备信息?.装备增益?.大附魔_伤帽 || 0,

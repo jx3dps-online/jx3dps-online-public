@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Drawer, Form, Select, Tooltip } from 'antd'
+import { Button, Drawer, Form, Select, Tooltip } from 'antd'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { 更新方案数据 } from '@/store/data'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
@@ -26,8 +26,8 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
         // 排除 'mix' 和特殊奇穴的索引
         if (key === 'mix') return false
         if (特殊奇穴索引 !== -1 && +key === 特殊奇穴索引) return false
-        // 只保留常规奇穴（索引 0-6）
-        return +key < 7
+        // 只保留常规奇穴（索引 0-5）
+        return +key < 6
       })
       .map((key) => {
         return values[key]
@@ -50,6 +50,17 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
     }
   }
 
+  const 清空奇穴 = () => {
+    const newValues = { mix: [] }
+
+    奇穴数据.forEach((重, index) => {
+      if (!重.是否为混池) {
+        newValues[index] = undefined
+      }
+    })
+    handleChangeQixue({}, newValues)
+  }
+
   // 监听表单变化
   useEffect(() => {
     const 特殊奇穴索引 = 奇穴数据.findIndex((item) => item.是否为特殊奇穴)
@@ -57,15 +68,15 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
     const obj = {}
     const misList: string[] = []
     当前奇穴信息?.forEach((item, index) => {
-      if (index >= 7 && index < 10) {
-        // 混池奇穴 (索引7-9)
+      if (index >= 6 && index < 10) {
+        // 混池奇穴 (索引6-9)
         misList.push(item)
       } else if (特殊奇穴索引 !== -1 && index === 10) {
         // 特殊奇穴（索引8，但实际在数组中的位置）
         obj[特殊奇穴索引] = item
       } else {
-        // 常规奇穴 (索引0-6)
-        obj[index] = item
+        // 常规奇穴 (索引0-5)
+        obj[index] = item || undefined
       }
     })
     form?.setFieldsValue({
@@ -77,9 +88,14 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
   return (
     <Drawer
       title={
-        <div>
-          <span>奇穴设置</span>
-          <span className={'qixue-set-drawer-title-tip'}>部分循环请勿切换核心奇穴</span>
+        <div className={'qixue-set-drawer-title-wrap'}>
+          <div>
+            <span>奇穴设置</span>
+            <span className={'qixue-set-drawer-title-tip'}>部分循环请勿切换核心奇穴</span>
+          </div>
+          <Button danger size='small' onClick={清空奇穴}>
+            清空奇穴
+          </Button>
         </div>
       }
       onClose={() => onClose()}
@@ -92,8 +108,9 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
       <Form
         onValuesChange={handleChangeQixue}
         form={form}
-        className={`qixue-set-drawer-wrap ${奇穴数据?.length === 4 ? 'qixue-set-drawer-wrap-small' : ''
-          }`}
+        className={`qixue-set-drawer-wrap ${
+          奇穴数据?.length === 4 ? 'qixue-set-drawer-wrap-small' : ''
+        }`}
       >
         {奇穴数据.map((重, index) => {
           return 重?.是否为混池 ? (
@@ -104,8 +121,8 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
             <Form.Item
               className={'qixue-set-item'}
               style={{
-                ...(index === 0 || index === 6 ? { marginRight: 24 } : {}),
-                ...(重?.是否为特殊奇穴 ? { marginLeft: 240 } : {}),  // 特殊奇穴右移至混池奇穴栏右侧
+                ...(index === 0 || index === 5 ? { marginRight: 24 } : {}),
+                ...(重?.是否为特殊奇穴 ? { marginLeft: 240 } : {}), // 特殊奇穴右移至混池奇穴栏右侧
               }}
               name={index}
               key={index + 1}

@@ -18,11 +18,22 @@ class 蟾啸DOT extends 通用DOT类 {
   }
 
   额外生效一跳() {
-    const 当前最后一跳数据 = this?.DOT运行数据?.待生效数据?.[this?.DOT运行数据?.待生效数据?.length - 1] || {} 
+    const 当前最后一跳数据 =
+      this?.DOT运行数据?.待生效数据?.[this?.DOT运行数据?.待生效数据?.length - 1] || {}
     if (当前最后一跳数据?.当前层数) {
       const 快照buff列表 = 当前最后一跳数据?.快照buff列表 || []
       this.触发伤害行为('蟾啸(DOT)', 1, 快照buff列表)
     }
+  }
+
+  提前生效一跳() {
+    const 当前跳数据 = this?.DOT运行数据?.待生效数据?.[0] || {}
+    if (当前跳数据?.当前层数) {
+      const 快照buff列表 = 当前跳数据?.快照buff列表 || []
+      this.触发伤害行为('蟾啸(DOT)', 1, 快照buff列表)
+    }
+
+    this?.DOT运行数据?.待生效数据?.pop()
   }
 
   蟾啸DOT存在判定() {

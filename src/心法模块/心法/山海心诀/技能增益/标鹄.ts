@@ -1,7 +1,7 @@
 import { 技能增益列表类型 } from '@/@types/技能'
 import { 属性类型 } from '@/@types/属性'
-import 通用增益 from './通用'
-import 大橙武技能增益 from './通用/大橙武技能增益'
+import 通用增益 from './通用增益/通用增益'
+import 大橙武技能增益 from './通用增益/大橙武技能增益'
 
 const 标鹄增益: 技能增益列表类型[] = [
   ...通用增益,

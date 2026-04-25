@@ -28,26 +28,13 @@ export const 根据奇穴修改buff数据 = (奇穴: string[]) => {
           ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 6
         }
         break
-      case '驰风震域':
-        if (判断奇穴('梦悠')) {
-          // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          ;(obj as DotDTO).最大作用次数 = 40
-          ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 10
+      case '翼绝云天':
+        if (判断奇穴('天行')) {
+          ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 8
+          ;(obj as DotDTO).伤害频率 = 每秒郭氏帧 * 2
         } else {
-          // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          ;(obj as DotDTO).最大作用次数 = 24
-          ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 6
-        }
-        break
-      case '驰风震域·海碧':
-        if (判断奇穴('梦悠')) {
-          // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          ;(obj as DotDTO).最大作用次数 = 40
-          ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 10
-        } else {
-          // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          ;(obj as DotDTO).最大作用次数 = 24
-          ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 6
+          ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 16
+          ;(obj as DotDTO).伤害频率 = 每秒郭氏帧 * 4
         }
         break
       default:
@@ -68,7 +55,7 @@ export const 根据奇穴秘籍修改技能数据 = (奇穴: string[]): 循环�
     if (技能?.技能名称 === '振翅图南') {
       let 技能CD = 判断奇穴('驾鸾') ? 每秒郭氏帧 * 25 : 每秒郭氏帧 * 20
       const 技能充能层数 = 判断奇穴('驾鸾') ? 2 : 技能.最大充能层数 || 1
-      if (判断奇穴('风驰')) {
+      if (判断奇穴('梦悠')) {
         技能CD = 技能CD - 每秒郭氏帧 * 4
       }
       return {
@@ -97,19 +84,23 @@ export const 根据奇穴秘籍修改技能数据 = (奇穴: string[]): 循环�
         ...技能,
         技能CD: 技能原始CD,
       }
-    } else if (技能?.技能名称 === '溟海御波') {
-      const 技能原始CD = 技能.技能CD || 0
-      let 最大充能层数 = 技能.最大充能层数 || 1
-      // if (判断奇穴('澄穆')) {
-      //   技能原始CD = 技能原始CD - 每秒郭氏帧 * 1
-      // }
-      if (判断奇穴('遥思')) {
+    } else if (技能?.技能名称 === '翼绝云天') {
+      let 技能原始CD = 技能.技能CD || 0
+      let 最大充能层数 = 技能.最大充能层数 || 0
+      if (判断奇穴('天行')) {
+        技能原始CD = 技能原始CD + 每秒郭氏帧 * 30
         最大充能层数 = 2
       }
       return {
         ...技能,
         技能CD: 技能原始CD,
         最大充能层数,
+      }
+    } else if (技能?.技能名称 === '溟海御波') {
+      const 技能原始CD = 技能.技能CD || 0
+      return {
+        ...技能,
+        技能CD: 技能原始CD,
       }
     } else {
       return 技能

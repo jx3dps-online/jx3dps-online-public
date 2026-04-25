@@ -34,6 +34,7 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
     let 禁用信息 = {}
     const 唤灵印层数 = Object.values(模拟信息?.角色状态信息?.换灵印)?.filter((a) => !!a).length
     const 校验层数 = 奇穴信息?.includes('星烨') ? 2 : 1
+    const 汇灵合契校验层数 = 4
 
     if (
       技能?.技能名称 === '白羽流星' &&
@@ -71,6 +72,11 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
         异常描述: ERROR_ACTION?.BUFF错误?.信息,
       }
     } else if (技能?.技能名称 === '游雾乘云' && 唤灵印层数 < 校验层数) {
+      禁用信息 = {
+        是否禁用: true,
+        异常描述: ERROR_ACTION?.BUFF错误?.信息,
+      }
+    } else if (技能?.技能名称 === '汇灵合契' && 唤灵印层数 < 汇灵合契校验层数) {
       禁用信息 = {
         是否禁用: true,
         异常描述: ERROR_ACTION?.BUFF错误?.信息,

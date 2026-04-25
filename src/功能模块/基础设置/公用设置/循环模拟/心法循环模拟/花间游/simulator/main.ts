@@ -35,6 +35,7 @@ import 乱洒青荷 from './技能类/乱洒青荷'
 import 芙蓉并蒂 from './技能类/芙蓉并蒂'
 import 墨海临源 from './技能类/墨海临源'
 import 玉石俱焚 from './技能类/玉石俱焚'
+import 星楼月影 from './技能类/星楼月影'
 import 丹青 from './技能类/丹青'
 import 删除丹青 from './技能类/删除丹青'
 import { 定式黑白实例 } from './定式黑白'
@@ -163,6 +164,7 @@ class 循环主类 {
       芙蓉并蒂: new 芙蓉并蒂(this),
       墨海临源: new 墨海临源(this),
       玉石俱焚: new 玉石俱焚(this),
+      星楼月影: new 星楼月影(this),
       丹青: new 丹青(this),
       删除丹青: new 删除丹青(this),
       DOT_商阳指: new DOT_商阳指(this),

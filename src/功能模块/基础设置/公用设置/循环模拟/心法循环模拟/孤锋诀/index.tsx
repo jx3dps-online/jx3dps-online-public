@@ -93,9 +93,15 @@ function CycleSimulator() {
     当前GCD组: {},
   })
 
-  const [显示破绽层数, 更新显示破绽层数] = useState<boolean>(false)
+  const [显示潋风层数, 更新显示潋风层数] = useState<boolean>(false)
   const [起手锐意, 设置起手锐意] = useState<number>(0)
   const [起手体态, 设置起手体态] = useState<'双刀' | '单刀'>('双刀')
+  const [隐藏击破图标, 设置隐藏击破图标] = useState<boolean>(false)
+  const [自动击破, 设置自动击破] = useState<boolean>(false)
+  const [显示击破技能, 设置显示击破技能] = useState<boolean>(false)
+  const [显示洄涛层数, 设置显示洄涛层数] = useState<boolean>(false)
+  const [显示倾怒, 设置显示倾怒] = useState<boolean>(false)
+  const [显示锐意, 设置显示锐意] = useState<boolean>(false)
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
 
   const dispatch = useAppDispatch()
@@ -117,6 +123,7 @@ function CycleSimulator() {
     起手锐意,
     起手体态,
     增益启用,
+    自动击破,
   ])
 
   const simulator = (props?) => {
@@ -139,6 +146,7 @@ function CycleSimulator() {
       起手Buff配置,
       起手锐意,
       起手体态,
+      自动击破,
     })
 
     const {
@@ -258,15 +266,21 @@ function CycleSimulator() {
 
     cycle.forEach((item, index) => {
       const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+      let 特殊标记
+      if (
+        (显示潋风层数 && ['行']?.includes(item?.技能名称)) ||
+        (显示洄涛层数 && ['沧']?.includes(item?.技能名称)) ||
+        ['孤']?.includes(item?.技能名称)
+      ) {
+        特殊标记 = 找到当前技能释放记录?.技能释放记录结果?.特殊标记
+      }
+
       const data = {
         ...item,
         ...找到当前技能释放记录,
         技能释放记录结果: {
           ...找到当前技能释放记录?.技能释放记录结果,
-          特殊标记:
-            显示破绽层数 && !['换行', '弱点击破']?.includes(item?.技能名称)
-              ? 找到当前技能释放记录?.技能释放记录结果?.特殊标记
-              : undefined,
+          特殊标记: 特殊标记,
         },
       }
       if (index === 0) {
@@ -284,7 +298,7 @@ function CycleSimulator() {
     })
 
     return { 显示循环: res, 完整循环: cycle }
-  }, [cycle, 模拟信息, 显示破绽层数])
+  }, [cycle, 模拟信息, 显示潋风层数, 显示洄涛层数])
 
   const 点击下拉菜单 = (data, index) => {
     if (data?.key === '设置延迟时间') {
@@ -316,6 +330,59 @@ function CycleSimulator() {
     setCycle(newCycle)
   }
 
+  const 技能高亮函数 = (e: 循环基础技能数据类型, index: number) => {
+    const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+    if (
+      显示击破技能 &&
+      e?.技能名称 !== '换行' &&
+      找到当前技能释放记录?.技能释放记录结果?.本次是否击破
+    ) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  const 底部标识函数 = (e: 循环基础技能数据类型, index: number) => {
+    if (!显示锐意) {
+      return null
+    }
+    const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+    if (找到当前技能释放记录?.技能释放记录结果?.底部标识 !== undefined) {
+      return (
+        // 这个classname是通用样式名，也可以在自己这个文件夹下写自己职业的自定义样式（就可以自己掌控样子了）
+        <div className='cycle-item-bottom-wrap'>
+          {/* 自动判断底部标识的类型显示，你也可以不自动判断用下面的两个注释写法的其中一种 */}
+          {typeof 找到当前技能释放记录?.技能释放记录结果?.底部标识 === 'boolean' ? (
+            <div className='cycle-item-bottom-line'></div>
+          ) : (
+            <div className='cycle-item-bottom-text'>
+              {找到当前技能释放记录?.技能释放记录结果?.底部标识}
+            </div>
+          )}
+          {/* 写法1：这个是横线红色的写法，用来强调标记一些buff覆盖 */}
+          {/* <div className='cycle-item-bottom-line'></div> */}
+          {/* 写法2：这个是如果你的底部标识传入过来的是一个数字/文案，直接展示具体内容 */}
+          {/* <div className='cycle-item-bottom-text'>
+            {找到当前技能释放记录?.技能释放记录结果?.底部标识}
+          </div> */}
+        </div>
+      )
+    }
+    return null
+  }
+
+  const 背景容器函数 = (e: 循环基础技能数据类型, index: number) => {
+    if (!显示倾怒) {
+      return null
+    }
+    const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+    if (找到当前技能释放记录?.技能释放记录结果?.背景容器) {
+      return <div className='daozong-cycle-item-background-wrap'></div>
+    }
+    return null
+  }
+
   return (
     <>
       <Modal
@@ -327,8 +394,10 @@ function CycleSimulator() {
             cycle={cycle}
             设置自定义循环保存弹窗={设置自定义循环保存弹窗}
             清空循环={() => setCycle([])}
-            快速导入循环={(循环) => {
+            快速导入循环={(循环, 额外信息) => {
               setCycle(循环)
+              设置自动击破(额外信息?.自动击破)
+              设置起手锐意(额外信息?.起手锐意 || 0)
             }}
             更新奇穴信息={更新奇穴信息}
             更新奇穴弹窗展示={更新奇穴弹窗展示}
@@ -354,12 +423,24 @@ function CycleSimulator() {
             原始Buff数据={根据奇穴修改buff数据(奇穴信息, 加速值)}
             配置区={
               <心法特殊配置
-                显示破绽层数={显示破绽层数}
-                更新显示破绽层数={更新显示破绽层数}
+                显示潋风层数={显示潋风层数}
+                更新显示潋风层数={更新显示潋风层数}
                 起手锐意={起手锐意}
                 设置起手锐意={设置起手锐意}
                 起手体态={起手体态}
                 设置起手体态={设置起手体态}
+                隐藏击破图标={隐藏击破图标}
+                设置隐藏击破图标={设置隐藏击破图标}
+                自动击破={自动击破}
+                设置自动击破={设置自动击破}
+                显示击破技能={显示击破技能}
+                设置显示击破技能={设置显示击破技能}
+                显示洄涛层数={显示洄涛层数}
+                设置显示洄涛层数={设置显示洄涛层数}
+                显示锐意={显示锐意}
+                设置显示锐意={设置显示锐意}
+                显示倾怒={显示倾怒}
+                设置显示倾怒={设置显示倾怒}
               />
             }
           />
@@ -370,6 +451,7 @@ function CycleSimulator() {
             日志信息={日志信息}
             模拟DPS结果={模拟DPS结果}
             模拟函数={simulator}
+            奇穴信息={奇穴信息}
           />
           {/* // 循环展示模块 */}
           <循环技能容器组件
@@ -380,6 +462,10 @@ function CycleSimulator() {
             原始Buff数据={原始Buff数据}
             点击下拉菜单={点击下拉菜单}
             允许操作列表={['插入技能', '删除后续', '设置延迟']}
+            隐藏显示技能={隐藏击破图标 ? ['弱点击破'] : []}
+            技能高亮={技能高亮函数}
+            底部标识={底部标识函数}
+            背景容器={背景容器函数}
           />
         </div>
         {/* 添加循环按钮组 */}
@@ -389,6 +475,7 @@ function CycleSimulator() {
           处理循环结果对象={处理循环结果对象}
           模拟信息={模拟信息}
           大橙武模拟={大橙武模拟}
+          自动击破={自动击破}
         />
         {/* 保存自定义循环弹窗 */}
         <保存自定义循环弹窗
@@ -399,6 +486,7 @@ function CycleSimulator() {
           循环模拟={simulator}
           技能序列={cycle}
           启用团队增益快照={启用团队增益快照}
+          额外配置信息={{ 自动击破, 起手锐意 }}
         />
         {/* 循环自定义奇穴弹窗 */}
         <奇穴设置组件
@@ -415,6 +503,7 @@ function CycleSimulator() {
           大橙武模拟={大橙武模拟}
           奇穴信息={奇穴信息}
           添加设置={添加设置}
+          自动击破={自动击破}
           添加技能弹窗显示={添加技能弹窗显示}
           关闭弹窗={() => {
             更新添加技能弹窗显示(false)

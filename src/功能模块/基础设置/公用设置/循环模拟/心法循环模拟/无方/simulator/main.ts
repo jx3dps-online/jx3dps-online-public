@@ -34,6 +34,10 @@ import 苍棘缚地 from './技能类/苍棘缚地'
 import 紫叶沉疴 from './技能类/紫叶沉疴'
 import 香繁饮露 from './技能类/香繁饮露'
 import 凌然天风 from './技能类/凌然天风'
+import 千枝绽蕊 from './技能类/千枝绽蕊'
+import 千枝伏藏 from './技能类/千枝伏藏'
+import 唤醒 from './技能类/唤醒'
+import 损毁 from './技能类/损毁'
 import 特效腰坠 from '../../通用/通用技能/特效腰坠'
 
 import 逆乱 from './DOT类/逆乱'
@@ -60,6 +64,8 @@ export interface SimulatorCycleProps {
   大橙武模拟: boolean
   角色状态信息?: 角色状态信息类型
   起手温寒: number
+  起手内力: number
+  忽略延迟技能?: string[]
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
   起手Buff配置?: 起手Buff配置
@@ -75,6 +81,7 @@ class 循环主类 {
   网络延迟 = 0
   角色状态信息: 角色状态信息类型 = {
     温寒: 0,
+    内力: 100,
   }
   当前自身buff列表: Buff枚举 = {}
   当前目标buff列表: Buff枚举 = {}
@@ -95,6 +102,7 @@ class 循环主类 {
   待生效事件队列: 待生效事件[] = []
   启用团队增益快照 = false
   团队增益轴: 团队增益轴类型 = {}
+  忽略延迟技能: string[] = []
 
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
@@ -112,14 +120,20 @@ class 循环主类 {
     this.Buff和Dot数据 = 根据奇穴修改buff数据(this.奇穴)
     // 根据奇穴和装备情况修改技能的数据
     this.技能基础数据 = 根据奇穴秘籍修改技能数据(this.奇穴)
-
+    this.忽略延迟技能 = props?.忽略延迟技能 || []
     this.当前自身buff列表 = {
+      千枝伏藏: {
+        ...this.Buff和Dot数据?.['千枝伏藏'],
+        当前层数: 1,
+        刷新时间: 99999,
+      },
       ...获取起手Buff配置(props?.起手Buff配置, this.Buff和Dot数据, '自身'),
     }
     this.当前目标buff列表 = { ...获取起手Buff配置(props?.起手Buff配置, this.Buff和Dot数据, '目标') }
 
     this.角色状态信息 = {
       温寒: props?.起手温寒 || 0,
+      内力: props?.起手内力 || 100,
     }
     this.待生效事件队列 = []
     // 模拟初始化
@@ -146,6 +160,10 @@ class 循环主类 {
       紫叶沉疴: new 紫叶沉疴(this),
       香繁饮露: new 香繁饮露(this),
       凌然天风: new 凌然天风(this),
+      千枝绽蕊: new 千枝绽蕊(this),
+      千枝伏藏: new 千枝伏藏(this),
+      唤醒: new 唤醒(this),
+      损毁: new 损毁(this),
       逆乱: new 逆乱(this),
       换行: new 换行(this),
       触发橙武: new 触发橙武(this),
@@ -244,7 +262,15 @@ class 循环主类 {
       }
     }
   }
+  // ----------------- 职业特殊函数 start----------------- //
+  回复内力(数值) {
+    this.角色状态信息.内力 = Math.min(this.角色状态信息.内力 + 数值, 100)
+  }
 
+  消耗内力(数值) {
+    this.角色状态信息.内力 = Math.max(this.角色状态信息.内力 - 数值, 0)
+    //this.技能类实例集合.千枝绽蕊.千枝绽蕊状态校验()
+  }
   // 校验奇穴是否存在
   校验奇穴是否存在(待判断奇穴) {
     return this?.奇穴?.includes(待判断奇穴)
@@ -474,8 +500,13 @@ class 循环主类 {
       }
     }
 
-    const 是否是倒读条技能 = 当前技能?.是否为倒读条技能
-    const 延迟等待 = this.当前时间 && GCD && !是否是倒读条技能 ? this.网络延迟 : 0
+    //const 是否是倒读条技能 = 当前技能?.是否为倒读条技能
+    //const 延迟等待 = this.当前时间 && GCD && !是否是倒读条技能 ? this.网络延迟 : 0
+
+    let 延迟等待 = i > 0 ? this.网络延迟 : 0
+    if (this?.忽略延迟技能?.includes(当前技能?.技能名称)) {
+      延迟等待 = 0
+    }
     const 技能计划释放时间 = this.当前时间 + GCD + 延迟等待
 
     return {
@@ -651,6 +682,10 @@ class 循环主类 {
                 卸除层数: 当前事件?.事件备注?.卸除层数,
               })
             }
+          } else if (当前事件.事件名称?.includes('千枝绽蕊_秒耗')) {
+            this.技能类实例集合?.千枝绽蕊?.千枝绽蕊每秒消耗()
+          } else if (当前事件.事件名称?.includes('千枝伏藏_秒回')) {
+            this.技能类实例集合?.千枝伏藏?.千枝伏藏每秒回复()
           } else if (当前事件.事件名称 === '沾衣未妨') {
             this.技能类实例集合?.['沾衣未妨']?.沾衣未妨结算(当前事件?.事件备注?.香繁饮露触发)
           } else if (当前事件.事件名称 === '苍棘缚地攻击') {
@@ -712,6 +747,8 @@ class 循环主类 {
   // 模拟函数，一个技能的释放生命周期
   模拟() {
     for (let i = 0; i < this.测试循环.length; i++) {
+      if (i === 0) {
+      }
       this.本轮模拟开始前()
       let 实际技能名称 = this.测试循环[i]
       let 额外信息 = null

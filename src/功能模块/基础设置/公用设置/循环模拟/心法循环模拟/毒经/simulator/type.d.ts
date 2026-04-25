@@ -61,6 +61,7 @@ export interface 技能类实例集合 {
   凤凰蛊?: 凤凰蛊类型
   连缘蛊?: 连缘蛊类型
   灵蛇引?: 灵蛇引类型
+  圣蝎引?: 圣蝎引类型
   蛊虫献祭?: 蛊虫献祭类型
   降厄?: 降厄类型
   蛊虫狂暴?: 蛊虫狂暴类型
@@ -72,6 +73,7 @@ export interface 技能类实例集合 {
   释灵DOT?: 释灵DOT类型
   触发橙武?: 触发橙武类型
   攻击?: 攻击类型
+  技能统一类?: 技能统一类
 }
 
 export interface 技能GCD组 {
@@ -99,6 +101,7 @@ export interface DOT待生效数据类型 {
   当前层数?: number
   生效时间?: number
   快照buff列表?: string[]
+  DOT跳数?: number
 }
 
 export interface 检查运行数据实例类型 {
@@ -118,7 +121,7 @@ export interface 循环基础技能数据类型 {
   /**
    * @name 技能类型
    */
-  技能类型: '千劫万毒手' | '引魂蛊术' | '驭虫奇术' | '达摩武诀' | '其他'
+  技能类型: '千劫万毒手' | '引魂蛊术' | '驭虫奇术' | '其他'
   /**
    * 充能层数
    */
@@ -130,7 +133,7 @@ export interface 循环基础技能数据类型 {
   /**
    * 技能GCD组
    */
-  技能GCD组?: '公共' | '自身' | '小飞棍'
+  技能GCD组?: '公共' | '自身' | '驭虫奇术'
   /**
    * 显示类型
    */
@@ -354,6 +357,7 @@ export interface 循环日志数据类型 {
   其他数据?: {
     伤害次数?: number
     技能等级?: number
+    DOT跳数?: number
   }
 }
 
@@ -394,7 +398,6 @@ export interface 技能释放记录结果 {
   伤害段数?: number // 针对千里急的实际伤害段数
   技能次数?: number // 针对勾线的实际伤害次数
   重要buff列表?: string[] // 影响技能结果的重要buff列表
-  释放时标鹄层数?: number
   造成buff数据?: {
     // 针对吃影子、灭这种会添加有益buff的情况
     buff名称: string

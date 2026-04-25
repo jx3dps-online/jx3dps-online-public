@@ -21,7 +21,8 @@
   /* justify-content: space-between; */
 }
 
-.cycle-simulator-modal-header,.space-between {
+.cycle-simulator-modal-header,
+.space-between {
   justify-content: space-between;
   padding-right: 20px;
   height: 22px;
@@ -29,7 +30,7 @@
 
 .cycle-simulator-modal-title {
   font-size: 16px;
-  margin:0;
+  margin: 0;
   margin-right: 12px;
 }
 
@@ -74,10 +75,9 @@
 }
 
 .cycle-not-support {
-  color: #F34242;
+  color: #f34242;
   font-size: 14px;
 }
-
 
 .cycle-simulator-setting-item {
   display: flex;
@@ -98,7 +98,7 @@
 }
 
 .cycle-qixue-set-button {
-  width: unset
+  width: unset;
 }
 
 .cycle-simulator-setting-res {
@@ -125,7 +125,7 @@
   padding: 4px;
   width: 100%;
   margin: -4px;
-  transition: .2s;
+  transition: 0.2s;
   position: relative;
 }
 
@@ -156,7 +156,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .cycle-turn-operate-btn {
@@ -174,7 +174,7 @@
   pointer-events: unset;
 }
 
-.cycle-simulator-setting-turn:hover  .cycle-turn-time {
+.cycle-simulator-setting-turn:hover .cycle-turn-time {
   opacity: 0;
 }
 
@@ -233,7 +233,7 @@
 }
 
 .cycle-simulator-dps-res {
-  color: #F34242;
+  color: #f34242;
   font-size: 16px;
 }
 
@@ -269,7 +269,7 @@
   justify-content: flex-start;
 }
 
-.lhj-cycle-simulator-setting-btn:hover .cycle-add-btn-text{
+.lhj-cycle-simulator-setting-btn:hover .cycle-add-btn-text {
   color: var(--ant-primary-color);
 }
 
@@ -290,14 +290,27 @@
 }
 
 .cycle-add-btn {
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .cycle-add-btn-text {
   text-align: center;
-  transition: .2s;
+  transition: 0.2s;
   font-weight: 500;
   line-height: 14px;
   padding-top: 4px;
   color: rgba(3, 10, 26, 0.85);
+}
+
+.lhj-cycle-item-background-wrap {
+  display: flex;
+  position: absolute;
+  bottom: -8px;
+  left: -8px;
+  top: -8px;
+  right: -8px;
+  margin: auto;
+  pointer-events: unset;
+  z-index: 0;
+  background-color: rgba(255, 145, 55, 0.3);
 }

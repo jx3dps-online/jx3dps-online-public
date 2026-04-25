@@ -1,0 +1,30 @@
+.heightlightWrap {
+  position: absolute;
+  bottom: -16px;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: 16px;
+  z-index: 2;
+  pointer-events: unset;
+}
+
+.heightlightLine {
+  height: 4px;
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 2px;
+  background-color: hsl(4, 75%, 55%);
+}
+
+.heightlightImgWrap {
+  display: flex;
+  align-items: center;
+}
+
+.heightlightImg {
+  width: 15px;
+  height: 15px;
+  & + .heightlightImg {
+    margin-left: 4px;
+  }
+}

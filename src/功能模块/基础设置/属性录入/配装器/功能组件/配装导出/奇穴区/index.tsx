@@ -5,6 +5,8 @@ import styles from './index.module.less'
 
 const { 奇穴数据 } = 获取当前数据()
 
+const 兜底图片 = 'https://icon.jx3box.com/icon/13.png'
+
 const 奇穴区 = () => {
   const 当前奇穴信息 = useAppSelector((state) => state?.data?.当前奇穴信息)
   const 增益启用 = useAppSelector((state) => state?.data?.增益启用)
@@ -30,7 +32,7 @@ const 奇穴区 = () => {
           const 前两位 = item?.substring(0, 2)
           return (
             <div className={styles.item} key={`export_qixue_${item}`}>
-              <img className={styles.img} src={图片} />
+              <img className={styles.img} src={图片 || 兜底图片} />
               <h1 className={styles.title}>{前两位}</h1>
             </div>
           )

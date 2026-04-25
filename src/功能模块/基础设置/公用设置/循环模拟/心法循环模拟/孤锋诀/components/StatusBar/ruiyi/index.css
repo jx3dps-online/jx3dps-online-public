@@ -1,3 +1,16 @@
 .cycle-status-bar-ruiyi {
   width: 200px;
 }
+
+.cycle-status-bar-ruiyi-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cycle-status-bar-ruiyi-num {
+  display: block;
+  margin-left: 4px;
+  line-height: 16px;
+  font-weight: 500;
+}

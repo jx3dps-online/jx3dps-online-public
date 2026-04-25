@@ -28,9 +28,9 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
           模拟信息?.技能基础数据?.find((a) => a.技能名称 === 实际技能名称) || ({} as any)
         return 技能数据
           ? {
-            ...技能数据,
-            额外信息,
-          }
+              ...技能数据,
+              额外信息,
+            }
           : null
       })
       .filter((item) => item)
@@ -163,7 +163,8 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
               // 先做隐藏的铁骨技能，放在一个分山必不可能点的奇穴里，方便攻略组的铁骨兄弟用来排轴
               if (
                 (item.技能名称 === '寒啸千军' || item.技能名称 === '盾挡') &&
-                !奇穴信息?.includes('肃驾')) {
+                !奇穴信息?.includes('肃驾')
+              ) {
                 return false
               }
               if (插入技能) {

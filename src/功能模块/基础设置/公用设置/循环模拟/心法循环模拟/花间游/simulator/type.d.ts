@@ -55,7 +55,7 @@ export interface 技能类实例集合 {
   删除丹青?: any
   触发橙武?: 触发橙武类型
   特效腰坠?: any
-  凌然天风?: any
+  星楼月影?: any
 }
 
 export interface 技能GCD组 {

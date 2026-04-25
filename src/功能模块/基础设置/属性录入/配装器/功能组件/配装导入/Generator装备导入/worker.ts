@@ -55,7 +55,7 @@ export const Generator装备导入 = (原序列: string) => {
         const 装备数据 = data[部位]
         const 装备品级 = Number(extractLevel(装备数据?.equipment))
         const 装备ID = Number(extractItemId(装备数据?.equipment))
-        const 装备附魔ID = 装备数据?.[5]
+        const 装备附魔ID = 装备数据?.enchant?.id
         const 附魔实际名称 = 附魔ID枚举[装备附魔ID]
         const 内部索引 = EquipPositionMap[装备部位类型]
         const 该装备有大附魔 = 装备数据?.special_enchant

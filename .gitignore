@@ -2,18 +2,20 @@
 
 # dependencies
 /node_modules
+node/datasource/skill.txt
+node\datasource\skill.txt
 /.pnp
 .pnp.js
 /demo
 test.js
 shuadps.js
-
+/lua
 # testing
 /coverage
 
 # production
 /build
-build.*
+# build.*
 
 # misc
 .DS_Store

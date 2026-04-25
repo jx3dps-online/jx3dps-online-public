@@ -64,6 +64,8 @@ export interface 技能类实例集合 {
   连极阵_解?: any
   DOT_知微?: any
   太白蚀昴?: any
+  龙马出河?: any
+  往者定?: any
   换行?: 换行类型
   触发橙武?: 触发橙武类型
   特效腰坠?: any

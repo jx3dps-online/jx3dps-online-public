@@ -95,6 +95,9 @@ function CycleSimulator() {
   })
 
   const [显示标鹄层数, 更新显示标鹄层数] = useState<boolean>(false)
+  const [显示领胡覆盖, 更新显示领胡覆盖] = useState<boolean>(false)
+  const [显示连珠覆盖, 更新显示连珠覆盖] = useState<boolean>(false)
+
   // 是否实时计算
   const [宠物顺序, 更新宠物顺序] = useState<string[]>(Object.keys(宠物基础数据))
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
@@ -219,6 +222,8 @@ function CycleSimulator() {
   // 根据循环计算更适合展示的多层数组，用于显示
   const 处理循环结果对象 = useMemo(() => {
     const res: ShowCycleSingleSkill[][] = []
+    const 是否存在换行技能 = cycle?.find((item) => item?.技能名称 === '换行')
+
     cycle.map((item, index) => {
       const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
       const data = {
@@ -237,10 +242,8 @@ function CycleSimulator() {
         res[res?.length] = [{ ...data, index: index || 0 }]
       } else {
         res[res?.length - 1] = [...(res[res?.length - 1] || []), { ...data, index: index || 0 }]
-
-        const 打完本技能换箭 = data?.技能名称 === '寒更晓箭'
-
-        if (打完本技能换箭) {
+        const 换行 = 是否存在换行技能 ? data?.技能名称 === '换行' : data?.技能名称 === '寒更晓箭'
+        if (换行) {
           res[res?.length] = []
         }
       }
@@ -341,6 +344,40 @@ function CycleSimulator() {
     }
   }
 
+  const 底部标识函数 = (e: 循环基础技能数据类型, index: number) => {
+    if (!显示连珠覆盖) {
+      return null
+    }
+    const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+    if (找到当前技能释放记录?.技能释放记录结果?.底部标识 !== undefined) {
+      return (
+        // 这个classname是通用样式名，也可以在自己这个文件夹下写自己职业的自定义样式（就可以自己掌控样子了）
+        <div className='cycle-item-bottom-wrap'>
+          {/* 自动判断底部标识的类型显示，你也可以不自动判断用下面的两个注释写法的其中一种 */}
+          {typeof 找到当前技能释放记录?.技能释放记录结果?.底部标识 === 'boolean' ? (
+            <div className='cycle-item-bottom-line'></div>
+          ) : (
+            <div className='cycle-item-bottom-text'>
+              {找到当前技能释放记录?.技能释放记录结果?.底部标识}
+            </div>
+          )}
+        </div>
+      )
+    }
+    return null
+  }
+
+  const 背景容器函数 = (e: 循环基础技能数据类型, index: number) => {
+    if (!显示领胡覆盖) {
+      return null
+    }
+    const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+    if (找到当前技能释放记录?.技能释放记录结果?.背景容器) {
+      return <div className='shxj-cycle-item-background-wrap'></div>
+    }
+    return null
+  }
+
   return (
     <>
       <Modal
@@ -381,7 +418,14 @@ function CycleSimulator() {
           <心法配置
             原始Buff数据={根据奇穴修改buff数据(奇穴信息)}
             配置区={
-              <心法特殊配置 显示标鹄层数={显示标鹄层数} 更新显示标鹄层数={更新显示标鹄层数} />
+              <心法特殊配置
+                显示标鹄层数={显示标鹄层数}
+                更新显示标鹄层数={更新显示标鹄层数}
+                显示领胡覆盖={显示领胡覆盖}
+                更新显示领胡覆盖={更新显示领胡覆盖}
+                显示连珠覆盖={显示连珠覆盖}
+                更新显示连珠覆盖={更新显示连珠覆盖}
+              />
             }
           />
           {/* 角色状态栏 */}
@@ -403,6 +447,8 @@ function CycleSimulator() {
             原始Buff数据={原始Buff数据}
             点击下拉菜单={点击下拉菜单}
             允许操作列表={['插入技能', '删除后续', '设置延迟']}
+            背景容器={背景容器函数}
+            底部标识={底部标识函数}
           />
         </div>
         {/* 添加循环按钮组 */}

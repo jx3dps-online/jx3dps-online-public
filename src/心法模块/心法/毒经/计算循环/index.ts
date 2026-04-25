@@ -6,22 +6,10 @@ import type { 循环数据 } from '@/@types/循环'
  */
 
 // 循环
-import 武学助手 from './武学助手.json'
-import 连令 from './紫武连令.json'
-import 降厄 from './紫武降厄.json'
-import 悸心 from './紫武悸心.json'
+import 紫武连令 from './紫武连令.json'
 import 橙武连令 from './橙武连令.json'
-import 橙武悸心 from './橙武悸心.json'
-import 橙武降厄乱轴 from './橙武降厄乱轴.json'
+import 橙武降厄 from './橙武降厄.json'
 
-const 计算循环: 循环数据[] = [
-  武学助手,
-  连令,
-  悸心,
-  降厄,
-  橙武连令,
-  橙武悸心,
-  橙武降厄乱轴,
-] as 循环数据[]
+const 计算循环: 循环数据[] = [紫武连令, 橙武连令, 橙武降厄] as 循环数据[]
 
 export default 计算循环

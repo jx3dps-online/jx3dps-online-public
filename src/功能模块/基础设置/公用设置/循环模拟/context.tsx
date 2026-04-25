@@ -37,6 +37,8 @@ interface CycleSimulatorContextProps {
   更新秘籍信息: (e: 选中秘籍信息) => void
   增益启用: boolean
   更新增益启用: (e: boolean) => void
+  高亮团队快照: string[]
+  更新高亮团队快照: (e: string[]) => void
 }
 
 const CycleSimulatorContext = React.createContext<CycleSimulatorContextProps>({} as any)

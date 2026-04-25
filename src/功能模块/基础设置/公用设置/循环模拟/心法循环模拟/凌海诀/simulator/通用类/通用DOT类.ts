@@ -128,11 +128,11 @@ class 通用DOT类 extends 技能统一类 {
 
   获取当前快照buff() {
     const buff列表: string[] = []
-    if (this.模拟循环?.当前自身buff列表?.['太息·2']?.当前层数) {
-      buff列表.push('太息·2')
+    if (this.模拟循环?.当前自身buff列表?.['游仙']?.当前层数) {
+      buff列表.push('游仙')
     }
-    if (this.模拟循环?.当前自身buff列表?.['太息·1']?.当前层数) {
-      buff列表.push('太息·1')
+    if (this.模拟循环?.当前自身buff列表?.['太息']?.当前层数) {
+      buff列表.push('太息')
     }
     return buff列表
   }

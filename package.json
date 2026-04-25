@@ -99,21 +99,13 @@
   "scripts": {
     "dev": "rimraf build/static/js/getDps.js && node scripts/start.js --stack-size=10000",
     "start": "node scripts/start.js --stack-size=10000",
-    "build": "GENERATE_SOURCEMAP=false PUBLIC_URL=/ node --max-old-space-size=4096 scripts/build.js",
-    "build:analyzer": "BUILD_ANALYZER=true GENERATE_SOURCEMAP=false PUBLIC_URL=/ node --max-old-space-size=4096 scripts/build.js",
+    "build": "cross-env GENERATE_SOURCEMAP=false PUBLIC_URL=/ node --max-old-space-size=4096 scripts/build.js",
+    "build:analyzer": "cross-env BUILD_ANALYZER=true GENERATE_SOURCEMAP=false PUBLIC_URL=/ node --max-old-space-size=4096 scripts/build.js",
     "build:local": "GENERATE_SOURCEMAP=false REACT_APP_BUILD_TYPE=local PUBLIC_URL=./ node --max-old-space-size=4096 scripts/build.js",
     "build:localWindows": "cross-env GENERATE_SOURCEMAP=false REACT_APP_BUILD_TYPE=local PUBLIC_URL=./ node --max-old-space-size=4096 scripts/build.js",
-    "buildGetDps": "GET_DPS=true node scripts/build.js",
     "test": "node scripts/test.js",
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build",
-    "equip:physics": "GONG_FA=physics node node/importEquip.mjs",
-    "equip:magic": "GONG_FA=magic node node/importEquip.mjs",
-    "equip": "node node/importLocalEquip/import.mjs",
-    "stone": "node node/importLocalStone/import.mjs",
-    "enchants": "node node/importLocalEnchants/import.mjs",
-    "chuangyi": "node node/importChuangyiLiaoli/import.mjs",
-    "qixue": "node node/getTalentsFromGenerator/index.mjs",
     "prepare": "husky"
   },
   "lint-staged": {

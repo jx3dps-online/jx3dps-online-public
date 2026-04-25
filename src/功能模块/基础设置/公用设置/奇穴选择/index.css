@@ -2,11 +2,16 @@
   width: calc(50% - 4px);
 }
 
+.qixue-set-drawer-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .qixue-set-drawer-title-tip {
   font-size: 14px;
   margin-left: 12px;
-  color: #f00
+  color: #f00;
 }
 
 .qixue-set-drawer .ant-drawer-body {
@@ -119,7 +124,7 @@
   width: 100%;
   line-height: 22px;
   font-size: 14px;
-  transition: color .2s;
+  transition: color 0.2s;
 }
 
 .qixue-set-item-select-popup .ant-select-item-option-content {

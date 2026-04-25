@@ -16,7 +16,16 @@ interface BuffProps {
 function Buff(props: BuffProps) {
   const { title, buff列表, 当前时间点, DOT列表 = {} } = props
 
-  const 当前buff列表 = Object.keys(buff列表).map((item) => buff列表[item])
+  const 当前buff列表 = Object.keys(buff列表)
+    .filter((item) => {
+      // 有潋风行云势额外锐意时，面板不显示潋风行云势额外伤害，偷懒
+      if (item === '潋风行云势额外伤害') {
+        return !Object.keys(buff列表)?.includes('潋风行云势额外锐意')
+      } else {
+        return true
+      }
+    })
+    .map((item) => buff列表[item])
 
   const 当前Dot列表 = Object.keys(DOT列表)
     .map((item) => {
@@ -49,7 +58,10 @@ function Buff(props: BuffProps) {
                             {((层数 - 1) * 20 + 剩余时间 / 每秒郭氏帧).toFixed(1)}秒
                           </>
                         ) : (
-                          <>{`${item.名称}${层数 > 1 ? `${层数}层` : ''}`}</>
+                          <>
+                            {`${item.名称}${层数 > 1 ? `${层数}层` : ''}`}
+                            <p>{item.备注}</p>
+                          </>
                         )
                       }
                     >

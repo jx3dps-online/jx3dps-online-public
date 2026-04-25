@@ -120,7 +120,7 @@ class 技能统一类 {
 
   获取DOT快照检测Buff列表(伤害名称) {
     if (伤害名称?.includes('DOT')) {
-      return ['倚天', '钟灵', '布散畅和', '涓流']
+      return ['倚天', '钟灵', '布散畅和', '涓流', '故幽', '青歌']
       // return this.获取当前快照buff()
     } else {
       return []
@@ -249,6 +249,12 @@ class 技能统一类 {
     }
     if (this?.模拟循环?.当前自身buff列表?.['布散畅和']?.当前层数) {
       buff列表.push(`布散畅和`)
+    }
+    if (this?.模拟循环?.当前自身buff列表?.['故幽']?.当前层数) {
+      buff列表.push(`故幽`)
+    }
+    if (this?.模拟循环?.当前自身buff列表?.['青歌']?.当前层数) {
+      buff列表.push(`青歌`)
     }
     return buff列表
   }

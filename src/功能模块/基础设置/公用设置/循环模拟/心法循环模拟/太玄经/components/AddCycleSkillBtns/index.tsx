@@ -4,7 +4,7 @@ import { 循环基础技能数据类型, 模拟信息类型 } from '../../simula
 import AddCycleSkillBtn from './AddCycleSkillBtn'
 import { 快捷添加数据, 快捷添加数据类型 } from './快捷添加'
 import { 获取实际技能数据 } from '../../../通用/通用函数'
-import './index.css'
+import { 选中秘籍信息 } from '@/@types/秘籍'
 
 interface AddCycleSkillBtnsProps {
   新增循环技能: (data: 循环基础技能数据类型) => void
@@ -15,6 +15,7 @@ interface AddCycleSkillBtnsProps {
   奇穴信息: string[]
   插入技能?: boolean // 插入技能时不禁用技能
   自动三才?: boolean
+  秘籍信息: 选中秘籍信息
   // 宠物顺序: string[]
   // 更新宠物顺序: (e: string[]) => void
 }
@@ -29,6 +30,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
     奇穴信息,
     插入技能,
     自动三才,
+    秘籍信息,
     // 宠物顺序,
     // 更新宠物顺序,
   } = props
@@ -112,7 +114,17 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
         <span className={'ztg-cycle-btn-type'}>占术</span>
         <Space className={'cycle-simulator-setting-skills'} size={[8, 16]} wrap>
           {模拟信息?.技能基础数据
-            ?.filter((item) => !item?.创建循环不可选 && item?.技能类型 === '占术')
+            ?.filter((item) => {
+              if (item?.技能类型 !== '占术') return false
+              const 顺序变卦启用 = 秘籍信息?.['变卦']?.includes('顺序变卦')
+              if (item?.技能名称 === '变卦') {
+                return 顺序变卦启用
+              }
+              if (['变水卦', '变山卦', '变火卦'].includes(item?.技能名称)) {
+                return !顺序变卦启用
+              }
+              return !item?.创建循环不可选
+            })
             ?.filter((item) => {
               if (插入技能) {
                 return true

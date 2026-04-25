@@ -215,7 +215,6 @@ class 技能统一类 {
     }
     // buff列表.push('相使')
     return buff列表
-    // TODO
     console.log('类型', 类型)
   }
 }

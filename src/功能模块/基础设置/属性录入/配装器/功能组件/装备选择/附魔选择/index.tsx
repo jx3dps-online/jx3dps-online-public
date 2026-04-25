@@ -4,7 +4,6 @@ import { 附魔数据类型 } from '@/@types/附魔'
 import { 秒伤计算 } from '@/计算模块/计算函数'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import 根据表单选项获取装备信息 from '../../../工具函数/根据表单选项获取装备信息'
-import styles from './index.module.less'
 import './index.css'
 import classNames from 'classnames'
 import { 装备位置部位枚举 } from '@/@types/装备'
@@ -160,6 +159,7 @@ export default 附魔选择
 
 const 颜色枚举 = {
   橙: { 样式: 'orange', 名称: '挑战' },
+  绿: { 样式: 'green', 名称: '阆风' },
   紫: { 样式: 'purple', 名称: '珍奇' },
   蓝: { 样式: 'blue', 名称: '卓越' },
 }

@@ -12,7 +12,7 @@ const 跬步四象函数 = () => {
   return 数组.map((item) => {
     return {
       BuffId: 12550,
-      Buff层数: item,
+      Buff等级: item,
       增益名称: `跬步四象·${item}`,
       增益所在位置: '奇穴',
       依赖奇穴: '跬步',

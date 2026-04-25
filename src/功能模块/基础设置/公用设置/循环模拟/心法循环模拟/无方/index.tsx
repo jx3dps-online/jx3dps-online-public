@@ -69,6 +69,7 @@ function CycleSimulator() {
   const [模拟信息, 更新模拟信息] = useState<模拟信息类型>({
     角色状态信息: {
       温寒: 0,
+      内力: 100,
     },
     当前时间: 0,
     当前自身buff列表: {},
@@ -90,7 +91,18 @@ function CycleSimulator() {
   }>({
     open: false,
   })
+  const [忽略延迟技能, 更新忽略延迟技能] = useState<string[]>([
+    '香繁饮露',
+    '千枝绽蕊',
+    '千枝伏藏',
+    '唤醒',
+    '损毁',
+    '触发橙武',
+    '特效腰坠',
+  ])
+  //const [周期性忽略延迟, 更新周期性忽略延迟] = useState<number>(0)
 
+  const [起手内力, 更新起手内力] = useState<number>(100)
   const [起手温寒, 更新起手温寒] = useState<number>(-5) // 5寒
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
   const dispatch = useAppDispatch()
@@ -98,6 +110,7 @@ function CycleSimulator() {
   useEffect(() => {
     if (模拟器弹窗展示) {
       更新起手温寒(-5)
+      更新起手内力(100)
     }
   }, [模拟器弹窗展示])
 
@@ -112,6 +125,8 @@ function CycleSimulator() {
     网络延迟,
     秘籍信息,
     起手温寒,
+    起手内力,
+    忽略延迟技能,
     启用团队增益快照,
     加速值,
     奇穴信息,
@@ -135,6 +150,8 @@ function CycleSimulator() {
       秘籍: 秘籍信息,
       大橙武模拟,
       起手温寒,
+      起手内力,
+      忽略延迟技能,
       启用团队增益快照,
       团队增益轴,
       起手Buff配置,
@@ -309,6 +326,32 @@ function CycleSimulator() {
     }
   }
 
+  const 底部标识函数 = (e: 循环基础技能数据类型, index: number) => {
+    const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+    if (找到当前技能释放记录?.技能释放记录结果?.底部标识 !== undefined) {
+      return (
+        // 这个classname是通用样式名，也可以在自己这个文件夹下写自己职业的自定义样式（就可以自己掌控样子了）
+        <div className='cycle-item-bottom-wrap'>
+          {/* 自动判断底部标识的类型显示，你也可以不自动判断用下面的两个注释写法的其中一种 */}
+          {typeof 找到当前技能释放记录?.技能释放记录结果?.底部标识 === 'boolean' ? (
+            <div className='cycle-item-bottom-line'></div>
+          ) : (
+            <div className='cycle-item-bottom-text'>
+              {找到当前技能释放记录?.技能释放记录结果?.底部标识}
+            </div>
+          )}
+          {/* 写法1：这个是横线红色的写法，用来强调标记一些buff覆盖 */}
+          {/* <div className='cycle-item-bottom-line'></div> */}
+          {/* 写法2：这个是如果你的底部标识传入过来的是一个数字/文案，直接展示具体内容 */}
+          {/* <div className='cycle-item-bottom-text'>
+            {找到当前技能释放记录?.技能释放记录结果?.底部标识}
+          </div> */}
+        </div>
+      )
+    }
+    return null
+  }
+
   return (
     <>
       <Modal
@@ -343,7 +386,16 @@ function CycleSimulator() {
         <div className={'cycle-simulator-setting'}>
           <心法配置
             原始Buff数据={根据奇穴修改buff数据(奇穴信息)}
-            配置区={<心法特殊配置 起手温寒={起手温寒} 更新起手温寒={更新起手温寒} />}
+            配置区={
+              <心法特殊配置
+                起手温寒={起手温寒}
+                更新起手温寒={更新起手温寒}
+                起手内力={起手内力}
+                更新起手内力={更新起手内力}
+                忽略延迟技能={忽略延迟技能}
+                更新忽略延迟技能={更新忽略延迟技能}
+              />
+            }
           />
           {/* 角色状态栏 */}
           <StatusBar
@@ -361,6 +413,7 @@ function CycleSimulator() {
             cycle={cycle}
             setCycle={setCycle}
             原始Buff数据={原始Buff数据}
+            底部标识={底部标识函数}
             点击下拉菜单={点击下拉菜单}
             允许操作列表={['插入技能', '删除后续', '设置延迟']}
           />

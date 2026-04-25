@@ -7,7 +7,6 @@ import { 触发橙武类型 } from './技能类/触发橙武'
 import { 朝仪万汇类型 } from './技能类/朝仪万汇'
 import { 引风唤灵类型 } from './技能类/引风唤灵'
 import { 弛律召野类型 } from './技能类/弛律召野'
-import { 丛云隐月类型 } from './技能类/丛云隐月'
 import { 风尽浮生类型 } from './技能类/风尽浮生'
 import { 寒更晓箭类型 } from './技能类/寒更晓箭'
 import { 金乌见坠类型 } from './技能类/金乌见坠'
@@ -63,7 +62,6 @@ export interface 技能类实例集合 {
   宠物?: 宠物类型
   引风唤灵?: 引风唤灵类型
   弛律召野?: 弛律召野类型
-  丛云隐月?: 丛云隐月类型
   风尽浮生?: 风尽浮生类型
   金乌见坠?: 金乌见坠类型
   空弦惊雁?: 空弦惊雁类型
@@ -72,7 +70,9 @@ export interface 技能类实例集合 {
   唤灵印?: any
   下马?: any
   游雾乘云?: any
+  汇灵合契?: any
   聚势摧霆?: any
+  换行?: any
   没石饮羽?: any
 }
 
@@ -402,6 +402,8 @@ export interface 技能释放记录结果 {
   伤害段数?: number // 针对行、沧的实际伤害段数
   重要buff列表?: string[] // 影响技能结果的重要buff列表
   特殊标记?: number
+  背景容器?: React.ReactNode
+  底部标识?: React.ReactNode
   造成buff数据?: {
     // 针对吃影子、灭这种会添加有益buff的情况
     buff名称: string

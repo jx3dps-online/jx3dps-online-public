@@ -1,10 +1,11 @@
-import { Checkbox, Modal, Tooltip } from 'antd'
+import { Button, Checkbox, message, Modal, Tooltip } from 'antd'
 import React, { useMemo, useState } from 'react'
 import { useAppSelector } from '@/hooks'
 import { 当前计算结果类型 } from '@/@types/输出'
 import 技能结果详情容器 from './技能结果详情容器'
 import { 获取技能统计数据 } from './util'
 import './index.css'
+import html2canvas from 'html2canvas'
 
 function 结果统计({
   visible,
@@ -21,6 +22,39 @@ function 结果统计({
     return 获取技能统计数据(显示计算结果, 合并同名技能)
   }, [显示计算结果, 合并同名技能])
 
+  const 一键截图 = () => {
+    const element: any = document.getElementById('dps-skill-count-content') // 获取要截图的元素
+    html2canvas(element, { useCORS: true }).then((canvas) => {
+      // 创建一个新的Canvas，并设置宽高
+      const borderWidth = 20 // 设置白边的宽度
+      const newCanvas = document.createElement('canvas')
+      newCanvas.width = canvas.width + borderWidth * 2 // 加上左右的边框
+      newCanvas.height = canvas.height + borderWidth * 2 // 加上上下的边框
+
+      const ctx: any = newCanvas.getContext('2d')
+
+      // 绘制白色背景
+      ctx.fillStyle = 'white'
+      ctx.fillRect(0, 0, newCanvas.width, newCanvas.height)
+
+      ctx.drawImage(canvas, borderWidth, borderWidth) // 在新的canvas中绘制原始canvas
+
+      newCanvas.toBlob((blob) => {
+        if (blob) {
+          const item = new ClipboardItem({ 'image/png': blob })
+          navigator.clipboard
+            .write([item])
+            .then(() => {
+              message.success('截图已复制到剪贴板！')
+            })
+            .catch((err) => {
+              console.error('复制到剪贴板失败:', err)
+            })
+        }
+      })
+    })
+  }
+
   return (
     <Modal
       className='dps-count-modal'
@@ -28,7 +62,12 @@ function 结果统计({
       centered
       title={
         <div className={'dps-count-modal-title'}>
-          <span>{title || '技能统计'}</span>
+          <div>
+            <span>{title || '技能统计'}</span>
+            <Button size='small' style={{ marginLeft: 8 }} onClick={一键截图}>
+              统计截图
+            </Button>
+          </div>
           <Checkbox checked={合并同名技能} onChange={(e) => 设置合并同名技能(e?.target?.checked)}>
             合并同名技能
           </Checkbox>
@@ -52,7 +91,7 @@ function 结果统计({
           </div>
         </div>
         {sortDpsList?.length ? (
-          <div className={'dps-skill-count'}>
+          <div className={'dps-skill-count'} id='dps-skill-count-content'>
             {sortDpsList
               // ?.filter((item) => item?.技能名称?.includes('引窍'))
               ?.map((item, index) => {

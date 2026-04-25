@@ -47,6 +47,8 @@ import 镇星二段 from './技能类/镇星二段'
 import 连极阵 from './技能类/连极阵'
 import 连极阵_解 from './技能类/连极阵_解'
 import 太白蚀昴 from './技能类/太白蚀昴'
+import 龙马出河 from './技能类/龙马出河'
+import 往者定 from './技能类/往者定'
 import 特效腰坠 from '../../通用/通用技能/特效腰坠'
 import DOT_祝由_火离 from './DOT类/祝由_火离'
 import DOT_知微 from './DOT类/知微'
@@ -59,7 +61,7 @@ import 换行 from './技能类/换行'
 import { 团队增益轴类型 } from '@/@types/团队增益'
 import 判断团队增益快照Buff from '@/数据/团队增益/tools'
 import { 起手Buff配置 } from '../../通用/通用框架/类型定义/Buff'
-import { 技能额外信息分隔符, 获取起手Buff配置 } from '../../通用/通用函数'
+import { 技能额外信息分隔符, 获取实际技能数据, 获取起手Buff配置 } from '../../通用/通用函数'
 import { 选中秘籍信息 } from '@/@types/秘籍'
 import { 自身属性系数 } from '@/数据/常量'
 
@@ -111,6 +113,7 @@ class 循环主类 {
   启用团队增益快照 = false
   团队增益轴: 团队增益轴类型 = {}
   断御前星延迟 = 0
+  顺序变卦启用 = false
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
     // 模拟开始后不会变动的数据
@@ -128,6 +131,19 @@ class 循环主类 {
     this.Buff和Dot数据 = 根据奇穴修改buff数据(this.奇穴)
     // 根据奇穴和装备情况修改技能的数据
     this.技能基础数据 = 根据奇穴秘籍修改技能数据(this.奇穴, this.秘籍)
+
+    this.顺序变卦启用 = this.秘籍['变卦']?.includes('顺序变卦')
+
+    // 如果启用了顺序变卦秘籍，替换变火卦、变山卦、变水卦为变卦
+    if (this.顺序变卦启用) {
+      this.测试循环 = this.测试循环.map((item) => {
+        const { 实际技能名称 } = 获取实际技能数据(item)
+        if (['变火卦', '变山卦', '变水卦'].includes(实际技能名称)) {
+          return item.replace(实际技能名称, '变卦')
+        }
+        return item
+      })
+    }
 
     this.当前自身buff列表 = {
       ...获取起手Buff配置(props?.起手Buff配置, this.Buff和Dot数据, '自身'),
@@ -177,6 +193,8 @@ class 循环主类 {
       连极阵: new 连极阵(this),
       连极阵_解: new 连极阵_解(this),
       太白蚀昴: new 太白蚀昴(this),
+      龙马出河: new 龙马出河(this),
+      往者定: new 往者定(this),
       换行: new 换行(this),
       触发橙武: new 触发橙武(this),
       特效腰坠: new 特效腰坠(this),
@@ -483,6 +501,35 @@ class 循环主类 {
     let 总增益列表 = 有关的buff列表.concat(
       额外增益列表?.filter((a) => !有关的buff列表?.includes(a)),
     )
+
+    // 镇星入舆各buff分别增伤10%
+    if (
+      /^天斗旋(·|$)/.test(来源) &&
+      !来源.includes('神兵') &&
+      this.当前自身buff列表['镇星入舆_斗']?.当前层数
+    ) {
+      if (!总增益列表.includes('镇星入舆斗10%')) {
+        总增益列表.push('镇星入舆斗10%')
+      }
+    }
+    if (
+      /^三星临(·|$)/.test(来源) &&
+      !来源.includes('神兵') &&
+      this.当前自身buff列表['镇星入舆_临']?.当前层数
+    ) {
+      if (!总增益列表.includes('镇星入舆临10%')) {
+        总增益列表.push('镇星入舆临10%')
+      }
+    }
+    if (
+      /^兵主逆(·|$)/.test(来源) &&
+      !来源.includes('神兵') &&
+      this.当前自身buff列表['镇星入舆_兵']?.当前层数
+    ) {
+      if (!总增益列表.includes('镇星入舆兵10%')) {
+        总增益列表.push('镇星入舆兵10%')
+      }
+    }
 
     if (来源?.includes('DOT')) {
       总增益列表 = 总增益列表.map((item) => {
@@ -809,21 +856,29 @@ class 循环主类 {
           console.error('e', e)
         }
       }
+      if (this.顺序变卦启用 && ['变火卦', '变山卦', '变水卦'].includes(实际技能名称)) {
+        实际技能名称 = '变卦'
+      }
       const 当前技能 = this?.技能基础数据?.find((item) => item?.技能名称 === 实际技能名称)
 
       if (当前技能 && 当前技能?.技能名称) {
-        const 技能实例 = this.技能类实例集合[当前技能?.技能名称]
+        let 技能实例 = this.技能类实例集合[当前技能?.技能名称]
         let 作用实例 = this.技能类实例集合[当前技能?.技能名称]
         let 作用技能: any = 当前技能
 
         if (['起火卦', '起水卦', '起山卦']?.includes(实际技能名称)) {
-          作用实例 = this.技能类实例集合['起卦']
-          作用技能 = this?.技能基础数据?.find((item) => item?.技能名称 === '起卦')
+          // 起卦类技能应该执行具体子类命中逻辑，而不是替换成通用起卦基类实例
+          作用实例 = this.技能类实例集合[实际技能名称]
+          作用技能 = 当前技能
+          技能实例 = 作用实例
         }
 
-        if (['变火卦', '变水卦', '变山卦']?.includes(实际技能名称)) {
-          作用实例 = this.技能类实例集合['变卦']
-          作用技能 = this?.技能基础数据?.find((item) => item?.技能名称 === '变卦')
+        if (['变卦', '变火卦', '变水卦', '变山卦']?.includes(实际技能名称)) {
+          if (this.顺序变卦启用 || 实际技能名称 === '变卦') {
+            作用实例 = this.技能类实例集合['变卦']
+            作用技能 = this?.技能基础数据?.find((item) => item?.技能名称 === '变卦')
+            技能实例 = 作用实例
+          }
         }
 
         const 跳过运行 = false

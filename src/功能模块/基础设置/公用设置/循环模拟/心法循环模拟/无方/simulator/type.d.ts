@@ -52,6 +52,11 @@ export interface 技能类实例集合 {
   触发橙武?: 触发橙武类型
   特效腰坠?: any
   凌然天风?: any
+  千枝绽蕊?: any
+  千枝伏藏?: any
+  唤醒?: any
+  损毁?: any
+  通用内力回复?: any
 }
 
 export interface 技能GCD组 {
@@ -178,6 +183,7 @@ export interface 额外信息类型 {
 
 export interface 角色状态信息类型 {
   温寒: number // -5 ~ 5 -5代表寒，默认0
+  内力: number // 0 ~ 100 默认100
 }
 
 // Dot数据
@@ -363,6 +369,7 @@ export interface 技能释放记录结果 {
   实际伤害技能?: string // 针对造成伤害的实际名称
   伤害段数?: number // 针对行、沧的实际伤害段数
   重要buff列表?: string[] // 影响技能结果的重要buff列表
+  底部标识?: React.ReactNode
   释放时标鹄层数?: number
   造成buff数据?: {
     // 针对吃影子、灭这种会添加有益buff的情况

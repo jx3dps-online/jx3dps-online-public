@@ -13,7 +13,7 @@ interface 团队增益图标类型 {
 }
 
 const 团队增益图标: React.FC<团队增益图标类型> = (props) => {
-  const { 增益轴数据, 增益名称, 当前时间 } = props
+  const { 增益轴数据, 增益名称, 当前时间, ...rest } = props
   const 图标 = useMemo(() => {
     return 团队增益?.find((item) => item?.增益名称 === 增益名称)?.增益图片
   }, [团队增益, 增益名称])
@@ -67,6 +67,7 @@ const 团队增益图标: React.FC<团队增益图标类型> = (props) => {
           ? 'cycle-simulator-team-buff-img-disabled'
           : ''
       }`}
+      {...rest}
     >
       <img src={图标} className={'cycle-simulator-team-buff-img'} />
       {剩余时间?.当前剩余持续时间 > 0 ? (

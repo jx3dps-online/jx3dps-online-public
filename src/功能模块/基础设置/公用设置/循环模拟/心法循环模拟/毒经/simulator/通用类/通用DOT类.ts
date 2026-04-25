@@ -90,62 +90,75 @@ class 通用DOT类 extends 技能统一类 {
 
     // 如果DOT依然存在
     if (待生效数据?.length > 1) {
-      const 原伤害间隔 = (待生效数据[待生效数据?.length - 1]?.生效时间 || 0) - (待生效数据[待生效数据?.length - 2]?.生效时间 || 0)
+      const 原伤害间隔 =
+        (待生效数据[待生效数据?.length - 1]?.生效时间 || 0) -
+        (待生效数据[待生效数据?.length - 2]?.生效时间 || 0)
       const 单次获得最大次数 = DOT数据.每次获得作用次数 || DOT数据.最大作用次数
 
       // 如果伤害间隔有变化，则重新刷新
       if (实际伤害频率 != 原伤害间隔) {
-
         const 原生效时间 = 待生效数据[0]?.生效时间 || 0
         const 待添加次数 = Math.min(DOT数据.最大作用次数 - 1, 单次获得最大次数)
 
         待生效数据.splice(1, 待生效数据.length)
+
         for (let i = 0; i < 待添加次数; i++) {
+          const DOT跳数 = 待生效数据.length + 1
           待生效数据.push({
             当前层数,
             生效时间: 原生效时间 + 实际伤害频率 * (i + 1),
             快照buff列表,
+            DOT跳数,
           })
         }
-      } else { // 正常补跳
+      } else {
+        // 正常补跳
         const 原最后一次生效时间 = 待生效数据[待生效数据?.length - 1]?.生效时间 || 0
         const 待添加次数 = Math.min(DOT数据.最大作用次数 - 待生效数据?.length, 单次获得最大次数)
 
         for (let i = 0; i < 待添加次数; i++) {
+          const DOT跳数 = 待生效数据.length + 1
           待生效数据.push({
             当前层数,
             生效时间: 原最后一次生效时间 + 实际伤害频率 * (i + 1),
             快照buff列表,
+            DOT跳数,
           })
         }
       }
-
     } else if (待生效数据?.length > 0) {
       const 单次获得最大次数 = DOT数据.每次获得作用次数 || DOT数据.最大作用次数
       const 待添加次数 = Math.min(DOT数据.最大作用次数 - 待生效数据?.length, 单次获得最大次数)
       const 原最后一次生效时间 = 待生效数据[待生效数据?.length - 1]?.生效时间 || 0
 
       for (let i = 0; i < 待添加次数; i++) {
+        const DOT跳数 = 待生效数据.length + 1
         待生效数据.push({
           当前层数,
           生效时间: 原最后一次生效时间 + 实际伤害频率 * (i + 1),
           快照buff列表,
+          DOT跳数,
         })
       }
-
     } else {
       const 单次获得最大次数 = DOT数据.每次获得作用次数 || DOT数据.最大作用次数
       const 待添加次数 = 单次获得最大次数
       for (let i = 0; i < 待添加次数; i++) {
+        const DOT跳数 = 待生效数据.length + 1
         const 生效时间 = 当前时间 + (i === 0 ? 实际初次频率 : 实际伤害频率 * (i + 1))
         待生效数据.push({
           当前层数,
           生效时间,
           快照buff列表,
+          DOT跳数,
         })
       }
     }
     // this.模拟循环.删除待生效事件队列(`卸除buff-${DOT数据?.名称}`)
+
+    for (let i = 0; i < 待生效数据.length; i++) {
+      待生效数据[i].DOT跳数 = i + 1
+    }
 
     this.更新DOT运行数据({
       待生效数据: 待生效数据,
@@ -160,15 +173,12 @@ class 通用DOT类 extends 技能统一类 {
           事件备注: { buff名称: DOT数据?.名称, buff对象: '目标', 卸除层数: 9999 },
         },
       ],
-      true
+      true,
     )
   }
 
   获取当前快照buff() {
-    const 快照Buff列表 = [
-      '灵蛇献祭',
-      '罗汉金身_金刚怒目', '擒龙', '金刚日轮', '身意', '三生'
-    ]
+    const 快照Buff列表 = ['引魂', '嗜蛊_快照']
     const buff列表: string[] = []
     快照Buff列表?.forEach((buff) => {
       if (this.模拟循环?.当前自身buff列表?.[buff]?.当前层数) {

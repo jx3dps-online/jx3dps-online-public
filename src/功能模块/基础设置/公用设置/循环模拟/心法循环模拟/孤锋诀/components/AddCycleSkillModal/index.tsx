@@ -11,6 +11,7 @@ interface AddCycleSkillModalProps {
   奇穴信息: string[]
   添加设置: { 位置: string; 索引 }
   添加技能弹窗显示: boolean
+  自动击破: boolean
   关闭弹窗: () => void
 }
 
@@ -20,6 +21,7 @@ function AddCycleSkillModal(props: AddCycleSkillModalProps) {
     处理循环结果对象,
     模拟信息,
     大橙武模拟,
+    自动击破,
     添加设置,
     添加技能弹窗显示,
     关闭弹窗,
@@ -48,6 +50,7 @@ function AddCycleSkillModal(props: AddCycleSkillModalProps) {
         模拟信息={模拟信息}
         大橙武模拟={大橙武模拟}
         插入技能
+        自动击破={自动击破}
       />
     </Drawer>
   )

@@ -6,6 +6,7 @@ import 循环技能显示组件 from '../循环技能显示组件'
 import { Buff枚举 } from '../../通用框架/类型定义/Buff'
 import styles from './index.module.less'
 import { useState } from 'react'
+import './index.css'
 
 interface 循环技能容器组件类型 {
   处理循环结果对象: {
@@ -19,6 +20,10 @@ interface 循环技能容器组件类型 {
   点击下拉菜单: (data, index) => void
   允许操作列表?: string[]
   复制本轮至最后?: any
+  隐藏显示技能?: string[]
+  技能高亮?: (e: any, index: number) => boolean
+  底部标识?: (e: any, index: number) => React.ReactNode
+  背景容器?: (e: any, index: number) => React.ReactNode
 }
 
 const 循环技能容器组件: React.FC<循环技能容器组件类型> = (props) => {
@@ -33,6 +38,10 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
     点击下拉菜单,
     允许操作列表,
     复制本轮至最后: 复制本轮至最后函数,
+    隐藏显示技能 = [],
+    技能高亮,
+    底部标识,
+    背景容器,
   } = props
 
   const [buff覆盖数据, 更新buff覆盖数据] = useState<number[]>([])
@@ -145,6 +154,24 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
     setCycle(newCycle)
   }
 
+  const 找到上一个实际技能 = (索引) => {
+    const 新索引 = 索引 - 1
+    let 前一个技能 = cycle?.[新索引]
+    if (!前一个技能) {
+      return null
+    }
+    const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[新索引]
+    return {
+      ...前一个技能,
+      ...找到当前技能释放记录,
+    }
+    // if (['换行', '触发橙武', '特效腰坠', '弱点击破']?.includes(前一个技能?.技能名称)) {
+    //   return 找到上一个实际技能(索引 - 2)
+    // } else {
+    //   return 前一个技能
+    // }
+  }
+
   return (
     <div className={styles.wrap}>
       {处理循环结果对象?.显示循环?.length ? (
@@ -163,9 +190,11 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
                 draggable={'.cycle-simulator-setting-skill-drag'}
               >
                 {(轮次 || []).map((item) => {
+                  let 前一个技能 = 找到上一个实际技能(item?.index)
                   return (
                     <循环技能显示组件
                       技能={item as any}
+                      前一个技能={前一个技能 as any}
                       模拟信息={模拟信息 as any}
                       删除循环技能={删除循环技能}
                       key={`${item?.技能名称}_${index}_${item?.index}`}
@@ -173,6 +202,10 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
                       buff覆盖索引={buff覆盖索引}
                       原始Buff数据={原始Buff数据}
                       允许操作列表={允许操作列表}
+                      隐藏显示技能={隐藏显示技能}
+                      技能高亮={技能高亮}
+                      底部标识={底部标识}
+                      背景容器={背景容器}
                       更新buff覆盖数据={(e, 索引) => {
                         更新buff覆盖数据(e)
                         更新buff覆盖索引(索引)

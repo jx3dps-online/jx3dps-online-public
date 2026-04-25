@@ -59,8 +59,15 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
     快速导入默认循环 = [],
   } = props
 
-  const { 秘籍信息, 更新秘籍信息, 更新起手Buff配置, 增益启用, 更新增益启用 } =
-    useContext(CycleSimulatorContext)
+  const {
+    秘籍信息,
+    更新秘籍信息,
+    更新起手Buff配置,
+    增益启用,
+    更新增益启用,
+    高亮团队快照,
+    更新高亮团队快照,
+  } = useContext(CycleSimulatorContext)
 
   const 自定义循环 = useAppSelector((state) => state?.data?.自定义循环列表)
 
@@ -199,6 +206,8 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
             启用={启用团队增益快照}
             设置是否启用={更新启用团队增益快照}
             当前时间={模拟信息?.当前时间 || 0}
+            高亮团队快照={高亮团队快照}
+            更新高亮团队快照={更新高亮团队快照}
           />
         </div>
         <div className={styles.btnItem}>

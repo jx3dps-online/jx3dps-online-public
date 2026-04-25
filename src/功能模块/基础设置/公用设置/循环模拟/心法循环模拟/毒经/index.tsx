@@ -12,6 +12,7 @@ import 心法配置 from '../通用/通用组件/心法配置'
 import 模拟器头部组件 from '../通用/通用组件/模拟器头部组件'
 import 奇穴设置组件 from '../通用/通用组件/奇穴设置组件'
 import 循环技能容器组件 from '../通用/通用组件/循环技能容器组件'
+import 特殊循环技能容器组件 from './components/心法特殊样式/循环技能容器组件'
 
 import 循环模拟技能基础数据, { 原始Buff数据 } from './constant/skill'
 import { getDpsCycle } from './utils'
@@ -105,6 +106,7 @@ function CycleSimulator() {
     '特效腰坠',
   ])
   const [周期性忽略延迟, 更新周期性忽略延迟] = useState<number>(0)
+  const [特殊技能样式模式, 更新特殊技能样式模式] = useState<boolean>(false)
 
   // 奇穴
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
@@ -252,7 +254,6 @@ function CycleSimulator() {
 
     return { 显示循环: res, 完整循环: cycle }
   }, [cycle, 模拟信息])
-
   // 向循环内新增技能
   const 新增循环技能 = (item: 循环基础技能数据类型) => {
     let newCycle: 循环基础技能数据类型[] = []
@@ -355,6 +356,8 @@ function CycleSimulator() {
                 更新忽略延迟技能={更新忽略延迟技能}
                 周期性忽略延迟={周期性忽略延迟}
                 更新周期性忽略延迟={更新周期性忽略延迟}
+                特殊技能样式模式={特殊技能样式模式}
+                更新特殊技能样式模式={更新特殊技能样式模式}
                 //     启用斩杀={启用斩杀}
                 //     更新启用斩杀={更新启用斩杀}
                 //     五十血以下={五十血以下}
@@ -375,15 +378,27 @@ function CycleSimulator() {
             奇穴信息={奇穴信息}
             模拟函数={simulator}
           />
-          <循环技能容器组件
-            处理循环结果对象={处理循环结果对象}
-            模拟信息={模拟信息}
-            cycle={cycle}
-            setCycle={setCycle}
-            原始Buff数据={原始Buff数据}
-            点击下拉菜单={点击下拉菜单}
-            允许操作列表={['插入技能', '删除后续', '设置延迟']}
-          />
+          {特殊技能样式模式 ? (
+            <特殊循环技能容器组件
+              处理循环结果对象={处理循环结果对象}
+              模拟信息={模拟信息}
+              cycle={cycle}
+              setCycle={setCycle}
+              原始Buff数据={原始Buff数据}
+              点击下拉菜单={点击下拉菜单}
+              允许操作列表={['插入技能', '删除后续', '设置延迟']}
+            />
+          ) : (
+            <循环技能容器组件
+              处理循环结果对象={处理循环结果对象}
+              模拟信息={模拟信息}
+              cycle={cycle}
+              setCycle={setCycle}
+              原始Buff数据={原始Buff数据}
+              点击下拉菜单={点击下拉菜单}
+              允许操作列表={['插入技能', '删除后续', '设置延迟']}
+            />
+          )}
         </div>
         {/* 添加循环按钮组 */}
         <AddCycleSkillBtns

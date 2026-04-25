@@ -12,11 +12,13 @@ interface AddCycleSkillBtnsProps {
   处理循环结果对象: { 完整循环: 循环基础技能数据类型[] }
   模拟信息: 模拟信息类型
   大橙武模拟: boolean
+  自动击破: boolean
   插入技能?: boolean // 插入技能时不禁用技能
 }
 
 function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
-  const { 新增循环技能, 批量新增循环, 处理循环结果对象, 模拟信息, 大橙武模拟, 插入技能 } = props
+  const { 新增循环技能, 批量新增循环, 处理循环结果对象, 模拟信息, 大橙武模拟, 插入技能, 自动击破 } =
+    props
 
   const 批量新增循环技能 = (数据: 快捷添加数据类型) => {
     const 技能原始数据: 循环基础技能数据类型[] = 数据?.技能序列
@@ -88,6 +90,12 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
                 return false
               }
               return !item?.创建循环不可选 && item?.技能类型 === '其他'
+            })
+            ?.filter((item) => {
+              if (自动击破 && item.技能名称 === '弱点击破') {
+                return false
+              }
+              return true
             })
             .map((item) => {
               return (

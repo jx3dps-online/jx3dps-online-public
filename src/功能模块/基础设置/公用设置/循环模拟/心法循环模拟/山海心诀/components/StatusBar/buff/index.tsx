@@ -21,7 +21,7 @@ function Buff(props: BuffProps) {
   const 最终显示buff列表 = useMemo(() => {
     const res = [...(当前buff列表 || [])]
     // 判断诸怀
-    if (奇穴信息?.includes('诸怀') && buff列表?.['承契']?.当前层数) {
+    if (奇穴信息?.includes('卢令') && buff列表?.['承契']?.当前层数) {
       res.push(原始Buff数据?.['诸怀'])
     }
     return res

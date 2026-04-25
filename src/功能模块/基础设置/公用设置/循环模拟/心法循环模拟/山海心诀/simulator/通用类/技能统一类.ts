@@ -5,6 +5,8 @@ class 技能统一类 {
   模拟循环: 循环主类类型 = {} as any
   本次释放记录: 技能释放记录结果 = {}
   本次释放延迟: number | 'GCD' = 0
+  本次是否在领胡内: boolean = false
+  本次是否在连珠内: boolean = false
 
   constructor(模拟循环) {
     this.模拟循环 = 模拟循环
@@ -48,11 +50,16 @@ class 技能统一类 {
     this.本次释放记录 = {}
   }
 
+  成功释放() {
+    this.本次是否在领胡内 = !!this.模拟循环.当前自身buff列表?.['领胡']?.当前层数
+    this.本次是否在连珠内 = !!this.模拟循环.当前自身buff列表?.['连珠']?.当前层数
+  }
+
   触发伤害行为(
     伤害名称,
     伤害次数 = 1,
     额外增益列表: string[] = [],
-    触发伤害时间: number | undefined = undefined
+    触发伤害时间: number | undefined = undefined,
   ) {
     this.模拟循环.技能造成伤害?.(伤害名称, 伤害次数, 额外增益列表, 触发伤害时间)
   }
@@ -60,6 +67,8 @@ class 技能统一类 {
   获取技能释放记录结果() {
     return {
       ...this.本次释放记录,
+      背景容器: !!this.本次是否在领胡内, // background
+      底部标识: !!this.本次是否在连珠内,
     }
   }
 

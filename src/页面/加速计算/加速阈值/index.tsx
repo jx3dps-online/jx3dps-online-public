@@ -20,7 +20,7 @@ function 加速阈值() {
           实际时间: (val - +key) / 16,
           加速等级: 阈值[key],
         }
-      })
+      }),
     )
   }
 
@@ -61,6 +61,7 @@ function 加速阈值() {
           },
         ]}
       />
+      <div>{dataSource?.map((a) => a?.加速等级)?.join(',')}</div>
     </div>
   )
 }

@@ -15,15 +15,16 @@ interface StatusBarProps {
   日志信息: 循环日志数据类型[]
   模拟DPS结果: 当前计算结果类型
   模拟函数: (e: any) => void
+  奇穴信息: string[]
 }
 
 function StatusBar(props: StatusBarProps) {
-  const { 模拟信息, 日志信息, 模拟DPS结果, 模拟函数 } = props
+  const { 模拟信息, 奇穴信息, 日志信息, 模拟DPS结果, 模拟函数 } = props
 
   return (
     <div className={'cycle-status-bar'}>
       <Titai 角色状态信息={模拟信息?.角色状态信息} />
-      <Ruiyi 角色状态信息={模拟信息?.角色状态信息} />
+      <Ruiyi 角色状态信息={模拟信息?.角色状态信息} 奇穴信息={奇穴信息} />
       <Buff
         title='自身Buff'
         buff列表={模拟信息?.当前自身buff列表}

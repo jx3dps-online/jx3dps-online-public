@@ -10,7 +10,7 @@ const 跬步两仪函数 = () => {
   return 数组.map((item) => {
     return {
       BuffId: 12551,
-      Buff层数: item,
+      Buff等级: item,
       增益名称: `跬步两仪·${item}`,
       增益所在位置: '奇穴',
       依赖奇穴: '跬步',

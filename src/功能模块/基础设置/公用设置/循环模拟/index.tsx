@@ -67,6 +67,7 @@ function 循环模拟() {
   const [加速值, 更新加速值] = useState<number>(0)
   const [网络延迟, 更新网络延迟] = useState<number>(0)
   const [启用团队增益快照, 更新启用团队增益快照] = useState<boolean>(false)
+  const [高亮团队快照, 更新高亮团队快照] = useState<string[]>([])
   const [奇穴信息, 更新奇穴信息] = useState<string[]>([])
   const [秘籍信息, 更新秘籍信息] = useState<选中秘籍信息>({})
   const [奇穴弹窗展示, 更新奇穴弹窗展示] = useState<boolean>(false)
@@ -172,6 +173,8 @@ function 循环模拟() {
               更新秘籍信息,
               增益启用,
               更新增益启用,
+              高亮团队快照,
+              更新高亮团队快照,
             }}
           >
             <CycleComponent 打开循环模拟器={打开循环模拟器} />

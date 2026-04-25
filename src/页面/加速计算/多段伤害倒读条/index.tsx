@@ -170,6 +170,7 @@ function 多段伤害倒读条() {
           },
         ]}
       />
+      <div>{dataSource?.map((a) => a?.加速等级)?.join(',')}</div>
     </div>
   )
 }

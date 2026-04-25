@@ -3,7 +3,6 @@ import 有CD技能通用类 from '../../通用类/有CD技能通用类'
 import { 每秒郭氏帧 } from '@/数据/常量'
 
 class 攻击 extends 有CD技能通用类 {
-
   constructor(模拟循环) {
     super(模拟循环)
   }
@@ -28,13 +27,16 @@ class 攻击 extends 有CD技能通用类 {
   }
 
   攻击结算() {
-    this.触发伤害行为('攻击', 1)
+    if (this.模拟循环.当前自身buff列表?.['灵蛇存在']?.当前层数) {
+      this.触发伤害行为('攻击', 1)
+    }
   }
 
   幻击结算() {
-    this.触发伤害行为('幻击', 1)
+    if (this.模拟循环.当前自身buff列表?.['灵蛇存在']?.当前层数) {
+      this.触发伤害行为('幻击', 1)
+    }
   }
-
 }
 
 export default 攻击

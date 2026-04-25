@@ -23,8 +23,8 @@ import { 属性类型 } from '@/@types/属性'
 
 const { 附魔, 装备数据 } = 获取当前数据()
 
-const 英雄品 = [30800, 35900]
-const 普通品 = [25200, 30799]
+const 英雄品 = [35900, 43000]
+const 普通品 = [30800, 35899]
 const 类型 = ['散件', '精简', '无修', '橙武']
 
 const 装备速查 = () => {
@@ -124,7 +124,7 @@ const 装备速查 = () => {
     {
       title: '名称',
       dataIndex: '装备名称',
-      width: 300,
+      width: 350,
       key: 'name',
       render: (text, record) => {
         return (
@@ -406,14 +406,14 @@ const 装备速查 = () => {
           >
             <Slider
               range
-              max={35900}
+              max={43000}
               min={16500}
               value={品级范围}
               step={500}
               marks={{
-                27800: '十人副本',
-                30200: '普通副本',
-                35300: '英雄副本',
+                30200: '十人副本',
+                35300: '普通副本',
+                41400: '英雄副本',
               }}
               // tooltip={{ open: true }}
               onChange={(e) => 设置品级范围(e)}

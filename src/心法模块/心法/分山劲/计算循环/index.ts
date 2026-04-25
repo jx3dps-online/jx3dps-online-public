@@ -6,12 +6,10 @@ import type { 循环数据 } from '@/@types/循环'
  */
 
 // 循环
-import 绝云 from './绝云.json'
-import 极天绝云 from './极天绝云.json'
+import 紫武临时_206 from './紫武临时_206.json'
+import 紫武临时_14156 from './紫武临时_14156.json'
+import 橙武临时_14156 from './橙武临时_14156.json'
 
-const 计算循环: 循环数据[] = [
-  绝云, 极天绝云,
-] as 循环数据[]
+const 计算循环: 循环数据[] = [紫武临时_206, 紫武临时_14156, 橙武临时_14156] as 循环数据[]
 
 export default 计算循环
-

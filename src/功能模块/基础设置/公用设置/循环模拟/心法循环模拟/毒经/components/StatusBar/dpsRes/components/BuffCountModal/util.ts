@@ -1,6 +1,14 @@
 import { 循环日志数据类型 } from '../../../../../simulator/type'
 
-const 过滤的buff列表 = ['劲风簇追', '饮羽簇追']
+const 过滤的buff列表 = [
+  // '释灵DOT', '蟾啸DOT', '百足DOT', '蛇影DOT',
+  '灵蛊',
+  '蛇悉',
+  '不鸣',
+  '圣蝎存在',
+  '残香',
+  '令怖',
+]
 
 export const 获取Buff覆盖率 = (日志: 循环日志数据类型[], 总战斗用时: number) => {
   // 以buff个体分类，组成数字数组代表buff持续时间段

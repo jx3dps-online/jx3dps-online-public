@@ -1,4 +1,4 @@
-import { Select, Tooltip } from 'antd'
+import { Select, Tooltip, Checkbox } from 'antd'
 import styles from './index.module.less'
 import React from 'react'
 
@@ -7,10 +7,19 @@ interface 心法特殊配制类型 {
   更新忽略延迟技能: (e: string[]) => void
   周期性忽略延迟: number | undefined
   更新周期性忽略延迟: (e: number) => void
+  特殊技能样式模式: boolean
+  更新特殊技能样式模式: (value: boolean) => void
 }
 
 function 心法特殊配置(props: 心法特殊配制类型) {
-  const { 忽略延迟技能, 更新忽略延迟技能, 周期性忽略延迟, 更新周期性忽略延迟 } = props
+  const {
+    忽略延迟技能,
+    更新忽略延迟技能,
+    周期性忽略延迟,
+    更新周期性忽略延迟,
+    特殊技能样式模式,
+    更新特殊技能样式模式,
+  } = props
 
   const numericOptions = ['0', 1 / 4, 1 / 2, '1', '2', '3']
   const skillOptions = [
@@ -28,8 +37,31 @@ function 心法特殊配置(props: 心法特殊配制类型) {
     '特效腰坠',
   ]
 
+  const 切换特殊技能样式模式 = (value: boolean) => {
+    特殊技能样式模式 !== value && props.更新特殊技能样式模式(value)
+  }
+
   return (
     <>
+      {location?.href?.includes?.('localhost') ? (
+        <>
+          <Tooltip
+            title='启用此功能将始终显示重要BUFF的覆盖情况，可能会消耗更多的性能。通常情况下，在鼠标移动至对应BUFF技能时也可以查看对应BUFF的覆盖。'
+            placement='left'
+          >
+            <Checkbox
+              style={{ fontWeight: 400 }}
+              checked={!!特殊技能样式模式}
+              onChange={(e) => 切换特殊技能样式模式(e?.target?.checked)}
+            >
+              特殊技能样式
+            </Checkbox>
+          </Tooltip>
+          <span style={{ borderRight: '1px solid rgba(0,0,0,.25)' }}></span>
+        </>
+      ) : (
+        ''
+      )}
       <span className={styles.label}>周期性忽略延迟</span>
       <Tooltip
         title='每间隔 x 个技能，忽略一次延迟，当低于 1 时，将连续间隔多个技能。当启用时将不再支持按技能忽略延迟。部分情况（如降厄连蝎）下忽略指定技能将造成部分技能的期望收益偏高，使用此功能来避免这一情况。'

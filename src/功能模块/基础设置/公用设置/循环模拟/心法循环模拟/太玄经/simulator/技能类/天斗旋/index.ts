@@ -4,7 +4,6 @@ import { 每秒郭氏帧 } from '@/数据/常量'
 import 有CD技能通用类 from '../../通用类/有CD技能通用类'
 
 class 天斗旋 extends 有CD技能通用类 {
-  // scripts/skill/北天药宗/北天药宗_商陆其根.lua
   static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '天斗旋')
   static 作用总间隔 = 24
   static 读条时间 = 24

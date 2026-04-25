@@ -6,16 +6,18 @@ import type { 循环数据 } from '@/@types/循环'
  */
 
 // 循环
-import 武学助手 from './武学助手.json'
-import 后沾手动 from './后沾手动.json'
-import 后沾橙武 from './后沾橙武.json'
-//import 奚毒真解_烬灭 from './奚毒真解_烬灭.json'
+// import 七商橙武 from './七商橙武.json'
+// import 七商紫武 from './七商紫武.json'
+// import 后沾紫武 from './后沾紫武.json'
+// import 后沾橙武 from './后沾橙武.json'
+// import 疾根紫武 from './疾根紫武.json'
 
 const 计算循环: 循环数据[] = [
-  武学助手,
-  后沾手动,
-  后沾橙武,
-  //奚毒真解_烬灭,
+  // 七商紫武,
+  // 后沾紫武,
+  // 疾根紫武,
+  // 七商橙武,
+  // 后沾橙武,
 ] as 循环数据[]
 
 export default 计算循环

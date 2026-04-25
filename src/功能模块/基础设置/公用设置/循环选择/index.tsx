@@ -116,17 +116,18 @@ function 循环选择(props) {
             }
           }}
           optionFilterProp='label'
+          popupMatchSelectWidth={300}
           dropdownRender={(menu) => (
             <>
               {menu}
-              <Divider style={{ margin: '8px 0' }} />
+              {/* <Divider style={{ margin: '8px 0' }} />
               <div className='cycle-select-cycle-out'>
                 <Tooltip title='点击访问魔盒教程，定制自己的循环计算吧！'>
                   <a target='_blank' href={'https://www.jx3box.com/bps/95296'} rel='noreferrer'>
                     没有合适的循环？
                   </a>
                 </Tooltip>
-              </div>
+              </div> */}
             </>
           )}
         >

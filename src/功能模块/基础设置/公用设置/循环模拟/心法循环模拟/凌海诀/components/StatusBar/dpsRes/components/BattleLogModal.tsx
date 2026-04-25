@@ -21,6 +21,8 @@ const BattleLogModal: React.FC<BattleLogModalProps> = (props) => {
         { 技能名称: '飘遥伞击' },
         { 技能名称: '怒翼' },
         { 技能名称: '青冥' },
+        { 技能名称: '太息' },
+        { 技能名称: '游仙' },
       ]?.map((item) => {
         return {
           text: item?.技能名称,

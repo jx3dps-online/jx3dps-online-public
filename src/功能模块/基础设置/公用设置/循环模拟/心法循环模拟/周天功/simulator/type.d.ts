@@ -65,16 +65,15 @@ export interface 技能类实例集合 {
   雪重花满?: 雪重花满类型
   风流云散?: 风流云散类型
   一阳来复?: 一阳来复类型
-  免费一阳?: 一阳来复类型
+  免费破穴?: any
   胧雾观花?: 胧雾观花类型
   飞鸿破野?: any
-  朔风扬尘一?: any
-  朔风扬尘二?: any
   经脉循行?: 经脉循行类型
   换行?: 换行类型
   触发橙武?: 触发橙武类型
   点掉橙武?: any
   特效腰坠?: any
+  蛰微?: any
 }
 
 export interface 技能GCD组 {
@@ -101,6 +100,7 @@ export interface DOT列表 {
 export interface DOT待生效数据类型 {
   当前层数?: number
   生效时间?: number
+  快照buff列表?: string[]
 }
 
 export interface 检查运行数据实例类型 {
@@ -389,6 +389,7 @@ export interface 技能释放记录结果 {
   实际伤害技能?: string // 针对造成伤害的实际名称
   伤害段数?: number // 针对行、沧的实际伤害段数
   重要buff列表?: string[] // 影响技能结果的重要buff列表
+  特殊标记?: number // 特殊标记
   释放时标鹄层数?: number
   造成buff数据?: {
     // 针对吃影子、灭这种会添加有益buff的情况

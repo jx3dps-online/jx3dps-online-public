@@ -28,7 +28,6 @@ import 心法特殊配置 from './components/心法特殊配置'
 import 快速导入默认循环 from './constant/快速导入默认循环'
 
 import AddCycleSkillModal from './components/AddCycleSkillModal'
-import './index.css'
 import CycleSimulatorContext from '../../context'
 import { 根据奇穴修改buff数据 } from './simulator/utils'
 import DelaySettingModal from '../通用/通用组件/技能延迟弹窗'
@@ -385,6 +384,7 @@ function CycleSimulator() {
           模拟信息={模拟信息}
           大橙武模拟={大橙武模拟}
           奇穴信息={奇穴信息}
+          秘籍信息={秘籍信息}
         />
         {/* 保存自定义循环弹窗 */}
         <保存自定义循环弹窗
@@ -411,6 +411,7 @@ function CycleSimulator() {
           大橙武模拟={大橙武模拟}
           奇穴信息={奇穴信息}
           添加设置={添加设置}
+          秘籍信息={秘籍信息}
           添加技能弹窗显示={添加技能弹窗显示}
           关闭弹窗={() => {
             更新添加技能弹窗显示(false)

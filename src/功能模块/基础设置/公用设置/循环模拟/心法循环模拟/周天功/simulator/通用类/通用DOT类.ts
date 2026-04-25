@@ -11,6 +11,12 @@ class 通用DOT类 extends 技能统一类 {
     super(模拟循环)
   }
 
+  获取当前DOT层数() {
+    const 当前层数 =
+      this.DOT运行数据?.待生效数据?.[this.DOT运行数据?.待生效数据?.length - 1]?.当前层数 || 0
+    return 当前层数 || 0
+  }
+
   获取当前DOT数据(DOT名称) {
     const DOT数据: DotDTO = this.模拟循环.Buff和Dot数据?.[DOT名称] as DotDTO
     return DOT数据
@@ -53,7 +59,7 @@ class 通用DOT类 extends 技能统一类 {
   }
 
   // 对当前dot进行结算和运行数据
-  更新待生效数据(当前层数: number, DOT数据: DotDTO) {
+  更新待生效数据(当前层数: number, DOT数据: DotDTO, 快照Buff?: string[]) {
     const DOT是否吃加速 = DOT数据.是否吃加速 !== undefined ? DOT数据.是否吃加速 : true
 
     const 循环加速值 = this.模拟循环.加速值
@@ -66,13 +72,15 @@ class 通用DOT类 extends 技能统一类 {
       : DOT数据.伤害频率
 
     const 当前时间 = this.模拟循环.当前时间 || 0
+    const 快照buff列表 = 快照Buff || this.获取当前快照buff()
+
     const 待生效数据: DOT待生效数据类型[] =
       // 只更新在刷新buff之后的数据的层数
       this.DOT运行数据?.待生效数据.map((item) => {
         if ((item.生效时间 || 0) < this.模拟循环.当前时间) {
           return item
         } else {
-          return { ...item, 当前层数 }
+          return { ...item, 当前层数, 快照buff列表 }
         }
       }) || []
 
@@ -84,6 +92,7 @@ class 通用DOT类 extends 技能统一类 {
         待生效数据.push({
           当前层数,
           生效时间: 原最后一次生效时间 + 实际伤害频率 * (i + 1),
+          快照buff列表,
         })
       }
     } else {
@@ -93,6 +102,7 @@ class 通用DOT类 extends 技能统一类 {
         待生效数据.push({
           当前层数,
           生效时间,
+          快照buff列表,
         })
       }
     }
@@ -111,7 +121,7 @@ class 通用DOT类 extends 技能统一类 {
           事件备注: { buff名称: DOT数据?.名称, buff对象: '目标', 卸除层数: 9999 },
         },
       ],
-      true
+      true,
     )
   }
 }
