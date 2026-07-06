@@ -20,7 +20,7 @@
     border-radius: 4px;
     opacity: 0;
     transition: 0.2s;
-    z-index: 3;
+    z-index: 1;
     pointer-events: none;
   }
 
@@ -85,6 +85,46 @@
   &:hover {
     color: #ff4d4f;
   }
+}
+
+.delayTag {
+  position: absolute;
+  pointer-events: none;
+  left: -11px;
+  top: 0;
+  width: 14px;
+  height: 48px;
+  // line-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ant-primary-color);
+  color: #fff;
+  text-align: center;
+  z-index: 6;
+  border-radius: 4px 0 0 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.delayTag {
+  position: absolute;
+  pointer-events: none;
+  left: -12px;
+  top: 0;
+  width: 14px;
+  height: 48px;
+  // line-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ant-primary-color);
+  color: #fff;
+  text-align: center;
+  z-index: 1;
+  border-radius: 4px 0 0 4px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .count,

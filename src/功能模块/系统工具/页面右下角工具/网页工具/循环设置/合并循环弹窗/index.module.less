@@ -1,0 +1,131 @@
+.cycle {
+  border: 2px solid #ddd;
+  margin: 12px 0;
+  padding: 8px;
+  border-radius: 8px;
+
+  // &.baseline {
+  //   border-color: var(--ant-primary-color);
+  //   background-color: #f0f0f0;
+  // }
+}
+
+.cycleTitle {
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+  line-height: 24px;
+  font-size: 18px;
+  margin-bottom: 12px;
+  padding: 8px 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cycleTitleWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cycleTitleIcon {
+  color: #d4380d;
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 8px;
+}
+
+.checkbox {
+  width: calc((100% - 16px) / 2);
+  height: 42px;
+  line-height: 42px;
+  font-size: 16px;
+  display: inline-flex;
+  border: 1px solid #ddd;
+  padding: 0 12px;
+  border-radius: 8px;
+  margin: 8px 0;
+  transition: 0.2s;
+
+  &:hover,
+  &:global(.ant-checkbox-wrapper-checked) {
+    background-color: var(--ant-primary-color);
+    .title,
+    .value {
+      color: #fff !important;
+    }
+
+    .subText {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+.wrap {
+  display: inline-flex;
+  height: 32px;
+  line-height: 32px;
+}
+
+.wrap + .wrap {
+  margin-left: 24px;
+}
+
+.title {
+  color: var(--ant-primary-color);
+  margin-right: 4px;
+  width: 80px;
+  transition: 0.2s;
+}
+
+.value {
+  font-weight: 500;
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  min-width: 70px;
+  transition: 0.2s;
+}
+
+.subText {
+  color: #999;
+  margin-left: 6px;
+  transition: 0.2s;
+}
+
+.tag {
+  color: #fff;
+  text-align: center;
+  padding: 0 8px;
+  border-radius: 4px;
+  line-height: 24px;
+  height: 24px;
+  display: inline-block;
+  &.tag_0 {
+    background: #4d4d4d;
+  }
+
+  &.tag_1 {
+    background: #389e0d;
+  }
+
+  &.tag_2 {
+    background: #096dd9;
+  }
+
+  &.tag_3 {
+    background: #d4380d;
+  }
+
+  &.tag_4 {
+    background: #05888f;
+  }
+
+  &.tag_5 {
+    background: #8b0dd4;
+  }
+}

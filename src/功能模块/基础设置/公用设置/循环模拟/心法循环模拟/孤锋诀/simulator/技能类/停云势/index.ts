@@ -44,10 +44,11 @@ class 停云势 extends 有CD技能通用类 {
 
   保存释放记录() {
     // const 造成buff数据 = this.获取施加重要buff信息('潋风行云势额外伤害')
+    const 造成buff数据 = this.获取施加重要buff信息('潋风行云势额外伤害')
 
     this.本次释放记录 = {
       重要buff列表: this.获取当前重要buff列表(['潋风行云势额外伤害', '灭影追风', '流岚']),
-      // 造成buff数据: 造成buff数据 ? 造成buff数据 : ({} as any),
+      造成buff数据: 造成buff数据 ? 造成buff数据 : ({} as any),
     }
   }
 }

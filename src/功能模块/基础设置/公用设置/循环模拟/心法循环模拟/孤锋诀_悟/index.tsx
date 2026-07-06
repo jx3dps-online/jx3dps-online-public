@@ -24,6 +24,7 @@ import 模拟循环 from './simulator/index'
 
 import StatusBar from './components/StatusBar'
 import AddCycleSkillBtns from './components/AddCycleSkillBtns'
+import 心法特殊配置 from './components/心法特殊配置'
 
 import AddCycleSkillModal from './components/AddCycleSkillModal'
 import 快速导入默认循环 from './constant/快速导入默认循环'
@@ -79,6 +80,7 @@ function CycleSimulator() {
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
   // 是否开启武学助手
   const [开启武学助手, 设置开启武学助手] = useState<boolean>(false)
+  const [显示锐意, 设置显示锐意] = useState<boolean>(false)
 
   const dispatch = useAppDispatch()
 
@@ -253,6 +255,35 @@ function CycleSimulator() {
     更新添加技能弹窗显示(true)
   }
 
+  const 底部标识函数 = (e: 循环基础技能数据类型, index: number) => {
+    if (!显示锐意) {
+      return null
+    }
+    const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+    if (找到当前技能释放记录?.技能释放记录结果?.底部标识 !== undefined) {
+      return (
+        // 这个classname是通用样式名，也可以在自己这个文件夹下写自己职业的自定义样式（就可以自己掌控样子了）
+        <div className='cycle-item-bottom-wrap'>
+          {/* 自动判断底部标识的类型显示，你也可以不自动判断用下面的两个注释写法的其中一种 */}
+          {typeof 找到当前技能释放记录?.技能释放记录结果?.底部标识 === 'boolean' ? (
+            <div className='cycle-item-bottom-line'></div>
+          ) : (
+            <div className='cycle-item-bottom-text'>
+              {找到当前技能释放记录?.技能释放记录结果?.底部标识}
+            </div>
+          )}
+          {/* 写法1：这个是横线红色的写法，用来强调标记一些buff覆盖 */}
+          {/* <div className='cycle-item-bottom-line'></div> */}
+          {/* 写法2：这个是如果你的底部标识传入过来的是一个数字/文案，直接展示具体内容 */}
+          {/* <div className='cycle-item-bottom-text'>
+            {找到当前技能释放记录?.技能释放记录结果?.底部标识}
+          </div> */}
+        </div>
+      )
+    }
+    return null
+  }
+
   return (
     <>
       <Modal
@@ -286,7 +317,10 @@ function CycleSimulator() {
         destroyOnClose
       >
         <div className={'cycle-simulator-setting'}>
-          <心法配置 原始Buff数据={原始Buff数据} />
+          <心法配置
+            原始Buff数据={原始Buff数据}
+            配置区={<心法特殊配置 显示锐意={显示锐意} 设置显示锐意={设置显示锐意} />}
+          />
           {/* 角色状态栏 */}
           <StatusBar
             模拟信息={模拟信息}
@@ -303,6 +337,7 @@ function CycleSimulator() {
             setCycle={setCycle}
             原始Buff数据={原始Buff数据}
             点击下拉菜单={点击下拉菜单}
+            底部标识={底部标识函数}
           />
         </div>
         {/* 添加循环按钮组 */}

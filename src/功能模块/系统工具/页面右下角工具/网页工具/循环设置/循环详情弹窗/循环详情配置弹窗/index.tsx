@@ -32,11 +32,11 @@ const 循环详情配置弹窗: React.FC<循环详情配置弹窗类型> = (prop
     }
   }, [open])
 
-  const 提交数据 = () => {
-    form?.validateFields()?.then(() => {
-      return
-    })
-  }
+  // const 提交数据 = () => {
+  //   form?.validateFields()?.then(() => {
+  //     return
+  //   })
+  // }
 
   // const 删除技能 = (index) => {
   //   const 新数据 = [...循环详情列表]?.filter((_, i) => i !== index)
@@ -49,10 +49,10 @@ const 循环详情配置弹窗: React.FC<循环详情配置弹窗类型> = (prop
       open={open}
       onCancel={onCancel}
       width={1114}
-      title={'编辑循环组'}
+      title={'循环组详情'}
       maskClosable={false}
       centered
-      onOk={提交数据}
+      onOk={onCancel}
     >
       <div className='cycle-edit'>
         <Form className='cycle-form' layout='vertical' form={form} requiredMark='optional'>
@@ -191,13 +191,19 @@ const 循环详情配置弹窗: React.FC<循环详情配置弹窗类型> = (prop
                   }
                   key={index}
                 >
-                  {item?.技能增益列表?.map((增益, i) => {
-                    return (
-                      <div key={`${item?.技能名称}${item?.技能等级 || 1}${i}`}>
-                        {增益?.增益名称}
-                      </div>
-                    )
-                  })}
+                  <div className='cycle-skill-data-zengyi-wrap'>
+                    {item?.技能增益列表?.map((增益, i) => {
+                      return (
+                        <div
+                          className='cycle-skill-data-zengyi-line'
+                          key={`${item?.技能名称}${item?.技能等级 || 1}${i}`}
+                        >
+                          <span>{增益?.增益名称}</span>
+                          <span>{增益?.增益技能数}</span>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </Collapse.Panel>
               ) : null
             })}

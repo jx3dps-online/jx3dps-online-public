@@ -1,0 +1,53 @@
+.content {
+  width: 240px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(3, 10, 26, 0.85);
+  line-height: 22px;
+  margin-bottom: 16px;
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 -1px;
+}
+
+.item {
+  margin: 0 2px;
+  width: 16px;
+  height: 24px;
+  padding-bottom: 4px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  .icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    -webkit-filter: grayscale(1) saturate(10%) contrast(50%);
+    mix-blend-mode: multiply; /* 黑色会变透明，浅色保留 */
+  }
+
+  &.active {
+    &.up {
+      .icon {
+        -webkit-filter: hue-rotate(-60deg);
+      }
+    }
+    &.down {
+      .icon {
+        -webkit-filter: unset;
+      }
+    }
+  }
+
+  &.preZhan {
+    border-bottom: 3px solid #162968;
+  }
+}

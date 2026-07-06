@@ -21,6 +21,7 @@ const 周天功循环模拟 = React.lazy(() => import('./心法循环模拟/周�
 const 周天功_悟循环模拟 = React.lazy(() => import('./心法循环模拟/周天功_悟'))
 const 凌海诀循环模拟 = React.lazy(() => import('./心法循环模拟/凌海诀'))
 const 无方循环模拟 = React.lazy(() => import('./心法循环模拟/无方'))
+const 无方_悟循环模拟 = React.lazy(() => import('./心法循环模拟/无方_悟'))
 const 花间游循环模拟 = React.lazy(() => import('./心法循环模拟/花间游'))
 const 幽罗引循环模拟 = React.lazy(() => import('./心法循环模拟/幽罗引'))
 const 易筋经循环模拟 = React.lazy(() => import('./心法循环模拟/易筋经'))
@@ -38,6 +39,7 @@ const 支持循环心法 = {
   周天功_悟: '周天功_悟',
   凌海诀: '凌海诀',
   无方: '无方',
+  无方_悟: '无方_悟',
   花间游: '花间游',
   幽罗引: '幽罗引',
   易筋经: '易筋经',
@@ -78,6 +80,7 @@ function 循环模拟() {
   })
   const [起手Buff配置, 更新起手Buff配置] = useState<起手Buff配置>({})
   const [增益启用, 更新增益启用] = useState<boolean>(false)
+  const [截图模式, 设置截图模式] = useState<boolean>(false)
 
   // 当前面板加速值
   const 外部加速值 = useAppSelector((state) => state?.data?.装备信息?.装备基础属性)?.加速等级 || 0
@@ -123,6 +126,7 @@ function 循环模拟() {
       周天功_悟: 周天功_悟循环模拟,
       凌海诀: 凌海诀循环模拟,
       无方: 无方循环模拟,
+      无方_悟: 无方_悟循环模拟,
       花间游: 花间游循环模拟,
       幽罗引: 幽罗引循环模拟,
       易筋经: 易筋经循环模拟,
@@ -175,6 +179,8 @@ function 循环模拟() {
               更新增益启用,
               高亮团队快照,
               更新高亮团队快照,
+              截图模式,
+              设置截图模式,
             }}
           >
             <CycleComponent 打开循环模拟器={打开循环模拟器} />

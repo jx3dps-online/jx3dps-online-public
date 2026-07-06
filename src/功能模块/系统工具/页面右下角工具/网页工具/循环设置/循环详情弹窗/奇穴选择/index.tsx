@@ -27,9 +27,9 @@ const 奇穴选择 = (props: 奇穴选择类型, ref) => {
         ) : (
           <span className={'cycle-setting-qixue-empty'}>无奇穴</span>
         )}
-        <Button className={'cycle-setting-qixue-btn'} type='link' onClick={() => setOpen(true)}>
+        {/* <Button className={'cycle-setting-qixue-btn'} type='link' onClick={() => setOpen(true)}>
           设置奇穴
-        </Button>
+        </Button> */}
       </div>
       <奇穴选择抽屉
         value={value || []}

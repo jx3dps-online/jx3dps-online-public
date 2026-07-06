@@ -61,6 +61,13 @@ class 盾舞 extends 有CD技能通用类 {
       特殊标记: 盾舞.作用次数,
     }
   }
+
+  获取技能释放记录结果() {
+    return {
+      ...this.本次释放记录,
+      底部标识: this.技能释放时怒气 || 0,
+    }
+  }
 }
 
 export default 盾舞

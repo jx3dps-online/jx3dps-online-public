@@ -169,7 +169,7 @@ function 心法特殊配置(props: 心法特殊配制类型) {
             return option?.value?.toString()?.includes(input) || false
           }}
           onChange={(e) => 设置起手锐意(e)}
-          options={按数字生成数组(101).map((a) => {
+          options={按数字生成数组(301).map((a) => {
             return {
               value: a - 1,
               label: `${a - 1} 锐意`,

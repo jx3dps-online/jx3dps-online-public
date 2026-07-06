@@ -46,9 +46,15 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
           是否禁用: true,
           异常描述: ERROR_ACTION?.BUFF错误?.信息,
         }
+      } else if (技能?.技能名称 === '起符' && !模拟信息?.当前自身buff列表?.['麒麟']?.当前层数) {
+        禁用信息 = {
+          是否禁用: true,
+          异常描述: ERROR_ACTION?.BUFF错误?.信息,
+        }
       } else if (
         技能?.技能名称 === '化卦坠符' &&
         (!模拟信息?.当前自身buff列表?.['起符']?.当前层数 ||
+          !模拟信息?.当前自身buff列表?.['麒麟']?.当前层数 ||
           模拟信息?.当前自身buff列表?.['应卦震符']?.当前层数)
       ) {
         禁用信息 = {
@@ -58,11 +64,17 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
       } else if (
         技能?.技能名称 === '应卦震符' &&
         (!模拟信息?.当前自身buff列表?.['起符']?.当前层数 ||
+          !模拟信息?.当前自身buff列表?.['麒麟']?.当前层数 ||
           模拟信息?.当前自身buff列表?.['化卦坠符']?.当前层数)
       ) {
         禁用信息 = {
           是否禁用: true,
           异常描述: ERROR_ACTION?.BUFF错误?.信息,
+        }
+      } else if (技能?.技能名称 === '变卦' && (模拟信息?.角色状态信息?.星运 || 0) < 50) {
+        禁用信息 = {
+          是否禁用: true,
+          异常描述: `${ERROR_ACTION?.星运不足?.信息}（需要50点）`,
         }
       } else if (技能?.技能名称 === '镇星二段' && !模拟信息?.当前自身buff列表?.['入舆']?.当前层数) {
         禁用信息 = {

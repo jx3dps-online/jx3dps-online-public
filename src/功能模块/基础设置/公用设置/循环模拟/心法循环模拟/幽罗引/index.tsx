@@ -95,6 +95,8 @@ function CycleSimulator() {
   const [五十血以下, 更新五十血以下] = useState<boolean>(false)
   const [显示龙牙龙驭层数, 更新显示龙牙龙驭层数] = useState<boolean>(false)
   const [启用血量消耗计算, 更新启用血量消耗计算] = useState<boolean>(false)
+  const [忽略延迟技能, 更新忽略延迟技能] = useState<string[]>(['勾线'])
+  const [周期性忽略延迟, 更新周期性忽略延迟] = useState<number>(0)
 
   // 奇穴
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
@@ -120,6 +122,8 @@ function CycleSimulator() {
     奇穴信息,
     团队增益轴,
     起手Buff配置,
+    忽略延迟技能,
+    周期性忽略延迟,
   ])
 
   const simulator = (props?) => {
@@ -144,6 +148,8 @@ function CycleSimulator() {
       启用团队增益快照,
       团队增益轴,
       起手Buff配置,
+      忽略延迟技能,
+      周期性忽略延迟,
     })
 
     const {
@@ -342,18 +348,14 @@ function CycleSimulator() {
         <div className={'cycle-simulator-setting'}>
           <心法配置
             原始Buff数据={根据奇穴修改buff数据(奇穴信息)}
-            // 配置区={
-            //   <心法特殊配置
-            //     启用斩杀={启用斩杀}
-            //     更新启用斩杀={更新启用斩杀}
-            //     五十血以下={五十血以下}
-            //     更新五十血以下={更新五十血以下}
-            //     显示龙牙龙驭层数={显示龙牙龙驭层数}
-            //     更新显示龙牙龙驭层数={更新显示龙牙龙驭层数}
-            //     启用血量消耗计算={启用血量消耗计算}
-            //     更新启用血量消耗计算={更新启用血量消耗计算}
-            //   />
-            // }
+            配置区={
+              <心法特殊配置
+                忽略延迟技能={忽略延迟技能}
+                更新忽略延迟技能={更新忽略延迟技能}
+                周期性忽略延迟={周期性忽略延迟}
+                更新周期性忽略延迟={更新周期性忽略延迟}
+              />
+            }
           />
           {/* 角色状态栏 */}
           <StatusBar

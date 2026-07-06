@@ -96,6 +96,8 @@ function CycleSimulator() {
   const [显示释放时援戈层数, 更新显示释放时援戈层数] = useState<boolean>(false)
   const [起手怒气, 设置起手怒气] = useState<number>(0)
   // const [起手体态, 设置起手体态] = useState<'擎刀' | '擎盾'>('擎盾')
+  const [忽略延迟技能, 更新忽略延迟技能] = useState<string[]>([])
+  const [显示怒气, 设置显示怒气] = useState<boolean>(false)
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
 
   const dispatch = useAppDispatch()
@@ -115,6 +117,7 @@ function CycleSimulator() {
     启用团队增益快照,
     起手Buff配置,
     起手怒气,
+    忽略延迟技能,
     增益启用,
   ])
 
@@ -137,6 +140,7 @@ function CycleSimulator() {
       团队增益轴,
       起手Buff配置,
       起手怒气,
+      忽略延迟技能,
     })
 
     const {
@@ -320,6 +324,35 @@ function CycleSimulator() {
     setCycle(newCycle)
   }
 
+  const 底部标识函数 = (e: 循环基础技能数据类型, index: number) => {
+    if (!显示怒气) {
+      return null
+    }
+    const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+    if (找到当前技能释放记录?.技能释放记录结果?.底部标识 !== undefined) {
+      return (
+        // 这个classname是通用样式名，也可以在自己这个文件夹下写自己职业的自定义样式（就可以自己掌控样子了）
+        <div className='cycle-item-bottom-wrap'>
+          {/* 自动判断底部标识的类型显示，你也可以不自动判断用下面的两个注释写法的其中一种 */}
+          {typeof 找到当前技能释放记录?.技能释放记录结果?.底部标识 === 'boolean' ? (
+            <div className='cycle-item-bottom-line'></div>
+          ) : (
+            <div className='cycle-item-bottom-text'>
+              {找到当前技能释放记录?.技能释放记录结果?.底部标识}
+            </div>
+          )}
+          {/* 写法1：这个是横线红色的写法，用来强调标记一些buff覆盖 */}
+          {/* <div className='cycle-item-bottom-line'></div> */}
+          {/* 写法2：这个是如果你的底部标识传入过来的是一个数字/文案，直接展示具体内容 */}
+          {/* <div className='cycle-item-bottom-text'>
+            {找到当前技能释放记录?.技能释放记录结果?.底部标识}
+          </div> */}
+        </div>
+      )
+    }
+    return null
+  }
+
   return (
     <>
       <Modal
@@ -362,10 +395,14 @@ function CycleSimulator() {
                 // 更新显示破绽层数={更新显示破绽层数}
                 // 显示绝刀怒气={显示绝刀怒气}
                 // 更新显示绝刀怒气={更新显示绝刀怒气}
+                显示怒气={显示怒气}
+                设置显示怒气={设置显示怒气}
                 显示释放时援戈层数={显示释放时援戈层数}
                 更新释放时援戈层数={更新显示释放时援戈层数}
                 起手怒气={起手怒气}
                 设置起手怒气={设置起手怒气}
+                忽略延迟技能={忽略延迟技能}
+                更新忽略延迟技能={更新忽略延迟技能}
                 // 起手体态={起手体态}
                 // 设置起手体态={设置起手体态}
               />
@@ -388,6 +425,7 @@ function CycleSimulator() {
             原始Buff数据={原始Buff数据}
             点击下拉菜单={点击下拉菜单}
             允许操作列表={['插入技能', '删除后续', '设置延迟']}
+            底部标识={底部标识函数}
           />
         </div>
         {/* 添加循环按钮组 */}

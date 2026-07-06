@@ -61,11 +61,7 @@ function DpsRes(props: DpsResProps) {
       {模拟信息?.循环执行结果 === '异常' ? (
         <div className={'cycle-dps-res-error'}>
           <h1 className={'cycle-dps-res-error-title'}>循环异常</h1>
-          <Alert
-            type='error'
-            showIcon
-            message={`异常信息：${模拟信息?.循环异常信息?.异常信息?.信息}`}
-          />
+          <Alert type='error' showIcon message={`异常信息：${模拟信息?.循环异常信息?.异常信息}`} />
         </div>
       ) : 模拟DPS结果?.秒伤 ? (
         <div className={'cycle-dps-res-success'}>

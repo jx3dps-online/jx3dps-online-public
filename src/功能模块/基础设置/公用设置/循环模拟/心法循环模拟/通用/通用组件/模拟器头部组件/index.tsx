@@ -67,6 +67,8 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
     更新增益启用,
     高亮团队快照,
     更新高亮团队快照,
+    截图模式,
+    设置截图模式,
   } = useContext(CycleSimulatorContext)
 
   const 自定义循环 = useAppSelector((state) => state?.data?.自定义循环列表)
@@ -234,6 +236,15 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
             onChange={更新网络延迟}
             options={延迟设定}
           />
+        </div>
+        <div className={styles.btnItem}>
+          <Checkbox
+            style={{ fontWeight: 400 }}
+            checked={!!截图模式}
+            onChange={(e) => 设置截图模式(e?.target?.checked)}
+          >
+            截图模式
+          </Checkbox>
         </div>
         <Dropdown
           overlay={

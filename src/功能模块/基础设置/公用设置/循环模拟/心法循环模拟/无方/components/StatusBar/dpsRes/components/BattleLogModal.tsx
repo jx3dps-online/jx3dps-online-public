@@ -3,6 +3,7 @@ import { Modal, ModalProps, Table } from 'antd'
 import 循环模拟技能基础数据, { 日志类型数组 } from '../../../../constant/skill'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import { 循环日志数据类型 } from '../../../../simulator/type'
+import 战斗日志导出按钮 from '../../../../../通用/通用组件/战斗日志导出按钮'
 import '../../../../index.css'
 
 interface BattleLogModalProps extends ModalProps {
@@ -22,7 +23,7 @@ const BattleLogModal: React.FC<BattleLogModalProps> = (props) => {
             text: item?.技能名称,
             value: item?.技能名称,
           }
-        }
+        },
       ),
       onFilter: (value: any, record) => {
         return record.日志?.includes(value) || record?.日志类型?.includes(value)
@@ -82,6 +83,7 @@ const BattleLogModal: React.FC<BattleLogModalProps> = (props) => {
       title={
         <div className={'cycle-simulator-modal-header'}>
           <h1 className={'cycle-simulator-modal-title'}>战斗日志</h1>
+          <战斗日志导出按钮 日志信息={日志信息} />
         </div>
       }
       width={'80%'}

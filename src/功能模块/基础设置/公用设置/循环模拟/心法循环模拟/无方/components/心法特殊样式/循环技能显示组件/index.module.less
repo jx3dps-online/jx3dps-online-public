@@ -1,0 +1,164 @@
+.skill {
+  margin: 8px;
+  position: relative;
+
+  &.error {
+    .skillImage {
+      -webkit-filter: grayscale(1) saturate(10%) contrast(50%);
+    }
+  }
+
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: '';
+    display: block;
+    border: 3px solid hsl(286, 66%, 47%);
+    border-radius: 4px;
+    opacity: 0;
+    transition: 0.2s;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: '';
+    display: block;
+    background-color: hsl(43, 100%, 52%);
+    border-radius: 4px;
+    opacity: 0;
+    transition: 0.2s;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &.highlight:after {
+    opacity: 1;
+  }
+
+  &.defaultHighLight::before {
+    opacity: 0.5;
+  }
+
+  &:hover {
+    .close {
+      opacity: 1;
+      pointer-events: unset;
+    }
+  }
+}
+
+.skillImage {
+  width: 48px;
+  height: 48px;
+  display: block;
+  border-radius: 4px;
+}
+
+.close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  color: #f5222d;
+  border: 1px solid #fff;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  transition: 0.2s;
+  pointer-events: none;
+
+  &:hover {
+    color: #ff4d4f;
+  }
+}
+
+.count,
+.countTip {
+  position: absolute;
+  left: -7px;
+  bottom: -5px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  line-height: 18px;
+  opacity: 0.9;
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid #fff;
+  z-index: 2;
+  background: #4d4d4d;
+
+  &.count0 {
+    background: #4d4d4d;
+  }
+  &.count1 {
+    background: #389e0d;
+  }
+  &.count2 {
+    background: #096dd9;
+  }
+  &.count3 {
+    background: #d4380d;
+  }
+  &.count4 {
+    background: #05888f;
+  }
+  &.count5 {
+    background: #8b0dd4;
+  }
+  &.count6 {
+    background: #8b0dd4;
+  }
+  &.count7 {
+    background: #143db8;
+  }
+  &.count8 {
+    background: #28c80c;
+  }
+  &.count9 {
+    background: #d4380d;
+  }
+  &.count10 {
+    background: #d4380d;
+  }
+}
+
+.countTip {
+  left: unset;
+  right: -7px;
+  bottom: -5px;
+  border-radius: 0;
+}
+
+.settingBuff {
+  margin: 4px 0;
+}
+
+.settingBuffItem {
+  width: 20px;
+}
+
+.tipBefore {
+  color: #531dab;
+  margin: 0 4px;
+  font-weight: 500;
+}
+
+.tipAfter {
+  color: #d4380d;
+  margin: 0 4px;
+  font-weight: 500;
+}

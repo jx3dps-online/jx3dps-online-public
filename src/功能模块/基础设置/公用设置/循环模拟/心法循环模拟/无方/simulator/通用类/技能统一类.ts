@@ -109,6 +109,9 @@ class 技能统一类 {
         重要buff列表.push(buff)
       }
     })
+    if (this.模拟循环.当前自身buff列表?.['千枝绽蕊']?.当前层数) {
+      重要buff列表.push('千枝绽蕊')
+    }
     return 重要buff列表 || []
   }
 

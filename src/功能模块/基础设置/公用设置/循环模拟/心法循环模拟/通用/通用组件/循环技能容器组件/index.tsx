@@ -24,6 +24,7 @@ interface 循环技能容器组件类型 {
   技能高亮?: (e: any, index: number) => boolean
   底部标识?: (e: any, index: number) => React.ReactNode
   背景容器?: (e: any, index: number) => React.ReactNode
+  显示组件?: React.ComponentType<any>
 }
 
 const 循环技能容器组件: React.FC<循环技能容器组件类型> = (props) => {
@@ -42,6 +43,7 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
     技能高亮,
     底部标识,
     背景容器,
+    显示组件: CustomDisplay = 循环技能显示组件,
   } = props
 
   const [buff覆盖数据, 更新buff覆盖数据] = useState<number[]>([])
@@ -192,7 +194,7 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
                 {(轮次 || []).map((item) => {
                   let 前一个技能 = 找到上一个实际技能(item?.index)
                   return (
-                    <循环技能显示组件
+                    <CustomDisplay
                       技能={item as any}
                       前一个技能={前一个技能 as any}
                       模拟信息={模拟信息 as any}

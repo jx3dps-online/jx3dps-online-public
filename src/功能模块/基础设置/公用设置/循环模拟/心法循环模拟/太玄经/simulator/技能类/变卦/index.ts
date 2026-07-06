@@ -1,5 +1,6 @@
 import 循环模拟技能基础数据 from '../../../constant/skill'
 import 变卦统一类 from '../../通用类/变卦统一类'
+import { ERROR_ACTION } from '../../utils'
 
 class 变卦 extends 变卦统一类 {
   static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '变卦')
@@ -8,6 +9,16 @@ class 变卦 extends 变卦统一类 {
     super(模拟循环)
     变卦.技能数据 = 模拟循环?.技能基础数据?.find((item) => item.技能名称 === '变卦')
     this.初始化技能运行数据()
+  }
+
+  释放() {
+    if ((this.模拟循环?.角色状态信息?.星运 || 0) < 50) {
+      return {
+        可以释放: false,
+        异常信息: ERROR_ACTION.星运不足,
+      }
+    }
+    return { 可以释放: true }
   }
 
   命中() {
@@ -25,6 +36,7 @@ class 变卦 extends 变卦统一类 {
         下一个卦象 = '火'
       } else if (当前卦象 === '火') {
         下一个卦象 = '山'
+        this.化卦坠符触发判定()
       } else if (当前卦象 === '山') {
         下一个卦象 = '水'
       }

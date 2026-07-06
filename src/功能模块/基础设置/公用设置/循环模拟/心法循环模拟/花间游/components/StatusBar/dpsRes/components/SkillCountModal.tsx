@@ -1,6 +1,7 @@
 import React from 'react'
 import 结果统计 from '@/功能模块/计算结果/结果统计'
 import { 循环日志数据类型 } from '../../../../simulator/type'
+import 战斗日志导出按钮 from '../../../../../通用/通用组件/战斗日志导出按钮'
 import '../../../../index.css'
 import { 计算结果技能列表类型 } from '@/@types/输出'
 

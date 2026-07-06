@@ -11,6 +11,7 @@ import 团队覆盖高亮 from './团队覆盖高亮'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import BuffItem from './BuffItem'
 import styles from './index.module.less'
+import CycleSimulatorContext from '../../../../context'
 
 interface CycleSkillItemProps {
   技能: 显示循环技能类型
@@ -68,7 +69,11 @@ function CycleSkillItem(props: CycleSkillItemProps) {
 
   const 技能释放结果 = 技能?.技能释放记录结果 || {}
 
+  const 主动延迟 = 技能?.额外信息?.延迟 ?? undefined
+
   const [多段作用次数弹窗, 修改多段作用次数弹窗] = useState(false)
+
+  const { 截图模式 } = useContext(CycleSimulatorContext)
 
   const 判断有无重要buff标记 = () => {
     if (技能释放结果?.造成buff数据?.buff名称) {
@@ -211,13 +216,17 @@ function CycleSkillItem(props: CycleSkillItemProps) {
   }
 
   const 是否隐藏 = useMemo(() => {
-    return 隐藏显示技能?.includes(技能?.技能名称)
-  }, [隐藏显示技能, 技能?.技能名称])
+    return 隐藏显示技能?.includes(技能?.技能名称) || (截图模式 && '换行' === 技能?.技能名称)
+  }, [隐藏显示技能, 技能?.技能名称, 截图模式])
 
   return 是否隐藏 ? (
     <></>
   ) : (
-    <Badge count={剩余秒} offset={[-52, 8]} className={'cycle-simulator-setting-skill-drag'}>
+    <Badge
+      count={截图模式 ? undefined : 剩余秒}
+      offset={[-52, 8]}
+      className={'cycle-simulator-setting-skill-drag'}
+    >
       <Dropdown menu={{ items: 下拉菜单, onClick: beforeOnClick }} trigger={['contextMenu']}>
         <div className={cls} onMouseEnter={判断有无重要buff标记} onMouseLeave={卸除重要buff标记}>
           <Tooltip
@@ -268,21 +277,28 @@ function CycleSkillItem(props: CycleSkillItemProps) {
             className={styles.close}
             onClick={() => 删除循环技能(技能?.index || 0)}
           />
-          {技能释放结果?.伤害段数 ? (
-            <span
-              className={`${styles.count} ${styles[`count${技能释放结果?.伤害段数}`]} ${`damage-count${技能释放结果?.伤害段数}`}`}
-            >
-              {技能释放结果?.伤害段数}
-            </span>
-          ) : null}
-          {技能释放结果?.特殊标记 !== undefined ? (
-            <span className={`${styles.countTip} ${styles[`count${技能释放结果?.特殊标记}`]}`}>
-              {技能释放结果?.特殊标记 || 0}
-            </span>
-          ) : null}
-          <团队覆盖高亮 技能={技能} 前一个技能={前一个技能} />
-          {底部标识展示}
-          {背景容器展示}
+          {截图模式 ? null : (
+            <>
+              {技能释放结果?.伤害段数 ? (
+                <span
+                  className={`${styles.count} ${styles[`count${技能释放结果?.伤害段数}`]} ${`damage-count${技能释放结果?.伤害段数}`}`}
+                >
+                  {技能释放结果?.伤害段数}
+                </span>
+              ) : null}
+              {技能释放结果?.特殊标记 !== undefined ? (
+                <span className={`${styles.countTip} ${styles[`count${技能释放结果?.特殊标记}`]}`}>
+                  {技能释放结果?.特殊标记 || 0}
+                </span>
+              ) : null}
+              <团队覆盖高亮 技能={技能} 前一个技能={前一个技能} />
+              {底部标识展示}
+              {背景容器展示}
+              {主动延迟 ? (
+                <span className={styles.delayTag}>{主动延迟 === 'GCD' ? 'G' : 主动延迟}</span>
+              ) : null}
+            </>
+          )}
         </div>
       </Dropdown>
       <多段倒读条作用次数弹窗

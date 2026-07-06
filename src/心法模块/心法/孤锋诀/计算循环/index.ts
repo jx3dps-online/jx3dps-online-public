@@ -6,10 +6,13 @@ import type { 循环数据 } from '@/@types/循环'
  */
 
 import 全灭倾怒平轴 from './全灭倾怒平轴.json'
+import 紫武太奶轮椅 from './紫武太奶轮椅.json'
+import 紫武太奶轮椅_长轴 from './紫武太奶轮椅_长轴.json'
 // import 全灭倾怒平轴_橙武 from './全灭倾怒平轴_橙武.json'
 import 夯顶垃_橙武 from './夯顶垃_橙武.json'
 import 科目一二三四 from './科目一二三四.json'
 import 当请太奶露一手 from './当请太奶露一手.json'
+import 橙武太奶轮椅_长短轴 from './橙武太奶轮椅_长短轴.json'
 
 // import 威滔_沧孤 from './威滔_沧孤.json'
 // import 威滔_满破 from './威滔_满破.json'
@@ -23,10 +26,13 @@ import 当请太奶露一手 from './当请太奶露一手.json'
 
 const 计算循环: 循环数据[] = [
   全灭倾怒平轴,
+  紫武太奶轮椅,
+  紫武太奶轮椅_长轴,
   // 全灭倾怒平轴_橙武,
   科目一二三四,
-  夯顶垃_橙武,
   当请太奶露一手,
+  夯顶垃_橙武,
+  橙武太奶轮椅_长短轴,
   // 橙武_威滔,
   // 橙武_威滔_对齐灭,
   // 橙武_威界,

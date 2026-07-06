@@ -407,9 +407,10 @@ export interface 技能释放记录数据 {
 export interface 技能释放记录结果 {
   实际伤害技能?: string // 针对造成伤害的实际名称
   伤害段数?: number // 针对行、沧的实际伤害段数
-  特殊标记?: number // 标记破绽层数
+  特殊标记?: number | string // 标记破绽层数和援戈层数
   实际图标?: string
   重要buff列表?: string[] // 影响技能结果的重要buff列表
+  底部标识?: boolean | number // 用于标识技能结果展示在底部
   造成buff数据?: {
     // 针对吃影子、灭这种会添加有益buff的情况
     buff名称: string

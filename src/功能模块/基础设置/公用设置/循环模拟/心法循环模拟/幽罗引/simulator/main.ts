@@ -68,6 +68,8 @@ export interface SimulatorCycleProps {
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
   起手Buff配置?: 起手Buff配置
+  忽略延迟技能?: string[]
+  周期性忽略延迟?: number
 }
 
 class 循环主类 {
@@ -107,6 +109,8 @@ class 循环主类 {
   显示龙牙龙驭层数 = false
   团队增益轴: 团队增益轴类型 = {}
   启用血量消耗计算 = false
+  忽略延迟技能: string[] = []
+  周期性忽略延迟 = 0
 
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
@@ -123,6 +127,8 @@ class 循环主类 {
     this.网络延迟 = props.网络延迟
     this.启用团队增益快照 = !!props.启用团队增益快照
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
+    this.忽略延迟技能 = props?.忽略延迟技能 || []
+    this.周期性忽略延迟 = props.周期性忽略延迟 || 0
     // 根据奇穴和装备情况修改buff的数据
     this.Buff和Dot数据 = 根据奇穴修改buff数据(this.奇穴)
     // 根据奇穴和装备情况修改技能的数据
@@ -534,7 +540,12 @@ class 循环主类 {
     }
 
     const 是否是倒读条技能 = 当前技能?.是否为倒读条技能
-    const 延迟等待 = this.当前时间 !== undefined && !是否是倒读条技能 && GCD ? this.网络延迟 : 0
+    let 延迟等待 = this.当前时间 !== undefined && !是否是倒读条技能 && GCD ? this.网络延迟 : 0
+    if (this.周期性忽略延迟 <= 0 && this?.忽略延迟技能?.includes(当前技能?.技能名称)) {
+      延迟等待 = 0
+    } else if (this.周期性忽略延迟 > 0 && i % (this.周期性忽略延迟 + 1) < 1) {
+      延迟等待 = 0
+    }
     const 技能计划释放时间 = this.当前时间 + GCD + 延迟等待
 
     return {

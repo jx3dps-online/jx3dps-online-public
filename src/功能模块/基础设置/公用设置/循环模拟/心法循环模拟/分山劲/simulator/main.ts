@@ -67,6 +67,7 @@ export interface SimulatorCycleProps {
   起手Buff配置?: 起手Buff配置
   起手怒气?: number
   起手体态?: '擎刀' | '擎盾'
+  忽略延迟技能?: string[]
 }
 
 class 循环主类 {
@@ -101,6 +102,7 @@ class 循环主类 {
   大橙武模拟 = false
   启用团队增益快照 = false
   团队增益轴: 团队增益轴类型 = {}
+  忽略延迟技能: string[] = []
 
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
@@ -117,6 +119,7 @@ class 循环主类 {
 
     this.启用团队增益快照 = !!props.启用团队增益快照
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
+    this.忽略延迟技能 = props?.忽略延迟技能 || []
     this.待生效事件队列 = []
 
     // 模拟初始化
@@ -615,7 +618,7 @@ class 循环主类 {
     // 判断是否为当前箭袋第一个技能
     if (i >= 0) {
       // 判断上一个技能对于本技能是否有GCD限制
-      if (当前技能?.检测GCD组?.length) {
+      if (当前技能?.检测GCD组?.length || 当前技能?.技能GCD组) {
         GCD = this.检查GCD(当前技能, 技能实例, i)
       }
       // 判断技能CD，如果存在CD。增加等待时间
@@ -623,7 +626,10 @@ class 循环主类 {
         等待CD = this.技能释放前检查运行数据(当前技能, 技能实例, GCD)
       }
     }
-    const 延迟等待 = this.当前时间 ? this.网络延迟 : 0
+    let 延迟等待 = this.当前时间 ? this.网络延迟 : 0
+    if (this?.忽略延迟技能?.includes(当前技能?.技能名称)) {
+      延迟等待 = 0
+    }
     const 技能计划释放时间 = this.当前时间 + GCD + 延迟等待
     return {
       技能计划释放时间: 技能计划释放时间,

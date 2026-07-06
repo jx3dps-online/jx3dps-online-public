@@ -4,6 +4,7 @@ import 有CD技能通用类 from '../../通用类/有CD技能通用类'
 
 class 横云断浪 extends 有CD技能通用类 {
   static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '横')
+  static 释放前破绽层数 = 0
 
   constructor(模拟循环) {
     super(模拟循环)
@@ -15,6 +16,7 @@ class 横云断浪 extends 有CD技能通用类 {
   }
 
   命中() {
+    横云断浪.释放前破绽层数 = this.当前破绽层数()
     if (this.当前破绽层数()) {
       this.横云断浪上流血()
     }
@@ -34,6 +36,7 @@ class 横云断浪 extends 有CD技能通用类 {
 
   保存释放记录() {
     this.本次释放记录 = {
+      特殊标记: 横云断浪.释放前破绽层数,
       重要buff列表: this.获取当前重要buff列表(['戗风', '灭影追风', '流岚']),
     }
   }

@@ -46,7 +46,7 @@ const 循环详情弹窗: React.FC<循环详情弹窗类型> = (props) => {
             ...item,
             id: uuidV4(),
           }
-        })
+        }),
       )
     } else {
       form?.resetFields()
@@ -54,11 +54,11 @@ const 循环详情弹窗: React.FC<循环详情弹窗类型> = (props) => {
     }
   }, [open])
 
-  const 提交数据 = () => {
-    form?.validateFields()?.then(() => {
-      return
-    })
-  }
+  // const 提交数据 = () => {
+  //   form?.validateFields()?.then(() => {
+  //     return
+  //   })
+  // }
 
   const 删除循环组 = (index) => {
     const 新数据 = [...循环详情列表]?.filter((_, i) => i !== index)
@@ -74,7 +74,7 @@ const 循环详情弹窗: React.FC<循环详情弹窗类型> = (props) => {
       title={数据 ? '编辑循环' : '新增循环'}
       maskClosable={false}
       centered
-      onOk={提交数据}
+      onOk={onCancel}
     >
       <div className='cycle-edit'>
         <Form className='cycle-form' layout='vertical' form={form} requiredMark='optional'>
@@ -124,7 +124,7 @@ const 循环详情弹窗: React.FC<循环详情弹窗类型> = (props) => {
               ]}
             />
           </Form.Item>
-          <Form.Item
+          {/* <Form.Item
             className='cycle-edit-item'
             label='快照计算'
             name='快照计算'
@@ -142,7 +142,7 @@ const 循环详情弹窗: React.FC<循环详情弹窗类型> = (props) => {
                 { label: '套装双会', value: '套装会心会效' },
               ]}
             />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item className='cycle-edit-item' label='秘籍' name='秘籍' style={{ width: '100%' }}>
             <秘籍选择 />
           </Form.Item>
@@ -160,14 +160,14 @@ const 循环详情弹窗: React.FC<循环详情弹窗类型> = (props) => {
             label={
               <span>
                 循环详情
-                <a
+                {/* <a
                   style={{ marginLeft: 12 }}
                   onClick={() => {
                     设置编辑循环组弹窗({ open: true })
                   }}
                 >
                   添加
-                </a>
+                </a> */}
               </span>
             }
             name='循环详情'
@@ -208,7 +208,7 @@ const 循环详情弹窗: React.FC<循环详情弹窗类型> = (props) => {
         数据={编辑循环组弹窗?.data}
         onCancel={() =>
           设置编辑循环组弹窗({
-            open: true,
+            open: false,
           })
         }
       />

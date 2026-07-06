@@ -217,7 +217,7 @@ export const 原始Buff数据: Buff枚举 = {
     名称: '橙武',
     最大层数: 1,
     最大持续时间: 每秒郭氏帧 * 5,
-    图标: 'https://icon.jx3box.com/icon/3111.png',
+    图标: 'https://icon.jx3box.com/icon/25576.png',
   },
   ...(通用Buff数据 as any),
 }

@@ -124,6 +124,19 @@ function 团队增益选择({ 保存数据并计算 }) {
         >
           团队增益轴
         </Button>
+        <Button
+          className={'tuandui-setting-btn'}
+          size='small'
+          type='dashed'
+          onClick={() => {
+            if (新手引导流程状态) {
+              return
+            }
+            更新增益收益弹窗展示(true)
+          }}
+        >
+          增益收益
+        </Button>
       </div>
       <div className={cls}>
         {显示团队增益?.length ? (
@@ -147,6 +160,7 @@ function 团队增益选择({ 保存数据并计算 }) {
         onCancel={() => 更新设置轴增益弹窗展示(false)}
         修改团队增益轴={修改团队增益轴}
       />
+      <团队增益收益弹窗 open={增益收益弹窗展示} onCancel={() => 更新增益收益弹窗展示(false)} />
     </div>
   )
 }

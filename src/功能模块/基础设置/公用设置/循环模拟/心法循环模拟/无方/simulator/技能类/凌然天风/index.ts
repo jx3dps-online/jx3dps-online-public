@@ -17,7 +17,10 @@ class 凌然天风 extends 有CD技能通用类 {
   }
   保存释放记录() {
     const 造成buff数据 = this.获取施加重要buff信息('凌然天风')
-    this.本次释放记录 = 造成buff数据 ? { 造成buff数据 } : {}
+    this.本次释放记录 = {
+      ...(造成buff数据 ? { 造成buff数据 } : {}),
+      重要buff列表: this.获取当前重要buff列表([]),
+    }
   }
 }
 

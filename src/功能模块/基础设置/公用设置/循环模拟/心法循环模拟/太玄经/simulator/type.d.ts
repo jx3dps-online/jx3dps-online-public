@@ -77,6 +77,7 @@ export interface 技能类实例集合 {
   雷亟?: any
   天麟踏星坠?: any
   起符?: any
+  召唤麒麟?: any
 }
 
 export interface 技能GCD组 {

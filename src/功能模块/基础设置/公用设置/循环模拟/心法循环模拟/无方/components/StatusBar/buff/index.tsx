@@ -68,7 +68,13 @@ function Buff(props: BuffProps) {
                       剩余时间 < 每秒郭氏帧 * 2 ? 'cycle-status-bar-buff-second-limit' : ''
                     }`}
                   >
-                    {item.名称 !== '经脉循行' ? (+剩余时间秒 > 0 ? 剩余时间秒 : null) : null}
+                    {item.名称 !== '经脉循行' &&
+                    item.名称 !== '千枝绽蕊' &&
+                    item.名称 !== '千枝伏藏'
+                      ? +剩余时间秒 > 0
+                        ? 剩余时间秒
+                        : null
+                      : null}
                   </p>
                 </div>
               )

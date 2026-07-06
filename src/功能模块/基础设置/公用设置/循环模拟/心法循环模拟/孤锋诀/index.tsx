@@ -270,7 +270,7 @@ function CycleSimulator() {
       if (
         (显示潋风层数 && ['行']?.includes(item?.技能名称)) ||
         (显示洄涛层数 && ['沧']?.includes(item?.技能名称)) ||
-        ['孤']?.includes(item?.技能名称)
+        ['孤', '横']?.includes(item?.技能名称)
       ) {
         特殊标记 = 找到当前技能释放记录?.技能释放记录结果?.特殊标记
       }

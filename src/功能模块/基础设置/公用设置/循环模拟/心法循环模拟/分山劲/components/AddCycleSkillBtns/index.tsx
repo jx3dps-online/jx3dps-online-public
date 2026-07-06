@@ -243,7 +243,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             })}
         </Space>
       </div>
-      {/* <div className={'cycle-simulator-setting-item cycle-simulator-setting-quick-wrap'}>
+      <div className={'cycle-simulator-setting-item cycle-simulator-setting-quick-wrap'}>
         <span className={'daozong-cycle-btn-type'}>快捷添加</span>
         <Row className={'cycle-simulator-setting-quick'} gutter={[16, 8]}>
           {快捷添加数据.map((item) => {
@@ -260,7 +260,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             )
           })}
         </Row>
-      </div> */}
+      </div>
     </div>
   )
 }

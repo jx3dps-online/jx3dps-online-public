@@ -28,10 +28,10 @@ const 秘籍选择 = (props: 秘籍选择类型, ref) => {
         ) : (
           <span className={'cycle-setting-miji-empty'}>无秘籍</span>
         )}
-        <Button className={'cycle-setting-miji-btn'} type='link' onClick={() => setOpen(true)}>
+        {/* <Button className={'cycle-setting-miji-btn'} type='link' onClick={() => setOpen(true)}>
           设置秘籍
-        </Button>
-        {value ? (
+        </Button> */}
+        {/* {value ? (
           <Button
             className={'cycle-setting-miji-btn'}
             danger
@@ -40,7 +40,7 @@ const 秘籍选择 = (props: 秘籍选择类型, ref) => {
           >
             清除
           </Button>
-        ) : null}
+        ) : null} */}
       </div>
       <秘籍选择抽屉
         value={value || {}}

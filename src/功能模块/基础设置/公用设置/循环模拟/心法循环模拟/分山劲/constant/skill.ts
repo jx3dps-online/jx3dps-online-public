@@ -311,11 +311,6 @@ export const 日志类型数组: 日志类型[] = [
   '等CD',
 ]
 
-export enum 技能GCD组 {
-  公共,
-  自身,
-}
-
 // Map预备数据
 export const 原始Buff数据: Buff枚举 = {
   // 目标BUFF

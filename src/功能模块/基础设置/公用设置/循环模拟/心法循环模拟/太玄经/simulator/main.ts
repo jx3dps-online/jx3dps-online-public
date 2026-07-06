@@ -56,6 +56,7 @@ import DOT_知微 from './DOT类/知微'
 import 应卦震符 from './技能类/特效武器/应卦震符'
 import 化卦坠符 from './技能类/特效武器/化卦坠符'
 import 起符 from './技能类/特效武器/起符'
+import 召唤麒麟 from './技能类/特效武器/召唤麒麟'
 
 // import { 箭形态枚举 } from '../constant/enum'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
@@ -118,7 +119,7 @@ class 循环主类 {
   团队增益轴: 团队增益轴类型 = {}
   断御前星延迟 = 0
   顺序变卦启用 = false
-  起符快照buff列表: string[] = []
+  召唤麒麟快照buff列表: string[] = []
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
     // 模拟开始后不会变动的数据
@@ -139,7 +140,7 @@ class 循环主类 {
 
     this.顺序变卦启用 = this.秘籍['变卦']?.includes('顺序变卦')
 
-    this.起符快照buff列表 = []
+    this.召唤麒麟快照buff列表 = []
 
     // 如果启用了顺序变卦秘籍，替换变火卦、变山卦、变水卦为变卦
     if (this.顺序变卦启用) {
@@ -208,6 +209,7 @@ class 循环主类 {
       化卦坠符: new 化卦坠符(this),
       应卦震符: new 应卦震符(this),
       起符: new 起符(this),
+      召唤麒麟: new 召唤麒麟(this),
     }
   }
 

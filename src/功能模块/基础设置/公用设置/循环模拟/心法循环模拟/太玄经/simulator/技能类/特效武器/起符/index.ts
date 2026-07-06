@@ -2,10 +2,11 @@ import 循环模拟技能基础数据 from '../../../../constant/skill'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import 特效统一类 from '../特效统一类'
 import { 待生效事件 } from '../../../type'
+import { ERROR_ACTION } from '../../../utils'
 
 class 起符 extends 特效统一类 {
   static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '起符')
-  static 读条时间 = 每秒郭氏帧 * 5.5
+  static 读条时间 = 每秒郭氏帧 * 2.5
   // 临时变量存储起符快照的buff列表
   constructor(模拟循环) {
     super(模拟循环)
@@ -16,6 +17,17 @@ class 起符 extends 特效统一类 {
     this.保存释放记录('起符')
 
     return 起符.读条时间
+  }
+
+  释放() {
+    if (!this.模拟循环.当前自身buff列表?.['麒麟']?.当前层数) {
+      return {
+        可以释放: false,
+        异常信息: ERROR_ACTION.BUFF错误,
+      }
+    } else {
+      return { 可以释放: true }
+    }
   }
 
   读条(读条开始时间) {
@@ -35,10 +47,6 @@ class 起符 extends 特效统一类 {
     if (起符.技能数据) {
       this.模拟循环?.技能释放后更新运行数据?.(起符.技能数据, this)
     }
-    // 起符为独立读条技能，与化卦坠符分开，不自动触发化卦坠符
-    // 存储当前buff列表快照
-    this.模拟循环.起符快照buff列表 = this.获取当前快照buff()
-
     this.模拟循环.添加buff({ 名称: '起符', 对象: '自身' })
   }
 

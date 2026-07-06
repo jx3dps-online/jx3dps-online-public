@@ -23,7 +23,10 @@ class 紫叶沉疴 extends 有CD技能通用类 {
     const 造成buff数据 = this.模拟循环.校验奇穴是否存在('紫伏')
       ? this.获取施加重要buff信息('紫伏')
       : false
-    this.本次释放记录 = 造成buff数据 ? { 造成buff数据 } : {}
+    this.本次释放记录 = {
+      ...(造成buff数据 ? { 造成buff数据 } : {}),
+      重要buff列表: this.获取当前重要buff列表([]),
+    }
   }
 }
 
