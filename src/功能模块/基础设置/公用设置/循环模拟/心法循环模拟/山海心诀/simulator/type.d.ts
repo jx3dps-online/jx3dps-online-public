@@ -74,6 +74,7 @@ export interface 技能类实例集合 {
   聚势摧霆?: any
   换行?: any
   没石饮羽?: any
+  点掉橙武?: any
 }
 
 export interface 技能GCD组 {

@@ -91,7 +91,7 @@ function CycleSimulator() {
     open: false,
   })
 
-  const [启用斩杀, 更新启用斩杀] = useState<boolean>(false)
+  const [显示消贪层数, 设置显示消贪层数] = useState<boolean>(false)
 
   // 奇穴
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
@@ -110,7 +110,6 @@ function CycleSimulator() {
     秘籍信息,
     启用团队增益快照,
     加速值,
-    启用斩杀,
     奇穴信息,
     团队增益轴,
     起手Buff配置,
@@ -131,7 +130,6 @@ function CycleSimulator() {
       奇穴: 奇穴 || 奇穴信息,
       大橙武模拟,
       秘籍: 秘籍信息,
-      启用斩杀,
       启用团队增益快照,
       团队增益轴,
       起手Buff配置,
@@ -214,9 +212,19 @@ function CycleSimulator() {
     // const 是否存在换行技能 = cycle?.find((item) => item?.技能名称 === '换行')
     cycle.map((item, index) => {
       const 找到当前技能释放记录 = 模拟信息?.技能释放记录?.[index]
+
+      let 特殊标记
+      if (显示消贪层数 && ['捕风式', '拿云式']?.includes(item?.技能名称)) {
+        特殊标记 = 找到当前技能释放记录?.技能释放记录结果?.特殊标记 || undefined
+      }
+
       const data = {
         ...item,
         ...找到当前技能释放记录,
+        技能释放记录结果: {
+          ...找到当前技能释放记录?.技能释放记录结果,
+          特殊标记: 特殊标记,
+        },
       }
 
       if (index === 0) {
@@ -235,7 +243,7 @@ function CycleSimulator() {
     })
 
     return { 显示循环: res, 完整循环: cycle }
-  }, [cycle, 模拟信息])
+  }, [cycle, 模拟信息, 显示消贪层数])
 
   // 向循环内新增技能
   const 新增循环技能 = (item: 循环基础技能数据类型) => {
@@ -333,18 +341,9 @@ function CycleSimulator() {
         <div className={'cycle-simulator-setting'}>
           <心法配置
             原始Buff数据={根据奇穴修改buff数据(奇穴信息)}
-            // 配置区={
-            //   <心法特殊配置
-            //     启用斩杀={启用斩杀}
-            //     更新启用斩杀={更新启用斩杀}
-            //     五十血以下={五十血以下}
-            //     更新五十血以下={更新五十血以下}
-            //     显示龙牙龙驭层数={显示龙牙龙驭层数}
-            //     更新显示龙牙龙驭层数={更新显示龙牙龙驭层数}
-            //     启用血量消耗计算={启用血量消耗计算}
-            //     更新启用血量消耗计算={更新启用血量消耗计算}
-            //   />
-            // }
+            配置区={
+              <心法特殊配置 显示消贪层数={显示消贪层数} 设置显示消贪层数={设置显示消贪层数} />
+            }
           />
           {/* 角色状态栏 */}
           <StatusBar

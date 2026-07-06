@@ -12,7 +12,7 @@ import 心法配置 from '../通用/通用组件/心法配置'
 import 模拟器头部组件 from '../通用/通用组件/模拟器头部组件'
 import 奇穴设置组件 from '../通用/通用组件/奇穴设置组件'
 
-import 循环模拟技能基础数据, { 宠物基础数据, 原始Buff数据, 换灵印基础数据 } from './constant/skill'
+import 循环模拟技能基础数据, { 宠物基础数据, 原始Buff数据, 初始化换灵印 } from './constant/skill'
 import { getDpsCycle } from './utils'
 import {
   循环日志数据类型,
@@ -71,7 +71,7 @@ function CycleSimulator() {
       箭袋信息: Array.from({ length: 8 }, () => {
         return { 箭形态: 箭形态枚举.红箭 }
       }),
-      换灵印: 换灵印基础数据,
+      换灵印: 初始化换灵印(0),
     },
     当前时间: 0,
     当前自身buff列表: {},
@@ -97,6 +97,7 @@ function CycleSimulator() {
   const [显示标鹄层数, 更新显示标鹄层数] = useState<boolean>(false)
   const [显示领胡覆盖, 更新显示领胡覆盖] = useState<boolean>(false)
   const [显示连珠覆盖, 更新显示连珠覆盖] = useState<boolean>(false)
+  const [起手唤灵印数量, 更新起手唤灵印数量] = useState<number>(0)
 
   // 是否实时计算
   const [宠物顺序, 更新宠物顺序] = useState<string[]>(Object.keys(宠物基础数据))
@@ -126,6 +127,7 @@ function CycleSimulator() {
     启用团队增益快照,
     团队增益轴,
     起手Buff配置,
+    起手唤灵印数量,
   ])
 
   const simulator = (props?) => {
@@ -147,6 +149,7 @@ function CycleSimulator() {
       启用团队增益快照,
       团队增益轴,
       起手Buff配置,
+      起手唤灵印数量,
     })
 
     const {
@@ -425,6 +428,8 @@ function CycleSimulator() {
                 更新显示领胡覆盖={更新显示领胡覆盖}
                 显示连珠覆盖={显示连珠覆盖}
                 更新显示连珠覆盖={更新显示连珠覆盖}
+                起手唤灵印数量={起手唤灵印数量}
+                更新起手唤灵印数量={更新起手唤灵印数量}
               />
             }
           />

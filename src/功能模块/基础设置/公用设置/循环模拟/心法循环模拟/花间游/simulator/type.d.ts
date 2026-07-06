@@ -375,7 +375,7 @@ export interface 技能释放记录结果 {
   伤害段数?: number // 针对行、沧的实际伤害段数
   重要buff列表?: string[] // 影响技能结果的重要buff列表
   释放时标鹄层数?: number
-  特殊标记?: number
+  特殊标记?: number | string
   造成buff数据?: {
     // 针对吃影子、灭这种会添加有益buff的情况
     buff名称: string

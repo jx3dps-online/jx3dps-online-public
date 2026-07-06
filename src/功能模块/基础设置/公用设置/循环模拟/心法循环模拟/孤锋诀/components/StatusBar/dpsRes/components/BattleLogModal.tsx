@@ -21,6 +21,7 @@ const BattleLogModal: React.FC<BattleLogModalProps> = (props) => {
         { 技能名称: '流血' },
         { 技能名称: '洄涛' },
         { 技能名称: '破绽' },
+        { 技能名称: '破·击破' },
       ]?.map((item) => {
         return {
           text: item?.技能名称,

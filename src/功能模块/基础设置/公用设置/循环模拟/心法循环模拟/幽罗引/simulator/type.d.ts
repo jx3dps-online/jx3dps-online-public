@@ -10,7 +10,6 @@ import { 生地狱类型 } from './技能类/生地狱'
 import { 应天长类型 } from './技能类/应天长'
 import { 千里急类型 } from './技能类/千里急'
 import { 心络类型 } from './技能类/心络'
-import { 拘意DOT类型 } from './DOT类/拘意'
 import { 千里急DOT类型 } from './DOT类/千里急'
 import { DpsListData } from '@/components/Dps/guoshi_dps_utils'
 
@@ -62,7 +61,6 @@ export interface 技能类实例集合 {
   千里急?: 千里急类型
   心络?: 心络类型
   特效腰坠?: any
-  拘意DOT?: 拘意DOT类型
   千里急DOT?: 千里急DOT类型
   落笼簿?: 落笼簿类型
   夹线DOT?: 夹线DOT类型

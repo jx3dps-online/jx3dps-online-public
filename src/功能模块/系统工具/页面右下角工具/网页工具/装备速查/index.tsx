@@ -55,7 +55,6 @@ const 装备速查 = () => {
         },
         {} as Record<string, any>,
       )
-
     更新自定义容量系数(容量对象)
     form.setFieldsValue({
       部位: Object.keys(装备数据)?.[0],
@@ -496,7 +495,7 @@ const ColorMap = {
 export const 获取当前各属性最大附魔 = () => {
   const res = {}
   附魔?.forEach((item) => {
-    if (item?.挑战附魔) {
+    if (item?.挑战附魔 || item?.阆风仙玉) {
       return
     }
     const 附魔属性 = item?.增益集合?.[0]?.属性 || ''

@@ -10,19 +10,18 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍?: 选中�
     return 奇穴?.includes(val)
   }
 
-
   Object.keys(原始Buff数据).forEach((key) => {
     const obj = 原始Buff数据[key]
     switch (key) {
       case '横扫六合DOT':
         if (判断奇穴('我闻')) {
-          (obj as DotDTO).最大层数 = 2
+          ;(obj as DotDTO).最大层数 = 2
         } else {
-          (obj as DotDTO).最大层数 = 1
+          ;(obj as DotDTO).最大层数 = 1
         }
         if (obj.最大持续时间) {
-          obj.最大持续时间 = 每秒郭氏帧 * 12 + 秘籍加持续时间('横扫六合', 秘籍);
-          (obj as DotDTO).最大作用次数 = 9
+          obj.最大持续时间 = 每秒郭氏帧 * 12 + 秘籍加持续时间('横扫六合', 秘籍)
+          ;(obj as DotDTO).最大作用次数 = 9
         }
         break
       case '擒龙':
@@ -30,6 +29,9 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍?: 选中�
           obj.最大持续时间 = 每秒郭氏帧 * 12
         } else {
           obj.最大持续时间 = 每秒郭氏帧 * 15
+        }
+        if (判断奇穴('众嗔')) {
+          obj.最大持续时间 = obj.最大持续时间 - 每秒郭氏帧 * 6
         }
         if (obj.最大持续时间) {
           obj.最大持续时间 = obj.最大持续时间 + 秘籍加持续时间('擒龙决', 秘籍)
@@ -45,11 +47,6 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍?: 选中�
           obj.最大持续时间 = obj.最大持续时间 + 秘籍加持续时间('擒龙决', 秘籍)
         }
         break
-      case '普渡':
-        if (判断奇穴('明法')) {
-          obj.最大层数 = 3
-        }
-        break
       default:
         break
     }
@@ -61,7 +58,7 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍?: 选中�
 
 export const 根据奇穴秘籍修改技能数据 = (
   奇穴: string[],
-  秘籍: 选中秘籍信息
+  秘籍: 选中秘籍信息,
 ): 循环基础技能数据类型[] => {
   const 判断奇穴 = (val) => {
     return 奇穴?.includes(val)
@@ -72,24 +69,6 @@ export const 根据奇穴秘籍修改技能数据 = (
       let 技能原始CD = 技能.技能CD || 0
       if (判断奇穴('无诤')) {
         技能原始CD = 每秒郭氏帧 * 17
-      }
-      return {
-        ...技能,
-        技能CD: 技能原始CD,
-      }
-    } else if (技能?.技能名称 === '擒龙决') {
-      let 技能原始CD = 技能.技能CD || 0
-      if (判断奇穴('系珠')) {
-        技能原始CD = 每秒郭氏帧 * 25
-      }
-      return {
-        ...技能,
-        技能CD: 技能原始CD,
-      }
-    } else if (技能?.技能名称 === '二业依缘') {
-      let 技能原始CD = 技能.技能CD || 0
-      if (判断奇穴('业因')) {
-        技能原始CD = 每秒郭氏帧 * 60
       }
       return {
         ...技能,

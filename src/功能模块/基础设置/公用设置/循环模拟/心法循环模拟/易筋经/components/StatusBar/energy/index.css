@@ -9,7 +9,7 @@
 
 .yjj-cycle-status-bar-enerty {
   flex: 1;
-  margin: 0 12px;
+  margin: 0 12px 0 0;
 }
 
 .yjj-cycle-status-bar-enerty .ant-progress-text {
@@ -17,12 +17,12 @@
 }
 
 .yjj-cycle-status-bar-enerty .ant-progress-steps-item {
-  height: 10px !important;
-  width: 10px !important;
+  height: 20px !important;
+  width: 20px !important;
   border-radius: 100%;
+  margin-right: 8px;
+  border: 2px solid hsl(46 60% 50% / 1);
 }
-
-
 
 .cycle-status-bar-enerty-wrap {
   /* display: flex; */

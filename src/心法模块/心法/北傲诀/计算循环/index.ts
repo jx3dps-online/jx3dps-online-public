@@ -5,20 +5,12 @@ import type { 循环数据 } from '@/@types/循环'
  * 该数据可以通过JCL分析器进行获取，也可以自己根据实际情况编写
  */
 
-import 一速紫武冷砺 from './1速紫武冷砺.json'
-import 一速紫武烽砺 from './1速紫武烽砺.json'
-import 二速橙武锋砺 from './2速橙武锋砺.json'
-import 三速橙武冷砺 from './3速橙武冷砺.json'
-import 三速橙武冷疏 from './3速橙武冷疏.json'
-import 四速橙武烽砺 from './4速橙武烽砺.json'
+import 紫武_四面 from './紫武_四面.json'
+import 紫武_无四面 from './紫武_无四面.json'
+import 冷川 from './冷川.json'
+import 分疆 from './分疆.json'
+import 烽河 from './烽河.json'
 
-const 计算循环: 循环数据[] = [
-  一速紫武冷砺,
-  一速紫武烽砺,
-  二速橙武锋砺,
-  三速橙武冷砺,
-  三速橙武冷疏,
-  四速橙武烽砺,
-] as 循环数据[]
+const 计算循环: 循环数据[] = [紫武_四面, 紫武_无四面, 冷川, 分疆, 烽河] as 循环数据[]
 
 export default 计算循环

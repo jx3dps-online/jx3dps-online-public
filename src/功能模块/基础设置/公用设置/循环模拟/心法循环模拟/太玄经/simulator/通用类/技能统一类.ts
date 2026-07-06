@@ -1,3 +1,4 @@
+import 判断团队增益快照Buff from '@/数据/团队增益/tools'
 import { 获取实际技能数据 } from '../../../通用/通用函数'
 import 循环主类类型 from '../main'
 import { 循环基础技能数据类型, 技能释放记录结果 } from '../type'
@@ -57,10 +58,18 @@ class 技能统一类 {
     额外增益列表: string[] = [],
     触发伤害时间: number | undefined = undefined,
     技能等级 = 1,
+    快照buff列表: string[] = [],
   ) {
     // 判断玉枕
     const 增益列表 = [...额外增益列表]
-    const 快照检测Buff列表 = this.获取DOT快照检测Buff列表(伤害名称)
+    const 快照检测Buff列表 = [...快照buff列表]
+
+    if (
+      快照检测Buff列表?.includes('号令三军_快照_一鼓') &&
+      !快照检测Buff列表?.includes('号令三军_快照_二鼓')
+    ) {
+      快照检测Buff列表.push('号令三军_快照_二鼓')
+    }
 
     this.模拟循环.技能造成伤害?.(
       伤害名称,
@@ -71,15 +80,6 @@ class 技能统一类 {
       技能等级,
       快照检测Buff列表,
     )
-  }
-
-  获取DOT快照检测Buff列表(伤害名称) {
-    if (伤害名称?.includes('DOT')) {
-      const list = this.获取当前快照buff()
-      return list
-    } else {
-      return []
-    }
   }
 
   获取技能释放记录结果() {
@@ -208,14 +208,52 @@ class 技能统一类 {
     }
   }
 
-  获取当前快照buff(类型 = 'DOT') {
-    const buff列表: string[] = ['祝祷', '鬼遁', '镇星', '明灯']
+  应卦震符触发判定() {
+    if (!!this.模拟循环.当前自身buff列表?.['应卦震符']?.当前层数) {
+      this.模拟循环.技能类实例集合?.['应卦震符']?.触发伤害()
+    }
+  }
+
+  化卦坠符触发判定() {
+    if (!!this.模拟循环.当前自身buff列表?.['化卦坠符']?.当前层数) {
+      this.模拟循环.技能类实例集合?.['化卦坠符']?.触发伤害()
+    }
+  }
+
+  获取当前快照buff() {
+    const buff列表: string[] = []
     if (this?.模拟循环?.当前自身buff列表?.['荧入白']?.当前层数) {
       buff列表.push('荧入白_快照')
     }
-    // buff列表.push('相使')
-    return buff列表
-    console.log('类型', 类型)
+    if (this?.模拟循环?.当前自身buff列表?.['祝祷']?.当前层数) {
+      buff列表.push('祝祷')
+    }
+    if (this?.模拟循环?.当前自身buff列表?.['鬼遁']?.当前层数) {
+      buff列表.push('鬼遁')
+    }
+    if (this?.模拟循环?.当前自身buff列表?.['镇星']?.当前层数) {
+      buff列表.push('镇星')
+    }
+    if (this?.模拟循环?.当前自身buff列表?.['明灯']?.当前层数) {
+      buff列表.push('明灯')
+    }
+    if (this?.模拟循环?.当前自身buff列表?.['龙马出河']?.当前层数) {
+      buff列表.push('龙马出河')
+    }
+
+    // 团队增益快照
+    if (this?.模拟循环?.启用团队增益快照) {
+      const 团队增益buff列表 = 判断团队增益快照Buff({
+        团队增益轴: this.模拟循环.团队增益轴,
+        判定帧: this.模拟循环.当前时间 || 0,
+      })
+
+      if (团队增益buff列表?.length) {
+        buff列表.push(...团队增益buff列表)
+      }
+    }
+
+    return [...buff列表]
   }
 }
 

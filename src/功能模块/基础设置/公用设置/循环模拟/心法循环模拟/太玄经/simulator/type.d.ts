@@ -69,6 +69,14 @@ export interface 技能类实例集合 {
   换行?: 换行类型
   触发橙武?: 触发橙武类型
   特效腰坠?: any
+  应卦震符?: any
+  奔雷怒啸?: any
+  崩山重踏?: any
+  疾风连爪?: any
+  化卦坠符?: any
+  雷亟?: any
+  天麟踏星坠?: any
+  起符?: any
 }
 
 export interface 技能GCD组 {
@@ -403,7 +411,7 @@ export interface 技能释放记录数据 {
 export interface 技能释放记录结果 {
   实际伤害技能?: string // 针对造成伤害的实际名称
   伤害段数?: number // 针对行、沧的实际伤害段数
-  特殊标记?: number // 特殊标记
+  特殊标记?: number | string // 特殊标记
   重要buff列表?: string[] // 影响技能结果的重要buff列表
   释放时标鹄层数?: number
   造成buff数据?: {

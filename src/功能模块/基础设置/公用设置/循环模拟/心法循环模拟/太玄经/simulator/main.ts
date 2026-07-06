@@ -53,6 +53,10 @@ import 特效腰坠 from '../../通用/通用技能/特效腰坠'
 import DOT_祝由_火离 from './DOT类/祝由_火离'
 import DOT_知微 from './DOT类/知微'
 
+import 应卦震符 from './技能类/特效武器/应卦震符'
+import 化卦坠符 from './技能类/特效武器/化卦坠符'
+import 起符 from './技能类/特效武器/起符'
+
 // import { 箭形态枚举 } from '../constant/enum'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
 import { 获取实际帧数 } from '@/工具函数/data'
@@ -114,6 +118,7 @@ class 循环主类 {
   团队增益轴: 团队增益轴类型 = {}
   断御前星延迟 = 0
   顺序变卦启用 = false
+  起符快照buff列表: string[] = []
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
     // 模拟开始后不会变动的数据
@@ -133,6 +138,8 @@ class 循环主类 {
     this.技能基础数据 = 根据奇穴秘籍修改技能数据(this.奇穴, this.秘籍)
 
     this.顺序变卦启用 = this.秘籍['变卦']?.includes('顺序变卦')
+
+    this.起符快照buff列表 = []
 
     // 如果启用了顺序变卦秘籍，替换变火卦、变山卦、变水卦为变卦
     if (this.顺序变卦启用) {
@@ -198,6 +205,9 @@ class 循环主类 {
       换行: new 换行(this),
       触发橙武: new 触发橙武(this),
       特效腰坠: new 特效腰坠(this),
+      化卦坠符: new 化卦坠符(this),
+      应卦震符: new 应卦震符(this),
+      起符: new 起符(this),
     }
   }
 
@@ -503,35 +513,7 @@ class 循环主类 {
     )
 
     // 镇星入舆各buff分别增伤10%
-    if (
-      /^天斗旋(·|$)/.test(来源) &&
-      !来源.includes('神兵') &&
-      this.当前自身buff列表['镇星入舆_斗']?.当前层数
-    ) {
-      if (!总增益列表.includes('镇星入舆斗10%')) {
-        总增益列表.push('镇星入舆斗10%')
-      }
-    }
-    if (
-      /^三星临(·|$)/.test(来源) &&
-      !来源.includes('神兵') &&
-      this.当前自身buff列表['镇星入舆_临']?.当前层数
-    ) {
-      if (!总增益列表.includes('镇星入舆临10%')) {
-        总增益列表.push('镇星入舆临10%')
-      }
-    }
-    if (
-      /^兵主逆(·|$)/.test(来源) &&
-      !来源.includes('神兵') &&
-      this.当前自身buff列表['镇星入舆_兵']?.当前层数
-    ) {
-      if (!总增益列表.includes('镇星入舆兵10%')) {
-        总增益列表.push('镇星入舆兵10%')
-      }
-    }
-
-    if (来源?.includes('DOT')) {
+    if (快照检测Buff列表?.length) {
       总增益列表 = 总增益列表.map((item) => {
         if (item === '荧入白') {
           return '荧入白_常驻'
@@ -545,7 +527,8 @@ class 循环主类 {
       const 团队增益buff列表 = 判断团队增益快照Buff({
         团队增益轴: this.团队增益轴,
         判定帧: 造成时间 - (this.初次伤害时间 || 0) || 0,
-      })
+      }).filter((a) => !快照检测Buff列表?.includes(a))
+
       if (团队增益buff列表?.length) {
         总增益列表 = 总增益列表?.concat(团队增益buff列表)
       }

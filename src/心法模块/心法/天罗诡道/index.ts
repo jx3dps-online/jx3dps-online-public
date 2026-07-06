@@ -6,7 +6,7 @@ import type { 心法配置类型 } from '@/心法模块/interface'
 
 import 背景图 from './资源/背景图'
 import 默认数据 from './默认数据'
-import 技能系数, { 技能增益 } from './技能系数_山海源流'
+import 技能系数, { 技能增益 } from './技能系数_暗影千机'
 import 奇穴数据 from './奇穴'
 import 计算循环 from './计算循环'
 import 特殊奇穴数据 from './特殊奇穴'

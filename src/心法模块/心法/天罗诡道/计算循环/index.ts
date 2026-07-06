@@ -18,14 +18,14 @@ import type { 循环数据 } from '@/@types/循环'
 // import 橙武加速测试 from './橙武加速测试.json'
 
 // [山海源流] 循环
-import 橙武_鸩羽星离_二段 from './橙武_鸩羽星离_二段.json'
-import 紫武_鸩羽星离_二段 from './紫武_鸩羽星离_二段.json'
-import 紫武_鸩羽星离_一段 from './紫武_鸩羽星离_一段.json'
+// import 橙武_鸩羽星离_二段 from './山海源流版本归档/橙武_鸩羽星离_二段.json'
+// import 紫武_鸩羽星离_二段 from './山海源流版本归档/紫武_鸩羽星离_二段.json'
+// import 紫武_鸩羽星离_一段 from './山海源流版本归档/紫武_鸩羽星离_一段.json'
 
-const 计算循环: 循环数据[] = [
-  橙武_鸩羽星离_二段,
-  紫武_鸩羽星离_一段,
-  紫武_鸩羽星离_二段,
-] as 循环数据[]
+// [暗影千机] 循环
+import 橙武_暗影千机 from './橙武_暗影千机.json'
+import 紫武_暗影千机 from './紫武_暗影千机.json'
+
+const 计算循环: 循环数据[] = [橙武_暗影千机, 紫武_暗影千机] as 循环数据[]
 
 export default 计算循环

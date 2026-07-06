@@ -219,6 +219,17 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     不显示标鹄层数: true,
   },
   {
+    技能名称: '点掉橙武',
+    技能释放后添加GCD: 0,
+    造成伤害次数: 0,
+    技能CD: 0,
+    技能GCD组: '自身',
+    技能类型: '其他',
+    显示类型: '大橙武模拟',
+    图标: 'https://icon.jx3box.com/icon/2589.png',
+    不显示标鹄层数: true,
+  },
+  {
     技能名称: '换行',
     技能释放后添加GCD: 0,
     技能CD: 0,
@@ -436,9 +447,16 @@ export const 宠物基础数据 = {
   },
 }
 
-const 换灵印基础数据 = {}
-Object.keys(宠物基础数据).forEach((key) => {
-  换灵印基础数据[key] = false
-})
+const 初始化换灵印 = (起手数量 = 0) => {
+  const 换灵印基础数据: any = {}
+  Object.keys(宠物基础数据).forEach((key, index) => {
+    if (index < 起手数量) {
+      换灵印基础数据[key] = true
+    } else {
+      换灵印基础数据[key] = false
+    }
+  })
+  return 换灵印基础数据
+}
 
-export { 换灵印基础数据 }
+export { 初始化换灵印 }

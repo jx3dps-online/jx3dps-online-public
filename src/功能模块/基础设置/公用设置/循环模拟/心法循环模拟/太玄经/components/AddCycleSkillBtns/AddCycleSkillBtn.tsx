@@ -22,7 +22,7 @@ interface 异常信息数据 {
 
 // 添加循环技能按钮组件
 const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
-  const { 技能, 模拟信息, onClick: propsClick, 插入技能, ...rest } = props
+  const { 技能, 模拟信息, 完整循环, onClick: propsClick, 插入技能, ...rest } = props
 
   const 释放等待CD = 计算可以释放时技能CD(模拟信息, 技能)
   const 技能当前层数 = 计算技能当前层数(模拟信息, 技能)
@@ -41,6 +41,24 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
           模拟信息?.当前自身buff列表?.['星芒']?.当前层数 &&
           模拟信息?.当前自身buff列表?.['星芒']?.当前层数 > 0
         )
+      ) {
+        禁用信息 = {
+          是否禁用: true,
+          异常描述: ERROR_ACTION?.BUFF错误?.信息,
+        }
+      } else if (
+        技能?.技能名称 === '化卦坠符' &&
+        (!模拟信息?.当前自身buff列表?.['起符']?.当前层数 ||
+          模拟信息?.当前自身buff列表?.['应卦震符']?.当前层数)
+      ) {
+        禁用信息 = {
+          是否禁用: true,
+          异常描述: ERROR_ACTION?.BUFF错误?.信息,
+        }
+      } else if (
+        技能?.技能名称 === '应卦震符' &&
+        (!模拟信息?.当前自身buff列表?.['起符']?.当前层数 ||
+          模拟信息?.当前自身buff列表?.['化卦坠符']?.当前层数)
       ) {
         禁用信息 = {
           是否禁用: true,
@@ -68,7 +86,7 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
     } else {
       return { ...禁用信息 }
     }
-  }, [释放等待CD, 技能, 模拟信息, 插入技能])
+  }, [释放等待CD, 技能, 模拟信息, 插入技能, 完整循环])
 
   const onClick = (额外信息) => {
     propsClick?.({
@@ -88,6 +106,7 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
       技能当前层数={技能当前层数}
       onClick={onClick}
       异常信息={异常信息}
+      完整循环={完整循环}
     />
   )
 }

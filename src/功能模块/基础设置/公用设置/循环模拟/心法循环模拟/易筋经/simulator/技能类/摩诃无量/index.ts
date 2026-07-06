@@ -12,9 +12,8 @@ class 摩诃无量 extends 有CD技能通用类 {
   }
 
   命中() {
-    this.回复禅那('摩诃无量', 2)
+    this.回复禅那('摩诃无量', 1)
   }
-
 }
 
 export default 摩诃无量

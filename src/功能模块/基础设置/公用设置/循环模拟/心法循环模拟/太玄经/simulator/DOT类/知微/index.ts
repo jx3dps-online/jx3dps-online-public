@@ -27,7 +27,14 @@ class DOT_知微 extends 通用DOT类 {
       })
       const 引爆倍率 = 当前DOT层数 * 实际引爆跳数
       const 快照buff列表 = 最新一跳数据?.快照buff列表 || []
-      this.触发伤害行为('知微(DOT)', 1, 快照buff列表, this.模拟循环.当前时间, 引爆倍率)
+      this.触发伤害行为(
+        '知微(DOT)',
+        1,
+        快照buff列表,
+        this.模拟循环.当前时间,
+        引爆倍率,
+        快照buff列表,
+      )
       待生效数据.splice(-引爆跳数)
       this?.更新DOT运行数据({ 待生效数据: [...待生效数据] })
     }
@@ -41,7 +48,7 @@ class DOT_知微 extends 通用DOT类 {
       const 生效时间 = 数据.生效时间 || 0
       const 快照buff列表 = 数据.快照buff列表 || []
       if (生效时间) {
-        this.触发伤害行为('知微(DOT)', 1, 快照buff列表, 生效时间, 层数)
+        this.触发伤害行为('知微(DOT)', 1, 快照buff列表, 生效时间, 层数, 快照buff列表)
       }
     })
   }

@@ -44,7 +44,6 @@ import 夹线 from './技能类/夹线'
 import 触发橙武 from './技能类/触发橙武'
 
 import 夹线DOT from './DOT类/夹线DOT'
-import 拘意DOT from './DOT类/拘意'
 import 千里急DOT from './DOT类/千里急'
 
 import { 起手Buff配置 } from '../../通用/通用框架/类型定义/Buff'
@@ -163,7 +162,6 @@ class 循环主类 {
       心络: new 心络(this),
       换行: new 换行(this),
       夹线: new 夹线(this),
-      拘意DOT: new 拘意DOT(this),
       千里急DOT: new 千里急DOT(this),
       夹线DOT: new 夹线DOT(this),
     }
@@ -644,7 +642,6 @@ class 循环主类 {
   // 对当前的DOT进行已过期的结算和剩余时间更新
   DOT结算与更新() {
     // this.技能类实例集合?.流血?.结算流血伤害()
-    this.技能类实例集合?.拘意DOT?.结算拘意伤害()
     this.技能类实例集合?.千里急DOT?.结算千里急伤害()
     this.技能类实例集合?.夹线DOT?.结算夹线DOT伤害()
   }

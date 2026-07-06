@@ -4,7 +4,7 @@
   color: #fff;
   padding: 24px;
   border-radius: 4px;
-  transition: width .2s;
+  transition: width 0.2s;
 }
 
 .dps.dps-zengyi-visible {
@@ -67,7 +67,7 @@
 }
 
 .dps-number-count-skill {
-  color: #ED4F00;
+  color: #ed4f00;
   margin-left: 16px;
   cursor: pointer;
   font-weight: 600;
@@ -89,8 +89,8 @@
   display: flex;
 }
 
-.dps-res-chart.dps-chart-show-skill .dps-res-chart-wrap{
-  width: 50%
+.dps-res-chart.dps-chart-show-skill .dps-res-chart-wrap {
+  width: 50%;
 }
 
 .dps-res-chart-wrap {
@@ -101,4 +101,15 @@
   font-size: 20px;
   /* text-align: center; */
   /* margin: 0 auto; */
+}
+
+.dps-number-count-gain-tip {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #fa7528;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  margin-left: 16px;
+  border-radius: 8px;
 }

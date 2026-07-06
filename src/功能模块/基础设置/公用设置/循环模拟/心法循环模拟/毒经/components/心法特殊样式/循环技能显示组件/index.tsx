@@ -90,7 +90,6 @@ function CycleSkillItem(props: CycleSkillItemProps) {
       const previousBuffList = 前一个技能?.技能释放记录结果?.重要buff列表 || []
       return !!buffName && previousBuffList.length === 0
     })()
-    console.log(前一个技能)
     const isEnd = (() => {
       const 下一个技能 = 模拟信息?.技能释放记录?.[技能索引 + 1]
       if (!下一个技能) {

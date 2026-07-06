@@ -16,14 +16,24 @@ const BattleLogModal: React.FC<BattleLogModalProps> = (props) => {
     {
       title: '日志',
       dataIndex: '日志',
-      filters: [...循环模拟技能基础数据, { 技能名称: '火离' }, { 技能名称: '知微' }]?.map(
-        (item) => {
-          return {
-            text: item?.技能名称,
-            value: item?.技能名称,
-          }
-        },
-      ),
+      filters: [
+        ...循环模拟技能基础数据,
+        { 技能名称: '火离' },
+        { 技能名称: '知微' },
+        { 技能名称: '亘天' },
+        { 技能名称: '化卦坠符' },
+        { 技能名称: '雷亟' },
+        { 技能名称: '天麟踏星坠' },
+        { 技能名称: '应卦震符' },
+        { 技能名称: '奔雷怒啸' },
+        { 技能名称: '崩山重踏' },
+        { 技能名称: '疾风连爪' },
+      ]?.map((item) => {
+        return {
+          text: item?.技能名称,
+          value: item?.技能名称,
+        }
+      }),
       onFilter: (value: any, record) => {
         return record.日志?.includes(value) || record?.日志类型?.includes(value)
       },

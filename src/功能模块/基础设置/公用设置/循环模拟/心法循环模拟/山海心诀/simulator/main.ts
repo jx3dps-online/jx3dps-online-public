@@ -26,6 +26,7 @@ import {
 
 import 劲风簇 from './技能类/劲风簇'
 import 触发橙武 from './技能类/触发橙武'
+import 点掉橙武 from './技能类/点掉橙武'
 import 贯穿 from './DOT类/贯穿'
 import 白羽流星 from './技能类/白羽流星'
 import 弛风鸣角 from './技能类/弛风鸣角'
@@ -43,7 +44,7 @@ import 汇灵合契 from './技能类/汇灵合契'
 import 聚势摧霆 from './技能类/聚势摧霆'
 import 饮羽簇 from './技能类/饮羽簇'
 import 风尽浮生 from './技能类/风尽浮生'
-import { 宠物基础数据, 换灵印基础数据 } from '../constant/skill'
+import { 宠物基础数据, 初始化换灵印 } from '../constant/skill'
 import { 箭形态枚举 } from '../constant/enum'
 import 空弦惊雁 from './技能类/空弦惊雁'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
@@ -70,6 +71,7 @@ export interface SimulatorCycleProps {
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
   起手Buff配置?: 起手Buff配置
+  起手唤灵印数量?: number
 }
 
 class 循环主类 {
@@ -85,7 +87,7 @@ class 循环主类 {
     箭袋信息: Array.from({ length: 8 }, () => {
       return { 箭形态: 箭形态枚举.红箭 }
     }),
-    换灵印: 换灵印基础数据,
+    换灵印: 初始化换灵印(0),
   }
   当前自身buff列表: Buff枚举 = {}
   当前目标buff列表: Buff枚举 = {}
@@ -133,7 +135,7 @@ class 循环主类 {
       箭袋信息: Array.from({ length: 8 }, () => {
         return { 箭形态: 箭形态枚举.红箭 }
       }),
-      换灵印: 换灵印基础数据,
+      换灵印: 初始化换灵印(props.起手唤灵印数量),
     }
     this.待生效事件队列 = []
     // 初始化宠物数据
@@ -173,6 +175,7 @@ class 循环主类 {
       聚势摧霆: new 聚势摧霆(this),
       换行: new 换行(this),
       触发橙武: new 触发橙武(this),
+      点掉橙武: new 点掉橙武(this),
       特效腰坠: new 特效腰坠(this),
     }
   }

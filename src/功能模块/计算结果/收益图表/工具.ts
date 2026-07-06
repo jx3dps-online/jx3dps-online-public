@@ -6,7 +6,7 @@ export const 获取当前各属性最大附魔 = () => {
   const { 附魔 } = 获取当前数据()
   const res = {}
   附魔?.forEach((item) => {
-    if (item?.挑战附魔) {
+    if (item?.挑战附魔 || item?.阆风仙玉) {
       return
     }
     const 附魔属性 = item?.增益集合?.[0]?.属性 || ''
@@ -51,7 +51,7 @@ export const 获取单点属性收益列表 = () => {
 export const 收益增益属性计算 = (
   属性: string,
   值,
-  角色最终属性: 角色基础属性类型
+  角色最终属性: 角色基础属性类型,
 ): 角色基础属性类型 => {
   const { 主属性 } = 获取当前数据()
 
