@@ -1,0 +1,14 @@
+{
+  "名称": "z3-solver",
+  "版本": "5.1.0.0",
+  "文件": "z3_solver-5.1.0.0-py3-none-pyemscripten_2026_0_wasm32.whl",
+  "官方标签": "pyemscripten_2026_0_wasm32",
+  "来源": "https://files.pythonhosted.org/packages/08/2c/842c3ca4ce8e503a5095c1883e0f18d45e202b1c75451a807ee3a6e4b83e/z3_solver-5.1.0.0-py3-none-pyemscripten_2026_0_wasm32.whl",
+  "SHA256": "d49a91527dc4f65e4a5a938b86a16937decadcbdbd806833d28ce25eb24cd3a9",
+  "运行时": "复用项目 JCL 静态资源中的 Pyodide 0.29.4，仅新建宏自己的解释器实例",
+  "兼容说明": "原包为纯 Python 绑定与独立 C 库，保持原字节和官方标签。官方未承诺跨 ABI 兼容；当前版本已在 0.29.4 下进行原算法回放与求解验收，不适用于其他版本。",
+  "JSPI": false,
+  "许可证": "MIT",
+  "许可证来源": "z3-solver 5.1.0.0 官方源码发行包 core/LICENSE.txt",
+  "许可证SHA256": "e617cad2ab9347e3129c2b171e87909332174e17961c5c3412d0799469111337"
+}

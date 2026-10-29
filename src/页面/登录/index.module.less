@@ -10,22 +10,10 @@
   justify-content: center;
 }
 
-.img {
-  position: absolute;
-  display: block;
-  height: 100vh;
-  right: 0;
-  top: 0;
-  z-index: 1;
-  margin: auto;
-  width: 100%;
-  object-fit: cover;
-}
-
 .content {
   position: absolute;
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
   height: 100vh;
   right: 0;
@@ -33,7 +21,7 @@
   z-index: 2;
   margin: auto;
   width: 100%;
-  background: rgba(0, 0, 0, 0.75);
+  // background: rgba(0, 0, 0, 0.35);
 }
 
 .title {
@@ -48,42 +36,279 @@
   margin-bottom: 24px;
 }
 
-.btn {
-  width: 300px;
-  border-radius: 16px;
-  background: #fff;
-  padding: 16px;
+.introMask {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: fade(#000, 80%);
+  opacity: 1;
+  pointer-events: none;
+
+  &.introMaskFade {
+    animation: introMaskFade 1.5s ease forwards;
+  }
+
+  &.introMaskGone {
+    opacity: 0;
+    pointer-events: none;
+    animation: none;
+  }
+}
+
+@keyframes introMaskFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 300px;
+  z-index: 5;
+  margin-left: -13.671875%;
+  width: 27.34375%;
+  transform: scale(1.5);
+  transform-origin: center center;
+
+  &.logoIntro {
+    animation: logoIntroScale 0.8s ease forwards;
+  }
+
+  &.logoSettled {
+    transform: scale(1);
+    animation: none;
+  }
+}
+
+@keyframes logoIntroScale {
+  0%,
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  top: 420px;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@iconMenuHitInset: -28px -18px;
+@iconMenuHitClip: polygon(
+  0 0,
+  40% 24px,
+  calc(100% - 40%) 24px,
+  100% 0,
+  100% 100%,
+  calc(100% - 40%) calc(100% - 24px),
+  40% calc(100% - 24px),
+  0 100%
+);
+
+// 顶部心法图标栏：默认收起为顶部居中三角箭头，hover 后从顶部滑下圆角长条
+.leaving {
+  .introMask,
+  .iconMenu {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+}
+
+.iconMenu {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 1000px;
+  height: 150px;
+}
+
+.iconMenuArrow {
+  width: 0;
+  height: 0;
+  margin: 10px auto 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid rgba(255, 255, 255, 0.65);
+}
+
+.iconMenuPanel {
+  position: absolute;
+  top: 34px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-160%);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+// 仅扩大 hover 命中，不参与绘制：中间贴合圆角条，左右两端上下外扩成横沙漏
+.iconMenuPanel::before {
+  content: '';
+  position: absolute;
+  inset: @iconMenuHitInset;
+  clip-path: @iconMenuHitClip;
+}
+
+.iconMenuOpen .iconMenuPanel {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.iconMenuBar {
+  position: relative;
+  z-index: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.iconMenuIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: 0.2s;
+  display: block;
+  transition: transform 0.2s ease;
+
   &:hover {
-    opacity: 0.8;
-  }
-
-  &.loading {
-    background-color: #0966a0;
-    color: #fff;
-  }
-
-  &.success {
-    background-color: #398a10;
-    color: #fff;
-  }
-
-  &.faild {
-    background-color: #a9220d;
-    color: #fff;
+    transform: scale(1.5);
   }
 }
 
-.icon {
-  width: 24px;
-  margin-right: 16px;
+.iconMenuIconWrap {
+  display: flex;
+  line-height: 0;
 }
 
-.loginButton {
-  font-size: 14px;
-  font-weight: 500;
+.iconMenuDivider {
+  width: 1px;
+  height: 18px;
+  background: #999;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+@media (min-width: 761px) {
+  .logo {
+    left: calc(50% - min(13.671875vw, 24.305556vh));
+    top: calc(50% - min(16.40625vw, 29.166667vh));
+    margin-left: 0;
+    width: min(27.34375vw, 48.611111vh);
+  }
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .wrapper {
+    height: 100%;
+    overflow: hidden;
+  }
+  .logo {
+    width: 80%;
+    left: 10%;
+    margin-left: 0;
+    top: auto;
+    bottom: max(10%, env(safe-area-inset-bottom));
+    pointer-events: none;
+  }
+  .logo.logoIntro {
+    animation: none;
+    transform: scale(1);
+  }
+  .iconMenu {
+    top: max(5%, env(safe-area-inset-top));
+    bottom: 44%;
+    width: calc(100% - 32px);
+    height: auto;
+  }
+  .iconMenuArrow {
+    display: none;
+  }
+  .iconMenuPanel {
+    position: static;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    max-height: 100%;
+    overflow-y: auto;
+    border-radius: 18px;
+  }
+  .iconMenuPanel::before {
+    display: none;
+  }
+  .iconMenuOpen .iconMenuPanel {
+    transform: none;
+  }
+  .iconMenuBar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 4px;
+    padding: 16px 10px;
+    border-radius: 18px;
+    background: rgba(0, 0, 0, 0.65);
+  }
+  .移动心法 {
+    flex: 0 0 calc((100% - 16px) / 5);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: #fff;
+    background: transparent;
+    border: 0;
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .移动心法 img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+  .移动心法 span {
+    white-space: nowrap;
+  }
+  .leaving .logo,
+  .leaving .iconMenu {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms;
+  }
+}
+@media (max-width: 374px) {
+  .移动心法 {
+    flex-basis: calc((100% - 12px) / 4);
+  }
+}
+@media (max-width: 760px) and (orientation: landscape),
+  (max-width: 1024px) and (pointer: coarse) and (orientation: landscape) {
+  .logo {
+    width: 40%;
+    left: 30%;
+    bottom: 2%;
+  }
+  .iconMenu {
+    top: 12px;
+    bottom: 40%;
+  }
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { 角色状态信息类型 } from '../../../simulator/type'
 
-import Img_Fumo from '../../../assets/fumo.png'
-import Img_Jiasha from '../../../assets/jiasha.png'
+const Img_Fumo = 'https://icon.jx3box.com/icon/8008.png'
+const Img_Jiasha = 'https://icon.jx3box.com/icon/7496.png'
 import { Tooltip } from 'antd'
 import './index.css'
 

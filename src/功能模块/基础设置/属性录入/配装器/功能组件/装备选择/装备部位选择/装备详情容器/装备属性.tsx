@@ -58,7 +58,6 @@ const ColorMap = {
   会心: 'orange',
   会效: 'gold',
   破防: 'lime',
-  破招: 'green',
   无双: 'cyan',
   加速: 'blue',
   武伤: 'geekblue',

@@ -1,0 +1,29 @@
+.cycle-status-bar-titai-img {
+  width: 36px;
+}
+
+.ax-cycle-status-bar-enerty {
+  flex: 1;
+  margin: 0 12px;
+}
+
+.ax-cycle-status-bar-enerty .ant-progress-text {
+  display: none;
+}
+
+.ax-cycle-status-bar-enerty .ant-progress-steps-item {
+  height: 6px !important;
+  border-radius: 4px;
+}
+
+.cycle-status-bar-enerty-wrap {
+  /* display: flex; */
+  /* height: 36px; */
+  align-items: center;
+}
+
+.cycle-status-bar-enerty-item {
+  display: flex;
+  align-items: center;
+  width: 200px;
+}

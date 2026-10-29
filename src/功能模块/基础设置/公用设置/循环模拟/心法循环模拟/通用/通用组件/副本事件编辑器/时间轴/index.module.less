@@ -1,0 +1,307 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  user-select: none;
+}
+
+.scrollWrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  background: #fafafa;
+  padding-bottom: 4px;
+}
+
+.content {
+  position: relative;
+  min-height: 120px;
+}
+
+.rulerRow {
+  display: flex;
+  height: 30px;
+  border-bottom: 1px solid #e5e5e5;
+  background: #f5f5f5;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.labelCell {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  box-sizing: border-box;
+  border-right: 1px solid #e5e5e5;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ruler {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.rulerTick {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-left: 1px solid #ccc;
+  padding-left: 2px;
+  pointer-events: none;
+}
+
+.rulerLabel {
+  font-size: 12px;
+  color: #999;
+  white-space: nowrap;
+}
+
+.dragLine {
+  position: absolute;
+  top: 30px;
+  bottom: 0;
+  width: 0;
+  border-left: 1px dashed #1677ff;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.dragLineLabel {
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  background: #1677ff;
+  color: #fff;
+  font-size: 13px;
+  padding: 0 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.cdWarnRange {
+  position: absolute;
+  top: 30px;
+  height: 8px;
+  background: rgba(245, 34, 45, 0.18);
+  border-top: 1px solid #f5222d;
+  border-bottom: 1px solid #f5222d;
+  z-index: 9;
+  pointer-events: none;
+}
+
+.cdWarnLabel {
+  position: absolute;
+  top: 9px;
+  left: 0;
+  background: #f5222d;
+  color: #fff;
+  font-size: 12px;
+  padding: 0 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.gapWarnLine {
+  position: absolute;
+  top: 34px;
+  height: 3px;
+  background: #f5222d;
+  border-radius: 1px;
+  z-index: 9;
+  pointer-events: none;
+}
+
+.gapWarnLabel {
+  position: absolute;
+  top: 12px;
+  transform: translateX(-50%);
+  color: #f5222d;
+  font-size: 11px;
+  white-space: nowrap;
+  z-index: 9;
+  pointer-events: none;
+  text-shadow: 0 0 2px #fff;
+}
+
+.row {
+  display: flex;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+}
+
+.rowIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.rowName {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rowTrack {
+  flex-shrink: 0;
+  background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px);
+  background-size: 16px 100%;
+}
+
+.block {
+  box-sizing: border-box;
+  // border: 1px solid rgba(0, 0, 0, 0.35);
+  border-radius: 4px;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: none;
+  // transition: .2s;
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.blockActive {
+  // border: 2px solid #f5222d;
+  background: #f5222d !important;
+  opacity: 0.8;
+  // box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.35);
+  z-index: 2;
+}
+
+.blockOverlap {
+  border: 2px solid #f5222d;
+  box-shadow: 0 0 0 2px rgba(245, 34, 45, 0.25);
+}
+
+.blockLabel {
+  font-size: 14px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  padding: 0 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.blockStageLabel {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  padding: 0 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.resizeHandle {
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  cursor: ew-resize;
+  z-index: 2;
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.phaseLine {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-left: 1px dashed rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+}
+
+.phaseHandle {
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  transform: translateX(-3px);
+  cursor: ew-resize;
+  z-index: 2;
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.contextMenu {
+  position: fixed;
+  z-index: 9999;
+  min-width: 120px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 4px 0;
+}
+
+.contextMenuItem {
+  padding: 6px 14px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  &:hover {
+    background: #f5f7fa;
+  }
+}
+
+.contextMenuItemDanger {
+  padding: 6px 14px;
+  font-size: 14px;
+  color: #ff4d4f;
+  cursor: pointer;
+  &:hover {
+    background: #fff1f0;
+  }
+}
+
+.overlapDot {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f5222d;
+  border: 1px solid #fff;
+  pointer-events: none;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  color: #f5222d;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  cursor: pointer;
+}

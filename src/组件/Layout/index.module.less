@@ -1,0 +1,11 @@
+.背景滚动锁定:global(.layout-wrapper) {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+
+  > :global(.basic-set),
+  > :global(.dps) {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+}

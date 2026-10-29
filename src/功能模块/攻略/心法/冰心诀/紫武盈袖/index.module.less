@@ -1,0 +1,172 @@
+.攻略 {
+  --guide-accent: #de65b1;
+  --guide-line: #f0d5e8;
+  max-width: 1200px;
+  min-width: 0;
+  margin: 0 auto;
+  color: #483342;
+  font-size: 16px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  counter-reset: chapter;
+
+  p {
+    margin: 10px 0;
+  }
+
+  h2,
+  h3 {
+    color: #943f77;
+    font-weight: 600;
+    line-height: 1.5;
+    scroll-margin-top: 16px;
+  }
+
+  h2 {
+    counter-increment: chapter;
+    counter-reset: section;
+    margin: 24px 0 12px;
+    padding: 9px 12px;
+    border: 1px solid var(--guide-line);
+    border-radius: 8px;
+    background: #fceef7;
+    font-size: 20px;
+
+    &::before {
+      content: counter(chapter);
+      margin-right: 10px;
+      color: var(--guide-accent);
+      font-size: 18px;
+    }
+  }
+
+  h3 {
+    counter-increment: section;
+    margin: 20px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--guide-line);
+    font-size: 18px;
+
+    &::before {
+      content: counter(chapter) '.' counter(section);
+      margin-right: 10px;
+      color: var(--guide-accent);
+      font-size: 0.8em;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  a:focus-visible,
+  summary:focus-visible,
+  h2:focus-visible {
+    outline: 2px solid var(--guide-accent);
+    outline-offset: 4px;
+  }
+}
+
+.说明 {
+  padding: 12px 16px;
+  border-left: 3px solid var(--guide-accent);
+  border-radius: 0 8px 8px 0;
+  background: #fff7fc;
+}
+
+.循环 {
+  margin: 16px 0;
+  padding: 16px;
+  border: 1px solid var(--guide-line);
+  border-radius: 10px;
+  background: #fff7fc;
+}
+
+.序列 {
+  margin-top: 12px;
+
+  summary {
+    margin-bottom: 8px;
+    color: #943f77;
+    cursor: pointer;
+  }
+}
+
+.表格 {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 10px 12px;
+    border: 1px solid var(--guide-line);
+    text-align: left;
+  }
+
+  th {
+    background: #fceef7;
+    color: #943f77;
+    white-space: nowrap;
+  }
+}
+
+.导航 {
+  margin: 0 0 24px;
+  padding: 10px 16px;
+  border: 1px solid var(--guide-line);
+  border-radius: 8px;
+  background: #fff;
+
+  summary {
+    color: #943f77;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 0 4px;
+  }
+
+  a {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: #fceef7;
+    color: #943f77;
+    font-size: 15px;
+    text-decoration: none;
+
+    &:hover {
+      color: #74305d;
+    }
+  }
+}
+
+.奇穴 {
+  margin: 16px 0;
+  padding: 14px;
+  border: 1px solid var(--guide-line);
+  border-radius: 10px;
+  background: #fff7fc;
+}
+
+@media (max-width: 600px) {
+  .攻略 {
+    font-size: 15px;
+
+    h2 {
+      font-size: 19px;
+    }
+
+    h3 {
+      font-size: 17px;
+    }
+  }
+
+  .奇穴 {
+    padding: 10px;
+  }
+}

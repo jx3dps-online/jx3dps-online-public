@@ -30,3 +30,33 @@ yarn-error.log*
 /package-lock.json
 /.idea/
 .idea/
+
+# claude
+CLAUDE.md
+.claude/
+
+# zcode（AI 会话的规划/过程文件）
+.zcode/
+
+# local build archive
+build.rar
+agent.md
+
+# temporary CDN compression staging
+/CDN待压缩/
+
+# TypeScript incremental build info
+tsconfig.tsbuildinfo
+
+# JCL parser and portable Windows build
+/.venv-portable
+/release
+/packages/jcl-parser/build
+/packages/jcl-parser/*.spec
+**/__pycache__/
+*.py[cod]
+
+.codebuddy/*
+.codebuddy
+.pnpm-store
+.deepseek

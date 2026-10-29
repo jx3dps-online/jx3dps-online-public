@@ -1,4 +1,4 @@
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import React, { useEffect, useRef, useState } from 'react'
 import * as G2 from '@antv/g2'
 import './index.css'
@@ -8,9 +8,8 @@ interface 图表展示类型 {
   data: { [key: number]: number }
 }
 
-const { 系统配置 } = 获取当前数据()
-
 const 图表展示: React.FC<图表展示类型> = (props) => {
+  const { 系统配置 } = use心法数据()
   const { data, 当前查看人 } = props
   const id = `${当前查看人}_event_chart`
   const [chartData, setChartData] = useState<any>()
@@ -23,7 +22,7 @@ const 图表展示: React.FC<图表展示类型> = (props) => {
     return () => {
       limitRef.current = false
     }
-  }, [])
+  }, [系统配置])
 
   // 处理缺少的帧数数据
   const 处理图表数据 = (data) => {

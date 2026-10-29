@@ -8,23 +8,25 @@ function 装备增益展示信息({ 增益类型 }: { 增益类型: string }) {
       case '套装技能':
       case '冬至套装':
         return 增益类型
-      case '试炼鞋子破防':
-      case '试炼适应之力':
-      case '试炼项链破防':
-      case '试炼腰坠破防':
-      case '试炼暗器特效':
-      case '试炼项链会心':
-      case '试炼鞋子会心':
-      case '试炼腰坠会效':
-        return 增益类型?.replace('试炼', '')
+      case '特效_38944':
+        return '鞋子破防'
+      case '特效_38934':
+        return '适应之力'
+      case '特效_38946':
+        return '项链破防'
+      case '特效_38950':
+        return '暗器特效'
+      case '特效_46727':
+        return '暗器攻击'
+      case '特效_38945':
+        return '项链会心'
+      case '特效_38939':
+        return '鞋子会心'
       // case '特效_40788':
       // case '特效_40790':
       // case '特效_40791':
-      // case '特效_40793':
-      // case '特效_40794':
       // case '特效_40802':
       // case '特效_40803':
-      // case '特效_40804':
       // case '特效_42767':
       //   return '副本黄字'
       case '大橙武特效':

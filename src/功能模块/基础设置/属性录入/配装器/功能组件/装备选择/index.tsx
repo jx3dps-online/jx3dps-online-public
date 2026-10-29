@@ -12,12 +12,16 @@ import {
   装备属性信息模型,
   装备类型枚举,
   装备选择范围类型,
+  装备信息数据类型,
   选择装备数据类型,
 } from '@/@types/装备'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
+import type { 计算循环覆盖类型 } from '@/计算模块/计算函数'
 import './index.css'
+import styles from './index.module.less'
 
 interface 装备选择入参 {
+  移动端: boolean
   value?: 选择装备数据类型
   onChange?: (e: 选择装备数据类型) => void
   form: any
@@ -28,24 +32,39 @@ interface 装备选择入参 {
   开启装备智能对比: boolean
   对比加速: boolean
   对比显示百分比: boolean
+  候选按收益排序: boolean
   装备选择范围: 装备选择范围类型
+  大附魔区?: React.ReactNode
+  /**
+   * @name 对比装备信息
+   * 红色标记的基准；传 null 表示不标红，不传则回退到页面当前装备。
+   */
+  对比装备信息?: 装备信息数据类型 | null
+  /**
+   * @name 循环覆盖
+   * 目标编辑时用目标循环/奇穴/秘籍计算候选收益。
+   */
+  循环覆盖?: 计算循环覆盖类型
 }
 
-const { 装备数据, 附魔 } = 获取当前数据()
-
 function 装备选择(props: 装备选择入参, ref) {
+  const { 移动端 } = props
+  const { 装备数据, 附魔 } = use心法数据()
   const {
     value,
     onChange,
     部位,
     默认镶嵌宝石等级,
     部位索引,
-    排序索引,
     form,
     开启装备智能对比,
     对比显示百分比,
     装备选择范围,
     对比加速,
+    候选按收益排序,
+    对比装备信息,
+    循环覆盖,
+    大附魔区,
   } = props
 
   const selectRef = useRef<any>()
@@ -62,52 +81,48 @@ function 装备选择(props: 装备选择入参, ref) {
 
   const list: 装备属性信息模型[] = useMemo(() => {
     return 装备数据[部位] || []
-  }, [部位])
+  }, [部位, 装备数据])
 
   // 选择装备
   const 选择装备 = (e) => {
     const obj = list.find((item) => item.id === e)
     const 装备最大精炼等级 = 获取最大精炼等级(obj)
     // const 切换后精炼等级 = 当前精炼等级 > 装备最大精炼等级 ? 装备最大精炼等级 : 当前精炼等级
-    onChange &&
-      onChange({
-        ...value,
-        镶嵌孔数组: obj?.镶嵌孔数组?.map((item, index) => {
-          return {
-            ...item,
-            镶嵌宝石等级: 当前镶嵌等级数组?.[index] || 默认镶嵌宝石等级,
-          }
-        }),
-        当前精炼等级: 装备最大精炼等级,
-        id: e,
-        装备部位: 装备位置部位枚举[部位索引],
-      } as any)
+    onChange?.({
+      ...value,
+      镶嵌孔数组: obj?.镶嵌孔数组?.map((item, index) => {
+        return {
+          ...item,
+          镶嵌宝石等级: 当前镶嵌等级数组?.[index] || 默认镶嵌宝石等级,
+        }
+      }),
+      当前精炼等级: 装备最大精炼等级,
+      id: e,
+      装备部位: 装备位置部位枚举[部位索引],
+    } as any)
   }
 
   // 选择精炼等级
   const 选择精炼等级 = (e) => {
-    onChange &&
-      onChange({
-        ...value,
-        当前精炼等级: e,
-      } as any)
+    onChange?.({
+      ...value,
+      当前精炼等级: e,
+    } as any)
   }
 
   // 选择精炼等级
   const 选择镶嵌孔 = (e) => {
-    onChange &&
-      onChange({
-        ...value,
-        镶嵌孔数组: e,
-      } as any)
+    onChange?.({
+      ...value,
+      镶嵌孔数组: e,
+    } as any)
   }
 
   const onFumoSelect = (e) => {
-    onChange &&
-      onChange({
-        ...value,
-        附魔: e,
-      } as any)
+    onChange?.({
+      ...value,
+      附魔: e,
+    } as any)
   }
 
   const 当前选择装备数据: 装备属性信息模型 = useMemo(() => {
@@ -116,7 +131,7 @@ function 装备选择(props: 装备选择入参, ref) {
       ...obj,
       最大精炼等级: obj ? 获取最大精炼等级(obj) || 0 : undefined,
     } as any
-  }, [value?.id])
+  }, [value?.id, list])
 
   const 当前装备支持附魔列表 = useMemo(() => {
     return (附魔 || []).filter((item) => {
@@ -128,41 +143,27 @@ function 装备选择(props: 装备选择入参, ref) {
     选择最佳装备: selectRef?.current?.选择最佳装备,
   }))
 
-  return (
-    <div className={'zhuangbei-form-item'} ref={ref} id='Guide_3'>
-      <div className='zhuangbei-form-item-left-1'>
-        <装备部位选择
-          value={value?.id}
+  const 附魔区 =
+    当前装备支持附魔列表?.length && 当前选择装备数据?.id ? (
+      <div className='zhuangbei-form-item-left-2'>
+        <附魔选择
           allValue={value}
-          onChange={选择装备}
           form={form}
-          装备数据列表={list}
-          部位={部位}
           部位索引={部位索引}
-          排序索引={排序索引}
-          默认镶嵌宝石等级={默认镶嵌宝石等级}
           开启装备智能对比={开启装备智能对比}
           对比显示百分比={对比显示百分比}
-          对比加速={对比加速}
-          装备选择范围={装备选择范围}
-          ref={selectRef}
+          候选按收益排序={候选按收益排序}
+          对比装备信息={对比装备信息}
+          循环覆盖={循环覆盖}
+          list={当前装备支持附魔列表}
+          value={value?.附魔}
+          onChange={onFumoSelect}
         />
       </div>
-      {当前装备支持附魔列表?.length && 当前选择装备数据?.id ? (
-        <div className='zhuangbei-form-item-left-2'>
-          <附魔选择
-            allValue={value}
-            form={form}
-            部位索引={部位索引}
-            排序索引={排序索引}
-            开启装备智能对比={开启装备智能对比}
-            对比显示百分比={对比显示百分比}
-            list={当前装备支持附魔列表}
-            value={value?.附魔}
-            onChange={onFumoSelect}
-          />
-        </div>
-      ) : null}
+    ) : null
+
+  const 精炼镶嵌区 = (
+    <>
       <div className='zhuangbei-form-item-left-3'>
         <精炼等级选择
           disabled={!当前选择装备数据?.id}
@@ -181,11 +182,95 @@ function 装备选择(props: 装备选择入参, ref) {
           部位索引={部位索引}
         />
       </div>
+    </>
+  )
+
+  return (
+    <div className={`zhuangbei-form-item ${styles.装备选择}`} ref={ref} id='Guide_3'>
+      <装备选择布局
+        移动端={移动端}
+        部位={部位}
+        附魔区={附魔区}
+        精炼镶嵌区={精炼镶嵌区}
+        大附魔区={大附魔区}
+        装备区={
+          <div className='zhuangbei-form-item-left-1'>
+            <装备部位选择
+              value={value?.id}
+              allValue={value}
+              onChange={选择装备}
+              form={form}
+              装备数据列表={list}
+              部位={部位}
+              部位索引={部位索引}
+              默认镶嵌宝石等级={默认镶嵌宝石等级}
+              开启装备智能对比={开启装备智能对比}
+              对比显示百分比={对比显示百分比}
+              对比加速={对比加速}
+              候选按收益排序={候选按收益排序}
+              装备选择范围={装备选择范围}
+              对比装备信息={对比装备信息}
+              循环覆盖={循环覆盖}
+              ref={selectRef}
+            />
+          </div>
+        }
+      />
     </div>
   )
 }
 
 export default forwardRef(装备选择)
+
+function 装备选择布局({
+  移动端,
+  部位,
+  装备区,
+  附魔区,
+  精炼镶嵌区,
+  大附魔区,
+}: {
+  移动端: boolean
+  部位: 装备部位枚举
+  装备区: React.ReactNode
+  附魔区: React.ReactNode
+  精炼镶嵌区: React.ReactNode
+  大附魔区?: React.ReactNode
+}) {
+  return (
+    <>
+      <div className={styles.装备标题}>
+        <span className={styles.部位名称}>{部位}</span>
+        {装备区}
+      </div>
+      {移动端 ? (
+        <details className={`装备细节 ${styles.装备细节}`}>
+          <summary>精炼 / 镶嵌 / 附魔</summary>
+          <div className={styles.装备细节内容}>
+            <div className={styles.精炼镶嵌}>{精炼镶嵌区}</div>
+            {附魔区 && (
+              <div className={styles.附魔}>
+                <div className={styles.字段名称}>附魔</div>
+                {附魔区}
+              </div>
+            )}
+            {大附魔区 && (
+              <div className={styles.大附魔}>
+                <div className={styles.字段名称}>大附魔</div>
+                {大附魔区}
+              </div>
+            )}
+          </div>
+        </details>
+      ) : (
+        <>
+          {附魔区}
+          {精炼镶嵌区}
+        </>
+      )}
+    </>
+  )
+}
 
 export const 获取最大精炼等级 = (data?: 装备属性信息模型) => {
   switch (data?.装备类型) {

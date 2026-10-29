@@ -1,0 +1,387 @@
+.进度条 {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+
+.标题 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  > span {
+    font-family: 'STKaiti', 'KaiTi', serif;
+    font-size: 17px;
+    letter-spacing: 3px;
+    color: #e7d6b3;
+  }
+  > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  b {
+    font-size: 29px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: #f3dfab;
+  }
+  small {
+    margin-left: 2px;
+    font-size: 13px;
+  }
+  em {
+    font-size: 12px;
+    font-style: normal;
+    color: #b5bac5;
+  }
+}
+
+.武器区域 {
+  position: relative;
+  aspect-ratio: 5 / 1;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.画布 {
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  width: 92%;
+  aspect-ratio: 3 / 1;
+  transform: translateY(-49.25%);
+  > img,
+  .背景光,
+  .点亮特效,
+  .杖身流光 {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.素杖 {
+  opacity: 0.34;
+  transform: translateY(-1.81%);
+  clip-path: inset(0 0 0 var(--yjj-progress));
+}
+.成品 {
+  clip-path: inset(0 calc(100% - var(--yjj-progress)) 0 0);
+}
+
+.背景光,
+.点亮特效 {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 calc(var(--yjj-progress) - 8%),
+    transparent var(--yjj-progress)
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 calc(var(--yjj-progress) - 8%),
+    transparent var(--yjj-progress)
+  );
+}
+
+.背景光 > i {
+  position: absolute;
+  inset: 27% 3% 24% 5%;
+  background:
+    radial-gradient(ellipse at 79% 47%, #f7d88799, #e4b85b30 26%, transparent 55%),
+    radial-gradient(ellipse at 38% 47%, #ead9a84d, transparent 55%);
+  filter: blur(7px);
+  opacity: 0.55;
+  transform-origin: 75% 50%;
+}
+
+.杖身流光 {
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  > i {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent 10%, #f5d89466, #fff5d8 50%, transparent 85%);
+    opacity: 0;
+  }
+}
+
+.莲影 {
+  position: absolute;
+  left: 54.8%;
+  top: 23%;
+  width: 36%;
+  aspect-ratio: 2 / 1;
+}
+
+.金莲 {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  stroke: #ecd799;
+  stroke-width: 0.7px;
+  filter: drop-shadow(0 0 2px #e5ba5e55);
+  transform-origin: 50% 90%;
+
+  path {
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+.内瓣,
+.外瓣,
+.底瓣 {
+  transform-origin: 120px 108px;
+}
+
+.金屑 > i {
+  position: absolute;
+  left: calc(7% + var(--yjj-spark) * 5.4%);
+  top: 40%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #f8e4ab;
+  box-shadow: 0 0 4px #e8bd6588;
+  opacity: 0;
+  &:nth-child(even) {
+    top: 59%;
+    width: 3px;
+    background: #dcc88c;
+  }
+  &:nth-child(3n) {
+    top: 31%;
+    height: 3px;
+    border-radius: 70% 10%;
+  }
+}
+
+.杖首 {
+  position: absolute;
+  left: 72.8%;
+  top: 47%;
+  width: 15%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  > i {
+    position: absolute;
+    border-radius: 50%;
+  }
+}
+
+.金芯 {
+  inset: 23%;
+  background: radial-gradient(circle, #fff8d4 2%, #f9dc9a99 13%, #e6b94e30 35%, transparent 68%);
+  opacity: 0.5;
+}
+
+.光环 {
+  inset: 0;
+  border: 1px solid transparent;
+  border-top-color: #f6df9f;
+  border-right-color: #e6bf6755;
+  filter: drop-shadow(0 0 2px #eac06d88);
+  opacity: 0;
+  &:nth-of-type(3) {
+    inset: 10%;
+    border-top-color: #fff1c6;
+    transform: rotate(140deg);
+  }
+}
+
+.回澜 {
+  inset: 64% -34% -10%;
+  border: 1px solid #efd394;
+  box-shadow:
+    inset 0 0 5px #e6be6322,
+    0 0 5px #e6be6322;
+  opacity: 0;
+}
+
+.进度轨 {
+  position: relative;
+  height: 2px;
+  margin: 2px 3% 0;
+  background: #ffffff13;
+  > i {
+    display: block;
+    width: var(--yjj-progress);
+    height: 100%;
+    background: linear-gradient(90deg, #a89466, #ecd6a0, #e9bf6a);
+  }
+  > span {
+    position: absolute;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    transform: rotate(45deg);
+    background: #786d56;
+  }
+  > .已点亮 {
+    background: #e8c58d;
+  }
+}
+
+.已达成 {
+  .标题 > span {
+    color: #f1d28d;
+  }
+  .进度轨 > i {
+    box-shadow: 0 0 5px #e8c58d55;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .画布 > img {
+    transition: clip-path 1.2s ease;
+  }
+  .进度轨 > i {
+    transition: width 1.2s ease;
+  }
+  .杖身流光 > i {
+    animation: yjj-flow 6.4s ease-in-out -2s infinite;
+  }
+  .金屑 > i {
+    animation: yjj-motes calc(5.5s + var(--yjj-spark) * 0.16s) linear infinite;
+    animation-delay: calc(var(--yjj-spark) * -0.81s);
+  }
+  .进度条[aria-busy='false'] {
+    .背景光 > i {
+      animation: yjj-breathe 7.2s ease-in-out -2s infinite;
+    }
+    .金芯 {
+      animation: yjj-breathe 5.6s ease-in-out -1.3s infinite;
+    }
+    .金莲 {
+      animation: yjj-lotus 7.2s ease-in-out -2s infinite;
+    }
+    .内瓣,
+    .外瓣,
+    .底瓣 {
+      animation: yjj-unfold 1.6s ease-out both;
+    }
+  }
+  .光环 {
+    animation: yjj-orbit 12s linear infinite;
+  }
+  .光环:nth-of-type(3) {
+    animation-direction: reverse;
+    animation-duration: 15s;
+    animation-delay: -4s;
+  }
+  .回澜 {
+    animation: yjj-ripple 6.4s ease-out -2s infinite;
+  }
+}
+
+@keyframes yjj-breathe {
+  0%,
+  100% {
+    transform: scale(0.88);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.8;
+  }
+}
+@keyframes yjj-lotus {
+  0%,
+  100% {
+    transform: scale(0.98, 0.95);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.02, 1.03);
+    opacity: 0.95;
+  }
+}
+@keyframes yjj-unfold {
+  from {
+    transform: scale(0.65, 0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes yjj-flow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  8%,
+  45% {
+    opacity: 0.85;
+  }
+  65%,
+  100% {
+    transform: translateX(500%);
+    opacity: 0;
+  }
+}
+@keyframes yjj-motes {
+  0% {
+    transform: translate(-5px, 5px) rotate(-15deg);
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.85;
+  }
+  70% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate(20px, -10px) rotate(50deg);
+    opacity: 0;
+  }
+}
+@keyframes yjj-orbit {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.25;
+  }
+}
+@keyframes yjj-ripple {
+  0%,
+  52% {
+    transform: scale(0.65);
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.45;
+  }
+  90%,
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@container dragon-stair (max-width: 580px) {
+  .进度条 {
+    flex-basis: 100%;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    margin-top: 12px;
+  }
+}

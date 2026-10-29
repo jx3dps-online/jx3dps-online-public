@@ -3,6 +3,7 @@
  */
 
 import { 团队增益轴类型 } from '@/@types/团队增益'
+import { 副本事件实例类型 } from '@/@types/副本事件'
 
 interface 判断团队增益快照BuffProps {
   团队增益轴: 团队增益轴类型
@@ -39,7 +40,7 @@ const 判断团队增益快照Buff = (props: 判断团队增益快照BuffProps) 
           初次释放时间,
           增益数据?.平均间隔,
           增益数据?.持续时间,
-          判定帧
+          判定帧,
         )
         if (增益是否包含) {
           最终包含增益.push(`${增益名称}_快照`)
@@ -69,9 +70,41 @@ const 判断时间点是否在事件内 = (startTime, interval, duration, checkT
   return false
 }
 
+/**
+ * 根据副本事件实例列表，判断该帧命中的团队/副本 buff 列表
+ * 配置驱动：遍历每个实例的每个阶段，命中 [T, T+阶段持续) 即输出 阶段.关联Buff
+ * 注意：不做去重，叠加时会重复输出同名 buff
+ */
+export const 判断副本事件快照Buff = (
+  事件实例列表: 副本事件实例类型[],
+  判定帧: number,
+): string[] => {
+  const 最终包含增益: string[] = []
+
+  ;(事件实例列表 || []).forEach((实例) => {
+    if (!实例?.阶段列表?.length) {
+      return
+    }
+    let 阶段起点 = 实例.释放时间 || 0
+    for (let i = 0; i < 实例.阶段列表.length; i++) {
+      const 阶段 = 实例.阶段列表[i]
+      const 阶段持续 = 阶段?.持续时间 || 0
+      if (判定帧 >= 阶段起点 && 判定帧 < 阶段起点 + 阶段持续) {
+        if (阶段?.关联Buff) {
+          最终包含增益.push(阶段.关联Buff)
+        }
+        break // 每个实例同一时刻最多命中一个阶段
+      }
+      阶段起点 = 阶段起点 + 阶段持续
+    }
+  })
+
+  return 最终包含增益
+}
+
 export const 判断团队增益轴快照计算 = (
   循环快照计算列表: string[] | undefined,
-  团队增益轴: 团队增益轴类型
+  团队增益轴: 团队增益轴类型,
 ) => {
   if (循环快照计算列表?.length) {
     return 循环快照计算列表?.filter((item) => {

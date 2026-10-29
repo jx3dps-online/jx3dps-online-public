@@ -1,7 +1,7 @@
 // import 心法枚举JSON from '../../../../../../..//数据/静态数据/心法枚举.json'
 import { 大附魔ID } from '@/数据/常量/装备常量'
 import { parse_lua } from '../../../../../../../工具函数/lua'
-import 附魔ID枚举 from '../../../../../../../数据/常量/附魔映射'
+import { 解析外部附魔ID } from '@/数据/附魔/查询'
 import { EquipPositionMap, JCLEquipPositionMap, DaFuMoMap } from '../统一映射枚举'
 
 self.onmessage = (event) => {
@@ -37,7 +37,10 @@ export const JCL技能序列导入 = (原序列: string) => {
               const 装备部位类型 = JCLEquipPositionMap[装备数据?.[0]]
               const 装备ID = 装备数据?.[2]
               const 装备附魔ID = 装备数据?.[5]
-              const 附魔实际名称 = 附魔ID枚举[装备附魔ID]
+              const 附魔实际ID = 解析外部附魔ID(
+                装备附魔ID,
+                装备部位类型 === '戒指_2' ? '戒指' : 装备部位类型,
+              )
               const 内部索引 = EquipPositionMap[装备部位类型]
               const 该装备大附魔ID = 装备数据?.[6]
               if (!内部索引) {
@@ -60,7 +63,8 @@ export const JCL技能序列导入 = (原序列: string) => {
               if (内部索引) {
                 equip[内部索引] = {
                   id: 装备ID,
-                  附魔: 附魔实际名称,
+                  附魔: 附魔实际ID,
+                  未支持附魔ID: 装备附魔ID && !附魔实际ID ? 装备附魔ID : undefined,
                 }
               }
             })

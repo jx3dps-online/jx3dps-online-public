@@ -5,6 +5,7 @@
 import { Button, Form, Select, Slider, Table, Tag, Tooltip } from 'antd'
 import { ColumnsType } from 'antd/lib/table'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 获取装备数据描述 } from '@/功能模块/基础设置/属性录入/配装器/功能组件/装备选择/装备部位选择'
 import 装备详情容器 from '@/功能模块/基础设置/属性录入/配装器/功能组件/装备选择/装备部位选择/装备详情容器'
 
@@ -12,22 +13,22 @@ import { useEffect, useState } from 'react'
 import { 装备类型枚举 } from '@/@types/装备'
 import { 装备速查数据 } from './interface'
 import 计算装备容量, { 分数放大系数 } from './计算装备容量'
+import { 获取容量系数表 } from './容量转换'
 import ImageComponent from '@/组件/图片展示'
 import 渐变特效文字 from '../../../../基础设置/属性录入/配装器/功能组件/装备选择/装备部位选择/渐变特效文字'
 import styles from './index.module.less'
 import classNames from 'classnames'
 import { 属性简写枚举 } from '@/@types/枚举'
 import { QuestionCircleOutlined } from '@ant-design/icons'
-import { 获取武伤附魔数据 } from '@/数据/附魔/武器伤害附魔'
 import { 属性类型 } from '@/@types/属性'
+import { 品级筛选范围, 赛季最高品级 } from '@/数据/常量/装备常量'
 
-const { 附魔, 装备数据 } = 获取当前数据()
-
-const 英雄品 = [35900, 43000]
-const 普通品 = [30800, 35899]
+const 英雄品 = 品级筛选范围.英雄
+const 普通品 = 品级筛选范围.普通
 const 类型 = ['散件', '精简', '无修', '橙武']
 
 const 装备速查 = () => {
+  const { 装备数据 } = use心法数据()
   const [form] = Form.useForm()
   const [品级范围, 设置品级范围] = useState<number[]>(英雄品)
   const [展示数据, 更新展示数据] = useState<装备速查数据[]>([])
@@ -36,25 +37,10 @@ const 装备速查 = () => {
 
   useEffect(() => {
     初始化容量系数()
-  }, [])
+  }, [装备数据])
 
   const 初始化容量系数 = () => {
-    const 附魔 = 获取当前各属性最大附魔()
-    const 武伤附魔 = 获取武伤附魔数据('力道')
-    const 武伤最大附魔 = 武伤附魔?.[0]
-    附魔.push({
-      属性: 属性类型.武器伤害,
-      值: 武伤最大附魔?.增益集合?.[0]?.值 || 0,
-    })
-    const 容量对象 = 附魔
-      ?.filter((a) => a.属性 !== 属性类型.额外气血上限)
-      .reduce(
-        (acc, cur) => {
-          acc[cur.属性] = cur.值
-          return acc
-        },
-        {} as Record<string, any>,
-      )
+    const 容量对象 = 获取容量系数表()
     更新自定义容量系数(容量对象)
     form.setFieldsValue({
       部位: Object.keys(装备数据)?.[0],
@@ -75,6 +61,7 @@ const 装备速查 = () => {
   }
 
   const 更换表单筛选 = (_, values, 容量对象?) => {
+    const 容量计算属性 = values.容量计算属性 ?? form.getFieldValue('容量计算属性')
     const 目标部位数据 = 装备数据[values.部位]
     const 筛选后数据 = 目标部位数据
       .filter((item) => {
@@ -96,12 +83,7 @@ const 装备速查 = () => {
         return values?.类型?.includes('散件')
       })
 
-    const 最终数据 = 计算装备容量(
-      筛选后数据,
-      values.部位,
-      values.容量计算属性,
-      容量对象 || 自定义容量系数,
-    )
+    const 最终数据 = 计算装备容量(筛选后数据, values.部位, 容量计算属性, 容量对象 || 自定义容量系数)
 
     最终数据.sort((a, b) => {
       return (b.属性容量 || 0) + (b?.特效容量 || 0) - ((a.属性容量 || 0) + (a?.特效容量 || 0))
@@ -405,15 +387,15 @@ const 装备速查 = () => {
           >
             <Slider
               range
-              max={43000}
-              min={16500}
+              max={赛季最高品级}
+              min={0}
               value={品级范围}
-              step={500}
-              marks={{
-                30200: '十人副本',
-                35300: '普通副本',
-                41400: '英雄副本',
-              }}
+              step={20}
+              // marks={{
+              //   965: '5人/10人',
+              //   1110: '普通',
+              //   1280: '英雄',
+              // }}
               // tooltip={{ open: true }}
               onChange={(e) => 设置品级范围(e)}
             />
@@ -485,7 +467,6 @@ const ColorMap = {
   会心: 'orange',
   会效: 'gold',
   破防: 'lime',
-  破招: 'green',
   无双: 'cyan',
   加速: 'blue',
   武伤: 'geekblue',
@@ -493,11 +474,9 @@ const ColorMap = {
 }
 
 export const 获取当前各属性最大附魔 = () => {
+  const { 附魔 } = 获取当前数据()
   const res = {}
   附魔?.forEach((item) => {
-    if (item?.挑战附魔 || item?.阆风仙玉) {
-      return
-    }
     const 附魔属性 = item?.增益集合?.[0]?.属性 || ''
     const 附魔数值 = item?.增益集合?.[0]?.值 || 0
     if (!res?.[附魔属性] || res[附魔属性] < 附魔数值) {
@@ -514,7 +493,7 @@ export const 获取当前各属性最大附魔 = () => {
   const 无双数据 = resList?.find((item) => item?.属性 === 属性类型.无双等级)?.值
   resList.push({
     属性: 属性类型.全能等级,
-    值: Math.floor(无双数据 / 2),
+    值: Math.floor(无双数据),
   })
 
   return resList

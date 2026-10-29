@@ -31,9 +31,8 @@ const createEnvironmentHash = require('./webpack/persistentCache/createEnvironme
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false'
 
 const reactRefreshRuntimeEntry = require.resolve('react-refresh/runtime')
-const reactRefreshWebpackPluginRuntimeEntry = require.resolve(
-  '@pmmmwh/react-refresh-webpack-plugin',
-)
+const reactRefreshWebpackPluginRuntimeEntry =
+  require.resolve('@pmmmwh/react-refresh-webpack-plugin')
 const babelRuntimeEntry = require.resolve('babel-preset-react-app')
 const babelRuntimeEntryHelpers = require.resolve(
   '@babel/runtime/helpers/esm/assertThisInitialized',
@@ -73,32 +72,23 @@ const hasJsxRuntime = (() => {
   try {
     require.resolve('react/jsx-runtime')
     return true
-  } catch (e) {
+  } catch {
     return false
   }
 })()
 
-const xinfaNameMap = {
-  山海心诀: 'shxj',
-  孤锋诀: 'gfj',
-  凌海诀: 'lhj',
-  太玄经: 'txj',
-  无方: 'wf',
-  花间游: 'hjy',
-  毒经: 'dj',
-  易筋经: 'yjj',
-  分山劲: 'fsj',
-  北傲诀: 'baj',
-  紫霞功: 'zxg',
-  周天功: 'ztg',
-  笑尘诀: 'xcj',
-  天罗诡道: 'lgd',
-  孤锋诀_悟: 'gfj',
-  无方_悟: 'w_wf',
-  周天功_悟: 'ztg',
-  焚影圣诀: 'fysj',
-  幽罗引: 'yly',
-  太玄经_悟: 'w_txj',
+// 心法名 → chunk 名称后缀，用于 splitChunks 将每个心法（含模拟器）拆成独立 chunk。
+// value 必须与 src/心法模块/简写映射.json 的简写对齐；_悟 心法使用独立简写（如 w_gfj），
+// 避免与主心法共用同一 chunk 名导致被合并打包。
+const xinfaNameMap = Object.fromEntries(
+  Object.entries(require('../src/心法模块/简写映射.json')).map(([简写, 心法]) => [心法, 简写]),
+)
+
+const 获取模块路径 = (模块) => {
+  const 文件 = 模块.nameForCondition?.() || ''
+  const 根目录 = paths.appSrc.replace(/\\/g, '/') + '/'
+  const 规范路径 = 文件.replace(/\\/g, '/')
+  return 规范路径.startsWith(根目录) ? 规范路径.slice(根目录.length) : ''
 }
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -233,8 +223,8 @@ module.exports = function (webpackEnv) {
       path: paths.appBuild,
       // Add /* filename */ comments to generated require()s in the output.
       pathinfo: isEnvDevelopment,
-      libraryTarget: 'commonjs', // 将指定文件打包为 CommonJS
-      // libraryTarget: isEnvDevelopment ? undefined : 'commonjs', // 将指定文件打包为 CommonJS
+      // 仅构建 getDps（node 调用入口）时输出 CommonJS，浏览器主包保持默认，避免 file:// 下 exports 未定义
+      libraryTarget: isGetDpsMoment ? 'commonjs' : undefined,
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: (pathData) => {
@@ -253,7 +243,10 @@ module.exports = function (webpackEnv) {
       // webpack uses `publicPath` to determine where the app is being served from.
       // It requires a trailing slash, or the file assets will get an incorrect path.
       // We inferred the "public path" (such as / or /my-project) from homepage.
-      publicPath: paths.publicUrlOrPath,
+      publicPath:
+        process.env.REACT_APP_BUILD_TYPE === 'local' && !isGetDpsMoment
+          ? 'auto'
+          : paths.publicUrlOrPath,
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: isEnvProduction
         ? (info) => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/')
@@ -275,6 +268,7 @@ module.exports = function (webpackEnv) {
       level: 'none',
     },
     optimization: {
+      runtimeChunk: isEnvProduction && !isGetDpsMoment ? 'single' : false,
       usedExports: isEnvProduction,
       minimize: isEnvProduction,
       minimizer: [
@@ -327,96 +321,36 @@ module.exports = function (webpackEnv) {
               chunks: 'all',
               minSize: 30000,
               minChunks: 1,
-              maxAsyncRequests: 5,
-              maxInitialRequests: 3,
-              automaticNameDelimiter: '~',
               cacheGroups: {
                 react: {
-                  test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+                  test: /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom|scheduler)[\\/]/,
                   name: 'react',
-                  chunks: 'all',
+                  enforce: true,
+                  priority: 30,
+                },
+                心法数据: {
+                  test: (模块) =>
+                    new RegExp('^心法模块/心法/[^/]+/(?!推荐配装/|资源/)').test(获取模块路径(模块)),
+                  name: (模块) => 'xinfa-' + xinfaNameMap[获取模块路径(模块).split('/')[2]],
                   enforce: true,
                   priority: 20,
                 },
-                default: {
-                  minChunks: 2,
-                  priority: -20,
-                  reuseExistingChunk: true,
-                },
-                xinfaTools: {
-                  test: /心法模块\/模块工具\/.*/, // 不排除 index.ts
-                  name: 'kongfu_tools',
-                  enforce: true,
-                  priority: 20,
-                },
-                xinfaCommon: {
-                  test: /心法模块\/统一数据\/.*/, // 不排除 index.ts
-                  name: 'kongfu_common',
-                  enforce: true,
-                  priority: 20,
-                },
-                // 心法模块单独打包
-                xinfa: {
-                  test: new RegExp(
-                    `[\\\\/]心法模块[\\\\/]心法[\\\\/](${Object.keys(xinfaNameMap).join(
-                      '|',
-                    )})[\\\\/]`,
-                  ),
-                  name(module) {
-                    const match = module
-                      .identifier()
-                      .match(
-                        new RegExp(
-                          `[\\\\/]心法模块[\\\\/]心法[\\\\/](${Object.keys(xinfaNameMap).join(
-                            '|',
-                          )})[\\\\/]`,
-                        ),
-                      )
-                    return `xinfa-${xinfaNameMap[match[1]]}`
-                  },
-                  enforce: true,
-                  priority: 20,
-                  reuseExistingChunk: false,
-                },
-                // 其他核心模块
-                数据模块: {
-                  test: /数据\/.*/,
-                  name: 'datasource',
+                装备: {
+                  test: (模块) => new RegExp('^数据/装备/(外功|内功)/').test(获取模块路径(模块)),
+                  name: (模块) =>
+                    获取模块路径(模块).includes('/外功/')
+                      ? 'equipment-physical'
+                      : 'equipment-magical',
                   enforce: true,
                   priority: 20,
                 },
                 计算模块: {
-                  test: /计算模块\/.*/,
+                  test: (模块) => 获取模块路径(模块).startsWith('计算模块/'),
                   name: 'dps',
                   enforce: true,
                   priority: 20,
                 },
-                // 先将模拟器按心法拆分成多个模拟器js
-                simulator: {
-                  test: /[\\/]心法循环模拟[\\/](.*?)[\\/]/,
-                  name(module) {
-                    const pathMatch = module.identifier().match(/心法循环模拟[\\/](.*?)[\\/]/)
-                    return xinfaNameMap[pathMatch[1]]
-                      ? `simulator-${xinfaNameMap[pathMatch[1]]}`
-                      : 'simulator-unknown'
-                  },
-                  priority: 20,
-                  enforce: true,
-                  reuseExistingChunk: false,
-                },
-                // 进一步拆分 系统工具 配装器 其他
-                功能模块: {
-                  test: /[\\/]功能模块[\\/](?!基础设置[\\/]公用设置[\\/]循环模拟[\\/]心法循环模拟)/,
-                  name: 'feature',
-                  priority: 20,
-                  enforce: true,
-                },
-                组件: {
-                  test: /组件\/.*/,
-                  name: 'components',
-                  enforce: true,
-                  priority: 20,
-                },
+                default: { minChunks: 2, priority: -20, reuseExistingChunk: true },
               },
             }
           : false,
@@ -687,15 +621,6 @@ module.exports = function (webpackEnv) {
         },
       ].filter(Boolean),
     },
-    // devServer: {
-    //   proxy: [
-    //     {
-    //       context: ['/api'],
-    //       target: 'https://dps.arkwish.com/api',
-    //       changeOrigin: true,
-    //     }
-    //   ]
-    // },
     plugins: [
       isAnalyzer
         ? new BundleAnalyzerPlugin({

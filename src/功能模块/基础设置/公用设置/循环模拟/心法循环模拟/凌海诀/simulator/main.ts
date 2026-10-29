@@ -26,7 +26,8 @@ import {
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
 import { 获取实际帧数 } from '@/工具函数/data'
 import { 团队增益轴类型 } from '@/@types/团队增益'
-import 判断团队增益快照Buff from '@/数据/团队增益/tools'
+import { 副本事件实例类型 } from '@/@types/副本事件'
+import 判断团队增益快照Buff, { 判断副本事件快照Buff } from '@/数据/团队增益/tools'
 
 import 击水三千 from './技能类/击水三千'
 import 木落雁归 from './技能类/木落雁归'
@@ -63,6 +64,7 @@ export interface SimulatorCycleProps {
   角色状态信息?: 角色状态信息类型
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
+  副本事件实例列表?: 副本事件实例类型[]
   自动鸟啄?: boolean
   起手Buff配置?: 起手Buff配置
 }
@@ -97,6 +99,7 @@ class 循环主类 {
   待生效事件队列: 待生效事件[] = []
   启用团队增益快照 = false
   团队增益轴: 团队增益轴类型 = {}
+  副本事件实例列表: 副本事件实例类型[] = []
   自动鸟啄 = false
 
   // 初始化创建
@@ -110,6 +113,7 @@ class 循环主类 {
     this.网络延迟 = props.网络延迟
     this.启用团队增益快照 = !!props.启用团队增益快照
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
+    this.副本事件实例列表 = props.副本事件实例列表 ? props.副本事件实例列表 : []
     this.自动鸟啄 = props.自动鸟啄 || false
     // 根据奇穴和装备情况修改buff的数据
     this.Buff和Dot数据 = 根据奇穴修改buff数据(this.奇穴)
@@ -376,13 +380,10 @@ class 循环主类 {
   // 添加战斗日志
   添加战斗日志(log: 循环日志数据类型) {
     const { 日志时间 = this.当前时间, ...rest } = log
-    this.战斗日志 = [
-      ...(this.战斗日志 || []),
-      {
-        日志时间: 日志时间,
-        ...rest,
-      },
-    ]
+    this.战斗日志.push({
+      日志时间: 日志时间,
+      ...rest,
+    })
   }
 
   // 造成伤害
@@ -426,10 +427,12 @@ class 循环主类 {
     let 总增益列表: any[] = 有关的buff列表.concat(额外增益列表)
 
     if (this.启用团队增益快照) {
-      const 团队增益buff列表 = 判断团队增益快照Buff({
-        团队增益轴: this.团队增益轴,
-        判定帧: this.当前时间 || 0,
-      })
+      const 团队增益buff列表 = this.副本事件实例列表?.length
+        ? 判断副本事件快照Buff(this.副本事件实例列表, this.当前时间 || 0)
+        : 判断团队增益快照Buff({
+            团队增益轴: this.团队增益轴,
+            判定帧: this.当前时间 || 0,
+          })
       if (团队增益buff列表?.length) {
         总增益列表 = 总增益列表?.concat(团队增益buff列表)
       }
@@ -477,7 +480,7 @@ class 循环主类 {
     }
 
     const 是否是倒读条技能 = 当前技能?.是否为倒读条技能
-    const 延迟等待 = this.当前时间 && GCD && !是否是倒读条技能 ? this.网络延迟 : 0
+    const 延迟等待 = i > 0 && GCD && !是否是倒读条技能 ? this.网络延迟 : 0
     const 技能计划释放时间 = this.当前时间 + GCD + 延迟等待
 
     return {
@@ -550,7 +553,6 @@ class 循环主类 {
 
   清空buff调用函数(对象: '自身' | '目标') {
     const buff列表 = 对象 === '自身' ? this.当前自身buff列表 : this.当前目标buff列表
-
     // 更新目标buff
     Object.keys(buff列表).forEach((key) => {
       const buff对象 = buff列表[key]
@@ -735,8 +737,8 @@ class 循环主类 {
 
   // 其他调用函数，供外层调用
   // 模拟函数，一个技能的释放生命周期
-  模拟() {
-    for (let i = 0; i < this.测试循环.length; i++) {
+  模拟(起始索引 = 0) {
+    for (let i = 起始索引; i < this.测试循环.length; i++) {
       if (i === 0) {
         this.技能类实例集合.飘遥伞击.初始化伞击轴()
       }

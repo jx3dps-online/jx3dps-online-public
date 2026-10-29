@@ -1,5 +1,5 @@
-import {获取实际帧数} from '@/工具函数/data'
-import {DotDTO, DOT待生效数据类型, DOT运行数据类型} from '../type'
+import { 获取实际帧数 } from '@/工具函数/data'
+import { DotDTO, DOT待生效数据类型, DOT运行数据类型 } from '../type'
 import 技能统一类 from './技能统一类'
 
 class 通用DOT类 extends 技能统一类 {
@@ -14,7 +14,6 @@ class 通用DOT类 extends 技能统一类 {
   constructor(模拟循环: any) {
     super(模拟循环)
   }
-
 
   添加DOT(DOT名称: string, 要添加的层数: number = 1) {
     const 当前最后一跳数据 =
@@ -83,7 +82,7 @@ class 通用DOT类 extends 技能统一类 {
       }
     }
   }
-6
+  6
   // 对当前dot进行结算和运行数据
   更新待生效数据(当前层数: number, DOT数据: DotDTO, 快照Buff?: string[]) {
     let DOT是否吃加速 = DOT数据.是否吃加速 !== undefined ? DOT数据.是否吃加速 : true
@@ -136,12 +135,12 @@ class 通用DOT类 extends 技能统一类 {
           事件备注: { buff名称: DOT数据?.名称, buff对象: '目标', 卸除层数: 9999 },
         },
       ],
-      true
+      true,
     )
   }
   更新连弩待生效数据(当前层数: number, DOT数据: DotDTO, 快照Buff?: string[]) {
     let DOT是否吃加速 = DOT数据.是否吃加速 !== undefined ? DOT数据.是否吃加速 : true
-    if (this.模拟循环.加速值 >= 30158 ){
+    if (this.模拟循环.加速值 >= 1452) {
       DOT是否吃加速 = true
     }
     const 循环加速值 = this.模拟循环.加速值
@@ -172,7 +171,7 @@ class 通用DOT类 extends 技能统一类 {
       }
     } else {
       let 待添加次数 = DOT数据.最大作用次数
-      if (this.模拟循环.加速值 >= 30158 ){
+      if (this.模拟循环.加速值 >= 1452) {
         待添加次数 = DOT数据.最大持续时间! / 实际伤害频率
       }
       for (let i = 0; i < 待添加次数; i++) {
@@ -196,11 +195,9 @@ class 通用DOT类 extends 技能统一类 {
           事件备注: { buff名称: DOT数据?.名称, buff对象: '目标', 卸除层数: 9999 },
         },
       ],
-      true
+      true,
     )
   }
 }
-
-
 
 export default 通用DOT类

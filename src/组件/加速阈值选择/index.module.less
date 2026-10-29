@@ -1,0 +1,48 @@
+.下拉框,
+.平铺 {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.分组 + .分组 {
+  margin-top: 16px;
+}
+
+.标题 {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.备注 {
+  margin-bottom: 6px;
+  color: #888;
+  font-size: 12px;
+}
+
+.选项 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.下拉列表 {
+  max-width: calc(100vw - 24px);
+
+  :global(.ant-select-item-group),
+  :global(.ant-select-item-option-content) {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+.菜单底部 {
+  padding-top: 4px;
+  margin-top: 4px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.切换范围 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}

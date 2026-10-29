@@ -1,22 +1,23 @@
 import { 每秒郭氏帧 } from '@/数据/常量'
 import 循环模拟技能基础数据, { 原始Buff数据 } from '../constant/skill'
-import { DotDTO, 循环基础技能数据类型 } from './type'
+import { Buff枚举, DotDTO, 循环基础技能数据类型 } from './type'
 import { 选中秘籍信息 } from '@/@types/秘籍'
 import { 判断秘籍减冷却 } from '../../通用/通用函数'
-import { read } from 'fs'
 
 export const 根据奇穴秘籍修改buff数据 = (
   奇穴: string[],
   秘籍信息: 选中秘籍信息,
   // 加速值: number,
 ) => {
-  const res = {}
+  // 深拷贝后再修改：原始Buff数据是模块级常量，直接改写会让不同奇穴/秘籍的模拟实例互相污染
+  // （数据为纯数值/字符串，JSON 深拷贝即可，兼容 jest jsdom 等无 structuredClone 的环境）
+  const res = JSON.parse(JSON.stringify(原始Buff数据)) as Buff枚举
   const 判断奇穴 = (val) => {
     return 奇穴?.includes(val)
   }
 
-  Object.keys(原始Buff数据).forEach((key) => {
-    const obj = 原始Buff数据[key]
+  Object.keys(res).forEach((key) => {
+    const obj = res[key]
     let 血怒总持续时间延长: number = 0
     let 盾飞总持续时间延长: number = 0
 
@@ -29,9 +30,10 @@ export const 根据奇穴秘籍修改buff数据 = (
             }
           }
         }
-        // 点出愤恨奇穴时，血怒持续时间增加至25秒，否则是10秒
-        obj.最大持续时间 =
-          每秒郭氏帧 * (判断奇穴('愤恨') ? 25 + 血怒总持续时间延长 : 10 + 血怒总持续时间延长)
+        // 愤恨已从当前奇穴列表移除，注释保留；血怒持续时间为10秒+秘籍延长
+        // obj.最大持续时间 =
+        //   每秒郭氏帧 * (判断奇穴('愤恨') ? 25 + 血怒总持续时间延长 : 10 + 血怒总持续时间延长)
+        obj.最大持续时间 = 每秒郭氏帧 * (10 + 血怒总持续时间延长)
         break
 
       case '血怒_惊涌':
@@ -85,7 +87,6 @@ export const 根据奇穴秘籍修改buff数据 = (
         break
       //
     }
-    res[key] = obj
   })
 
   return res
@@ -118,12 +119,41 @@ export const 根据奇穴秘籍修改技能数据 = (
         ...技能,
         可中断倒读条最大跳数: 原可中断倒读条最大跳数 + 秘籍延长跳数,
       }
-      // 援戈降低盾击CD
-    } else if (技能?.技能名称 === '盾击') {
-      let 技能CD = 每秒郭氏帧 * 4
-      if (判断奇穴('援戈')) {
-        技能CD = 0
+      //   // 援戈降低盾击CD
+      // } else if (技能?.技能名称 === '盾击') {
+      //   // 援戈已从当前奇穴列表移除，注释保留；盾击CD固定4秒
+      //   const 技能CD = 每秒郭氏帧 * 4
+      //   if (判断奇穴('援戈')) {
+      //     技能CD = 0
+      //   }
+      //   return {
+      //     ...技能,
+      //     技能CD: 技能CD,
+      //   }
+      // 残裂降低盾猛CD
+    } else if (技能?.技能名称 === '盾猛') {
+      const 技能CD = 判断奇穴('残裂') ? 每秒郭氏帧 * 12 : 每秒郭氏帧 * 15
+      return {
+        ...技能,
+        技能CD: 技能CD,
       }
+      // 锋鸣降低盾飞CD
+    } else if (技能?.技能名称 === '盾飞') {
+      const 技能CD = 判断奇穴('锋鸣') ? 每秒郭氏帧 * 10 : 每秒郭氏帧 * 18
+      return {
+        ...技能,
+        技能CD: 技能CD,
+      }
+      // 不归降低血怒CD
+    } else if (技能?.技能名称 === '血怒') {
+      const 技能CD = 判断奇穴('不归') ? 每秒郭氏帧 * 22 : 每秒郭氏帧 * 25
+      return {
+        ...技能,
+        技能CD: 技能CD,
+      }
+      // 盾压减CD秘籍（减CD_1_1/减CD_1_2每本减1秒），基础CD在constant/skill.ts维护
+    } else if (技能?.技能名称 === '盾压') {
+      const 技能CD = (技能?.技能CD || 0) - 判断秘籍减冷却('盾压', 秘籍)
       return {
         ...技能,
         技能CD: 技能CD,
@@ -139,6 +169,9 @@ export const 根据奇穴秘籍修改技能数据 = (
 export const ERROR_ACTION = {
   怒气不足: {
     信息: '当前怒气不足，无法释放该技能',
+  },
+  暴怒值不足: {
+    信息: '当前武烈值不足，无法释放该技能',
   },
   体态错误: {
     信息: '当前体态无法释放该技能',

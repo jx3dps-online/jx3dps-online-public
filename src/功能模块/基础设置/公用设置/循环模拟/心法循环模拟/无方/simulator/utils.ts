@@ -1,16 +1,16 @@
 import { 每秒郭氏帧 } from '@/数据/常量'
 import 循环模拟技能基础数据, { 原始Buff数据 } from '../constant/skill'
-import { DotDTO, 循环基础技能数据类型 } from './type'
+import { Buff枚举, 循环基础技能数据类型 } from './type'
 import { 基础GCD帧 } from '../constant'
 
-export const 根据奇穴修改buff数据 = (奇穴: string[]) => {
-  const res = {}
+export const 根据奇穴修改buff数据 = (奇穴: string[]): Buff枚举 => {
+  const res: Buff枚举 = {}
   const 判断奇穴 = (val) => {
     return 奇穴?.includes(val)
   }
 
   Object.keys(原始Buff数据).forEach((key) => {
-    const obj = 原始Buff数据[key]
+    const obj = { ...原始Buff数据[key] }
     let 苍棘缚地最大持续时间 = 每秒郭氏帧 * 8 + 每秒郭氏帧 * 2 + 8
     switch (key) {
       case '苍棘缚地':
@@ -21,17 +21,6 @@ export const 根据奇穴修改buff数据 = (奇穴: string[]) => {
           苍棘缚地最大持续时间 += 每秒郭氏帧 * 4
         }
         obj.最大持续时间 = 苍棘缚地最大持续时间
-        break
-      case '逆乱':
-        if (判断奇穴('疾根')) {
-          // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          ;(obj as DotDTO).最大作用次数 = 9
-          ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 18
-        } else {
-          // eslint-disable-next-line @typescript-eslint/no-extra-semi
-          ;(obj as DotDTO).最大作用次数 = 8
-          ;(obj as DotDTO).最大持续时间 = 每秒郭氏帧 * 16
-        }
         break
       default:
         break
@@ -93,6 +82,9 @@ export const 根据奇穴秘籍修改技能数据 = (奇穴: string[]): 循环�
 }
 
 export const ERROR_ACTION = {
+  折枝奇穴: {
+    信息: '未选择折枝拂露奇穴',
+  },
   充能不足: {
     信息: '当前技能没有可释放层数',
   },

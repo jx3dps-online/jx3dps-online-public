@@ -11,7 +11,7 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍?: 选中�
   }
 
   Object.keys(原始Buff数据).forEach((key) => {
-    const obj = 原始Buff数据[key]
+    const obj = { ...原始Buff数据[key] }
     switch (key) {
       case '横扫六合DOT':
         if (判断奇穴('我闻')) {
@@ -20,8 +20,9 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍?: 选中�
           ;(obj as DotDTO).最大层数 = 1
         }
         if (obj.最大持续时间) {
-          obj.最大持续时间 = 每秒郭氏帧 * 12 + 秘籍加持续时间('横扫六合', 秘籍)
-          ;(obj as DotDTO).最大作用次数 = 9
+          const 秘籍持续时间 = 秘籍加持续时间('横扫六合', 秘籍)
+          obj.最大持续时间 = 每秒郭氏帧 * 12 + 秘籍持续时间
+          ;(obj as DotDTO).最大作用次数 = obj.最大持续时间 / (obj as DotDTO).伤害频率
         }
         break
       case '擒龙':
@@ -31,7 +32,7 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 秘籍?: 选中�
           obj.最大持续时间 = 每秒郭氏帧 * 15
         }
         if (判断奇穴('众嗔')) {
-          obj.最大持续时间 = obj.最大持续时间 - 每秒郭氏帧 * 6
+          obj.最大持续时间 = obj.最大持续时间 - 每秒郭氏帧 * 5
         }
         if (obj.最大持续时间) {
           obj.最大持续时间 = obj.最大持续时间 + 秘籍加持续时间('擒龙决', 秘籍)
@@ -70,6 +71,9 @@ export const 根据奇穴秘籍修改技能数据 = (
       if (判断奇穴('无诤')) {
         技能原始CD = 每秒郭氏帧 * 17
       }
+      if (判断奇穴('我闻')) {
+        技能原始CD -= 每秒郭氏帧
+      }
       return {
         ...技能,
         技能CD: 技能原始CD,
@@ -82,7 +86,8 @@ export const 根据奇穴秘籍修改技能数据 = (
         技能CD: 技能原始CD - 秘籍减少CD,
       }
     } else {
-      return 技能
+      // 返回副本，避免技能类写加速后CD等运行时字段时污染模块级技能基础数据
+      return { ...技能 }
     }
   })
 

@@ -1,0 +1,175 @@
+.ocr-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 12px 48px 12px 24px; */
+  padding-right: 0px;
+  /* margin-top: -8px; */
+  height: 32px;
+  margin-bottom: 16px;
+}
+
+.ocr-modal-tip-title {
+  margin-bottom: 12px;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.ocr-modal-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  margin: 0;
+}
+
+.ocr-image-wrap {
+  text-align: center;
+}
+
+.ocr-preview-img {
+  display: block;
+  /* max-width: calc(100vw - 48px - 48px); */
+  /* max-height: calc(100vh - 57px - 48px - 48px - 40px - 12px); */
+  /* 增强对比度和亮度 */
+  /* filter: brightness(100%) contrast(100%) grayscale(0%) blur(0px); */
+
+  /* filter: grayscale(100%); */
+}
+
+.ocr-modal {
+  min-height: 300px;
+}
+
+.ocr-modal .ant-modal-header {
+  padding: 0;
+}
+
+.ocr-modal .ant-upload-list {
+  display: none;
+}
+
+.ocr-modal .ocr-upload-dragger {
+  height: 40vh;
+}
+
+.ocr-modal-tip-text {
+  color: #f34242;
+  /* margin-left: 12px; */
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.ocr-modal-tip-icon {
+  margin-left: 4px;
+  font-size: 14px;
+  vertical-align: -1px;
+}
+
+/* 灰度化有助于提高OCR识别准确度 */
+/* img.ocr-preprocess { */
+/* } */
+
+/* 去除噪声 */
+/* img.ocr-preprocess {
+  filter: blur(0px) grayscale(100%);
+} */
+
+/* 调整文字的颜色以提高对比度 */
+/* .ocr-text-color { */
+/* color: rgb(200, 200, 200); */
+/* 中等亮度的灰色 */
+/* } */
+
+.ocr-res-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ocr-res-img {
+  max-width: calc(100% - 600px);
+  max-height: calc(100vh - 57px - 48px - 48px - 200px);
+  margin-right: 24px;
+}
+
+.ocr-form {
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  max-height: calc(100vh - 57px - 48px - 48px);
+  overflow-y: auto;
+  padding-left: 12px;
+}
+
+.ocr-match-item {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.ocr-match-item.ocr-match-up-item .ant-input {
+  border-color: hsl(140, 60%, 40%);
+  color: hsl(140, 60%, 40%);
+  font-weight: 500;
+}
+
+.ocr-match-item + .ocr-match-item {
+  margin-top: 8px;
+}
+
+.ocr-match-item .ant-form-item {
+  width: 500px;
+  margin: 0;
+  margin-right: 24px;
+}
+
+.ocr-diff-dps-res-number {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.ocr-diff-dps-res-down {
+  color: #f34242;
+}
+
+.ocr-diff-dps-res-up {
+  color: #0ab559;
+  font-weight: 500;
+}
+
+.ocr-spnning {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ocr-upload-text-area {
+  height: 100px;
+  margin-bottom: 16px;
+}
+
+.dps-hight-dps-price,
+.dps-diff-name-up {
+  color: #0ab559;
+  font-weight: 500;
+}
+
+.dps-low-dps-price {
+  color: #f34242;
+}
+
+.dps-price-input-width {
+  width: 260px;
+}
+
+.dps-price-table {
+  /* height: 520px; */
+}
+
+.ocr-modal-tip-image-wrap .ant-image {
+  margin-right: 12px;
+  max-width: 300px;
+}
+
+.ocr-modal-tip-image-wrap .ocr-modal-tip-image {
+  height: 100px;
+}

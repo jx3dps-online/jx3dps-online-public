@@ -1,0 +1,4 @@
+器灵源码/*.py -text whitespace=cr-at-eol
+器灵源码/LICENSE -text whitespace=cr-at-eol
+运行依赖/*.whl -text
+运行依赖/Z3-LICENSE -text whitespace=cr-at-eol

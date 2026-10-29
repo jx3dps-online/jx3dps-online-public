@@ -1,5 +1,5 @@
 // 技能循环显示技能单元
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useContext, useMemo, useRef, useState } from 'react'
 import { Badge, Dropdown, Space, Tooltip } from 'antd'
 import { CloseCircleFilled } from '@ant-design/icons'
 import classNames from 'classnames'
@@ -12,6 +12,7 @@ import { 每秒郭氏帧 } from '@/数据/常量'
 import BuffItem from './BuffItem'
 import styles from './index.module.less'
 import CycleSimulatorContext from '../../../../context'
+import { use联动悬停 } from '../战斗曲线弹窗/use联动悬停'
 
 interface CycleSkillItemProps {
   技能: 显示循环技能类型
@@ -58,7 +59,13 @@ function CycleSkillItem(props: CycleSkillItemProps) {
   const 技能索引 = 技能?.index || 0
 
   const 技能释放时间 = Math.round(((判断开始释放时间 || 0) / 每秒郭氏帧) * 100) / 100
-  const 间隔CD = (判断开始释放时间 || 0) - (技能.计划释放时间 || 0)
+  const 宏信息 = 技能?.额外信息 as
+    | { 宏执行?: number; 宏额外等待?: number; 宏等待CD?: number }
+    | undefined
+  const 间隔CD =
+    宏信息?.宏执行 === 1 && 宏信息.宏等待CD !== undefined
+      ? 宏信息.宏等待CD
+      : (判断开始释放时间 || 0) - (技能.计划释放时间 || 0)
   // 把帧转成秒，保留两位小数
   const 剩余秒 = Math.round((间隔CD / 每秒郭氏帧) * 100) / 100
   // 是否异常
@@ -70,13 +77,19 @@ function CycleSkillItem(props: CycleSkillItemProps) {
   const 技能释放结果 = 技能?.技能释放记录结果 || {}
 
   const 主动延迟 = 技能?.额外信息?.延迟 ?? undefined
+  const 延迟帧 = 主动延迟 || (宏信息?.宏执行 === 1 ? 宏信息.宏额外等待 : undefined)
+  const 显示延迟 = typeof 延迟帧 === 'number' ? Math.round(延迟帧) : 延迟帧
 
   const [多段作用次数弹窗, 修改多段作用次数弹窗] = useState(false)
 
   const { 截图模式 } = useContext(CycleSimulatorContext)
+  const { 进入联动, 清除联动 } = use联动悬停(技能释放时间)
+
+  const 是否设置了buff标记 = useRef(false)
 
   const 判断有无重要buff标记 = () => {
     if (技能释放结果?.造成buff数据?.buff名称) {
+      是否设置了buff标记.current = true
       更新buff覆盖数据(
         [技能释放结果?.造成buff数据?.buff开始时间, 技能释放结果?.造成buff数据?.buff结束时间],
         技能索引,
@@ -85,6 +98,10 @@ function CycleSkillItem(props: CycleSkillItemProps) {
   }
 
   const 卸除重要buff标记 = () => {
+    if (!是否设置了buff标记.current) {
+      return
+    }
+    是否设置了buff标记.current = false
     更新buff覆盖数据([], 0)
   }
 
@@ -228,7 +245,17 @@ function CycleSkillItem(props: CycleSkillItemProps) {
       className={'cycle-simulator-setting-skill-drag'}
     >
       <Dropdown menu={{ items: 下拉菜单, onClick: beforeOnClick }} trigger={['contextMenu']}>
-        <div className={cls} onMouseEnter={判断有无重要buff标记} onMouseLeave={卸除重要buff标记}>
+        <div
+          className={cls}
+          onMouseEnter={() => {
+            判断有无重要buff标记()
+            进入联动()
+          }}
+          onMouseLeave={() => {
+            卸除重要buff标记()
+            清除联动()
+          }}
+        >
           <Tooltip
             title={
               <div>
@@ -294,8 +321,8 @@ function CycleSkillItem(props: CycleSkillItemProps) {
               <团队覆盖高亮 技能={技能} 前一个技能={前一个技能} />
               {底部标识展示}
               {背景容器展示}
-              {主动延迟 ? (
-                <span className={styles.delayTag}>{主动延迟 === 'GCD' ? 'G' : 主动延迟}</span>
+              {显示延迟 ? (
+                <span className={styles.delayTag}>{显示延迟 === 'GCD' ? 'G' : 显示延迟}</span>
               ) : null}
             </>
           )}

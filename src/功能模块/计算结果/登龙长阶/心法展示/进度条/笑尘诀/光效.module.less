@@ -1,0 +1,266 @@
+.光效 {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(50% - 6px), transparent calc(50% + 6px));
+  mask-image: linear-gradient(90deg, #000 calc(50% - 6px), transparent calc(50% + 6px));
+  -webkit-mask-size: calc(200% + 12px) 100%;
+  mask-size: calc(200% + 12px) 100%;
+  -webkit-mask-position: calc(100% - var(--weapon-progress)) 0;
+  mask-position: calc(100% - var(--weapon-progress)) 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.壶心 {
+  position: absolute;
+  left: 20%;
+  top: 31%;
+  width: 11%;
+  height: 30%;
+  opacity: calc(0.15 + var(--xcj-strength) * 0.55);
+  mix-blend-mode: screen;
+  > i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse, #e7ffe1b0, #8fdfad70 24%, #4a997b18 53%, transparent 72%);
+    opacity: 0.5;
+  }
+}
+
+.器身流光 {
+  position: absolute;
+  inset: 0;
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  opacity: calc(0.38 + var(--xcj-strength) * 0.42);
+  mix-blend-mode: screen;
+  > i {
+    position: absolute;
+    width: 14%;
+    height: 100%;
+    opacity: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 10%,
+      #b9d9ac66 40%,
+      #fff0c9dd 50%,
+      #a2e4c470 61%,
+      transparent 90%
+    );
+  }
+}
+
+.酒滴 {
+  opacity: calc(0.4 + var(--xcj-strength) * 0.45);
+  > i {
+    position: absolute;
+    border-radius: 65% 40% 60% 50%;
+    background: #d4ebc8;
+    box-shadow: 0 0 4px #b6df9d88;
+    opacity: 0;
+    &:nth-child(even) {
+      background: #f1dfae;
+      box-shadow: 0 0 5px #e2cf9d88;
+    }
+  }
+}
+
+.酒气,
+.游龙 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.酒气 {
+  opacity: calc(0.28 + var(--xcj-strength) * 0.5);
+}
+.气雾 {
+  stroke: #9dc6ae;
+  stroke-width: 7;
+  filter: blur(3px);
+  opacity: 0.18;
+}
+.气流 {
+  stroke: #d0e8c5;
+  stroke-width: 2;
+  stroke-dasharray: 16 84;
+  opacity: 0;
+}
+.龙身 {
+  stroke: #99c49d;
+  stroke-width: 5;
+  filter: blur(2px);
+  opacity: 0.26;
+}
+.龙光 {
+  stroke: #e9e5b7;
+  stroke-width: 2.4;
+  stroke-dasharray: 24 76;
+  opacity: 0;
+}
+.龙首 {
+  stroke: #c0d7a3;
+  stroke-width: 1.7;
+  opacity: 0.6;
+}
+.游龙 > g:nth-child(2) {
+  opacity: 0.72;
+  .龙光 {
+    stroke: #c6e7cd;
+  }
+}
+
+.满阶掠光 {
+  position: absolute;
+  left: 24%;
+  top: 24%;
+  width: 68%;
+  height: 14%;
+  > i {
+    position: absolute;
+    inset: 0;
+    border-top: 1px solid #e1d7a496;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 2px #b9d89c66);
+    transform-origin: left center;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .播放 {
+    transition:
+      mask-position 1.1s ease,
+      -webkit-mask-position 1.1s ease;
+    .壶心 > i {
+      animation: ~'壶心呼吸 5.6s ease-in-out infinite';
+    }
+    .器身流光 > i {
+      animation: ~'玉光掠过 7.2s linear infinite';
+    }
+    .酒滴 > i {
+      animation: ~'酒滴轻扬 5.8s ease-out infinite';
+      animation-delay: calc(var(--xcj-drop) * -0.37s);
+    }
+    .酒气 > g {
+      animation: ~'酒气轻舒 8s ease-in-out infinite';
+      animation-delay: calc(var(--xcj-wisp) * -1.3s);
+    }
+    .气流 {
+      animation: ~'气劲游走 8s linear infinite';
+      animation-delay: calc(var(--xcj-wisp) * -1.3s);
+    }
+    .龙光 {
+      animation: ~'气劲游走 9.6s linear infinite';
+    }
+    .游龙 > g:nth-child(2) .龙光 {
+      animation-delay: -4.8s;
+    }
+    .满阶掠光 > i {
+      animation: ~'醉意舒展 7.2s ease-out infinite';
+      &:nth-child(2) {
+        animation-delay: -2.4s;
+      }
+      &:nth-child(3) {
+        animation-delay: -4.8s;
+      }
+    }
+  }
+}
+
+@keyframes ~'壶心呼吸' {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: scale(0.88);
+  }
+  50% {
+    opacity: 0.86;
+    transform: scale(1.12);
+  }
+}
+@keyframes ~'玉光掠过' {
+  0% {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+  12%,
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(820%);
+    opacity: 0;
+  }
+}
+@keyframes ~'酒滴轻扬' {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 3px) scale(0.55);
+  }
+  22% {
+    opacity: 0.85;
+  }
+  82% {
+    opacity: 0;
+    transform: translate(24px, var(--xcj-drift)) scale(0.85);
+  }
+}
+@keyframes ~'酒气轻舒' {
+  0%,
+  100% {
+    transform: translate(0, 3px);
+    opacity: 0.48;
+  }
+  50% {
+    transform: translate(8px, -3px);
+    opacity: 0.95;
+  }
+}
+@keyframes ~'气劲游走' {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  18%,
+  72% {
+    opacity: 0.85;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+@keyframes ~'醉意舒展' {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scaleX(0.12) translateY(8px);
+  }
+  24% {
+    opacity: 0.48;
+  }
+  78% {
+    opacity: 0;
+    transform: scaleX(1) translateY(-6px);
+  }
+}
+
+@supports not (
+  (mask-image: linear-gradient(#000, transparent)) or
+    (-webkit-mask-image: linear-gradient(#000, transparent))
+) {
+  .光效 {
+    display: none;
+  }
+}

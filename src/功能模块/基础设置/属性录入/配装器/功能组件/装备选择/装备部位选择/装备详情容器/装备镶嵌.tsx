@@ -2,16 +2,15 @@ import { memo } from 'react'
 import styles from './index.module.less'
 import { 属性简写枚举 } from '@/@types/枚举'
 import 图标 from '@/数据/静态数据/图标.json'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 
 interface 装备镶嵌类型 {
   当前装备信息: any
   装备数据: any
 }
 
-const { 镶嵌孔: 镶嵌孔数据 } = 获取当前数据()
-
 const 装备镶嵌: React.FC<装备镶嵌类型> = (props) => {
+  const { 镶嵌孔: 镶嵌孔数据 } = use心法数据()
   const { 装备数据, 当前装备信息 } = props
 
   return 装备数据?.镶嵌孔数组?.length ? (

@@ -12,13 +12,24 @@ interface AddCycleSkillBtnsProps {
   处理循环结果对象: { 完整循环: 循环基础技能数据类型[] }
   模拟信息: 模拟信息类型
   大橙武模拟: boolean
+  盾压重置方式?: '期望' | '概率' | '手动'
+  体态不符自动切换?: boolean // 开启后体态不符的技能按钮不禁用，由模拟器自动盾回/盾飞切换
   奇穴信息: string[]
   插入技能?: boolean // 插入技能时不禁用技能
 }
 
 function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
-  const { 新增循环技能, 批量新增循环, 奇穴信息, 处理循环结果对象, 模拟信息, 大橙武模拟, 插入技能 } =
-    props
+  const {
+    新增循环技能,
+    批量新增循环,
+    奇穴信息,
+    处理循环结果对象,
+    模拟信息,
+    大橙武模拟,
+    盾压重置方式,
+    体态不符自动切换,
+    插入技能,
+  } = props
 
   const 批量新增循环技能 = (数据: 快捷添加数据类型) => {
     const 技能原始数据: 循环基础技能数据类型[] = 数据?.技能序列
@@ -92,6 +103,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
                   技能={item}
                   模拟信息={模拟信息}
                   插入技能={插入技能}
+                  体态不符自动切换={体态不符自动切换}
                 />
               )
             })}
@@ -131,6 +143,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
                   技能={item}
                   模拟信息={模拟信息}
                   插入技能={插入技能}
+                  体态不符自动切换={体态不符自动切换}
                 />
               )
             })}
@@ -192,6 +205,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
                   技能={item}
                   模拟信息={模拟信息}
                   插入技能={插入技能}
+                  体态不符自动切换={体态不符自动切换}
                 />
               )
             })}
@@ -211,6 +225,10 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             })
             ?.filter((item) => {
               if (!大橙武模拟 && item?.显示类型 === '大橙武模拟') {
+                return false
+              }
+              // 盾压重置方式为手动时才显示「重置盾压」技能（期望/概率下自动触发）
+              if (盾压重置方式 !== '手动' && item?.技能名称 === '重置盾压') {
                 return false
               }
               return !item?.创建循环不可选 && item?.技能类型 === '其他'
@@ -238,6 +256,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
                   技能={item}
                   模拟信息={模拟信息}
                   插入技能={插入技能}
+                  体态不符自动切换={体态不符自动切换}
                 />
               )
             })}

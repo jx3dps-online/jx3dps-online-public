@@ -18,6 +18,13 @@
   margin: 0;
 }
 
+.tuandui-title-tip {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(3, 10, 26, 0.45);
+  margin-left: 8px;
+}
+
 .tuandui-zengyi {
   padding-top: 4px;
   padding-bottom: 12px;
@@ -30,8 +37,8 @@
 .tuandui-zengyi-btn {
   width: 100%;
   height: 40px;
-  color: #ED4F00;
-  border-color: #ED4F00;
+  color: #ed4f00;
+  border-color: #ed4f00;
 }
 
 .tuandui-zengyi-btn:hover,
@@ -61,4 +68,17 @@
 .tuandui-list.onGuide {
   height: calc(100vh - 538px);
   overflow: hidden;
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .tuandui-zengyi-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tuandui-setting-btn {
+    margin-left: 0;
+  }
+  .tuandui-list {
+    padding: 8px;
+  }
 }

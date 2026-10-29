@@ -1,6 +1,5 @@
 .skill-chart {
-  width: calc(100% - 8px);
-  margin-left: 8px;
+  width: 100%;
   height: calc(100vh - 320px);
 }
 
@@ -21,4 +20,10 @@
   margin-left: 8px;
   font-size: 14px;
   color: #ccc;
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .skill-chart {
+    height: 420px;
+  }
 }

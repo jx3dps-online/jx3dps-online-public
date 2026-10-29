@@ -1,0 +1,284 @@
+/*! 毒经「连缘」两段宏攻略排版：主题色 #7F30A2（毒经） */
+.正文 {
+  --dj-accent: #7f30a2;
+  --dj-burst: #9049ae;
+  --dj-loop: #a07cc0;
+  --dj-teal: #0f8a8a;
+  --dj-line: rgba(127, 48, 162, 0.16);
+  --dj-soft: rgba(127, 48, 162, 0.05);
+  --dj-muted: rgba(0, 0, 0, 0.5);
+
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+
+  p {
+    margin: 0 0 10px;
+    line-height: 1.85;
+  }
+
+  a {
+    color: var(--dj-accent);
+    text-decoration: none;
+  }
+
+  h3 {
+    margin: 24px 0 12px;
+    padding-left: 10px;
+    border-left: 3px solid var(--dj-accent);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  h4 {
+    margin: 16px 0 8px;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+
+  ul {
+    margin: 0 0 12px;
+    padding-left: 4px;
+    list-style: none;
+
+    li {
+      position: relative;
+      margin-bottom: 6px;
+      padding-left: 16px;
+      line-height: 1.85;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 10px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--dj-accent);
+        opacity: 0.55;
+      }
+
+      b {
+        color: var(--dj-accent);
+      }
+    }
+  }
+
+  code {
+    padding: 2px 6px;
+    border: 1px solid var(--dj-line);
+    border-radius: 5px;
+    background: var(--dj-soft);
+    color: #d05;
+    font-family: 'Cascadia Code', Consolas, 'Courier New', 'Microsoft YaHei', monospace;
+    font-size: 12.5px;
+  }
+
+  :global(.ant-image) {
+    display: block;
+    max-width: 100%;
+    margin: 4px 0 16px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .来源 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 12px;
+  }
+
+  .提示 {
+    padding: 2px 12px;
+    border-left: 4px solid #dcdfe6;
+    color: var(--dj-muted);
+  }
+
+  .次要 {
+    color: var(--dj-muted);
+    font-size: 13px;
+  }
+
+  .技能图标 {
+    width: 32px;
+    height: 32px;
+    margin-left: 6px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    vertical-align: middle;
+  }
+
+  .宏组 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 10px;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .宏标签 {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 12px 3px 4px;
+    border-radius: 999px;
+    background: #f3edf9;
+    color: var(--dj-burst);
+    font-weight: 700;
+
+    img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+
+    &.循环 {
+      background: #f6f2fa;
+      color: var(--dj-loop);
+    }
+  }
+
+  .宏名 {
+    margin: 0 2px;
+    padding: 0 6px;
+    border-radius: 4px;
+    background: #f3edf9;
+    color: var(--dj-burst);
+    font-weight: 700;
+    white-space: nowrap;
+
+    &.循环 {
+      background: #f6f2fa;
+      color: var(--dj-loop);
+    }
+  }
+
+  .步骤 {
+    max-width: 640px;
+    margin: 0 0 10px;
+    counter-reset: dj-step;
+  }
+
+  .步骤行 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    line-height: 1.7;
+
+    &:nth-child(odd) {
+      background: #f7f8fa;
+    }
+
+    &::before {
+      counter-increment: dj-step;
+      content: counter(dj-step);
+      flex: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ebe4f3;
+      color: var(--dj-accent);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 20px;
+      text-align: center;
+    }
+  }
+
+  .时机 {
+    flex: none;
+    width: 112px;
+    color: var(--dj-teal);
+    font-weight: 600;
+  }
+
+  .须知 {
+    max-width: 760px;
+    margin: 4px 0 16px;
+    padding: 12px 16px;
+    border: 1px solid var(--dj-line);
+    border-radius: 10px;
+    background: #fbf9fd;
+
+    ol {
+      margin: 0;
+      padding-left: 22px;
+
+      li {
+        padding: 3px 0;
+        line-height: 1.7;
+
+        &::marker {
+          color: var(--dj-accent);
+          font-weight: 700;
+        }
+
+        b {
+          display: block;
+        }
+
+        > span {
+          display: block;
+          color: var(--dj-muted);
+        }
+      }
+    }
+  }
+
+  .须知标题 {
+    color: var(--dj-accent);
+    font-weight: 700;
+
+    small {
+      margin-left: 8px;
+      color: rgba(0, 0, 0, 0.3);
+      font-weight: 400;
+    }
+  }
+
+  .须知说明 {
+    margin-bottom: 6px;
+    color: var(--dj-muted);
+    font-size: 13px;
+  }
+
+  .错 {
+    margin-right: 4px;
+    color: #d03a3a;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .表格 {
+    margin: 0 0 8px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #e8eaee;
+    border-radius: 8px;
+    overflow: hidden;
+
+    th,
+    td {
+      padding: 6px 16px;
+      text-align: left;
+    }
+
+    th {
+      background: #f7f8fa;
+      color: var(--dj-muted);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    td {
+      border-top: 1px solid #e8eaee;
+    }
+  }
+}

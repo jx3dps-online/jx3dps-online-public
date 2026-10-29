@@ -1,29 +1,23 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  Alert,
   Button,
   Checkbox,
   Form,
-  Input,
   message,
   Modal,
   ModalProps,
-  Select,
+  Radio,
+  Switch,
   Tag,
   Tooltip,
 } from 'antd'
-import { 循环数据, 循环详情 } from '@/@types/循环'
-import { v4 as uuidV4 } from 'uuid'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
 import useCycle from '@/hooks/use-cycle'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-
-import styles from './index.module.less'
 import { 延迟设定 } from '@/数据/常量'
 import { 更新当前自定义循环列表 } from '@/store/data'
-import { StarFilled } from '@ant-design/icons'
-
-const { 默认数据: 心法默认数据 = {} } = 获取当前数据()
+import { 排序循环详情, 生成合并循环, 选择同档位高秒伤 } from './工具函数'
+import type { 排序方式, 循环选择 } from './工具函数'
+import styles from './index.module.less'
 
 interface 循环详情弹窗类型 extends ModalProps {
   选中循环名称?: string[]
@@ -31,195 +25,193 @@ interface 循环详情弹窗类型 extends ModalProps {
 
 const 合并循环弹窗: React.FC<循环详情弹窗类型> = (props) => {
   const { 选中循环名称, open, onCancel } = props
-  const [基底循环, 设置基底循环] = useState<循环数据>()
-  const { 全部循环 = [] } = useCycle()
-
-  const [form] = Form.useForm()
+  const [基底名称, 设置基底名称] = useState<string>()
+  const [排序, 设置排序] = useState<排序方式>('延迟')
+  const [合并技能序列, 设置合并技能序列] = useState(false)
+  const { 全部循环 } = useCycle()
+  const [form] = Form.useForm<循环选择>()
   const dispatch = useAppDispatch()
-  const 自定义循环列表 = useAppSelector((state) => state?.data?.自定义循环列表)
+  const 自定义循环列表 = useAppSelector((state) => state.data.自定义循环列表)
+  const 实际循环 = 全部循环.filter((循环) => 选中循环名称?.includes(循环.名称))
+  const 基底循环 = 实际循环.find((循环) => 循环.名称 === 基底名称) || 实际循环[0]
 
-  const 实际循环 = useMemo(() => {
-    return 全部循环?.filter((循环) => 选中循环名称?.includes(循环?.名称 || '')) || []
-  }, [选中循环名称, 全部循环])
+  useEffect(() => {
+    if (open) {
+      设置基底名称(undefined)
+      设置排序('延迟')
+      设置合并技能序列(false)
+      form.resetFields()
+    }
+  }, [open, form])
 
-  const 循环全选 = (名称, 循环详情) => {
-    form.setFieldValue(
-      名称,
-      循环详情?.map((_, index) => index),
-    )
+  const 自动选择同档位高秒伤 = () => {
+    const { 选中索引, 未保存秒伤数量, 匹配档位数量 } = 选择同档位高秒伤(实际循环)
+    if (!匹配档位数量) {
+      message.warning('所选循环没有模拟器快照秒伤，无法自动选择；请重新保存循环')
+      return
+    }
+    实际循环.forEach((循环) => form.setFieldValue(循环.名称, 选中索引[循环.名称]))
+    if (未保存秒伤数量) {
+      message.warning(`有 ${未保存秒伤数量} 个档位没有模拟器快照秒伤，已跳过`)
+    }
   }
 
-  const 循环全取消 = (名称) => {
-    form.setFieldValue(名称, [])
-  }
-
-  const 保存循环 = () => {
+  const 保存循环 = (选中索引: 循环选择) => {
     if (!基底循环) {
       message.error('请选择基底循环')
       return
     }
-    form.validateFields()?.then((values) => {
-      console.log('values', values)
-      let 最终循环: 循环详情[] = []
-      let 重复循环: any = []
-      Object.keys(values)?.forEach((循环名称) => {
-        if (values[循环名称]?.length) {
-          const 循环数据 = 全部循环?.find((a) => a?.名称 === 循环名称)
-          const 循环详情 = 循环数据?.循环详情 || []
-          const 选中详情 = values[循环名称]?.map((index) => 循环详情?.[index])
-          选中详情.forEach((循环) => {
-            if (
-              循环?.循环加速等级 !== undefined &&
-              最终循环?.some(
-                (a) =>
-                  a?.循环加速等级 === 循环?.循环加速等级 && a?.循环延迟要求 === 循环?.循环延迟要求,
-              )
-            ) {
-              重复循环.push(
-                `${循环数据?.标题 || 循环数据?.名称}_加速等级: ${循环?.循环加速等级}；延迟要求: ${循环?.循环延迟要求}`,
-              )
-            } else if (
-              循环?.循环加速等级?.length &&
-              最终循环?.some(
-                (a) =>
-                  a?.循环加速值范围?.[0] === 循环?.循环加速等级?.[0] &&
-                  a?.循环延迟要求 === 循环?.循环延迟要求,
-              )
-            ) {
-              重复循环.push(
-                `${循环数据?.标题 || 循环数据?.名称}_加速范围: ${循环?.循环加速值范围?.[0]}；延迟要求: ${循环?.循环延迟要求}`,
-              )
-            } else {
-              最终循环 = [...最终循环, 循环]
-            }
-          })
-        }
-      })
-
-      if (重复循环?.length) {
-        message.error(`存在重复的循环，请检查！${重复循环?.join('；')}`)
-      } else if (最终循环?.length) {
-        const 导出循环: 循环数据 = {
-          ...基底循环,
-          名称: `${基底循环?.名称}_${new Date().valueOf()}_合并`,
-          标题: `${基底循环?.标题}_合并`,
-          循环详情: 最终循环,
-        }
-        const 新自定义循环 = [...自定义循环列表, 导出循环]
-        dispatch(更新当前自定义循环列表(新自定义循环))
-        message.success(`循环已保存，名称：${`${基底循环}_合并`}`)
-        onCancel?.({} as any)
-      } else {
-        message.error('请至少选择一个循环详细挡位')
-      }
-    })
+    const 结果 = 生成合并循环(实际循环, 基底循环, 选中索引, 合并技能序列)
+    if ('错误' in 结果) {
+      message.error(结果.错误)
+      return
+    }
+    dispatch(更新当前自定义循环列表([...自定义循环列表, 结果.数据]))
+    if (结果.缺少序列.length) {
+      message.warning(`以下循环未保存技能序列，已仅合并档位：${结果.缺少序列.join('、')}`)
+    }
+    if (结果.加速范围调整.length) {
+      const 调整说明 = 结果.加速范围调整
+        .map(
+          (项) =>
+            `${项.延迟 === '未限定延迟' ? 项.延迟 : `延迟 ${项.延迟}`}：${项.原范围[0]} ~ ${项.原范围[1]} → ${项.新范围[0]} ~ ${项.新范围[1]}`,
+        )
+        .join('；')
+      message.warning(`已自动收窄同延迟下重叠的加速范围：${调整说明}`)
+    }
+    message.success(`循环已保存，名称：${结果.数据.标题}`)
+    onCancel?.({} as any)
   }
 
   return (
     <Modal
-      className='cycle-edit-modal'
+      className={styles.弹窗}
       open={open}
       onCancel={onCancel}
       width={1114}
-      title={'合并循环'}
+      title='合并循环'
       maskClosable={false}
       centered
-      onOk={保存循环}
+      okText='保存合并循环'
+      onOk={() => form.submit()}
+      okButtonProps={{ disabled: !实际循环.length }}
     >
-      <Alert message={'本弹窗用于合并多个循环的不同加速/延迟数据，导出为一个新循环'} />
-      <Form form={form}>
-        {实际循环?.map((循环) => {
-          const 是否是基底循环 = 基底循环?.名称 === 循环?.名称
+      <div className={styles.工具栏}>
+        <p className={styles.说明}>选择不同加速、延迟的档位，保存为一个新循环。</p>
+        <div className={styles.操作行}>
+          <Radio.Group
+            size='small'
+            value={排序}
+            onChange={(事件) => 设置排序(事件.target.value)}
+            optionType='button'
+            options={[
+              { label: '按延迟排序', value: '延迟' },
+              { label: '按加速排序', value: '加速' },
+            ]}
+          />
+          <Tooltip title='比较保存时的模拟器快照秒伤，每个加速、延迟档位选择最高的一项'>
+            <Button size='small' onClick={自动选择同档位高秒伤}>
+              自动选择同档位高秒伤
+            </Button>
+          </Tooltip>
+          <label className={styles.序列开关}>
+            <Switch size='small' checked={合并技能序列} onChange={设置合并技能序列} />
+            合并技能序列
+          </label>
+        </div>
+        <p className={styles.提示}>
+          {合并技能序列
+            ? '将已选档位所属循环的技能序列合并为多挡位序列，以循环标题或名称命名；已有多挡位序列保留原名称。'
+            : '奇穴、秘籍等配置及技能序列沿用基底循环；开启“合并技能序列”可同时保存多个循环的序列。'}
+        </p>
+      </div>
+      <Form form={form} preserve={false} onFinish={保存循环} className={styles.循环列表}>
+        {实际循环.map((循环) => {
+          const 是否基底 = 基底循环?.名称 === 循环.名称
           return (
-            <div key={`合并循环_${循环?.名称}`} className={`${styles.cycle}`}>
-              <div className={styles.cycleTitle}>
-                <div className={styles.cycleTitleWrap}>
-                  {循环?.标题 || 循环?.名称}
-                  {是否是基底循环 ? (
-                    <>
-                      <Tag color='red' style={{ marginLeft: 12 }}>
-                        基底循环
-                      </Tag>
-                      <StarFilled className={styles.cycleTitleIcon} />
-                      <StarFilled className={styles.cycleTitleIcon} />
-                      <StarFilled className={styles.cycleTitleIcon} />
-                      <StarFilled className={styles.cycleTitleIcon} />
-                      <StarFilled className={styles.cycleTitleIcon} />
-                    </>
-                  ) : null}
+            <section key={循环.名称} className={styles.循环}>
+              <div className={styles.循环头部}>
+                <div className={styles.循环标题}>
+                  <span>{循环.标题 || 循环.名称}</span>
+                  {是否基底 && <Tag color='blue'>基底循环</Tag>}
+                  <span className={styles.档位数量}>{循环.循环详情.length} 个档位</span>
                 </div>
-                <div>
-                  {是否是基底循环 ? null : (
-                    <Tooltip title={'基底循环：除了循环计算数据的其他一切信息采用该循环'}>
-                      <Button danger size='small' onClick={() => 设置基底循环(循环)} type='primary'>
-                        标记为基底
+                <div className={styles.循环操作}>
+                  {!是否基底 && (
+                    <Tooltip title='奇穴、秘籍等基础配置沿用此循环'>
+                      <Button size='small' onClick={() => 设置基底名称(循环.名称)}>
+                        设为基底
                       </Button>
                     </Tooltip>
                   )}
                   <Button
                     size='small'
-                    onClick={() => 循环全选(循环?.名称, 循环?.循环详情)}
-                    type='primary'
-                    style={{ marginLeft: 12 }}
+                    type='text'
+                    onClick={() =>
+                      form.setFieldValue(
+                        循环.名称,
+                        循环.循环详情.map((_, 索引) => 索引),
+                      )
+                    }
                   >
                     全选
                   </Button>
                   <Button
                     size='small'
-                    onClick={() => 循环全取消(循环?.名称)}
-                    style={{ marginLeft: 12 }}
+                    type='text'
+                    onClick={() => form.setFieldValue(循环.名称, [])}
                   >
-                    取消
+                    取消选择
                   </Button>
                 </div>
               </div>
-              <Form.Item name={循环.名称} style={{ margin: 0 }}>
-                <Checkbox.Group className={styles.checkboxGroup}>
-                  {循环?.循环详情?.map((循环详情, index) => {
-                    return (
-                      <Checkbox className={styles.checkbox} value={index}>
-                        {循环详情?.循环加速值范围?.length ? (
-                          <span className={styles.wrap}>
-                            <span className={styles.title}>加速范围：</span>
-                            <span className={styles.value}>
-                              {循环详情?.循环加速值范围?.[0]} ~ {循环详情?.循环加速值范围?.[1]}
+              <Form.Item name={循环.名称} className={styles.循环选项}>
+                <Checkbox.Group className={styles.档位列表}>
+                  {排序循环详情(循环.循环详情, 排序).map(({ 详情, 索引 }) => (
+                    <Checkbox key={索引} className={styles.档位} value={索引}>
+                      <span className={styles.档位内容}>
+                        <span className={styles.档位参数}>
+                          <span className={styles.参数}>
+                            <span className={styles.参数名}>
+                              {详情.循环加速值范围?.length ? '加速范围' : '加速等级'}
+                            </span>
+                            <span className={styles.参数值}>
+                              {详情.循环加速值范围?.length
+                                ? `${详情.循环加速值范围[0]} ~ ${详情.循环加速值范围[1]}`
+                                : `${详情.循环加速等级 ?? '不限'}${详情.循环加速等级 !== undefined ? ' 段' : ''}`}
                             </span>
                           </span>
-                        ) : (
-                          <span className={styles.wrap}>
-                            <span className={styles.title}>加速等级：</span>
-
-                            <span className={styles.value}>
+                          {详情.循环延迟要求 !== undefined && (
+                            <span className={styles.参数}>
+                              <span className={styles.参数名}>延迟</span>
                               <span
-                                className={`${styles.tag} ${styles[`tag_${循环详情?.循环加速等级}`]}`}
+                                className={`${styles.延迟标记} ${styles[`延迟_${详情.循环延迟要求}`]}`}
                               >
-                                {循环详情?.循环加速等级}
+                                {详情.循环延迟要求}
                               </span>
-                              <span className={styles.subText}>段加速</span>
-                            </span>
-                          </span>
-                        )}
-                        {循环详情?.循环延迟要求 !== undefined ? (
-                          <span className={styles.wrap}>
-                            <span className={styles.title}>延迟要求：</span>
-                            <span className={styles.value}>
-                              <span
-                                className={`${styles.tag} ${styles[`tag_${循环详情?.循环延迟要求}`]}`}
-                              >
-                                {循环详情?.循环延迟要求}
-                              </span>
-                              <span className={styles.subText}>
-                                {延迟设定?.find((a) => a?.value === 循环详情?.循环延迟要求)?.label}
+                              <span className={styles.延迟说明}>
+                                {
+                                  延迟设定.find(
+                                    (选项) => String(选项.value) === String(详情.循环延迟要求),
+                                  )?.label
+                                }
                               </span>
                             </span>
-                          </span>
-                        ) : null}
-                      </Checkbox>
-                    )
-                  })}
+                          )}
+                        </span>
+                        {typeof 详情.模拟器快照秒伤 === 'number' &&
+                          Number.isFinite(详情.模拟器快照秒伤) && (
+                            <span className={styles.快照}>
+                              <span>模拟器快照秒伤</span>
+                              <strong>{详情.模拟器快照秒伤.toLocaleString('zh-CN')}</strong>
+                            </span>
+                          )}
+                      </span>
+                    </Checkbox>
+                  ))}
                 </Checkbox.Group>
               </Form.Item>
-            </div>
+            </section>
           )
         })}
       </Form>

@@ -1,0 +1,159 @@
+.guide-container {
+  width: 100%;
+  margin-top: 24px;
+  height: calc(100vh - 296px);
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.85);
+  box-sizing: border-box;
+
+  /* 字号自适应：跟容器宽度成正比放大，不按屏宽分档。
+     规则很好记：字号 ≈ 容器宽 × 0.5% + 9px，夹在 15~30px 之间。
+     容器 1200 → 15px、1400 → 16px、1840（1080p 全屏）→ 18.2px、
+     2480（2K）→ 21.4px、3760（4K）→ 27.8px，中间完全连续。
+     上下限用 rem 而不是 px：用户把浏览器默认字号调大时（无障碍设置），
+     攻略会跟着一起变大，不会卡死在 15px。
+
+     正文列宽用 em 跟着字号走（78em ≈ 一行 78 个汉字），
+     所以不管什么分辨率，一行的字数和留白比例都基本一致。 */
+  --guide-font: clamp(0.9375rem, calc(0.5vw + 0.5625rem), 1.875rem);
+  --guide-content-max: min(calc(var(--guide-font) * 78), 100%);
+}
+
+/* 支持容器查询的浏览器：字号跟「容器自身的宽度」走，而不是屏幕宽度。
+   这样同一个窄面板（比如计算结果里内嵌的那块）搬到 4K 屏上不会把字撑大，
+   只有容器真的变宽时才放大。 */
+@supports (container-type: inline-size) {
+  .guide-container {
+    container-type: inline-size;
+  }
+
+  .guide-container-header,
+  .guide-container-scroll {
+    --guide-font: clamp(0.9375rem, calc(0.5cqw + 0.5625rem), 1.875rem);
+    --guide-content-max: min(calc(var(--guide-font) * 78), 100%);
+  }
+}
+
+.guide-container-header {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: max(40px, calc(var(--guide-font) * 2.8));
+  padding: 0 12px 0 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.guide-container-title {
+  font-size: calc(var(--guide-font) * 1.15);
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.guide-container-header-center {
+  position: relative;
+  justify-content: flex-end;
+}
+
+.guide-container-title-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 120px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.guide-container-fullscreen-btn {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.guide-container-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1em;
+  box-sizing: border-box;
+  line-height: 1.7;
+  font-size: var(--guide-font);
+}
+
+.guide-container-content {
+  max-width: var(--guide-content-max);
+  margin: 0 auto;
+}
+
+/* 全屏浮动 */
+.guide-container-fullscreen {
+  position: fixed;
+  inset: 40px;
+  width: auto;
+  height: auto;
+  z-index: 2000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.guide-container-fullscreen .guide-container-scroll {
+  padding: 1.5em;
+}
+
+/* 对齐计算结果面板尺寸浮动（left/top/width/height 由内联样式提供） */
+.guide-container-resultsize {
+  position: fixed;
+  width: auto;
+  height: auto;
+  margin-top: 0;
+  z-index: 2000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.居中小窗 {
+  --guide-setup-footer-wrap: wrap;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(800px, calc(100vw - 48px));
+  height: min(80vh, 900px);
+  max-height: calc(100vh - 48px);
+  margin-top: 0;
+  z-index: 2000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  .guide-container-header {
+    height: auto;
+    min-height: 40px;
+    padding: 12px 16px;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .guide-container-title {
+    flex: 1;
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .guide-container-title-center {
+    position: static;
+    max-width: none;
+    transform: none;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .guide-container-fullscreen-btn {
+    flex-shrink: 0;
+  }
+
+  .guide-container-scroll {
+    min-height: 0;
+    min-width: 0;
+  }
+}

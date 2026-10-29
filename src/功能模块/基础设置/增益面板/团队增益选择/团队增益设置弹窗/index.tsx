@@ -12,17 +12,15 @@ import {
 } from 'antd'
 import React, { useState } from 'react'
 import { useAppSelector } from '@/hooks'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 团队增益类型 } from '@/@types/团队增益'
 import 团队增益图标 from '../团队增益图标'
-
-const { 默认数据 = {}, 团队增益 } = 获取当前数据()
-const { 增益快捷设置数据 = [] } = 默认数据
 
 import './index.css'
 
 const 一键设置坦克增益列表 = [
   '振奋',
+  '寒啸千军',
   '号令三军',
   '朝圣',
   '圣浴明心',
@@ -33,9 +31,57 @@ const 一键设置坦克增益列表 = [
   '号令三军·悟',
 ]
 const 一键设置奶妈增益列表 = ['飘黄', '仙王蛊鼎', '左旋右转', '秋肃', '庄周梦']
-const 可支持快捷设置层数 = [80, 85, 90, 95, 100]
+const 可支持快捷设置层数 = Array.from({ length: 10 }, (_, index) => 55 + index * 5)
+
+function 自选层数输入({ onApply }: { onApply: (层数: number) => void }) {
+  const [层数, 设置层数] = useState<number | null>(null)
+
+  const 应用 = (值: number | null) => {
+    if (值 == null || !Number.isInteger(值) || 值 < 0 || 值 > 100) return
+    onApply(值)
+  }
+
+  return (
+    <div
+      className='tuandui-cengshu-input'
+      onMouseDown={(e) => e.stopPropagation()}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <InputNumber
+        min={0}
+        max={100}
+        precision={0}
+        step={1}
+        placeholder='自选层数'
+        value={层数}
+        onChange={(值) => 设置层数(值 == null ? null : Math.trunc(值))}
+        onPressEnter={() => 应用(层数)}
+        onBlur={() => 应用(层数)}
+      />
+    </div>
+  )
+}
+
+function 层数快捷菜单(应用层数: (层数: number) => void) {
+  return (
+    <div className='tuandui-cengshu-menu'>
+      <自选层数输入 onApply={应用层数} />
+      <Menu>
+        {可支持快捷设置层数.map((item) => {
+          return (
+            <Menu.Item key={item} onClick={() => 应用层数(item)}>
+              {item}层
+            </Menu.Item>
+          )
+        })}
+      </Menu>
+    </div>
+  )
+}
 
 function 团队增益设置弹窗({ open, onCancel, onChangeZengyi, 快捷设置团队增益 }) {
+  const { 默认数据 = {}, 团队增益 } = use心法数据()
+  const { 增益快捷设置数据 = [] } = 默认数据
   const 增益数据 = useAppSelector((state) => state.data.增益数据)
 
   const 团队增益类型: 团队增益类型[] = [
@@ -114,38 +160,12 @@ function 团队增益设置弹窗({ open, onCancel, onChangeZengyi, 快捷设置
           <Button size='small' style={{ marginLeft: 12 }} onClick={切换展开收起}>
             {当前展开增益类型?.length === 团队增益类型?.length ? '一键收起' : '一键展开'}
           </Button>
-          <Dropdown
-            overlay={
-              <Menu>
-                {可支持快捷设置层数.map((item) => {
-                  return (
-                    <Menu.Item key={item} onClick={() => 快速设置坦克增益(item)}>
-                      {item}层
-                    </Menu.Item>
-                  )
-                })}
-              </Menu>
-            }
-            placement='topLeft'
-          >
+          <Dropdown overlay={层数快捷菜单(快速设置坦克增益)} placement='topLeft'>
             <Button size='small' style={{ marginLeft: 12 }}>
               坦克层数
             </Button>
           </Dropdown>
-          <Dropdown
-            overlay={
-              <Menu>
-                {可支持快捷设置层数.map((item) => {
-                  return (
-                    <Menu.Item key={item} onClick={() => 快速设置奶妈增益(item)}>
-                      {item}层
-                    </Menu.Item>
-                  )
-                })}
-              </Menu>
-            }
-            placement='topLeft'
-          >
+          <Dropdown overlay={层数快捷菜单(快速设置奶妈增益)} placement='topLeft'>
             <Button size='small' style={{ marginLeft: 12 }}>
               奶妈层数
             </Button>
@@ -155,8 +175,9 @@ function 团队增益设置弹窗({ open, onCancel, onChangeZengyi, 快捷设置
       placement='left'
       onClose={onCancel}
       footer={null}
-      width={804}
-      mask={false}
+      width='min(804px, 100vw)'
+      maskClosable
+      styles={{ mask: { background: 'transparent' } }}
       destroyOnClose
     >
       <Collapse
@@ -173,10 +194,10 @@ function 团队增益设置弹窗({ open, onCancel, onChangeZengyi, 快捷设置
                 .filter((item) => item.团队增益类型 === key)
                 .map((item) => {
                   const 当前增益选项 = (增益数据?.团队增益 || []).find(
-                    (a) => item?.增益名称 === a?.增益名称
+                    (a) => item?.增益名称 === a?.增益名称,
                   )
                   const 当前是否存在冲突增益 = (增益数据?.团队增益 || []).find(
-                    (a) => item?.冲突增益?.includes(a?.增益名称) && a?.启用
+                    (a) => item?.冲突增益?.includes(a?.增益名称) && a?.启用,
                   )
                   return (
                     <div className={`tuandui-zengyi-detail-item`} key={item.增益名称}>

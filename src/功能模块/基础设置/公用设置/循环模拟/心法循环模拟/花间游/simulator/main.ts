@@ -38,6 +38,7 @@ import 玉石俱焚 from './技能类/玉石俱焚'
 import 星楼月影 from './技能类/星楼月影'
 import 丹青 from './技能类/丹青'
 import 删除丹青 from './技能类/删除丹青'
+import 沁逸 from './技能类/沁逸'
 import { 定式黑白实例 } from './定式黑白'
 
 import DOT_商阳指 from './DOT类/商阳指'
@@ -50,7 +51,8 @@ import { 获取加速等级, 获取实际帧数 } from '@/工具函数/data'
 import 触发橙武 from './技能类/触发橙武'
 import 换行 from './技能类/换行'
 import { 团队增益轴类型 } from '@/@types/团队增益'
-import 判断团队增益快照Buff from '@/数据/团队增益/tools'
+import { 副本事件实例类型 } from '@/@types/副本事件'
+import 判断团队增益快照Buff, { 判断副本事件快照Buff } from '@/数据/团队增益/tools'
 import { 起手Buff配置 } from '../../通用/通用框架/类型定义/Buff'
 import { 技能额外信息分隔符, 获取起手Buff配置 } from '../../通用/通用函数'
 import { 选中秘籍信息 } from '@/@types/秘籍'
@@ -67,6 +69,7 @@ export interface SimulatorCycleProps {
   角色状态信息?: 角色状态信息类型
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
+  副本事件实例列表?: 副本事件实例类型[]
   起手Buff配置?: 起手Buff配置
   显示涓流层数?: boolean
   起手临源?: number
@@ -106,6 +109,7 @@ class 循环主类 {
   待生效事件队列: 待生效事件[] = []
   启用团队增益快照 = false
   团队增益轴: 团队增益轴类型 = {}
+  副本事件实例列表: 副本事件实例类型[] = []
   显示涓流层数 = false
   忽略延迟技能: string[] = []
   断快雪延迟 = 0
@@ -124,6 +128,7 @@ class 循环主类 {
     this.启用团队增益快照 = !!props.启用团队增益快照
     this.忽略延迟技能 = props?.忽略延迟技能 || []
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
+    this.副本事件实例列表 = props.副本事件实例列表 ? props.副本事件实例列表 : []
     this.断快雪延迟 = props.断快雪延迟 || 0
     // 根据奇穴和装备情况修改buff的数据
     this.Buff和Dot数据 = 根据奇穴修改buff数据(this.奇穴, this.秘籍)
@@ -167,6 +172,7 @@ class 循环主类 {
       星楼月影: new 星楼月影(this),
       丹青: new 丹青(this),
       删除丹青: new 删除丹青(this),
+      沁逸: new 沁逸(this),
       DOT_商阳指: new DOT_商阳指(this),
       DOT_兰摧玉折: new DOT_兰摧玉折(this),
       DOT_钟林毓秀: new DOT_钟林毓秀(this),
@@ -392,13 +398,10 @@ class 循环主类 {
   // 添加战斗日志
   添加战斗日志(log: 循环日志数据类型) {
     const { 日志时间 = this.当前时间, ...rest } = log
-    this.战斗日志 = [
-      ...(this.战斗日志 || []),
-      {
-        日志时间: 日志时间,
-        ...rest,
-      },
-    ]
+    this.战斗日志.push({
+      日志时间: 日志时间,
+      ...rest,
+    })
   }
 
   // 造成伤害
@@ -457,10 +460,12 @@ class 循环主类 {
     )
 
     if (this.启用团队增益快照) {
-      const 团队增益buff列表 = 判断团队增益快照Buff({
-        团队增益轴: this.团队增益轴,
-        判定帧: 造成时间 - (this.初次伤害时间 || 0) || 0,
-      })
+      const 团队增益buff列表 = this.副本事件实例列表?.length
+        ? 判断副本事件快照Buff(this.副本事件实例列表, 造成时间 - (this.初次伤害时间 || 0) || 0)
+        : 判断团队增益快照Buff({
+            团队增益轴: this.团队增益轴,
+            判定帧: 造成时间 - (this.初次伤害时间 || 0) || 0,
+          })
       if (团队增益buff列表?.length) {
         总增益列表 = 总增益列表?.concat(团队增益buff列表)
       }
@@ -702,6 +707,8 @@ class 循环主类 {
             this.技能类实例集合?.['丹青']?.丹青命中()
           } else if (当前事件.事件名称 === '雨墨判定') {
             this.技能类实例集合?.['丹青']?.雨墨命中()
+          } else if (当前事件.事件名称 === '沁逸判定') {
+            this.技能类实例集合?.['沁逸']?.沁逸命中()
           }
           this.待生效事件队列?.shift()
           if (this.待生效事件队列.length) {
@@ -755,9 +762,9 @@ class 循环主类 {
 
   // 其他调用函数，供外层调用
   // 模拟函数，一个技能的释放生命周期
-  模拟() {
-    定式黑白实例.reset()
-    for (let i = 0; i < this.测试循环.length; i++) {
+  模拟(起始索引 = 0) {
+    if (起始索引 === 0) 定式黑白实例.reset()
+    for (let i = 起始索引; i < this.测试循环.length; i++) {
       this.本轮模拟开始前()
       let 实际技能名称 = this.测试循环[i]
       let 额外信息 = null

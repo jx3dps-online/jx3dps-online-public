@@ -28,6 +28,7 @@ export enum 小吃类型枚举 {
 }
 
 export enum 五彩石增益类型枚举 {
+  回蓝 = '回蓝',
   全属性 = '全属',
   力道 = '力道',
   身法 = '身法',
@@ -42,7 +43,6 @@ export enum 五彩石增益类型枚举 {
   加速等级 = '加速',
   会心等级 = '会心',
   无双等级 = '无双',
-  破招值 = '破招',
   力道百分比 = '力道百分比',
   身法百分比 = '身法百分比',
   元气百分比 = '元气百分比',
@@ -51,17 +51,17 @@ export enum 五彩石增益类型枚举 {
 }
 
 export const 属性简写枚举 = {
+  atManaReplenishExt: '回蓝',
   atBasePotentialAdd: '全属',
   atVitalityBase: '体质',
   atMaxLifeBase: '气血',
-  atMaxLifeAdditional: '额外气血',
+  atMaxLifeAdditional: '气血',
   atStrengthBase: '力道',
   atSpunkBase: '元气',
   atAgilityBase: '身法',
   atSpiritBase: '根骨',
   atPVXAllRound: '全能',
 
-  atSurplusValueBase: '破招',
   allAttackPowerBase: '攻击',
   atPhysicsAttackPowerBase: '攻击',
   atMagicAttackPowerBase: '攻击',
@@ -82,4 +82,5 @@ export const 属性简写枚举 = {
 
   atStrainBase: '无双',
   atHasteBase: '加速',
+  atMainPotential: '主属性',
 }

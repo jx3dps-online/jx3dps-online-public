@@ -2,9 +2,9 @@ import { Cascader, Select } from 'antd'
 import React, { useMemo } from 'react'
 import { 五彩石增益类型枚举 } from '@/@types/枚举'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import './index.css'
-
-const { 五彩石 } = 获取当前数据()
+import styles from './index.module.less'
 
 interface WucaishiFilterList {
   value: 五彩石增益类型枚举 | string
@@ -15,10 +15,12 @@ interface WucaishiFilterList {
 interface WuCaiShiXuanZeProps {
   value?: string
   onChange?: (e: string | undefined) => void
+  标题?: string
 }
 
 function WuCaiShiXuanZe(props: WuCaiShiXuanZeProps) {
-  const { value, onChange } = props
+  const { 五彩石 } = use心法数据()
+  const { value, onChange, 标题 } = props
 
   const jibie = useMemo(() => {
     return value?.includes('伍') ? 5 : 6
@@ -31,7 +33,7 @@ function WuCaiShiXuanZe(props: WuCaiShiXuanZeProps) {
       return item.五彩石名称 === value
     })
     return findObj?.装备增益.map((item) => item.增益名称)
-  }, [value])
+  }, [value, 五彩石])
 
   const wucaishiFilterList: WucaishiFilterList[] = useMemo(() => {
     return getWuCaiShiFilterList()
@@ -39,7 +41,7 @@ function WuCaiShiXuanZe(props: WuCaiShiXuanZeProps) {
 
   const handleChange = (e) => {
     if (!e) {
-      onChange && onChange(undefined)
+      onChange?.(undefined)
     } else {
       const list = 五彩石[jibie] || []
       const findObj = list.find((item) => {
@@ -50,7 +52,7 @@ function WuCaiShiXuanZe(props: WuCaiShiXuanZeProps) {
         )
       })
       if (findObj && findObj?.五彩石名称) {
-        onChange && onChange(findObj?.五彩石名称)
+        onChange?.(findObj?.五彩石名称)
       }
     }
   }
@@ -63,12 +65,27 @@ function WuCaiShiXuanZe(props: WuCaiShiXuanZeProps) {
       newName = newName?.replace('(伍)', '(陆)')
     }
     if (newName) {
-      onChange && onChange(newName)
+      onChange?.(newName)
     }
   }
 
+  const 预览 = value ? (
+    <div
+      className={`wucaishi-value ${jibie === 6 ? 'wucaishi-value-6' : 'wucaishi-value-5'}`}
+      title={value}
+    >
+      {value}
+    </div>
+  ) : null
+
   return (
     <div className='wucaishi-wrap'>
+      {标题 && (
+        <div className={styles.标题行}>
+          <span className={styles.标题}>{标题}</span>
+          {预览}
+        </div>
+      )}
       <div className={'wucaishi-xuanze-wrap'}>
         <Select
           className={'wucaishi-xuanze-dengji'}
@@ -90,11 +107,7 @@ function WuCaiShiXuanZe(props: WuCaiShiXuanZeProps) {
           options={wucaishiFilterList}
         />
       </div>
-      {value ? (
-        <div className={`wucaishi-value ${jibie === 6 ? 'wucaishi-value-6' : 'wucaishi-value-5'}`}>
-          {value}
-        </div>
-      ) : null}
+      {!标题 && 预览}
     </div>
   )
 }
@@ -102,6 +115,7 @@ function WuCaiShiXuanZe(props: WuCaiShiXuanZeProps) {
 export default WuCaiShiXuanZe
 
 const getWuCaiShiFilterList = () => {
+  const { 五彩石 } = 获取当前数据()
   let list: WucaishiFilterList[] = []
   五彩石[6].forEach((item) => {
     item.装备增益.forEach((a, index) => {

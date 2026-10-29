@@ -5,13 +5,12 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import * as G2 from '@antv/g2'
 import { useAppSelector } from '@/hooks'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 获取技能统计数据 } from '../结果统计/util'
 import './index.css'
 
-const { 系统配置 } = 获取当前数据()
-
 function 技能统计图表(_, ref) {
+  const { 系统配置, 技能统计处理 } = use心法数据()
   const 增益面板显示状态 = useAppSelector((state) => state?.system?.增益面板显示状态)
   const 当前计算结果 = useAppSelector((state) => state?.data?.当前计算结果)
 
@@ -20,7 +19,7 @@ function 技能统计图表(_, ref) {
   const limitRef: any = useRef<any>()
 
   const getDataSource = () => {
-    const res = 获取技能统计数据(当前计算结果, true) || []
+    const res = 获取技能统计数据(当前计算结果, true, 技能统计处理) || []
 
     res.sort((a, b) => {
       return a.技能总输出 - b.技能总输出
@@ -40,6 +39,7 @@ function 技能统计图表(_, ref) {
 
   useImperativeHandle(ref, () => ({
     initChart: initChart,
+    forceFit: () => chartData?.forceFit(),
   }))
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function 技能统计图表(_, ref) {
 
   useEffect(() => {
     setTimeout(() => {
-      chartData && chartData.forceFit()
+      chartData?.forceFit()
     }, 200)
   }, [增益面板显示状态])
 

@@ -1,6 +1,6 @@
 import { 属性类型 } from '@/@types/属性'
 import { 装备属性信息模型, 装备类型枚举 } from '@/@types/装备'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { Button, Modal, Select, Tag, Tooltip } from 'antd'
 import React, { forwardRef, ForwardRefExoticComponent, useMemo, useState } from 'react'
 import classnames from 'classnames'
@@ -26,9 +26,8 @@ export const color_list = [
   'purple',
 ]
 
-const { 装备数据 } = 获取当前数据()
-
 const 加速装备选择: ForwardRefExoticComponent<加速装备选择类型> = forwardRef((props, _) => {
+  const { 装备数据 } = use心法数据()
   const { value = [], onChange } = props
   const [加速装备选择弹窗展示, 设置加速装备选择弹窗展示] = useState<boolean>(false)
   const [弹窗内数据, 修改弹窗内数据] = useState<装备属性信息模型[]>([])
@@ -59,7 +58,7 @@ const 加速装备选择: ForwardRefExoticComponent<加速装备选择类型> = 
       })
     })
     return list
-  }, [弹窗内数据])
+  }, [弹窗内数据, 装备数据])
 
   const 选择装备 = (新id列表) => {
     const 数据列表 = 包含加速的装备部位?.filter((item) => 新id列表?.includes(item?.id))
@@ -172,7 +171,7 @@ const 加速装备选择: ForwardRefExoticComponent<加速装备选择类型> = 
                             'zhuangbei-miaoshu-label',
                             a === '精简' || a === '特效' ? 'zhuangbei-miaoshu-label-jingjian' : '',
                             a === '试炼' ? 'zhuangbei-miaoshu-label-shilian' : '',
-                            a === 'PVX' ? 'zhuangbei-miaoshu-label-pvx' : ''
+                            a === 'PVX' ? 'zhuangbei-miaoshu-label-pvx' : '',
                           )
 
                           return (

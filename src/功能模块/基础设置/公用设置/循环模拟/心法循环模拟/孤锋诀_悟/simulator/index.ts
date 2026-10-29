@@ -3,6 +3,7 @@
  */
 
 import { 团队增益轴类型 } from '@/@types/团队增益'
+import { 副本事件实例类型 } from '@/@types/副本事件'
 import { 角色状态信息类型 } from '../simulator/type'
 import 循环主类 from './main'
 import { 起手Buff配置 } from '../../通用/通用框架/类型定义/Buff'
@@ -19,6 +20,7 @@ interface SimulatorCycleProps {
   开启武学助手: boolean
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
+  副本事件实例列表?: 副本事件实例类型[]
   起手Buff配置?: 起手Buff配置
 }
 

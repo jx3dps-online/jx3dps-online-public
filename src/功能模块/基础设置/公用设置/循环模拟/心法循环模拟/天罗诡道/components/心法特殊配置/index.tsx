@@ -8,7 +8,8 @@ interface 心法特殊配制类型 {
 }
 
 function 心法特殊配置(props: 心法特殊配制类型) {
-  const { 忽略延迟技能, 更新忽略延迟技能 } = props
+  const { 忽略延迟技能, 更新忽略延迟技能 } =
+    props
 
   return (
     <>
@@ -27,15 +28,7 @@ function 心法特殊配置(props: 心法特殊配制类型) {
           }}
           mode={'multiple'}
           onChange={(e) => 更新忽略延迟技能(e)}
-          options={[
-            '鬼斧神工',
-            '暗藏杀机',
-            '飞星遁影',
-            '连弩',
-            '心无旁骛',
-            '触发橙武',
-            '特效腰坠',
-          ].map((a) => {
+          options={['鬼斧神工','暗藏杀机','飞星遁影','连弩','心无旁骛','触发橙武', '特效腰坠'].map((a) => {
             return {
               value: a,
               label: a,

@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react'
-import { Button, Drawer, Form, Select, Tooltip } from 'antd'
+import { Button, Drawer, Form, Select, Tooltip, message } from 'antd'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { 更新方案数据 } from '@/store/data'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { 更新角色数据 } from '@/store/data'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 触发秒伤计算 } from '@/计算模块/计算函数'
 import 混池奇穴 from './混池奇穴'
 import './index.css'
 
-const { 奇穴数据 = [] } = 获取当前数据()
-
 const 兜底图片 = 'https://icon.jx3box.com/icon/13.png'
 
 const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
+  const { 名称, 奇穴数据 = [] } = use心法数据()
   const { value, onChange, open, onClose, ...rest } = props || {}
   const [form] = Form.useForm()
 
@@ -42,10 +41,21 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
       newArray.push(values[特殊奇穴索引])
     }
 
+    if (
+      名称 === '天罗诡道' &&
+      [2, 3].some(
+        (层) =>
+          newArray[层] && !奇穴数据[层].奇穴列表.some((奇穴) => 奇穴.奇穴名称 === newArray[层]),
+      )
+    ) {
+      message.warning('尽刑彻毒与凝气淬机已交换层位，请重新选择第三、四层奇穴。原方案尚未修改。')
+      return
+    }
+
     if (onChange) {
       onChange(newArray)
     } else {
-      dispatch(更新方案数据({ 数据: newArray, 属性: '当前奇穴信息' }))
+      dispatch(更新角色数据({ 数据: newArray, 属性: '当前奇穴信息' }))
       dispatch(触发秒伤计算({ 是否更新显示计算结果: true }))
     }
   }
@@ -67,7 +77,20 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
 
     const obj = {}
     const misList: string[] = []
-    当前奇穴信息?.forEach((item, index) => {
+    const 显示奇穴 = [...(当前奇穴信息 || [])]
+    if (名称 === '天罗诡道' && 显示奇穴[2] === '凝气淬机' && 显示奇穴[3] === '尽刑彻毒') {
+      ;[显示奇穴[2], 显示奇穴[3]] = [显示奇穴[3], 显示奇穴[2]]
+    } else if (
+      open &&
+      名称 === '天罗诡道' &&
+      [2, 3].some(
+        (层) =>
+          显示奇穴[层] && !奇穴数据[层].奇穴列表.some((奇穴) => 奇穴.奇穴名称 === 显示奇穴[层]),
+      )
+    ) {
+      message.warning('尽刑彻毒与凝气淬机已交换层位，请重新选择第三、四层奇穴。原方案尚未修改。')
+    }
+    显示奇穴.forEach((item, index) => {
       if (index >= 6 && index < 10) {
         // 混池奇穴 (索引6-9)
         misList.push(item)
@@ -83,7 +106,7 @@ const 奇穴选择抽屉: React.FC<any> = (props?: any) => {
       ...obj,
       mix: misList,
     })
-  }, [当前奇穴信息, form])
+  }, [当前奇穴信息, form, 奇穴数据, 名称, open])
 
   return (
     <Drawer

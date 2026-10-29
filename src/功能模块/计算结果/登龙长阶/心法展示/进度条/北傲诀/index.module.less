@@ -1,0 +1,296 @@
+.进度条 {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+
+.标题 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+
+  > span {
+    font-family: 'STKaiti', 'KaiTi', serif;
+    font-size: 17px;
+    letter-spacing: 3px;
+    color: #ccd6e1;
+  }
+
+  > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  b {
+    font-size: 29px;
+    font-weight: 500;
+    color: #f3e0bd;
+    font-variant-numeric: tabular-nums;
+  }
+
+  small {
+    margin-left: 2px;
+    font-size: 13px;
+  }
+
+  em {
+    font-size: 12px;
+    font-style: normal;
+    color: #aeb9c9;
+  }
+}
+
+.武器区域 {
+  position: relative;
+  aspect-ratio: 4.45 / 1;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.画布 {
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  width: 92%;
+  aspect-ratio: 3 / 1;
+  transform: translateY(-50%);
+
+  > img,
+  .柔光,
+  .红芯光效,
+  .羽屑 {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    // 遮罩多留 12px，让渐隐边缘在 0% / 100% 时完全移出画布。
+    -webkit-mask-size: calc(200% + 12px) 100%;
+    mask-size: calc(200% + 12px) 100%;
+    -webkit-mask-position: calc(100% - var(--baj-progress)) 0;
+    mask-position: calc(100% - var(--baj-progress)) 0;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+}
+
+.素刃 {
+  opacity: 0.16;
+  -webkit-mask-image: linear-gradient(90deg, transparent calc(50% - 6px), #000 calc(50% + 6px));
+  mask-image: linear-gradient(90deg, transparent calc(50% - 6px), #000 calc(50% + 6px));
+}
+
+.成品 {
+  opacity: var(--baj-opacity);
+  filter: saturate(0.82) brightness(0.95);
+}
+
+.成品,
+.柔光,
+.红芯光效,
+.羽屑 {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(50% - 6px), transparent calc(50% + 6px));
+  mask-image: linear-gradient(90deg, #000 calc(50% - 6px), transparent calc(50% + 6px));
+}
+
+.柔光 {
+  opacity: calc(var(--baj-aura) * 0.24);
+
+  > i {
+    position: absolute;
+    inset: 24% 0 16% 8%;
+    background: radial-gradient(ellipse, #e5f4ff 0%, #98c8ee80 35%, transparent 70%);
+    filter: blur(6px);
+    opacity: 0.85;
+  }
+}
+
+.达成特效 {
+  position: absolute;
+  inset: 0;
+}
+
+.光环 {
+  position: absolute;
+  left: 2.5%;
+  top: 32%;
+  width: 9.5%;
+  height: 40%;
+  border: 1px solid #b7e7ff52;
+  border-radius: 50%;
+  box-shadow:
+    0 0 7px #6abaff52,
+    inset 0 0 6px #bbecff40;
+  opacity: 0.2;
+}
+
+.红芯光效 {
+  opacity: var(--baj-core);
+}
+
+.红芯 {
+  position: absolute;
+  left: 28.5%;
+  top: 46.5%;
+  width: 7%;
+  height: 11%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #ffe9cce6, #ff554dcc 22%, #e82c4559 48%, transparent 72%);
+  box-shadow: 0 0 8px #f53d4038;
+  opacity: 0.44;
+}
+
+.羽屑 {
+  opacity: calc(var(--baj-feathers) * 0.9);
+
+  > i {
+    position: absolute;
+    left: calc(34% + var(--baj-spark) * 7%);
+    top: 35%;
+    width: calc(5px + var(--baj-spark) * 0.4px);
+    height: 1.8px;
+    border-radius: 80% 0 80% 0;
+    background: linear-gradient(90deg, transparent, #ecf8ff 65%, #fff);
+    box-shadow: 0 0 5px #9dd8ffad;
+    opacity: 0;
+
+    &:nth-child(even) {
+      top: 70%;
+      background: linear-gradient(90deg, transparent, #b8dfff 65%, #ecf8ff);
+    }
+  }
+}
+
+.进度轨 {
+  position: relative;
+  height: 2px;
+  margin: 2px 3% 0;
+  background: #ffffff13;
+
+  > i {
+    display: block;
+    width: var(--baj-progress);
+    height: 100%;
+    background: linear-gradient(90deg, #7cb7eb, #daeaf5, #ead4b1);
+  }
+
+  > span {
+    position: absolute;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    transform: rotate(45deg);
+    background: #485365;
+  }
+
+  > .已点亮 {
+    background: #c3dff4;
+  }
+}
+
+.已达成 {
+  .成品 {
+    filter: saturate(0.9);
+  }
+
+  .标题 > span {
+    color: #ead4b1;
+  }
+
+  .进度轨 > i {
+    box-shadow: 0 0 6px #8acbff66;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .画布 > img,
+  .柔光,
+  .红芯光效,
+  .羽屑 {
+    transition:
+      -webkit-mask-position 1.2s ease,
+      mask-position 1.2s ease,
+      opacity 1.2s ease,
+      filter 1.2s ease;
+  }
+
+  .进度轨 > i {
+    transition: width 1.2s ease;
+  }
+
+  .已达成[aria-busy='false'] .柔光 > i {
+    animation: baj-aura-breathe 7.6s ease-in-out -3s infinite;
+  }
+
+  .光环 {
+    animation: baj-halo-breathe 6.8s ease-in-out -2.1s infinite;
+  }
+
+  .进度条[aria-busy='false'] .红芯 {
+    animation: baj-core-glow 5.6s ease-in-out -1.3s infinite;
+  }
+
+  .羽屑 > i {
+    animation: baj-spark-drift calc(6s + var(--baj-spark) * 0.3s) linear infinite;
+    animation-delay: calc(var(--baj-spark) * -1.7s);
+  }
+}
+
+@keyframes baj-aura-breathe {
+  50% {
+    transform: scaleY(1.08);
+    opacity: 0.6;
+  }
+}
+
+@keyframes baj-halo-breathe {
+  50% {
+    transform: scale(1.08);
+    opacity: 0.36;
+  }
+}
+
+@keyframes baj-core-glow {
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.18;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.95;
+  }
+}
+
+@keyframes baj-spark-drift {
+  from {
+    transform: translate(0, 2px) rotate(-18deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.3;
+  }
+  to {
+    transform: translate(calc(22px + var(--baj-spark) * 1.5px), -14px) rotate(-8deg);
+    opacity: 0;
+  }
+}
+
+@container dragon-stair (max-width: 580px) {
+  .进度条 {
+    flex-basis: 100%;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    margin-top: 12px;
+  }
+}

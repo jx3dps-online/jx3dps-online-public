@@ -1,8 +1,9 @@
 import { 装备属性信息模型, 装备位置部位枚举, 装备类型枚举 } from '@/@types/装备'
 import { 属性类型 } from '@/@types/属性'
-import { generateCombinations } from './工具函数/附魔排列组合'
+import { 生成加速附魔模型 } from '@/数据/附魔/组合'
 import { closestCombinations } from './工具函数/加速方案'
 import { 精炼加成系数 } from '@/数据/常量'
+import { 循环数据 } from '@/@types/循环'
 
 self.onmessage = (event) => {
   const { data } = event // 获取传入的数据
@@ -19,15 +20,19 @@ interface 规划加速函数类型 {
   计算范围: string[]
   装备类型: 装备类型枚举[]
   包含蓝色附魔小药: boolean
+  过滤精品及挑战附魔: boolean
   当前数据: any
+  当前循环信息?: 循环数据
 }
 
 export interface 加速数据类型 {
+  五彩石名称?: string
   id: string | number // 唯一id
   label: string // 用于展示的名字
   value: number // 提供加速值
   type: string // 计算类型 相同类型不可重复选择
   equip?: any // 额外数据
+  附魔分配?: Record<string, number>
 }
 
 const 规划加速函数 = (props: 规划加速函数类型) => {
@@ -39,7 +44,9 @@ const 规划加速函数 = (props: 规划加速函数类型) => {
     装备类型,
     品级范围,
     包含蓝色附魔小药 = false,
+    过滤精品及挑战附魔 = false,
     当前数据,
+    当前循环信息,
   } = props
   const 锁定装备加速总和 = 获取锁定装备加速总和(锁定装备)
   const 实际目标加速 = 目标加速 - 锁定装备加速总和
@@ -52,14 +59,21 @@ const 规划加速函数 = (props: 规划加速函数类型) => {
 
     计算范围?.forEach((范围) => {
       if (范围 === '五彩石') {
-        const 五彩石最终数据 = 获取五彩石加速情况分类(当前数据)
+        const 五彩石最终数据 = 获取五彩石加速情况分类(
+          当前数据,
+          !!当前循环信息?.额外配置信息?.潮生每秒回复,
+        )
         最终计算加速总数组 = 最终计算加速总数组?.concat(五彩石最终数据)
       } else if (范围 === '装备') {
         const 装备最终数据 = 获取装备加速模型(当前数据, 包含装备部位, 品级范围, 装备类型)
         最终计算加速总数组 = 最终计算加速总数组?.concat(装备最终数据)
       } else if (范围 === '附魔') {
-        const 包含挑战暗器附魔 = 计算范围?.includes('挑战附魔')
-        const 附魔最终数据 = 获取附魔加速模型(当前数据, 包含蓝色附魔小药, 包含挑战暗器附魔)
+        const 附魔最终数据 = 生成加速附魔模型(
+          当前数据.附魔 || [],
+          包含蓝色附魔小药,
+          锁定装备.flatMap((装备) => (装备.装备部位 ? [装备.装备部位] : [])),
+          过滤精品及挑战附魔,
+        )
         最终计算加速总数组 = 最终计算加速总数组?.concat(附魔最终数据)
       } else if (范围 === '小药') {
         const 小药最终数据 = 获取小药加速模型(当前数据, 包含蓝色附魔小药)
@@ -67,17 +81,25 @@ const 规划加速函数 = (props: 规划加速函数类型) => {
       } else if (范围 === '家园酒') {
         const 家园酒最终数据 = 获取家园酒加速模型(当前数据, 包含蓝色附魔小药)
         最终计算加速总数组 = 最终计算加速总数组?.concat(家园酒最终数据)
-      } else if (范围 === '挑战附魔') {
-        const 挑战附魔最终数据 = 获取挑战附魔加速模型(当前数据)
-        最终计算加速总数组 = 最终计算加速总数组?.concat(挑战附魔最终数据)
-      } else if (范围 === '阆风仙玉附魔') {
-        const 阆风仙玉附魔最终数据 = 获取阆风仙玉附魔加速模型(当前数据)
-        最终计算加速总数组 = 最终计算加速总数组?.concat(阆风仙玉附魔最终数据)
       }
     })
 
     try {
       const 获取所有组合 = closestCombinations(最终计算加速总数组, 实际目标加速, 100)
+      if (当前循环信息?.额外配置信息?.潮生每秒回复 && 计算范围.includes('五彩石')) {
+        const 潮生五彩石 = 当前数据.五彩石[6][0] || 当前数据.五彩石[5][0]
+        获取所有组合.forEach((结果) => {
+          if (!结果.组合.some((项) => 项.type === '五彩石')) {
+            结果.组合.push({
+              id: `五彩石_${潮生五彩石.五彩石名称}`,
+              label: 潮生五彩石.五彩石名称,
+              五彩石名称: 潮生五彩石.五彩石名称,
+              value: 0,
+              type: '五彩石',
+            })
+          }
+        })
+      }
       if (!获取所有组合?.length) {
         return {
           错误信息: '当前计算范围无法满足加速目标',
@@ -97,15 +119,17 @@ const 规划加速函数 = (props: 规划加速函数类型) => {
   }
 }
 
-const 获取五彩石加速情况分类 = (当前数据) => {
+const 获取五彩石加速情况分类 = (当前数据, 需要潮生: boolean) => {
   const { 五彩石 } = 当前数据
   const 六级五彩石 = 五彩石?.[6]
   const res = {}
+  const 名称映射 = {}
   六级五彩石?.forEach((五彩石) => {
     if (五彩石?.五彩石名称?.includes('急速')) {
       五彩石?.装备增益?.forEach((增益, 索引) => {
         if (增益?.增益类型 === 属性类型.加速等级) {
           res[索引 + 1] = 增益?.增益数值
+          名称映射[索引 + 1] = 五彩石.五彩石名称
         }
       })
     }
@@ -118,6 +142,7 @@ const 获取五彩石加速情况分类 = (当前数据) => {
       label: map[key],
       value: res[key],
       type: '五彩石',
+      五彩石名称: 需要潮生 ? 名称映射[key] : undefined,
     })
   })
   return obj
@@ -169,95 +194,6 @@ const 获取家园酒加速模型 = (当前数据, 包含蓝色附魔小药) => 
       value: 小药?.增益集合?.[0]?.值,
       type: 小药?.小吃部位,
     }
-  })
-  return res
-}
-
-const 获取挑战附魔加速模型 = (当前数据) => {
-  const { 附魔 } = 当前数据
-
-  let 加速附魔数据: number[] = 附魔
-    ?.filter((附魔) => {
-      return 附魔?.附魔名称?.includes('加速') && 附魔?.挑战附魔
-    })
-    ?.map((item) => item?.增益集合?.[0]?.值)
-
-  const 挑战附魔数值 = [...加速附魔数据]
-  加速附魔数据 = [...加速附魔数据, 0]
-  const 附魔排列组合 = generateCombinations(加速附魔数据, 1)
-  const res: 加速数据类型[] = []
-  附魔排列组合?.forEach((组合) => {
-    const 加速值 = sumArray(组合)
-    const 挑战附魔数量 = countOccurrences(组合, 挑战附魔数值?.[0], 挑战附魔数值?.[1])
-    const 组合名称 = `${挑战附魔数量}个挑战附魔`
-    res.push({
-      id: `挑战附魔_${组合名称}`,
-      label: `${组合名称}`,
-      value: 加速值,
-      type: '挑战附魔',
-    })
-  })
-  return res
-}
-
-const 获取阆风仙玉附魔加速模型 = (当前数据) => {
-  const { 附魔 } = 当前数据
-
-  let 加速附魔数据: number[] = 附魔
-    ?.filter((附魔) => {
-      return 附魔?.附魔名称?.includes('加速') && 附魔?.阆风仙玉
-    })
-    ?.map((item) => item?.增益集合?.[0]?.值)
-
-  const 阆风仙玉附魔数值 = [...加速附魔数据]
-  加速附魔数据 = [...加速附魔数据, 0]
-  const 附魔排列组合 = generateCombinations(加速附魔数据, 1)
-  const res: 加速数据类型[] = []
-  附魔排列组合?.forEach((组合) => {
-    const 加速值 = sumArray(组合)
-    const 阆风仙玉附魔数量 = countOccurrences(组合, 阆风仙玉附魔数值?.[0], 阆风仙玉附魔数值?.[1])
-    const 组合名称 = `${阆风仙玉附魔数量}个阆风仙玉附魔`
-    res.push({
-      id: `阆风仙玉附魔_${组合名称}`,
-      label: `${组合名称}`,
-      value: 加速值,
-      type: '阆风仙玉附魔',
-    })
-  })
-  return res
-}
-
-const 获取附魔加速模型 = (当前数据, 包含蓝色附魔小药, 包含挑战暗器附魔) => {
-  const { 附魔 } = 当前数据
-
-  let 加速附魔数据: number[] = 附魔
-    ?.filter((附魔) => {
-      return 附魔?.附魔名称?.includes('加速') && !附魔?.挑战附魔 && !附魔?.阆风仙玉
-    })
-    ?.map((item) => item?.增益集合?.[0]?.值)
-
-  const 紫色数值 = Math.max(...加速附魔数据)
-  const 蓝色数值 = Math.min(...加速附魔数据)
-  if (!包含蓝色附魔小药) {
-    加速附魔数据 = [紫色数值]
-  }
-  加速附魔数据 = [...加速附魔数据, 0]
-  const 计算部位 = 包含挑战暗器附魔 ? 2 : 3
-  const 附魔排列组合 = generateCombinations(加速附魔数据, 计算部位)
-  const res: 加速数据类型[] = []
-  附魔排列组合?.forEach((组合) => {
-    const 加速值 = sumArray(组合)
-    const 紫色数量 = countOccurrences(组合, 紫色数值)
-    const 蓝色数量 = countOccurrences(组合, 蓝色数值)
-    const 组合名称 = `${紫色数量 ? `${紫色数量}个紫色附魔` : ''}${紫色数量 && 蓝色数量 ? '+' : ''}${
-      蓝色数量 ? `${蓝色数量}个蓝色附魔` : ''
-    }`
-    res.push({
-      id: `附魔_${组合名称}`,
-      label: `${组合名称}`,
-      value: 加速值,
-      type: '附魔',
-    })
   })
   return res
 }
@@ -329,18 +265,16 @@ const 获取锁定装备加速总和 = (锁定装备: 装备属性信息模型[]
 
 export default 规划加速函数
 
-function sumArray(arr) {
+function sumArray(arr: number[]): number {
   let total = 0
   arr.forEach((num) => (total += num))
   return total
 }
 
-function countOccurrences(arr, num, num2?) {
+function countOccurrences(arr: number[], 数值集合: number[]): number {
   let count = 0
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === num) {
-      count++
-    } else if (num2 && arr[i] === num2) {
+    if (数值集合?.includes(arr[i])) {
       count++
     }
   }
@@ -364,6 +298,6 @@ const 获取最大精炼等级 = (data?: 装备属性信息模型) => {
 /**
  * @name 精炼加成系数算法
  */
-const 精炼加成系数算法 = (基础, 等级) => {
+const 精炼加成系数算法 = (基础: number, 等级: number): number => {
   return 基础 + Math.round(基础 * 精炼加成系数[等级])
 }

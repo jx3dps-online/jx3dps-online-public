@@ -1,0 +1,63 @@
+@media (max-width: 760px) {
+  .标题行 {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+
+    :global(.wucaishi-value) {
+      position: static;
+      width: auto;
+      min-width: 0;
+      height: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 13px;
+      line-height: 22px;
+      text-align: right;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .标题 {
+    color: var(--ant-primary-color);
+    font-weight: 600;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) and (any-pointer: coarse) {
+  .标题行 {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+
+    :global(.wucaishi-value) {
+      position: static;
+      width: auto;
+      min-width: 0;
+      height: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 13px;
+      line-height: 22px;
+      text-align: right;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .标题 {
+    color: var(--ant-primary-color);
+    font-weight: 600;
+  }
+}

@@ -1,14 +1,13 @@
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 秒伤计算 } from '@/计算模块/计算函数'
 import React, { useContext } from 'react'
 import styles from './index.module.less'
 import { 小吃类型枚举 } from '@/@types/枚举'
 import ExportContext from '../context'
 
-const { 阵眼, 小药小吃 } = 获取当前数据()
-
 const 配装推荐 = () => {
+  const { 阵眼, 小药小吃 } = use心法数据()
   const { 当前装备信息 } = useContext(ExportContext)
 
   const 增益数据 = useAppSelector((state) => state?.data?.增益数据)

@@ -10,7 +10,7 @@
   width: 90px;
 }
 
-.xiangqian-item + .xiangqian-item{
+.xiangqian-item + .xiangqian-item {
   margin-left: 12px;
 }
 
@@ -41,4 +41,39 @@
 
 .xiangqian-number-8 {
   color: #f90;
+}
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .xiangqian-select-wrap {
+    width: 100%;
+    gap: 4px;
+  }
+  .xiangqian-item {
+    flex: 1;
+    gap: 4px;
+    width: auto;
+    max-width: 90px;
+    min-width: 0;
+  }
+  .xiangqian-item + .xiangqian-item {
+    margin-left: 0;
+  }
+  .xiangqian-label {
+    flex: 0 1 auto;
+    min-width: 0;
+    margin-right: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+  }
+  .xiangqian-select.ant-select.ant-select-in-form-item {
+    flex: 0 1 40px;
+    width: 40px;
+    min-width: 38px;
+  }
+  .xiangqian-select.ant-select.ant-select-in-form-item .ant-select-selector {
+    /* padding-inline: 4px; */
+  }
+  .xiangqian-select.ant-select.ant-select-in-form-item .ant-select-arrow {
+    right: 4px;
+  }
 }

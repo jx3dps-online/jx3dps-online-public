@@ -8,7 +8,6 @@ import type { 循环数据 } from '@/@types/循环'
 // 循环
 import 紫武 from './紫武.json'
 import 橙武 from './橙武.json'
-import 橙武带斩杀 from './橙武带斩杀.json'
 // import 金刚 from './金刚.json'
 
 // const 均摊计算数据 = {
@@ -25,6 +24,6 @@ import 橙武带斩杀 from './橙武带斩杀.json'
 // ]),
 // }
 
-const 计算循环: 循环数据[] = [紫武, 橙武, 橙武带斩杀] as 循环数据[]
+const 计算循环: 循环数据[] = [紫武, 橙武] as 循环数据[]
 
 export default 计算循环

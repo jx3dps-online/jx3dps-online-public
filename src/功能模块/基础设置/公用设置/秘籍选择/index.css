@@ -1,7 +1,3 @@
-.miji-set-button {
-  width: calc(50% - 4px);
-}
-
 .miji-selected-item {
   margin-bottom: 16px;
 }
@@ -10,10 +6,47 @@
   font-size: 16px;
   color: var(--ant-primary-color);
   font-weight: 600;
-  margin-bottom:8px;
+  margin-bottom: 8px;
 }
 
 .miji-selected-item .ant-checkbox-group {
   display: block;
   width: 100%;
+}
+
+.miji-drawer-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.miji-drawer-dps {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.65);
+  white-space: nowrap;
+}
+
+.miji-drawer-dps-label,
+.miji-drawer-dps-arrow {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.miji-drawer-dps-percent {
+  font-size: 12px;
+}
+
+.cycle-miji-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cycle-miji-btn-img {
+  width: 22px;
+  height: 22px;
+  margin-right: 0px;
 }

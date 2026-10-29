@@ -15,9 +15,11 @@ interface BuffProps {
 
 function Buff(props: BuffProps) {
   const { title, buff列表, DOT列表 = {}, 当前时间点 } = props
-  const 需要隐藏的BUFF列表 = ['盾刀标记', '盾击标记', '麟光计数', '血怒连按标记',]
-  const 当前buff列表 = Object.keys(buff列表).map((item) => buff列表[item])
-    .filter(item => !需要隐藏的BUFF列表.includes(item.名称))
+  // 麟光计数：业火麟光已从奇穴列表移除，注释保留
+  const 需要隐藏的BUFF列表 = ['盾刀二段标记', '盾刀三段标记', '盾击标记', '血怒连按标记']
+  const 当前buff列表 = Object.keys(buff列表)
+    .map((item) => buff列表[item])
+    .filter((item) => !需要隐藏的BUFF列表.includes(item.名称))
 
   const 当前Dot列表 = Object.keys(DOT列表)
     .map((item) => {
@@ -49,60 +51,62 @@ function Buff(props: BuffProps) {
       <Space className={'cycle-status-bar-buff-list'} size={[8, 8]} wrap>
         {当前buff列表?.length
           ? 当前buff列表.map((item) => {
-            const 应该消失时间 = (item.刷新时间 || 0) + (item.最大持续时间 || 0)
-            const 剩余时间 = 应该消失时间 - 当前时间点 || 0
-            const 剩余时间秒 = (剩余时间 / 每秒郭氏帧).toFixed(1)
-            const 层数 = item.当前层数 || 0
-            return (
-              <div className={'cycle-status-bar-buff'} key={item.名称}>
-                <div className={'cycle-status-bar-buff-item'}>
-                  <Tooltip title={`${item.名称}${层数 > 1 ? `${层数}层` : ''}`}>
-                    <img className={'cycle-status-bar-buff-img'} src={item.图标} />
-                  </Tooltip>
-                  {层数 > 1 ? (
-                    <span className={'cycle-status-bar-buff-count'}>{item.当前层数}</span>
-                  ) : null}
-                </div>
-                <p
-                  className={`cycle-status-bar-buff-second ${剩余时间 < 每秒郭氏帧 * 2 ? 'cycle-status-bar-buff-second-limit' : ''
+              const 应该消失时间 = (item.刷新时间 || 0) + (item.最大持续时间 || 0)
+              const 剩余时间 = 应该消失时间 - 当前时间点 || 0
+              const 剩余时间秒 = (剩余时间 / 每秒郭氏帧).toFixed(1)
+              const 层数 = item.当前层数 || 0
+              return (
+                <div className={'cycle-status-bar-buff'} key={item.名称}>
+                  <div className={'cycle-status-bar-buff-item'}>
+                    <Tooltip title={`${item.名称}${层数 > 1 ? `${层数}层` : ''}`}>
+                      <img className={'cycle-status-bar-buff-img'} src={item.图标} />
+                    </Tooltip>
+                    {层数 > 1 ? (
+                      <span className={'cycle-status-bar-buff-count'}>{item.当前层数}</span>
+                    ) : null}
+                  </div>
+                  <p
+                    className={`cycle-status-bar-buff-second ${
+                      剩余时间 < 每秒郭氏帧 * 2 ? 'cycle-status-bar-buff-second-limit' : ''
                     }`}
-                >
-                  {剩余时间秒}
-                </p>
-              </div>
-            )
-          })
+                  >
+                    {剩余时间秒}
+                  </p>
+                </div>
+              )
+            })
           : null}
         {当前Dot列表?.length
           ? 当前Dot列表.map((item) => {
-            const 剩余时间秒 = item?.剩余时间秒
-            const 层数 = item?.层数
-            return (
-              <div className={'cycle-status-bar-buff'} key={item.名称}>
-                <div className={'cycle-status-bar-buff-item'}>
-                  <Tooltip
-                    title={
-                      <div>
-                        <p>{`${item.名称}${层数 > 1 ? `${层数}层` : ''}`}</p>
-                        <p>{item.备注}</p>
-                      </div>
-                    }
-                  >
-                    <img className={'cycle-status-bar-buff-img'} src={item.图标} />
-                  </Tooltip>
-                  {层数 > 1 ? (
-                    <span className={'cycle-status-bar-buff-count'}>{层数}</span>
-                  ) : null}
-                </div>
-                <p
-                  className={`cycle-status-bar-buff-second ${item?.剩余时间 < 每秒郭氏帧 * 2 ? 'cycle-status-bar-buff-second-limit' : ''
+              const 剩余时间秒 = item?.剩余时间秒
+              const 层数 = item?.层数
+              return (
+                <div className={'cycle-status-bar-buff'} key={item.名称}>
+                  <div className={'cycle-status-bar-buff-item'}>
+                    <Tooltip
+                      title={
+                        <div>
+                          <p>{`${item.名称}${层数 > 1 ? `${层数}层` : ''}`}</p>
+                          <p>{item.备注}</p>
+                        </div>
+                      }
+                    >
+                      <img className={'cycle-status-bar-buff-img'} src={item.图标} />
+                    </Tooltip>
+                    {层数 > 1 ? (
+                      <span className={'cycle-status-bar-buff-count'}>{层数}</span>
+                    ) : null}
+                  </div>
+                  <p
+                    className={`cycle-status-bar-buff-second ${
+                      item?.剩余时间 < 每秒郭氏帧 * 2 ? 'cycle-status-bar-buff-second-limit' : ''
                     }`}
-                >
-                  {剩余时间秒}
-                </p>
-              </div>
-            )
-          })
+                  >
+                    {剩余时间秒}
+                  </p>
+                </div>
+              )
+            })
           : null}
         {!当前buff列表?.length && !当前Dot列表?.length ? (
           <p className={'cycle-buff-empty'}>无</p>

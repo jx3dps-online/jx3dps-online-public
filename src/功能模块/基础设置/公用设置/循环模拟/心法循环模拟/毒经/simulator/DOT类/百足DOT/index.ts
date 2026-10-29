@@ -116,4 +116,4 @@ class 百足DOT extends 通用DOT类 {
 
 export default 百足DOT
 
-export const 百足DOT类型 = typeof 百足DOT
+export type 百足DOT类型 = 百足DOT

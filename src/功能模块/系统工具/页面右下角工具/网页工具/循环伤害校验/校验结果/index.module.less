@@ -1,0 +1,83 @@
+.item {
+  border-bottom: 1px solid #E5E5E5;
+  &.canHover {
+    cursor: pointer;
+    &:hover {
+      .header {
+        background-color: #F5F5F5;
+      }
+    }
+  }
+}
+
+.header {
+  transition: .2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+}
+
+.num {
+  margin-left: 8px;
+  font-size: 16px;
+  color: #F34242;
+  font-weight: 500;
+  &.success {
+    color: #0ab559;
+  }
+  &.warning {
+    color: #fa7528
+  }
+}
+
+.error {
+  color: #F34242;
+}
+
+.success {
+  color: #0ab559;
+}
+
+.warning {
+  color: #fa7528
+}
+
+.expand {
+  padding: 8px 8px 16px 16px;
+}
+
+.expandTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #F34242;
+  margin-bottom: 4px;
+}
+
+.expandItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  span + span {
+    padding-left: 8px;
+  }
+}
+
+.expandItemError {
+  color: #F34242;
+  font-weight: 500;
+}
+
+.tip {
+  color: #F34242;
+  font-weight: 500;
+  margin-bottom: 4px;
+}

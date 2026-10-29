@@ -1,5 +1,5 @@
 // 技能循环显示技能单元
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { Badge, Dropdown, Space, Tooltip } from 'antd'
 import { CloseCircleFilled } from '@ant-design/icons'
 import classNames from 'classnames'
@@ -10,6 +10,7 @@ import 多段倒读条作用次数弹窗 from '../../../../通用/通用组件/�
 import 团队覆盖高亮 from '../../../../通用/通用组件/循环技能显示组件/团队覆盖高亮'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import BuffItem from './BuffItem'
+import { use联动悬停 } from '../../../../通用/通用组件/战斗曲线弹窗/use联动悬停'
 import styles from './index.module.less'
 
 interface CycleSkillItemProps {
@@ -66,8 +67,13 @@ function CycleSkillItem(props: CycleSkillItemProps) {
 
   const [多段作用次数弹窗, 修改多段作用次数弹窗] = useState(false)
 
+  const { 进入联动, 清除联动 } = use联动悬停(技能释放时间)
+
+  const 是否设置了buff标记 = useRef(false)
+
   const 判断有无重要buff标记 = () => {
     if (技能释放结果?.造成buff数据?.buff名称) {
+      是否设置了buff标记.current = true
       更新buff覆盖数据(
         [技能释放结果?.造成buff数据?.buff开始时间, 技能释放结果?.造成buff数据?.buff结束时间],
         技能索引,
@@ -135,6 +141,10 @@ function CycleSkillItem(props: CycleSkillItemProps) {
   }
 
   const 卸除重要buff标记 = () => {
+    if (!是否设置了buff标记.current) {
+      return
+    }
+    是否设置了buff标记.current = false
     更新buff覆盖数据([], 0)
   }
 
@@ -263,8 +273,14 @@ function CycleSkillItem(props: CycleSkillItemProps) {
       <Dropdown menu={{ items: 下拉菜单, onClick: beforeOnClick }} trigger={['contextMenu']}>
         <div
           className={cls + `${判断橙武技能()}`}
-          onMouseEnter={判断有无重要buff标记}
-          onMouseLeave={卸除重要buff标记}
+          onMouseEnter={() => {
+            判断有无重要buff标记()
+            进入联动()
+          }}
+          onMouseLeave={() => {
+            卸除重要buff标记()
+            清除联动()
+          }}
         >
           <Tooltip
             title={

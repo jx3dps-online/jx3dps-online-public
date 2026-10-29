@@ -1,17 +1,17 @@
+import { 获取附魔显示名称 } from '@/数据/附魔/查询'
 import React, { useContext } from 'react'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 装备位置部位枚举, 装备增益类型, 装备属性信息模型, 装备类型枚举 } from '@/@types/装备'
 import 图标 from '@/数据/静态数据/图标.json'
 import styles from './index.module.less'
 import ExportContext from '../context'
-import { 获取装备数据描述 } from '../../装备选择/装备部位选择'
+import { 获取装备数据描述 } from '../../../工具函数/获取装备数据描述'
 import { 属性简写枚举 } from '@/@types/枚举'
 import classNames from 'classnames'
 import ImageComponent from '@/组件/图片展示'
 
-const { 装备数据, 五彩石 } = 获取当前数据()
-
 const 装备区 = () => {
+  const { 装备数据, 五彩石 } = use心法数据()
   const { 当前装备信息 } = useContext(ExportContext)
   const 五彩石等级 = 当前装备信息?.五彩石?.includes('陆') ? 6 : 5
   const 五彩石图标 = 五彩石等级 === 6 ? 图标?.六级五彩石 : 图标?.五级五彩石
@@ -57,7 +57,7 @@ const 装备区 = () => {
                         styles.descTip,
                         item === '精简' ? styles.jingjian : '',
                         item === '特效' ? styles.texiao : '',
-                        item === 'PVX' ? styles.pvx : ''
+                        item === 'PVX' ? styles.pvx : '',
                       )
                       return (
                         <span className={cls} key={`导出装备_特征_${装备?.id}_${index}_${item}`}>
@@ -79,7 +79,7 @@ const 装备区 = () => {
                       styles.descTip,
                       item === '精简' ? styles.jingjian : '',
                       item === '特效' ? styles.texiao : '',
-                      item === 'PVX' ? styles.pvx : ''
+                      item === 'PVX' ? styles.pvx : '',
                     )
                     return (
                       <span className={cls} key={`导出装备_${装备?.id}_${index}_${item}`}>
@@ -106,7 +106,7 @@ const 装备区 = () => {
             <div className={styles.gainWrap}>
               <div className={styles.gain}>
                 <img className={styles.gainIcon} src={图标?.附魔} />
-                {当前装备?.附魔?.replace('+', ' +')}
+                {获取附魔显示名称(当前装备?.附魔).replace('+', ' +')}
               </div>
               <div className={styles.gainContent}>
                 {是否有大附魔 ? (

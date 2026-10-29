@@ -1,3 +1,4 @@
+import { 获取附魔显示名称 } from '@/数据/附魔/查询'
 // 一键设置最佳附魔
 import { App, Button, Checkbox, Col, Divider, Modal, Row, message } from 'antd'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
@@ -7,19 +8,35 @@ import { RiseOutlined } from '@ant-design/icons'
 import { 角色基础属性类型 } from '@/@types/角色'
 import { 秒伤计算 } from '@/计算模块/计算函数'
 import { 装备位置部位枚举 } from '@/@types/装备'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 数据埋点 } from '@/工具函数/tools/log'
+import type { 计算循环覆盖类型 } from '@/计算模块/计算函数'
 
 import 根据装备信息获取基础属性 from '../../工具函数/根据装备信息获取基础属性'
+import { 根据部位索引获取装备 } from '../../工具函数/装备表单转换'
 import { 修改装备属性, 初始化所有组合 } from './util'
 import './index.css'
 
-const { 性能功能关闭数组, 名称: 心法名称 } = 获取当前数据()
 const 全部部位: 装备位置部位枚举[] = Object.keys(装备位置部位枚举) as 装备位置部位枚举[]
 
-function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信息 }) {
+function 最佳附魔设置({
+  一键替换附魔,
+  对比秒伤,
+  对比装备信息,
+  循环覆盖,
+  部位选择弹窗展示,
+  on部位选择弹窗展示Change,
+}: {
+  一键替换附魔: any
+  对比秒伤: number
+  对比装备信息: any
+  循环覆盖?: 计算循环覆盖类型
+  部位选择弹窗展示: boolean
+  on部位选择弹窗展示Change: (open: boolean) => void
+}) {
+  const { 性能功能关闭数组, 名称: 心法名称 } = use心法数据()
   const [open, setOpen] = useState<boolean>(false)
-  const [部位选择弹窗, 更新部位选择弹窗] = useState<boolean>(false)
+  const 更新部位选择弹窗 = on部位选择弹窗展示Change
   const [最大组合, 更新最大组合] = useState<any>({})
   const [最大Dps, 更新最大秒伤] = useState<number>(0)
   const [计算用时, 更新计算用时] = useState<number>(0)
@@ -28,7 +45,7 @@ function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信�
 
   const [当前选择计算部位, 更新当前选择计算部位] = useState<装备位置部位枚举[]>(全部部位)
 
-  const [过滤挑战附魔, 更新过滤挑战附魔] = useState<boolean>(false)
+  const [过滤精品及挑战附魔, 更新过滤精品及挑战附魔] = useState<boolean>(false)
 
   const 是否选择部分 = useMemo(() => {
     return !!(当前选择计算部位?.length && 当前选择计算部位?.length < 全部部位?.length)
@@ -44,7 +61,7 @@ function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信�
 
   useEffect(() => {
     初始化(当前选择计算部位)
-  }, [对比装备信息, 当前选择计算部位, 过滤挑战附魔])
+  }, [对比装备信息, 当前选择计算部位, 过滤精品及挑战附魔])
 
   const 当前附魔信息 = useMemo(() => {
     const res: any[] = []
@@ -53,15 +70,13 @@ function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信�
       const 列表 = 对比装备信息?.装备列表
       Object.keys(最大组合).forEach((key) => {
         const 装备位置 = 装备位置部位枚举[key]
-        const 当前附魔 = 列表?.find((item) => item?.装备部位 === 装备位置)?.附魔 || ''
+        const 当前附魔 = 根据部位索引获取装备(列表, key)?.附魔 || ''
         res.push({
           部位: 装备位置,
           附魔: 当前附魔,
         })
 
-        const 附魔属性 = Object.keys(最大组合[key])?.[0]
-        const 附魔值 = Object.values(最大组合[key])?.[0]
-        if (当前附魔 !== `${附魔属性}+${附魔值}`) {
+        if (当前附魔 !== 最大组合[key]) {
           不同部位.push(key)
         }
       })
@@ -74,8 +89,9 @@ function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信�
 
   // 先根据当前的附魔列表，计算出最后计算dps时所需要的排列组合
   const 初始化 = (计算部位) => {
-    const res = 初始化所有组合(计算部位, 过滤挑战附魔)
-    获取当前装备信息去除附魔加成的面板(计算部位)
+    const 有效计算部位 = 计算部位.filter((key) => 根据部位索引获取装备(对比装备信息?.装备列表, key))
+    const res = 初始化所有组合(有效计算部位, 过滤精品及挑战附魔)
+    获取当前装备信息去除附魔加成的面板(有效计算部位)
     dataRef.current = res
   }
 
@@ -124,6 +140,7 @@ function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信�
               ...对比装备信息,
               装备基础属性: 修改后装备属性,
             } as any,
+            ...循环覆盖,
             计算技能详情: false,
           }),
         )
@@ -153,18 +170,10 @@ function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信�
 
   return (
     <>
-      <Button
-        type='primary'
-        size='small'
-        style={{ marginLeft: 12 }}
-        onClick={() => 更新部位选择弹窗(true)}
-      >
-        一键设置附魔
-      </Button>
       <Modal
         title={'需计算的附魔部位'}
         // centered
-        open={部位选择弹窗}
+        open={部位选择弹窗展示}
         width={460}
         okText={'计算选中部位'}
         onOk={() => {
@@ -176,11 +185,11 @@ function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信�
         <div className={'max-fumo-all-check'}>
           <Checkbox
             onChange={(e) => {
-              更新过滤挑战附魔(e.target.checked)
+              更新过滤精品及挑战附魔(e.target.checked)
             }}
-            checked={过滤挑战附魔}
+            checked={过滤精品及挑战附魔}
           >
-            过滤挑战附魔
+            过滤精品及挑战附魔
           </Checkbox>
           <Checkbox
             indeterminate={是否选择部分}
@@ -244,7 +253,7 @@ function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信�
                 return (
                   <div className={`max-fumo-item`} key={`${item?.部位}_${index}`}>
                     <span className='max-fumo-label'>{item?.部位}</span>
-                    <span className='max-fumo-value'>{item?.附魔}</span>
+                    <span className='max-fumo-value'>{获取附魔显示名称(item?.附魔)}</span>
                   </div>
                 )
               })}
@@ -258,8 +267,7 @@ function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信�
             </h1>
             <div>
               {Object.keys(最大组合).map((key) => {
-                const 附魔属性 = Object.keys(最大组合[key])?.[0]
-                const 附魔值 = Object.values(最大组合[key])?.[0]
+                const 附魔名称 = 获取附魔显示名称(最大组合[key])
                 return (
                   <div
                     className={`max-fumo-item ${
@@ -268,7 +276,7 @@ function 最佳附魔设置({ 一键替换附魔, 对比秒伤, 对比装备信�
                     key={key}
                   >
                     <span className='max-fumo-label'>{装备位置部位枚举[key]}</span>
-                    <span className='max-fumo-value'>{`${附魔属性}+${附魔值}`}</span>
+                    <span className='max-fumo-value'>{附魔名称}</span>
                   </div>
                 )
               })}

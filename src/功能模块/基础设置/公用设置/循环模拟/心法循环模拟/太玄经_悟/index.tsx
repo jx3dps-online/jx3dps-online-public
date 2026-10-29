@@ -31,6 +31,15 @@ import AddCycleSkillModal from './components/AddCycleSkillModal'
 import { 技能伤害详情类型 } from '../../typs'
 import './index.css'
 import CycleSimulatorContext from '../../context'
+import { 战斗曲线面板 } from '../通用/通用组件/战斗曲线弹窗'
+import { use战斗曲线 } from '../通用/通用组件/战斗曲线弹窗/use战斗曲线'
+import { 监听增益类型 } from '../通用/通用组件/战斗曲线弹窗/增益泳道'
+
+// 心法监听增益：爆发 buff 作为泳道展示在战斗曲线上
+const 监听增益列表: 监听增益类型[] = [{ 名称: '杀星增伤', 颜色: '#4159b4' }].map((item) => ({
+  ...item,
+  图标: 原始Buff数据?.[item.名称]?.图标,
+}))
 
 function CycleSimulator() {
   const {
@@ -50,6 +59,7 @@ function CycleSimulator() {
     启用团队增益快照,
     更新启用团队增益快照,
     奇穴信息,
+    秘籍信息,
     自定义循环保存弹窗,
     设置自定义循环保存弹窗,
     添加技能弹窗显示,
@@ -57,6 +67,8 @@ function CycleSimulator() {
     添加设置,
     更新添加设置,
     起手Buff配置,
+    增益启用,
+    当前副本事件实例列表,
   } = useContext(CycleSimulatorContext)
 
   const [模拟信息, 更新模拟信息] = useState<模拟信息类型>({
@@ -81,6 +93,7 @@ function CycleSimulator() {
   })
 
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
+  const 副本事件实例列表 = 当前副本事件实例列表
   // 是否开启武学助手
   const [开启武学助手, 设置开启武学助手] = useState<boolean>(false)
   const dispatch = useAppDispatch()
@@ -105,6 +118,7 @@ function CycleSimulator() {
     开启武学助手,
     启用团队增益快照,
     团队增益轴,
+    副本事件实例列表,
     起手Buff配置,
   ])
 
@@ -125,6 +139,7 @@ function CycleSimulator() {
       开启武学助手,
       启用团队增益快照,
       团队增益轴,
+      副本事件实例列表,
       起手Buff配置,
     })
 
@@ -210,6 +225,20 @@ function CycleSimulator() {
     })
   }
 
+  // 战斗曲线通用逻辑
+  const 战斗曲线 = use战斗曲线({
+    日志信息,
+    总战斗用时帧: 模拟信息?.当前时间 || 0,
+    团队增益轴,
+    副本事件实例列表,
+    启用团队增益快照,
+    增益启用,
+    监听增益列表,
+    日志转循环: getDpsCycle,
+    奇穴信息,
+    秘籍信息,
+  })
+
   // 向循环内新增技能
   const 新增循环技能 = (item: 循环基础技能数据类型) => {
     const newCycle = [...(cycle || []), item]
@@ -287,6 +316,8 @@ function CycleSimulator() {
             启用团队增益快照={启用团队增益快照}
             更新启用团队增益快照={更新启用团队增益快照}
             快速导入默认循环={快速导入默认循环}
+            战斗曲线数据={战斗曲线.曲线数据}
+            on生成战斗曲线={战斗曲线.计算曲线数据}
           />
         }
         centered
@@ -304,6 +335,8 @@ function CycleSimulator() {
             日志信息={日志信息}
             模拟DPS结果={模拟DPS结果}
             模拟函数={simulator}
+            战斗曲线面板展示={战斗曲线.战斗曲线面板展示}
+            切换战斗曲线面板={战斗曲线.切换战斗曲线面板}
           />
           {/* // 循环展示模块 */}
           <循环技能容器组件
@@ -313,6 +346,7 @@ function CycleSimulator() {
             setCycle={setCycle}
             原始Buff数据={原始Buff数据}
             点击下拉菜单={点击下拉菜单}
+            压缩高度={战斗曲线.战斗曲线面板展示 ? 战斗曲线.压缩高度 : 0}
           />
         </div>
         {/* 武学助手技能框 */}
@@ -327,6 +361,18 @@ function CycleSimulator() {
           开启武学助手={开启武学助手}
           设置开启武学助手={设置开启武学助手}
         />
+        {/* 战斗曲线底部滑出面板 */}
+        {战斗曲线.战斗曲线面板展示 ? (
+          <战斗曲线面板
+            open={战斗曲线.战斗曲线面板展示}
+            onClose={() => 战斗曲线.切换战斗曲线面板(false)}
+            曲线数据={战斗曲线.曲线数据}
+            增益泳道列表={战斗曲线.增益泳道列表}
+            onRefresh={战斗曲线.计算曲线数据}
+            高度={战斗曲线.面板高度}
+            on高度变化={战斗曲线.设置面板高度}
+          />
+        ) : null}
         {/* 保存自定义循环弹窗 */}
         <保存自定义循环弹窗
           自定义循环保存弹窗={自定义循环保存弹窗}

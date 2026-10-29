@@ -44,6 +44,8 @@ export interface 技能类实例集合 {
   银光照雪?: any
   含锋破月?: any
   飞叶满襟?: any
+  折枝拂露?: any
+  折枝留春?: any
   苍棘缚地?: any
   紫叶沉疴?: any
   香繁饮露?: any
@@ -54,9 +56,9 @@ export interface 技能类实例集合 {
   凌然天风?: any
   千枝绽蕊?: any
   千枝伏藏?: any
-  唤醒?: any
-  易命?: any
-  损毁?: any
+  // 唤醒?: any
+  // 易命?: any
+  // 损毁?: any
   // 磁雷外泄?: any
   万灵丹?: any
   通用内力回复?: any
@@ -169,6 +171,7 @@ export interface 循环基础技能数据类型 {
    * 倒读条技能有延迟补偿，不计算延迟
    */
   是否为倒读条技能?: boolean
+  可中断倒读条最大跳数?: number
   /**
    * 说明
    * 鼠标hover展示说明
@@ -182,6 +185,7 @@ export interface 循环基础技能数据类型 {
 
 export interface 额外信息类型 {
   延迟?: number | 'GCD'
+  作用次数?: number
 }
 
 export interface 角色状态信息类型 {
@@ -369,6 +373,7 @@ export interface 技能释放记录数据 {
 }
 
 export interface 技能释放记录结果 {
+  完整伤害段数?: number
   实际伤害技能?: string // 针对造成伤害的实际名称
   伤害段数?: number // 针对行、沧的实际伤害段数
   重要buff列表?: string[] // 影响技能结果的重要buff列表

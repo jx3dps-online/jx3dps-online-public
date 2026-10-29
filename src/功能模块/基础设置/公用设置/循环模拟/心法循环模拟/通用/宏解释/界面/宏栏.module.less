@@ -1,0 +1,214 @@
+.技能栏 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.原技能 {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+.宏栏 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+.警告 {
+  width: min(420px, calc(100vw - 48px));
+}
+.标题 {
+  display: block;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 70px;
+  background: url('https://cdn.arkwish.com/jx3dps/simc/fenlei_20260906_020.png');
+  background-size: cover;
+  writing-mode: vertical-lr;
+  text-align: center;
+  line-height: 24px;
+  color: #fff;
+  font-weight: 500;
+}
+.列表 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 300px;
+}
+.宏 {
+  position: relative;
+  width: 58px;
+  text-align: center;
+}
+.生成中::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  padding: 2px;
+  border-radius: 8px;
+  pointer-events: none;
+  background: linear-gradient(110deg, #315caa 20%, #a7f0ff 40%, #548ee9 60%, #315caa 80%);
+  background-size: 300% 100%;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: macro-generation-glow 1.8s linear infinite;
+}
+.生成暂停::before {
+  animation-play-state: paused;
+  opacity: 0.55;
+}
+@keyframes macro-generation-glow {
+  from {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -150% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .生成中::before {
+    animation: none;
+  }
+}
+.运行按钮 {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  width: 58px;
+  color: inherit;
+}
+.运行按钮:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.图标 {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+.占位图标 {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: #e6f4ff;
+  color: #1677ff;
+}
+.超级宏 .图标 {
+  outline: 2px solid var(--ant-color-warning, #faad14);
+  outline-offset: 2px;
+}
+.名称 {
+  display: block;
+  margin-top: 4px;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.齿轮 {
+  position: absolute;
+  top: 35px;
+  right: -3px;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  border-radius: 50%;
+  background: #4d74aa;
+  color: white;
+  padding: 0;
+  cursor: pointer;
+}
+.新增 {
+  width: 48px;
+  height: 48px;
+  border: 1px dashed #aaa;
+  border-radius: 3px;
+  background: transparent;
+  color: #888;
+  font-size: 24px;
+  cursor: pointer;
+}
+.新增:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.冰心技能栏 {
+  :global(.ztg-cycle-simulator-setting-btn) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  :global(.cycle-add-btn-wrap) {
+    display: block;
+    line-height: 0;
+  }
+  :global(.cycle-add-btn-text) {
+    margin: 4px 0 0;
+    padding-top: 0;
+    line-height: 14px;
+  }
+  .列表 {
+    align-items: flex-start;
+  }
+  .运行按钮 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+  }
+  .图标,
+  .新增 {
+    width: 50px;
+    height: 50px;
+  }
+  .名称 {
+    max-width: 100%;
+    margin: 4px 0 0;
+    line-height: 14px;
+    font-weight: 500;
+  }
+}
+.图标按钮 {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+}
+.图标按钮:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.图标选择 {
+  width: min(560px, calc(100vw - 64px));
+}
+.图标列表 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+  max-height: 220px;
+  overflow: auto;
+}
+.图标选项 {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+}
+.图标选项 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

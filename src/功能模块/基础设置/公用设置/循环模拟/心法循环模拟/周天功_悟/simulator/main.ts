@@ -30,7 +30,8 @@ import 骤风令 from './技能类/骤风令'
 import 一阳化生 from './技能类/一阳化生'
 import 换行 from './技能类/换行'
 import { 团队增益轴类型 } from '@/@types/团队增益'
-import 判断团队增益快照Buff from '@/数据/团队增益/tools'
+import { 副本事件实例类型 } from '@/@types/副本事件'
+import 判断团队增益快照Buff, { 判断副本事件快照Buff } from '@/数据/团队增益/tools'
 import { 起手Buff配置 } from '../../通用/通用框架/类型定义/Buff'
 import { 获取起手Buff配置 } from '../../通用/通用函数'
 import 特效腰坠 from '../../通用/通用技能/特效腰坠'
@@ -46,6 +47,7 @@ interface SimulatorCycleProps {
   开启武学助手: boolean
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
+  副本事件实例列表?: 副本事件实例类型[]
   起手Buff配置?: 起手Buff配置
   起手能量: { 任脉: number; 督脉: number }
 }
@@ -75,11 +77,11 @@ class 循环主类 {
   开启武学助手 = false
   启用团队增益快照 = false
   团队增益轴: 团队增益轴类型 = {}
+  副本事件实例列表: 副本事件实例类型[] = []
   锁神触发次数 = 0
   角色状态信息: 角色状态信息类型 = {
     能量信息: { 任脉: 100, 督脉: 100 },
   }
-
 
   // 初始化创建
   constructor(props: SimulatorCycleProps) {
@@ -98,6 +100,7 @@ class 循环主类 {
 
     this.启用团队增益快照 = !!props.启用团队增益快照
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
+    this.副本事件实例列表 = props.副本事件实例列表 ? props.副本事件实例列表 : []
 
     // 模拟初始化
     this.初始化技能实例类()
@@ -313,7 +316,7 @@ class 循环主类 {
   技能释放后更新运行数据(
     当前技能: 循环基础技能数据类型,
     技能实例: 检查运行数据实例类型,
-    增加CD?: number
+    增加CD?: number,
   ) {
     const 实际增加CD = 增加CD || 当前技能?.技能CD || 0
     if (技能实例?.技能运行数据) {
@@ -345,7 +348,7 @@ class 循环主类 {
     伤害次数 = 1,
     额外增益列表: string[] = [],
     造成时间 = this.当前时间,
-    DOT伤害 = false
+    DOT伤害 = false,
   ) {
     const 对应技能 = 技能系数?.find((item) => item.技能名称 === 来源)
     const 技能增益列表 = 获取技能信息(对应技能)?.技能增益列表 || []
@@ -392,10 +395,12 @@ class 循环主类 {
     let 总增益列表 = 有关的buff列表.concat(额外增益列表)
 
     if (this.启用团队增益快照) {
-      const 团队增益buff列表 = 判断团队增益快照Buff({
-        团队增益轴: this.团队增益轴,
-        判定帧: this.当前时间 || 0,
-      })
+      const 团队增益buff列表 = this.副本事件实例列表?.length
+        ? 判断副本事件快照Buff(this.副本事件实例列表, this.当前时间 || 0)
+        : 判断团队增益快照Buff({
+            团队增益轴: this.团队增益轴,
+            判定帧: this.当前时间 || 0,
+          })
       if (团队增益buff列表?.length) {
         总增益列表 = 总增益列表?.concat(团队增益buff列表)
       }
@@ -438,7 +443,8 @@ class 循环主类 {
         等待CD = this.技能释放前检查运行数据(当前技能, 技能实例, GCD)
       }
     }
-    const 延迟等待 = this.当前时间 ? this.网络延迟 : 0
+    const 已释放有效技能 = this.技能释放记录.some((记录) => 记录.技能名称 !== '换行')
+    const 延迟等待 = 当前技能.技能名称 !== '换行' && 已释放有效技能 ? this.网络延迟 : 0
     const 技能计划释放时间 = this.当前时间 + GCD + 延迟等待
     return {
       技能计划释放时间: 技能计划释放时间,
@@ -451,7 +457,7 @@ class 循环主类 {
     等待CD,
     技能预估释放时间,
     当前技能: 循环基础技能数据类型,
-    技能实例: 检查运行数据实例类型
+    技能实例: 检查运行数据实例类型,
   ) {
     // 判断在处理完特殊事件以后，剩余的待定时间还有多少
     const 时间差 = 技能预估释放时间 - this.当前时间
@@ -673,7 +679,7 @@ class 循环主类 {
 
   删除待生效事件队列(事件名称) {
     const 新待生效事件队列: 待生效事件[] = [...(this.待生效事件队列 || [])].filter(
-      (item) => item.事件名称 !== 事件名称
+      (item) => item.事件名称 !== 事件名称,
     )
     // 由于不确定待生效事件时间分布，重新排序
     新待生效事件队列.sort((a, b) => {
@@ -696,7 +702,7 @@ class 循环主类 {
           const { 技能计划释放时间, 等待CD, 技能预估释放时间 } = this.技能释放前(
             当前技能,
             技能实例,
-            i
+            i,
           )
 
           this.待生效事件结算(技能预估释放时间)
@@ -743,20 +749,20 @@ class 循环主类 {
   获取当前各技能的运行状态() {
     const 各技能当前运行状态 = {}
 
-      ; (Object.keys(this.技能类实例集合) || []).forEach((key) => {
-        各技能当前运行状态[key] = this.技能类实例集合[key]?.技能运行数据 || {}
-      })
+    ;(Object.keys(this.技能类实例集合) || []).forEach((key) => {
+      各技能当前运行状态[key] = this.技能类实例集合[key]?.技能运行数据 || {}
+    })
 
     return 各技能当前运行状态
   }
 
   获取各DOT的运行状态() {
     const DOT运行数据 = {}
-      ; (Object.keys(this.技能类实例集合) || []).forEach((key) => {
-        if (this.技能类实例集合[key]?.DOT运行数据) {
-          DOT运行数据[key] = this.技能类实例集合[key]?.DOT运行数据 || {}
-        }
-      })
+    ;(Object.keys(this.技能类实例集合) || []).forEach((key) => {
+      if (this.技能类实例集合[key]?.DOT运行数据) {
+        DOT运行数据[key] = this.技能类实例集合[key]?.DOT运行数据 || {}
+      }
+    })
     return DOT运行数据
   }
 }

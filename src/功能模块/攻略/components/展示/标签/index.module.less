@@ -1,0 +1,48 @@
+.guide-tag {
+  --guide-tag-color: var(--ant-primary-color);
+  --guide-tag-background: color-mix(in srgb, var(--guide-tag-color) 8%, #fff);
+  --guide-tag-text: #f0f0f0;
+  display: inline-flex;
+  align-items: stretch;
+  vertical-align: middle;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.guide-tag-green {
+  --guide-tag-color: #3a9950;
+  --guide-tag-background: #f4fdf7;
+}
+
+.guide-tag-blue {
+  --guide-tag-color: #488ec7;
+  --guide-tag-background: #f2faff;
+}
+
+.guide-tag-left {
+  background: var(--guide-tag-color);
+  color: var(--guide-tag-text);
+  text-shadow: 0.5px 1px 0.5px rgba(0, 0, 0, 0.25);
+  padding: 2px 4px;
+  border-radius: 4px 0 0 4px;
+  font-size: 0.93em;
+}
+
+.guide-tag-left:only-child {
+  border-radius: 4px;
+}
+
+.guide-tag-right {
+  background: var(--guide-tag-background);
+  color: var(--guide-tag-color);
+  text-shadow: 0.5px 1px 0.5px rgba(0, 0, 0, 0.25);
+  padding: 1px 5px;
+  border: 1px solid var(--guide-tag-color);
+  border-radius: 0 4px 4px 0;
+  font-weight: 500;
+  font-size: 0.93em;
+}
+
+.guide-tag-right:only-child {
+  border-radius: 4px;
+}

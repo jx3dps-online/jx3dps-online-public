@@ -1,11 +1,9 @@
 import { useAppSelector } from '@/hooks'
 import React, { useMemo } from 'react'
 import { 小药小吃数据类型 } from '@/@types/小药小吃'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import 小药小吃选择框 from './小药小吃选择框'
 import './index.css'
-
-const { 小药小吃 = [] } = 获取当前数据()
 
 interface 小吃数据 {
   type: string
@@ -13,6 +11,7 @@ interface 小吃数据 {
 }
 
 function XiaochiXuanze({ 保存数据并计算, 开启智能对比 }) {
+  const { 小药小吃 = [] } = use心法数据()
   const 增益数据 = useAppSelector((state) => state.data.增益数据)
 
   const list: 小吃数据[] = useMemo(() => {
@@ -33,13 +32,13 @@ function XiaochiXuanze({ 保存数据并计算, 开启智能对比 }) {
       }
     })
     return res
-  }, [])
+  }, [小药小吃])
 
   const changeSelectedXiaochi = (e, type) => {
     let newXiaochi = [...(增益数据?.小吃 || [])]
 
     const existTypeXiaochi = (list.find((a) => a?.type === type)?.data || [])?.find((c) =>
-      newXiaochi?.includes(c?.小吃名称)
+      newXiaochi?.includes(c?.小吃名称),
     )
 
     if (existTypeXiaochi) {

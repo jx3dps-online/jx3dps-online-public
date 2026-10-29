@@ -71,3 +71,44 @@
   color: rgba(3, 10, 26, 0.45);
   font-size: 20px;
 }
+
+@media (max-width: 760px), (max-width: 1024px) and (any-pointer: coarse) {
+  .wrap {
+    min-height: clamp(180px, 32vh, 360px);
+    max-height: 60vh;
+    padding: 12px;
+    border-color: #e5e7eb;
+    border-radius: 8px;
+  }
+
+  .settingTurnDrop {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 70px;
+    padding-bottom: 8px;
+  }
+
+  .operate {
+    position: static;
+    width: 100%;
+    margin-top: 8px;
+    opacity: 1;
+    pointer-events: auto;
+    gap: 12px;
+  }
+
+  .operateBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+    margin: 0;
+  }
+
+  .settingTip {
+    margin: 0;
+    font-size: 14px;
+    line-height: 24px;
+  }
+}

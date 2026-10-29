@@ -35,3 +35,13 @@
 .wucaishi-value-6 {
   color: #ff2dff;
 }
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .wucaishi-value {
+    position: static;
+    width: 100%;
+    height: auto;
+    min-height: 26px;
+    margin-top: 8px;
+    overflow-wrap: anywhere;
+  }
+}

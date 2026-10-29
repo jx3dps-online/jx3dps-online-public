@@ -1,0 +1,77 @@
+.加速提示 {
+  width: max-content;
+  max-width: calc(100vw - 24px);
+
+  :global(.ant-popover-inner-content) {
+    overflow-x: auto;
+    color: #e6e6e6;
+  }
+}
+
+.分组 + .分组 {
+  margin-top: 16px;
+}
+
+.标题行 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.标题行 .类型标签 {
+  margin-inline-end: 0;
+  color: #f5f5f5;
+}
+
+.标题行 .查看按钮 {
+  flex-shrink: 0;
+  padding-inline: 0;
+  color: #91caff;
+
+  &:hover,
+  &:focus-visible {
+    color: #bae0ff;
+  }
+}
+
+.备注 {
+  margin-bottom: 12px;
+  color: #bfbfbf;
+  font-size: 12px;
+}
+
+.加速表格 {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  white-space: nowrap;
+
+  th,
+  td {
+    padding: 4px 6px;
+    text-align: center;
+  }
+
+  th {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    color: #bfbfbf;
+    font-weight: 400;
+  }
+
+  td {
+    font-variant-numeric: tabular-nums;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+.阈值时间 {
+  margin-top: 2px;
+  color: #bfbfbf;
+}

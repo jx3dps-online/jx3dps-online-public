@@ -3,11 +3,14 @@ import { App, Button, Modal, Table } from 'antd'
 import React, { useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { useAppDispatch } from '@/hooks'
+import useCycle from '@/hooks/use-cycle'
+import { 五彩石满足潮生要求 } from '@/功能模块/基础设置/公用设置/循环约束/潮生五彩石'
 import { RiseOutlined } from '@ant-design/icons'
 import { 角色基础属性类型 } from '@/@types/角色'
 import { 秒伤计算 } from '@/计算模块/计算函数'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 数据埋点 } from '@/工具函数/tools/log'
+import type { 计算循环覆盖类型 } from '@/计算模块/计算函数'
 
 import 根据装备信息获取基础属性, {
   五彩石计算,
@@ -15,11 +18,25 @@ import 根据装备信息获取基础属性, {
 } from '../../工具函数/根据装备信息获取基础属性'
 import './index.css'
 
-const { 五彩石 } = 获取当前数据()
-
-const 五彩石原始数据 = 五彩石?.[6]
-
-function 最佳五彩石设置({ 一键替换五彩石, 对比秒伤, 对比装备信息 }) {
+function 最佳五彩石设置({
+  一键替换五彩石,
+  对比秒伤,
+  对比装备信息,
+  循环覆盖,
+  触发计算,
+  on触发计算Change,
+}) {
+  const { 五彩石 } = use心法数据()
+  const { 当前循环信息 } = useCycle({
+    覆盖数据: 循环覆盖?.更新计算循环名称
+      ? { 当前计算循环名称: 循环覆盖.更新计算循环名称 }
+      : undefined,
+  })
+  const 五彩石原始数据 = 五彩石?.[6].filter((石头) => 五彩石满足潮生要求(石头, 当前循环信息))
+  const 基准潮生匹配 = 五彩石满足潮生要求(
+    五彩石[5].concat(五彩石[6]).find((石头) => 石头.五彩石名称 === 对比装备信息?.五彩石),
+    当前循环信息,
+  )
   const [open, setOpen] = useState<boolean>(false)
   const [最大五彩石, 更新最大五彩石] = useState<string>('')
   const [最大Dps, 更新最大Dps] = useState<number>(0)
@@ -58,11 +75,18 @@ function 最佳五彩石设置({ 一键替换五彩石, 对比秒伤, 对比装�
     })
   }
 
+  useEffect(() => {
+    if (触发计算) {
+      计算前提示()
+      on触发计算Change(false)
+    }
+  }, [触发计算, 五彩石])
+
   const 开始计算 = () => {
     数据埋点('计算最佳五彩石')
     const 开始计算时间 = new Date().valueOf()
     let 最大秒伤 = 0
-    let 最大五彩石: any = {}
+    let 最大五彩石 = ''
     const 全部五彩石秒伤数据: 五彩石秒伤数据类型[] = []
     if (五彩石原始数据?.length) {
       for (let i = 0; i < 五彩石原始数据?.length; i++) {
@@ -81,16 +105,18 @@ function 最佳五彩石设置({ 一键替换五彩石, 对比秒伤, 对比装�
               装备基础属性: 五彩石计算数据?.计算后属性,
               五彩石: 当前五彩石?.五彩石名称,
             } as any,
+            ...循环覆盖,
             计算技能详情: false,
           }),
         )
+        if (秒伤 <= 0) continue
         // 显示五彩石属性简写
         const 五彩石属性 = 当前五彩石?.装备增益?.map((item) => item?.增益名称)?.join(' ')
         全部五彩石秒伤数据.push({
           名称: 当前五彩石?.五彩石名称,
           属性: 五彩石属性,
           秒伤,
-          较当前比较: 秒伤 === 对比秒伤 ? 3 : 秒伤 > 对比秒伤 ? 1 : 2,
+          较当前比较: !基准潮生匹配 ? 0 : 秒伤 === 对比秒伤 ? 3 : 秒伤 > 对比秒伤 ? 1 : 2,
         })
 
         if (秒伤 > 最大秒伤) {
@@ -123,9 +149,6 @@ function 最佳五彩石设置({ 一键替换五彩石, 对比秒伤, 对比装�
 
   return (
     <>
-      <Button type='primary' size='small' style={{ marginLeft: 12 }} onClick={() => 计算前提示()}>
-        一键设置五彩石
-      </Button>
       {/* 设置提醒和结果弹窗 */}
       <Modal
         title={
@@ -142,7 +165,11 @@ function 最佳五彩石设置({ 一键替换五彩石, 对比秒伤, 对比装�
         footer={false}
       >
         <div className={'max-wucaishi-wrap'}>
-          {最大Dps === 对比秒伤 ? (
+          {!五彩石秒伤数据.length ? (
+            <div className='max-wucaishi-wrap-has-max'>
+              没有同时满足当前循环加速、延迟和潮生要求的六级五彩石，请调整配装或重新生成循环。
+            </div>
+          ) : 基准潮生匹配 && 最大Dps === 对比秒伤 ? (
             <div className='max-wucaishi-wrap-has-max dps-up-color'>
               当前五彩石已为最佳方案，无需替换
             </div>
@@ -150,7 +177,9 @@ function 最佳五彩石设置({ 一键替换五彩石, 对比秒伤, 对比装�
             <div className='max-wucaishi-wrap-content'>
               <div className='max-wucaishi-content'>
                 <h1 className={'max-wucaishi-title'}>替换前</h1>
-                <h1 className='max-wucaishi-dps dps-low-color'>{对比秒伤}</h1>
+                <h1 className='max-wucaishi-dps dps-low-color'>
+                  {基准潮生匹配 ? 对比秒伤 : '不满足循环要求'}
+                </h1>
                 <div>
                   <div className={`max-wucaishi-item`}>
                     <span className='max-wucaishi-value'>{对比装备信息?.五彩石 || '无五彩石'}</span>
@@ -161,7 +190,7 @@ function 最佳五彩石设置({ 一键替换五彩石, 对比秒伤, 对比装�
                 <h1 className={'max-wucaishi-title'}>替换为最佳后</h1>
                 <h1 className='max-wucaishi-dps dps-up-color'>
                   {最大Dps}
-                  <RiseOutlined className='max-wucaishi-dps-icon' />
+                  {基准潮生匹配 && <RiseOutlined className='max-wucaishi-dps-icon' />}
                 </h1>
                 <div>
                   <div className={`max-wucaishi-item dps-up-color`}>

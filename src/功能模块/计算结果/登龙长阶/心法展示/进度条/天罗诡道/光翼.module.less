@@ -1,0 +1,104 @@
+.光翼 {
+  pointer-events: none;
+}
+.展开 {
+  transform-origin: 0 0;
+  transition:
+    transform 1.3s ease,
+    opacity 1.3s ease;
+}
+.翼面 {
+  opacity: 0.7;
+}
+.翼缘,
+.辉光,
+.翼骨,
+.分叉,
+.流束,
+.细流 {
+  fill: none;
+  stroke-linejoin: miter;
+}
+.翼缘 {
+  stroke-width: 1.1;
+  opacity: 0.48;
+}
+.辉光 {
+  stroke-width: 6;
+  opacity: 0.35;
+}
+.翼骨 {
+  stroke-width: 2;
+  opacity: 0.8;
+}
+.分叉 {
+  stroke-width: 1.1;
+  opacity: 0.55;
+}
+.流束 {
+  stroke: #e2f8ff;
+  stroke-width: 2.6;
+  stroke-dasharray: 14 86;
+  stroke-dashoffset: 14;
+  opacity: 0;
+}
+.细流 {
+  stroke: #badfff;
+  stroke-width: 1.5;
+  stroke-dasharray: 10 90;
+  opacity: 0;
+}
+.光翼[data-active='false'] .展开 {
+  transition: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .光翼[data-active='true'] {
+    .翼面,
+    .辉光 {
+      animation: tlgd-wing-breathe 5s ease-in-out infinite;
+      animation-delay: calc(var(--tlgd-wing-index) * -1.25s);
+    }
+    .流束,
+    .细流 {
+      animation: tlgd-wing-flow 3.8s linear infinite;
+      animation-delay: calc(var(--tlgd-wing-index) * -0.95s);
+    }
+    .细流 {
+      animation-duration: 5.2s;
+    }
+    &[data-complete='true'] .流束 {
+      animation: tlgd-wing-flow 1.6s ease-out both;
+      animation-delay: calc(var(--tlgd-wing-index) * 0.12s);
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .展开 {
+    transition: none;
+  }
+}
+@keyframes tlgd-wing-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+@keyframes tlgd-wing-flow {
+  0% {
+    stroke-dashoffset: 14;
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}

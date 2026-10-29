@@ -4,3 +4,21 @@
   margin-right: 8px;
   margin-left: 8px;
 }
+// 配置项分组容器：拥挤时自动换行，组间距统一走 gap（标签自带的 8px 外边距叠加后为组间距）
+.配置组 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+}
+
+// 单个配置项：标签与自己的控件贴紧为一组；标签自带外边距会让组内松散，归零交给 gap 控制
+.配置项 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.配置项 .label {
+  margin: 0;
+}

@@ -5,6 +5,7 @@
 import type { 心法配置类型 } from '@/心法模块/interface'
 
 import 默认数据 from './默认数据'
+import 加速阈值 from './默认数据/加速阈值'
 import 技能系数, { 技能增益 } from './技能系数'
 import 奇穴数据 from './奇穴'
 import 计算循环 from './计算循环'
@@ -12,6 +13,7 @@ import 端游太玄经数据 from '../太玄经/index'
 
 const 心法配置: 心法配置类型 = {
   ...端游太玄经数据,
+  加速阈值,
   模块负责人: '月影无痕',
   名称: '太玄经_悟',
   数据提供: '数据：月影无痕；测试：月影无痕',

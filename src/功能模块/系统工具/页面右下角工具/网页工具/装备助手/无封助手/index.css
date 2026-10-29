@@ -1,0 +1,206 @@
+.wufeng-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 12px 48px 12px 24px; */
+  padding-right: 0px;
+  /* margin-top: -8px; */
+  /* height: 32px; */
+  margin-bottom: 16px;
+}
+
+.wufeng-modal-alert {
+  flex: 1;
+  margin-right: 24px;
+}
+
+.wufeng-image-wrap {
+  text-align: center;
+}
+
+.wufeng-preview-img {
+  display: block;
+  /* max-width: calc(100vw - 48px - 48px); */
+  /* max-height: calc(100vh - 57px - 48px - 48px - 40px - 12px); */
+  /* 增强对比度和亮度 */
+  /* filter: brightness(100%) contrast(100%) grayscale(0%) blur(0px); */
+
+  /* filter: grayscale(100%); */
+}
+
+.wufeng-modal .ant-modal-header {
+  padding: 0;
+}
+
+.wufeng-modal .ant-upload-list {
+  display: none;
+}
+
+.wufeng-modal .wufeng-upload-dragger {
+  height: 40vh;
+}
+
+.wufeng-modal-tip-text {
+  color: #f34242;
+  margin-left: 12px;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.wufeng-modal-tip-icon {
+  margin-left: 4px;
+  font-size: 14px;
+  vertical-align: -1px;
+}
+
+/* 灰度化有助于提高OCR识别准确度 */
+/* img.wufeng-preprocess { */
+/* } */
+
+/* 去除噪声 */
+/* img.wufeng-preprocess {
+  filter: blur(0px) grayscale(100%);
+} */
+
+/* 调整文字的颜色以提高对比度 */
+/* .wufeng-text-color { */
+/* color: rgb(200, 200, 200); */
+/* 中等亮度的灰色 */
+/* } */
+
+.wufeng-res-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wufeng-res-img {
+  max-width: calc(100% - 600px);
+  max-height: calc(100vh - 57px - 48px - 48px - 200px);
+  margin-right: 24px;
+}
+
+.wufeng-form {
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  max-height: calc(100vh - 57px - 48px - 48px);
+  overflow-y: auto;
+  padding-left: 12px;
+}
+
+.wufeng-match-item {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.wufeng-match-item.wufeng-match-up-item .ant-input {
+  border-color: hsl(140, 60%, 40%);
+  color: hsl(140, 60%, 40%);
+  font-weight: 500;
+}
+
+.wufeng-match-item + .wufeng-match-item {
+  margin-top: 8px;
+}
+
+.wufeng-match-item .ant-form-item {
+  width: 500px;
+  margin: 0;
+  margin-right: 24px;
+}
+
+.wufeng-diff-dps-res-number {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.wufeng-diff-dps-res-down {
+  color: #f34242;
+}
+
+.wufeng-diff-dps-res-up {
+  color: #0ab559;
+  font-weight: 500;
+}
+
+.wufeng-spnning {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.wufeng-upload-text-area {
+  height: 100px;
+  margin-bottom: 16px;
+}
+
+.dps-hight-dps-price,
+.dps-diff-name-up {
+  color: #0ab559;
+  font-weight: 500;
+}
+
+.dps-low-dps-price {
+  color: #f34242;
+}
+
+.wufeng-dps-price-input-width {
+  width: 170px;
+}
+
+.dps-price-table {
+  /* height: 520px; */
+}
+
+.wufeng-modal-tip-image-wrap .ant-image {
+  margin-right: 12px;
+  max-width: 300px;
+}
+
+.wufeng-modal-tip-image-wrap .wufeng-modal-tip-image {
+  height: 100px;
+}
+
+.wufeng-equip-name {
+  display: inline-block;
+  width: 80px;
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+.dps-diff-zhuangbei-select-shuoming > span + span {
+  margin-left: 4px;
+}
+
+.dps-diff-zhuangbei-select-shuoming {
+  color: #666;
+}
+
+.wufeng-equip-info {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.wufeng-modal-footer {
+  /* position: absolute; */
+  margin-top: -48px;
+}
+
+.wufeng-group-dps-res {
+  border-radius: 4px;
+  border: 1px solid var(--ant-primary-color);
+  padding: 12px 16px;
+  margin-top: 12px;
+}
+
+.wufeng-group-dps-res-num {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.wufeng-group-dps-res-equips {
+  margin-top: 8px;
+}

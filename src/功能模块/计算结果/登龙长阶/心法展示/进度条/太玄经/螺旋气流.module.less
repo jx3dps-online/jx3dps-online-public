@@ -1,0 +1,199 @@
+.螺旋特效 {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.前方 {
+  --symbol-front: 0.95;
+  --symbol-back: 0;
+  --symbol-edge: 0.48;
+  opacity: 0.95;
+}
+
+.后方 {
+  --symbol-front: 0;
+  --symbol-back: 0.7;
+  --symbol-edge: 0.35;
+  opacity: 0.45;
+}
+
+.符号轨迹 {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.符号图 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5.2%;
+  min-width: 15px;
+  max-width: 30px;
+  transform: translate(-50%, -50%) scaleX(-1) rotate(-8deg);
+}
+
+.散出处 {
+  position: absolute;
+  left: 10.833333%;
+  top: 25.5%;
+  width: 6.666667%;
+  height: 8%;
+  transform: translateX(-100%);
+}
+
+.飞散 {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform-origin: right center;
+}
+
+.散符 {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 60%;
+  min-width: 12px;
+  max-width: 26px;
+  transform: translate(50%, -50%) scaleX(-1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .螺旋特效 {
+    display: block;
+  }
+
+  .符号轨迹 {
+    animation: txj-symbol-orbit 16s linear infinite;
+  }
+
+  .飞散 {
+    animation: txj-helix-release 6s ease-out infinite;
+  }
+}
+
+@keyframes txj-symbol-orbit {
+  0% {
+    transform: translate3d(97.333333%, 13.5%, 0);
+    opacity: 0;
+  }
+  4.166667% {
+    transform: translate3d(93.729167%, 22.189557%, 0);
+    opacity: var(--symbol-front);
+  }
+  8.333333% {
+    transform: translate3d(90.125%, 28.382247%, 0);
+    opacity: var(--symbol-edge);
+  }
+  12.5% {
+    transform: translate3d(86.520833%, 27.655063%, 0);
+    opacity: var(--symbol-back);
+  }
+  16.666667% {
+    transform: translate3d(82.916667%, 22.402778%, 0);
+    opacity: var(--symbol-back);
+  }
+  20.833333% {
+    transform: translate3d(79.3125%, 14.894326%, 0);
+    opacity: var(--symbol-back);
+  }
+  25% {
+    transform: translate3d(75.708333%, 10.709502%, 0);
+    opacity: var(--symbol-edge);
+  }
+  29.166667% {
+    transform: translate3d(72.104167%, 12.467279%, 0);
+    opacity: var(--symbol-front);
+  }
+  33.333333% {
+    transform: translate3d(68.5%, 19.038889%, 0);
+    opacity: var(--symbol-front);
+  }
+  37.5% {
+    transform: translate3d(64.895833%, 26.635589%, 0);
+    opacity: var(--symbol-front);
+  }
+  41.666667% {
+    transform: translate3d(61.291667%, 29.844568%, 0);
+    opacity: var(--symbol-edge);
+  }
+  45.833333% {
+    transform: translate3d(57.6875%, 26.352358%, 0);
+    opacity: var(--symbol-back);
+  }
+  50% {
+    transform: translate3d(54.083333%, 18.036111%, 0);
+    opacity: var(--symbol-back);
+  }
+  54.166667% {
+    transform: translate3d(50.479167%, 11.494088%, 0);
+    opacity: var(--symbol-back);
+  }
+  58.333333% {
+    transform: translate3d(46.875%, 9.818095%, 0);
+    opacity: var(--symbol-edge);
+  }
+  62.5% {
+    transform: translate3d(43.270833%, 16.631764%, 0);
+    opacity: var(--symbol-front);
+  }
+  66.666667% {
+    transform: translate3d(39.666667%, 27.97%, 0);
+    opacity: var(--symbol-front);
+  }
+  70.833333% {
+    transform: translate3d(36.0625%, 36.60065%, 0);
+    opacity: var(--symbol-front);
+  }
+  75% {
+    transform: translate3d(32.458333%, 39.101104%, 0);
+    opacity: var(--symbol-edge);
+  }
+  79.166667% {
+    transform: translate3d(28.854167%, 35.55498%, 0);
+    opacity: var(--symbol-back);
+  }
+  83.333333% {
+    transform: translate3d(25.25%, 27.59%, 0);
+    opacity: var(--symbol-back);
+  }
+  87.5% {
+    transform: translate3d(21.645833%, 20.754937%, 0);
+    opacity: var(--symbol-back);
+  }
+  91.666667% {
+    transform: translate3d(18.041667%, 19.007165%, 0);
+    opacity: var(--symbol-edge);
+  }
+  95.833333% {
+    transform: translate3d(14.4375%, 21.721472%, 0);
+    opacity: var(--symbol-front);
+  }
+  100% {
+    transform: translate3d(10.833333%, 29.5%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes txj-helix-release {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.55);
+  }
+  15% {
+    opacity: 0.7;
+  }
+  48.75% {
+    opacity: 0.35;
+  }
+  75%,
+  100% {
+    opacity: 0;
+    transform: translate3d(-225%, var(--scatter-y), 0) scale(1.3) rotate(var(--scatter-angle));
+  }
+}

@@ -83,6 +83,10 @@
   color: var(--ant-primary-color);
 }
 
+.cycle-dps-res-icon-active {
+  color: var(--ant-primary-color);
+}
+
 .cycle-dps-res-icon + .cycle-dps-res-icon {
   margin-top: 6px;
 }

@@ -10,6 +10,5 @@ declare module '*.less'
 declare module '*.mp3'
 
 interface Window {
-  心法?: string
   clipboardData?: any
 }

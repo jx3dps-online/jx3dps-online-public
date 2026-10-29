@@ -59,4 +59,4 @@ class 蟾啸DOT extends 通用DOT类 {
 
 export default 蟾啸DOT
 
-export const 蟾啸DOT类型 = typeof 蟾啸DOT
+export type 蟾啸DOT类型 = 蟾啸DOT

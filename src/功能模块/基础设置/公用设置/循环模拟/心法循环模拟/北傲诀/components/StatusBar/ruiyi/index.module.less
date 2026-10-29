@@ -1,0 +1,36 @@
+.资源列表 {
+  display: flex;
+  flex: 0 0 260px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.资源行 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 22px;
+
+  .资源进度 {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    line-height: 1;
+  }
+}
+
+.资源名称 {
+  flex-shrink: 0;
+  font-size: 16px;
+  color: rgba(3, 10, 26, 0.85);
+  white-space: nowrap;
+}
+
+.资源数值 {
+  width: 4ch;
+  flex-shrink: 0;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+  white-space: nowrap;
+}

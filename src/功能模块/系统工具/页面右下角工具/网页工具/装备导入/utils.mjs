@@ -180,7 +180,6 @@ const 属性枚举 = {
   atHasteBase: '属性类型.加速等级',
   atStrainBase: '属性类型.无双等级',
   atPVXAllRound: '属性类型.全能等级',
-  atSurplusValueBase: '属性类型.破招值',
   atMeleeWeaponDamageBase: '属性类型.武器伤害',
   atPhysicsAttackPowerBase: '属性类型.外功基础攻击',
   atPhysicsCriticalStrike: '属性类型.外功会心等级',

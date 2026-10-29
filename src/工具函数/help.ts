@@ -31,11 +31,7 @@ export const hexToRgbaToDark = (hex, alpha, num = 10) => {
 }
 
 export const 获取页面参数 = (param) => {
-  if (globalThis?.心法 && param === '心法') {
-    return globalThis?.心法
-  } else if (globalThis?.xf && param === 'xf') {
-    return globalThis?.xf
-  } else if (window) {
+  if (window) {
     if (window?.location?.search) {
       const urlParams = new URLSearchParams(window?.location?.search)
       return urlParams.get(param)
@@ -55,6 +51,37 @@ export const 修改页面Logo = (src) => {
 }
 
 export const INT = (val) => Math.floor(val)
+
+/**
+ * 将任意长度字符串压缩为短哈希（双 32 位混合，用于缓存 key，非加密用途）
+ */
+export const 字符串哈希 = (文本: string): string => {
+  let h1 = 0xdeadbeef
+  let h2 = 0x41c6ce57
+  for (let i = 0; i < 文本.length; i++) {
+    const 码 = 文本.charCodeAt(i)
+    h1 = Math.imul(h1 ^ 码, 2654435761)
+    h2 = Math.imul(h2 ^ 码, 1597334677)
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909)
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909)
+  return `${(h1 >>> 0).toString(36)}${(h2 >>> 0).toString(36)}`
+}
+
+/**
+ * 创建按时间片让出主线程的函数。
+ * 距上次让出不足 时间片毫秒 时同步返回（零开销），超过时才真正 setTimeout(0) 让出。
+ * 用于密集计算循环：既保持 UI 响应，又避免逐条 setTimeout 的调度开销。
+ */
+export const 创建时间片让出器 = (时间片毫秒 = 12) => {
+  let 上次让出 = Date.now()
+  return async () => {
+    if (Date.now() - 上次让出 >= 时间片毫秒) {
+      await new Promise((resolve) => setTimeout(resolve, 0))
+      上次让出 = Date.now()
+    }
+  }
+}
 
 export const 去除对象中的无效值 = (obj) => {
   const newObj: any = {}

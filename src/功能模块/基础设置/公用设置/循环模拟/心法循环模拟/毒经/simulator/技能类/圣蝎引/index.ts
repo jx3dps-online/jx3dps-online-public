@@ -1,13 +1,9 @@
-import 循环模拟技能基础数据 from '../../../constant/skill'
 import 有CD技能通用类 from '../../通用类/有CD技能通用类'
 import { 每秒郭氏帧 } from '@/数据/常量'
 
 class 圣蝎引 extends 有CD技能通用类 {
-  static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '圣蝎引')
-
   constructor(模拟循环) {
     super(模拟循环)
-    圣蝎引.技能数据 = 模拟循环?.技能基础数据?.find((item) => item.技能名称 === '圣蝎引')
     this.初始化技能运行数据()
   }
 
@@ -62,11 +58,12 @@ class 圣蝎引 extends 有CD技能通用类 {
     if (this.模拟循环.校验奇穴是否存在('悸心')) {
       const 造成buff数据 = this.获取施加重要buff信息('圣蝎献祭')
       this.本次释放记录 = 造成buff数据 ? { 造成buff数据 } : {}
+    } else {
+      this.本次释放记录 = {}
     }
-    this.本次释放记录 = {}
   }
 }
 
 export default 圣蝎引
 
-export const 圣蝎引类型 = typeof 圣蝎引
+export type 圣蝎引类型 = 圣蝎引

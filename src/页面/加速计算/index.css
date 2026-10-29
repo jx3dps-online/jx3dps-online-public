@@ -11,12 +11,15 @@
   padding: 12px 24px 24px;
 }
 
-
 .haste-layout-input {
   width: 200px;
   margin-right: 12px;
+  margin-bottom: 8px;
 }
 
+.haste-layout-input-guo {
+  width: 280px;
+}
 
 .haste-layout-content {
   margin-bottom: 24px;

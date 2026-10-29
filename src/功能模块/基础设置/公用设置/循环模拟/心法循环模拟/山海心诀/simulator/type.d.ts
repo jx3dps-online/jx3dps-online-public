@@ -1,4 +1,5 @@
 import { 劲风簇类型 } from './技能类/劲风簇'
+import 风矢 from './技能类/风矢'
 import { 饮羽簇类型 } from './技能类/饮羽簇'
 import { 白羽流星类型 } from './技能类/白羽流星'
 import { 弛风鸣角类型 } from './技能类/弛风鸣角'
@@ -51,6 +52,7 @@ export interface 技能类类型 {
 }
 
 export interface 技能类实例集合 {
+  风矢: 风矢
   劲风簇?: 劲风簇类型
   饮羽簇?: 饮羽簇类型
   贯穿?: 贯穿DOT类型
@@ -70,6 +72,7 @@ export interface 技能类实例集合 {
   唤灵印?: any
   下马?: any
   游雾乘云?: any
+  澄神醒梦?: any
   汇灵合契?: any
   聚势摧霆?: any
   换行?: any
@@ -162,6 +165,7 @@ export interface 循环基础技能数据类型 {
    * 技能CD(帧)
    */
   技能CD?: number
+  共用调息技能?: string
   /**
    * 创建循环不可选
    */

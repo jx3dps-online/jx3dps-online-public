@@ -1,0 +1,274 @@
+.特效 {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.刀身流光,
+.晶核,
+.火星,
+.火舌,
+.焰浪 {
+  mix-blend-mode: screen;
+}
+
+.护手赤焰 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: -1;
+  opacity: calc(0.35 + var(--fire-strength) * 0.65);
+}
+.焰气 {
+  transform-box: view-box;
+  transform-origin: 34% 40%;
+  opacity: 0.65;
+}
+.柔焰 {
+  filter: blur(4px);
+  opacity: 0.75;
+}
+.火雾 > ellipse {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0.45;
+}
+
+.刀身流光 {
+  position: absolute;
+  inset: 0;
+  -webkit-mask: url('https://cdn.arkwish.com/jx3dps/20261025/shenghuodu-liangtai.png') center /
+    contain no-repeat;
+  mask: url('https://cdn.arkwish.com/jx3dps/20261025/shenghuodu-liangtai.png') center / contain
+    no-repeat;
+  opacity: calc(0.55 + var(--fire-strength) * 0.35);
+  > i {
+    position: absolute;
+    width: 15%;
+    height: 100%;
+    opacity: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 10%,
+      #f47b3277 35%,
+      #fff2cfee 50%,
+      #ffbe6777 65%,
+      transparent 90%
+    );
+  }
+}
+
+.晶核 {
+  position: absolute;
+  left: 26%;
+  top: 12%;
+  width: 16%;
+  height: 34%;
+  opacity: calc(0.35 + var(--fire-strength) * 0.5);
+  > i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: radial-gradient(
+      ellipse,
+      #fff0c9dc,
+      #ffae60a6 14%,
+      #ed381b80 32%,
+      #e6251515 55%,
+      transparent 72%
+    );
+  }
+}
+
+.火星 {
+  opacity: calc(0.55 + var(--fire-strength) * 0.4);
+  > i {
+    position: absolute;
+    border-radius: 70% 30% 65% 35%;
+    background: #ffde9f;
+    box-shadow: 0 0 4px #ff872caa;
+    opacity: 0;
+    &:nth-child(even) {
+      background: #fff3d4;
+    }
+  }
+}
+
+.火舌,
+.焰浪 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.火舌 {
+  opacity: calc(0.5 + var(--fire-strength) * 0.4);
+  filter: drop-shadow(0 0 4px #ff571c88);
+  > path {
+    fill: #ff9a3566;
+    stroke: #ffd08dcc;
+    stroke-width: 1;
+    transform-origin: 32% 31%;
+  }
+  > .焰线 {
+    fill: none;
+    stroke: #ffe3aa;
+    stroke-width: 3.2;
+    stroke-dasharray: 32 68;
+    opacity: 0;
+  }
+}
+
+.焰浪 {
+  fill: none;
+  stroke: #ffe8b9;
+  stroke-width: 2;
+  stroke-dasharray: 24 76;
+  filter: drop-shadow(0 0 3px #f48c3299);
+  > path {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .焰气 {
+    animation: ~'圣火回卷 6.8s ease-out infinite';
+    animation-delay: calc(var(--fire-delay) + var(--fire-wisp-index) * -1.7s);
+  }
+  .火雾 > ellipse {
+    animation: ~'圣火晶核呼吸 7.2s ease-in-out infinite';
+    animation-delay: var(--fire-delay);
+    &:nth-child(2) {
+      animation-delay: calc(var(--fire-delay) - 2.4s);
+    }
+    &:nth-child(3) {
+      animation-delay: calc(var(--fire-delay) - 4.8s);
+    }
+  }
+  .刀身流光 > i {
+    animation: ~'圣火掠刃 7.2s linear infinite';
+    animation-delay: var(--fire-delay);
+  }
+  .晶核 > i {
+    animation: ~'圣火晶核呼吸 3.8s ease-in-out infinite';
+    animation-delay: var(--fire-delay);
+  }
+  .火星 > i {
+    animation: ~'圣火飞星 4.8s ease-out infinite';
+    animation-delay: calc(var(--fire-delay) + var(--spark-index) * -0.59s);
+  }
+  .火舌 > path:not(.焰线) {
+    animation: ~'圣火摇曳 4.8s ease-in-out infinite';
+    animation-delay: calc(var(--fire-delay) + var(--flame-index) * -1.6s);
+  }
+  .火舌 > .焰线,
+  .焰浪 > path {
+    animation: ~'圣火向前 7.2s linear infinite';
+    animation-delay: var(--fire-delay);
+  }
+  .焰浪 > path:nth-child(2) {
+    animation-delay: calc(var(--fire-delay) - 1.8s);
+  }
+}
+
+@keyframes ~'圣火回卷' {
+  0% {
+    transform: translate(0, 0) scale(0.9);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-4%, -1%) scale(1.08, 0.92);
+    opacity: 0;
+  }
+}
+
+@keyframes ~'圣火掠刃' {
+  0% {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+  15%,
+  78% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateX(780%);
+    opacity: 0;
+  }
+}
+
+@keyframes ~'圣火晶核呼吸' {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+@keyframes ~'圣火飞星' {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 3px) rotate(-25deg) scale(0.5);
+  }
+  22% {
+    opacity: 0.95;
+  }
+  82% {
+    opacity: 0;
+    transform: translate(23px, -15px) rotate(15deg) scale(0.8);
+  }
+}
+
+@keyframes ~'圣火摇曳' {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translate(0, 2px) scaleY(0.85);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(7px, -2px) scaleY(1.12);
+  }
+}
+
+@keyframes ~'圣火向前' {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  20%,
+  65% {
+    opacity: 0.7;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+
+@supports not (
+  (mask-image: linear-gradient(#000, transparent)) or
+    (-webkit-mask-image: linear-gradient(#000, transparent))
+) {
+  .特效 {
+    display: none;
+  }
+}

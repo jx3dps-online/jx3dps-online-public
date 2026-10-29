@@ -1,0 +1,61 @@
+.wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: max-content;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 13px;
+  text-align: center;
+  white-space: nowrap;
+  border: none;
+  border-radius: 16px;
+
+  td {
+    padding: 4px 10px;
+    vertical-align: middle;
+    color: #172436;
+    border: 1px solid #ddd;
+  }
+
+  tr:first-child td {
+    font-weight: 500;
+    border: none;
+  }
+
+  td.gap {
+    width: 10pt;
+    min-width: 10pt;
+    padding: 0;
+    border: none;
+  }
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25em;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 0.2em;
+}
+
+.强调 {
+  font-weight: 600;
+}
+
+.蓝 {
+  font-weight: 600;
+  color: rgb(66, 142, 219);
+}
+
+.主题 {
+  font-weight: 600;
+  color: oklch(51.041% 0.16502 310.997);
+}

@@ -38,7 +38,8 @@ import 获取当前数据 from '@/数据/数据工具/获取当前数据'
 import { 获取加速等级, 获取实际帧数 } from '@/工具函数/data'
 import 获取技能信息 from '@/数据/数据工具/获取技能等级信息'
 import { 团队增益轴类型 } from '@/@types/团队增益'
-import 判断团队增益快照Buff from '@/数据/团队增益/tools'
+import { 副本事件实例类型 } from '@/@types/副本事件'
+import 判断团队增益快照Buff, { 判断副本事件快照Buff } from '@/数据/团队增益/tools'
 import { 起手Buff配置 } from '../../通用/通用框架/类型定义/Buff'
 import { 技能额外信息分隔符, 获取起手Buff配置 } from '../../通用/通用函数'
 import { 选中秘籍信息 } from '@/@types/秘籍'
@@ -57,6 +58,7 @@ export interface SimulatorCycleProps {
   大橙武模拟: boolean
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
+  副本事件实例列表?: 副本事件实例类型[]
   起手Buff配置?: 起手Buff配置
   起手锐意?: number
   起手体态?: '双刀' | '单刀'
@@ -94,6 +96,7 @@ class 循环主类 {
   大橙武模拟 = false
   启用团队增益快照 = false
   团队增益轴: 团队增益轴类型 = {}
+  副本事件实例列表: 副本事件实例类型[] = []
   自动击破 = false
   锐意上限 = 100
 
@@ -112,6 +115,7 @@ class 循环主类 {
 
     this.启用团队增益快照 = !!props.启用团队增益快照
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
+    this.副本事件实例列表 = props.副本事件实例列表 ? props.副本事件实例列表 : []
     this.待生效事件队列 = []
 
     this.自动击破 = !!props.自动击破
@@ -195,11 +199,18 @@ class 循环主类 {
 
   卸除buff({
     名称,
-    buff刷新时间 = 0,
+    buff刷新时间,
     对象 = '目标',
     事件时间 = this.当前时间,
     卸除层数 = 1,
     来源 = '',
+  }: {
+    名称: string
+    buff刷新时间?: number
+    对象?: '自身' | '目标'
+    事件时间?: number
+    卸除层数?: number
+    来源?: string
   }) {
     const 当前层数 =
       对象 === '自身'
@@ -216,7 +227,7 @@ class 循环主类 {
         const 新buff对象 = {
           ...this.Buff和Dot数据[名称],
           当前层数: 当前层数 - 卸除层数,
-          刷新时间: buff刷新时间 || 事件时间,
+          刷新时间: buff刷新时间 ?? 事件时间,
         }
         if (对象 === '自身') {
           this.当前自身buff列表[名称] = { ...新buff对象 }
@@ -421,13 +432,10 @@ class 循环主类 {
   // 添加战斗日志
   添加战斗日志(log: 循环日志数据类型) {
     const { 日志时间 = this.当前时间, ...rest } = log
-    this.战斗日志 = [
-      ...(this.战斗日志 || []),
-      {
-        日志时间: 日志时间,
-        ...rest,
-      },
-    ]
+    this.战斗日志.push({
+      日志时间: 日志时间,
+      ...rest,
+    })
   }
 
   // 造成伤害
@@ -474,10 +482,12 @@ class 循环主类 {
     let 总增益列表 = 有关的buff列表.concat(增益列表)
 
     if (this.启用团队增益快照) {
-      const 团队增益buff列表 = 判断团队增益快照Buff({
-        团队增益轴: this.团队增益轴,
-        判定帧: this.当前时间 || 0,
-      })
+      const 团队增益buff列表 = this.副本事件实例列表?.length
+        ? 判断副本事件快照Buff(this.副本事件实例列表, this.当前时间 || 0)
+        : 判断团队增益快照Buff({
+            团队增益轴: this.团队增益轴,
+            判定帧: this.当前时间 || 0,
+          })
       if (团队增益buff列表?.length) {
         总增益列表 = 总增益列表?.concat(团队增益buff列表)
       }
@@ -582,7 +592,7 @@ class 循环主类 {
         等待CD = this.技能释放前检查运行数据(当前技能, 技能实例, GCD)
       }
     }
-    const 延迟等待 = this.当前时间 && GCD ? this.网络延迟 : 0
+    const 延迟等待 = i > 0 && GCD ? this.网络延迟 : 0
     const 技能计划释放时间 = this.当前时间 + GCD + 延迟等待
     return {
       技能计划释放时间: 技能计划释放时间,
@@ -619,7 +629,9 @@ class 循环主类 {
     // GCD处理
     if (当前技能?.技能GCD组) {
       let 实际添加GCD = 获取实际帧数(当前技能?.技能释放后添加GCD, this.加速值)
-
+      if (当前技能?.最小GCD) {
+        实际添加GCD = Math.max(实际添加GCD, 当前技能?.最小GCD)
+      }
       let 待更新GCD组: string = 当前技能.技能GCD组 as string
       if (当前技能.技能GCD组 === '自身') {
         待更新GCD组 = 当前技能?.技能名称
@@ -777,8 +789,8 @@ class 循环主类 {
   }
 
   // 模拟函数，一个技能的释放生命周期
-  模拟() {
-    for (let i = 0; i < this.测试循环.length; i++) {
+  模拟(起始索引 = 0) {
+    for (let i = 起始索引; i < this.测试循环.length; i++) {
       if (i === 0) {
         this.技能类实例集合.弱点.初始化弱点()
         this.技能类实例集合.裂海横天.沧逸初始化()

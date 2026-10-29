@@ -1,0 +1,223 @@
+.幻狐轨迹 {
+  --fox-duration: 7s;
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: visible;
+  pointer-events: none;
+  user-select: none;
+}
+
+.位置 {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.狐狸 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14%;
+  min-width: 42px;
+  max-width: 82px;
+  aspect-ratio: 1;
+  opacity: 0.72;
+  transform: translate(-43%, -75%);
+}
+
+.撒星 {
+  position: absolute;
+  left: 84%;
+  top: 57%;
+  width: 68%;
+  height: 20%;
+  transform-origin: left center;
+}
+
+.星粒 {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform-origin: left center;
+}
+
+.星点 {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: var(--star-size);
+  height: var(--star-size);
+  transform: translate(-50%, -50%) rotate(var(--star-angle));
+}
+
+.动作 {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0;
+  background-image: var(--fox-sprite);
+  background-repeat: no-repeat;
+  background-size: 300% 200%;
+}
+
+.跑动 {
+  background-position: 0 0;
+}
+
+.蓄力 {
+  background-position: 50% 100%;
+  transform: translateY(-2.5390625%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .幻狐轨迹 {
+    display: block;
+  }
+
+  .位置 {
+    animation: txj-fox-travel var(--fox-duration) linear infinite;
+  }
+
+  .跑动 {
+    animation:
+      txj-fox-run 0.7s steps(1, end) infinite,
+      txj-fox-run-visible var(--fox-duration) steps(1, end) infinite;
+  }
+
+  .蓄力 {
+    animation: txj-fox-crouch-visible var(--fox-duration) steps(1, end) infinite;
+  }
+
+  .撒星 {
+    animation: txj-fox-stars-visible var(--fox-duration) linear infinite;
+  }
+
+  .星粒 {
+    animation: txj-fox-star-scatter 1.4s linear infinite;
+  }
+}
+
+@keyframes txj-fox-star-scatter {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.75);
+  }
+  12% {
+    opacity: 0.9;
+  }
+  55% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--star-x), var(--star-y), 0) scale(0.15);
+  }
+}
+
+@keyframes txj-fox-stars-visible {
+  0%,
+  60% {
+    opacity: 1;
+  }
+  64%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes txj-fox-travel {
+  0% {
+    opacity: 0;
+    transform: translate3d(92.5%, 19.5%, 0);
+  }
+  3% {
+    opacity: 1;
+  }
+  // 前 60% 按横向距离分配时间，脚底沿灯杆上沿移动。
+  6.918239% {
+    transform: translate3d(83.333333%, 20.75%, 0);
+  }
+  18.238994% {
+    transform: translate3d(68.333333%, 17.25%, 0);
+  }
+  28.930818% {
+    transform: translate3d(54.166667%, 16.5%, 0);
+  }
+  34.591195% {
+    transform: translate3d(46.666667%, 19.75%, 0);
+  }
+  40.880503% {
+    transform: translate3d(38.333333%, 27.25%, 0);
+  }
+  47.798742% {
+    transform: translate3d(29.166667%, 27.25%, 0);
+  }
+  54.08805% {
+    transform: translate3d(20.833333%, 24.25%, 0);
+  }
+  58.490566% {
+    transform: translate3d(15%, 23.5%, 0);
+  }
+  60% {
+    transform: translate3d(13%, 25%, 0);
+    animation-timing-function: steps(1, end);
+  }
+  65%,
+  67% {
+    transform: translate3d(13%, -8%, 0);
+    animation-timing-function: linear;
+  }
+  80% {
+    opacity: 1;
+  }
+  86%,
+  100% {
+    opacity: 0;
+    transform: translate3d(-30%, -8%, 0);
+  }
+}
+
+@keyframes txj-fox-run {
+  0%,
+  100% {
+    background-position: 0 0;
+    transform: translateY(-7.421875%);
+  }
+  25% {
+    background-position: 50% 0;
+    transform: translateY(-10.7421875%);
+  }
+  50% {
+    background-position: 100% 0;
+    transform: translateY(-7.421875%);
+  }
+  75% {
+    background-position: 0 100%;
+    transform: translateY(-3.125%);
+  }
+}
+
+@keyframes txj-fox-run-visible {
+  0% {
+    opacity: 1;
+  }
+  60%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes txj-fox-crouch-visible {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  65%,
+  100% {
+    opacity: 0;
+  }
+}

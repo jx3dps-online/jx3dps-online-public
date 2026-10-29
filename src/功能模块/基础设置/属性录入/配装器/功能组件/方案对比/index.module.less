@@ -1,0 +1,264 @@
+.工具栏 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.仅看差异 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.跨上下文提示 {
+  margin-bottom: 12px;
+}
+
+.计算口径 {
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(24, 144, 255, 0.06);
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.方案卡片行 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.方案卡片 {
+  width: 200px;
+  padding: 12px;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.卡片头部 {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.卡片名称 {
+  flex: 1;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.卡片信息行 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.卡片标签 {
+  color: #999;
+  flex-shrink: 0;
+}
+
+.卡片值 {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.卡片秒伤区 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.卡片秒伤 {
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.卡片秒伤升 {
+  color: hsl(140, 60%, 40%);
+}
+
+.卡片秒伤降 {
+  color: #f34242;
+}
+
+.卡片秒伤差升 {
+  font-size: 12px;
+  color: hsl(140, 60%, 40%);
+  white-space: nowrap;
+}
+
+.卡片秒伤差降 {
+  font-size: 12px;
+  color: #f34242;
+  white-space: nowrap;
+}
+
+.列头 {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.列头名称文本 {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.升 {
+  color: hsl(140, 60%, 40%);
+  font-weight: 600;
+}
+
+.降 {
+  color: #f34242;
+  font-weight: 600;
+}
+
+.加速不匹配 {
+  color: #faad14;
+}
+
+.差异区 {
+  max-height: 480px;
+  overflow: auto;
+}
+
+.差异组 {
+  margin-bottom: 16px;
+}
+
+.差异标题 {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.差异列表 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.差异行 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.差异部位 {
+  flex: 0 0 48px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.差异对比 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.差异旧,
+.差异新 {
+  flex: 1;
+  min-width: 0;
+}
+
+.差异旧 {
+  opacity: 0.6;
+}
+
+.差异旧 .名称 {
+  text-decoration: line-through;
+}
+
+.差异箭头 {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.装备条 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.差异新 .装备条 {
+  background: rgba(82, 196, 26, 0.08);
+  border: 1px solid rgba(82, 196, 26, 0.4);
+}
+
+.装备条:hover {
+  background: rgba(24, 144, 255, 0.1);
+}
+
+.差异新 .装备条:hover {
+  background: rgba(82, 196, 26, 0.16);
+}
+
+.图标 {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.装备信息 {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.名称 {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.88);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.橙武名 {
+  color: #fa8c16;
+  font-weight: 600;
+}
+
+.品级 {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.描述 {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.空装备 {
+  padding: 8px 10px;
+  color: rgba(0, 0, 0, 0.3);
+  font-size: 13px;
+}

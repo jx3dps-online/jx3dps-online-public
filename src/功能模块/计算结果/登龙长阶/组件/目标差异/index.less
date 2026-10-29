@@ -1,0 +1,353 @@
+.dragon-diff-visual {
+  --diff-accent: color-mix(in srgb, var(--dragon-theme) 60%, #303849);
+
+  .dragon-diff-column-labels,
+  .dragon-diff-row {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) 56px minmax(0, 1fr) 68px;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .dragon-diff-column-labels {
+    padding: 0 0 14px;
+    font-size: 12px;
+    color: #747d8b;
+
+    > span:last-child {
+      color: var(--diff-accent);
+    }
+
+    i {
+      font-size: 10px;
+      font-style: normal;
+      margin-left: 8px;
+      opacity: 0.65;
+    }
+  }
+
+  .dragon-diff-group {
+    padding: 18px 0;
+
+    h4 {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    h4::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 12px;
+      margin-right: 8px;
+      background: var(--diff-accent);
+      border-radius: 2px;
+    }
+  }
+
+  .dragon-diff-row {
+    padding: 4px 0;
+  }
+
+  .dragon-diff-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    > .anticon {
+      font-size: 11px;
+      color: #b4bbc4;
+    }
+  }
+
+  .dragon-diff-gain {
+    font-style: normal;
+    font-size: 12px;
+    line-height: 1.2;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    color: #8b929c;
+
+    &.is-up {
+      color: #3f9d63;
+    }
+
+    &.is-down {
+      color: #b64f48;
+    }
+  }
+
+  .dragon-quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .ant-btn {
+      padding-inline: 7px;
+      font-size: 12px;
+    }
+
+    .ant-btn-default {
+      border-color: color-mix(in srgb, var(--dragon-theme) 30%, #d9dee6);
+      color: var(--diff-accent);
+    }
+
+    .ant-btn-text {
+      color: #7d8591;
+    }
+  }
+
+  .dragon-diff-kind {
+    font-size: 11px;
+    color: #7d8591;
+  }
+
+  .dragon-diff-card {
+    min-width: 0;
+    min-height: 68px;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    border-radius: 8px;
+    border: 1px solid #edf0f3;
+    background: #f6f7f9;
+
+    &.is-target {
+      border-color: color-mix(in srgb, var(--dragon-theme) 24%, #e5e8ed);
+      background: linear-gradient(115deg, color-mix(in srgb, var(--dragon-theme) 7%, white), #fff);
+      box-shadow: inset 2px 0 color-mix(in srgb, var(--dragon-theme) 45%, white);
+
+      .dragon-diff-card-copy > b {
+        color: #263649;
+      }
+    }
+
+    &.is-empty {
+      border-style: dashed;
+    }
+  }
+
+  .dragon-diff-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 7px;
+    overflow: hidden;
+    background: #e8ebf0;
+    color: #9aa4b2;
+    box-shadow: 0 0 0 1px #26354a12;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    &.is-orange {
+      box-shadow:
+        0 0 0 1px #d3a55d,
+        0 2px 8px #d7a35330;
+    }
+  }
+
+  .dragon-diff-card-copy {
+    min-width: 0;
+
+    > b {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #566171;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    > small {
+      display: block;
+      font-size: 11px;
+      color: #89919c;
+      margin-top: 3px;
+    }
+  }
+
+  .dragon-refine-icon {
+    background: linear-gradient(145deg, #faf9f6, #edece8);
+    color: #92969d;
+    overflow: visible;
+
+    .dragon-refine-number {
+      font-family: 'STKaiti', 'KaiTi', 'Kaiti SC', 'Brush Script MT', cursive;
+      font-size: 27px;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1;
+      transform: translateX(-1px) rotate(-5deg);
+    }
+
+    &.refine-level-6 {
+      color: #242424;
+    }
+
+    &.refine-level-7 {
+      color: #8750b5;
+    }
+
+    &.refine-level-8 {
+      color: #b78b32;
+      text-shadow: 0 1px 5px #dab86735;
+    }
+
+    &.is-full {
+      box-shadow:
+        0 0 0 1px #c9a461,
+        inset 0 0 8px #dec99825;
+    }
+  }
+
+  .dragon-refine-detail {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px 8px;
+    margin-top: 6px;
+
+    small {
+      font-size: 11px;
+      color: #89919c;
+    }
+
+    &.is-full small {
+      color: #9d792f;
+    }
+  }
+
+  .dragon-refine-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px;
+
+    i {
+      width: 5px;
+      height: 5px;
+      border-radius: 1px;
+      background: #d9dde3;
+      transform: rotate(45deg);
+    }
+
+    .is-lit {
+      background: #c5a66c;
+    }
+  }
+
+  .dragon-diff-attributes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3px 5px;
+    margin-top: 5px;
+
+    > span {
+      color: #87909c;
+      font-size: 11px;
+      margin-right: 3px;
+    }
+
+    em {
+      font-style: normal;
+      font-size: 10px;
+      line-height: 17px;
+      padding: 0 4px;
+      border-radius: 3px;
+      background: #ffffffb3;
+    }
+  }
+
+  .attr-critical {
+    color: #aa6842 !important;
+  }
+
+  .attr-critical-power {
+    color: #b65e70 !important;
+  }
+
+  .attr-overcome {
+    color: #517eae !important;
+  }
+
+  .attr-strain {
+    color: #8063ad !important;
+  }
+
+  .attr-haste {
+    color: #458777 !important;
+  }
+
+  .attr-attack {
+    color: #ad6660 !important;
+  }
+
+  .attr-neutral {
+    color: #667486 !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .dragon-diff-visual {
+    .dragon-diff-column-labels {
+      grid-template-columns: minmax(0, 1fr) 52px minmax(0, 1fr);
+
+      > span:first-child {
+        display: none;
+      }
+
+      > span:last-child {
+        display: none;
+      }
+
+      i {
+        display: none;
+      }
+    }
+
+    .dragon-diff-row {
+      grid-template-columns: minmax(0, 1fr) 52px minmax(0, 1fr);
+      gap: 6px;
+    }
+
+    .dragon-diff-kind {
+      grid-column: 1 / -1;
+      margin-top: 5px;
+    }
+
+    .dragon-quick-actions {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-bottom: 5px;
+    }
+
+    .dragon-diff-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 7px;
+      padding: 9px;
+    }
+
+    .dragon-diff-icon {
+      flex-basis: 34px;
+      width: 34px;
+      height: 34px;
+    }
+
+    .dragon-diff-card-copy > b {
+      font-size: 12px;
+    }
+  }
+}

@@ -65,3 +65,69 @@
   pointer-events: none;
   z-index: 999999;
 }
+
+/* 桌面两栏各自滚动，手机保持原内容顺序并改为整页滚动。 */
+@media (max-height: 900px) {
+  .layout-wrapper {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .layout-wrapper > .basic-set {
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .layout-wrapper {
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px 12px 48px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+  }
+  .layout-wrapper > .basic-set {
+    flex: none;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    padding: 16px;
+    overflow: visible;
+  }
+  .layout-wrapper .basic-set-info {
+    width: 100%;
+    padding-bottom: 16px;
+  }
+  .layout-wrapper > .basic-set .basic-set-zengyi-visible {
+    width: 100%;
+  }
+}
+
+@media (min-width: 761px) {
+  .layout-wrapper {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .layout {
+    height: 100dvh;
+  }
+  .layout-wrapper {
+    padding: max(12px, env(safe-area-inset-top)) 12px max(24px, env(safe-area-inset-bottom));
+  }
+  .layout-wrapper > * {
+    flex-shrink: 0;
+  }
+  .layout-wrapper > .school-switch {
+    position: relative;
+    top: auto;
+    right: auto;
+    align-self: flex-end;
+    order: -1;
+    margin-top: -12px;
+  }
+}

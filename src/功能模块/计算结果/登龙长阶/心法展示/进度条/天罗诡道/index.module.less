@@ -1,0 +1,155 @@
+.进度条 {
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+
+.标题 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.武器名 {
+  font-family: 'STKaiti', 'KaiTi', serif;
+  font-size: 17px;
+  letter-spacing: 3px;
+  color: #ccd6e1;
+  white-space: nowrap;
+}
+
+.完成度 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-left: auto;
+  white-space: nowrap;
+
+  b {
+    font-size: 29px;
+    font-weight: 500;
+    color: #f3e0bd;
+    font-variant-numeric: tabular-nums;
+  }
+
+  small {
+    font-size: 13px;
+    margin-left: 2px;
+  }
+
+  em {
+    font-size: 12px;
+    font-style: normal;
+    color: #aeb9c9;
+  }
+}
+
+.武器 {
+  width: 100%;
+}
+
+.图层 {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  aspect-ratio: 3 / 1;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    transition:
+      clip-path 1.3s ease,
+      opacity 1.3s ease;
+  }
+}
+
+.暗态 {
+  opacity: 0.35;
+  filter: grayscale(0.8) brightness(0.58);
+  clip-path: inset(0 0 0 var(--weapon-progress));
+}
+
+.亮态 {
+  opacity: 0.9;
+  clip-path: inset(0 calc(100% - var(--weapon-progress)) 0 0);
+}
+
+.刻度 {
+  position: relative;
+  height: 2px;
+  margin: 4px 3% 0;
+  background: #ffffff13;
+
+  > i {
+    display: block;
+    width: var(--weapon-progress);
+    height: 100%;
+    background: linear-gradient(90deg, #8b9ebd, #8bbcf0, #d7bd84);
+    transition: width 1.3s ease;
+  }
+
+  > span {
+    position: absolute;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    transform: translateX(-50%) rotate(45deg);
+    background: #485365;
+  }
+
+  > .已点亮 {
+    background: #b9d6ed;
+  }
+}
+
+.已达成 {
+  .武器名 {
+    color: #ead4b1;
+  }
+
+  .亮态 {
+    opacity: 1;
+    filter: drop-shadow(0 0 3px #629eff38);
+  }
+}
+
+@container dragon-stair (max-width: 580px) {
+  :global(.dragon-journey):has(> .进度条) {
+    flex-wrap: wrap;
+
+    > :global(.dragon-journey-copy) {
+      flex-basis: 100%;
+    }
+  }
+
+  .进度条 {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    flex-basis: 100%;
+  }
+}
+
+.进度条[aria-busy='true'] {
+  .图层 img,
+  .刻度 > i {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .图层 img,
+  .刻度 > i {
+    transition: none;
+  }
+}

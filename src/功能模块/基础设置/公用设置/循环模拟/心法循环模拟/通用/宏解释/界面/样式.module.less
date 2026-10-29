@@ -1,0 +1,52 @@
+.面板 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.编辑器 {
+  font-family: Consolas, monospace;
+}
+
+.字数 {
+  margin-bottom: 4px;
+  text-align: right;
+}
+
+.模式栏 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.设置 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.宏信息 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .字数 {
+    flex: 0 0 auto;
+    align-self: flex-end;
+    margin-left: auto;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
+.名称输入框 {
+  flex: 1;
+  min-width: 0;
+  max-width: 320px;
+}
+
+.续跑时长 {
+  width: 190px;
+}

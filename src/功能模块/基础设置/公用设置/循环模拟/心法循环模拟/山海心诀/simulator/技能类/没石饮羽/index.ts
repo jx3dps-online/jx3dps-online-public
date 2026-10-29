@@ -1,6 +1,7 @@
 import 循环模拟技能基础数据 from '../../../constant/skill'
 import 技能统一类 from '../../通用类/技能统一类'
 import { 待生效事件 } from '../../type'
+import { ERROR_ACTION } from '../../utils'
 
 class 没石饮羽 extends 技能统一类 {
   static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '没石饮羽')
@@ -19,13 +20,22 @@ class 没石饮羽 extends 技能统一类 {
   }
 
   释放() {
+    if (
+      !this.模拟循环.当前自身buff列表['饮羽簇追']?.当前层数 &&
+      !(
+        this.模拟循环.校验奇穴是否存在('灼心') &&
+        this.模拟循环.当前自身buff列表['乘黄之威']?.当前层数
+      )
+    ) {
+      return { 可以释放: false, 异常信息: ERROR_ACTION.BUFF错误 }
+    }
     this.模拟循环.添加战斗日志?.({
       日志: '没石饮羽',
       日志类型: '释放技能',
     })
     // 开始读条
     this.释放没石饮羽()
-    return
+    return { 可以释放: true }
   }
 
   释放没石饮羽() {
@@ -42,7 +52,9 @@ class 没石饮羽 extends 技能统一类 {
     }
 
     for (let i = 0; i < 没石饮羽.作用次数; i++) {
-      const 事件时间 = this.模拟循环.当前时间 + 没石饮羽.初始作用间隔帧 + 没石饮羽.作用间隔帧 * i
+      const 延迟倍率 = this.模拟循环.校验奇穴是否存在('片羽') ? 0.5 : 1
+      const 事件时间 =
+        this.模拟循环.当前时间 + (没石饮羽.初始作用间隔帧 + 没石饮羽.作用间隔帧 * i) * 延迟倍率
       待生效事件.push({
         事件名称: `没石饮羽·${i + 1}`,
         事件时间: 事件时间,

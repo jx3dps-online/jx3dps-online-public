@@ -2,13 +2,9 @@ import { 属性简写枚举 } from '@/@types/枚举'
 import { 角色基础属性类型 } from '@/@types/角色'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
 
-export const 获取当前各属性最大附魔 = () => {
-  const { 附魔 } = 获取当前数据()
+export const 获取当前各属性最大附魔 = (附魔 = 获取当前数据().附魔) => {
   const res = {}
   附魔?.forEach((item) => {
-    if (item?.挑战附魔 || item?.阆风仙玉) {
-      return
-    }
     const 附魔属性 = item?.增益集合?.[0]?.属性 || ''
     const 附魔数值 = item?.增益集合?.[0]?.值 || 0
     const 附魔简写 = 属性简写枚举[附魔属性]
@@ -25,21 +21,19 @@ export const 获取当前各属性最大附魔 = () => {
       }
     })
 
-  // if (计算全能) {
-  //   const 无双数据 = resList?.find((item) => item?.收益 === '无双')?.值
-  //   resList.push({
-  //     收益: '全能',
-  //     值: Math.floor(无双数据 / 2),
-  //   })
-  // }
-
   return resList
 }
 
-export const 获取单点属性收益列表 = () => {
-  const { 主属性 } = 获取当前数据()
+// 会效当前没有附魔，收益图按会心的附魔数值补入
+export const 获取附魔收益列表 = (附魔 = 获取当前数据().附魔) => {
+  const 收益列表 = 获取当前各属性最大附魔(附魔)
+  const 会心附魔值 = 收益列表.find((item) => item.收益 === '会心')?.值
 
-  const mapKeyList = [主属性, '攻击', '武伤', '无双', '破防', '会心', '会效', '破招']
+  return [...收益列表, { 收益: '会效', 值: 会心附魔值 }]
+}
+
+export const 获取单点属性收益列表 = (主属性 = 获取当前数据().主属性) => {
+  const mapKeyList = [主属性, '攻击', '武伤', '无双', '破防', '会心', '会效']
   return mapKeyList.map((key) => {
     return {
       收益: key,
@@ -74,9 +68,6 @@ export const 收益增益属性计算 = (
       break
     case '无双':
       最终属性.无双等级 += 值
-      break
-    case '破招':
-      最终属性.破招值 += 值
       break
     case '全能':
       最终属性.全能等级 += 值
@@ -128,18 +119,4 @@ export const 找到收益下降点 = (data) => {
     }
   }
   return targetObj
-}
-
-export const 获取当前比例 = (类型, 装备基础属性: 角色基础属性类型): number => {
-  if (类型 === '会破比') {
-    const 当前会心等级 = 装备基础属性?.会心等级
-    const 当前破防等级 = 装备基础属性?.破防等级
-    return Math.round((当前会心等级 / (当前破防等级 + 当前会心等级)) * 100)
-  } else if (类型 === '招无比') {
-    const 当前破招值 = 装备基础属性?.破招值
-    const 当前无双等级 = 装备基础属性?.无双等级
-    return Math.round((当前破招值 / (当前无双等级 + 当前破招值)) * 100)
-  } else {
-    return 0
-  }
 }

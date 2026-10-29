@@ -1,15 +1,13 @@
 import { Form, Input, message, Modal } from 'antd'
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 更新当前自定义循环列表 } from '@/store/data'
 import { 循环数据, 循环详情 } from '@/@types/循环'
 import CycleSelect from '@/组件/CycleSelect'
 import 秘籍选择 from '../../循环设置/循环详情弹窗/秘籍选择'
 
 import './index.css'
-
-const { 缓存映射 } = 获取当前数据()
 
 interface 保存循环弹窗类型 {
   导入循环保存弹窗: boolean
@@ -20,6 +18,7 @@ interface 保存循环弹窗类型 {
 }
 
 function 保存循环弹窗(props: 保存循环弹窗类型) {
+  const { 缓存映射 } = use心法数据()
   const { 导入循环保存弹窗, 设置导入循环保存弹窗, 结果数据, 目标心法, 奇穴数据 = [] } = props
 
   const 自定义循环列表 = useAppSelector((state) => state?.data?.自定义循环列表)
@@ -76,7 +75,7 @@ function 保存循环弹窗(props: 保存循环弹窗类型) {
       }
     })
     localStorage?.setItem(缓存映射.自定义循环, JSON.stringify(保存信息))
-  }, [自定义循环列表])
+  }, [自定义循环列表, 缓存映射])
 
   return (
     <Modal

@@ -1,0 +1,56 @@
+// 体态不符自动切换物化技能的「自动」角标，通过通用技能格的背景容器渲染位注入
+.自动标记 {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  z-index: 6;
+  padding: 0 3px;
+  background-color: var(--ant-primary-color);
+  color: #fff;
+  font-size: 10px;
+  line-height: 14px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+// 血怒覆盖：血怒持续期间相邻技能格的覆盖块前后相连成长条。
+// 上下与端头侧外扩 4px；与相邻块的相接侧延伸 8px 正好填满技能格 margin（8px）保持相连；
+// 底色 30% 透明度，外缘 1px 边框 35% 透明度；
+// 按段位拆成首/中/尾/单格四个修饰类：相接处不画竖边框避免重边，圆角只保留在长条首尾
+.血怒覆盖 {
+  display: flex;
+  position: absolute;
+  bottom: -4px;
+  left: -4px;
+  top: -4px;
+  right: -4px;
+  margin: auto;
+  pointer-events: unset;
+  z-index: 0;
+  background-color: rgba(199, 94, 40, 0.3);
+  border: 1px solid rgba(255, 87, 51, 0.35);
+}
+
+.血怒覆盖单格 {
+  border-radius: 4px;
+}
+
+.血怒覆盖首段 {
+  right: -8px;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.血怒覆盖中段 {
+  right: -8px;
+  left: -8px;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+}
+
+.血怒覆盖尾段 {
+  left: -8px;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}

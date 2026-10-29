@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Dropdown } from 'antd'
 import 装备选择范围设置 from './装备选择范围设置'
+import use移动端 from '@/hooks/use移动端'
 
 function 配装组件标题({
   form,
@@ -9,6 +10,21 @@ function 配装组件标题({
   装备选择范围,
   设置装备选择范围,
 }) {
+  const 移动端 = use移动端()
+  const [装备细节已展开, 设置装备细节已展开] = useState(false)
+
+  // 一键展开/收起所有部位的装备细节折叠区
+  const 切换装备细节展开 = () => {
+    const 折叠区列表 = Array.from(
+      document.querySelectorAll<HTMLDetailsElement>('#equip-modal-content details.装备细节'),
+    )
+    const 目标展开 = !折叠区列表.every((item) => item.open)
+    折叠区列表.forEach((item) => {
+      item.open = 目标展开
+    })
+    设置装备细节已展开(目标展开)
+  }
+
   // 设置所有镶嵌为6/8级
   const setAllXiangQian = (number) => {
     form?.validateFields().then((values) => {
@@ -24,7 +40,7 @@ function 配装组件标题({
               '大附魔_伤腰',
               '大附魔_伤腕',
               '大附魔_伤鞋',
-            ].includes(item)
+            ].includes(item),
         )
         .map((item) => {
           return {
@@ -63,6 +79,26 @@ function 配装组件标题({
       }
       保存数据并计算(res)
     })
+  }
+
+  if (移动端) {
+    return (
+      <>
+        <Button
+          type='primary'
+          onClick={切换装备细节展开}
+          aria-expanded={装备细节已展开}
+          title={装备细节已展开 ? '收起全部装备细节' : '展开全部装备细节'}
+        >
+          装备细节
+        </Button>
+        <装备选择范围设置
+          装备选择范围={装备选择范围}
+          设置装备选择范围={设置装备选择范围}
+          按钮模式
+        />
+      </>
+    )
   }
 
   return (

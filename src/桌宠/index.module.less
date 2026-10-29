@@ -1,0 +1,45 @@
+.petContainer {
+  position: fixed;
+  z-index: 999999999;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.petWrap {
+  position: relative;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.petImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.petRestore {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  padding: 6px 12px;
+  color: #fff;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.bubbleWrap {
+  position: absolute;
+  pointer-events: auto;
+}

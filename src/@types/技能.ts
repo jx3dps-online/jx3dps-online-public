@@ -27,10 +27,6 @@ export interface 技能基础数据模型 {
    */
   伤害类型?: '内功' | '外功'
   /**
-   * @name 是否为破招伤害
-   */
-  是否为破招伤害?: boolean
-  /**
    * @name 秘籍依赖技能
    * @description 部分多个技能映射同一个技能的秘籍时，使用此字段表明
    */
@@ -84,12 +80,6 @@ export interface 技能基础数据模型 {
    * @name 技能增益列表
    */
   技能增益列表?: 技能增益列表类型[]
-  /**
-   * @name 技能破招系数
-   * @description 游戏面板描述 “破招伤害：xxxx%破招值”
-   * @default 0
-   */
-  技能破招系数?: number
   /**
    * @name 真实伤害
    * @description 大部分百战技能和大附魔技能的伤害

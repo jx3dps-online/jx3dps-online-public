@@ -4,8 +4,6 @@ import { Buff, Dot, LoopItem, Skill } from './interface'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
 import { 去除对象中的无效值 } from '@/工具函数/help'
 
-const { 技能系数 } = 获取当前数据()
-
 const 解析Generator主函数 = (value) => {
   // 奇穴信息
   const talentData = parseTalentData(value.talents)
@@ -25,6 +23,7 @@ const 解析Generator主函数 = (value) => {
  * @param {*} loop
  */
 const parseLoopData = (loop: LoopItem[]) => {
+  const { 技能系数 } = 获取当前数据()
   let totalDuration = 0 // 循环总时长
   const notFoundSkill: Array<Skill | Dot> = []
   let notFoundBuff: Buff[] = []

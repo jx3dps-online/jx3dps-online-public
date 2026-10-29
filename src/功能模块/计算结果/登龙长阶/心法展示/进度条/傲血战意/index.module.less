@@ -1,0 +1,410 @@
+.进度条 {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+
+.标题 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+
+  > span {
+    font-family: 'STKaiti', 'KaiTi', serif;
+    font-size: 17px;
+    letter-spacing: 3px;
+    color: #dfd4c4;
+  }
+
+  > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  b {
+    font-size: 29px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: #f3e0bd;
+  }
+
+  small {
+    margin-left: 2px;
+    font-size: 13px;
+  }
+
+  em {
+    font-size: 12px;
+    font-style: normal;
+    color: #b5bac5;
+  }
+}
+
+.武器区域 {
+  position: relative;
+  aspect-ratio: 5.5 / 1;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.画布 {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  transform: translateY(-50%);
+
+  > img,
+  .背景光,
+  .点亮特效,
+  .刃面流光 {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.素刃 {
+  opacity: 0.42;
+  transform: translateY(-1.28%);
+  clip-path: inset(0 0 0 var(--axzy-progress));
+}
+
+.成品,
+.点亮特效 {
+  clip-path: inset(0 calc(100% - var(--axzy-progress)) 0 0);
+}
+
+.背景光 {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    #000 calc(var(--axzy-progress) - 10%),
+    transparent var(--axzy-progress)
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 calc(var(--axzy-progress) - 10%),
+    transparent var(--axzy-progress)
+  );
+}
+
+.背景光 > i {
+  position: absolute;
+  inset: 27% 1% 24% 7%;
+  background:
+    radial-gradient(ellipse at 78% 42%, #e4edf5b3, #e4edf540 24%, transparent 54%),
+    radial-gradient(ellipse at 36% 42%, #ead8bb66, transparent 58%);
+  filter: blur(7px);
+  opacity: 0.55;
+  transform-origin: 72% 42%;
+}
+
+.刃面流光 {
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+
+  > i {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent 10%, #e1edf450, #fff 50%, transparent 85%);
+    opacity: 0;
+  }
+}
+
+.枪脊流光 {
+  position: absolute;
+  left: 3%;
+  top: 46%;
+  width: 94%;
+  height: 1px;
+  clip-path: inset(-6px 0);
+
+  > i {
+    display: block;
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #e0edf4 80%, #fff 90%, transparent);
+    box-shadow: 0 0 4px #d7e8f466;
+    opacity: 0;
+  }
+}
+
+.霜屑 > i {
+  position: absolute;
+  left: calc(6% + var(--axzy-spark) * 6.5%);
+  top: 41%;
+  width: calc(2px + var(--axzy-spark) * 0.25px);
+  height: 2px;
+  background: #e7f0f6;
+  box-shadow: 0 0 4px #d3e8f288;
+  opacity: 0;
+
+  &:nth-child(even) {
+    top: 58%;
+    background: #f4dfb9;
+  }
+
+  &:nth-child(3n) {
+    top: 32%;
+    width: 2px;
+    border-radius: 50%;
+  }
+}
+
+.枪锋 {
+  position: absolute;
+  left: 76.5%;
+  top: 46%;
+  width: 7%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+
+  > i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #fff 0%, #e4f3ffb3 9%, #d9eaf230 30%, transparent 65%);
+    opacity: 0.45;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 48% 12%;
+      background: linear-gradient(90deg, transparent, #fff8, transparent);
+    }
+
+    &::after {
+      transform: rotate(90deg) scaleX(0.7);
+    }
+  }
+}
+
+.电弧 {
+  position: absolute;
+  left: 64%;
+  top: 30%;
+  width: 24%;
+  height: 33%;
+  fill: none;
+  stroke: #d9f5ff;
+  stroke-width: 0.8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 1.5px #b9eaff80);
+
+  path {
+    vector-effect: non-scaling-stroke;
+  }
+
+  > g {
+    opacity: 0;
+  }
+
+  > g:last-child {
+    stroke-opacity: 0.75;
+  }
+}
+
+.破阵 {
+  position: absolute;
+  left: 68%;
+  top: 46%;
+  width: 30%;
+  height: 2px;
+
+  > i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #e9dcc0b3 55%, #fff5dc 85%, transparent);
+    box-shadow: 0 0 5px #f3dfb866;
+    opacity: 0;
+  }
+}
+
+.进度轨 {
+  position: relative;
+  height: 2px;
+  margin: 2px 3% 0;
+  background: #ffffff13;
+
+  > i {
+    display: block;
+    width: var(--axzy-progress);
+    height: 100%;
+    background: linear-gradient(90deg, #c3b295, #d8e6ed, #e8c58d);
+  }
+
+  > span {
+    position: absolute;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    transform: rotate(45deg);
+    background: #786d65;
+  }
+
+  > .已点亮 {
+    background: #e8c58d;
+  }
+}
+
+.已达成 {
+  .标题 > span {
+    color: #e8c58d;
+  }
+
+  .进度轨 > i {
+    box-shadow: 0 0 5px #e8c58d55;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .画布 > img,
+  .点亮特效 {
+    transition: clip-path 1.2s ease;
+  }
+
+  .进度轨 > i {
+    transition: width 1.2s ease;
+  }
+
+  .刃面流光 > i,
+  .枪脊流光 > i {
+    animation: axzy-flow 5.6s ease-in-out -1.8s infinite;
+  }
+
+  .霜屑 > i {
+    animation: axzy-frost calc(4.5s + var(--axzy-spark) * 0.18s) linear infinite;
+    animation-delay: calc(var(--axzy-spark) * -0.73s);
+  }
+
+  .进度条[aria-busy='false'] .背景光 > i {
+    animation: axzy-aura 6.4s ease-in-out -2s infinite;
+  }
+
+  .进度条[aria-busy='false'] .枪锋 > i {
+    animation: axzy-core 4.8s ease-in-out -1.2s infinite;
+  }
+
+  .破阵 > i {
+    animation: axzy-thrust 5.6s ease-out -1.8s infinite;
+  }
+
+  .电弧 > g {
+    animation: axzy-electric 5.6s linear -1.8s infinite;
+  }
+
+  .电弧 > g:last-child {
+    animation-delay: -1.65s;
+  }
+}
+
+@keyframes axzy-electric {
+  0%,
+  74%,
+  82%,
+  100% {
+    opacity: 0;
+  }
+  76.5% {
+    opacity: 0.72;
+  }
+  79% {
+    opacity: 0.28;
+  }
+}
+
+@keyframes axzy-aura {
+  0%,
+  100% {
+    transform: scale(0.94, 0.82);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.04, 1.12);
+    opacity: 0.9;
+  }
+}
+
+@keyframes axzy-flow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  8%,
+  45% {
+    opacity: 0.9;
+  }
+  65%,
+  100% {
+    transform: translateX(500%);
+    opacity: 0;
+  }
+}
+
+@keyframes axzy-frost {
+  0% {
+    transform: translate(0, 3px) rotate(-25deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  70% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(20px, -12px) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes axzy-core {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.95;
+  }
+}
+
+@keyframes axzy-thrust {
+  0%,
+  48% {
+    transform: translateX(-22%) scaleX(0.65);
+    opacity: 0;
+  }
+  55% {
+    opacity: 0.95;
+  }
+  72%,
+  100% {
+    transform: translateX(15%) scaleX(1.15);
+    opacity: 0;
+  }
+}
+
+@container dragon-stair (max-width: 580px) {
+  .进度条 {
+    flex-basis: 100%;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    margin-top: 12px;
+  }
+}

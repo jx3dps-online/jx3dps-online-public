@@ -1,8 +1,8 @@
 import 五彩石映射 from '../../../../../../../数据/常量/五彩石映射.json'
 // import 心法枚举JSON from '../../../../../../..//数据/静态数据/心法枚举.json'
 import { 本赛季英雄品级 } from '../../../../../../../数据/常量/装备常量'
-import 附魔ID枚举 from '../../../../../../../数据/常量/附魔映射'
-import { EquipPositionMap, DaFuMoMap, 五彩石转换 } from '../统一映射枚举'
+import { 解析外部附魔ID } from '@/数据/附魔/查询'
+import { EquipPositionMap, DaFuMoMap, 归一五彩石名称 } from '../统一映射枚举'
 
 self.onmessage = (event) => {
   const { data } = event // 获取传入的数据
@@ -56,7 +56,10 @@ export const Generator装备导入 = (原序列: string) => {
         const 装备品级 = Number(extractLevel(装备数据?.equipment))
         const 装备ID = Number(extractItemId(装备数据?.equipment))
         const 装备附魔ID = 装备数据?.enchant?.id
-        const 附魔实际名称 = 附魔ID枚举[装备附魔ID]
+        const 附魔实际ID = 解析外部附魔ID(
+          装备附魔ID,
+          装备部位类型 === '戒指_2' ? '戒指' : 装备部位类型,
+        )
         const 内部索引 = EquipPositionMap[装备部位类型]
         const 该装备有大附魔 = 装备数据?.special_enchant
         const 五彩石ID = 装备数据?.stone?.id?.[0]
@@ -76,21 +79,15 @@ export const Generator装备导入 = (原序列: string) => {
         if (内部索引) {
           equip[内部索引] = {
             id: 装备ID,
-            附魔: 附魔实际名称,
+            附魔: 附魔实际ID,
+            未支持附魔ID: 装备附魔ID && !附魔实际ID ? 装备附魔ID : undefined,
             镶嵌等级: Object.values(装备数据?.embed_levels) || [8, 8],
           }
         }
         if (五彩石ID) {
           let 五彩石名称 = 五彩石映射?.item_id?.[五彩石ID]
           if (五彩石名称) {
-            if (功法 !== '天罗诡道') {
-              // 对内功五彩石做映射
-              Object.keys(五彩石转换).forEach((key) => {
-                if (五彩石名称?.includes(key)) {
-                  五彩石名称 = 五彩石名称.replace(key, 五彩石转换[key])
-                }
-              })
-            }
+            五彩石名称 = 归一五彩石名称(五彩石名称, 功法)
 
             if (
               !全部五彩石数据?.some(

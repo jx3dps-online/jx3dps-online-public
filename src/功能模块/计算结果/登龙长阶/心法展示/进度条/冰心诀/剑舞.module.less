@@ -1,0 +1,81 @@
+.飘带 {
+  opacity: var(--bxj-ribbon-opacity, 0.22);
+}
+.上飘带,
+.下飘带 {
+  transform-origin: 50% 50%;
+}
+.绡边 {
+  fill: none;
+  stroke: #ffe5f4;
+  stroke-width: 1.2px;
+  stroke-linecap: round;
+  stroke-dasharray: 130 870;
+  stroke-dashoffset: -250;
+  opacity: 0.7;
+}
+.雪晶 {
+  fill: none;
+  stroke: #edf4ff;
+  stroke-width: 1.3px;
+  stroke-linecap: round;
+  opacity: 0.5;
+  filter: drop-shadow(0 0 1.5px #dceaff66);
+}
+.雪心 {
+  fill: #f9f2ff;
+  stroke-width: 0.7px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .上飘带 {
+    animation: bxj-ribbon 9s ease-in-out infinite;
+  }
+  .下飘带 {
+    animation: bxj-ribbon 10.5s ease-in-out -5s infinite reverse;
+  }
+  .绡边 {
+    animation: bxj-ribbon-edge 9s linear infinite;
+  }
+  .下飘带 .绡边 {
+    animation-delay: -4.5s;
+  }
+  .雪晶 {
+    animation: bxj-snow-dance calc(8s + var(--bxj-index) * 0.35s) ease-in-out infinite;
+    animation-delay: calc(-2s - var(--bxj-index) * 1.35s);
+  }
+}
+@keyframes bxj-ribbon {
+  0%,
+  100% {
+    transform: translate(-7px, 3px) skewY(-0.4deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(8px, -3px) skewY(0.4deg);
+    opacity: 1;
+  }
+}
+@keyframes bxj-ribbon-edge {
+  from {
+    stroke-dashoffset: 130;
+  }
+  to {
+    stroke-dashoffset: -870;
+  }
+}
+@keyframes bxj-snow-dance {
+  0% {
+    transform: translate(-9px, -4px) rotate(-30deg) scale(0.8);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.75;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(21px, 5px) rotate(75deg) scale(1.04);
+    opacity: 0;
+  }
+}

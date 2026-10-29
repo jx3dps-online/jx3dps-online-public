@@ -1,4 +1,3 @@
-import { 快照类型 } from './技能'
 import { 选中秘籍信息 } from './秘籍'
 
 export interface 循环数据 {
@@ -65,16 +64,20 @@ export interface 循环数据 {
    */
   技能序列?: string[]
   /**
-   * @name 快照计算
-   * @default false
-   * 启用快照计算后，部分期望计算将不再默认计算
-   * 目前包含：套装会心会效、大附魔_伤腰、水特效、风特效
+   * @name 用于模拟器的技能序列（一个循环有多个合并的时候）
    */
-  快照计算?: 快照类型[]
+  多挡位序列?: {
+    [key: string]: string[]
+  }
   /**
    * @name 起手Buff配置
    */
   起手Buff配置?: any
+  /**
+   * @name 攻略key
+   * @description 关联的攻略模块 key，命中后将在攻略模块展示对应攻略内容
+   */
+  攻略key?: string
 }
 
 export interface 循环详情 {
@@ -100,6 +103,11 @@ export interface 循环详情 {
    * 循环延迟要求
    */
   循环延迟要求?: number | string
+  /**
+   * @name 模拟器快照秒伤
+   * 保存自定义循环时，该加速/延迟档位计算出的秒伤
+   */
+  模拟器快照秒伤?: number
   /**
    * @name 计算战斗时间
    * 单位（秒）
@@ -168,7 +176,8 @@ export interface 技能增益列表数据 {
 }
 
 export interface 伤害数据类型 {
-  会心伤害: number
-  会心率: number
-  期望伤害: number
+  命中伤害?: number | null
+  会心伤害?: number | null
+  会心率?: number
+  期望伤害?: number
 }

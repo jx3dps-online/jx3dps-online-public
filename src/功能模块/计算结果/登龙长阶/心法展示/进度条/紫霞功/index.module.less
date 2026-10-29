@@ -1,0 +1,139 @@
+.进度条 {
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+
+.标题 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.武器名 {
+  font-family: 'STKaiti', 'KaiTi', serif;
+  font-size: 17px;
+  letter-spacing: 3px;
+  color: #ccd6e1;
+  white-space: nowrap;
+}
+
+.完成度 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-left: auto;
+  white-space: nowrap;
+
+  b {
+    font-size: 29px;
+    font-weight: 500;
+    color: #f3e0bd;
+    font-variant-numeric: tabular-nums;
+  }
+
+  small {
+    font-size: 13px;
+    margin-left: 2px;
+  }
+
+  em {
+    font-size: 12px;
+    font-style: normal;
+    color: #aeb9c9;
+  }
+}
+
+.剑影 {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 1;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
+    pointer-events: none;
+    user-select: none;
+    transition: clip-path 1.3s ease;
+  }
+}
+
+.暗态 {
+  opacity: 0.4;
+  clip-path: inset(0 0 0 var(--sword-progress));
+}
+
+.亮态 {
+  clip-path: inset(0 calc(100% - var(--sword-progress)) 0 0);
+}
+
+.刻度 {
+  position: relative;
+  height: 2px;
+  margin: 4px 3% 0;
+  background: #ffffff13;
+
+  > i {
+    display: block;
+    width: var(--sword-progress);
+    height: 100%;
+    background: linear-gradient(90deg, #b5c2d1, #c97277, #ead4b1);
+    transition: width 1.3s ease;
+  }
+
+  > span {
+    position: absolute;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    transform: translateX(-50%) rotate(45deg);
+    background: #485365;
+  }
+
+  > .已点亮 {
+    background: #d8c4a2;
+  }
+}
+
+.已达成 {
+  .武器名 {
+    color: #ead4b1;
+  }
+
+  .亮态 {
+    filter: drop-shadow(0 0 4px rgba(224, 235, 255, 0.4))
+      drop-shadow(0 0 10px rgba(174, 153, 236, 0.28));
+  }
+}
+
+@container dragon-stair (max-width: 580px) {
+  .进度条 {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    flex-basis: 100%;
+    margin-top: 12px;
+  }
+}
+
+.进度条[aria-busy='true'] {
+  .剑影 img,
+  .刻度 > i {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .剑影 img,
+  .刻度 > i {
+    transition: none;
+  }
+}

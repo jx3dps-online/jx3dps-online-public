@@ -1,16 +1,18 @@
 import React, { useRef, useState } from 'react'
-import { App, Button, Checkbox, Divider, Tooltip } from 'antd'
-import { QuestionCircleOutlined, SettingOutlined } from '@ant-design/icons'
-import { 装备位置部位枚举, 装备信息数据类型 } from '@/@types/装备'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import use移动端 from '@/hooks/use移动端'
+import { App, Button, Checkbox, Divider, Dropdown, Tooltip } from 'antd'
+import { DownOutlined, QuestionCircleOutlined, SettingOutlined } from '@ant-design/icons'
+import { 装备位置部位枚举, 装备信息数据类型, 装备选择范围类型 } from '@/@types/装备'
+import { 数据埋点 } from '@/工具函数/tools/log'
+import { use心法数据 } from '@/心法模块/心法上下文'
+import type { 计算循环覆盖类型 } from '@/计算模块/计算函数'
 
 import 最佳附魔设置 from './最佳附魔设置'
 import 最佳五彩石设置 from './最佳五彩石设置'
 import 加速规划 from './加速规划'
+import 全局寻优 from './全局寻优'
 import 遍历寻优跳过弹窗 from './遍历寻优跳过弹窗'
 import 智能对比设置弹窗 from './智能对比设置弹窗'
-
-const { 缓存映射 } = 获取当前数据()
 
 const 全部部位: 装备位置部位枚举[] = Object.keys(装备位置部位枚举) as 装备位置部位枚举[]
 
@@ -64,10 +66,39 @@ interface 头部组件类型 {
    * 设置对比加速
    */
   设置对比加速: (e: boolean) => void
+  /**
+   * @name 候选按收益排序
+   * 候选按收益排序
+   * */
+  候选按收益排序: boolean
+  /**
+   * 设置候选按收益排序
+   */
+  设置候选按收益排序: (e: boolean) => void
+  /**
+   * @name 装备选择范围
+   * 全局寻优的候选过滤范围
+   */
+  装备选择范围: 装备选择范围类型
+  /**
+   * @name 默认镶嵌宝石等级
+   * 全局寻优生成候选装备时的默认镶嵌等级
+   */
+  默认镶嵌宝石等级: number
   form: any
+  /**
+   * @name 循环覆盖
+   * 目标编辑时用目标循环/奇穴/秘籍参与所有寻优与对比计算。
+   */
+  循环覆盖?: 计算循环覆盖类型
+  /** 目标草稿不允许通过规划写入当前方案的增益。 */
+  允许规划增益?: boolean
+  移动装备操作?: React.ReactNode
 }
 
 function 头部组件(props: 头部组件类型) {
+  const 移动端 = use移动端()
+  const { 缓存映射 } = use心法数据()
   const {
     对比秒伤,
     对比装备信息,
@@ -79,7 +110,14 @@ function 头部组件(props: 头部组件类型) {
     设置对比显示百分比,
     对比加速,
     设置对比加速,
+    候选按收益排序,
+    设置候选按收益排序,
     遍历寻优,
+    装备选择范围,
+    默认镶嵌宝石等级,
+    循环覆盖,
+    允许规划增益 = true,
+    移动装备操作,
   } = props
   const { modal } = App.useApp()
 
@@ -88,6 +126,9 @@ function 头部组件(props: 头部组件类型) {
   const [当前选择计算部位, 更新当前选择计算部位] = useState<string[]>(全部部位)
   const [遍历寻优跳过弹窗展示, 设置遍历寻优跳过弹窗展示] = useState<boolean>(false)
   const [智能对比设置弹窗展示, 设置智能对比设置弹窗展示] = useState<boolean>(false)
+  const [全局寻优弹窗展示, 设置全局寻优弹窗展示] = useState<boolean>(false)
+  const [最佳附魔弹窗展示, 设置最佳附魔弹窗展示] = useState<boolean>(false)
+  const [最佳五彩石触发, 设置最佳五彩石触发] = useState<boolean>(false)
 
   const 一键替换附魔 = (附魔信息) => {
     form?.validateFields().then((values) => {
@@ -96,12 +137,11 @@ function 头部组件(props: 头部组件类型) {
         // const 附魔位置 = 装备部位枚举[fumoKey]
         // const formKey = `${附魔位置}${fumoKey}`
 
-        const 附魔属性 = Object.keys(附魔信息[附魔位置索引])?.[0]
-        const 附魔值 = Object.values(附魔信息[附魔位置索引])?.[0]
+        const 附魔ID = 附魔信息[附魔位置索引]
         if (values[附魔位置索引]) {
           obj[附魔位置索引] = {
             ...obj[附魔位置索引],
-            附魔: `${附魔属性}+${附魔值}`,
+            附魔: 附魔ID,
           }
         }
       })
@@ -166,61 +206,160 @@ function 头部组件(props: 头部组件类型) {
     <div className='zhuangbei-input-set-modal-title'>
       <div className='zhuangbei-input-set-modal-title-left'>
         <span>配装器</span>
-        <span id='Guide_6'>
+        <span id='Guide_6' className={'zhuangbei-diff-btn-wrap'}>
           <Checkbox
             checked={开启装备智能对比}
             onChange={(e) => 设置开启装备智能对比(e?.target?.checked)}
             className={'zhuangbei-diff-btn'}
           >
-            <div className={'zhuangbei-diff-btn-wrap'}>
-              <Button size='small' onClick={() => 设置开启装备智能对比(!开启装备智能对比)}>
-                智能对比
-              </Button>
-              <Button onClick={() => 设置智能对比设置弹窗展示(true)} size='small'>
+            智能对比
+          </Checkbox>
+          <Button onClick={() => 设置智能对比设置弹窗展示(true)} size='small'>
+            <SettingOutlined />
+          </Button>
+          {!移动端 && (
+            <Tooltip
+              styles={{
+                body: { width: 350 },
+              }}
+              title={
+                <div>
+                  <p>对比默认精炼等级下切换至另一件装备dps波动。</p>
+                  <p>注意：目标为橙武时不会自动切换循环。</p>
+                  <p>开启后打开装备选择框时会略微卡顿。</p>
+                </div>
+              }
+            >
+              <QuestionCircleOutlined className={'zhuangbei-diff-tip'} />
+            </Tooltip>
+          )}
+        </span>
+        <span style={{ marginLeft: 12, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+          <Button
+            size='small'
+            onClick={() => {
+              数据埋点('使用全局寻优')
+              设置全局寻优弹窗展示(true)
+            }}
+          >
+            全局寻优
+          </Button>
+          {!移动端 && (
+            <Dropdown
+              trigger={['click']}
+              menu={{
+                items: [
+                  {
+                    key: '遍历寻优',
+                    label: '遍历寻优 (旧)',
+                    onClick: () => 遍历寻优提示(),
+                  },
+                  {
+                    type: 'divider',
+                  },
+                  {
+                    key: '遍历寻优部位设置',
+                    label: `遍历寻优部位设置${
+                      当前选择计算部位?.length < 全部部位?.length
+                        ? `（${当前选择计算部位?.length} / ${全部部位?.length}）`
+                        : ''
+                    }`,
+                    onClick: () => 设置遍历寻优跳过弹窗展示(true),
+                  },
+                ],
+              }}
+            >
+              <Button size='small'>
                 <SettingOutlined />
               </Button>
-              <Tooltip
-                // overlayInnerStyle={{ width: 350 }}
-                styles={{
-                  body: { width: 350 },
-                }}
-                title={
-                  <div>
-                    <p>对比默认精炼等级下切换至另一件装备dps波动。</p>
-                    <p>注意：目标为橙武时不会自动切换循环。</p>
-                    {/* <p>考虑性能，暂时只开放13200品以上装备的智能对比。</p> */}
-                    <p>开启后打开装备选择框时会略微卡顿。</p>
-                  </div>
-                }
-              >
-                <QuestionCircleOutlined className={'zhuangbei-diff-tip'} />
-              </Tooltip>
-            </div>
-          </Checkbox>
+            </Dropdown>
+          )}
+          {!移动端 && (
+            <Tooltip
+              styles={{ body: { width: 320 } }}
+              title={
+                <div>
+                  <p>
+                    全局寻优：多部位联合搜索，跳出局部最优，寻找整套配装的理论最优解；填写装分上限后，在不超过上限的前提下寻找秒伤最高的组合。
+                  </p>
+                  <p>遍历寻优：逐部位贪心替换，速度快但可能陷入局部最优。</p>
+                </div>
+              }
+            >
+              <QuestionCircleOutlined className={'zhuangbei-diff-tip'} />
+            </Tooltip>
+          )}
+          <全局寻优
+            open={全局寻优弹窗展示}
+            onOpenChange={设置全局寻优弹窗展示}
+            form={form}
+            更换装备计算秒伤={更换装备计算秒伤}
+            装备选择范围={装备选择范围}
+            默认镶嵌宝石等级={默认镶嵌宝石等级}
+            循环覆盖={循环覆盖}
+            允许规划增益={允许规划增益}
+          />
         </span>
-        {开启装备智能对比 ? (
-          <>
-            <Button onClick={遍历寻优提示} size='small'>
-              遍历寻优
-            </Button>
-            <Button onClick={() => 设置遍历寻优跳过弹窗展示(true)} size='small'>
-              <SettingOutlined />
-              {当前选择计算部位?.length < 全部部位?.length
-                ? `${当前选择计算部位?.length} / ${全部部位?.length}`
-                : null}
-            </Button>
-          </>
-        ) : null}
       </div>
       <div className='zhuangbei-input-set-modal-title-operate'>
-        <加速规划 />
+        {!移动端 && (
+          <加速规划
+            form={form}
+            更换装备计算秒伤={更换装备计算秒伤}
+            循环覆盖={循环覆盖}
+            允许规划增益={允许规划增益}
+          />
+        )}
+        {移动端 ? (
+          <div className='移动最优按钮'>
+            <Button type='primary' onClick={() => 设置最佳附魔弹窗展示(true)}>
+              一键附魔
+            </Button>
+            <Button type='primary' onClick={() => 设置最佳五彩石触发(true)}>
+              一键五彩石
+            </Button>
+            {移动装备操作}
+          </div>
+        ) : (
+          <Dropdown
+            trigger={['hover']}
+            menu={{
+              items: [
+                {
+                  key: '一键设置附魔',
+                  label: '一键设置附魔',
+                  onClick: () => 设置最佳附魔弹窗展示(true),
+                },
+                {
+                  key: '一键设置五彩石',
+                  label: '一键设置五彩石',
+                  onClick: () => 设置最佳五彩石触发(true),
+                },
+              ],
+            }}
+          >
+            <Button type='primary' size='small' style={{ marginLeft: 12 }}>
+              一键最优 <DownOutlined />
+            </Button>
+          </Dropdown>
+        )}
         {/* 最佳附魔设置 */}
-        <最佳附魔设置 一键替换附魔={一键替换附魔} 对比秒伤={对比秒伤} 对比装备信息={对比装备信息} />
+        <最佳附魔设置
+          一键替换附魔={一键替换附魔}
+          对比秒伤={对比秒伤}
+          对比装备信息={对比装备信息}
+          循环覆盖={循环覆盖}
+          部位选择弹窗展示={最佳附魔弹窗展示}
+          on部位选择弹窗展示Change={设置最佳附魔弹窗展示}
+        />
         {/* 最佳五彩石设置 */}
         <最佳五彩石设置
           一键替换五彩石={一键替换五彩石}
           对比秒伤={对比秒伤}
           对比装备信息={对比装备信息}
+          循环覆盖={循环覆盖}
+          触发计算={最佳五彩石触发}
+          on触发计算Change={设置最佳五彩石触发}
         />
       </div>
       <遍历寻优跳过弹窗
@@ -236,6 +375,8 @@ function 头部组件(props: 头部组件类型) {
         设置对比显示百分比={设置对比显示百分比}
         对比加速={对比加速}
         设置对比加速={设置对比加速}
+        候选按收益排序={候选按收益排序}
+        设置候选按收益排序={设置候选按收益排序}
       />
     </div>
   )

@@ -1,0 +1,6587 @@
+{
+  "items": [
+    {
+      "id": "10438",
+      "sub_id": "10100",
+      "name": "百炼水煮鱼",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 30
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 7200,
+      "comment": ""
+    },
+    {
+      "id": "10100",
+      "sub_id": "10438",
+      "name": "百炼水煮鱼",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 30
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 7200,
+      "comment": ""
+    },
+    {
+      "id": "10179",
+      "sub_id": "18428",
+      "name": "同泽宴",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 21
+      },
+      "recipes": [],
+      "interval": 57600,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "18428",
+      "sub_id": "10179",
+      "name": "同泽宴",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 21
+      },
+      "recipes": [],
+      "interval": 57600,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10179",
+      "sub_id": "2563",
+      "name": "蒸鱼菜盘",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 15
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2563",
+      "sub_id": "10179",
+      "name": "蒸鱼菜盘",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 15
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10067",
+      "sub_id": "34523",
+      "name": "云芝竹沥羹",
+      "school_id": "0",
+      "attrs": {
+        "vitality_base": 126
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "34523",
+      "sub_id": "10067",
+      "name": "云芝竹沥羹",
+      "school_id": "0",
+      "attrs": {
+        "vitality_base": 126
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10067",
+      "sub_id": "34522",
+      "name": "渝州小面",
+      "school_id": "0",
+      "attrs": {
+        "all_critical_strike_base": 126
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "34522",
+      "sub_id": "10067",
+      "name": "渝州小面",
+      "school_id": "0",
+      "attrs": {
+        "all_critical_strike_base": 126
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10067",
+      "sub_id": "34517",
+      "name": "巴渝珍馐宴",
+      "school_id": "0",
+      "attrs": {
+        "vitality_base": 143
+      },
+      "recipes": [],
+      "interval": 57600,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "34517",
+      "sub_id": "10067",
+      "name": "巴渝珍馐宴",
+      "school_id": "0",
+      "attrs": {
+        "vitality_base": 143
+      },
+      "recipes": [],
+      "interval": 57600,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10067",
+      "sub_id": "34516",
+      "name": "巴山夜雨宴",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_base": 72,
+        "all_critical_strike_base": 72,
+        "strain_base": 72
+      },
+      "recipes": [],
+      "interval": 57600,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "34516",
+      "sub_id": "10067",
+      "name": "巴山夜雨宴",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_base": 72,
+        "all_critical_strike_base": 72,
+        "strain_base": 72
+      },
+      "recipes": [],
+      "interval": 57600,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10071",
+      "sub_id": "34527",
+      "name": "五气归元丹",
+      "school_id": "0",
+      "attrs": {
+        "vitality_base": 162
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "34527",
+      "sub_id": "10071",
+      "name": "五气归元丹",
+      "school_id": "0",
+      "attrs": {
+        "vitality_base": 162
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10071",
+      "sub_id": "34525",
+      "name": "巴山凝神丹",
+      "school_id": "0",
+      "attrs": {
+        "all_critical_strike_base": 162
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "34525",
+      "sub_id": "10071",
+      "name": "巴山凝神丹",
+      "school_id": "0",
+      "attrs": {
+        "all_critical_strike_base": 162
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "27784",
+      "name": "刚吃过精品煎豆腐。",
+      "school_id": "0",
+      "attrs": {
+        "weapon_damage_base": 13
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "27784",
+      "sub_id": "23768",
+      "name": "刚吃过精品煎豆腐。",
+      "school_id": "0",
+      "attrs": {
+        "weapon_damage_base": 13
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "27785",
+      "name": "刚吃过精品炖豆腐",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 87
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "27785",
+      "sub_id": "23768",
+      "name": "刚吃过精品炖豆腐",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 87
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "27786",
+      "name": "刚吃过精品小炒青菜",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_base": 87
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "27786",
+      "sub_id": "23768",
+      "name": "刚吃过精品小炒青菜",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_base": 87
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "27787",
+      "name": "刚吃过精品清蒸鲈鱼",
+      "school_id": "0",
+      "attrs": {
+        "all_overcome_base": 87
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "27787",
+      "sub_id": "23768",
+      "name": "刚吃过精品清蒸鲈鱼",
+      "school_id": "0",
+      "attrs": {
+        "all_overcome_base": 87
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "27788",
+      "name": "刚吃过断浪·炸鱼干",
+      "school_id": "0",
+      "attrs": {
+        "all_critical_strike_base": 87
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "27788",
+      "sub_id": "23768",
+      "name": "刚吃过断浪·炸鱼干",
+      "school_id": "0",
+      "attrs": {
+        "all_critical_strike_base": 87
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "27792",
+      "name": "刚吃过精品葫芦叫花鸡",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_base": 87
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "27792",
+      "sub_id": "23768",
+      "name": "刚吃过精品葫芦叫花鸡",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_base": 87
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "17349",
+      "name": "汾酒·旬又三",
+      "school_id": "0",
+      "attrs": {
+        "strength_base": 92
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17349",
+      "sub_id": "23768",
+      "name": "汾酒·旬又三",
+      "school_id": "0",
+      "attrs": {
+        "strength_base": 92
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "17352",
+      "name": "关外白酒·旬又三",
+      "school_id": "0",
+      "attrs": {
+        "agility_base": 92
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17352",
+      "sub_id": "23768",
+      "name": "关外白酒·旬又三",
+      "school_id": "0",
+      "attrs": {
+        "agility_base": 92
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "17355",
+      "name": "高粱酒·旬又三",
+      "school_id": "0",
+      "attrs": {
+        "spirit_base": 92
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17355",
+      "sub_id": "23768",
+      "name": "高粱酒·旬又三",
+      "school_id": "0",
+      "attrs": {
+        "spirit_base": 92
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "17358",
+      "name": "状元红·旬又三",
+      "school_id": "0",
+      "attrs": {
+        "spunk_base": 92
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17358",
+      "sub_id": "23768",
+      "name": "状元红·旬又三",
+      "school_id": "0",
+      "attrs": {
+        "spunk_base": 92
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "17361",
+      "name": "女儿红·旬又三",
+      "school_id": "0",
+      "attrs": {
+        "haste_base": 92
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17361",
+      "sub_id": "23768",
+      "name": "女儿红·旬又三",
+      "school_id": "0",
+      "attrs": {
+        "haste_base": 92
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23768",
+      "sub_id": "17365",
+      "name": "创意料理·盛",
+      "school_id": "0",
+      "attrs": {
+        "max_life_add": -2094,
+        "strain_base": 156
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17365",
+      "sub_id": "23768",
+      "name": "创意料理·盛",
+      "school_id": "0",
+      "attrs": {
+        "max_life_add": -2094,
+        "strain_base": 156
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10433",
+      "sub_id": "8937",
+      "name": "绿豆糕",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_base": 30
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8937",
+      "sub_id": "10433",
+      "name": "绿豆糕",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_base": 30
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10433",
+      "sub_id": "8938",
+      "name": "花生酥",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_base": 29
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8938",
+      "sub_id": "10433",
+      "name": "花生酥",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_base": 29
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10433",
+      "sub_id": "8939",
+      "name": "果味糖",
+      "school_id": "0",
+      "attrs": {
+        "weapon_damage_base": 8
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8939",
+      "sub_id": "10433",
+      "name": "果味糖",
+      "school_id": "0",
+      "attrs": {
+        "weapon_damage_base": 8
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10433",
+      "sub_id": "8940",
+      "name": "南瓜小点",
+      "school_id": "0",
+      "attrs": {
+        "max_life_add": 127
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8940",
+      "sub_id": "10433",
+      "name": "南瓜小点",
+      "school_id": "0",
+      "attrs": {
+        "max_life_add": 127
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10433",
+      "sub_id": "8941",
+      "name": "红豆糕",
+      "school_id": "0",
+      "attrs": {
+        "therapy_power_base": 27
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8941",
+      "sub_id": "10433",
+      "name": "红豆糕",
+      "school_id": "0",
+      "attrs": {
+        "therapy_power_base": 27
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10433",
+      "sub_id": "8942",
+      "name": "云片糕",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_base": 122
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8942",
+      "sub_id": "10433",
+      "name": "云片糕",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_base": 122
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10433",
+      "sub_id": "8943",
+      "name": "梅花糕",
+      "school_id": "0",
+      "attrs": {
+        "weapon_damage_base": 36
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8943",
+      "sub_id": "10433",
+      "name": "梅花糕",
+      "school_id": "0",
+      "attrs": {
+        "weapon_damage_base": 36
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10433",
+      "sub_id": "8944",
+      "name": "南瓜酥",
+      "school_id": "0",
+      "attrs": {
+        "max_life_add": 522
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8944",
+      "sub_id": "10433",
+      "name": "南瓜酥",
+      "school_id": "0",
+      "attrs": {
+        "max_life_add": 522
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10433",
+      "sub_id": "8945",
+      "name": "芝麻杆",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_base": 123
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8945",
+      "sub_id": "10433",
+      "name": "芝麻杆",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_base": 123
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10433",
+      "sub_id": "8946",
+      "name": "米花糖",
+      "school_id": "0",
+      "attrs": {
+        "therapy_power_base": 112
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8946",
+      "sub_id": "10433",
+      "name": "米花糖",
+      "school_id": "0",
+      "attrs": {
+        "therapy_power_base": 112
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "545",
+      "sub_id": "673",
+      "name": "袖气",
+      "school_id": "0",
+      "attrs": {
+        "all_major_base": 29,
+        "magical_shield_base": 23
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "673",
+      "sub_id": "545",
+      "name": "袖气",
+      "school_id": "0",
+      "attrs": {
+        "all_major_base": 29,
+        "magical_shield_base": 23
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "567",
+      "sub_id": "20938",
+      "name": "左旋右转",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 10
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "20938",
+      "sub_id": "567",
+      "name": "左旋右转",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 10
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "30850",
+      "sub_id": "23573",
+      "name": "泠风解怀",
+      "school_id": "0",
+      "attrs": {
+        "all_damage_gain": 154
+      },
+      "recipes": [],
+      "interval": 96,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "23573",
+      "sub_id": "30850",
+      "name": "泠风解怀",
+      "school_id": "0",
+      "attrs": {
+        "all_damage_gain": 154
+      },
+      "recipes": [],
+      "interval": 96,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "404",
+      "sub_id": "362",
+      "name": "撼如雷",
+      "school_id": "0",
+      "attrs": {
+        "max_life_final_gain": 51,
+        "physical_attack_power_gain": 51
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "362",
+      "sub_id": "404",
+      "name": "撼如雷",
+      "school_id": "0",
+      "attrs": {
+        "max_life_final_gain": 51,
+        "physical_attack_power_gain": 51
+      },
+      "recipes": [],
+      "interval": 28800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6806",
+      "sub_id": "6363",
+      "name": "激雷",
+      "school_id": "0",
+      "attrs": {
+        "physical_overcome_gain": 205,
+        "physical_attack_power_gain": 205
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 6,
+      "comment": ""
+    },
+    {
+      "id": "6363",
+      "sub_id": "6806",
+      "name": "激雷",
+      "school_id": "0",
+      "attrs": {
+        "physical_overcome_gain": 205,
+        "physical_attack_power_gain": 205
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 6,
+      "comment": ""
+    },
+    {
+      "id": "401",
+      "sub_id": "661",
+      "name": "破风",
+      "school_id": "0",
+      "attrs": {
+        "physical_shield_base": -280
+      },
+      "recipes": [],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 7,
+      "comment": ""
+    },
+    {
+      "id": "661",
+      "sub_id": "401",
+      "name": "破风",
+      "school_id": "0",
+      "attrs": {
+        "physical_shield_base": -280
+      },
+      "recipes": [],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 7,
+      "comment": ""
+    },
+    {
+      "id": "18872",
+      "sub_id": "12717",
+      "name": "破风",
+      "school_id": "0",
+      "attrs": {
+        "physical_shield_base": -372
+      },
+      "recipes": [],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 7,
+      "comment": ""
+    },
+    {
+      "id": "12717",
+      "sub_id": "18872",
+      "name": "破风",
+      "school_id": "0",
+      "attrs": {
+        "physical_shield_base": -372
+      },
+      "recipes": [],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 7,
+      "comment": ""
+    },
+    {
+      "id": "2603",
+      "sub_id": "3465",
+      "name": "破甲",
+      "school_id": "0",
+      "attrs": {
+        "physical_shield_gain": -102
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3465",
+      "sub_id": "2603",
+      "name": "破甲",
+      "school_id": "0",
+      "attrs": {
+        "physical_shield_gain": -102
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "15115",
+      "sub_id": "23107",
+      "name": "号令三军",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 34
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 30,
+      "comment": ""
+    },
+    {
+      "id": "23107",
+      "sub_id": "15115",
+      "name": "号令三军",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 34
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 30,
+      "comment": ""
+    },
+    {
+      "id": "246",
+      "sub_id": "566",
+      "name": "立地成佛",
+      "school_id": "0",
+      "attrs": {
+        "solar_shield_gain": -154,
+        "neutral_shield_gain": -154,
+        "lunar_shield_gain": -154,
+        "poison_shield_gain": -154
+      },
+      "recipes": [],
+      "interval": 320,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "566",
+      "sub_id": "246",
+      "name": "立地成佛",
+      "school_id": "0",
+      "attrs": {
+        "solar_shield_gain": -154,
+        "neutral_shield_gain": -154,
+        "lunar_shield_gain": -154,
+        "poison_shield_gain": -154
+      },
+      "recipes": [],
+      "interval": 320,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "5939",
+      "sub_id": "6214",
+      "name": "禅语",
+      "school_id": "0",
+      "attrs": {
+        "max_life_add": 56,
+        "strain_base": 10
+      },
+      "recipes": [],
+      "interval": 400,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6214",
+      "sub_id": "5939",
+      "name": "禅语",
+      "school_id": "0",
+      "attrs": {
+        "max_life_add": 56,
+        "strain_base": 10
+      },
+      "recipes": [],
+      "interval": 400,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "31208",
+      "sub_id": "29294",
+      "name": "秋肃",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 10
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "29294",
+      "sub_id": "31208",
+      "name": "秋肃",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 10
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "32381",
+      "sub_id": "24350",
+      "name": "皎素",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 51,
+        "magical_critical_power_rate": 51
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "24350",
+      "sub_id": "32381",
+      "name": "皎素",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 51,
+        "magical_critical_power_rate": 51
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "362",
+      "sub_id": "378",
+      "name": "凭霄破云·碎星辰",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "378",
+      "sub_id": "362",
+      "name": "凭霄破云·碎星辰",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "359",
+      "sub_id": "375",
+      "name": "破苍穹",
+      "school_id": "0",
+      "attrs": {
+        "magical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "375",
+      "sub_id": "359",
+      "name": "破苍穹",
+      "school_id": "0",
+      "attrs": {
+        "magical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "29093",
+      "sub_id": "29354",
+      "name": "百锻",
+      "school_id": "0",
+      "attrs": {
+        "all_overcome_base": 53
+      },
+      "recipes": [],
+      "interval": 24,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "29354",
+      "sub_id": "29093",
+      "name": "百锻",
+      "school_id": "0",
+      "attrs": {
+        "all_overcome_base": 53
+      },
+      "recipes": [],
+      "interval": 24,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2234",
+      "sub_id": "24742",
+      "name": "仙王蛊鼎",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 36
+      },
+      "recipes": [],
+      "interval": 30,
+      "max_stack": 100,
+      "max_tick": 16,
+      "comment": ""
+    },
+    {
+      "id": "24742",
+      "sub_id": "2234",
+      "name": "仙王蛊鼎",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 36
+      },
+      "recipes": [],
+      "interval": 30,
+      "max_stack": 100,
+      "max_tick": 16,
+      "comment": ""
+    },
+    {
+      "id": "3980",
+      "sub_id": "4058",
+      "name": "戒火",
+      "school_id": "0",
+      "attrs": {
+        "physical_damage_cof": 21,
+        "solar_damage_cof": 21,
+        "neutral_damage_cof": 21,
+        "lunar_damage_cof": 21,
+        "poison_damage_cof": 21
+      },
+      "recipes": [],
+      "interval": 240,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "4058",
+      "sub_id": "3980",
+      "name": "戒火",
+      "school_id": "0",
+      "attrs": {
+        "physical_damage_cof": 21,
+        "solar_damage_cof": 21,
+        "neutral_damage_cof": 21,
+        "lunar_damage_cof": 21,
+        "poison_damage_cof": 21
+      },
+      "recipes": [],
+      "interval": 240,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3985",
+      "sub_id": "4246",
+      "name": "朝圣",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 27
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "4246",
+      "sub_id": "3985",
+      "name": "朝圣",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 27
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14678",
+      "sub_id": "4246",
+      "name": "朝圣",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 41
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "4246",
+      "sub_id": "14678",
+      "name": "朝圣",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 41
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13050",
+      "sub_id": "8248",
+      "name": "虚弱",
+      "school_id": "0",
+      "attrs": {
+        "physical_shield_gain": -51
+      },
+      "recipes": [],
+      "interval": 400,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8248",
+      "sub_id": "13050",
+      "name": "虚弱",
+      "school_id": "0",
+      "attrs": {
+        "physical_shield_gain": -51
+      },
+      "recipes": [],
+      "interval": 400,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "44566",
+      "sub_id": "8248",
+      "name": "虚弱",
+      "school_id": "0",
+      "attrs": {
+        "physical_shield_gain": -72
+      },
+      "recipes": [],
+      "interval": 400,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8248",
+      "sub_id": "44566",
+      "name": "虚弱",
+      "school_id": "0",
+      "attrs": {
+        "physical_shield_gain": -72
+      },
+      "recipes": [],
+      "interval": 400,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13422",
+      "sub_id": "8504",
+      "name": "振奋",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 5
+      },
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8504",
+      "sub_id": "13422",
+      "name": "振奋",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 5
+      },
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "15072",
+      "sub_id": "10031",
+      "name": "寒啸千军",
+      "school_id": "0",
+      "attrs": {
+        "strain_rate": 51
+      },
+      "recipes": [],
+      "interval": 240,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10031",
+      "sub_id": "15072",
+      "name": "寒啸千军",
+      "school_id": "0",
+      "attrs": {
+        "strain_rate": 51
+      },
+      "recipes": [],
+      "interval": 240,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "18819",
+      "sub_id": "23543",
+      "name": "庄周梦",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 10
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 60,
+      "comment": ""
+    },
+    {
+      "id": "23543",
+      "sub_id": "18819",
+      "name": "庄周梦",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 10
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 60,
+      "comment": ""
+    },
+    {
+      "id": "28678",
+      "sub_id": "20854",
+      "name": "飘黄",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 10
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 30,
+      "comment": ""
+    },
+    {
+      "id": "20854",
+      "sub_id": "28678",
+      "name": "飘黄",
+      "school_id": "0",
+      "attrs": {
+        "strain_base": 10
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 30,
+      "comment": ""
+    },
+    {
+      "id": "745",
+      "sub_id": "919",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "strain_rate": 20,
+        "poison_overcome_gain": 102,
+        "solar_overcome_gain": 102,
+        "neutral_overcome_gain": 102,
+        "lunar_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "919",
+      "sub_id": "745",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "strain_rate": 20,
+        "poison_overcome_gain": 102,
+        "solar_overcome_gain": 102,
+        "neutral_overcome_gain": 102,
+        "lunar_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "745",
+      "sub_id": "920",
+      "name": "天鼓雷音五阵",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 21
+      },
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "920",
+      "sub_id": "745",
+      "name": "天鼓雷音五阵",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 21
+      },
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "745",
+      "sub_id": "940",
+      "name": "天鼓雷音六阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 10000,
+        "solar_critical_strike_rate": 10000,
+        "neutral_critical_strike_rate": 10000,
+        "lunar_critical_strike_rate": 10000,
+        "poison_critical_strike_rate": 10000
+      },
+      "recipes": [],
+      "interval": 96,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "940",
+      "sub_id": "745",
+      "name": "天鼓雷音六阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 10000,
+        "solar_critical_strike_rate": 10000,
+        "neutral_critical_strike_rate": 10000,
+        "lunar_critical_strike_rate": 10000,
+        "poison_critical_strike_rate": 10000
+      },
+      "recipes": [],
+      "interval": 96,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "347",
+      "sub_id": "938",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "strain_rate": 20,
+        "magical_critical_power_rate": 154
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "938",
+      "sub_id": "347",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "strain_rate": 20,
+        "magical_critical_power_rate": 154
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "347",
+      "sub_id": "943",
+      "name": "九宫八卦五阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 100,
+        "neutral_critical_strike_rate": 100,
+        "poison_critical_strike_rate": 100,
+        "solar_critical_strike_rate": 100
+      },
+      "recipes": [],
+      "interval": 320,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "943",
+      "sub_id": "347",
+      "name": "九宫八卦五阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 100,
+        "neutral_critical_strike_rate": 100,
+        "poison_critical_strike_rate": 100,
+        "solar_critical_strike_rate": 100
+      },
+      "recipes": [],
+      "interval": 320,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "347",
+      "sub_id": "949",
+      "name": "九宫八卦六阵",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 205
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "949",
+      "sub_id": "347",
+      "name": "九宫八卦六阵",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 205
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "778",
+      "sub_id": "947",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 300,
+        "strain_rate": 20,
+        "physical_critical_power_rate": 150
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "947",
+      "sub_id": "778",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 300,
+        "strain_rate": 20,
+        "physical_critical_power_rate": 150
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "778",
+      "sub_id": "950",
+      "name": "北斗七星五阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 100
+      },
+      "recipes": [],
+      "interval": 320,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "950",
+      "sub_id": "778",
+      "name": "北斗七星五阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 100
+      },
+      "recipes": [],
+      "interval": 320,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "778",
+      "sub_id": "953",
+      "name": "北斗七星六阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 205
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "953",
+      "sub_id": "778",
+      "name": "北斗七星六阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 205
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "230",
+      "sub_id": "934",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "solar_overcome_gain": 300,
+        "neutral_overcome_gain": 300,
+        "lunar_overcome_gain": 300,
+        "poison_overcome_gain": 300
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "934",
+      "sub_id": "230",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "solar_overcome_gain": 300,
+        "neutral_overcome_gain": 300,
+        "lunar_overcome_gain": 300,
+        "poison_overcome_gain": 300
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "230",
+      "sub_id": "937",
+      "name": "七绝逍遥四阵",
+      "school_id": "0",
+      "attrs": {
+        "magical_damage_gain": 154
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "937",
+      "sub_id": "230",
+      "name": "七绝逍遥四阵",
+      "school_id": "0",
+      "attrs": {
+        "magical_damage_gain": 154
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "754",
+      "sub_id": "930",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 50,
+        "physical_overcome_gain": 200,
+        "toughness_rate": 300
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "930",
+      "sub_id": "754",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 50,
+        "physical_overcome_gain": 200,
+        "toughness_rate": 300
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "754",
+      "sub_id": "935",
+      "name": "卫公折冲四阵",
+      "school_id": "0",
+      "attrs": {
+        "strength_gain": 10
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "935",
+      "sub_id": "754",
+      "name": "卫公折冲四阵",
+      "school_id": "0",
+      "attrs": {
+        "strength_gain": 10
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "754",
+      "sub_id": "936",
+      "name": "卫公折冲五阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 51
+      },
+      "recipes": [],
+      "interval": 240,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "936",
+      "sub_id": "754",
+      "name": "卫公折冲五阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 51
+      },
+      "recipes": [],
+      "interval": 240,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "754",
+      "sub_id": "940",
+      "name": "天鼓雷音六阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 10000,
+        "solar_critical_strike_rate": 10000,
+        "neutral_critical_strike_rate": 10000,
+        "lunar_critical_strike_rate": 10000,
+        "poison_critical_strike_rate": 10000
+      },
+      "recipes": [],
+      "interval": 96,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "940",
+      "sub_id": "754",
+      "name": "天鼓雷音六阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 10000,
+        "solar_critical_strike_rate": 10000,
+        "neutral_critical_strike_rate": 10000,
+        "lunar_critical_strike_rate": 10000,
+        "poison_critical_strike_rate": 10000
+      },
+      "recipes": [],
+      "interval": 96,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "781",
+      "sub_id": "952",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 50,
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "magical_critical_power_rate": 51
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "952",
+      "sub_id": "781",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 50,
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "magical_critical_power_rate": 51
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "781",
+      "sub_id": "954",
+      "name": "九音惊弦四阵",
+      "school_id": "0",
+      "attrs": {
+        "solar_overcome_gain": 307,
+        "neutral_overcome_gain": 307,
+        "lunar_overcome_gain": 307,
+        "poison_overcome_gain": 307
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "954",
+      "sub_id": "781",
+      "name": "九音惊弦四阵",
+      "school_id": "0",
+      "attrs": {
+        "solar_overcome_gain": 307,
+        "neutral_overcome_gain": 307,
+        "lunar_overcome_gain": 307,
+        "poison_overcome_gain": 307
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "781",
+      "sub_id": "955",
+      "name": "九音惊弦五阵",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "955",
+      "sub_id": "781",
+      "name": "九音惊弦五阵",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "781",
+      "sub_id": "956",
+      "name": "九音惊弦六阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 2000,
+        "solar_critical_strike_rate": 2000,
+        "neutral_critical_strike_rate": 2000,
+        "poison_critical_strike_rate": 2000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "956",
+      "sub_id": "781",
+      "name": "九音惊弦六阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 2000,
+        "solar_critical_strike_rate": 2000,
+        "neutral_critical_strike_rate": 2000,
+        "poison_critical_strike_rate": 2000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "1866",
+      "sub_id": "1924",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "agility_gain": 30,
+        "physical_attack_power_gain": 51,
+        "physical_critical_power_rate": 204
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "1924",
+      "sub_id": "1866",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "agility_gain": 30,
+        "physical_attack_power_gain": 51,
+        "physical_critical_power_rate": 204
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "1866",
+      "sub_id": "1925",
+      "name": "鸣速",
+      "school_id": "0",
+      "attrs": {
+        "weapon_damage_base": 23
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "1925",
+      "sub_id": "1866",
+      "name": "鸣速",
+      "school_id": "0",
+      "attrs": {
+        "weapon_damage_base": 23
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "1866",
+      "sub_id": "1926",
+      "name": "获气",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 2000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "1926",
+      "sub_id": "1866",
+      "name": "获气",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 2000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2487",
+      "sub_id": "2512",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "magical_critical_power_rate": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2512",
+      "sub_id": "2487",
+      "name": "六重忘我",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "magical_critical_power_rate": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2487",
+      "sub_id": "2513",
+      "name": "万蛊噬心四阵",
+      "school_id": "0",
+      "attrs": {
+        "poison_attack_power_gain": 51
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2513",
+      "sub_id": "2487",
+      "name": "万蛊噬心四阵",
+      "school_id": "0",
+      "attrs": {
+        "poison_attack_power_gain": 51
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2487",
+      "sub_id": "2514",
+      "name": "万蛊噬心五阵",
+      "school_id": "0",
+      "attrs": {
+        "solar_overcome_gain": 102,
+        "neutral_overcome_gain": 102,
+        "lunar_overcome_gain": 102,
+        "poison_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2514",
+      "sub_id": "2487",
+      "name": "万蛊噬心五阵",
+      "school_id": "0",
+      "attrs": {
+        "solar_overcome_gain": 102,
+        "neutral_overcome_gain": 102,
+        "lunar_overcome_gain": 102,
+        "poison_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2487",
+      "sub_id": "2510",
+      "name": "蚀心",
+      "school_id": "0",
+      "attrs": {
+        "poison_critical_strike_rate": 2000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2510",
+      "sub_id": "2487",
+      "name": "蚀心",
+      "school_id": "0",
+      "attrs": {
+        "poison_critical_strike_rate": 2000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3216",
+      "sub_id": "3306",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "strength_gain": 30,
+        "strain_rate": 20,
+        "physical_overcome_gain": 205
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3306",
+      "sub_id": "3216",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "strength_gain": 30,
+        "strain_rate": 20,
+        "physical_overcome_gain": 205
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3216",
+      "sub_id": "3308",
+      "name": "追命",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3308",
+      "sub_id": "3216",
+      "name": "追命",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3216",
+      "sub_id": "3309",
+      "name": "肃杀",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 2000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3309",
+      "sub_id": "3216",
+      "name": "肃杀",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 2000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3217",
+      "sub_id": "3307",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "all_shield_ignore": 52,
+        "physical_damage_cof": -51,
+        "physical_critical_power_rate": 150,
+        "magical_critical_power_rate": 150
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3307",
+      "sub_id": "3217",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "all_shield_ignore": 52,
+        "physical_damage_cof": -51,
+        "physical_critical_power_rate": 150,
+        "magical_critical_power_rate": 150
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3217",
+      "sub_id": "32800",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "strain_rate": 20
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 10,
+      "comment": ""
+    },
+    {
+      "id": "32800",
+      "sub_id": "3217",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "strain_rate": 20
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 10,
+      "comment": ""
+    },
+    {
+      "id": "3217",
+      "sub_id": "3310",
+      "name": "千机百变",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "poison_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "physical_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "3310",
+      "sub_id": "3217",
+      "name": "千机百变",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "poison_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "physical_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "4674",
+      "sub_id": "4579",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "solar_critical_strike_rate": 300,
+        "lunar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "4579",
+      "sub_id": "4674",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "solar_critical_strike_rate": 300,
+        "lunar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "4674",
+      "sub_id": "4584",
+      "name": "炎威",
+      "school_id": "0",
+      "attrs": {
+        "solar_critical_power_rate": 200,
+        "lunar_critical_power_rate": 200
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "4584",
+      "sub_id": "4674",
+      "name": "炎威",
+      "school_id": "0",
+      "attrs": {
+        "solar_critical_power_rate": 200,
+        "lunar_critical_power_rate": 200
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "4674",
+      "sub_id": "4586",
+      "name": "破魔",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 1000,
+        "solar_critical_strike_rate": 1000,
+        "neutral_critical_strike_rate": 1000,
+        "poison_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "4586",
+      "sub_id": "4674",
+      "name": "破魔",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 1000,
+        "solar_critical_strike_rate": 1000,
+        "neutral_critical_strike_rate": 1000,
+        "poison_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "5311",
+      "sub_id": "6342",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 50,
+        "physical_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6342",
+      "sub_id": "5311",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 50,
+        "physical_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "5311",
+      "sub_id": "6343",
+      "name": "降龙",
+      "school_id": "0",
+      "attrs": {
+        "physical_overcome_gain": 306
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6343",
+      "sub_id": "5311",
+      "name": "降龙",
+      "school_id": "0",
+      "attrs": {
+        "physical_overcome_gain": 306
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "5311",
+      "sub_id": "6345",
+      "name": "伏虎",
+      "school_id": "0",
+      "attrs": {
+        "physical_overcome_base": 150
+      },
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6345",
+      "sub_id": "5311",
+      "name": "伏虎",
+      "school_id": "0",
+      "attrs": {
+        "physical_overcome_base": 150
+      },
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "5311",
+      "sub_id": "6362",
+      "name": "风和",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 205
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6362",
+      "sub_id": "5311",
+      "name": "风和",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 205
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13275",
+      "sub_id": "8402",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 300,
+        "strain_rate": 20,
+        "decritical_power_rate": 31
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8402",
+      "sub_id": "13275",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 300,
+        "strain_rate": 20,
+        "decritical_power_rate": 31
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13275",
+      "sub_id": "8484",
+      "name": "锋绝",
+      "school_id": "0",
+      "attrs": {
+        "physical_overcome_gain": 153
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8484",
+      "sub_id": "13275",
+      "name": "锋绝",
+      "school_id": "0",
+      "attrs": {
+        "physical_overcome_gain": 153
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13275",
+      "sub_id": "8403",
+      "name": "锋凌",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 20
+      },
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8403",
+      "sub_id": "13275",
+      "name": "锋凌",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 20
+      },
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13275",
+      "sub_id": "8404",
+      "name": "横绝",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8404",
+      "sub_id": "13275",
+      "name": "横绝",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "16151",
+      "sub_id": "9485",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "strain_rate": 20,
+        "toughness_rate": 300,
+        "magical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "9485",
+      "sub_id": "16151",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "strain_rate": 20,
+        "toughness_rate": 300,
+        "magical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "16151",
+      "sub_id": "9486",
+      "name": "万籁金弦阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_power_rate": 205
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "9486",
+      "sub_id": "16151",
+      "name": "万籁金弦阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_power_rate": 205
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "16151",
+      "sub_id": "9492",
+      "name": "万籁金弦阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "poison_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "9492",
+      "sub_id": "16151",
+      "name": "万籁金弦阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "poison_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "16151",
+      "sub_id": "9489",
+      "name": "万籁金弦阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_overcome_gain": 102,
+        "neutral_overcome_gain": 102,
+        "poison_overcome_gain": 102,
+        "solar_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "9489",
+      "sub_id": "16151",
+      "name": "万籁金弦阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_overcome_gain": 102,
+        "neutral_overcome_gain": 102,
+        "poison_overcome_gain": 102,
+        "solar_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14181",
+      "sub_id": "10954",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 50,
+        "strain_rate": 20,
+        "physical_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10954",
+      "sub_id": "14181",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 50,
+        "strain_rate": 20,
+        "physical_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14181",
+      "sub_id": "11158",
+      "name": "霜岚洗锋阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "poison_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "physical_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "11158",
+      "sub_id": "14181",
+      "name": "霜岚洗锋阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "poison_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "physical_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14181",
+      "sub_id": "11159",
+      "name": "霜岚洗锋阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 2000
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "11159",
+      "sub_id": "14181",
+      "name": "霜岚洗锋阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 2000
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "20702",
+      "sub_id": "14074",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 133,
+        "physical_critical_strike_rate": 300,
+        "physical_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14074",
+      "sub_id": "20702",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 133,
+        "physical_critical_strike_rate": 300,
+        "physical_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "20702",
+      "sub_id": "14092",
+      "name": "墟海引归阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 72
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14092",
+      "sub_id": "20702",
+      "name": "墟海引归阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 72
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "20702",
+      "sub_id": "14095",
+      "name": "墟海引归阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 205
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14095",
+      "sub_id": "20702",
+      "name": "墟海引归阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 205
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "22798",
+      "sub_id": "15957",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 300,
+        "physical_attack_power_gain": 50,
+        "physical_critical_power_rate": 154
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "15957",
+      "sub_id": "22798",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 300,
+        "physical_attack_power_gain": 50,
+        "physical_critical_power_rate": 154
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "22798",
+      "sub_id": "15960",
+      "name": "龙皇雪风四阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "15960",
+      "sub_id": "22798",
+      "name": "龙皇雪风四阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "22798",
+      "sub_id": "15961",
+      "name": "龙皇雪风五阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "15961",
+      "sub_id": "22798",
+      "name": "龙皇雪风五阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "22798",
+      "sub_id": "15963",
+      "name": "龙皇雪风六阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "15963",
+      "sub_id": "22798",
+      "name": "龙皇雪风六阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "25517",
+      "sub_id": "18335",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "strain_rate": 20,
+        "magical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "18335",
+      "sub_id": "25517",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "strain_rate": 20,
+        "magical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "25517",
+      "sub_id": "18336",
+      "name": "九星游年阵",
+      "school_id": "0",
+      "attrs": {
+        "neutral_attack_power_gain": 10
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "18336",
+      "sub_id": "25517",
+      "name": "九星游年阵",
+      "school_id": "0",
+      "attrs": {
+        "neutral_attack_power_gain": 10
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "25517",
+      "sub_id": "18337",
+      "name": "九星游年阵",
+      "school_id": "0",
+      "attrs": {
+        "all_damage_gain": 154
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "18337",
+      "sub_id": "25517",
+      "name": "九星游年阵",
+      "school_id": "0",
+      "attrs": {
+        "all_damage_gain": 154
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "28919",
+      "sub_id": "21035",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 50,
+        "all_damage_gain": 31,
+        "lunar_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "poison_critical_strike_rate": 500,
+        "physical_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "21035",
+      "sub_id": "28919",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 50,
+        "all_damage_gain": 31,
+        "lunar_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "poison_critical_strike_rate": 500,
+        "physical_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "33057",
+      "sub_id": "24578",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 50,
+        "strain_rate": 21,
+        "physical_overcome_gain": 256
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "24578",
+      "sub_id": "33057",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "physical_attack_power_gain": 50,
+        "strain_rate": 21,
+        "physical_overcome_gain": 256
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "33057",
+      "sub_id": "24581",
+      "name": "横云破锋阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "24581",
+      "sub_id": "33057",
+      "name": "横云破锋阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "36318",
+      "sub_id": "27236",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "physical_critical_strike_rate": 300,
+        "strain_rate": 20,
+        "all_damage_gain": 62
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "27236",
+      "sub_id": "36318",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "physical_critical_strike_rate": 300,
+        "strain_rate": 20,
+        "all_damage_gain": 62
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "36318",
+      "sub_id": "27238",
+      "name": "苍梧引灵阵五重",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 150,
+        "magical_critical_power_rate": 150
+      },
+      "recipes": [],
+      "interval": 96,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "27238",
+      "sub_id": "36318",
+      "name": "苍梧引灵阵五重",
+      "school_id": "0",
+      "attrs": {
+        "physical_critical_power_rate": 150,
+        "magical_critical_power_rate": 150
+      },
+      "recipes": [],
+      "interval": 96,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "38566",
+      "sub_id": "29481",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "strain_rate": 20,
+        "lunar_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "poison_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "29481",
+      "sub_id": "38566",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51,
+        "strain_rate": 20,
+        "lunar_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "poison_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "38566",
+      "sub_id": "29482",
+      "name": "含章挺秀阵四重",
+      "school_id": "0",
+      "attrs": {
+        "all_damage_gain": 62
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "29482",
+      "sub_id": "38566",
+      "name": "含章挺秀阵四重",
+      "school_id": "0",
+      "attrs": {
+        "all_damage_gain": 62
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "41984",
+      "sub_id": "31962",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_critical_power_rate": 51,
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "lunar_overcome_gain": 102,
+        "neutral_overcome_gain": 102,
+        "poison_overcome_gain": 102,
+        "solar_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "31962",
+      "sub_id": "41984",
+      "name": "",
+      "school_id": "0",
+      "attrs": {
+        "magical_critical_power_rate": 51,
+        "lunar_critical_strike_rate": 300,
+        "solar_critical_strike_rate": 300,
+        "neutral_critical_strike_rate": 300,
+        "poison_critical_strike_rate": 300,
+        "lunar_overcome_gain": 102,
+        "neutral_overcome_gain": 102,
+        "poison_overcome_gain": 102,
+        "solar_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "41984",
+      "sub_id": "31968",
+      "name": "连丝织意五阵",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "31968",
+      "sub_id": "41984",
+      "name": "连丝织意五阵",
+      "school_id": "0",
+      "attrs": {
+        "magical_attack_power_gain": 51
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "41984",
+      "sub_id": "31969",
+      "name": "连丝织意六阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "31969",
+      "sub_id": "41984",
+      "name": "连丝织意六阵",
+      "school_id": "0",
+      "attrs": {
+        "lunar_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "102268",
+      "sub_id": "71338",
+      "name": "江湖行侠阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_damage_gain": 52,
+        "magical_damage_gain": 52,
+        "strain_rate": 104
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "71338",
+      "sub_id": "102268",
+      "name": "江湖行侠阵",
+      "school_id": "0",
+      "attrs": {
+        "physical_damage_gain": 52,
+        "magical_damage_gain": 52,
+        "strain_rate": 104
+      },
+      "recipes": [],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "359",
+      "sub_id": "375",
+      "name": "破苍穹",
+      "school_id": "10014",
+      "attrs": {
+        "poison_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "lunar_critical_strike_rate": 500,
+        "magical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "375",
+      "sub_id": "359",
+      "name": "破苍穹",
+      "school_id": "10014",
+      "attrs": {
+        "poison_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "lunar_critical_strike_rate": 500,
+        "magical_critical_power_rate": 100
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2674",
+      "sub_id": "1908",
+      "name": "会神",
+      "school_id": "10014",
+      "attrs": {
+        "unlimit_critical_power_rate": 328
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "1908",
+      "sub_id": "2674",
+      "name": "会神",
+      "school_id": "10014",
+      "attrs": {
+        "unlimit_critical_power_rate": 328
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2681",
+      "sub_id": "2757",
+      "name": "紫气东来",
+      "school_id": "10014",
+      "attrs": {
+        "neutral_critical_strike_rate": 2500,
+        "unlimit_critical_power_rate": 256,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2757",
+      "sub_id": "2681",
+      "name": "紫气东来",
+      "school_id": "10014",
+      "attrs": {
+        "neutral_critical_strike_rate": 2500,
+        "unlimit_critical_power_rate": 256,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "5819",
+      "sub_id": "9966",
+      "name": "同尘",
+      "school_id": "10014",
+      "attrs": {},
+      "recipes": ["recipe_2360_1"],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "命中1次"
+    },
+    {
+      "id": "9966",
+      "sub_id": "5819",
+      "name": "同尘",
+      "school_id": "10014",
+      "attrs": {},
+      "recipes": ["recipe_2360_1"],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "命中1次"
+    },
+    {
+      "id": "18695",
+      "sub_id": "12550",
+      "name": "跬步",
+      "school_id": "10014",
+      "attrs": {},
+      "recipes": ["recipe_4467_1"],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "四象轮回1柄气剑"
+    },
+    {
+      "id": "12550",
+      "sub_id": "18695",
+      "name": "跬步",
+      "school_id": "10014",
+      "attrs": {},
+      "recipes": ["recipe_4467_1"],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "四象轮回1柄气剑"
+    },
+    {
+      "id": "18695",
+      "sub_id": "12551",
+      "name": "跬步",
+      "school_id": "10014",
+      "attrs": {},
+      "recipes": ["recipe_4472_1"],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "两仪化形1柄气剑"
+    },
+    {
+      "id": "12551",
+      "sub_id": "18695",
+      "name": "跬步",
+      "school_id": "10014",
+      "attrs": {},
+      "recipes": ["recipe_4472_1"],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "两仪化形1柄气剑"
+    },
+    {
+      "id": "18695",
+      "sub_id": "31669",
+      "name": "跬步",
+      "school_id": "10014",
+      "attrs": {},
+      "recipes": ["recipe_6026_1"],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "万世不竭1柄气剑"
+    },
+    {
+      "id": "31669",
+      "sub_id": "18695",
+      "name": "跬步",
+      "school_id": "10014",
+      "attrs": {},
+      "recipes": ["recipe_6026_1"],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "万世不竭1柄气剑"
+    },
+    {
+      "id": "23614",
+      "sub_id": "375",
+      "name": "破苍穹",
+      "school_id": "10014",
+      "attrs": {
+        "poison_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "lunar_critical_strike_rate": 500,
+        "magical_critical_power_rate": 100,
+        "all_shield_ignore": 615
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "375",
+      "sub_id": "23614",
+      "name": "破苍穹",
+      "school_id": "10014",
+      "attrs": {
+        "poison_critical_strike_rate": 500,
+        "solar_critical_strike_rate": 500,
+        "neutral_critical_strike_rate": 500,
+        "lunar_critical_strike_rate": 500,
+        "magical_critical_power_rate": 100,
+        "all_shield_ignore": 615
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14613",
+      "sub_id": "2757",
+      "name": "紫气东来",
+      "school_id": "10014",
+      "attrs": {
+        "neutral_critical_strike_rate": 2500,
+        "strain_gain": 307,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "unlimit_critical_power_rate": 256,
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2757",
+      "sub_id": "14613",
+      "name": "紫气东来",
+      "school_id": "10014",
+      "attrs": {
+        "neutral_critical_strike_rate": 2500,
+        "strain_gain": 307,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "unlimit_critical_power_rate": 256,
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14834",
+      "sub_id": "375",
+      "name": "破苍穹",
+      "school_id": "10014",
+      "attrs": {
+        "poison_critical_strike_rate": 1000,
+        "solar_critical_strike_rate": 1000,
+        "neutral_critical_strike_rate": 1000,
+        "lunar_critical_strike_rate": 1000,
+        "magical_critical_power_rate": 204
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "375",
+      "sub_id": "14834",
+      "name": "破苍穹",
+      "school_id": "10014",
+      "attrs": {
+        "poison_critical_strike_rate": 1000,
+        "solar_critical_strike_rate": 1000,
+        "neutral_critical_strike_rate": 1000,
+        "lunar_critical_strike_rate": 1000,
+        "magical_critical_power_rate": 204
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14834",
+      "sub_id": "2757",
+      "name": "紫气东来",
+      "school_id": "10014",
+      "attrs": {
+        "unlimit_critical_power_rate": 563,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "neutral_critical_strike_rate": 1000,
+        "physical_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2757",
+      "sub_id": "14834",
+      "name": "紫气东来",
+      "school_id": "10014",
+      "attrs": {
+        "unlimit_critical_power_rate": 563,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "neutral_critical_strike_rate": 1000,
+        "physical_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "362",
+      "sub_id": "378",
+      "name": "碎星辰",
+      "school_id": "10015",
+      "attrs": {
+        "physical_critical_power_rate": 100,
+        "physical_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "378",
+      "sub_id": "362",
+      "name": "碎星辰",
+      "school_id": "10015",
+      "attrs": {
+        "physical_critical_power_rate": 100,
+        "physical_critical_strike_rate": 500
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2681",
+      "sub_id": "2757",
+      "name": "紫气东来",
+      "school_id": "10015",
+      "attrs": {
+        "neutral_critical_strike_rate": 2500,
+        "unlimit_critical_power_rate": 256,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2757",
+      "sub_id": "2681",
+      "name": "紫气东来",
+      "school_id": "10015",
+      "attrs": {
+        "neutral_critical_strike_rate": 2500,
+        "unlimit_critical_power_rate": 256,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6744",
+      "sub_id": "31522",
+      "name": "云游",
+      "school_id": "10015",
+      "attrs": {},
+      "recipes": ["recipe_4348_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "31522",
+      "sub_id": "6744",
+      "name": "云游",
+      "school_id": "10015",
+      "attrs": {},
+      "recipes": ["recipe_4348_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "18799",
+      "sub_id": "378",
+      "name": "碎星辰",
+      "school_id": "10015",
+      "attrs": {
+        "physical_critical_power_rate": 100,
+        "physical_critical_strike_rate": 500,
+        "all_shield_ignore": 614
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "378",
+      "sub_id": "18799",
+      "name": "碎星辰",
+      "school_id": "10015",
+      "attrs": {
+        "physical_critical_power_rate": 100,
+        "physical_critical_strike_rate": 500,
+        "all_shield_ignore": 614
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17731",
+      "sub_id": "2757",
+      "name": "紫气东来",
+      "school_id": "10015",
+      "attrs": {
+        "neutral_critical_strike_rate": 2500,
+        "unlimit_critical_power_rate": 256,
+        "neutral_attack_power_gain": 512,
+        "physical_attack_power_gain": 512,
+        "strain_gain": 307,
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2757",
+      "sub_id": "17731",
+      "name": "紫气东来",
+      "school_id": "10015",
+      "attrs": {
+        "neutral_critical_strike_rate": 2500,
+        "unlimit_critical_power_rate": 256,
+        "neutral_attack_power_gain": 512,
+        "physical_attack_power_gain": 512,
+        "strain_gain": 307,
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14829",
+      "sub_id": "378",
+      "name": "碎星辰",
+      "school_id": "10015",
+      "attrs": {
+        "physical_critical_power_rate": 204,
+        "physical_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "负阴"
+    },
+    {
+      "id": "378",
+      "sub_id": "14829",
+      "name": "碎星辰",
+      "school_id": "10015",
+      "attrs": {
+        "physical_critical_power_rate": 204,
+        "physical_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 64,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "负阴"
+    },
+    {
+      "id": "14829",
+      "sub_id": "2757",
+      "name": "紫气东来",
+      "school_id": "10015",
+      "attrs": {
+        "unlimit_critical_power_rate": 563,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "neutral_critical_strike_rate": 1000,
+        "physical_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "负阴"
+    },
+    {
+      "id": "2757",
+      "sub_id": "14829",
+      "name": "紫气东来",
+      "school_id": "10015",
+      "attrs": {
+        "unlimit_critical_power_rate": 563,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "neutral_critical_strike_rate": 1000,
+        "physical_critical_strike_rate": 1000
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "负阴"
+    },
+    {
+      "id": "14829",
+      "sub_id": "6093",
+      "name": "负阴",
+      "school_id": "10015",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 48,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6093",
+      "sub_id": "14829",
+      "name": "负阴",
+      "school_id": "10015",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 48,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "24962",
+      "sub_id": "17933",
+      "name": "裂云",
+      "school_id": "10015",
+      "attrs": {
+        "physical_critical_power_rate": 154
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17933",
+      "sub_id": "24962",
+      "name": "裂云",
+      "school_id": "10015",
+      "attrs": {
+        "physical_critical_power_rate": 154
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17742",
+      "sub_id": "29451",
+      "name": "风逝",
+      "school_id": "10015",
+      "attrs": {},
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 4,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "29451",
+      "sub_id": "17742",
+      "name": "风逝",
+      "school_id": "10015",
+      "attrs": {},
+      "recipes": [],
+      "interval": 80,
+      "max_stack": 4,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "24961",
+      "sub_id": "2757",
+      "name": "紫气东来",
+      "school_id": "10015",
+      "attrs": {
+        "neutral_critical_strike_rate": 2500,
+        "unlimit_critical_power_rate": 256,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2757",
+      "sub_id": "24961",
+      "name": "紫气东来",
+      "school_id": "10015",
+      "attrs": {
+        "neutral_critical_strike_rate": 2500,
+        "unlimit_critical_power_rate": 256,
+        "neutral_attack_power_gain": 256,
+        "physical_attack_power_gain": 256,
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6481",
+      "sub_id": "34331",
+      "name": "升剑",
+      "school_id": "10015",
+      "attrs": {},
+      "recipes": ["recipe_5786_1"],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "34331",
+      "sub_id": "6481",
+      "name": "升剑",
+      "school_id": "10015",
+      "attrs": {},
+      "recipes": ["recipe_5786_1"],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "136",
+      "sub_id": "1487",
+      "name": "布散",
+      "school_id": "10021",
+      "attrs": {
+        "neutral_attack_power_gain": 307,
+        "therapy_power_gain": 307
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 2,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "1487",
+      "sub_id": "136",
+      "name": "布散",
+      "school_id": "10021",
+      "attrs": {
+        "neutral_attack_power_gain": 307,
+        "therapy_power_gain": 307
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 2,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "186",
+      "sub_id": "33015",
+      "name": "芙蓉并蒂",
+      "school_id": "10021",
+      "attrs": {
+        "neutral_critical_strike_rate": 1500
+      },
+      "recipes": [],
+      "interval": 4,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "33015",
+      "sub_id": "186",
+      "name": "芙蓉并蒂",
+      "school_id": "10021",
+      "attrs": {
+        "neutral_critical_strike_rate": 1500
+      },
+      "recipes": [],
+      "interval": 4,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "30596",
+      "sub_id": "23065",
+      "name": "飞白",
+      "school_id": "10021",
+      "attrs": {},
+      "recipes": ["recipe_2940_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "1段钟林毓秀"
+    },
+    {
+      "id": "23065",
+      "sub_id": "30596",
+      "name": "飞白",
+      "school_id": "10021",
+      "attrs": {},
+      "recipes": ["recipe_2940_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "1段钟林毓秀"
+    },
+    {
+      "id": "24912",
+      "sub_id": "32810",
+      "name": "",
+      "school_id": "10021",
+      "attrs": {
+        "pve_damage_cof": 614
+      },
+      "recipes": [],
+      "interval": 4,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "丹鼎"
+    },
+    {
+      "id": "32810",
+      "sub_id": "24912",
+      "name": "",
+      "school_id": "10021",
+      "attrs": {
+        "pve_damage_cof": 614
+      },
+      "recipes": [],
+      "interval": 4,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "丹鼎"
+    },
+    {
+      "id": "42155",
+      "sub_id": "2719",
+      "name": "青荷",
+      "school_id": "10021",
+      "attrs": {
+        "all_damage_gain": 154
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2719",
+      "sub_id": "42155",
+      "name": "青荷",
+      "school_id": "10021",
+      "attrs": {
+        "all_damage_gain": 154
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "26692",
+      "sub_id": "28116",
+      "name": "钟灵",
+      "school_id": "10021",
+      "attrs": {
+        "magical_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 288,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "28116",
+      "sub_id": "26692",
+      "name": "钟灵",
+      "school_id": "10021",
+      "attrs": {
+        "magical_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 288,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "5762",
+      "sub_id": "32022",
+      "name": "青歌",
+      "school_id": "10021",
+      "attrs": {
+        "magical_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 288,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "32022",
+      "sub_id": "5762",
+      "name": "青歌",
+      "school_id": "10021",
+      "attrs": {
+        "magical_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 288,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2223",
+      "sub_id": "2543",
+      "name": "引魂",
+      "school_id": "10175",
+      "attrs": {
+        "poison_attack_power_gain": 512,
+        "therapy_power_gain": 512
+      },
+      "recipes": [],
+      "interval": 192,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "2543",
+      "sub_id": "2223",
+      "name": "引魂",
+      "school_id": "10175",
+      "attrs": {
+        "poison_attack_power_gain": 512,
+        "therapy_power_gain": 512
+      },
+      "recipes": [],
+      "interval": 192,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "25043",
+      "sub_id": "19513",
+      "name": "持续增伤",
+      "school_id": "10175",
+      "attrs": {},
+      "recipes": ["recipe_2513_1"],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "19513",
+      "sub_id": "25043",
+      "name": "持续增伤",
+      "school_id": "10175",
+      "attrs": {},
+      "recipes": ["recipe_2513_1"],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6877",
+      "sub_id": "34374",
+      "name": "生发",
+      "school_id": "10175",
+      "attrs": {},
+      "recipes": ["recipe_6493_1"],
+      "interval": 16,
+      "max_stack": 3,
+      "max_tick": 10,
+      "comment": ""
+    },
+    {
+      "id": "34374",
+      "sub_id": "6877",
+      "name": "生发",
+      "school_id": "10175",
+      "attrs": {},
+      "recipes": ["recipe_6493_1"],
+      "interval": 16,
+      "max_stack": 3,
+      "max_tick": 10,
+      "comment": ""
+    },
+    {
+      "id": "30088",
+      "sub_id": "22232",
+      "name": "嗜蛊",
+      "school_id": "10175",
+      "attrs": {
+        "all_shield_ignore": 614,
+        "strain_gain": 307,
+        "poison_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 40,
+      "comment": ""
+    },
+    {
+      "id": "22232",
+      "sub_id": "30088",
+      "name": "嗜蛊",
+      "school_id": "10175",
+      "attrs": {
+        "all_shield_ignore": 614,
+        "strain_gain": 307,
+        "poison_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 40,
+      "comment": ""
+    },
+    {
+      "id": "2227",
+      "sub_id": "12556",
+      "name": "蛊虫狂暴",
+      "school_id": "10175",
+      "attrs": {
+        "unlimit_haste_rate": 102,
+        "all_damage_gain": 102
+      },
+      "recipes": [],
+      "interval": 256,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "自身"
+    },
+    {
+      "id": "12556",
+      "sub_id": "2227",
+      "name": "蛊虫狂暴",
+      "school_id": "10175",
+      "attrs": {
+        "unlimit_haste_rate": 102,
+        "all_damage_gain": 102
+      },
+      "recipes": [],
+      "interval": 256,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "自身"
+    },
+    {
+      "id": "2227",
+      "sub_id": "2830",
+      "name": "蛊虫狂暴",
+      "school_id": "10175",
+      "attrs": {
+        "max_life_gain": 512,
+        "physical_shield_gain": 1024,
+        "solar_shield_gain": 1024,
+        "neutral_shield_gain": 1024,
+        "lunar_shield_gain": 1024,
+        "poison_shield_gain": 1024,
+        "poison_attack_power_gain": 512
+      },
+      "recipes": [],
+      "interval": 256,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "宠物"
+    },
+    {
+      "id": "2830",
+      "sub_id": "2227",
+      "name": "蛊虫狂暴",
+      "school_id": "10175",
+      "attrs": {
+        "max_life_gain": 512,
+        "physical_shield_gain": 1024,
+        "solar_shield_gain": 1024,
+        "neutral_shield_gain": 1024,
+        "lunar_shield_gain": 1024,
+        "poison_shield_gain": 1024,
+        "poison_attack_power_gain": 512
+      },
+      "recipes": [],
+      "interval": 256,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "宠物"
+    },
+    {
+      "id": "5268",
+      "sub_id": "30400",
+      "name": "昊破",
+      "school_id": "10268",
+      "attrs": {
+        "physical_critical_strike_rate": 2000,
+        "physical_critical_power_rate": 205,
+        "physical_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "30400",
+      "sub_id": "5268",
+      "name": "昊破",
+      "school_id": "10268",
+      "attrs": {
+        "physical_critical_strike_rate": 2000,
+        "physical_critical_power_rate": 205,
+        "physical_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "5638",
+      "sub_id": "12356",
+      "name": "含弘",
+      "school_id": "10268",
+      "attrs": {
+        "all_damage_gain": 113
+      },
+      "recipes": [],
+      "interval": 192,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "12356",
+      "sub_id": "5638",
+      "name": "含弘",
+      "school_id": "10268",
+      "attrs": {
+        "all_damage_gain": 113
+      },
+      "recipes": [],
+      "interval": 192,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6822",
+      "sub_id": "29341",
+      "name": "贞固",
+      "school_id": "10268",
+      "attrs": {},
+      "recipes": ["recipe_6429_1"],
+      "interval": 112,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "29341",
+      "sub_id": "6822",
+      "name": "贞固",
+      "school_id": "10268",
+      "attrs": {},
+      "recipes": ["recipe_6429_1"],
+      "interval": 112,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "6832",
+      "sub_id": "5994",
+      "name": "越渊",
+      "school_id": "10268",
+      "attrs": {
+        "all_shield_ignore": 512,
+        "pve_damage_cof": 133
+      },
+      "recipes": [],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "5994",
+      "sub_id": "6832",
+      "name": "越渊",
+      "school_id": "10268",
+      "attrs": {
+        "all_shield_ignore": 512,
+        "pve_damage_cof": 133
+      },
+      "recipes": [],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "10389",
+      "sub_id": "17885",
+      "name": "铁骨·宿敌",
+      "school_id": "10389",
+      "attrs": {
+        "vitality_to_physical_attack_power": 2160,
+        "vitality_to_physical_overcome": 467
+      },
+      "recipes": [],
+      "interval": 1200,
+      "max_stack": 1,
+      "max_tick": 4,
+      "comment": "主T"
+    },
+    {
+      "id": "17885",
+      "sub_id": "10389",
+      "name": "铁骨·宿敌",
+      "school_id": "10389",
+      "attrs": {
+        "vitality_to_physical_attack_power": 2160,
+        "vitality_to_physical_overcome": 467
+      },
+      "recipes": [],
+      "interval": 1200,
+      "max_stack": 1,
+      "max_tick": 4,
+      "comment": "主T"
+    },
+    {
+      "id": "10389",
+      "sub_id": "29938",
+      "name": "铁骨",
+      "school_id": "10389",
+      "attrs": {
+        "vitality_to_physical_attack_power": 721,
+        "vitality_to_physical_overcome": 156
+      },
+      "recipes": [],
+      "interval": 4800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "副T"
+    },
+    {
+      "id": "29938",
+      "sub_id": "10389",
+      "name": "铁骨",
+      "school_id": "10389",
+      "attrs": {
+        "vitality_to_physical_attack_power": 721,
+        "vitality_to_physical_overcome": 156
+      },
+      "recipes": [],
+      "interval": 4800,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "副T"
+    },
+    {
+      "id": "13055",
+      "sub_id": "9052",
+      "name": "绝刀增伤额外10怒气",
+      "school_id": "10389",
+      "attrs": {},
+      "recipes": ["recipe_2004_1"],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "9052",
+      "sub_id": "13055",
+      "name": "绝刀增伤额外10怒气",
+      "school_id": "10389",
+      "attrs": {},
+      "recipes": ["recipe_2004_1"],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13391",
+      "sub_id": "8499",
+      "name": "盾挡",
+      "school_id": "10389",
+      "attrs": {
+        "vitality_to_parry_value": 1524
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8499",
+      "sub_id": "13391",
+      "name": "盾挡",
+      "school_id": "10389",
+      "attrs": {
+        "vitality_to_parry_value": 1524
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13134",
+      "sub_id": "8271",
+      "name": "",
+      "school_id": "10389",
+      "attrs": {
+        "physical_attack_power_base": 7
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 125,
+      "max_tick": 1,
+      "comment": "150"
+    },
+    {
+      "id": "8271",
+      "sub_id": "13134",
+      "name": "",
+      "school_id": "10389",
+      "attrs": {
+        "physical_attack_power_base": 7
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 125,
+      "max_tick": 1,
+      "comment": "150"
+    },
+    {
+      "id": "13134",
+      "sub_id": "17772",
+      "name": "寒甲",
+      "school_id": "10389",
+      "attrs": {
+        "physical_attack_power_base": 765
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 125,
+      "max_tick": 1,
+      "comment": "15000"
+    },
+    {
+      "id": "17772",
+      "sub_id": "13134",
+      "name": "寒甲",
+      "school_id": "10389",
+      "attrs": {
+        "physical_attack_power_base": 765
+      },
+      "recipes": [],
+      "interval": 160,
+      "max_stack": 125,
+      "max_tick": 1,
+      "comment": "15000"
+    },
+    {
+      "id": "13421",
+      "sub_id": "8448",
+      "name": "盾挡",
+      "school_id": "10389",
+      "attrs": {
+        "vitality_to_parry_value": 1903
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8448",
+      "sub_id": "13421",
+      "name": "盾挡",
+      "school_id": "10389",
+      "attrs": {
+        "vitality_to_parry_value": 1903
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "39045",
+      "sub_id": "33532",
+      "name": "蔑视",
+      "school_id": "10389",
+      "attrs": {
+        "physical_critical_strike_rate": 700,
+        "physical_critical_power_rate": 72
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 30,
+      "comment": ""
+    },
+    {
+      "id": "33532",
+      "sub_id": "39045",
+      "name": "蔑视",
+      "school_id": "10389",
+      "attrs": {
+        "physical_critical_strike_rate": 700,
+        "physical_critical_power_rate": 72
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 30,
+      "comment": ""
+    },
+    {
+      "id": "13356",
+      "sub_id": "8418",
+      "name": "激昂",
+      "school_id": "10389",
+      "attrs": {
+        "parry_value_base": 3,
+        "parry_base": 1
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8418",
+      "sub_id": "13356",
+      "name": "激昂",
+      "school_id": "10389",
+      "attrs": {
+        "parry_value_base": 3,
+        "parry_base": 1
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 100,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13366",
+      "sub_id": "8423",
+      "name": "从容",
+      "school_id": "10389",
+      "attrs": {
+        "physical_attack_power_gain": 102,
+        "strain_gain": 154
+      },
+      "recipes": [],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8423",
+      "sub_id": "13366",
+      "name": "从容",
+      "school_id": "10389",
+      "attrs": {
+        "physical_attack_power_gain": 102,
+        "strain_gain": 154
+      },
+      "recipes": [],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13055",
+      "sub_id": "9052",
+      "name": "绝刀增伤额外10怒气",
+      "school_id": "10390",
+      "attrs": {},
+      "recipes": ["recipe_2004_1"],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "9052",
+      "sub_id": "13055",
+      "name": "绝刀增伤额外10怒气",
+      "school_id": "10390",
+      "attrs": {},
+      "recipes": ["recipe_2004_1"],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13040",
+      "sub_id": "8244",
+      "name": "血怒",
+      "school_id": "10390",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 3,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "8244",
+      "sub_id": "13040",
+      "name": "血怒",
+      "school_id": "10390",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 3,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "36205",
+      "sub_id": "27161",
+      "name": "血怒·惊涌",
+      "school_id": "10390",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": ["recipe_6526_1", "recipe_6527_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "27161",
+      "sub_id": "36205",
+      "name": "血怒·惊涌",
+      "school_id": "10390",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": ["recipe_6526_1", "recipe_6527_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13304",
+      "sub_id": "33520",
+      "name": "碾尘",
+      "school_id": "10390",
+      "attrs": {
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 8,
+      "comment": ""
+    },
+    {
+      "id": "33520",
+      "sub_id": "13304",
+      "name": "碾尘",
+      "school_id": "10390",
+      "attrs": {
+        "physical_critical_strike_rate": 2500
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 8,
+      "comment": ""
+    },
+    {
+      "id": "21281",
+      "sub_id": "17176",
+      "name": "嗜血",
+      "school_id": "10390",
+      "attrs": {
+        "all_damage_gain": 51
+      },
+      "recipes": [],
+      "interval": 192,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17176",
+      "sub_id": "21281",
+      "name": "嗜血",
+      "school_id": "10390",
+      "attrs": {
+        "all_damage_gain": 51
+      },
+      "recipes": [],
+      "interval": 192,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "21281",
+      "sub_id": "9052",
+      "name": "",
+      "school_id": "10390",
+      "attrs": {},
+      "recipes": ["recipe_5725_1"],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "9052",
+      "sub_id": "21281",
+      "name": "",
+      "school_id": "10390",
+      "attrs": {},
+      "recipes": ["recipe_5725_1"],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "20984",
+      "sub_id": "14319",
+      "name": "激奋",
+      "school_id": "10390",
+      "attrs": {
+        "physical_attack_power_gain": 204,
+        "magical_attack_power_gain": 204
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14319",
+      "sub_id": "20984",
+      "name": "激奋",
+      "school_id": "10390",
+      "attrs": {
+        "physical_attack_power_gain": 204,
+        "magical_attack_power_gain": 204
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "45804",
+      "sub_id": "17056",
+      "name": "威压",
+      "school_id": "10390",
+      "attrs": {},
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 8,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "17056",
+      "sub_id": "45804",
+      "name": "威压",
+      "school_id": "10390",
+      "attrs": {},
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 8,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "15196",
+      "sub_id": "31536",
+      "name": "先登",
+      "school_id": "10390",
+      "attrs": {
+        "all_damage_gain": 51
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 5,
+      "max_tick": 40,
+      "comment": ""
+    },
+    {
+      "id": "31536",
+      "sub_id": "15196",
+      "name": "先登",
+      "school_id": "10390",
+      "attrs": {
+        "all_damage_gain": 51
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 5,
+      "max_tick": 40,
+      "comment": ""
+    },
+    {
+      "id": "21282",
+      "sub_id": "9052",
+      "name": "",
+      "school_id": "10390",
+      "attrs": {},
+      "recipes": ["recipe_4921_1"],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "9052",
+      "sub_id": "21282",
+      "name": "",
+      "school_id": "10390",
+      "attrs": {},
+      "recipes": ["recipe_4921_1"],
+      "interval": 80,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "22897",
+      "sub_id": "14309",
+      "name": "锋鸣",
+      "school_id": "10390",
+      "attrs": {
+        "physical_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 30,
+      "comment": ""
+    },
+    {
+      "id": "14309",
+      "sub_id": "22897",
+      "name": "锋鸣",
+      "school_id": "10390",
+      "attrs": {
+        "physical_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 30,
+      "comment": ""
+    },
+    {
+      "id": "16870",
+      "sub_id": "31782",
+      "name": "叠霜",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 6,
+      "max_tick": 20,
+      "comment": ""
+    },
+    {
+      "id": "31782",
+      "sub_id": "16870",
+      "name": "叠霜",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 6,
+      "max_tick": 20,
+      "comment": ""
+    },
+    {
+      "id": "21858",
+      "sub_id": "29219",
+      "name": "斩狂枭",
+      "school_id": "10464",
+      "attrs": {
+        "all_damage_gain": 307
+      },
+      "recipes": ["recipe_3350_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "29219",
+      "sub_id": "21858",
+      "name": "斩狂枭",
+      "school_id": "10464",
+      "attrs": {
+        "all_damage_gain": 307
+      },
+      "recipes": ["recipe_3350_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "45923",
+      "sub_id": "30738",
+      "name": "蓄势",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": ["recipe_6459_1", "recipe_6460_1", "recipe_6461_1", "recipe_6525_1"],
+      "interval": 480,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "30738",
+      "sub_id": "45923",
+      "name": "蓄势",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": ["recipe_6459_1", "recipe_6460_1", "recipe_6461_1", "recipe_6525_1"],
+      "interval": 480,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "26904",
+      "sub_id": "29561",
+      "name": "冥鼓",
+      "school_id": "10464",
+      "attrs": {
+        "all_shield_ignore": 512
+      },
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "29561",
+      "sub_id": "26904",
+      "name": "冥鼓",
+      "school_id": "10464",
+      "attrs": {
+        "all_shield_ignore": 512
+      },
+      "recipes": [],
+      "interval": 480,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "46078",
+      "sub_id": "34323",
+      "name": "蓄势",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": ["recipe_6459_1", "recipe_6460_1", "recipe_6482_1", "recipe_6525_1"],
+      "interval": 480,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "34323",
+      "sub_id": "46078",
+      "name": "蓄势",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": ["recipe_6459_1", "recipe_6460_1", "recipe_6482_1", "recipe_6525_1"],
+      "interval": 480,
+      "max_stack": 5,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "16779",
+      "sub_id": "11221",
+      "name": "化蛟",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": ["recipe_4257_1"],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "递增1次"
+    },
+    {
+      "id": "11221",
+      "sub_id": "16779",
+      "name": "化蛟",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": ["recipe_4257_1"],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "递增1次"
+    },
+    {
+      "id": "18625",
+      "sub_id": "11222",
+      "name": "沧雪",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": ["recipe_4247_1"],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "递增1次"
+    },
+    {
+      "id": "11222",
+      "sub_id": "18625",
+      "name": "沧雪",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": ["recipe_4247_1"],
+      "interval": 32,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "递增1次"
+    },
+    {
+      "id": "42410",
+      "sub_id": "31782",
+      "name": "霜云",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 6,
+      "max_tick": 20,
+      "comment": ""
+    },
+    {
+      "id": "31782",
+      "sub_id": "42410",
+      "name": "霜云",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 6,
+      "max_tick": 20,
+      "comment": ""
+    },
+    {
+      "id": "37982",
+      "sub_id": "19510",
+      "name": "临江",
+      "school_id": "10464",
+      "attrs": {
+        "physical_attack_power_gain": 154,
+        "strain_gain": 102
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 30,
+      "comment": ""
+    },
+    {
+      "id": "19510",
+      "sub_id": "37982",
+      "name": "临江",
+      "school_id": "10464",
+      "attrs": {
+        "physical_attack_power_gain": 154,
+        "strain_gain": 102
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 30,
+      "comment": ""
+    },
+    {
+      "id": "17054",
+      "sub_id": "11456",
+      "name": "疏狂",
+      "school_id": "10464",
+      "attrs": {
+        "neutral_attack_power_gain": 307,
+        "lunar_attack_power_gain": 307,
+        "physical_attack_power_gain": 307,
+        "poison_attack_power_gain": 307,
+        "solar_attack_power_gain": 307
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "11456",
+      "sub_id": "17054",
+      "name": "疏狂",
+      "school_id": "10464",
+      "attrs": {
+        "neutral_attack_power_gain": 307,
+        "lunar_attack_power_gain": 307,
+        "physical_attack_power_gain": 307,
+        "poison_attack_power_gain": 307,
+        "solar_attack_power_gain": 307
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "26735",
+      "sub_id": "19499",
+      "name": "砺锋",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": ["recipe_2509_1"],
+      "interval": 48,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "19499",
+      "sub_id": "26735",
+      "name": "砺锋",
+      "school_id": "10464",
+      "attrs": {},
+      "recipes": ["recipe_2509_1"],
+      "interval": 48,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "19828",
+      "sub_id": "30396",
+      "name": "太息",
+      "school_id": "10533",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 240,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "30396",
+      "sub_id": "19828",
+      "name": "太息",
+      "school_id": "10533",
+      "attrs": {
+        "physical_attack_power_gain": 102
+      },
+      "recipes": [],
+      "interval": 240,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "20747",
+      "sub_id": "13966",
+      "name": "梦悠",
+      "school_id": "10533",
+      "attrs": {
+        "all_shield_ignore": 512
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 10,
+      "comment": ""
+    },
+    {
+      "id": "13966",
+      "sub_id": "20747",
+      "name": "梦悠",
+      "school_id": "10533",
+      "attrs": {
+        "all_shield_ignore": 512
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 10,
+      "comment": ""
+    },
+    {
+      "id": "20348",
+      "sub_id": "29344",
+      "name": "清源",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_5663_1"],
+      "interval": 0,
+      "max_stack": 3,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "29344",
+      "sub_id": "20348",
+      "name": "清源",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_5663_1"],
+      "interval": 0,
+      "max_stack": 3,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "38667",
+      "sub_id": "14321",
+      "name": "驰行",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_4789_1", "recipe_4790_1", "recipe_4791_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "14321",
+      "sub_id": "38667",
+      "name": "驰行",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_4789_1", "recipe_4790_1", "recipe_4791_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "20729",
+      "sub_id": "26012",
+      "name": "逸尘·攻",
+      "school_id": "10533",
+      "attrs": {
+        "physical_attack_power_gain": 123
+      },
+      "recipes": [],
+      "interval": 112,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "倒地1秒"
+    },
+    {
+      "id": "26012",
+      "sub_id": "20729",
+      "name": "逸尘·攻",
+      "school_id": "10533",
+      "attrs": {
+        "physical_attack_power_gain": 123
+      },
+      "recipes": [],
+      "interval": 112,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "倒地1秒"
+    },
+    {
+      "id": "38668",
+      "sub_id": "30396",
+      "name": "游仙",
+      "school_id": "10533",
+      "attrs": {
+        "physical_attack_power_gain": 307
+      },
+      "recipes": [],
+      "interval": 240,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "30396",
+      "sub_id": "38668",
+      "name": "游仙",
+      "school_id": "10533",
+      "attrs": {
+        "physical_attack_power_gain": 307
+      },
+      "recipes": [],
+      "interval": 240,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "38668",
+      "sub_id": "29348",
+      "name": "游仙",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_5666_1", "recipe_5667_1", "recipe_5675_1"],
+      "interval": 8,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "掌法"
+    },
+    {
+      "id": "29348",
+      "sub_id": "38668",
+      "name": "游仙",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_5666_1", "recipe_5667_1", "recipe_5675_1"],
+      "interval": 8,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "掌法"
+    },
+    {
+      "id": "20350",
+      "sub_id": "13946",
+      "name": "游心",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_4759_1", "recipe_4760_1", "recipe_4761_1"],
+      "interval": 160,
+      "max_stack": 3,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "13946",
+      "sub_id": "20350",
+      "name": "游心",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_4759_1", "recipe_4760_1", "recipe_4761_1"],
+      "interval": 160,
+      "max_stack": 3,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "32476",
+      "sub_id": "31534",
+      "name": "风驰",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_5992_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 15,
+      "comment": ""
+    },
+    {
+      "id": "31534",
+      "sub_id": "32476",
+      "name": "风驰",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_5992_1"],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 15,
+      "comment": ""
+    },
+    {
+      "id": "41731",
+      "sub_id": "26012",
+      "name": "逸尘·攻",
+      "school_id": "10533",
+      "attrs": {
+        "physical_attack_power_gain": 123
+      },
+      "recipes": [],
+      "interval": 112,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "倒地1秒"
+    },
+    {
+      "id": "26012",
+      "sub_id": "41731",
+      "name": "逸尘·攻",
+      "school_id": "10533",
+      "attrs": {
+        "physical_attack_power_gain": 123
+      },
+      "recipes": [],
+      "interval": 112,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "倒地1秒"
+    },
+    {
+      "id": "26745",
+      "sub_id": "19253",
+      "name": "澄穆",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_2485_1", "recipe_2488_1", "recipe_2491_1"],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "1层"
+    },
+    {
+      "id": "19253",
+      "sub_id": "26745",
+      "name": "澄穆",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_2485_1", "recipe_2488_1", "recipe_2491_1"],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "1层"
+    },
+    {
+      "id": "26745",
+      "sub_id": "19254",
+      "name": "澄穆",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_2486_1", "recipe_2489_1", "recipe_2492_1"],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "2层"
+    },
+    {
+      "id": "19254",
+      "sub_id": "26745",
+      "name": "澄穆",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_2486_1", "recipe_2489_1", "recipe_2492_1"],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "2层"
+    },
+    {
+      "id": "26745",
+      "sub_id": "19255",
+      "name": "澄穆",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_2487_1", "recipe_2490_1", "recipe_2493_1"],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "3层"
+    },
+    {
+      "id": "19255",
+      "sub_id": "26745",
+      "name": "澄穆",
+      "school_id": "10533",
+      "attrs": {},
+      "recipes": ["recipe_2487_1", "recipe_2490_1", "recipe_2493_1"],
+      "interval": 128,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "3层"
+    },
+    {
+      "id": "28458",
+      "sub_id": "20718",
+      "name": "炮阳",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": ["recipe_2579_1", "recipe_3362_1"],
+      "interval": 1,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "20718",
+      "sub_id": "28458",
+      "name": "炮阳",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": ["recipe_2579_1", "recipe_3362_1"],
+      "interval": 1,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "28419",
+      "sub_id": "20696",
+      "name": "凄骨",
+      "school_id": "10627",
+      "attrs": {
+        "all_shield_ignore": 717
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "20696",
+      "sub_id": "28419",
+      "name": "凄骨",
+      "school_id": "10627",
+      "attrs": {
+        "all_shield_ignore": 717
+      },
+      "recipes": [],
+      "interval": 960,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "46224",
+      "sub_id": "34421",
+      "name": "君佐",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": ["recipe_6518_1"],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "34421",
+      "sub_id": "46224",
+      "name": "君佐",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": ["recipe_6518_1"],
+      "interval": 0,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "46224",
+      "sub_id": "34415",
+      "name": "臣使",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": ["recipe_6517_1"],
+      "interval": 48000,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "川乌射罔"
+    },
+    {
+      "id": "34415",
+      "sub_id": "46224",
+      "name": "臣使",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": ["recipe_6517_1"],
+      "interval": 48000,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "川乌射罔"
+    },
+    {
+      "id": "46224",
+      "sub_id": "34549",
+      "name": "臣使",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": [],
+      "interval": 72,
+      "max_stack": 6,
+      "max_tick": 1,
+      "comment": "沾衣未妨"
+    },
+    {
+      "id": "34549",
+      "sub_id": "46224",
+      "name": "臣使",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": [],
+      "interval": 72,
+      "max_stack": 6,
+      "max_tick": 1,
+      "comment": "沾衣未妨"
+    },
+    {
+      "id": "28436",
+      "sub_id": "20707",
+      "name": "滞眠",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": [],
+      "interval": 13,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "递增0次"
+    },
+    {
+      "id": "20707",
+      "sub_id": "28436",
+      "name": "滞眠",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": [],
+      "interval": 13,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": "递增0次"
+    },
+    {
+      "id": "29498",
+      "sub_id": "21168",
+      "name": "灵荆",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": ["recipe_2764_1"],
+      "interval": 480,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "21168",
+      "sub_id": "29498",
+      "name": "灵荆",
+      "school_id": "10627",
+      "attrs": {},
+      "recipes": ["recipe_2764_1"],
+      "interval": 480,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "28413",
+      "sub_id": "20680",
+      "name": "相使",
+      "school_id": "10627",
+      "attrs": {
+        "magical_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 288,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "20680",
+      "sub_id": "28413",
+      "name": "相使",
+      "school_id": "10627",
+      "attrs": {
+        "magical_attack_power_gain": 154
+      },
+      "recipes": [],
+      "interval": 288,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "32419",
+      "sub_id": "24168",
+      "name": "灭影追风",
+      "school_id": "10698",
+      "attrs": {
+        "physical_critical_power_rate": 100,
+        "physical_critical_strike_rate": 1000,
+        "physical_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 4,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "24168",
+      "sub_id": "32419",
+      "name": "灭影追风",
+      "school_id": "10698",
+      "attrs": {
+        "physical_critical_power_rate": 100,
+        "physical_critical_strike_rate": 1000,
+        "physical_overcome_gain": 102
+      },
+      "recipes": [],
+      "interval": 4,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "32588",
+      "sub_id": "24236",
+      "name": "颂阵",
+      "school_id": "10698",
+      "attrs": {
+        "physical_attack_power_gain": 307
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 6,
+      "comment": ""
+    },
+    {
+      "id": "24236",
+      "sub_id": "32588",
+      "name": "颂阵",
+      "school_id": "10698",
+      "attrs": {
+        "physical_attack_power_gain": 307
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 6,
+      "comment": ""
+    },
+    {
+      "id": "44531",
+      "sub_id": "33181",
+      "name": "潋行",
+      "school_id": "10698",
+      "attrs": {},
+      "recipes": ["recipe_6330_1"],
+      "interval": 640,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "33181",
+      "sub_id": "44531",
+      "name": "潋行",
+      "school_id": "10698",
+      "attrs": {},
+      "recipes": ["recipe_6330_1"],
+      "interval": 640,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "32493",
+      "sub_id": "24209",
+      "name": "流岚",
+      "school_id": "10698",
+      "attrs": {
+        "all_shield_ignore": 614
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    },
+    {
+      "id": "24209",
+      "sub_id": "32493",
+      "name": "流岚",
+      "school_id": "10698",
+      "attrs": {
+        "all_shield_ignore": 614
+      },
+      "recipes": [],
+      "interval": 16,
+      "max_stack": 1,
+      "max_tick": 1,
+      "comment": ""
+    }
+  ],
+  "reverse": {
+    "20854": ["28678"],
+    "29451": ["2699"],
+    "17056": ["13046"],
+    "31782": ["16870"],
+    "34549": ["27578"]
+  }
+}

@@ -1,3 +1,7 @@
+.cycle-select {
+  width: 100%;
+}
+
 .cycle-select-item {
   display: flex;
   align-items: center;
@@ -37,4 +41,34 @@
 .cycle-select-cycle-out {
   text-align: center;
   padding-bottom: 4px;
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .循环说明浮层 {
+    max-width: calc(100vw - 24px);
+  }
+  .循环说明浮层 .ant-popover-inner {
+    max-width: 100%;
+  }
+  .循环说明浮层 .cycle-select-popover-content {
+    width: min(300px, calc(100vw - 48px));
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    max-height: 50dvh;
+    overflow-y: auto;
+  }
+  .cycle-select-item {
+    min-width: 0;
+    gap: 6px;
+  }
+  .cycle-select-item > div:first-child {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .cycle-select-item > div:last-child {
+    flex-shrink: 0;
+  }
 }

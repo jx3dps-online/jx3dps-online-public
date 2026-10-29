@@ -37,8 +37,8 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
           异常描述: ERROR_ACTION?.BUFF错误?.信息,
         }
       } else if (
-        技能?.技能名称 === '飞叶满襟' &&
-        !模拟信息?.当前自身buff列表?.['飞叶满襟']?.当前层数
+        (技能?.技能名称 === '飞叶满襟' || 技能?.技能名称 === '折枝留春') &&
+        !模拟信息?.当前自身buff列表?.[技能.技能名称]?.当前层数
       ) {
         禁用信息 = {
           是否禁用: true,

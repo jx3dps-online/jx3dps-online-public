@@ -5,17 +5,16 @@ import { 循环技能详情, 循环详情 } from '@/@types/循环'
 import { 延迟设定 } from '@/数据/常量'
 import { 按数字生成数组 } from '@/工具函数/help'
 import { QuestionCircleOutlined } from '@ant-design/icons'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import './index.css'
 import { 技能基础数据模型 } from '@/@types/技能'
-
-const { 技能系数 } = 获取当前数据()
 
 interface 循环详情配置弹窗类型 extends ModalProps {
   数据?: 循环详情
 }
 
 const 循环详情配置弹窗: React.FC<循环详情配置弹窗类型> = (props) => {
+  const { 技能系数 } = use心法数据()
   const { 数据: 默认数据, open, onCancel } = props
   const [form] = Form.useForm()
   const [循环详情列表, 设置循环详情列表] = useState<循环技能详情[]>([])

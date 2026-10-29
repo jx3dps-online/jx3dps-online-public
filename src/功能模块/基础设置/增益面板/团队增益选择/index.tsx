@@ -1,30 +1,24 @@
-import { useAppDispatch, useAppSelector } from '@/hooks'
-import { Button, Space } from 'antd'
+import { useAppSelector } from '@/hooks'
+import { Button, Dropdown, Menu, Space } from 'antd'
 import React, { useMemo, useState } from 'react'
 import { 团队增益数据类型, 增益选项数据类型 } from '@/@types/团队增益'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import classNames from 'classnames'
-import { 触发秒伤计算 } from '@/计算模块/计算函数'
-import { 更新团队增益轴 } from '@/store/data'
+// import { 触发秒伤计算 } from '@/计算模块/计算函数'
 
 import 团队增益设置弹窗 from './团队增益设置弹窗'
-import 团队增益轴设置弹窗 from './团队增益轴设置弹窗'
 import 团队增益图标 from './团队增益图标'
-import 团队增益收益弹窗 from './团队增益收益弹窗'
+// import 团队增益收益弹窗 from './团队增益收益弹窗'
 import './index.css'
 
-const { 团队增益 = [] } = 获取当前数据()
-
 function 团队增益选择({ 保存数据并计算 }) {
+  const { 团队增益 = [], 默认数据 = {} } = use心法数据()
+  const { 增益快捷设置数据 = [] } = 默认数据
   const 增益数据 = useAppSelector((state) => state.data.增益数据)
   const 新手引导流程状态 = useAppSelector((state) => state.system.新手引导流程状态)
 
   const [设置增益弹窗展示, 更新设置增益弹窗展示] = useState<boolean>(false)
-  const [设置增益轴弹窗展示, 更新设置轴增益弹窗展示] = useState<boolean>(false)
-  const [增益收益弹窗展示, 更新增益收益弹窗展示] = useState<boolean>(false)
-
-  const dispatch = useAppDispatch()
-  // const [visible, setVisible] = useState<boolean>(false)
+  // const [增益收益弹窗展示, 更新增益收益弹窗展示] = useState<boolean>(false)
 
   const onChangeZengyi = (e: boolean | null, 增益: 团队增益数据类型, 层数?, 覆盖率?) => {
     const exist = 增益数据?.团队增益?.some((item) => item.增益名称 === 增益?.增益名称)
@@ -62,11 +56,6 @@ function 团队增益选择({ 保存数据并计算 }) {
     保存数据并计算(newData)
   }
 
-  const 修改团队增益轴 = (新团队增益轴) => {
-    dispatch(更新团队增益轴(新团队增益轴))
-    dispatch(触发秒伤计算({ 是否更新显示计算结果: true }))
-  }
-
   const 快捷设置团队增益 = (data) => {
     const newData: 增益选项数据类型 = {
       ...增益数据,
@@ -99,9 +88,32 @@ function 团队增益选择({ 保存数据并计算 }) {
     <div className='tuandui-zengyi'>
       <div className='tuandui-zengyi-header'>
         <h1 className='tuandui-title'>团队增益</h1>
+        {增益快捷设置数据?.length ? (
+          <Dropdown
+            disabled={新手引导流程状态}
+            overlay={
+              <Menu>
+                {增益快捷设置数据.map((item) => {
+                  return (
+                    <Menu.Item
+                      key={item?.快捷名称}
+                      onClick={() => 快捷设置团队增益(item?.团队增益 || [])}
+                    >
+                      {item?.快捷名称}
+                    </Menu.Item>
+                  )
+                })}
+              </Menu>
+            }
+            placement='topLeft'
+          >
+            <Button danger className={'tuandui-setting-btn'} size='small'>
+              快捷设置
+            </Button>
+          </Dropdown>
+        ) : null}
         <Button
           className={'tuandui-setting-btn'}
-          danger
           size='small'
           onClick={() => {
             if (新手引导流程状态) {
@@ -110,21 +122,9 @@ function 团队增益选择({ 保存数据并计算 }) {
             更新设置增益弹窗展示(true)
           }}
         >
-          设置增益
+          增益详情
         </Button>
-        <Button
-          className={'tuandui-setting-btn'}
-          size='small'
-          onClick={() => {
-            if (新手引导流程状态) {
-              return
-            }
-            更新设置轴增益弹窗展示(true)
-          }}
-        >
-          团队增益轴
-        </Button>
-        <Button
+        {/* <Button
           className={'tuandui-setting-btn'}
           size='small'
           type='dashed'
@@ -136,7 +136,7 @@ function 团队增益选择({ 保存数据并计算 }) {
           }}
         >
           增益收益
-        </Button>
+        </Button> */}
       </div>
       <div className={cls}>
         {显示团队增益?.length ? (
@@ -155,12 +155,7 @@ function 团队增益选择({ 保存数据并计算 }) {
         onChangeZengyi={onChangeZengyi}
         快捷设置团队增益={快捷设置团队增益}
       />
-      <团队增益轴设置弹窗
-        open={设置增益轴弹窗展示}
-        onCancel={() => 更新设置轴增益弹窗展示(false)}
-        修改团队增益轴={修改团队增益轴}
-      />
-      <团队增益收益弹窗 open={增益收益弹窗展示} onCancel={() => 更新增益收益弹窗展示(false)} />
+      {/* <团队增益收益弹窗 open={增益收益弹窗展示} onCancel={() => 更新增益收益弹窗展示(false)} /> */}
     </div>
   )
 }

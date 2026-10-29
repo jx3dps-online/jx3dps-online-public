@@ -1,0 +1,40 @@
+.设置项 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.标题 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.说明图标 {
+  color: rgba(0, 0, 0, 0.35);
+  cursor: help;
+}
+
+.控件 {
+  flex-shrink: 0;
+  margin-left: 24px;
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .设置项 {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .标题 {
+    flex-shrink: 0;
+    max-width: 100%;
+  }
+  .控件 {
+    min-width: 0;
+    max-width: 100%;
+    margin-left: 0;
+  }
+}

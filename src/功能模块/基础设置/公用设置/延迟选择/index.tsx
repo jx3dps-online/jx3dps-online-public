@@ -14,7 +14,7 @@ function 延迟选择() {
   const { 全部循环 = [] } = useCycle()
 
   const 当前是否有循环包含延迟 = 全部循环?.some((item) =>
-    item?.循环详情?.some((循环) => !!循环?.循环延迟要求)
+    item?.循环详情?.some((循环) => 循环?.循环延迟要求 !== undefined),
   )
 
   const 切换延迟 = (v) => {
@@ -24,10 +24,9 @@ function 延迟选择() {
 
   return 当前是否有循环包含延迟 ? (
     <div className='common-item'>
-      <h1 className='common-label'>延迟</h1>
       <div className='common-content'>
         <Select
-          className='current-boss'
+          style={{ width: '100%' }}
           value={网络延迟}
           onChange={(v) => {
             切换延迟(v)
@@ -35,7 +34,7 @@ function 延迟选择() {
         >
           {延迟设定.map((item) => {
             return (
-              <Select.Option value={item?.value} key={item.value}>
+              <Select.Option value={item?.value} key={item.value} label={item.label}>
                 {item.label}
               </Select.Option>
             )

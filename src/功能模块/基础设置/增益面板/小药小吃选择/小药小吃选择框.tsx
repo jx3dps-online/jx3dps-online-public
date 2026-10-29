@@ -74,6 +74,12 @@ const 小药小吃选择框: React.FC<小药小吃选择框入参> = (props) => 
           }
         )?.dpsUp
 
+        const 属性颜色 = item.小吃名称.includes('·精')
+          ? 'xiaochi-jin'
+          : item.小吃品级 === '紫'
+            ? 'xiaochi-zi'
+            : 'xiaochi-lan'
+
         const 小吃详情 = (
           <div>
             {item?.增益集合?.map((a, index) => {
@@ -95,9 +101,7 @@ const 小药小吃选择框: React.FC<小药小吃选择框入参> = (props) => 
                   {item?.小吃名称?.split('（')?.[0]}
                   {/* {item?.小吃名称} */}
                   {item?.小吃名称?.split('（')?.[1] ? (
-                    <span className={`${item?.小吃品级 === '紫' ? 'xiaochi-zi' : 'xiaochi-lan'}`}>
-                      （{item?.小吃名称?.split('（')?.[1]}
-                    </span>
+                    <span className={属性颜色}>（{item?.小吃名称?.split('（')?.[1]}</span>
                   ) : null}
                 </div>
               </Tooltip>

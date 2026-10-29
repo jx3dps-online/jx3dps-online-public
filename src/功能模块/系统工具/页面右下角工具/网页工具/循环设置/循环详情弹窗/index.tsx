@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Form, Input, Modal, ModalProps, Select } from 'antd'
 import { 循环数据, 循环详情 } from '@/@types/循环'
 import { v4 as uuidV4 } from 'uuid'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { useAppSelector } from '@/hooks'
 import { ReactSortable } from 'react-sortablejs'
 
@@ -13,13 +13,12 @@ import 循环详情配置弹窗 from './循环详情配置弹窗'
 
 import './index.css'
 
-const { 默认数据: 心法默认数据 = {} } = 获取当前数据()
-
 interface 循环详情弹窗类型 extends ModalProps {
   数据?: 循环数据
 }
 
 const 循环详情弹窗: React.FC<循环详情弹窗类型> = (props) => {
+  const { 默认数据: 心法默认数据 = {} } = use心法数据()
   const { 数据: 默认数据, open, onCancel } = props
   const [form] = Form.useForm()
   const [数据, 设置数据] = useState<循环数据 | undefined>()
@@ -52,7 +51,7 @@ const 循环详情弹窗: React.FC<循环详情弹窗类型> = (props) => {
       form?.resetFields()
       设置循环详情列表([])
     }
-  }, [open])
+  }, [open, 心法默认数据])
 
   // const 提交数据 = () => {
   //   form?.validateFields()?.then(() => {

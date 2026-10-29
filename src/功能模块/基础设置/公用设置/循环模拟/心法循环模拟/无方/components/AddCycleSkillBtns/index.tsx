@@ -44,7 +44,12 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
         <span className={'ztg-cycle-btn-type'}>凌波飞叶</span>
         <Space className={'cycle-simulator-setting-skills'} size={[8, 16]} wrap>
           {模拟信息?.技能基础数据
-            ?.filter((item) => !item?.创建循环不可选 && item?.技能类型 === '凌波飞叶')
+            ?.filter(
+              (item) =>
+                !item?.创建循环不可选 &&
+                item?.技能类型 === '凌波飞叶' &&
+                (!item.依赖奇穴名 || 奇穴信息.includes(item.依赖奇穴名)),
+            )
             .map((item) => {
               return (
                 <AddCycleSkillBtn
@@ -90,7 +95,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
               }
               if (item?.显示类型 === '奇穴技能') {
                 const 依赖名称 = item?.依赖奇穴名 || item?.技能名称
-                return 奇穴信息?.includes(依赖名称)
+                return item?.技能类型 === '其他' && 奇穴信息?.includes(依赖名称)
               }
               return !item?.创建循环不可选 && item?.技能类型 === '其他'
             })

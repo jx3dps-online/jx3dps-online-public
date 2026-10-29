@@ -1,27 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import use移动端 from '@/hooks/use移动端'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { App, Divider, Popover, Select, Tooltip } from 'antd'
-import { 更新方案数据 } from '@/store/data'
+import { 更新角色数据 } from '@/store/data'
 import classnames from 'classnames'
 import useCycle from '@/hooks/use-cycle'
+import { 获取循环配套数据 } from '@/角色/状态'
 import { 触发秒伤计算 } from '@/计算模块/计算函数'
 import { 根据循环判断快照计算列表 } from '@/计算模块/统一工具函数/增益计算函数'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 装备部位枚举 } from '@/@types/枚举'
 import { 装备位置部位枚举, 装备特效枚举 } from '@/@types/装备'
 import classNames from 'classnames'
 import './index.css'
 
-const { 装备数据 } = 获取当前数据()
-
 function 循环选择(props) {
+  const 移动端 = use移动端()
+  const { 装备数据 } = use心法数据()
   const { className, 不提示循环, 不更新秒伤 } = props
   const { modal } = App.useApp()
   const dispatch = useAppDispatch()
   const 当前计算循环名称 = useAppSelector((state) => state?.data?.当前计算循环名称)
   const 装备信息 = useAppSelector((state) => state?.data?.装备信息)
+  const 增益数据 = useAppSelector((state) => state.data.增益数据)
+  const 增益启用 = useAppSelector((state) => state.data.增益启用)
+  const 网络延迟 = useAppSelector((state) => state.data.网络延迟)
+  const 自定义循环列表 = useAppSelector((state) => state.data.自定义循环列表)
 
-  const { 全部循环 = [], 计算循环详情 } = useCycle()
+  const { 全部循环 = [] } = useCycle()
+
+  useEffect(() => {
+    if (!全部循环.some((项) => 项.名称 === 当前计算循环名称)) {
+      const 默认名称 = 全部循环[0]?.名称 || ''
+      if (默认名称 !== 当前计算循环名称) 切换循环(默认名称)
+    }
+  }, [当前计算循环名称, 自定义循环列表, 全部循环[0]?.名称])
 
   const 切换循环前校验 = (val) => {
     const 目标循环数据 = 全部循环?.find((item) => item?.名称 === val)
@@ -73,40 +86,26 @@ function 循环选择(props) {
   }
 
   const 切换循环 = (val) => {
-    const 目标循环数据 = 全部循环?.find((item) => item?.名称 === val)
-    dispatch(更新方案数据({ 属性: '当前计算循环名称', 数据: val }))
-    dispatch(更新方案数据({ 属性: '当前奇穴信息', 数据: 目标循环数据?.奇穴 }))
-    const 实际计算循环秘籍信息 = 获取实际计算循环秘籍信息(val)
-
-    if (实际计算循环秘籍信息 && Object.keys(实际计算循环秘籍信息)?.length) {
-      dispatch(更新方案数据({ 属性: '当前秘籍信息', 数据: 实际计算循环秘籍信息 }))
-    }
+    dispatch(
+      更新角色数据({
+        属性: '循环配置',
+        数据: 获取循环配套数据(val, { 装备信息, 增益数据, 增益启用, 网络延迟, 自定义循环列表 }),
+      }),
+    )
     if (!不更新秒伤) {
       dispatch(触发秒伤计算({ 是否更新显示计算结果: true }))
     }
   }
 
-  const 获取实际计算循环秘籍信息 = (循环名称) => {
-    let 循环默认秘籍 = {}
-    const 目标循环数据 = 全部循环?.find((item) => item?.名称 === 循环名称)
-    if (目标循环数据 && 目标循环数据?.秘籍) {
-      循环默认秘籍 = { ...目标循环数据?.秘籍 }
-    }
-    // 部分加速的秘籍内置在加速循环详情中，此时需要覆盖
-    if (计算循环详情?.秘籍) {
-      循环默认秘籍 = { ...计算循环详情?.秘籍 }
-    }
-    return 循环默认秘籍
-  }
-
   const cls = classNames('common-item', className)
 
   return (
-    <div className={cls}>
-      <h1 className='common-label'>循环</h1>
+    <div className={cls} id={props.id}>
+      {/* <h1 className='common-label'>循环</h1> */}
       <div className='common-content'>
         <Select
-          value={当前计算循环名称}
+          value={当前计算循环名称 || undefined}
+          placeholder='暂无可用循环'
           className='cycle-select'
           onChange={(v) => {
             if (不提示循环) {
@@ -116,7 +115,7 @@ function 循环选择(props) {
             }
           }}
           optionFilterProp='label'
-          popupMatchSelectWidth={300}
+          popupMatchSelectWidth={移动端 ? true : 300}
           dropdownRender={(menu) => (
             <>
               {menu}
@@ -144,10 +143,11 @@ function 循环选择(props) {
             return (
               <Select.Option value={item?.名称} key={item.名称} label={item.名称}>
                 <Popover
-                  placement='right'
+                  placement={'right'}
+                  overlayClassName='循环说明浮层'
                   zIndex={2000}
-                  title='说明'
-                  open={item.提供者 || item.备注 ? undefined : false}
+                  title='循环说明'
+                  open={移动端 ? false : item.提供者 || item.备注 ? undefined : false}
                   content={
                     item.提供者 || item.备注 || 快照计算列表?.length ? (
                       <div className='cycle-select-popover-content'>

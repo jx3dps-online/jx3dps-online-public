@@ -1,0 +1,41 @@
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+// 模拟斩杀的时间徽标：与勾选框文字同行同中心线（行内元素共享基线），主题色小胶囊，定宽防挤动
+.斩杀时间块 {
+  display: inline-block;
+  min-width: 120px;
+  padding: 0 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  color: #c14c11;
+  background: rgba(193, 76, 17, 0.08);
+  border: 1px solid rgba(193, 76, 17, 0.4);
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+// 配置项分组容器：拥挤时自动换行；组间距(24px)明显大于组内(6px)，视觉上能分清哪个标签配哪个控件
+.配置组 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+}
+
+// 单个配置项：标签与自己的控件贴紧为一组；标签自带外边距会让组内松散，归零交给 gap 控制
+.配置项 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.配置项 .label {
+  margin: 0;
+}

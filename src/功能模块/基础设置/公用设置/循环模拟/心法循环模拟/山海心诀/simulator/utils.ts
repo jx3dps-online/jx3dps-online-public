@@ -11,8 +11,11 @@ export const 根据奇穴修改buff数据 = (奇穴: string[]) => {
   }
 
   Object.keys(原始Buff数据).forEach((key) => {
-    const obj = 原始Buff数据[key]
+    const obj = { ...原始Buff数据[key] }
     switch (key) {
+      case '澄神醒梦':
+        if (判断奇穴('澄念')) obj.最大持续时间 = 每秒郭氏帧 * 11
+        break
       case '贯穿':
         if (判断奇穴('桑柘')) {
           // eslint-disable-next-line @typescript-eslint/no-extra-semi
@@ -61,7 +64,7 @@ export const 根据奇穴秘籍修改技能数据 = (
         ...技能,
         技能CD: 技能原始CD,
       }
-    } else if (技能?.技能名称 === '白羽流星') {
+    } else if (技能.技能名称 === '白羽流星') {
       let 技能原始CD = 技能.技能CD || 0
       if (判断奇穴('连珠')) {
         技能原始CD = 技能原始CD - 每秒郭氏帧 * 1
@@ -100,7 +103,9 @@ export const ERROR_ACTION = {
 }
 
 export const 转化buff和增益名称 = (增益名称, buff列表) => {
-  if (增益名称?.includes('承契')) {
+  if (增益名称 === '信诺') {
+    return buff列表['乘黄之威']
+  } else if (增益名称?.includes('承契')) {
     const 增益层数 = 增益名称?.split('_')?.[1]?.[0] || 0
     if (!增益层数) {
       return {}

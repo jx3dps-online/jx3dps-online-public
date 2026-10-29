@@ -2,23 +2,22 @@ import React, { useState } from 'react'
 import { 装备选择范围类型 } from '@/@types/装备'
 import { SettingOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Form, message, Modal, Slider, Tag, Tooltip } from 'antd'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
+import { 品级筛选范围, 赛季最高品级 } from '@/数据/常量/装备常量'
 import './index.css'
 
 interface 装备选择范围设置类型 {
   装备选择范围: 装备选择范围类型
   设置装备选择范围: (e: 装备选择范围类型) => void
+  按钮模式?: boolean
 }
 
-const { 系统配置 } = 获取当前数据()
-
-const 英雄品 = [35900, 43000]
-const 普通品 = [30800, 35900]
-export const 普通至英雄 = [普通品?.[0], 英雄品?.[1]]
+const 英雄品 = 品级筛选范围.英雄
+const 普通品 = 品级筛选范围.普通
+const 十人品 = 品级筛选范围.十人
 
 const 装备词条 = {
   会心: 'magenta',
-  破招: 'red',
   破防: 'green',
   会效: 'blue',
   加速: 'cyan',
@@ -31,7 +30,8 @@ const 过滤词条 = {
 }
 
 const 装备选择范围设置: React.FC<装备选择范围设置类型> = (props) => {
-  const { 装备选择范围, 设置装备选择范围 } = props
+  const { 系统配置 } = use心法数据()
+  const { 装备选择范围, 设置装备选择范围, 按钮模式 = false } = props
   const [设置弹窗展示, 更新设置弹窗展示] = useState<boolean>(false)
   const [品级范围, 设置品级范围] = useState<number[]>([])
   const [词条类型, 设置词条类型] = useState<string[]>([])
@@ -120,14 +120,20 @@ const 装备选择范围设置: React.FC<装备选择范围设置类型> = (prop
             })
           : null}
       </div>
-      <Tooltip title='点击设置装备选择范围'>
-        <div onClick={() => 打开弹窗()} id='Guide_Equip_Scope' className={'zhuangbei-scope-icon'}>
-          <SettingOutlined />
-          {!装备选择范围?.品级范围?.length && !装备选择范围?.词条类型?.length ? (
-            <span className={'zhuangbei-scope-text'}>装备筛选</span>
-          ) : null}
-        </div>
-      </Tooltip>
+      {按钮模式 ? (
+        <Button onClick={打开弹窗} id='Guide_Equip_Scope' icon={<SettingOutlined />}>
+          装备筛选
+        </Button>
+      ) : (
+        <Tooltip title='点击设置装备选择范围'>
+          <div onClick={打开弹窗} id='Guide_Equip_Scope' className={'zhuangbei-scope-icon'}>
+            <SettingOutlined />
+            {!装备选择范围?.品级范围?.length && !装备选择范围?.词条类型?.length ? (
+              <span className={'zhuangbei-scope-text'}>装备筛选</span>
+            ) : null}
+          </div>
+        </Tooltip>
+      )}
       <Modal
         title='装备选择范围设置'
         open={设置弹窗展示}
@@ -149,13 +155,13 @@ const 装备选择范围设置: React.FC<装备选择范围设置类型> = (prop
                 <div className={'zhuangbei-scope-level-label-btns'}>
                   <Tag
                     className={'zhuangbei-scope-level-label-tag'}
-                    color='green'
+                    color='magenta'
                     onClick={(e) => {
                       e?.preventDefault()
-                      设置品级范围(英雄品)
+                      设置品级范围(十人品)
                     }}
                   >
-                    英雄
+                    十人
                   </Tag>
                   <Tag
                     className={'zhuangbei-scope-level-label-tag'}
@@ -167,6 +173,16 @@ const 装备选择范围设置: React.FC<装备选择范围设置类型> = (prop
                   >
                     普通
                   </Tag>
+                  <Tag
+                    className={'zhuangbei-scope-level-label-tag'}
+                    color='green'
+                    onClick={(e) => {
+                      e?.preventDefault()
+                      设置品级范围(英雄品)
+                    }}
+                  >
+                    英雄
+                  </Tag>
                   <Button type='link' danger size='small' onClick={() => 设置品级范围([])}>
                     清空
                   </Button>
@@ -176,15 +192,17 @@ const 装备选择范围设置: React.FC<装备选择范围设置类型> = (prop
           >
             <Slider
               range
-              max={43000}
-              min={22000}
+              max={赛季最高品级}
+              min={0}
               value={品级范围}
-              step={500}
-              marks={{
-                // 20500: '十人副本',
-                30200: '普通副本',
-                35300: '英雄副本',
-              }}
+              step={5}
+              marks={
+                {
+                  // 965: '5人/10人',
+                  // 1110: '普通',
+                  // 1280: '英雄',
+                }
+              }
               // tooltip={{ open: true }}
               onChange={(e) => 设置品级范围(e)}
             />

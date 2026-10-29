@@ -73,10 +73,8 @@ export enum 属性类型 {
   郭氏加速等级 = 'atHasteBasePercentAdd',
   郭氏突破上限加速 = 'atUnlimitHasteBasePercentAdd',
 
-  // 破招无双全能
+  // 无双全能
   全能等级 = 'atPVXAllRound',
-  破招值 = 'atSurplusValueBase',
-  郭氏破招 = 'atSurplusValueAddPercent',
   无双等级 = 'atStrainBase',
   郭氏无双 = 'atStrainPercent',
   郭氏额外无双 = 'atStrainRate',
@@ -86,16 +84,16 @@ export enum 属性类型 {
   郭氏武器伤害 = 'atMeleeWeaponDamagePercent',
 
   // 技能增伤 同类增伤相加计算，系数增伤相乘计算。具体看计算公式
-  全局伤害因子 = 'atGlobalSkillDamageFactorAdd',
-  目标移动状增伤 = 'atSkillDamageDstMoveStateAdd',
-  通用增伤 = 'atSkillDamageCommonAdd', // atAllDamageAddPercent
-  易伤增伤 = 'atSkillDamageFragileAdd',
-  最终增伤 = 'atActivityDamageFinalCof',
-  职业最终增伤 = 'atSkillDamageFinalCof',
-  非侠增伤 = 'atSkillDamageNPCAdd',
-  系数增伤 = 'atSkillCoefficientAdd',
-  系数置换函数 = 'atSkillCoefficientReplace',
-  破招转非侠 = 'atSurplusToPveAddition',
+  全局伤害因子 = 'atGlobalSkillDamageFactorAdd', // Generator: global_damage_cof（旧名 global_damage_factor，全局伤害乘区）
+  目标移动状增伤 = 'atSkillDamageDstMoveStateAdd', // Generator: move_state_damage_gain（移动状态乘区）
+  通用增伤 = 'atSkillDamageCommonAdd', // Generator: all_damage_gain + physical_damage_gain / magical_damage_gain（通用增伤乘区）
+  易伤增伤 = 'atSkillDamageFragileAdd', // Generator: {元素}_damage_cof（易伤乘区），与技能 coming_damage_cof 同乘区相加
+  最终增伤 = 'atActivityDamageFinalCof', // Generator: 无 activity 独立字段，数据对应 skill_damage_gain（如仙姿）
+  职业最终增伤 = 'atSkillDamageFinalCof', // Generator: skill_damage_gain（旧名 skill_damage_final_cof）
+  非侠增伤 = 'atSkillDamageNPCAdd', // Generator: pve_damage_gain（旧名 pve_damage_cof）
+  技能独立增伤 = 'atSkillDamageCof', // Generator: skill_damage_cof，技能自身独立乘区，同类相加
+  系数增伤 = 'atSkillCoefficientAdd', // Generator: 无独立乘区，内嵌技能系数 frames / attack_power_cof
+  系数置换函数 = 'atSkillCoefficientReplace', // Generator: 无对应，补丁直接改技能系数 / 自定义伤害
 
   // T
   郭氏体质转基础攻击 = 'atVitalityToAttackPower',

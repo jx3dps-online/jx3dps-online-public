@@ -1,17 +1,23 @@
-import { DEFAULT_PROJECT_NAME } from '@/数据/常量'
 import { 目标集合 } from '@/数据/目标'
-import { 全部方案数据 } from '@/@types/方案'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
-import useCycle from '@/hooks/use-cycle'
-import { 角色默认基础属性, 默认团队增益轴 } from './默认数据'
-// import { deepMerge } from '../help'
+import { 获取缓存映射 } from '@/心法模块/模块工具/获取缓存映射'
+import { 品级筛选范围 } from '@/数据/常量/装备常量'
+import type { 装备选择范围类型 } from '@/@types/装备'
+import type { 增益选项数据类型, 团队增益选项数据类型 } from '@/@types/团队增益'
+import type { 角色增益数据类型 } from '@/角色/类型'
+import type { 副本事件定义类型 } from '@/@types/副本事件'
+import 事件定义原始 from '@/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/通用/通用组件/副本事件编辑器/事件定义.json'
+import {
+  默认方案名称,
+  生成默认方案,
+} from '@/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/通用/通用组件/副本事件编辑器/utils'
+import { 默认团队增益轴, 默认网页设置, 合并网页设置 } from './默认数据'
 
-const { 缓存映射 = {} as any, 默认数据 = {}, 奇穴数据 = [] } = 获取当前数据()
-const 默认秘籍 = 默认数据?.秘籍 || {}
-const 默认延迟 = 默认数据?.网络延迟 || 0
-const 默认装备信息 = 默认数据?.配装 || {}
+const 副本事件定义列表 = 事件定义原始 as 副本事件定义类型[]
 
 export const 加载缓存网络延迟 = () => {
+  const { 缓存映射 = {} as any, 默认数据 = {} } = 获取当前数据()
+  const 默认延迟 = 默认数据?.网络延迟 || 0
   const localNetwork = localStorage.getItem(缓存映射.网络延迟) || 默认延迟 || 1
   if (localNetwork) {
     return +localNetwork
@@ -21,76 +27,128 @@ export const 加载缓存网络延迟 = () => {
 }
 
 export const 加载缓存背景图片显示状态 = () => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
   return !!+(localStorage.getItem(缓存映射.背景图片显示状态) || '1')
 }
 
-export const 加载缓存当前输出计算目标名称 = () => {
-  const 当前输出计算目标名称 =
-    localStorage.getItem(缓存映射.当前输出计算目标名称) || 目标集合[0]?.名称
-  return 当前输出计算目标名称
-}
-
-export const 加载缓存当前方案名称 = () => {
-  const 当前方案名称字符: any = localStorage.getItem(缓存映射.当前方案名称) || false
-  if (当前方案名称字符) {
+export const 加载缓存网页设置 = () => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
+  const 缓存字符串 = localStorage.getItem(缓存映射.网页设置)
+  if (缓存字符串) {
     try {
-      if (当前方案名称字符) {
-        return 当前方案名称字符
-      }
-      return DEFAULT_PROJECT_NAME
+      const 缓存值 = JSON.parse(缓存字符串)
+      return 合并网页设置(默认网页设置, 缓存值)
     } catch {
-      return DEFAULT_PROJECT_NAME
+      return { ...默认网页设置 }
     }
-  } else {
-    return DEFAULT_PROJECT_NAME
+  }
+  return {
+    ...默认网页设置,
+    外观: { ...默认网页设置.外观, 背景图片显示: 加载缓存背景图片显示状态() },
   }
 }
 
-export const 加载缓存全部方案数据 = () => {
-  const { 全部循环 } = useCycle({ 使用内存数据: false })
-  const 全部方案数据字符: any = localStorage.getItem(缓存映射.全部方案数据) || false
-  const 当前循环名称 = localStorage.getItem(缓存映射.当前计算循环名称) || 全部循环[0]?.名称
-
-  const 当前循环信息 = 全部循环?.find((item) => item?.名称 === 当前循环名称)
-  const 当前循环奇穴 = 当前循环信息?.奇穴 || []
-  const 当前循环秘籍 = 当前循环信息?.秘籍 || null
-
-  const 默认奇穴 = 奇穴数据.map((item) => {
-    return item?.奇穴列表?.[0]?.奇穴名称
-  })
-
-  const 默认全部方案数据: 全部方案数据 = {
-    默认方案: {
-      方案名称: DEFAULT_PROJECT_NAME,
-      装备信息: {
-        装备基础属性: 角色默认基础属性,
-        装备列表: [],
-        五彩石: '',
-        装备增益: {},
-        ...默认装备信息,
-      },
-      增益启用: false,
-      增益数据: { 阵眼: '', 小吃: [], 团队增益: [] },
-      当前计算循环名称: 当前循环名称,
-      当前奇穴信息: 当前循环奇穴 || 默认奇穴,
-      当前秘籍信息: 当前循环秘籍 || 默认秘籍,
-    },
-  }
-
-  try {
-    const obj = JSON.parse(全部方案数据字符)
-    // 修改缓存逻辑，不merge，以免触发bug。有本地方案直接读取本地方案
-    if (obj) {
-      const newObj = JSON.parse(JSON.stringify(obj))
-      return newObj
+export const 加载缓存背景图选择 = () => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
+  const 缓存字符串 = localStorage.getItem(缓存映射.背景图选择)
+  if (缓存字符串) {
+    try {
+      const 缓存值 = JSON.parse(缓存字符串)
+      return Array.isArray(缓存值) ? 缓存值 : []
+    } catch {
+      return []
     }
-    return 默认全部方案数据
+  }
+  return []
+}
+
+export const 加载缓存自定义背景图 = () => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
+  const 缓存字符串 = localStorage.getItem(缓存映射.自定义背景图)
+  if (缓存字符串) {
+    try {
+      const 缓存值 = JSON.parse(缓存字符串)
+      return Array.isArray(缓存值) ? 缓存值 : []
+    } catch {
+      return []
+    }
+  }
+  return []
+}
+
+export const 加载缓存当前输出计算目标名称 = () => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
+  const 名称 = localStorage.getItem(缓存映射.当前输出计算目标名称)
+  if (目标集合.some((目标) => 目标.名称 === 名称)) return 名称!
+  const 默认名称 = 目标集合[0].名称
+  if (名称 && 缓存映射.当前输出计算目标名称) {
+    try {
+      localStorage.setItem(缓存映射.当前输出计算目标名称, 默认名称)
+    } catch (错误) {
+      console.warn('默认输出目标未保存。', 错误)
+    }
+  }
+  return 默认名称
+}
+
+export const 加载缓存增益启用 = () => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
+  return localStorage.getItem(缓存映射.增益启用) === '1'
+}
+
+/** 当前心法的特殊配置：各心法专属定制设置统一存这一个 JSON 对象，避免缓存键膨胀 */
+export const 加载缓存特殊配置 = (心法名?: string): Record<string, any> => {
+  if (!心法名) return {}
+  const 缓存字符串 = localStorage.getItem(获取缓存映射(心法名).特殊配置)
+  if (!缓存字符串) return {}
+  try {
+    const 缓存值 = JSON.parse(缓存字符串)
+    return 缓存值 && typeof 缓存值 === 'object' ? 缓存值 : {}
   } catch {
-    return 默认全部方案数据
+    return {}
+  }
+}
+
+const 有效团队增益数组 = (值: unknown): 值 is 团队增益选项数据类型[] =>
+  Array.isArray(值) &&
+  值.every(
+    (项) =>
+      !!项 &&
+      typeof 项 === 'object' &&
+      typeof 项.增益名称 === 'string' &&
+      typeof 项.启用 === 'boolean' &&
+      typeof 项.层数 === 'number' &&
+      typeof 项.覆盖率 === 'number',
+  )
+
+export const 加载缓存团队增益 = (): 团队增益选项数据类型[] => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
+  const 缓存字符串 = localStorage.getItem(缓存映射.团队增益)
+  if (缓存字符串) {
+    try {
+      const 缓存值 = JSON.parse(缓存字符串)
+      return 有效团队增益数组(缓存值) ? 缓存值 : []
+    } catch {
+      return []
+    }
+  }
+  return []
+}
+
+/** 全局团队增益与当前心法可用列表取交集：心法里没有的增益忽略。 */
+export const 合成增益数据 = (角色增益: 角色增益数据类型): 增益选项数据类型 => {
+  const { 团队增益 = [] } = 获取当前数据()
+  return {
+    阵眼: 角色增益.阵眼,
+    小吃: 角色增益.小吃,
+    团队增益: 加载缓存团队增益().filter((项) =>
+      团队增益.some((可用项) => 可用项.增益名称 === 项.增益名称),
+    ),
   }
 }
 
 export const 加载缓存团队增益轴 = () => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
   const 团队增益轴 = JSON.parse(localStorage.getItem(缓存映射.团队增益轴) || '{}') || {}
   if (团队增益轴) {
     return { ...默认团队增益轴, ...团队增益轴 }
@@ -99,8 +157,46 @@ export const 加载缓存团队增益轴 = () => {
   }
 }
 
+export const 加载缓存副本事件方案列表 = () => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
+  const 缓存数据 = JSON.parse(localStorage.getItem(缓存映射.副本事件方案列表) || '[]') || []
+  // 默认方案始终按当前事件定义重新生成，不读取缓存副本
+  const 副本事件方案列表 = Array.isArray(缓存数据)
+    ? 缓存数据.filter((item) => item?.方案名称 !== 默认方案名称)
+    : []
+  return [生成默认方案(副本事件定义列表), ...副本事件方案列表]
+}
+
+export const 加载缓存装备选择范围 = (): 装备选择范围类型 => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
+  const 默认值: 装备选择范围类型 = { 品级范围: 品级筛选范围.全部 }
+  const 缓存字符串 = localStorage.getItem(缓存映射.装备选择范围)
+  if (缓存字符串) {
+    try {
+      const 缓存值 = JSON.parse(缓存字符串)
+      if (缓存值 && typeof 缓存值 === 'object') {
+        return {
+          品级范围: Array.isArray(缓存值.品级范围)
+            ? 缓存值.品级范围.filter((值) => typeof 值 === 'number')
+            : [],
+          词条类型: Array.isArray(缓存值.词条类型)
+            ? 缓存值.词条类型.filter((值) => typeof 值 === 'string')
+            : [],
+          过滤类型: Array.isArray(缓存值.过滤类型)
+            ? 缓存值.过滤类型.filter((值) => typeof 值 === 'string')
+            : [],
+        }
+      }
+    } catch {
+      return 默认值
+    }
+  }
+  return 默认值
+}
+
 // 获取自定义循环
 export const 加载缓存自定义循环数据 = () => {
+  const { 缓存映射 = {} as any } = 获取当前数据()
   const 循环枚举 = JSON.parse(localStorage.getItem(缓存映射.自定义循环) || '{}') || {}
   if (Object.keys(循环枚举)?.length) {
     return Object.keys(循环枚举).map((key) => {
@@ -108,33 +204,5 @@ export const 加载缓存自定义循环数据 = () => {
     })
   } else {
     return []
-  }
-}
-
-export const 加载缓存当前秘籍信息 = () => {
-  const local = localStorage.getItem(缓存映射.当前秘籍信息) || '{}'
-  if (local) {
-    try {
-      const obj = JSON.parse(local) || {}
-      if (obj) {
-        return { ...默认秘籍, ...obj }
-      }
-      return { ...默认秘籍 }
-    } catch {
-      return { ...默认秘籍 }
-    }
-  } else {
-    return { ...默认秘籍 }
-  }
-}
-
-export const 获取方案内信息 = (属性) => {
-  const 当前方案名称 = 加载缓存当前方案名称()
-  const 全部方案数据 = 加载缓存全部方案数据()
-  const 当前方案数据 = 全部方案数据?.[当前方案名称]
-  if (当前方案数据 && 当前方案数据?.[属性] !== undefined) {
-    return 当前方案数据?.[属性]
-  } else {
-    return undefined
   }
 }

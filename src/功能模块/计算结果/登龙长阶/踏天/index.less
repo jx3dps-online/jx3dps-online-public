@@ -1,0 +1,92 @@
+.dragon-heaven {
+  background: linear-gradient(125deg, rgba(35, 31, 27, 0.66), rgba(16, 22, 31, 0.66));
+  border-color: rgba(204, 164, 94, 0.45);
+  .dragon-heading h2,
+  .dragon-eyebrow {
+    color: #e4c389;
+  }
+}
+.dragon-realm {
+  padding: 16px 24px;
+  border-block: 1px solid rgba(218, 181, 117, 0.2);
+  color: #e8e4dc;
+  background: linear-gradient(100deg, rgba(169, 126, 60, 0.1), transparent);
+}
+.dragon-realm-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  h3 {
+    display: inline;
+    margin: 0 14px;
+    color: #ecd2a0;
+    font-size: 25px;
+    font-family: 'STKaiti', 'KaiTi', serif;
+  }
+  p {
+    color: #c0b7a9;
+  }
+}
+
+.dragon-realm-notice {
+  display: inline-flex;
+  align-items: center;
+}
+.dragon-realm-stages {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 14px 0;
+  li {
+    flex: 1;
+    border-top: 2px solid #4b4a49;
+    padding-top: 8px;
+    color: #a7a8a9;
+  }
+  small {
+    margin-left: 8px;
+  }
+  .is-reached {
+    border-color: #c7a46b;
+    color: #e7cb96;
+  }
+}
+.dragon-realm-notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+}
+.dragon-realm-note {
+  color: #b6b1a9;
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+.dragon-heaven-goal {
+  border: 1px solid #c9ab73;
+  background: #fbf6ea;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.dragon-accepted {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+  p {
+    width: 100%;
+    margin: 0;
+  }
+}
+@media (max-width: 640px) {
+  .dragon-realm {
+    padding: 12px;
+  }
+  .dragon-realm-stages small {
+    display: block;
+    margin-left: 0;
+  }
+}

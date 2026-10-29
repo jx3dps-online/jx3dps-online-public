@@ -1,3 +1,26 @@
 .cycle-status-bar-ruiyi {
   width: 200px;
 }
+
+.taixuan-energy-totals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.taixuan-energy-totals span {
+  white-space: nowrap;
+}
+
+.taixuan-energy-overflow-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #1677ff;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -1,0 +1,90 @@
+.魂灯 {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.扩散,
+.烟道 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 75%;
+}
+
+.扩散 {
+  opacity: 0;
+  user-select: none;
+}
+
+.烟道 {
+  overflow: hidden;
+  opacity: 0.6;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.流动烟纹 {
+  position: absolute;
+  left: -13.333333%;
+  top: 0;
+  width: 113.333333%;
+  height: 126.666667%;
+  background-repeat: repeat;
+  background-size: 11.764706% auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .魂灯 {
+    display: block;
+  }
+
+  .扩散 {
+    animation: txj-smoke-diffuse 7s ease-out infinite;
+  }
+
+  .流动烟纹 {
+    animation: txj-smoke-flow 8s linear infinite;
+  }
+}
+
+@supports not (
+  (mask-image: linear-gradient(#000, transparent)) or
+    (-webkit-mask-image: linear-gradient(#000, transparent))
+) {
+  .烟道 {
+    display: none;
+  }
+}
+
+@keyframes txj-smoke-flow {
+  to {
+    transform: translate3d(11.764706%, -21.052632%, 0);
+  }
+}
+
+@keyframes txj-smoke-diffuse {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.98) rotate(0);
+  }
+  25% {
+    opacity: 0.62;
+  }
+  65% {
+    opacity: 0.32;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--smoke-x), var(--smoke-y), 0) scale(var(--smoke-scale))
+      rotate(var(--smoke-rotate));
+  }
+}

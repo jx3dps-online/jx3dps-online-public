@@ -1,0 +1,9 @@
+.equip-assistant-dps {
+  display: flex;
+  width: fit-content;
+  margin: 0 0 12px auto;
+  line-height: 14px;
+  font-weight: 400;
+  font-size: 14px;
+  border-radius: 4px;
+}

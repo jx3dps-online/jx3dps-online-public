@@ -1,0 +1,22 @@
+.cycle-buff-count-chart {
+  width: 100%;
+  height: 500px;
+}
+
+.cycle-buff-count-text {
+  width: 100%;
+  padding: 24px;
+}
+
+.cycle-buff-count-text-wrap {
+  font-size: 20px;
+}
+
+.cycle-buff-count-text-label {
+  color: #999;
+}
+
+.cycle-buff-count-text-value {
+  color: var(--ant-primary-color);
+  font-weight: 600;
+}

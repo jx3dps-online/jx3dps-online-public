@@ -1,69 +1,54 @@
 import React, { useMemo } from 'react'
-import { 团队增益轴数据类型 } from '@/@types/团队增益'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
-import './index.css'
+import { 副本事件实例类型 } from '@/@types/副本事件'
 import { 每秒郭氏帧 } from '@/数据/常量'
-
-const { 团队增益 = [] } = 获取当前数据()
+import { 获取实例总持续时间 } from '../副本事件编辑器/utils'
+import './index.css'
 
 interface 团队增益图标类型 {
-  增益轴数据: 团队增益轴数据类型
-  增益名称: string
+  实例列表: 副本事件实例类型[]
+  图标: string
+  事件名称: string
   当前时间: number
 }
 
 const 团队增益图标: React.FC<团队增益图标类型> = (props) => {
-  const { 增益轴数据, 增益名称, 当前时间, ...rest } = props
-  const 图标 = useMemo(() => {
-    return 团队增益?.find((item) => item?.增益名称 === 增益名称)?.增益图片
-  }, [团队增益, 增益名称])
+  const { 实例列表, 图标, 事件名称, 当前时间, ...rest } = props
 
   const 剩余时间 = useMemo(() => {
-    const { 持续时间 = 0, 平均间隔 = 0 } = 增益轴数据 || {}
-    const 初次释放时间 = 增益轴数据?.释放时间点?.[0] || 0
-    const 下次可释放时间 = 平均间隔 > 0 ? 获取最近一次释放时间(0) || 0 : 0
-    const 当前剩余CD = 下次可释放时间 - 当前时间 || 0
-    let 当前剩余持续时间 = 0
-
-    if (增益名称 === '号令三军') {
-      const 实际释放时间 = 初次释放时间
-      const buff结束时间 = 实际释放时间 + 60 * 每秒郭氏帧
+    const 该事件实例 = (实例列表 || []).filter((实例) => 实例?.事件名称 === 事件名称)
+    if (!该事件实例?.length) {
+      return { 当前剩余CD: 0, 当前剩余持续时间: 0, 无法再次释放: true }
+    }
+    let 剩余覆盖 = 0
+    const 覆盖中 = 该事件实例.some((实例) => {
+      const 结束 = 实例.释放时间 + 获取实例总持续时间(实例)
+      if (实例.释放时间 <= 当前时间 && 当前时间 < 结束) {
+        剩余覆盖 = Math.max(剩余覆盖, 结束 - 当前时间)
+        return true
+      }
+      return false
+    })
+    if (覆盖中) {
+      return { 当前剩余CD: 0, 当前剩余持续时间: 剩余覆盖, 无法再次释放: false }
+    }
+    const 未来释放时间 = 该事件实例
+      .map((实例) => 实例.释放时间)
+      .filter((时间) => 时间 > 当前时间)
+      .sort((a, b) => a - b)[0]
+    if (未来释放时间 !== undefined) {
       return {
-        当前剩余CD: 0,
-        当前剩余持续时间: buff结束时间 - 当前时间,
-        无法再次释放: 当前时间 > buff结束时间,
+        当前剩余CD: 未来释放时间 - 当前时间,
+        当前剩余持续时间: 0,
+        无法再次释放: false,
       }
     }
-
-    if (下次可释放时间 >= 当前时间) {
-      const 上一次释放时间 = 下次可释放时间 - 平均间隔 || 0
-      if (上一次释放时间 + 持续时间 >= 当前时间) {
-        当前剩余持续时间 = 上一次释放时间 + 持续时间 - 当前时间
-      }
-    }
-
-    function 获取最近一次释放时间(释放次数) {
-      const 实际释放时间 = 初次释放时间 + 平均间隔 * 释放次数
-      if (实际释放时间 > 当前时间) {
-        return 实际释放时间
-      } else if (释放次数 < 1000) {
-        return 获取最近一次释放时间(释放次数 + 1)
-      } else {
-        return 0
-      }
-    }
-
-    return {
-      当前剩余CD,
-      当前剩余持续时间,
-      无法再次释放: false,
-    }
-  }, [当前时间, 增益轴数据])
+    return { 当前剩余CD: 0, 当前剩余持续时间: 0, 无法再次释放: true }
+  }, [当前时间, 实例列表, 事件名称])
 
   return (
     <div
       className={`cycle-simulator-team-buff-img-wrap ${
-        剩余时间?.无法再次释放 || (剩余时间?.当前剩余CD && !剩余时间?.当前剩余持续时间)
+        剩余时间?.无法再次释放 || 剩余时间?.当前剩余CD > 0
           ? 'cycle-simulator-team-buff-img-disabled'
           : ''
       }`}

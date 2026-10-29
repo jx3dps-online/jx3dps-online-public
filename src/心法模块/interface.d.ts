@@ -1,16 +1,25 @@
 import type { 奇穴列表数据类型 } from '@/@types/奇穴'
 import type { 循环数据 } from '@/@types/循环'
 import type { 技能基础数据模型, 技能增益列表类型 } from '@/@types/技能'
-import type { 加速档位信息 } from '@/@types/装备'
+import type { 加速阈值配置 } from '@/@types/加速阈值'
 import type { 角色基础属性类型 } from '@/@types/角色'
+import type { 技能统计处理函数 } from '@/@types/输出'
+
+import type { 踏天配置 } from '@/功能模块/计算结果/登龙长阶/踏天/类型'
 
 // 心法配置类型
 export interface 心法配置类型 {
+  /** 按需加载推荐配装；未注册的心法保持普通登龙长阶。 */
+  踏天境?: () => Promise<{ default: 踏天配置 }>
   /**
    * @name 模块负责人
    * @description 对应魔盒的模块负责人
    */
   模块负责人: string
+  /**
+   * @name 邀请使用
+   */
+  邀请使用?: boolean
   /**
    * @name 数据提供
    * 本心法模块的数据提供者
@@ -86,6 +95,8 @@ export interface 心法配置类型 {
    * @name 技能增益
    */
   技能增益: { [key: string]: 技能增益列表类型[] }
+  /** 仅整理展示数据，不改变循环 JSON 或伤害计算结果。 */
+  技能统计处理?: 技能统计处理函数
   /**
    * @name 计算循环
    */
@@ -109,11 +120,7 @@ export interface 心法配置类型 {
    * @description 针对心法的覆盖率数值覆盖
    */
   覆盖率?: Partial<{ [key in 支持修改覆盖率类型]: number }>
-  /**
-   * @name 加速档位
-   * @description 针对心法的特殊技能加速档位
-   */
-  加速档位?: Record<string, 加速档位信息[]>
+  加速阈值?: 加速阈值配置[]
 }
 
 type 主属性类型 = '力道' | '身法' | '根骨' | '元气' | '体质'

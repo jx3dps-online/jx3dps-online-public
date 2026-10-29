@@ -19,7 +19,8 @@
   margin-left: 12px;
   font-size: 16px;
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
+
   &:hover {
     color: var(--ant-primary-color);
   }
@@ -90,8 +91,33 @@
   color: #f00;
   cursor: pointer;
   margin-left: 4px;
-  transition: .2s;
+  transition: 0.2s;
+
   &:hover {
-    color: rgb(130, 0, 0)
+    color: rgb(130, 0, 0);
+  }
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (any-pointer: coarse) {
+  .wrap {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .label,
+  .operate {
+    flex: none;
+  }
+
+  .buffWrap {
+    flex-wrap: wrap;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .buff {
+    margin-left: 0;
   }
 }

@@ -37,7 +37,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1440px), screen and (min-width: 761px) and (max-height: 900px) {
   .character-item.character-item-harf {
     width: 48%;
   }
@@ -86,4 +86,15 @@
   font-size: 14px;
   color: #999;
   margin-left: 4px;
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .character-title-wrapper {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .character-content {
+    min-width: 0;
+    padding: 0 6px;
+  }
 }

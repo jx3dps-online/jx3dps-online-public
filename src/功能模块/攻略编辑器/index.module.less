@@ -1,0 +1,419 @@
+.工作台 {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f3f5f8;
+  color: #273142;
+  font-size: 14px;
+  overflow: hidden;
+}
+.顶栏 {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  background: #fff;
+  padding: 18px 28px;
+  border-bottom: 1px solid #e7eaf0;
+}
+.品牌 {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  h1 {
+    font-size: 20px;
+    font-weight: 650;
+    margin: 0 0 2px;
+    letter-spacing: 0.02em;
+  }
+  span:not(.标志) {
+    color: #8a93a2;
+    font-size: 12px;
+  }
+}
+.标志 {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  background: ~'var(--编辑器主题)';
+  color: white;
+  border-radius: 12px;
+  font-size: 23px;
+}
+.保存状态 {
+  color: #8a93a2;
+  font-size: 12px;
+  margin-right: 8px;
+}
+.稿件栏 {
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  > div > span {
+    color: #8a93a2;
+  }
+  strong {
+    max-width: 35vw;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.栏宽 {
+  color: #8a93a2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  input {
+    width: 80px;
+    accent-color: ~'var(--编辑器主题)';
+  }
+}
+.主体 {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 200px ~'minmax(320px, var(--编辑栏))' ~'minmax(320px, var(--预览栏))';
+  gap: 16px;
+  padding: 0 24px 24px;
+}
+.收起目录 {
+  grid-template-columns: ~'minmax(320px, var(--编辑栏))' ~'minmax(320px, var(--预览栏))';
+}
+.目录,
+.编辑面板,
+.预览面板 {
+  min-width: 0;
+  min-height: 0;
+  border-radius: 12px;
+  border: 1px solid #e5e9f0;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 2px 5px #24324a03;
+}
+.目录 {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+  nav {
+    overflow: auto;
+    flex: 1;
+    padding: 8px;
+  }
+  nav button {
+    display: flex;
+    width: 100%;
+    text-align: left;
+    gap: 10px;
+    border: 0;
+    background: transparent;
+    color: #455063;
+    padding: 12px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    align-items: baseline;
+    > span {
+      font-size: 11px;
+      color: #9aa2af;
+      font-variant-numeric: tabular-nums;
+    }
+    div {
+      min-width: 0;
+    }
+    b {
+      font-weight: 500;
+      font-size: 13px;
+    }
+    small {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #9aa2af;
+      font-size: 11px;
+      margin-top: 5px;
+    }
+    &:hover {
+      background: #f5f7fa;
+    }
+  }
+  nav .选中目录 {
+    background: #eef1f7;
+    color: ~'var(--编辑器主题)';
+    box-shadow: inset 3px 0 ~'var(--编辑器主题)';
+  }
+  > button {
+    margin: 8px 12px;
+    width: calc(100% - 24px);
+  }
+  > p {
+    margin: 6px 18px 0;
+    color: #9aa2af;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+}
+.面板标题 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 54px;
+  padding: 0 16px;
+  border-bottom: 1px solid #edf0f5;
+  flex-shrink: 0;
+  strong {
+    font-weight: 600;
+  }
+}
+.编辑面板 {
+  display: flex;
+  flex-direction: column;
+}
+.表单区 {
+  padding: 24px;
+  overflow: auto;
+  flex: 1;
+}
+.预览面板 {
+  display: flex;
+  flex-direction: column;
+}
+.预览工具 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #fbfcfe;
+  border-bottom: 1px solid #edf0f5;
+  > span {
+    color: #99a1ae;
+    font-size: 11px;
+  }
+}
+.预览窗口 {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #f4f6f9;
+  iframe {
+    border: 0;
+    display: block;
+    transform-origin: left top;
+  }
+}
+.富文本 {
+  border: 1px solid #dfe4ec;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  &:focus-within {
+    border-color: ~'var(--编辑器主题)';
+    box-shadow: 0 0 0 2px #66708510;
+  }
+}
+.格式栏 {
+  padding: 7px;
+  background: #fafbfc;
+  border-bottom: 1px solid #edf0f5;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: 11px;
+  label {
+    display: inline-flex;
+    gap: 3px;
+    align-items: center;
+    margin-left: 5px;
+  }
+  input[type='color'] {
+    border: 0;
+    padding: 0;
+    width: 21px;
+    height: 21px;
+    background: none;
+    cursor: pointer;
+  }
+}
+.输入正文 {
+  min-height: 230px;
+  max-height: 55vh;
+  overflow: auto;
+  outline: none;
+  padding: 16px;
+  font-size: 15px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+  img {
+    max-width: 100%;
+  }
+}
+.紧凑 {
+  .输入正文 {
+    min-height: 54px;
+    padding: 9px;
+    font-size: 13px;
+  }
+  .格式栏 {
+    display: none;
+  }
+  &:focus-within .格式栏 {
+    display: block;
+  }
+}
+.重复项 {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.宏段 {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  background: #f6f8fb;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  textarea {
+    font-family: Consolas, monospace;
+    line-height: 1.65;
+  }
+  > button {
+    justify-self: end;
+  }
+}
+.表格滚动 {
+  overflow: auto;
+  margin-bottom: 12px;
+  table {
+    border-collapse: collapse;
+    min-width: 100%;
+  }
+  td,
+  th {
+    min-width: 140px;
+    padding: 4px;
+    vertical-align: top;
+  }
+}
+.组件分组 {
+  margin-top: 24px;
+  h3 {
+    font-size: 12px;
+    color: #8a93a2;
+    margin-bottom: 12px;
+  }
+  button {
+    margin: 0 8px 10px 0;
+  }
+}
+.窄屏切换 {
+  display: none;
+}
+.结果参考面板 {
+  position: fixed;
+  left: 372px;
+  right: 24px;
+  top: 24px;
+  bottom: 24px;
+  pointer-events: none;
+}
+@media (max-width: 960px) {
+  .结果参考面板 {
+    left: 24px;
+  }
+}
+@media (min-width: 2200px) {
+  .工作台 {
+    font-size: 16px;
+  }
+  .主体 {
+    grid-template-columns: 240px ~'minmax(440px, var(--编辑栏))' ~'minmax(440px, var(--预览栏))';
+  }
+  .收起目录 {
+    grid-template-columns: ~'minmax(440px, var(--编辑栏))' ~'minmax(440px, var(--预览栏))';
+  }
+  .表单区 {
+    padding: 32px;
+  }
+}
+@media (max-width: 1100px) {
+  .主体 {
+    grid-template-columns: 150px ~'minmax(280px, var(--编辑栏))' ~'minmax(280px, var(--预览栏))';
+    gap: 8px;
+    padding: 0 12px 12px;
+  }
+  .收起目录 {
+    grid-template-columns: ~'minmax(280px, var(--编辑栏))' ~'minmax(280px, var(--预览栏))';
+  }
+  .顶栏 {
+    padding: 14px 16px;
+  }
+  .保存状态,
+  .预览工具 > span {
+    display: none;
+  }
+  .表单区 {
+    padding: 14px;
+  }
+}
+@media (max-width: 800px) {
+  .工作台 {
+    height: 100dvh;
+  }
+  .顶栏 {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .品牌 h1 {
+    font-size: 18px;
+  }
+  .主操作 {
+    width: 100%;
+  }
+  .稿件栏 {
+    padding: 10px 12px;
+  }
+  .栏宽 {
+    display: none;
+  }
+  .窄屏切换 {
+    display: block;
+    padding: 0 12px 10px;
+  }
+  .主体,
+  .收起目录 {
+    display: flex;
+    flex-direction: column;
+  }
+  .目录 {
+    max-height: 140px;
+    flex-shrink: 0;
+    nav {
+      display: flex;
+      padding: 4px;
+    }
+    nav button {
+      min-width: 120px;
+    }
+    > p,
+    > button,
+    .面板标题 {
+      display: none;
+    }
+  }
+  .编辑面板,
+  .预览面板 {
+    flex: 1;
+  }
+  .主体[data-mobile='编辑'] .预览面板,
+  .主体[data-mobile='预览'] .编辑面板,
+  .主体[data-mobile='预览'] .目录 {
+    display: none;
+  }
+}

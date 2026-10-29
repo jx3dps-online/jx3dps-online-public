@@ -1,0 +1,80 @@
+.工具栏 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.列表 {
+  max-height: 55vh;
+  overflow-y: auto;
+}
+
+.行 {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.分组标题 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.展开按钮 {
+  flex-shrink: 0;
+  padding-inline: 0;
+}
+
+.名称 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.备注 {
+  color: #888;
+  font-size: 12px;
+}
+
+.阈值列表 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 8px;
+}
+
+.阈值 {
+  min-width: 0;
+  text-align: center;
+  padding: 8px;
+  background: #fafafa;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
+
+  strong,
+  small {
+    display: block;
+  }
+
+  small {
+    margin-top: 2px;
+    white-space: nowrap;
+  }
+}
+
+.当前区间 {
+  color: #389e0d;
+  background: #f6ffed;
+}
+
+.参数 {
+  margin-top: 16px;
+}
+
+.参数内容 {
+  width: 100%;
+}

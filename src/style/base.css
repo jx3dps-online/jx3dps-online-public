@@ -1,7 +1,9 @@
 html,
 body,
+#root,
 #__next {
   height: 100%;
+  background: #1a1a1a;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -21,21 +23,18 @@ ul {
 
 input,
 body {
-  font-family: 'Pingfang SC', 'Microsoft YaHei', STHeiti, Verdana, Arial, Tahoma,
-    sans-serif;
+  font-family: 'Pingfang SC', 'Microsoft YaHei', STHeiti, Verdana, Arial, Tahoma, sans-serif;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 :lang(zh) body {
-  font-family: 'Pingfang SC', 'Microsoft YaHei', STHeiti, Verdana, Arial, Tahoma,
-    sans-serif;
+  font-family: 'Pingfang SC', 'Microsoft YaHei', STHeiti, Verdana, Arial, Tahoma, sans-serif;
 }
 
 :lang(en) body {
-  font-family: 'Pingfang SC', 'Microsoft YaHei', STHeiti, Verdana, Arial, Tahoma,
-    sans-serif;
+  font-family: 'Pingfang SC', 'Microsoft YaHei', STHeiti, Verdana, Arial, Tahoma, sans-serif;
 }
 
 * {

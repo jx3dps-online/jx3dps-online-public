@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { Modal } from 'antd'
 
 import { useAppDispatch, useAppSelector } from '@/hooks'
+import { 属性类型 } from '@/@types/属性'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 秒伤计算 } from '@/计算模块/计算函数'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import { 技能伤害详情类型 } from '../../typs'
@@ -19,13 +21,14 @@ import 保存自定义循环弹窗 from '../通用/通用组件/保存自定义�
 import 循环技能容器组件 from '../通用/通用组件/循环技能容器组件'
 import 千枝显示组件 from './components/心法特殊样式/循环技能显示组件'
 import 心法配置 from '../通用/通用组件/心法配置'
+import 宏入口 from '../通用/宏解释/界面/入口'
 import 模拟器头部组件 from '../通用/通用组件/模拟器头部组件'
 import 奇穴设置组件 from '../通用/通用组件/奇穴设置组件'
 import 模拟循环 from './simulator/index'
 
 import StatusBar from './components/StatusBar'
 import AddCycleSkillBtns from './components/AddCycleSkillBtns'
-import 心法特殊配置 from './components/心法特殊配置'
+import 心法特殊配置, { 起手配置 } from './components/心法特殊配置'
 import 快速导入默认循环 from './constant/快速导入默认循环'
 
 import AddCycleSkillModal from './components/AddCycleSkillModal'
@@ -34,6 +37,15 @@ import CycleSimulatorContext from '../../context'
 import { 根据奇穴修改buff数据 } from './simulator/utils'
 import DelaySettingModal from '../通用/通用组件/技能延迟弹窗'
 import { 生成实际技能序列 } from '../通用/通用函数'
+import { 战斗曲线面板 } from '../通用/通用组件/战斗曲线弹窗'
+import { use战斗曲线 } from '../通用/通用组件/战斗曲线弹窗/use战斗曲线'
+import { 监听增益类型 } from '../通用/通用组件/战斗曲线弹窗/增益泳道'
+
+// 心法监听增益：爆发 buff 作为泳道展示在战斗曲线上
+const 监听增益列表: 监听增益类型[] = [{ 名称: '凌然天风', 颜色: '#4159b4' }].map((item) => ({
+  ...item,
+  图标: 原始Buff数据?.[item.名称]?.图标,
+}))
 
 function CycleSimulator() {
   const {
@@ -65,6 +77,7 @@ function CycleSimulator() {
     更新添加设置,
     起手Buff配置,
     增益启用,
+    当前副本事件实例列表,
   } = useContext(CycleSimulatorContext)
 
   const [模拟信息, 更新模拟信息] = useState<模拟信息类型>({
@@ -94,13 +107,48 @@ function CycleSimulator() {
   })
   const [忽略延迟技能, 更新忽略延迟技能] = useState<string[]>(['川乌射罔'])
   const [周期性忽略延迟, 更新周期性忽略延迟] = useState<number>(0)
+  const [回蓝五彩石手动配置, 更新回蓝五彩石手动配置] = useState<{
+    启用: boolean
+    每秒回复: 0.21 | 0.19
+  }>()
+  const 配装五彩石名称 = useAppSelector((state) => state.data.装备信息.五彩石)
+  const { 五彩石 } = use心法数据()
+  const 配装五彩石 = 五彩石[5].concat(五彩石[6]).find((石头) => 石头.五彩石名称 === 配装五彩石名称)
+  const 配装启用回蓝五彩石 = !!配装五彩石?.装备增益.some(
+    (增益) => 增益.增益类型 === 属性类型.每秒内力恢复,
+  )
+  const 启用回蓝五彩石 = 回蓝五彩石手动配置?.启用 ?? 配装启用回蓝五彩石
+  const 回蓝五彩石每秒回复 =
+    回蓝五彩石手动配置?.每秒回复 ??
+    (配装启用回蓝五彩石 && 配装五彩石?.五彩石等级 === 5 ? 0.19 : 0.21)
+  const 更新启用回蓝五彩石 = (启用: boolean) => {
+    更新回蓝五彩石手动配置({ 启用, 每秒回复: 回蓝五彩石每秒回复 })
+  }
 
   const [起手内力, 更新起手内力] = useState<number>(100)
   const [起手温寒, 更新起手温寒] = useState<number>(-5) // 5寒
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
+  const 副本事件实例列表 = 当前副本事件实例列表
   const dispatch = useAppDispatch()
 
+  const 系统常驻Buff = ['无方内力回复', '潮生']
+  const 心法配置Buff数据 = useMemo(() => {
+    const Buff数据 = 根据奇穴修改buff数据(奇穴信息)
+    return Object.entries(Buff数据).reduce(
+      (结果, [名称, buff]) => {
+        if (!系统常驻Buff.includes(名称)) {
+          结果[名称] = buff
+        }
+        return 结果
+      },
+      {} as ReturnType<typeof 根据奇穴修改buff数据>,
+    )
+  }, [奇穴信息])
+
   useEffect(() => {
+    if (!模拟器弹窗展示) {
+      更新回蓝五彩石手动配置(undefined)
+    }
     if (模拟器弹窗展示) {
       更新起手温寒(-5)
       更新起手内力(100)
@@ -125,7 +173,10 @@ function CycleSimulator() {
     加速值,
     奇穴信息,
     团队增益轴,
+    副本事件实例列表,
     起手Buff配置,
+    启用回蓝五彩石,
+    回蓝五彩石每秒回复,
   ])
 
   const simulator = (props?) => {
@@ -149,7 +200,10 @@ function CycleSimulator() {
       周期性忽略延迟,
       启用团队增益快照,
       团队增益轴,
+      副本事件实例列表,
       起手Buff配置,
+      启用回蓝五彩石,
+      回蓝五彩石每秒回复,
     })
 
     const {
@@ -204,6 +258,20 @@ function CycleSimulator() {
     })
   }
 
+  // 战斗曲线通用逻辑
+  const 战斗曲线 = use战斗曲线({
+    日志信息,
+    总战斗用时帧: 模拟信息?.当前时间 || 0,
+    团队增益轴,
+    副本事件实例列表,
+    启用团队增益快照,
+    增益启用,
+    监听增益列表,
+    日志转循环: getDpsCycle,
+    奇穴信息,
+    秘籍信息,
+  })
+
   const 获取单技能实时计算函数 = (data: 循环日志数据类型[]) => {
     const 技能伤害详情数据: 技能伤害详情类型[] = []
     for (let i = 0; i < data.length; i++) {
@@ -239,12 +307,16 @@ function CycleSimulator() {
       const data = {
         ...item,
         ...找到当前技能释放记录,
+        可中断倒读条最大跳数:
+          item.技能名称 === '川乌射罔'
+            ? (找到当前技能释放记录?.技能释放记录结果?.完整伤害段数 ?? 4)
+            : item.可中断倒读条最大跳数,
       }
 
       if (index === 0) {
         res[res?.length] = [{ ...data, index: index || 0 }]
       } else {
-        if (!是否存在换行技能 && data?.技能名称 === '苍棘缚地') {
+        if (!是否存在换行技能 && data?.技能名称 === '紫叶沉疴') {
           res[res?.length] = [{ ...data, index: index || 0 }]
         } else {
           res[res?.length - 1] = [...(res[res?.length - 1] || []), { ...data, index: index || 0 }]
@@ -359,7 +431,15 @@ function CycleSimulator() {
             大橙武模拟={大橙武模拟}
             设置自定义循环保存弹窗={设置自定义循环保存弹窗}
             清空循环={() => setCycle([])}
-            快速导入循环={(循环) => setCycle(循环)}
+            快速导入循环={(循环, 额外配置信息) => {
+              setCycle(循环)
+              const 潮生每秒回复 = 额外配置信息?.潮生每秒回复
+              更新回蓝五彩石手动配置(
+                潮生每秒回复 === undefined
+                  ? undefined
+                  : { 启用: 潮生每秒回复 > 0, 每秒回复: 潮生每秒回复 === 0.19 ? 0.19 : 0.21 },
+              )
+            }}
             更新奇穴信息={更新奇穴信息}
             更新奇穴弹窗展示={更新奇穴弹窗展示}
             加速值={加速值}
@@ -370,6 +450,8 @@ function CycleSimulator() {
             启用团队增益快照={启用团队增益快照}
             更新启用团队增益快照={更新启用团队增益快照}
             快速导入默认循环={快速导入默认循环}
+            战斗曲线数据={战斗曲线.曲线数据}
+            on生成战斗曲线={战斗曲线.计算曲线数据}
           />
         }
         centered
@@ -380,17 +462,25 @@ function CycleSimulator() {
       >
         <div className={'cycle-simulator-setting'}>
           <心法配置
-            原始Buff数据={根据奇穴修改buff数据(奇穴信息)}
-            配置区={
-              <心法特殊配置
+            原始Buff数据={心法配置Buff数据}
+            起手配置区={
+              <起手配置
                 起手温寒={起手温寒}
                 更新起手温寒={更新起手温寒}
                 起手内力={起手内力}
                 更新起手内力={更新起手内力}
+              />
+            }
+            配置区={
+              <心法特殊配置
                 忽略延迟技能={忽略延迟技能}
                 更新忽略延迟技能={更新忽略延迟技能}
                 周期性忽略延迟={周期性忽略延迟}
                 更新周期性忽略延迟={更新周期性忽略延迟}
+                启用回蓝五彩石={启用回蓝五彩石}
+                更新启用回蓝五彩石={更新启用回蓝五彩石}
+                已手动调整回蓝五彩石={回蓝五彩石手动配置 !== undefined}
+                恢复跟随配装={() => 更新回蓝五彩石手动配置(undefined)}
               />
             }
           />
@@ -402,6 +492,8 @@ function CycleSimulator() {
             模拟DPS结果={模拟DPS结果}
             奇穴信息={奇穴信息}
             模拟函数={simulator}
+            战斗曲线面板展示={战斗曲线.战斗曲线面板展示}
+            切换战斗曲线面板={战斗曲线.切换战斗曲线面板}
           />
           {/* // 循环展示模块 */}
           <循环技能容器组件
@@ -414,17 +506,54 @@ function CycleSimulator() {
             点击下拉菜单={点击下拉菜单}
             允许操作列表={['插入技能', '删除后续', '设置延迟']}
             显示组件={千枝显示组件}
+            压缩高度={战斗曲线.战斗曲线面板展示 ? 战斗曲线.压缩高度 : 0}
           />
         </div>
         {/* 添加循环按钮组 */}
-        <AddCycleSkillBtns
-          新增循环技能={新增循环技能}
-          批量新增循环={批量新增循环}
-          处理循环结果对象={处理循环结果对象}
-          模拟信息={模拟信息}
-          大橙武模拟={大橙武模拟}
-          奇穴信息={奇穴信息}
-        />
+        <宏入口
+          心法='无方'
+          参数={{
+            加速值,
+            网络延迟,
+            奇穴: 奇穴信息,
+            秘籍: 秘籍信息,
+            大橙武模拟,
+            起手温寒,
+            起手内力,
+            忽略延迟技能,
+            周期性忽略延迟,
+            启用团队增益快照,
+            团队增益轴,
+            副本事件实例列表,
+            起手Buff配置,
+            启用回蓝五彩石,
+            回蓝五彩石每秒回复,
+          }}
+          技能数据={循环模拟技能基础数据}
+          更新循环={setCycle}
+          当前循环={cycle}
+        >
+          <AddCycleSkillBtns
+            新增循环技能={新增循环技能}
+            批量新增循环={批量新增循环}
+            处理循环结果对象={处理循环结果对象}
+            模拟信息={模拟信息}
+            大橙武模拟={大橙武模拟}
+            奇穴信息={奇穴信息}
+          />
+        </宏入口>
+        {/* 战斗曲线底部滑出面板 */}
+        {战斗曲线.战斗曲线面板展示 ? (
+          <战斗曲线面板
+            open={战斗曲线.战斗曲线面板展示}
+            onClose={() => 战斗曲线.切换战斗曲线面板(false)}
+            曲线数据={战斗曲线.曲线数据}
+            增益泳道列表={战斗曲线.增益泳道列表}
+            onRefresh={战斗曲线.计算曲线数据}
+            高度={战斗曲线.面板高度}
+            on高度变化={战斗曲线.设置面板高度}
+          />
+        ) : null}
         {/* 保存自定义循环弹窗 */}
         <保存自定义循环弹窗
           自定义循环保存弹窗={自定义循环保存弹窗}
@@ -434,6 +563,7 @@ function CycleSimulator() {
           循环模拟={simulator}
           技能序列={cycle}
           启用团队增益快照={启用团队增益快照}
+          额外配置信息={{ 潮生每秒回复: 启用回蓝五彩石 ? 回蓝五彩石每秒回复 : 0 }}
         />
         {/* 循环自定义奇穴弹窗 */}
         <奇穴设置组件

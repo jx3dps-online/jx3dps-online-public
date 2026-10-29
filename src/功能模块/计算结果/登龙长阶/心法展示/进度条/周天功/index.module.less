@@ -1,0 +1,370 @@
+@property --ztg-reveal {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+.进度条 {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+
+.标题 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  > span {
+    font-family: 'STKaiti', 'KaiTi', serif;
+    font-size: 17px;
+    letter-spacing: 3px;
+    color: #ccd6e1;
+  }
+  > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  b {
+    font-size: 29px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: #f3e0bd;
+  }
+  small {
+    margin-left: 2px;
+    font-size: 13px;
+  }
+  em {
+    font-size: 12px;
+    font-style: normal;
+    color: #aeb9c9;
+  }
+}
+
+.武器区域 {
+  position: relative;
+  padding-top: 27.777778%;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.画布 {
+  position: absolute;
+  top: 0;
+  left: 8.333333%;
+  width: 83.333333%;
+  height: 100%;
+}
+
+.素扇,
+.揭示 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mask-repeat: no-repeat;
+  // 吊坠层占 x=52%～66%、y=78%～100%；位置按剩余可定位空间换算。
+  mask-size:
+    100% 100%,
+    14% 22%;
+  mask-position:
+    0 0,
+    60.465116% 100%;
+}
+
+.揭示 {
+  mask-image:
+    conic-gradient(
+      from -110deg at 59% 78%,
+      #000 calc(220deg * var(--ztg-reveal) - 2deg),
+      transparent calc(220deg * var(--ztg-reveal))
+    ),
+    linear-gradient(rgb(0 0 0 / var(--ztg-reveal)), rgb(0 0 0 / var(--ztg-reveal)));
+  mask-composite: add;
+}
+
+.素扇 {
+  opacity: 0.18;
+  filter: grayscale(1);
+  // (1-A)(1-B) 与成品的 A+B-AB 互补，端点也沿用同一遮罩。
+  mask-image:
+    conic-gradient(
+      from -110deg at 59% 78%,
+      transparent calc(220deg * var(--ztg-reveal) - 2deg),
+      #000 calc(220deg * var(--ztg-reveal))
+    ),
+    linear-gradient(rgb(0 0 0 / var(--ztg-reveal)), rgb(0 0 0 / var(--ztg-reveal)));
+  mask-composite: subtract;
+}
+
+.成品 {
+  opacity: calc(0.8 + 0.1 * var(--ztg-reveal));
+}
+
+.鳞光 {
+  opacity: calc(0.25 + var(--ztg-aura) * 0.65);
+}
+
+.龙鳞 {
+  position: absolute;
+  inset: 0;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 45%,
+    84% 51%,
+    77% 46%,
+    70% 36%,
+    60% 33%,
+    53% 38%,
+    47% 49%,
+    40% 67%,
+    24% 65%,
+    18% 94%,
+    0 94%
+  );
+
+  > i {
+    position: absolute;
+    width: 14%;
+    height: 100%;
+    background: linear-gradient(
+      105deg,
+      transparent 10%,
+      #b8eaff40 35%,
+      #e8f9ffcc 47%,
+      #fff 51%,
+      #bce6ff99 57%,
+      transparent 85%
+    );
+    opacity: 0;
+  }
+}
+
+.柔光 {
+  opacity: calc(var(--ztg-aura) * 0.22);
+  > i {
+    position: absolute;
+    inset: 18% 4% 6% 16%;
+    background: radial-gradient(ellipse, #d8efff99, #a8c9e233 40%, transparent 70%);
+    opacity: 0.7;
+  }
+}
+
+.星辉 {
+  opacity: var(--ztg-core);
+  > i {
+    position: absolute;
+    left: 53%;
+    top: 45%;
+    width: 12%;
+    height: 36%;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff9d8db, #f6d89285 23%, #f2cc6e26 48%, transparent 70%);
+    opacity: 0.45;
+  }
+}
+
+.花瓣 {
+  opacity: var(--ztg-core);
+  > i {
+    position: absolute;
+    left: calc(24% + var(--ztg-petal) * 8%);
+    top: 30%;
+    width: 3.5px;
+    height: 7px;
+    border-radius: 85% 0 85% 0;
+    background: linear-gradient(135deg, #f8fcff, #b5dceab3);
+    box-shadow: 0 0 4px #c4e8ff59;
+    opacity: 0.4;
+    transform: rotate(-28deg);
+    &:nth-child(even) {
+      top: 65%;
+      background: linear-gradient(135deg, #fff3f8, #e4b4d280);
+    }
+  }
+}
+
+.气流 > i {
+  position: absolute;
+  left: 23%;
+  top: 24%;
+  width: 65%;
+  height: 55%;
+  border-top: 1px solid #cdeaff80;
+  border-radius: 50%;
+  opacity: 0.2;
+  transform: rotate(-8deg);
+  &:nth-child(2) {
+    left: 30%;
+    top: 36%;
+    width: 58%;
+    transform: rotate(9deg);
+  }
+}
+
+.进度轨 {
+  position: relative;
+  height: 2px;
+  margin: 6px 3% 0;
+  background: #ffffff13;
+  > i {
+    display: block;
+    width: calc(var(--ztg-reveal) * 100%);
+    height: 100%;
+    background: linear-gradient(90deg, #8bc6d9, #eadab9, #d9aecf);
+  }
+  > span {
+    position: absolute;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    transform: rotate(45deg);
+    background: #485365;
+  }
+  > .已点亮 {
+    background: #d5ddea;
+  }
+}
+
+.已达成 {
+  .标题 > span {
+    color: #ead4b1;
+  }
+  .进度轨 > i {
+    box-shadow: 0 0 5px #b5d6ed55;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .进度条 {
+    transition: --ztg-reveal 1.1s ease;
+  }
+  .柔光,
+  .鳞光,
+  .星辉,
+  .花瓣 {
+    transition: opacity 1.1s ease;
+  }
+
+  .龙鳞 > i {
+    animation: ztg-scale-flow 4.8s ease-in-out -1.4s infinite;
+  }
+  .进度条[aria-busy='false'] .星辉 > i {
+    animation: ztg-moon-breathe 5.8s ease-in-out -1.5s infinite;
+  }
+  .已达成[aria-busy='false'] .柔光 > i {
+    animation: ztg-aura-breathe 8s ease-in-out -3s infinite;
+  }
+  .花瓣 > i {
+    animation: ztg-petal-drift calc(6s + var(--ztg-petal) * 0.4s) ease-in-out infinite;
+    animation-delay: calc(var(--ztg-petal) * -1.4s);
+  }
+  .气流 > i {
+    animation: ztg-air-flow 7s ease-in-out -2s infinite;
+    &:nth-child(2) {
+      animation-duration: 9s;
+      animation-delay: -6s;
+      animation-direction: reverse;
+    }
+  }
+}
+
+@keyframes ztg-moon-breathe {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.22;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.85;
+  }
+}
+
+@keyframes ztg-scale-flow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10%,
+  55% {
+    opacity: 0.92;
+  }
+  75%,
+  100% {
+    transform: translateX(800%);
+    opacity: 0;
+  }
+}
+@keyframes ztg-aura-breathe {
+  50% {
+    transform: scaleY(1.08);
+    opacity: 0.45;
+  }
+}
+@keyframes ztg-petal-drift {
+  0% {
+    transform: translate(0, 5px) rotate(-28deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translate(15px, -15px) rotate(32deg);
+    opacity: 0;
+  }
+}
+@keyframes ztg-air-flow {
+  0%,
+  100% {
+    translate: -6px 2px;
+    opacity: 0.1;
+  }
+  50% {
+    translate: 8px -3px;
+    opacity: 0.45;
+  }
+}
+
+@supports not ((mask-composite: add) and (mask-image: conic-gradient(#000, transparent))) {
+  .素扇 {
+    mask: none;
+  }
+  .揭示 {
+    display: none;
+  }
+  .已达成 {
+    .素扇 {
+      opacity: 0;
+    }
+    .成品 {
+      display: block;
+      mask: none;
+    }
+  }
+}
+
+@container dragon-stair (max-width: 580px) {
+  .进度条 {
+    flex-basis: 100%;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    margin-top: 12px;
+  }
+}

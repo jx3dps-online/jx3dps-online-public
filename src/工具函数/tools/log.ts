@@ -1,8 +1,6 @@
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
 import dayjs from 'dayjs'
 
-const { 缓存映射 } = 获取当前数据()
-
 /**
  * @name 数据埋点
  * @description 记录用户行为
@@ -10,6 +8,7 @@ const { 缓存映射 } = 获取当前数据()
  */
 
 export function 数据埋点(行为: string) {
+  const { 缓存映射 } = 获取当前数据()
   const 数据埋点 = localStorage.getItem(缓存映射.数据埋点) || '{}'
   const 数据埋点对象 = { ...JSON.parse(数据埋点) }
   const 行为次数 = 数据埋点对象[行为] || 0
@@ -20,6 +19,7 @@ export function 数据埋点(行为: string) {
 }
 
 export function 记录时间() {
+  const { 缓存映射 } = 获取当前数据()
   const 数据埋点 = localStorage.getItem(缓存映射.数据埋点) || '{}'
   const 数据埋点对象 = { ...JSON.parse(数据埋点) }
   let 最晚使用时间 = 数据埋点对象?.最晚使用时间 || 0
@@ -58,12 +58,13 @@ export function 记录时间() {
  * @description 保留指定词条
  */
 
-export function ClearLocalStorage(preserveKeys = 保留指定词条) {
+export function ClearLocalStorage(preserveKeys?) {
+  const 实际保留 = preserveKeys || 获取保留指定词条()
   const localStorage = window.localStorage
   const length = localStorage.length
   for (let i = 0; i < length; i++) {
     const key: string = localStorage.key(i) || ''
-    if (!preserveKeys?.includes(key) && !key?.includes('计算记录')) {
+    if (!实际保留?.includes(key) && !key?.includes('计算记录')) {
       localStorage.removeItem(key)
     }
   }
@@ -74,14 +75,17 @@ export function ClearLocalStorage(preserveKeys = 保留指定词条) {
  * @name 保留指定词条
  * @description 被保留的词条在清除缓存时不再会被删除
  */
-const 保留指定词条: string[] = [
-  缓存映射.管理员,
-  缓存映射.版本,
-  缓存映射.日志版本,
-  缓存映射.计算记录,
-  缓存映射.新手引导,
-  缓存映射.使用说明,
-  缓存映射.背景图片显示状态,
-  缓存映射.网络延迟,
-  缓存映射.遍历寻优不再提示,
-]
+const 获取保留指定词条 = (): string[] => {
+  const { 缓存映射 } = 获取当前数据()
+  return [
+    缓存映射.管理员,
+    缓存映射.版本,
+    缓存映射.日志版本,
+    缓存映射.计算记录,
+    缓存映射.新手引导,
+    缓存映射.使用说明,
+    缓存映射.背景图片显示状态,
+    缓存映射.网络延迟,
+    缓存映射.遍历寻优不再提示,
+  ]
+}

@@ -1,0 +1,212 @@
+.进度 {
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+
+.标题 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  > span {
+    color: #ccd6e1;
+    font-family: 'STKaiti', 'KaiTi', serif;
+    font-size: 17px;
+    letter-spacing: 3px;
+  }
+
+  > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  b {
+    color: #f3e0bd;
+    font-size: 29px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  small {
+    margin-left: 2px;
+    font-size: 13px;
+  }
+
+  em {
+    color: #aeb9c9;
+    font-size: 12px;
+    font-style: normal;
+  }
+}
+
+.画面 {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1868 / 640;
+  isolation: isolate;
+
+  > svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transform: scaleX(-1);
+  }
+}
+
+.卷面 {
+  transition: clip-path 1.2s ease;
+}
+
+.左轴 {
+  transform-origin: 0 0;
+  transform-box: view-box;
+  transition: transform 1.2s ease, opacity 1.2s ease;
+}
+
+.完整,
+.分层 {
+  transition: opacity 1.2s ease;
+}
+
+.后景星系 {
+  opacity: 0.55;
+  animation: ~'星系渐入 1.4s ease both';
+}
+
+.星系辉光 {
+  fill: none;
+  stroke-width: 12px;
+  stroke-linecap: round;
+  stroke-dasharray: 13 9 6 17 19 8 4 24;
+  filter: blur(5px);
+  opacity: 0.55;
+  animation: ~'星轨流动 12s linear infinite';
+}
+
+.主轴发光 {
+  fill: none;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.主轴柔光 {
+  stroke: #89d9ff;
+  stroke-width: 64px;
+  opacity: 0.62;
+  filter: blur(22px);
+}
+
+.主轴亮边 {
+  stroke: #c7eeff;
+  stroke-width: 7px;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px #91d9ff);
+}
+
+.轴端星空 {
+  pointer-events: none;
+  animation: ~'星系渐入 1.4s ease both';
+}
+
+.满阶星光 {
+  pointer-events: none;
+  animation: ~'星系渐入 1.4s ease both';
+}
+
+.满阶流光 {
+  fill: none;
+  stroke: #bdd9ff;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-dasharray: 5 12 1 9 3 18;
+  opacity: 0.65;
+  filter: drop-shadow(0 0 6px #9cafff);
+  animation: ~'星轨流动 14s linear infinite';
+}
+
+.星系星尘 {
+  fill: none;
+  stroke: #c3deff;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-dasharray: 0.08 1.2 0.16 2.5 0.05 0.9 0.22 4.1 0.1 2.9;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 5px #9aabff);
+  animation: ~'星轨流动 10s linear infinite';
+}
+
+.轴端星点 {
+  fill: none;
+  stroke: #ffe9ac;
+  stroke-width: 5px;
+  stroke-linecap: round;
+  stroke-dasharray: 0.1 31 0.3 24 0.1 44.5;
+  filter: drop-shadow(0 0 7px #9edfff);
+  animation: ~'星轨流动 8s linear infinite';
+}
+
+.星点 {
+  transform-box: fill-box;
+  transform-origin: center;
+  filter: drop-shadow(0 0 7px #abcaff);
+  animation: ~'星点闪烁 4s ease-in-out infinite';
+}
+
+@keyframes ~'星系渐入' {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes ~'星轨流动' {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes ~'星点闪烁' {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.55);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@container dragon-stair (max-width: 580px) {
+  .进度 {
+    flex-basis: 100%;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .后景星系,
+  .轴端星空,
+  .满阶星光,
+  .满阶流光,
+  .星系辉光,
+  .星系星尘,
+  .轴端星点,
+  .星点 {
+    animation: none;
+  }
+
+  .卷面,
+  .左轴,
+  .完整,
+  .分层 {
+    transition: none;
+  }
+}

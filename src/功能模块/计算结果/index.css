@@ -1,10 +1,21 @@
 .dps {
+  container: dps-result / inline-size;
   width: calc(100vw - 348px - 24px - 24px);
   background-color: rgba(0, 0, 0, 0.4);
   color: #fff;
   padding: 24px;
   border-radius: 4px;
   transition: width 0.2s;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.26) transparent;
 }
 
 .dps.dps-zengyi-visible {
@@ -24,9 +35,15 @@
 
 .dps-number-count-wrap {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: minmax(240px, max-content) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px 24px;
+  margin-bottom: 16px;
+}
+
+.dps-number-summary {
+  min-width: 0;
 }
 
 .dps-number-count {
@@ -34,9 +51,13 @@
   display: flex;
   text-align: left;
   align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .dps-number-count-time {
+  grid-column: 3;
+  white-space: nowrap;
   padding: 16px 0 12px;
   font-size: 16px;
   font-weight: 600;
@@ -93,23 +114,414 @@
   width: 50%;
 }
 
+.dps-res-chart.dps-chart-show-skill .dps-res-chart-wrap + .dps-res-chart-wrap {
+  margin-left: 8px;
+  width: calc(50% - 8px);
+}
+
 .dps-res-chart-wrap {
   width: 100%;
 }
 
+.dps-guide-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.dps-guide-btn.ant-btn {
+  background: var(--ant-primary-color) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.12);
+}
+
+.dps-guide-btn.ant-btn:hover,
+.dps-guide-btn.ant-btn:focus {
+  background: var(--ant-primary-color-hover) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+
 .dps-number-count-no-result {
-  font-size: 20px;
-  /* text-align: center; */
-  /* margin: 0 auto; */
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding: 16px 0 8px;
+}
+
+.dps-no-result-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #ff7875;
+}
+
+.dps-no-result-title .anticon {
+  font-size: 22px;
+}
+
+.dps-no-result-subtitle {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.dps-no-result-range {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.dps-no-result-range-label {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.dps-no-result-range-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dps-no-result-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.dps-no-result-group-label {
+  flex-shrink: 0;
+  min-width: 108px;
+  padding: 4px 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.dps-no-result-group-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dps-no-result-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 13px;
+  line-height: 20px;
+  background: rgba(250, 117, 40, 0.14);
+  border: 1px solid rgba(250, 117, 40, 0.35);
+  border-radius: 6px;
+  color: #fff;
 }
 
 .dps-number-count-gain-tip {
-  display: inline-block;
-  padding: 4px 8px;
-  background-color: #fa7528;
+  width: var(--dps-cycle-width, 460px);
+  max-width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 12px;
+  background: rgba(70, 40, 0, 0.28);
+  border-left: 2px solid #ffc069;
+  color: #ffe1b5;
+  font-size: 13px;
+  line-height: 1.6;
+  border-radius: 0 4px 4px 0;
+}
+
+.dps-number-count-gain-action {
+  margin-left: 3px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dps-number-count-gain-action:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.dps-cycle-context {
+  grid-column: 2;
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.dps-number-count-no-result + .dps-cycle-context {
+  grid-column: 1 / -1;
+}
+
+.dps-cycle-note {
+  width: var(--dps-cycle-width, 460px);
+  max-width: 100%;
+  min-width: 0;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.18);
+  border-left: 2px solid var(--ant-primary-color);
+  border-radius: 0 4px 4px 0;
+  backdrop-filter: blur(4px);
+}
+
+.dps-cycle-note-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  font-size: 13px;
+  line-height: 22px;
+}
+
+.dps-cycle-note-label {
+  flex-shrink: 0;
+  font-weight: 600;
   color: #fff;
-  font-size: 18px;
-  font-weight: 400;
-  margin-left: 16px;
-  border-radius: 8px;
+}
+
+.dps-cycle-note-name {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.dps-cycle-note-content {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.dps-cycle-note-content p {
+  margin: 0 0 6px;
+}
+
+.dps-cycle-note-content p:last-child {
+  margin-bottom: 0;
+}
+
+.dps-cycle-note-content strong,
+.dps-cycle-note-content b {
+  color: #fff;
+}
+
+.dps-cycle-note-content a {
+  color: #a9dfff !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+.dps-cycle-note-content:focus-visible {
+  outline: 1px solid var(--ant-primary-color);
+  outline-offset: 3px;
+}
+
+@container dps-result (max-width: 1000px) {
+  .dps-number-count-wrap {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px 20px;
+  }
+  .dps-number-count-time {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .dps-cycle-context {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .dps-number-count-no-result + .dps-cycle-context {
+    grid-row: auto;
+  }
+}
+
+@container dps-result (max-width: 480px) {
+  .dps-number-count-wrap {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .dps-number-count-time {
+    grid-column: 1;
+    grid-row: auto;
+    padding: 0;
+    font-size: 14px;
+  }
+  .dps-cycle-context {
+    grid-row: auto;
+  }
+  .dps-cycle-note {
+    padding: 10px 12px;
+  }
+  .dps-cycle-note-name {
+    flex-basis: 100%;
+    order: 3;
+  }
+}
+
+/* 长阶在窄屏纵向排列，不再因为宽度不足而隐藏。 */
+.dps-planning-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-top: 18px;
+  /* 长阶 / 收益图切换时列宽平滑过渡，避免闪跳 */
+  transition: grid-template-columns 0.28s ease;
+}
+.dps-planning-layout-wide {
+  grid-template-columns: minmax(0, 1.7fr) minmax(260px, 1fr);
+}
+.dps-planning-main,
+.dps-planning-skills {
+  min-width: 0;
+}
+.dps-planning-tabs {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+.dps-planning-tabs button {
+  border: 0;
+  background: transparent;
+  color: #bdcce2;
+  font-size: 13px;
+  line-height: 24px;
+  padding: 0 0 7px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.dps-planning-tabs button[aria-pressed='true'] {
+  color: #fff;
+  border-bottom-color: #d7bc89;
+}
+.dps-planning-tabs button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.dps-planning-tabs button:focus-visible {
+  outline: 2px solid #d7bc89;
+  outline-offset: 4px;
+}
+/* 首屏优先留给长阶内容；低屏幕仍可通过结果区滚动访问全部内容。 */
+@media (max-height: 900px) {
+  .dps {
+    padding: 16px 20px;
+  }
+  .dps .ant-divider {
+    margin: 10px 0;
+  }
+  .dps-number-count {
+    padding: 4px 0 6px;
+  }
+  .dps-number-count-text {
+    font-size: 48px;
+  }
+  .dps-number-count-time {
+    padding: 4px 0 8px;
+    font-size: 14px;
+  }
+  .dps-number-count-time-label {
+    font-size: 14px;
+  }
+  .dps-number-tip {
+    margin-bottom: 0;
+  }
+  .dps-planning-layout {
+    margin-top: 8px;
+    gap: 18px;
+  }
+  .dps-planning-tabs {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-height: 800px) and (min-width: 1100px) {
+  .dps {
+    padding-top: 10px;
+  }
+  .dps-title {
+    font-size: 14px;
+  }
+  .dps .ant-divider {
+    margin: 7px 0;
+  }
+  .dps-number-count-text {
+    font-size: 42px;
+  }
+  .dps-number-count-gain-tip {
+    font-size: 13px;
+    padding: 3px 6px;
+  }
+  .dps-number-tip {
+    font-size: 12px;
+  }
+  .dps-planning-tabs {
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .layout-wrapper > .dps,
+  .layout-wrapper > .dps.dps-zengyi-visible {
+    flex: none;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    padding: 16px;
+    overflow: visible;
+  }
+  .dps-number-count-wrap,
+  .dps-number-count {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .dps-number-count-text {
+    font-size: 42px;
+  }
+  .dps-number-count-time {
+    padding: 0 0 8px;
+  }
+  .dps-number-count-gain-tip {
+    margin-left: 0;
+    font-size: 14px;
+  }
+  .dps-planning-layout-wide {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dps-planning-skills {
+    padding-top: 0;
+  }
+}
+
+/* 属性收益图：左右 1:1，把更多宽度留给技能统计 */
+.dps-planning-layout-chart {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .dps-number-count-wrap {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .dps-number-count-time {
+    grid-column: 1;
+    white-space: normal;
+  }
+  .dps-planning-layout-chart {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

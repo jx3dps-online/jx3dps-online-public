@@ -1,0 +1,79 @@
+.技能分组 {
+  :global(.cycle-simulator-setting-quick) {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (any-pointer: coarse) {
+  .技能分组 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+    gap: 6px;
+
+    :global {
+      .cycle-simulator-setting-item {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr);
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        width: auto;
+        margin-left: 0;
+        padding: 6px 8px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+      }
+
+      .ztg-cycle-btn-type {
+        width: auto;
+        height: auto;
+        margin-bottom: 0;
+        background: none;
+        writing-mode: horizontal-tb;
+        text-align: left;
+        line-height: 22px;
+        color: var(--ant-primary-color);
+      }
+
+      .cycle-simulator-setting-skills {
+        margin: 0;
+      }
+
+      .ztg-cycle-simulator-setting-btn {
+        min-width: 48px;
+        padding: 2px;
+      }
+
+      .cycle-add-btn {
+        width: 32px;
+        height: 32px;
+        margin-inline: auto;
+      }
+
+      .cycle-add-btn-text {
+        font-size: 12px;
+        line-height: 16px;
+      }
+
+      .cycle-add-btn-count {
+        width: 16px;
+        height: 16px;
+        line-height: 14px;
+        font-size: 10px;
+        right: -4px;
+        bottom: -3px;
+      }
+
+      .cycle-simulator-setting-quick {
+        width: auto;
+        padding-left: 0;
+      }
+
+      .cycle-simulator-setting-quick-item {
+        white-space: normal;
+        min-height: 32px;
+      }
+    }
+  }
+}

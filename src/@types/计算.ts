@@ -21,8 +21,10 @@ export interface 完整技能伤害入参类型 {
   计算技能详情?: boolean
 }
 
-export type 计算类型 = '普通伤害' | '端游破招' | '无界破招' | '真实伤害' | '毒经宠物伤害'
+export type 计算类型 = '普通伤害' | '真实伤害' | '毒经宠物伤害'
 export interface 技能总伤害计算入参类型 {
+  心法名称?: string
+  特殊配置?: Record<string, any>
   计算循环: 循环技能详情[]
   装备信息: 装备信息数据类型
   当前目标: 目标属性类型
@@ -123,12 +125,6 @@ export interface 最终计算属性类型 {
    */
   郭氏无双: number
   /**
-   * @name 郭氏破招
-   * @description 郭氏破招百分比加成
-   * 对面板破招进行百分比计算，例：万花钟灵
-   */
-  郭氏破招: number
-  /**
    * @name 郭氏额外无双等级
    * @description 郭氏额外无双等级
    * 郭氏额外无双等级，当前基本为阵眼的无双加成。直接加无双面板，和当前身上无双属性无关
@@ -157,9 +153,10 @@ export interface 最终计算属性类型 {
 export interface 技能增伤类型 {
   通用增伤: number
   目标移动状增伤: number // ADD_DAMAGE_BY_DST_MOVE_STATE 根据目标移动状态增伤
-  全局伤害因子: number // GLOBAL_DAMAGE_FACTOR 用于修正破招伤害，同时特殊作用于 [正律和鸣]，[青冠]
+  全局伤害因子: number // GLOBAL_DAMAGE_FACTOR 特殊作用于 [正律和鸣]，[青冠]等
   易伤增伤: number
   非侠增伤: number
+  技能独立增伤: number // Generator skill_damage_cof，技能自身独立乘区，同类相加
   最终增伤: number
   职业最终增伤: number
   系数增伤: number // 这里的系数增伤直接修改系数，不乘在最后

@@ -1,0 +1,4555 @@
+{
+  "changes": [
+    {
+      "heart": "傲血战意",
+      "kind": "技能",
+      "id": "400",
+      "name": "穿云",
+      "root": {
+        "skillID": "400",
+        "name": "穿云",
+        "script": "scripts/skill/天策/天策_羽林枪法_穿云.lua",
+        "tableLine": 402
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 402,
+          "rawName": "天策-穿云",
+          "level": "",
+          "uiLines": [794],
+          "uiNames": ["穿云"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10017"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "技能",
+      "id": "403",
+      "name": "龙吟",
+      "root": {
+        "skillID": "403",
+        "name": "龙吟",
+        "script": "scripts/skill/天策/天策_羽林枪法_龙吟.lua",
+        "tableLine": 405
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 405,
+          "rawName": "天策-龙吟",
+          "level": "",
+          "uiLines": [797],
+          "uiNames": ["龙吟"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10017"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "技能",
+      "id": "404",
+      "name": "撼如雷",
+      "root": {
+        "skillID": "404",
+        "name": "撼如雷",
+        "script": "scripts/skill/天策/天策_虎牙令_撼如雷.lua",
+        "tableLine": 406
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 406,
+          "rawName": "天策-撼如雷",
+          "level": "",
+          "uiLines": [798],
+          "uiNames": ["撼如雷"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10023"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "技能",
+      "id": "415",
+      "name": "龙牙",
+      "root": {
+        "skillID": "415",
+        "name": "龙牙",
+        "script": "scripts/skill/天策/天策_羽林枪法_龙牙.lua",
+        "tableLine": 417
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 417,
+          "rawName": "天策-龙牙",
+          "level": "",
+          "uiLines": [814],
+          "uiNames": ["龙牙"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10017"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "技能",
+      "id": "418",
+      "name": "突",
+      "root": {
+        "skillID": "418",
+        "name": "突",
+        "script": "scripts/skill/天策/天策_奔雷枪术_突.lua",
+        "tableLine": 420
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 420,
+          "rawName": "天策-突",
+          "level": "",
+          "uiLines": [817],
+          "uiNames": ["突"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10024"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "技能",
+      "id": "423",
+      "name": "灭",
+      "root": {
+        "skillID": "423",
+        "name": "灭",
+        "script": "scripts/skill/天策/天策_奔雷枪术_灭.lua",
+        "tableLine": 425
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 425,
+          "rawName": "天策-灭",
+          "level": "",
+          "uiLines": [822],
+          "uiNames": ["灭"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10024"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "技能",
+      "id": "427",
+      "name": "战八方",
+      "root": {
+        "skillID": "427",
+        "name": "战八方",
+        "script": "scripts/skill/天策/天策_游龙骑法_战八方.lua",
+        "tableLine": 429
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 429,
+          "rawName": "天策-战八方",
+          "level": "",
+          "uiLines": [828],
+          "uiNames": ["战八方"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10061"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "技能",
+      "id": "428",
+      "name": "断魂刺",
+      "root": {
+        "skillID": "428",
+        "name": "断魂刺",
+        "script": "scripts/skill/天策/天策_游龙骑法_断魂刺.lua",
+        "tableLine": 430
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 430,
+          "rawName": "天策-断魂刺",
+          "level": "",
+          "uiLines": [829],
+          "uiNames": ["断魂刺"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10061"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "技能",
+      "id": "433",
+      "name": "任驰骋",
+      "root": {
+        "skillID": "433",
+        "name": "任驰骋",
+        "script": "scripts/skill/天策/天策_游龙骑法_任驰骋.lua",
+        "tableLine": 435
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 435,
+          "rawName": "天策-任驰骋",
+          "level": "",
+          "uiLines": [834],
+          "uiNames": ["任驰骋"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10061"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "自身增益",
+      "id": "8433",
+      "name": "破楼兰标记",
+      "uiNames": ["破楼兰"],
+      "nativeDefinitions": [
+        {
+          "name": "破楼兰标记",
+          "type": "自身",
+          "ids": [
+            {
+              "id": "8433",
+              "level": null
+            }
+          ],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/傲血战意/constant/skill.ts",
+          "line": 185
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "破楼兰标记",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/傲血战意/simulator/技能类/灭/index.ts",
+          "line": 68,
+          "code": "this.模拟循环.卸除buff?.({ 名称: '破楼兰标记', 对象: '自身', 卸除层数: 1 })"
+        },
+        {
+          "name": "破楼兰标记",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/傲血战意/simulator/技能类/灭/index.ts",
+          "line": 70,
+          "code": "this.模拟循环.添加buff?.({ 名称: '破楼兰标记', 对象: '自身', 新增层数: 1 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "自身增益",
+      "id": "21638",
+      "name": "龙驭",
+      "uiNames": ["龙驭"],
+      "nativeDefinitions": [
+        {
+          "name": "龙驭",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/傲血战意/constant/skill.ts",
+          "line": 160
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "龙驭",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/傲血战意/simulator/技能类/龙牙/index.ts",
+          "line": 59,
+          "code": "this.模拟循环.卸除buff?.({ 名称: '龙驭', 对象: '自身', 卸除层数: 1 })"
+        },
+        {
+          "name": "龙驭",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/傲血战意/simulator/技能类/龙牙/index.ts",
+          "line": 65,
+          "code": "this.模拟循环.卸除buff?.({ 名称: '龙驭', 对象: '自身', 卸除层数: 1 })"
+        },
+        {
+          "name": "龙驭",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/傲血战意/simulator/通用类/技能统一类.ts",
+          "line": 177,
+          "code": "this.模拟循环.添加buff?.({ 名称: '龙驭', 对象: '自身', 新增层数: 层数 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "技能",
+      "id": "546",
+      "name": "剑影留痕",
+      "root": {
+        "skillID": "546",
+        "name": "剑影留痕",
+        "script": "scripts/skill/七秀/猿公剑法_剑影留痕.lua",
+        "tableLine": 548
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 548,
+          "rawName": "剑影留痕",
+          "level": "",
+          "uiLines": [1048, 1049, 1050, 1051, 1052],
+          "uiNames": ["剑影留痕"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10068"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "技能",
+      "id": "550",
+      "name": "鹊踏枝",
+      "root": {
+        "skillID": "550",
+        "name": "鹊踏枝",
+        "script": "scripts/skill/七秀/剑器浑脱_鹊踏枝.lua",
+        "tableLine": 552
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 552,
+          "rawName": "鹊踏枝",
+          "level": "",
+          "uiLines": [1063, 1064, 1065, 1066, 1067],
+          "uiNames": ["鹊踏枝"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10072"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "技能",
+      "id": "551",
+      "name": "心鼓弦",
+      "root": {
+        "skillID": "551",
+        "name": "心鼓弦",
+        "script": "scripts/skill/七秀/剑器浑脱_心鼓弦.lua",
+        "tableLine": 553
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 553,
+          "rawName": "心鼓弦",
+          "level": "",
+          "uiLines": [1068],
+          "uiNames": ["心鼓弦"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10072"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "技能",
+      "id": "553",
+      "name": "江海凝光",
+      "root": {
+        "skillID": "553",
+        "name": "江海凝光",
+        "script": "scripts/skill/七秀/西河剑器_江海凝光.lua",
+        "tableLine": 555
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 555,
+          "rawName": "江海凝光",
+          "level": "",
+          "uiLines": [1070],
+          "uiNames": ["江海凝光"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10070"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "技能",
+      "id": "561",
+      "name": "剑气长江",
+      "root": {
+        "skillID": "561",
+        "name": "剑气长江",
+        "script": "scripts/skill/七秀/猿公剑法_剑气长江.lua",
+        "tableLine": 563
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 563,
+          "rawName": "剑气长江",
+          "level": "",
+          "uiLines": [1083],
+          "uiNames": ["剑气长江"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10068"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "技能",
+      "id": "568",
+      "name": "繁音急节",
+      "root": {
+        "skillID": "568",
+        "name": "繁音急节",
+        "script": "scripts/skill/七秀/猿公剑法_繁音急节.lua",
+        "tableLine": 570
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 570,
+          "rawName": "繁音急节",
+          "level": "",
+          "uiLines": [1092, 1093, 1094, 1095, 1096],
+          "uiNames": ["繁音急节"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10072"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "技能",
+      "id": "2707",
+      "name": "玳弦急曲",
+      "root": {
+        "skillID": "2707",
+        "name": "玳弦急曲",
+        "script": "scripts/skill/七秀/西河剑器_清音五岳.lua",
+        "tableLine": 2709
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2709,
+          "rawName": "玳弦急曲",
+          "level": "",
+          "uiLines": [3306],
+          "uiNames": ["玳弦急曲"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10068"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "技能",
+      "id": "2716",
+      "name": "剑破虚空",
+      "root": {
+        "skillID": "2716",
+        "name": "剑破虚空",
+        "script": "scripts/skill/七秀/猿公剑法_剑斩风流.lua",
+        "tableLine": 2718
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2718,
+          "rawName": "剑破虚空",
+          "level": "",
+          "uiLines": [3333],
+          "uiNames": ["剑破虚空"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetChain",
+          "BelongKungfu": "10068"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "技能",
+      "id": "37316",
+      "name": "芳姿畅音",
+      "root": {
+        "skillID": "37316",
+        "name": "芳姿畅音",
+        "script": "scripts/skill/七秀/七秀_冰心_芳姿畅音.lua",
+        "tableLine": 33077
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 33077,
+          "rawName": "芳姿畅音",
+          "level": "",
+          "uiLines": [28334],
+          "uiNames": ["芳姿畅音"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10287"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "自身增益",
+      "id": "10240",
+      "name": "满堂",
+      "uiNames": ["满堂"],
+      "nativeDefinitions": [
+        {
+          "name": "满堂",
+          "type": "自身",
+          "ids": [
+            {
+              "id": "10240",
+              "level": null
+            }
+          ],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/constant/skill.ts",
+          "line": 141
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "满堂",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/simulator/技能类/剑气长江/index.ts",
+          "line": 36,
+          "code": "this.模拟循环.卸除buff({ 名称: '满堂', 对象: '自身', 卸除层数: 1 })"
+        },
+        {
+          "name": "满堂",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/simulator/技能类/剑破虚空/index.ts",
+          "line": 36,
+          "code": "this.模拟循环.卸除buff({ 名称: '满堂', 对象: '自身', 卸除层数: 1 })"
+        },
+        {
+          "name": "满堂",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/simulator/技能类/江海凝光/index.ts",
+          "line": 14,
+          "code": "this.模拟循环.卸除buff({ 名称: '满堂', 对象: '自身', 卸除层数: 1 })"
+        },
+        {
+          "name": "满堂",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/simulator/技能类/玳弦急曲/index.ts",
+          "line": 109,
+          "code": "this.模拟循环.卸除buff({ 名称: '满堂', 对象: '自身', 卸除层数: 1 })"
+        },
+        {
+          "name": "满堂",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/simulator/技能类/玳弦急曲/index.ts",
+          "line": 113,
+          "code": "this.模拟循环.卸除buff({ 名称: '满堂', 对象: '自身', 卸除层数: 1 })"
+        },
+        {
+          "name": "满堂",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/simulator/技能类/玳弦急曲/index.ts",
+          "line": 116,
+          "code": "this.模拟循环.卸除buff({ 名称: '满堂', 对象: '自身', 卸除层数: 1 })"
+        },
+        {
+          "name": "满堂",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/simulator/技能类/繁音急节/index.ts",
+          "line": 15,
+          "code": "this.模拟循环.添加buff({ 名称: '满堂', 对象: \"自身\", 新增层数: 5 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "自身增益",
+      "id": "28184",
+      "name": "仙姿玳弦",
+      "uiNames": ["仙姿·玳弦"],
+      "nativeDefinitions": [
+        {
+          "name": "仙姿玳弦",
+          "type": "自身",
+          "ids": [
+            {
+              "id": "28184",
+              "level": null
+            }
+          ],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/constant/skill.ts",
+          "line": 186
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "仙姿玳弦",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/simulator/技能类/玳弦急曲/index.ts",
+          "line": 73,
+          "code": "this.模拟循环.添加buff({ 名称: '仙姿玳弦', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "自身增益",
+      "id": "28185",
+      "name": "仙姿剑气",
+      "uiNames": ["仙姿·剑气"],
+      "nativeDefinitions": [
+        {
+          "name": "仙姿剑气",
+          "type": "自身",
+          "ids": [
+            {
+              "id": "28185",
+              "level": null
+            }
+          ],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/constant/skill.ts",
+          "line": 202
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "仙姿剑气",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/simulator/技能类/剑气长江/index.ts",
+          "line": 17,
+          "code": "this.模拟循环.添加buff({ 名称: '仙姿剑气', 对象: '自身', 新增层数: 1 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "冰心诀",
+      "kind": "自身增益",
+      "id": "28186",
+      "name": "仙姿剑影",
+      "uiNames": ["仙姿·剑影"],
+      "nativeDefinitions": [
+        {
+          "name": "仙姿剑影",
+          "type": "自身",
+          "ids": [
+            {
+              "id": "28186",
+              "level": null
+            }
+          ],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/constant/skill.ts",
+          "line": 210
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "仙姿剑影",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/冰心诀/simulator/技能类/剑影留痕/index.ts",
+          "line": 14,
+          "code": "this.模拟循环.添加buff({ 名称: '仙姿剑影', 对象: '自身', 新增层数: 1 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "凌海诀",
+      "kind": "技能",
+      "id": "19737",
+      "name": "击水三千",
+      "root": {
+        "skillID": "19737",
+        "name": "击水三千",
+        "script": "scripts/skill/蓬莱/套路及子技能/蓬莱_伞套路_基础技能.lua",
+        "tableLine": 16664
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 16664,
+          "rawName": "击水三千",
+          "level": "",
+          "uiLines": [15324],
+          "uiNames": ["击水三千"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10535"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "凌海诀",
+      "kind": "技能",
+      "id": "19818",
+      "name": "木落雁归",
+      "root": {
+        "skillID": "19818",
+        "name": "木落雁归",
+        "script": "scripts/skill/蓬莱/套路及子技能/蓬莱_伞套路_基础技能二.lua",
+        "tableLine": 16738
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 16738,
+          "rawName": "木落雁归",
+          "level": "",
+          "uiLines": [15384],
+          "uiNames": ["木落雁归"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10535"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "凌海诀",
+      "kind": "技能",
+      "id": "19827",
+      "name": "翼绝云天",
+      "root": {
+        "skillID": "19827",
+        "name": "翼绝云天",
+        "script": "scripts/skill/蓬莱/套路及子技能/蓬莱_长空破云_翼绝云天.lua",
+        "tableLine": 16745
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 16745,
+          "rawName": "翼绝云天",
+          "level": "",
+          "uiLines": [15388],
+          "uiNames": ["翼绝云天"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10539"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "凌海诀",
+      "kind": "技能",
+      "id": "19828",
+      "name": "浮游天地",
+      "root": {
+        "skillID": "19828",
+        "name": "浮游天地",
+        "script": "scripts/skill/蓬莱/套路及子技能/蓬莱_套路C_伞浮空.lua",
+        "tableLine": 16746
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 16746,
+          "rawName": "浮游天地",
+          "level": "",
+          "uiLines": [15389],
+          "uiNames": ["浮游天地"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10540"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "凌海诀",
+      "kind": "技能",
+      "id": "20049",
+      "name": "物化天行",
+      "root": {
+        "skillID": "20049",
+        "name": "物化天行",
+        "script": "scripts/skill/蓬莱/套路及子技能/蓬莱_裂涛拳_荡伞.lua",
+        "tableLine": 16936
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 16936,
+          "rawName": "物化天行",
+          "level": "",
+          "uiLines": [15555],
+          "uiNames": ["物化天行"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10540"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "凌海诀",
+      "kind": "技能",
+      "id": "20053",
+      "name": "跃潮斩波",
+      "root": {
+        "skillID": "20053",
+        "name": "跃潮斩波",
+        "script": "scripts/skill/蓬莱/套路及子技能/蓬莱_风起云扬_如来神掌.lua",
+        "tableLine": 16940
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 16940,
+          "rawName": "跃潮斩波",
+          "level": "",
+          "uiLines": [15557],
+          "uiNames": ["跃潮斩波"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10540"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "凌海诀",
+      "kind": "技能",
+      "id": "20245",
+      "name": "定波砥澜",
+      "root": {
+        "skillID": "20245",
+        "name": "定波砥澜",
+        "script": "scripts/skill/蓬莱/套路及子技能/蓬莱_风起云扬_定波砥澜.lua",
+        "tableLine": 17116
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 17116,
+          "rawName": "定波砥澜",
+          "level": "",
+          "uiLines": [15716, 15717, 15718, 15719],
+          "uiNames": ["定波砥澜"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10535"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "凌海诀",
+      "kind": "技能",
+      "id": "20259",
+      "name": "振翅图南",
+      "root": {
+        "skillID": "20259",
+        "name": "振翅图南",
+        "script": "scripts/skill/蓬莱/套路及子技能/蓬莱_长空破云_振翅图南.lua",
+        "tableLine": 17130
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 17130,
+          "rawName": "振翅图南",
+          "level": "",
+          "uiLines": [15730],
+          "uiNames": ["振翅图南"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10539"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "凌海诀",
+      "kind": "自身增益",
+      "id": "13735",
+      "name": "浮游天地",
+      "uiNames": ["浮游天地"],
+      "nativeDefinitions": [
+        {
+          "name": "浮游天地",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/凌海诀/constant/skill.ts",
+          "line": 220
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "浮游天地",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/凌海诀/simulator/技能类/浮游天地/index.ts",
+          "line": 18,
+          "code": "this.模拟循环.添加buff?.({ 名称: '浮游天地', 对象: '自身' })"
+        },
+        {
+          "name": "浮游天地",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/凌海诀/simulator/通用类/技能统一类.ts",
+          "line": 20,
+          "code": "this.模拟循环.卸除buff?.({ 名称: '浮游天地', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "分山劲",
+      "kind": "自身增益",
+      "id": "8451",
+      "name": "狂绝",
+      "uiNames": ["狂绝"],
+      "nativeDefinitions": [
+        {
+          "name": "狂绝",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/分山劲/constant/skill.ts",
+          "line": 348
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "狂绝",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/分山劲/simulator/技能类/斩刀/index.ts",
+          "line": 46,
+          "code": "this.模拟循环.添加buff?.({ 名称: '狂绝', 对象: '自身', 新增层数: 1 })"
+        },
+        {
+          "name": "狂绝",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/分山劲/simulator/技能类/绝刀/index.ts",
+          "line": 90,
+          "code": "this.模拟循环.卸除buff?.({ 名称: '狂绝', 对象: '自身', 卸除层数: 1 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "分山劲",
+      "kind": "自身增益",
+      "id": "14309",
+      "name": "锋鸣",
+      "uiNames": ["锋鸣"],
+      "nativeDefinitions": [
+        {
+          "name": "锋鸣",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/分山劲/constant/skill.ts",
+          "line": 405
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "锋鸣",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/分山劲/simulator/技能类/盾飞/index.ts",
+          "line": 22,
+          "code": "this.模拟循环.添加buff?.({ 名称: '锋鸣', 对象: '自身', 新增层数: 1 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "技能",
+      "id": "37779",
+      "name": "骤风令",
+      "root": {
+        "skillID": "37779",
+        "name": "骤风令",
+        "script": "scripts/skill/段氏/段氏技能/聘风令_骤风令.lua",
+        "tableLine": 33529
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 33529,
+          "rawName": "骤风令",
+          "level": "",
+          "uiLines": [28649],
+          "uiNames": ["骤风令"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10780"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "技能",
+      "id": "37780",
+      "name": "劈风令",
+      "root": {
+        "skillID": "37780",
+        "name": "劈风令",
+        "script": "scripts/skill/段氏/段氏技能/聘风令_劈风令.lua",
+        "tableLine": 33530
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 33530,
+          "rawName": "劈风令",
+          "level": "",
+          "uiLines": [28650],
+          "uiNames": ["劈风令"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10780"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "技能",
+      "id": "37781",
+      "name": "抟风令",
+      "root": {
+        "skillID": "37781",
+        "name": "抟风令",
+        "script": "scripts/skill/段氏/段氏技能/聘风令_抟风令.lua",
+        "tableLine": 33531
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 33531,
+          "rawName": "抟风令",
+          "level": "",
+          "uiLines": [28651],
+          "uiNames": ["抟风令"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10780"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "技能",
+      "id": "37808",
+      "name": "雾刃飞光",
+      "root": {
+        "skillID": "37808",
+        "name": "雾刃飞光",
+        "script": "scripts/skill/段氏/段氏技能/空蒙扇_雾刃飞光.lua",
+        "tableLine": 33556
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 33556,
+          "rawName": "雾刃飞光",
+          "level": "",
+          "uiLines": [28668],
+          "uiNames": ["雾刃飞光"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10781"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "技能",
+      "id": "38006",
+      "name": "断脉",
+      "root": {
+        "skillID": "38006",
+        "name": "断脉",
+        "script": "scripts/skill/段氏/段氏技能/一阳指_断脉.lua",
+        "tableLine": 33728
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 33728,
+          "rawName": "断脉",
+          "level": "",
+          "uiLines": [28783],
+          "uiNames": ["断脉"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10782"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "技能",
+      "id": "38007",
+      "name": "截阳",
+      "root": {
+        "skillID": "38007",
+        "name": "截阳",
+        "script": "scripts/skill/段氏/段氏技能/一阳指_截阳.lua",
+        "tableLine": 33729
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 33729,
+          "rawName": "截阳",
+          "level": "",
+          "uiLines": [28784],
+          "uiNames": ["截阳"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10782"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "技能",
+      "id": "38008",
+      "name": "破穴",
+      "root": {
+        "skillID": "38008",
+        "name": "破穴",
+        "script": "scripts/skill/段氏/段氏技能/一阳指_破穴.lua",
+        "tableLine": 33730
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 33730,
+          "rawName": "破穴",
+          "level": "",
+          "uiLines": [28785],
+          "uiNames": ["破穴"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10782"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "技能",
+      "id": "38009",
+      "name": "引窍",
+      "root": {
+        "skillID": "38009",
+        "name": "引窍",
+        "script": "scripts/skill/段氏/段氏技能/一阳指_引窍.lua",
+        "tableLine": 33731
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 33731,
+          "rawName": "引窍",
+          "level": "",
+          "uiLines": [28786],
+          "uiNames": ["引窍"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10782"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "技能",
+      "id": "38011",
+      "name": "风流云散",
+      "root": {
+        "skillID": "38011",
+        "name": "风流云散",
+        "script": "scripts/skill/段氏/段氏技能/苍洱游_风流云散.lua",
+        "tableLine": 33733
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 33733,
+          "rawName": "风流云散",
+          "level": "",
+          "uiLines": [28788],
+          "uiNames": ["风流云散"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10783"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "自身增益",
+      "id": "29254",
+      "name": "神封",
+      "uiNames": ["神封"],
+      "nativeDefinitions": [
+        {
+          "name": "神封",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/周天功/constant/skill.ts",
+          "line": 350
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "神封",
+          "action": "this.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/周天功/simulator/main.ts",
+          "line": 772,
+          "code": "this.添加buff({ 名称: '神封', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "周天功",
+      "kind": "自身增益",
+      "id": "33171",
+      "name": "一阳来复",
+      "uiNames": ["一阳来复"],
+      "nativeDefinitions": [
+        {
+          "name": "一阳来复",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/周天功/constant/skill.ts",
+          "line": 270
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "一阳来复",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/周天功/simulator/技能类/一阳来复/index.ts",
+          "line": 21,
+          "code": "this.模拟循环.添加buff({ 名称: '一阳来复', 对象: '自身' })"
+        },
+        {
+          "name": "一阳来复",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/周天功/simulator/技能类/引窍/index.ts",
+          "line": 38,
+          "code": "this.模拟循环.卸除buff({ 名称: '一阳来复', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "天罗诡道",
+      "kind": "技能",
+      "id": "3088",
+      "name": "孔雀翎",
+      "root": {
+        "skillID": "3088",
+        "name": "孔雀翎",
+        "script": "scripts/skill/唐门/唐门_暗器_孔雀翎.lua",
+        "tableLine": 3090
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 3090,
+          "rawName": "孔雀翎",
+          "level": "",
+          "uiLines": [3736, 3737],
+          "uiNames": ["孔雀翎"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10216"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "天罗诡道",
+      "kind": "技能",
+      "id": "3093",
+      "name": "暴雨梨花针",
+      "root": {
+        "skillID": "3093",
+        "name": "暴雨梨花针",
+        "script": "scripts/skill/唐门/唐门_暗器_暴雨梨花针.lua",
+        "tableLine": 3095
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 3095,
+          "rawName": "暴雨梨花针",
+          "level": "",
+          "uiLines": [3742],
+          "uiNames": ["暴雨梨花针"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10216"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "天罗诡道",
+      "kind": "技能",
+      "id": "3094",
+      "name": "心无旁骛",
+      "root": {
+        "skillID": "3094",
+        "name": "心无旁骛",
+        "script": "scripts/skill/唐门/唐门_诡道_心无旁骛.lua",
+        "tableLine": 3096
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 3096,
+          "rawName": "心无旁骛",
+          "level": "",
+          "uiLines": [3743],
+          "uiNames": ["心无旁骛"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10220"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "天罗诡道",
+      "kind": "技能",
+      "id": "3103",
+      "name": "飞星遁影",
+      "root": {
+        "skillID": "3103",
+        "name": "飞星遁影",
+        "script": "scripts/skill/唐门/唐门_机关_飞星遁影.lua",
+        "tableLine": 3105
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 3105,
+          "rawName": "飞星遁影",
+          "level": "",
+          "uiLines": [3751],
+          "uiNames": ["飞星遁影"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10220"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "天罗诡道",
+      "kind": "技能",
+      "id": "3105",
+      "name": "蚀肌弹",
+      "root": {
+        "skillID": "3105",
+        "name": "蚀肌弹",
+        "script": "scripts/skill/唐门/唐门_机关_蚀肌弹.lua",
+        "tableLine": 3107
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 3107,
+          "rawName": "蚀肌弹",
+          "level": "",
+          "uiLines": [3753],
+          "uiNames": ["蚀肌弹"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10219"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "天罗诡道",
+      "kind": "技能",
+      "id": "3106",
+      "name": "天女散花",
+      "root": {
+        "skillID": "3106",
+        "name": "天女散花",
+        "script": "scripts/skill/唐门/唐门_机关_天女散花.lua",
+        "tableLine": 3108
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 3108,
+          "rawName": "天女散花",
+          "level": "",
+          "uiLines": [3754],
+          "uiNames": ["天女散花"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10219"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "天罗诡道",
+      "kind": "技能",
+      "id": "3109",
+      "name": "千机变",
+      "root": {
+        "skillID": "3109",
+        "name": "千机变",
+        "script": "scripts/skill/唐门/唐门_机关_千机变.lua",
+        "tableLine": 3111
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 3111,
+          "rawName": "千机变",
+          "level": "",
+          "uiLines": [3757],
+          "uiNames": ["千机变"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10219"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "天罗诡道",
+      "kind": "技能",
+      "id": "3110",
+      "name": "鬼斧神工",
+      "root": {
+        "skillID": "3110",
+        "name": "鬼斧神工",
+        "script": "scripts/skill/唐门/唐门_机关_鬼斧神工.lua",
+        "tableLine": 3112
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 3112,
+          "rawName": "鬼斧神工",
+          "level": "",
+          "uiLines": [3758],
+          "uiNames": ["鬼斧神工"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10219"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "技能",
+      "id": "24375",
+      "name": "起卦",
+      "root": {
+        "skillID": "24375",
+        "name": "起卦",
+        "script": "scripts/skill/衍天/套路及子技能/占术_起卦.lua",
+        "tableLine": 20970
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 20970,
+          "rawName": "起卦",
+          "level": "",
+          "uiLines": [18803],
+          "uiNames": ["起卦"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10617"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "技能",
+      "id": "24380",
+      "name": "返闭惊魂",
+      "root": {
+        "skillID": "24380",
+        "name": "返闭惊魂",
+        "script": "scripts/skill/衍天/套路及子技能/奇门_返闭惊魂.lua",
+        "tableLine": 20975
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 20975,
+          "rawName": "返闭惊魂",
+          "level": "",
+          "uiLines": [18808],
+          "uiNames": ["返闭惊魂"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10618"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "技能",
+      "id": "24491",
+      "name": "变卦",
+      "root": {
+        "skillID": "24491",
+        "name": "变卦",
+        "script": "scripts/skill/衍天/套路及子技能/占术_变卦.lua",
+        "tableLine": 21069
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 21069,
+          "rawName": "变卦",
+          "level": "",
+          "uiLines": [18883],
+          "uiNames": ["变卦"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10617"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "技能",
+      "id": "25114",
+      "name": "龙马出河",
+      "root": {
+        "skillID": "25114",
+        "name": "龙马出河",
+        "script": "scripts/skill/衍天/套路及子技能/奇门_范围承疗提高.lua",
+        "tableLine": 21673
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 21673,
+          "rawName": "龙马出河",
+          "level": "",
+          "uiLines": [19302],
+          "uiNames": ["龙马出河"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10618"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "技能",
+      "id": "42504",
+      "name": "太白蚀昴",
+      "root": {
+        "skillID": "42504",
+        "name": "太白蚀昴",
+        "script": "scripts/skill/衍天/套路及子技能/沉浊落.lua",
+        "tableLine": 38025
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 38025,
+          "rawName": "太白蚀昴",
+          "level": "",
+          "uiLines": [31958],
+          "uiNames": ["太白蚀昴"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10619"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "技能",
+      "id": "42505",
+      "name": "御前星",
+      "root": {
+        "skillID": "42505",
+        "name": "御前星",
+        "script": "scripts/skill/衍天/套路及子技能/御前星母技能.lua",
+        "tableLine": 38026
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 38026,
+          "rawName": "御前星",
+          "level": "",
+          "uiLines": [31959],
+          "uiNames": ["御前星"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10619"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "自身增益",
+      "id": "17588",
+      "name": "卦象_水坎",
+      "uiNames": ["水坎"],
+      "nativeDefinitions": [
+        {
+          "name": "卦象_水坎",
+          "type": "自身",
+          "ids": [
+            {
+              "id": "17588",
+              "level": null
+            }
+          ],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/skill.ts",
+          "line": 375
+        },
+        {
+          "name": "卦象_水坎",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/快速导入默认循环/苍生铸世/星神降世镇苍生 3min.ts",
+          "line": 181
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "卦象_水坎",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/simulator/技能类/变水卦/index.ts",
+          "line": 24,
+          "code": "this.模拟循环.添加buff({ 名称: `卦象_水坎`, 对象: '自身' })"
+        },
+        {
+          "name": "卦象_水坎",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/simulator/通用类/变卦统一类.ts",
+          "line": 10,
+          "code": "this.模拟循环.卸除buff({ 名称: `卦象_水坎`, 对象: '自身' })"
+        },
+        {
+          "name": "卦象_水坎",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/simulator/通用类/技能统一类.ts",
+          "line": 191,
+          "code": "this.模拟循环.卸除buff({ 名称: `卦象_水坎`, 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "自身增益",
+      "id": "17801",
+      "name": "卦象_山艮",
+      "uiNames": ["山艮"],
+      "nativeDefinitions": [
+        {
+          "name": "卦象_山艮",
+          "type": "自身",
+          "ids": [
+            {
+              "id": "17801",
+              "level": null
+            }
+          ],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/skill.ts",
+          "line": 384
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "卦象_山艮",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/simulator/技能类/变山卦/index.ts",
+          "line": 27,
+          "code": "this.模拟循环.添加buff({ 名称: `卦象_山艮`, 对象: '自身' })"
+        },
+        {
+          "name": "卦象_山艮",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/simulator/通用类/变卦统一类.ts",
+          "line": 11,
+          "code": "this.模拟循环.卸除buff({ 名称: `卦象_山艮`, 对象: '自身' })"
+        },
+        {
+          "name": "卦象_山艮",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/simulator/通用类/技能统一类.ts",
+          "line": 192,
+          "code": "this.模拟循环.卸除buff({ 名称: `卦象_山艮`, 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "自身增益",
+      "id": "17802",
+      "name": "卦象_火离",
+      "uiNames": ["火离"],
+      "nativeDefinitions": [
+        {
+          "name": "卦象_火离",
+          "type": "自身",
+          "ids": [
+            {
+              "id": "17802",
+              "level": null
+            }
+          ],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/skill.ts",
+          "line": 393
+        },
+        {
+          "name": "卦象_火离",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/快速导入默认循环/暗影千机/亘天橙武.ts",
+          "line": 211
+        },
+        {
+          "name": "卦象_火离",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/快速导入默认循环/暗影千机/亘天紫武.ts",
+          "line": 214
+        },
+        {
+          "name": "卦象_火离",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/快速导入默认循环/暗影千机/亘天麒麟2.ts",
+          "line": 210
+        },
+        {
+          "name": "卦象_火离",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/快速导入默认循环/暗影千机/亘天麒麟3.ts",
+          "line": 210
+        },
+        {
+          "name": "卦象_火离",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/快速导入默认循环/暗影千机/撞灯橙武.ts",
+          "line": 252
+        },
+        {
+          "name": "卦象_火离",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/快速导入默认循环/暗影千机/撞灯紫武.ts",
+          "line": 259
+        },
+        {
+          "name": "卦象_火离",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/constant/快速导入默认循环/暗影千机/极_亘天橙武.ts",
+          "line": 242
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "卦象_火离",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/simulator/技能类/变火卦/index.ts",
+          "line": 24,
+          "code": "this.模拟循环.添加buff({ 名称: `卦象_火离`, 对象: '自身' })"
+        },
+        {
+          "name": "卦象_火离",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/simulator/通用类/变卦统一类.ts",
+          "line": 12,
+          "code": "this.模拟循环.卸除buff({ 名称: `卦象_火离`, 对象: '自身' })"
+        },
+        {
+          "name": "卦象_火离",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/太玄经/simulator/通用类/技能统一类.ts",
+          "line": 193,
+          "code": "this.模拟循环.卸除buff({ 名称: `卦象_火离`, 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "孤锋诀",
+      "kind": "技能",
+      "id": "32132",
+      "name": "行",
+      "root": {
+        "skillID": "32132",
+        "name": "行",
+        "script": "scripts/skill/刀宗/刀宗_流云势法_纷绞势.lua",
+        "tableLine": 28133
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 28133,
+          "rawName": "行云势",
+          "level": "",
+          "uiLines": [24549],
+          "uiNames": ["行云势"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10697"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "孤锋诀",
+      "kind": "技能",
+      "id": "32133",
+      "name": "停",
+      "root": {
+        "skillID": "32133",
+        "name": "停",
+        "script": "scripts/skill/刀宗/刀宗_流云势法_顾应势.lua",
+        "tableLine": 28134
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 28134,
+          "rawName": "停云势",
+          "level": "",
+          "uiLines": [24550],
+          "uiNames": ["停云势"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10697"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "孤锋诀",
+      "kind": "技能",
+      "id": "32134",
+      "name": "决",
+      "root": {
+        "skillID": "32134",
+        "name": "决",
+        "script": "scripts/skill/刀宗/刀宗_流云势法_疾电势.lua",
+        "tableLine": 28135
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 28135,
+          "rawName": "决云势",
+          "level": "",
+          "uiLines": [24551],
+          "uiNames": ["决云势"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10697"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "孤锋诀",
+      "kind": "技能",
+      "id": "32135",
+      "name": "断",
+      "root": {
+        "skillID": "32135",
+        "name": "断",
+        "script": "scripts/skill/刀宗/刀宗_流云势法_起落势.lua",
+        "tableLine": 28136
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 28136,
+          "rawName": "断云势",
+          "level": "",
+          "uiLines": [24552],
+          "uiNames": ["断云势"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "SectorOfAttention",
+          "BelongKungfu": "10697"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "孤锋诀",
+      "kind": "技能",
+      "id": "32144",
+      "name": "横",
+      "root": {
+        "skillID": "32144",
+        "name": "横",
+        "script": "scripts/skill/刀宗/刀宗_破浪三式_二式.lua",
+        "tableLine": 28145
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 28145,
+          "rawName": "横云断浪",
+          "level": "",
+          "uiLines": [24560],
+          "uiNames": ["横云断浪"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10707"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "孤锋诀",
+      "kind": "技能",
+      "id": "32145",
+      "name": "孤",
+      "root": {
+        "skillID": "32145",
+        "name": "孤",
+        "script": "scripts/skill/刀宗/刀宗_破浪三式_三式.lua",
+        "tableLine": 28146
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 28146,
+          "rawName": "孤锋破浪",
+          "level": "",
+          "uiLines": [24561],
+          "uiNames": ["孤锋破浪"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterAreaOfAttention",
+          "BelongKungfu": "10707"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "孤锋诀",
+      "kind": "技能",
+      "id": "32146",
+      "name": "留",
+      "root": {
+        "skillID": "32146",
+        "name": "留",
+        "script": "scripts/skill/刀宗/刀宗_骤雨劲_留客雨.lua",
+        "tableLine": 28147
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 28147,
+          "rawName": "留客雨",
+          "level": "",
+          "uiLines": [24562],
+          "uiNames": ["留客雨"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10708"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "孤锋诀",
+      "kind": "自身增益",
+      "id": "27812",
+      "name": "威声",
+      "uiNames": ["威声"],
+      "nativeDefinitions": [
+        {
+          "name": "威声",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/孤锋诀/constant/skill.ts",
+          "line": 274
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "威声",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/孤锋诀/simulator/技能类/孤锋破浪/index.ts",
+          "line": 103,
+          "code": "this.模拟循环.卸除buff?.({ 名称: '威声', 对象: '自身', 卸除层数: 1 })"
+        },
+        {
+          "name": "威声",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/孤锋诀/simulator/技能类/灭影追风/index.ts",
+          "line": 20,
+          "code": "this.模拟循环.添加buff?.({ 名称: '威声', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "35659",
+      "name": "劲风簇",
+      "root": {
+        "skillID": "35659",
+        "name": "劲风簇",
+        "script": "scripts/skill/万灵山庄/万灵山庄_劲风簇.lua",
+        "tableLine": 31493
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 31493,
+          "rawName": "劲风簇",
+          "level": "",
+          "uiLines": [27153],
+          "uiNames": ["劲风簇"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10755"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "35661",
+      "name": "饮羽簇",
+      "root": {
+        "skillID": "35661",
+        "name": "饮羽簇",
+        "script": "scripts/skill/万灵山庄/万灵山庄_饮羽簇.lua",
+        "tableLine": 31495
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 31495,
+          "rawName": "饮羽簇",
+          "level": "",
+          "uiLines": [27155],
+          "uiNames": ["饮羽簇"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10755"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "35662",
+      "name": "白羽流星",
+      "root": {
+        "skillID": "35662",
+        "name": "白羽流星",
+        "script": "scripts/skill/万灵山庄/万灵山庄_白羽流星.lua",
+        "tableLine": 31496
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 31496,
+          "rawName": "白羽流星",
+          "level": "",
+          "uiLines": [27156],
+          "uiNames": ["白羽流星"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10755"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "35669",
+      "name": "寒更晓箭",
+      "root": {
+        "skillID": "35669",
+        "name": "寒更晓箭",
+        "script": "scripts/skill/万灵山庄/万灵山庄_寒更晓箭.lua",
+        "tableLine": 31503
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 31503,
+          "rawName": "寒更晓箭",
+          "level": "",
+          "uiLines": [27163],
+          "uiNames": ["寒更晓箭"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10759"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "35671",
+      "name": "金乌见坠",
+      "root": {
+        "skillID": "35671",
+        "name": "金乌见坠",
+        "script": "scripts/skill/万灵山庄/万灵山庄_金乌见坠.lua",
+        "tableLine": 31505
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 31505,
+          "rawName": "金乌见坠",
+          "level": "",
+          "uiLines": [27165],
+          "uiNames": ["金乌见坠"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10759"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "35681",
+      "name": "汇灵合契",
+      "root": {
+        "skillID": "35681",
+        "name": "汇灵合契",
+        "script": "scripts/skill/万灵山庄/万灵山庄_汇灵合契.lua",
+        "tableLine": 31515
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 31515,
+          "rawName": "汇灵合契",
+          "level": "",
+          "uiLines": [27174],
+          "uiNames": ["汇灵合契"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10760"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "35684",
+      "name": "游雾乘云",
+      "root": {
+        "skillID": "35684",
+        "name": "游雾乘云",
+        "script": "scripts/skill/万灵山庄/万灵山庄_昌寿乘云.lua",
+        "tableLine": 31518
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 31518,
+          "rawName": "游雾乘云",
+          "level": "",
+          "uiLines": [27177],
+          "uiNames": ["游雾乘云"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10760"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "35695",
+      "name": "引风唤灵",
+      "root": {
+        "skillID": "35695",
+        "name": "引风唤灵",
+        "script": "scripts/skill/万灵山庄/万灵山庄_引风唤灵.lua",
+        "tableLine": 31527
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 31527,
+          "rawName": "引风唤灵",
+          "level": "",
+          "uiLines": [27186, 27187],
+          "uiNames": ["引风唤灵"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10761"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "35696",
+      "name": "弛律召野",
+      "root": {
+        "skillID": "35696",
+        "name": "弛律召野",
+        "script": "scripts/skill/万灵山庄/万灵山庄_弛律召野.lua",
+        "tableLine": 31528
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 31528,
+          "rawName": "弛律召野",
+          "level": "",
+          "uiLines": [27188],
+          "uiNames": ["弛律召野"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10761"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "35697",
+      "name": "风尽浮生",
+      "root": {
+        "skillID": "35697",
+        "name": "风尽浮生",
+        "script": "scripts/skill/万灵山庄/万灵山庄_风尽浮生向前.lua",
+        "tableLine": 31529
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 31529,
+          "rawName": "风尽浮生",
+          "level": "",
+          "uiLines": [27189],
+          "uiNames": ["风尽浮生"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10761"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "40240",
+      "name": "聚势摧霆",
+      "root": {
+        "skillID": "40240",
+        "name": "聚势摧霆",
+        "script": "scripts/skill/万灵山庄/山海心诀奇穴套路/聚势摧霆.lua",
+        "tableLine": 35883
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 35883,
+          "rawName": "聚势摧霆",
+          "level": "",
+          "uiLines": [30310],
+          "uiNames": ["聚势摧霆"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10762"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "自身增益",
+      "id": "26857",
+      "name": "承契",
+      "uiNames": ["承契"],
+      "nativeDefinitions": [
+        {
+          "name": "承契",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/山海心诀/constant/skill.ts",
+          "line": 266
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "承契",
+          "action": "this.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/山海心诀/simulator/main.ts",
+          "line": 867,
+          "code": "this.添加buff({ 名称: '承契', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "自身增益",
+      "id": "27128",
+      "name": "佩弦",
+      "uiNames": ["佩弦"],
+      "nativeDefinitions": [
+        {
+          "name": "佩弦",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/山海心诀/constant/skill.ts",
+          "line": 307
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "佩弦",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/山海心诀/simulator/技能类/触发橙武/index.ts",
+          "line": 23,
+          "code": "this.模拟循环.卸除buff?.({ 名称: '佩弦', 对象: '自身' })"
+        },
+        {
+          "name": "佩弦",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/山海心诀/simulator/技能类/金乌见坠/index.ts",
+          "line": 36,
+          "code": "this.模拟循环.添加buff({ 名称: '佩弦', 对象: '自身' })"
+        },
+        {
+          "name": "佩弦",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/山海心诀/simulator/技能类/饮羽簇/index.ts",
+          "line": 56,
+          "code": "this.模拟循环.卸除buff({ 名称: '佩弦', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "幽罗引",
+      "kind": "技能",
+      "id": "41116",
+      "name": "落笼簿",
+      "root": {
+        "skillID": "41116",
+        "name": "落笼簿",
+        "script": "scripts/skill/无相楼/傀儡调_切换视角.lua",
+        "tableLine": 36742
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 36742,
+          "rawName": "落笼簿",
+          "level": "",
+          "uiLines": [30932],
+          "uiNames": ["落笼簿"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10820"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "幽罗引",
+      "kind": "技能",
+      "id": "41342",
+      "name": "挑丝",
+      "root": {
+        "skillID": "41342",
+        "name": "挑丝",
+        "script": "scripts/skill/无相楼/织心谣_丝线穿刺.lua",
+        "tableLine": 36953
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 36953,
+          "rawName": "挑丝",
+          "level": "",
+          "uiLines": [31087],
+          "uiNames": ["挑丝"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "Column",
+          "BelongKungfu": "10851"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "幽罗引",
+      "kind": "技能",
+      "id": "41437",
+      "name": "连环慢",
+      "root": {
+        "skillID": "41437",
+        "name": "连环慢",
+        "script": "scripts/skill/无相楼/傀儡调_召唤傀儡.lua",
+        "tableLine": 37041
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 37041,
+          "rawName": "连环慢",
+          "level": "",
+          "uiLines": [31164],
+          "uiNames": ["连环慢"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10820"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "幽罗引",
+      "kind": "技能",
+      "id": "41442",
+      "name": "生地狱",
+      "root": {
+        "skillID": "41442",
+        "name": "生地狱",
+        "script": "scripts/skill/无相楼/傀儡调_生地狱.lua",
+        "tableLine": 37046
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 37046,
+          "rawName": "生地狱",
+          "level": "",
+          "uiLines": [31169],
+          "uiNames": ["生地狱"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10820"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "幽罗引",
+      "kind": "技能",
+      "id": "41447",
+      "name": "夹线",
+      "root": {
+        "skillID": "41447",
+        "name": "夹线",
+        "script": "scripts/skill/无相楼/织心谣_夹线.lua",
+        "tableLine": 37051
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 37051,
+          "rawName": "夹线",
+          "level": "",
+          "uiLines": [31174],
+          "uiNames": ["夹线"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10851"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "技能",
+      "id": "27528",
+      "name": "银光照雪",
+      "root": {
+        "skillID": "27528",
+        "name": "银光照雪",
+        "script": "scripts/skill/北天药宗/北天药宗_银光照雪.lua",
+        "tableLine": 23960
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 23960,
+          "rawName": "银光照雪",
+          "level": "",
+          "uiLines": [21433],
+          "uiNames": ["银光照雪"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10624"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "技能",
+      "id": "27551",
+      "name": "商陆缀寒",
+      "root": {
+        "skillID": "27551",
+        "name": "商陆缀寒",
+        "script": "scripts/skill/北天药宗/北天药宗_商陆其根.lua",
+        "tableLine": 23982
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 23982,
+          "rawName": "商陆缀寒",
+          "level": "",
+          "uiLines": [21450],
+          "uiNames": ["商陆缀寒"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10622"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "技能",
+      "id": "27554",
+      "name": "钩吻断肠",
+      "root": {
+        "skillID": "27554",
+        "name": "钩吻断肠",
+        "script": "scripts/skill/北天药宗/北天药宗_钩吻断肠.lua",
+        "tableLine": 23984
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 23984,
+          "rawName": "钩吻断肠",
+          "level": "",
+          "uiLines": [21452],
+          "uiNames": ["钩吻断肠"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10622"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "技能",
+      "id": "27556",
+      "name": "川乌射罔",
+      "root": {
+        "skillID": "27556",
+        "name": "川乌射罔",
+        "script": "scripts/skill/北天药宗/北天药宗_奚毒射罔.lua",
+        "tableLine": 23986
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 23986,
+          "rawName": "川乌射罔",
+          "level": "",
+          "uiLines": [21454],
+          "uiNames": ["川乌射罔"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10622"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "技能",
+      "id": "27578",
+      "name": "沾衣未妨",
+      "root": {
+        "skillID": "27578",
+        "name": "沾衣未妨",
+        "script": "scripts/skill/北天药宗/北天药宗_沾衣未妨.lua",
+        "tableLine": 24007
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 24007,
+          "rawName": "沾衣未妨",
+          "level": "",
+          "uiLines": [21471],
+          "uiNames": ["沾衣未妨"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10622"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "技能",
+      "id": "27635",
+      "name": "含锋破月",
+      "root": {
+        "skillID": "27635",
+        "name": "含锋破月",
+        "script": "scripts/skill/北天药宗/北天药宗_含锋破月.lua",
+        "tableLine": 24053
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 24053,
+          "rawName": "含锋破月",
+          "level": "",
+          "uiLines": [21511],
+          "uiNames": ["含锋破月"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10624"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "技能",
+      "id": "27650",
+      "name": "千枝绽蕊",
+      "root": {
+        "skillID": "27650",
+        "name": "千枝绽蕊",
+        "script": "scripts/skill/北天药宗/北天药宗_千枝绽蕊.lua",
+        "tableLine": 24068
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 24068,
+          "rawName": "千枝绽蕊",
+          "level": "",
+          "uiLines": [21517],
+          "uiNames": ["千枝绽蕊"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10625"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "技能",
+      "id": "27667",
+      "name": "紫叶沉疴",
+      "root": {
+        "skillID": "27667",
+        "name": "紫叶沉疴",
+        "script": "scripts/skill/北天药宗/北天药宗_紫叶沉疴.lua",
+        "tableLine": 24076
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 24076,
+          "rawName": "紫叶沉疴",
+          "level": "",
+          "uiLines": [21523],
+          "uiNames": ["紫叶沉疴"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10625"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "技能",
+      "id": "30734",
+      "name": "折枝拂露",
+      "root": {
+        "skillID": "30734",
+        "name": "折枝拂露",
+        "script": "scripts/skill/北天药宗/北天药宗_折枝拂露.lua",
+        "tableLine": 26966
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 26966,
+          "rawName": "折枝拂露",
+          "level": "",
+          "uiLines": [23701],
+          "uiNames": ["折枝拂露"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10624"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "自身增益",
+      "id": "20702",
+      "name": "紫伏",
+      "uiNames": ["紫伏"],
+      "nativeDefinitions": [
+        {
+          "name": "紫伏",
+          "type": "自身",
+          "ids": [
+            {
+              "id": "20702",
+              "level": null
+            }
+          ],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/无方/constant/skill.ts",
+          "line": 294
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "紫伏",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/无方/simulator/技能类/紫叶沉疴/index.ts",
+          "line": 16,
+          "code": "this.模拟循环.添加buff({ 名称: '紫伏', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "无方",
+      "kind": "自身增益",
+      "id": "26006",
+      "name": "香繁饮露",
+      "uiNames": ["香繁饮露"],
+      "nativeDefinitions": [
+        {
+          "name": "香繁饮露",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/无方/constant/skill.ts",
+          "line": 438
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "香繁饮露",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/无方/simulator/技能类/川乌射罔/index.ts",
+          "line": 55,
+          "code": "this.模拟循环.卸除buff({ 名称: '香繁饮露', 对象: '自身', 事件时间: 读条开始时间 })"
+        },
+        {
+          "name": "香繁饮露",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/无方/simulator/技能类/沾衣未妨/index.ts",
+          "line": 41,
+          "code": "this.模拟循环.卸除buff({ 名称: '香繁饮露', 对象: '自身' })"
+        },
+        {
+          "name": "香繁饮露",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/无方/simulator/技能类/香繁饮露/index.ts",
+          "line": 14,
+          "code": "this.模拟循环.添加buff({ 名称: '香繁饮露', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "232",
+      "name": "普渡四方",
+      "root": {
+        "skillID": "232",
+        "name": "普渡四方",
+        "script": "scripts/skill/少林/少林_罗汉棍法_普渡四方.lua",
+        "tableLine": 234
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 234,
+          "rawName": "普渡四方",
+          "level": "",
+          "uiLines": [565],
+          "uiNames": ["普渡四方"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10031"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "233",
+      "name": "韦陀献杵",
+      "root": {
+        "skillID": "233",
+        "name": "韦陀献杵",
+        "script": "scripts/skill/少林/少林_罗汉棍法_韦陀献杵.lua",
+        "tableLine": 235
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 235,
+          "rawName": "韦陀献杵",
+          "level": "",
+          "uiLines": [566],
+          "uiNames": ["韦陀献杵"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10031"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "235",
+      "name": "横扫六合",
+      "root": {
+        "skillID": "235",
+        "name": "横扫六合",
+        "script": "scripts/skill/少林/少林_罗汉棍法_横扫六合.lua",
+        "tableLine": 237
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 237,
+          "rawName": "横扫六合",
+          "level": "",
+          "uiLines": [568],
+          "uiNames": ["横扫六合"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10031"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "236",
+      "name": "摩诃无量",
+      "root": {
+        "skillID": "236",
+        "name": "摩诃无量",
+        "script": "scripts/skill/少林/少林_罗汉棍法_摩诃无量.lua",
+        "tableLine": 238
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 238,
+          "rawName": "摩诃无量",
+          "level": "",
+          "uiLines": [569],
+          "uiNames": ["摩诃无量"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10031"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "238",
+      "name": "捕风式",
+      "root": {
+        "skillID": "238",
+        "name": "捕风式",
+        "script": "scripts/skill/少林/少林_龙爪功_捕风式.lua",
+        "tableLine": 240
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 240,
+          "rawName": "捕风式",
+          "level": "",
+          "uiLines": [571],
+          "uiNames": ["捕风式"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10032"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "241",
+      "name": "守缺式",
+      "root": {
+        "skillID": "241",
+        "name": "守缺式",
+        "script": "scripts/skill/少林/少林_龙爪功_守缺式.lua",
+        "tableLine": 243
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 243,
+          "rawName": "守缺式",
+          "level": "",
+          "uiLines": [574],
+          "uiNames": ["守缺式"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10032"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "242",
+      "name": "捉影式",
+      "root": {
+        "skillID": "242",
+        "name": "捉影式",
+        "script": "scripts/skill/少林/少林_龙爪功_捉影式.lua",
+        "tableLine": 244
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 244,
+          "rawName": "捉影式",
+          "level": "",
+          "uiLines": [575],
+          "uiNames": ["捉影式"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10032"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "243",
+      "name": "拿云式",
+      "root": {
+        "skillID": "243",
+        "name": "拿云式",
+        "script": "scripts/skill/少林/少林_龙爪功_拿云式.lua",
+        "tableLine": 245
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 245,
+          "rawName": "拿云式",
+          "level": "",
+          "uiLines": [576],
+          "uiNames": ["拿云式"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10032"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "245",
+      "name": "罗汉金身",
+      "root": {
+        "skillID": "245",
+        "name": "罗汉金身",
+        "script": "scripts/skill/少林/少林_袈裟伏魔功_罗汉金身.lua",
+        "tableLine": 247
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 247,
+          "rawName": "罗汉金身",
+          "level": "",
+          "uiLines": [578],
+          "uiNames": ["罗汉金身"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10033"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "260",
+      "name": "擒龙决",
+      "root": {
+        "skillID": "260",
+        "name": "擒龙决",
+        "script": "scripts/skill/少林/少林_达摩武诀_擒龙诀.lua",
+        "tableLine": 262
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 262,
+          "rawName": "擒龙诀",
+          "level": "",
+          "uiLines": [602],
+          "uiNames": ["擒龙诀"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10034"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "技能",
+      "id": "15165",
+      "name": "二业依缘",
+      "root": {
+        "skillID": "15165",
+        "name": "二业依缘",
+        "script": "scripts/skill/少林/少林_龙爪功_二业依缘.lua",
+        "tableLine": 12349
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 12349,
+          "rawName": "二业依缘",
+          "level": "",
+          "uiLines": [11992],
+          "uiNames": ["二业依缘"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10033"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "自身增益",
+      "id": "21859",
+      "name": "身意",
+      "uiNames": ["身意"],
+      "nativeDefinitions": [
+        {
+          "name": "身意",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/易筋经/constant/skill.ts",
+          "line": 191
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "身意",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/易筋经/simulator/通用类/技能统一类.ts",
+          "line": 241,
+          "code": "this.模拟循环.添加buff?.({ 名称: '身意', 对象: '自身', 新增层数: 1 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "自身增益",
+      "id": "25882",
+      "name": "无诤",
+      "uiNames": ["无诤"],
+      "nativeDefinitions": [
+        {
+          "name": "无诤",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/易筋经/constant/skill.ts",
+          "line": 175
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "无诤",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/易筋经/simulator/技能类/横扫六合/index.ts",
+          "line": 23,
+          "code": "this.模拟循环.添加buff({ 名称: '无诤', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "易筋经",
+      "kind": "自身增益",
+      "id": "33036",
+      "name": "果报",
+      "uiNames": ["果报"],
+      "nativeDefinitions": [
+        {
+          "name": "果报",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/易筋经/constant/skill.ts",
+          "line": 207
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "果报",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/易筋经/simulator/技能类/擒龙决/index.ts",
+          "line": 29,
+          "code": "this.模拟循环.添加buff?.({ 名称: '果报', 对象: '自身', 新增层数: 4 })"
+        },
+        {
+          "name": "果报",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/易筋经/simulator/通用类/技能统一类.ts",
+          "line": 111,
+          "code": "this.模拟循环.卸除buff?.({ 名称: '果报', 对象: '自身', 卸除层数: 2 })"
+        },
+        {
+          "name": "果报",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/易筋经/simulator/通用类/技能统一类.ts",
+          "line": 224,
+          "code": "this.模拟循环.添加buff({ 名称: '果报', 对象: '自身', 新增层数: 贪破层数 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "2209",
+      "name": "蝎心",
+      "root": {
+        "skillID": "2209",
+        "name": "蝎心",
+        "script": "scripts/skill/五毒/五毒_五仙图录_蝎心.lua",
+        "tableLine": 2211
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2211,
+          "rawName": "蝎心",
+          "level": "",
+          "uiLines": [2552],
+          "uiNames": ["蝎心"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10171"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "2210",
+      "name": "蟾啸",
+      "root": {
+        "skillID": "2210",
+        "name": "蟾啸",
+        "script": "scripts/skill/五毒/五毒_五仙图录_蟾啸.lua",
+        "tableLine": 2212
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2212,
+          "rawName": "蟾啸",
+          "level": "",
+          "uiLines": [2553],
+          "uiNames": ["蟾啸"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetArea",
+          "BelongKungfu": "10171"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "2211",
+      "name": "蛇影",
+      "root": {
+        "skillID": "2211",
+        "name": "蛇影",
+        "script": "scripts/skill/五毒/五毒_五仙图录_蛇影.lua",
+        "tableLine": 2213
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2213,
+          "rawName": "蛇影",
+          "level": "",
+          "uiLines": [2554],
+          "uiNames": ["蛇影"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10171"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "2212",
+      "name": "百足",
+      "root": {
+        "skillID": "2212",
+        "name": "百足",
+        "script": "scripts/skill/五毒/五毒_五仙图录_百足.lua",
+        "tableLine": 2214
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2214,
+          "rawName": "百足",
+          "level": "",
+          "uiLines": [2555],
+          "uiNames": ["百足"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10171"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "2213",
+      "name": "千丝",
+      "root": {
+        "skillID": "2213",
+        "name": "千丝",
+        "script": "scripts/skill/五毒/五毒_五仙图录_千丝.lua",
+        "tableLine": 2215
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2215,
+          "rawName": "千丝",
+          "level": "",
+          "uiLines": [2556],
+          "uiNames": ["千丝"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10171"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "2220",
+      "name": "凤凰蛊",
+      "root": {
+        "skillID": "2220",
+        "name": "凤凰蛊",
+        "script": "scripts/skill/五毒/五毒_万蛊真解_凤凰蛊.lua",
+        "tableLine": 2222
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2222,
+          "rawName": "凤凰蛊",
+          "level": "",
+          "uiLines": [2563],
+          "uiNames": ["凤凰蛊"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10172"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "2221",
+      "name": "圣蝎引",
+      "root": {
+        "skillID": "2221",
+        "name": "圣蝎引",
+        "script": "scripts/skill/五毒/五毒_大荒驭龙_圣蝎引.lua",
+        "tableLine": 2223
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2223,
+          "rawName": "圣蝎引",
+          "level": "",
+          "uiLines": [2564],
+          "uiNames": ["圣蝎引"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10173"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "2223",
+      "name": "灵蛇引",
+      "root": {
+        "skillID": "2223",
+        "name": "灵蛇引",
+        "script": "scripts/skill/五毒/五毒_大荒驭龙_灵蛇引.lua",
+        "tableLine": 2225
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2225,
+          "rawName": "灵蛇引",
+          "level": "",
+          "uiLines": [2566],
+          "uiNames": ["灵蛇引"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10173"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "2226",
+      "name": "蛊虫献祭",
+      "root": {
+        "skillID": "2226",
+        "name": "蛊虫献祭",
+        "script": "scripts/skill/五毒/五毒_大荒驭龙_蛊虫献祭.lua",
+        "tableLine": 2228
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2228,
+          "rawName": "蛊虫献祭",
+          "level": "",
+          "uiLines": [2569],
+          "uiNames": ["蛊虫献祭"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10173"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "2227",
+      "name": "蛊虫狂暴",
+      "root": {
+        "skillID": "2227",
+        "name": "蛊虫狂暴",
+        "script": "scripts/skill/五毒/五毒_大荒驭龙_蛊虫狂暴.lua",
+        "tableLine": 2229
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2229,
+          "rawName": "蛊虫狂暴",
+          "level": "",
+          "uiLines": [2570],
+          "uiNames": ["蛊虫狂暴"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10173"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "技能",
+      "id": "25043",
+      "name": "连缘蛊",
+      "root": {
+        "skillID": "25043",
+        "name": "连缘蛊",
+        "script": "scripts/skill/五毒/五毒_千劫万毒手_万毒.lua",
+        "tableLine": 21602
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 21602,
+          "rawName": "连缘蛊",
+          "level": "",
+          "uiLines": [19245],
+          "uiNames": ["连缘蛊"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10171"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "自身增益",
+      "id": "12316",
+      "name": "圣蝎献祭",
+      "uiNames": ["圣蝎献祭"],
+      "nativeDefinitions": [
+        {
+          "name": "圣蝎献祭",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/毒经/constant/skill.ts",
+          "line": 185
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "圣蝎献祭",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/毒经/simulator/技能类/圣蝎引/index.ts",
+          "line": 15,
+          "code": "this.模拟循环.添加buff({\r\n        名称: '圣蝎献祭',\r\n        对象: '自身',\r\n        新增层数: 1,\r\n        事件时间: this.模拟循环.当前时间,\r\n      })"
+        },
+        {
+          "name": "圣蝎献祭",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/毒经/simulator/技能类/蛊虫献祭/index.ts",
+          "line": 14,
+          "code": "this.模拟循环.添加buff({\r\n        名称: '圣蝎献祭',\r\n        对象: '自身',\r\n        新增层数: 1,\r\n        事件时间: this.模拟循环.当前时间,\r\n      })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "自身增益",
+      "id": "29181",
+      "name": "残香",
+      "uiNames": ["残香"],
+      "nativeDefinitions": [
+        {
+          "name": "残香",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/毒经/constant/skill.ts",
+          "line": 225
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "残香",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/毒经/simulator/技能类/蝎心/index.ts",
+          "line": 57,
+          "code": "this.模拟循环.添加buff({ 名称: '残香', 对象: '自身', 新增层数: 1 })"
+        },
+        {
+          "name": "残香",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/毒经/simulator/通用类/有CD技能通用类.ts",
+          "line": 30,
+          "code": "this.模拟循环.卸除buff?.({ 名称: '残香', 对象: '自身', 卸除层数: 1 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "毒经",
+      "kind": "自身增益",
+      "id": "33070",
+      "name": "不鸣",
+      "uiNames": ["不鸣"],
+      "nativeDefinitions": [
+        {
+          "name": "不鸣",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/毒经/constant/skill.ts",
+          "line": 306
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "不鸣",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/毒经/simulator/技能类/灵蛇引/index.ts",
+          "line": 22,
+          "code": "this.模拟循环.添加buff({ 名称: '不鸣', 对象: '自身', 新增层数: 1 })"
+        },
+        {
+          "name": "不鸣",
+          "action": "this.模拟循环.卸除buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/毒经/simulator/技能类/蝎心/index.ts",
+          "line": 81,
+          "code": "this.模拟循环.卸除buff({ 名称: '不鸣', 对象: '自身', 事件时间: this.模拟循环.当前时间 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "花间游",
+      "kind": "技能",
+      "id": "100",
+      "name": "星楼月影",
+      "root": {
+        "skillID": "100",
+        "name": "星楼月影",
+        "script": "scripts/skill/万花/万花_养心决_星楼月影.lua",
+        "tableLine": 102
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 102,
+          "rawName": "星楼月影",
+          "level": "",
+          "uiLines": [312],
+          "uiNames": ["星楼月影"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10018"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "花间游",
+      "kind": "技能",
+      "id": "136",
+      "name": "水月无间",
+      "root": {
+        "skillID": "136",
+        "name": "水月无间",
+        "script": "scripts/skill/万花/万花_养心决_水月无间.lua",
+        "tableLine": 138
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 138,
+          "rawName": "水月无间",
+          "level": "",
+          "uiLines": [403],
+          "uiNames": ["水月无间"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10018"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "花间游",
+      "kind": "技能",
+      "id": "179",
+      "name": "阳明指",
+      "root": {
+        "skillID": "179",
+        "name": "阳明指",
+        "script": "scripts/skill/万花/万花_点穴截脉_阳明指.lua",
+        "tableLine": 181
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 181,
+          "rawName": "阳明指",
+          "level": "",
+          "uiLines": [504],
+          "uiNames": ["阳明指"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10088"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "花间游",
+      "kind": "技能",
+      "id": "180",
+      "name": "商阳指",
+      "root": {
+        "skillID": "180",
+        "name": "商阳指",
+        "script": "scripts/skill/万花/万花_点穴截脉_商阳指.lua",
+        "tableLine": 182
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 182,
+          "rawName": "商阳指",
+          "level": "",
+          "uiLines": [505],
+          "uiNames": ["商阳指"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10088"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "花间游",
+      "kind": "技能",
+      "id": "182",
+      "name": "玉石俱焚",
+      "root": {
+        "skillID": "182",
+        "name": "玉石俱焚",
+        "script": "scripts/skill/万花/万花_百花拂穴手_玉石俱焚.lua",
+        "tableLine": 184
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 184,
+          "rawName": "玉石俱焚",
+          "level": "",
+          "uiLines": [507],
+          "uiNames": ["玉石俱焚"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10089"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "花间游",
+      "kind": "技能",
+      "id": "186",
+      "name": "芙蓉并蒂",
+      "root": {
+        "skillID": "186",
+        "name": "芙蓉并蒂",
+        "script": "scripts/skill/万花/万花_百花拂穴手_芙蓉并蒂.lua",
+        "tableLine": 188
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 188,
+          "rawName": "芙蓉并蒂",
+          "level": "",
+          "uiLines": [511],
+          "uiNames": ["芙蓉并蒂"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10089"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "花间游",
+      "kind": "技能",
+      "id": "189",
+      "name": "钟林毓秀",
+      "root": {
+        "skillID": "189",
+        "name": "钟林毓秀",
+        "script": "scripts/skill/万花/万花_百花拂穴手_钟林毓秀.lua",
+        "tableLine": 191
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 191,
+          "rawName": "钟林毓秀",
+          "level": "",
+          "uiLines": [518],
+          "uiNames": ["钟林毓秀"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10089"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "花间游",
+      "kind": "技能",
+      "id": "190",
+      "name": "兰摧玉折",
+      "root": {
+        "skillID": "190",
+        "name": "兰摧玉折",
+        "script": "scripts/skill/万花/万花_百花拂穴手_兰摧玉折.lua",
+        "tableLine": 192
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 192,
+          "rawName": "兰摧玉折",
+          "level": "",
+          "uiLines": [519],
+          "uiNames": ["兰摧玉折"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10089"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "花间游",
+      "kind": "技能",
+      "id": "2636",
+      "name": "快雪时晴",
+      "root": {
+        "skillID": "2636",
+        "name": "快雪时晴",
+        "script": "scripts/skill/万花/万花_百花拂穴手_雪舞轻尘.lua",
+        "tableLine": 2638
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2638,
+          "rawName": "快雪时晴",
+          "level": "",
+          "uiLines": [3098],
+          "uiNames": ["快雪时晴"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10089"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "花间游",
+      "kind": "技能",
+      "id": "2645",
+      "name": "乱洒青荷",
+      "root": {
+        "skillID": "2645",
+        "name": "乱洒青荷",
+        "script": "scripts/skill/万花/万花_养心诀_乱洒青荷.lua",
+        "tableLine": 2647
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 2647,
+          "rawName": "乱洒青荷",
+          "level": "",
+          "uiLines": [3128],
+          "uiNames": ["乱洒青荷"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10089"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "技能",
+      "id": "1577",
+      "name": "玉虹贯日",
+      "root": {
+        "skillID": "1577",
+        "name": "玉虹贯日",
+        "script": "scripts/skill/藏剑/藏剑_秀水剑法_玉虹贯日.lua",
+        "tableLine": 1579
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 1579,
+          "rawName": "玉虹贯日",
+          "level": "",
+          "uiLines": [2034],
+          "uiNames": ["玉虹贯日"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10146"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "技能",
+      "id": "1578",
+      "name": "平湖断月",
+      "root": {
+        "skillID": "1578",
+        "name": "平湖断月",
+        "script": "scripts/skill/藏剑/藏剑_秀水剑法_平湖断月.lua",
+        "tableLine": 1580
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 1580,
+          "rawName": "平湖断月",
+          "level": "",
+          "uiLines": [2035],
+          "uiNames": ["平湖断月"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10146"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "技能",
+      "id": "1579",
+      "name": "九溪弥烟",
+      "root": {
+        "skillID": "1579",
+        "name": "九溪弥烟",
+        "script": "scripts/skill/藏剑/藏剑_秀水剑法_九溪弥烟.lua",
+        "tableLine": 1581
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 1581,
+          "rawName": "九溪弥烟",
+          "level": "",
+          "uiLines": [2036],
+          "uiNames": ["九溪弥烟"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterArea",
+          "BelongKungfu": "10146"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "技能",
+      "id": "1581",
+      "name": "黄龙吐翠",
+      "root": {
+        "skillID": "1581",
+        "name": "黄龙吐翠",
+        "script": "scripts/skill/藏剑/藏剑_秀水剑法_黄龙吐翠.lua",
+        "tableLine": 1583
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 1583,
+          "rawName": "黄龙吐翠",
+          "level": "",
+          "uiLines": [2038],
+          "uiNames": ["黄龙吐翠"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10146"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "技能",
+      "id": "1589",
+      "name": "梦泉虎跑",
+      "root": {
+        "skillID": "1589",
+        "name": "梦泉虎跑",
+        "script": "scripts/skill/藏剑/藏剑_秀水剑法_梦泉虎跑.lua",
+        "tableLine": 1591
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 1591,
+          "rawName": "梦泉虎跑",
+          "level": "",
+          "uiLines": [2044],
+          "uiNames": ["梦泉虎跑"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10146"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "技能",
+      "id": "1613",
+      "name": "峰插云景",
+      "root": {
+        "skillID": "1613",
+        "name": "峰插云景",
+        "script": "scripts/skill/藏剑/藏剑_灵峰剑式_峰插云景.lua",
+        "tableLine": 1615
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 1615,
+          "rawName": "峰插云景",
+          "level": "",
+          "uiLines": [2060],
+          "uiNames": ["峰插云景"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10148"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "技能",
+      "id": "1645",
+      "name": "风来吴山",
+      "root": {
+        "skillID": "1645",
+        "name": "风来吴山",
+        "script": "scripts/skill/藏剑/藏剑_灵峰剑式_风来吴山.lua",
+        "tableLine": 1647
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 1647,
+          "rawName": "风来吴山",
+          "level": "",
+          "uiLines": [2091],
+          "uiNames": ["风来吴山"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10148"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "技能",
+      "id": "1646",
+      "name": "听雷",
+      "root": {
+        "skillID": "1646",
+        "name": "听雷",
+        "script": "scripts/skill/藏剑/藏剑_君子风_听雷.lua",
+        "tableLine": 1648
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 1648,
+          "rawName": "听雷",
+          "level": "",
+          "uiLines": [2092],
+          "uiNames": ["听雷"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10149"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "技能",
+      "id": "1656",
+      "name": "啸日",
+      "root": {
+        "skillID": "1656",
+        "name": "啸日",
+        "script": "scripts/skill/藏剑/藏剑_君子风_啸日.lua",
+        "tableLine": 1658
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 1658,
+          "rawName": "啸日",
+          "level": "",
+          "uiLines": [2102],
+          "uiNames": ["啸日"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10149"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "技能",
+      "id": "1663",
+      "name": "莺鸣柳",
+      "root": {
+        "skillID": "1663",
+        "name": "莺鸣柳",
+        "script": "scripts/skill/藏剑/藏剑_西子情_莺鸣柳.lua",
+        "tableLine": 1665
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 1665,
+          "rawName": "莺鸣柳",
+          "level": "",
+          "uiLines": [2105],
+          "uiNames": ["莺鸣柳"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10150"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "问水诀",
+      "kind": "自身增益",
+      "id": "17976",
+      "name": "桂雨",
+      "uiNames": ["桂雨"],
+      "nativeDefinitions": [
+        {
+          "name": "桂雨",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/问水诀/constant/skill.ts",
+          "line": 246
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "桂雨",
+          "action": "this.模拟循环.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/问水诀/simulator/技能类/啸日/index.ts",
+          "line": 48,
+          "code": "this.模拟循环.添加buff?.({ 名称: '桂雨', 对象: '自身', 覆盖层数: 1 })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "技能",
+      "id": "22274",
+      "name": "血覆黄泉",
+      "root": {
+        "skillID": "22274",
+        "name": "血覆黄泉",
+        "script": "scripts/skill/凌雪阁/血覆黄泉.lua",
+        "tableLine": 19015
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 19015,
+          "rawName": "血覆黄泉",
+          "level": "",
+          "uiLines": [17154],
+          "uiNames": ["血覆黄泉"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10589"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "技能",
+      "id": "22320",
+      "name": "乱天狼",
+      "root": {
+        "skillID": "22320",
+        "name": "乱天狼",
+        "script": "scripts/skill/凌雪阁/乱天狼.lua",
+        "tableLine": 19058
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 19058,
+          "rawName": "乱天狼",
+          "level": "",
+          "uiLines": [17194],
+          "uiNames": ["乱天狼"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "Sector",
+          "BelongKungfu": "10588"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "技能",
+      "id": "22321",
+      "name": "隐风雷",
+      "root": {
+        "skillID": "22321",
+        "name": "隐风雷",
+        "script": "scripts/skill/凌雪阁/隐风雷.lua",
+        "tableLine": 19059
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 19059,
+          "rawName": "隐风雷",
+          "level": "",
+          "uiLines": [17195],
+          "uiNames": ["隐风雷"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10588"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "技能",
+      "id": "22327",
+      "name": "寂洪荒",
+      "root": {
+        "skillID": "22327",
+        "name": "寂洪荒",
+        "script": "scripts/skill/凌雪阁/寂洪荒.lua",
+        "tableLine": 19065
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 19065,
+          "rawName": "寂洪荒",
+          "level": "",
+          "uiLines": [17201],
+          "uiNames": ["寂洪荒"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "TargetSingle",
+          "BelongKungfu": "10588"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "技能",
+      "id": "22344",
+      "name": "日月吴钩",
+      "root": {
+        "skillID": "22344",
+        "name": "日月吴钩",
+        "script": "scripts/skill/凌雪阁/套路及子技能/日月吴钩.lua",
+        "tableLine": 19081
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 19081,
+          "rawName": "日月吴钩",
+          "level": "",
+          "uiLines": [17215],
+          "uiNames": ["日月吴钩"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10590"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "技能",
+      "id": "22358",
+      "name": "斩无常",
+      "root": {
+        "skillID": "22358",
+        "name": "斩无常",
+        "script": "scripts/skill/凌雪阁/隐雷鞭_斩无常.lua",
+        "tableLine": 19094
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 19094,
+          "rawName": "斩无常",
+          "level": "",
+          "uiLines": [17223],
+          "uiNames": ["斩无常"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10588"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "技能",
+      "id": "22361",
+      "name": "幽冥窥月",
+      "root": {
+        "skillID": "22361",
+        "name": "幽冥窥月",
+        "script": "scripts/skill/凌雪阁/冲云链_青山共我.lua",
+        "tableLine": 19097
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 19097,
+          "rawName": "幽冥窥月",
+          "level": "",
+          "uiLines": [17226],
+          "uiNames": ["幽冥窥月"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "CasterSingle",
+          "BelongKungfu": "10589"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "技能",
+      "id": "22603",
+      "name": "青山共我",
+      "root": {
+        "skillID": "22603",
+        "name": "青山共我",
+        "script": "scripts/skill/凌雪阁/套路及子技能/大招青山共我.lua",
+        "tableLine": 19328
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 19328,
+          "rawName": "青山共我",
+          "level": "",
+          "uiLines": [17414],
+          "uiNames": ["青山共我"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10589"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "技能",
+      "id": "29166",
+      "name": "飞刃回转",
+      "root": {
+        "skillID": "29166",
+        "name": "飞刃回转",
+        "script": "scripts/skill/凌雪阁/飞刃回转.lua",
+        "tableLine": 25443
+      },
+      "tableEvidence": [
+        {
+          "rawLine": 25443,
+          "rawName": "飞刃回转",
+          "level": "",
+          "uiLines": [22571],
+          "uiNames": ["飞刃回转"],
+          "IsPassiveSkill": "0",
+          "UIType": "1",
+          "CastMode": "PointArea",
+          "BelongKungfu": "10586"
+        }
+      ],
+      "basis": "UI/动作表同心法唯一候选 + 已核对施展脚本 + 原模拟器已有可释放动作；不新增学习能力或动作效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "自身增益",
+      "id": "15893",
+      "name": "忘断",
+      "uiNames": ["忘断"],
+      "nativeDefinitions": [
+        {
+          "name": "忘断",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/隐龙诀/constant/skill.ts",
+          "line": 171
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "忘断",
+          "action": "this.模拟循环?.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/隐龙诀/simulator/技能类/日月吴钩/index.ts",
+          "line": 13,
+          "code": "this.模拟循环?.添加buff({ 名称: '忘断', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    },
+    {
+      "heart": "隐龙诀",
+      "kind": "自身增益",
+      "id": "15932",
+      "name": "徵逐",
+      "uiNames": ["徵逐"],
+      "nativeDefinitions": [
+        {
+          "name": "徵逐",
+          "type": "自身",
+          "ids": [],
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/隐龙诀/constant/skill.ts",
+          "line": 163
+        }
+      ],
+      "nativeWrites": [
+        {
+          "name": "徵逐",
+          "action": "this.模拟循环?.添加buff",
+          "object": "自身",
+          "path": "src/功能模块/基础设置/公用设置/循环模拟/心法循环模拟/隐龙诀/simulator/技能类/幽冥窥月/index.ts",
+          "line": 13,
+          "code": "this.模拟循环?.添加buff({ 名称: '徵逐', 对象: '自身' })"
+        }
+      ],
+      "basis": "逐项核对 UI 名、脚本 ID 与原状态；读取原引擎生命周期，不改时间/层数/效果"
+    }
+  ],
+  "deferred": [
+    {
+      "heart": "周天功",
+      "kind": "自身增益",
+      "id": "29180",
+      "reason": "云散仅有原定义，风流云散中的施加代码被注释；不绑定为已实现状态"
+    },
+    {
+      "heart": "傲血战意",
+      "kind": "技能",
+      "id": "21039",
+      "reason": "没有已核对施展入口脚本；下马/起卦派生动作继续按原有名称接入"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "技能",
+      "id": "25742",
+      "reason": "没有已核对施展入口脚本；下马/起卦派生动作继续按原有名称接入"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "技能",
+      "id": "25743",
+      "reason": "没有已核对施展入口脚本；下马/起卦派生动作继续按原有名称接入"
+    },
+    {
+      "heart": "太玄经",
+      "kind": "技能",
+      "id": "25744",
+      "reason": "没有已核对施展入口脚本；下马/起卦派生动作继续按原有名称接入"
+    },
+    {
+      "heart": "山海心诀",
+      "kind": "技能",
+      "id": "21039",
+      "reason": "没有已核对施展入口脚本；下马/起卦派生动作继续按原有名称接入"
+    }
+  ]
+}

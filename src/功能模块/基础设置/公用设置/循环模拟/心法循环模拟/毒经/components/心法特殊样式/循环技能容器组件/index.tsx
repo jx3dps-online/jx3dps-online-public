@@ -3,9 +3,11 @@ import { AlertOutlined, CopyOutlined, DeleteOutlined } from '@ant-design/icons'
 import { ReactSortable } from 'react-sortablejs'
 import { 循环基础技能数据类型 } from '../../../../通用/通用框架/类型定义/技能'
 import 循环技能显示组件 from '../循环技能显示组件'
+import { 复制循环技能 } from '../../../../通用/通用函数'
 import { Buff枚举 } from '../../../../通用/通用框架/类型定义/Buff'
 import styles from './index.module.less'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import CycleSimulatorContext from '@/功能模块/基础设置/公用设置/循环模拟/context'
 
 interface 循环技能容器组件类型 {
   处理循环结果对象: {
@@ -25,6 +27,7 @@ interface 循环技能容器组件类型 {
 
 const 循环技能容器组件: React.FC<循环技能容器组件类型> = (props) => {
   const { modal } = App.useApp()
+  const { 更新循环技能拖拽中 } = useContext(CycleSimulatorContext)
 
   const {
     处理循环结果对象,
@@ -44,6 +47,19 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
 
   const 拖拽更新循环 = (newList, type) => {
     if (type == '轮次内') {
+      // ReactSortable 在 choose/unchoose/update 时都会触发 setList，
+      // 其中 choose/unchoose 只翻转 chosen 标志、不改变顺序；
+      // 这里按 index 是否仍升序判断是否真正发生了重排，避免一次拖拽触发多次模拟器重跑
+      let 是否重排 = false
+      for (let i = 1; i < newList.length; i++) {
+        if (newList[i]?.index < newList[i - 1]?.index) {
+          是否重排 = true
+          break
+        }
+      }
+      if (!是否重排) {
+        return
+      }
       // 首先获取被替换轮次的第一个元素的index索引
       const minIndex = newList.reduce(function (min, obj) {
         return Math.min(min, obj.index)
@@ -112,11 +128,12 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
 
   // 复制本轮到最后
   const 复制本轮至最后 = (轮次) => {
+    const 复制轮次 = 轮次.map(复制循环技能)
     if (复制本轮至最后函数) {
-      复制本轮至最后函数(轮次)
+      复制本轮至最后函数(复制轮次)
     } else {
       let newCycle: 循环基础技能数据类型[] = []
-      newCycle = [...(cycle || [])].concat(轮次)
+      newCycle = [...(cycle || [])].concat(复制轮次)
       setCycle(newCycle)
     }
   }
@@ -183,6 +200,8 @@ const 循环技能容器组件: React.FC<循环技能容器组件类型> = (prop
                 className={styles.settingTurnDrop}
                 animation={150}
                 draggable={'.cycle-simulator-setting-skill-drag'}
+                onStart={() => 更新循环技能拖拽中(true)}
+                onEnd={() => 更新循环技能拖拽中(false)}
               >
                 {(轮次 || []).map((item) => {
                   let 前一个技能 = 找到上一个实际技能(item?.index)

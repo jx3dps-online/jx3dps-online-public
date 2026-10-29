@@ -25,7 +25,8 @@ class 释灵DOT extends 通用DOT类 {
   }
 
   额外生效一跳() {
-    const 当前最后一跳数据 = this?.DOT运行数据?.待生效数据?.[this?.DOT运行数据?.待生效数据?.length - 1] || {} 
+    const 当前最后一跳数据 =
+      this?.DOT运行数据?.待生效数据?.[this?.DOT运行数据?.待生效数据?.length - 1] || {}
     if (当前最后一跳数据?.当前层数) {
       const 快照buff列表 = 当前最后一跳数据?.快照buff列表 || []
       this.触发伤害行为('释灵(DOT)', 1, 快照buff列表)
@@ -48,4 +49,4 @@ class 释灵DOT extends 通用DOT类 {
 
 export default 释灵DOT
 
-export const 释灵DOT类型 = typeof 释灵DOT
+export type 释灵DOT类型 = 释灵DOT

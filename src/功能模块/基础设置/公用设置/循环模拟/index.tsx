@@ -1,59 +1,74 @@
 /**
  * 当前只内置了部分心法的循环模拟
  */
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Button, Tooltip } from 'antd'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 数据埋点 } from '@/工具函数/tools/log'
 import { 循环基础技能数据类型 } from './心法循环模拟/通用/通用框架/类型定义/技能'
 import { useAppSelector } from '@/hooks'
-import CycleSimulatorContext from './context'
+import CycleSimulatorContext, { 战斗曲线联动Provider } from './context'
 import { 循环日志数据类型 } from './心法循环模拟/通用/通用框架/类型定义/模拟'
 import { 当前计算结果类型 } from '@/@types/输出'
 import { 起手Buff配置 } from './心法循环模拟/通用/通用框架/类型定义/Buff'
 import { 选中秘籍信息 } from '@/@types/秘籍'
 import { 计算增益数据中加速值 } from '@/工具函数/data'
+import { 注册行为, 注销行为 } from '@/桌宠/工具/行为注册表'
+import { 默认方案名称 } from './心法循环模拟/通用/通用组件/副本事件编辑器/utils'
+import { use报告引导界面 } from '@/功能模块/新手引导/界面状态'
+import './index.css'
 
+const 北傲诀循环模拟 = React.lazy(() => import('./心法循环模拟/北傲诀'))
 const 山海心诀循环模拟 = React.lazy(() => import('./心法循环模拟/山海心诀'))
 const 孤锋诀循环模拟 = React.lazy(() => import('./心法循环模拟/孤锋诀'))
 const 孤锋诀_悟循环模拟 = React.lazy(() => import('./心法循环模拟/孤锋诀_悟'))
 const 周天功循环模拟 = React.lazy(() => import('./心法循环模拟/周天功'))
 const 周天功_悟循环模拟 = React.lazy(() => import('./心法循环模拟/周天功_悟'))
+const 傲血战意循环模拟 = React.lazy(() => import('./心法循环模拟/傲血战意'))
 const 凌海诀循环模拟 = React.lazy(() => import('./心法循环模拟/凌海诀'))
 const 无方循环模拟 = React.lazy(() => import('./心法循环模拟/无方'))
 const 无方_悟循环模拟 = React.lazy(() => import('./心法循环模拟/无方_悟'))
+const 紫霞功循环模拟 = React.lazy(() => import('./心法循环模拟/紫霞功'))
+const 冰心诀循环模拟 = React.lazy(() => import('./心法循环模拟/冰心诀'))
 const 花间游循环模拟 = React.lazy(() => import('./心法循环模拟/花间游'))
 const 幽罗引循环模拟 = React.lazy(() => import('./心法循环模拟/幽罗引'))
 const 易筋经循环模拟 = React.lazy(() => import('./心法循环模拟/易筋经'))
 const 毒经循环模拟 = React.lazy(() => import('./心法循环模拟/毒经'))
 const 太玄经循环模拟 = React.lazy(() => import('./心法循环模拟/太玄经'))
 const 分山劲循环模拟 = React.lazy(() => import('./心法循环模拟/分山劲'))
-// const 焚影圣诀循环模拟 = React.lazy(() => import('./心法循环模拟/焚影圣诀'))
+const 分山劲_悟循环模拟 = React.lazy(() => import('./心法循环模拟/分山劲_悟'))
+const 焚影圣诀循环模拟 = React.lazy(() => import('./心法循环模拟/焚影圣诀'))
 const 天罗诡道循环模拟 = React.lazy(() => import('./心法循环模拟/天罗诡道'))
 const 太玄经_悟循环模拟 = React.lazy(() => import('./心法循环模拟/太玄经_悟'))
+const 笑尘诀循环模拟 = React.lazy(() => import('./心法循环模拟/笑尘诀'))
 const 支持循环心法 = {
+  北傲诀: '北傲诀',
+  笑尘诀: '笑尘诀',
   山海心诀: '山海心诀',
   孤锋诀: '孤锋诀',
   孤锋诀_悟: '孤锋诀_悟',
   周天功: '周天功',
   周天功_悟: '周天功_悟',
+  傲血战意: '傲血战意',
   凌海诀: '凌海诀',
   无方: '无方',
   无方_悟: '无方_悟',
+  紫霞功: '紫霞功',
+  冰心诀: '冰心诀',
   花间游: '花间游',
   幽罗引: '幽罗引',
   易筋经: '易筋经',
   毒经: '毒经',
   太玄经: '太玄经',
   分山劲: '分山劲',
-  // 焚影圣诀: '焚影圣诀',
+  分山劲_悟: '分山劲_悟',
+  焚影圣诀: '焚影圣诀',
   天罗诡道: '天罗诡道',
   太玄经_悟: '太玄经_悟',
 }
 
-const { 名称 } = 获取当前数据()
-
 function 循环模拟() {
+  const { 名称 } = use心法数据()
   const [日志信息, 更新日志信息] = useState<循环日志数据类型[]>([])
   const [模拟DPS结果, 更新模拟DPS结果] = useState<当前计算结果类型>({
     秒伤: 0,
@@ -63,12 +78,13 @@ function 循环模拟() {
   })
   const [模拟器弹窗展示, 更新模拟器弹窗展示] = useState<boolean>(false)
   const [cycle, setCycle] = useState<循环基础技能数据类型[]>([])
+  use报告引导界面('模拟器打开', 模拟器弹窗展示)
   const [自定义循环保存弹窗, 设置自定义循环保存弹窗] = useState<boolean>(false)
   const 大橙武模拟 =
     !!useAppSelector((state) => state?.data?.装备信息?.装备增益)?.大橙武特效 || false
   const [加速值, 更新加速值] = useState<number>(0)
   const [网络延迟, 更新网络延迟] = useState<number>(0)
-  const [启用团队增益快照, 更新启用团队增益快照] = useState<boolean>(false)
+  const [启用团队增益快照, 更新启用团队增益快照] = useState<boolean>(true)
   const [高亮团队快照, 更新高亮团队快照] = useState<string[]>([])
   const [奇穴信息, 更新奇穴信息] = useState<string[]>([])
   const [秘籍信息, 更新秘籍信息] = useState<选中秘籍信息>({})
@@ -78,9 +94,27 @@ function 循环模拟() {
     位置: '',
     索引: 0,
   })
-  const [起手Buff配置, 更新起手Buff配置] = useState<起手Buff配置>({})
+  const [起手Buff配置, 更新起手Buff配置] = useState<起手Buff配置>(
+    名称 === '冰心诀' ? { 化冰: { 名称: '化冰', 类型: '自身', 层数: 1, 获得时间: 0 } } : {},
+  )
   const [增益启用, 更新增益启用] = useState<boolean>(false)
   const [截图模式, 设置截图模式] = useState<boolean>(false)
+  const [团队快照容器, 设置团队快照容器] = useState<HTMLDivElement | null>(null)
+  const [当前副本事件方案名称, 更新当前副本事件方案名称] = useState<string>(默认方案名称)
+  const [副本事件编辑器展示, 更新副本事件编辑器展示] = useState<boolean>(false)
+  const [循环技能拖拽中, 更新循环技能拖拽中] = useState<boolean>(false)
+
+  // 副本事件方案列表为全局持久化数据，从 redux 读取
+  const 副本事件方案列表 = useAppSelector((state) => state?.data?.副本事件方案列表)
+
+  // 当前选中方案（由列表 + 名称派生）
+  const 当前副本事件方案 = useMemo(() => {
+    return (副本事件方案列表 || []).find((item) => item?.方案名称 === 当前副本事件方案名称)
+  }, [副本事件方案列表, 当前副本事件方案名称])
+
+  const 当前副本事件实例列表 = useMemo(() => {
+    return 当前副本事件方案?.事件实例列表 || []
+  }, [当前副本事件方案])
 
   // 当前面板加速值
   const 外部加速值 = useAppSelector((state) => state?.data?.装备信息?.装备基础属性)?.加速等级 || 0
@@ -113,29 +147,41 @@ function 循环模拟() {
     }
   }, [模拟器弹窗展示, 外部奇穴信息, 外部加速值, 外部秘籍信息, 增益数据, 外部增益启用])
 
-  const 打开循环模拟器 = () => {
+  const 打开循环模拟器 = useCallback(() => {
+    更新模拟器弹窗展示(true)
     数据埋点('打开循环模拟器')
-  }
+  }, [])
+
+  useEffect(() => {
+    注册行为('打开循环模拟', 打开循环模拟器)
+    return () => 注销行为('打开循环模拟')
+  }, [打开循环模拟器])
 
   const CycleComponent = useMemo(() => {
     const CycleMap = {
+      北傲诀: 北傲诀循环模拟,
+      笑尘诀: 笑尘诀循环模拟,
       山海心诀: 山海心诀循环模拟,
       孤锋诀: 孤锋诀循环模拟,
       孤锋诀_悟: 孤锋诀_悟循环模拟,
       周天功: 周天功循环模拟,
       周天功_悟: 周天功_悟循环模拟,
+      傲血战意: 傲血战意循环模拟,
       凌海诀: 凌海诀循环模拟,
       无方: 无方循环模拟,
       无方_悟: 无方_悟循环模拟,
+      紫霞功: 紫霞功循环模拟,
+      冰心诀: 冰心诀循环模拟,
       花间游: 花间游循环模拟,
       幽罗引: 幽罗引循环模拟,
       易筋经: 易筋经循环模拟,
       毒经: 毒经循环模拟,
       太玄经: 太玄经循环模拟,
       分山劲: 分山劲循环模拟,
+      分山劲_悟: 分山劲_悟循环模拟,
       天罗诡道: 天罗诡道循环模拟,
       太玄经_悟: 太玄经_悟循环模拟,
-      // 焚影圣诀: <焚影圣诀循环模拟 打开循环模拟器={打开循环模拟器} />,
+      焚影圣诀: 焚影圣诀循环模拟,
     }
     return CycleMap[名称] || <></>
   }, [名称])
@@ -144,64 +190,79 @@ function 循环模拟() {
     <>
       {模拟器弹窗展示 ? (
         <React.Suspense>
-          <CycleSimulatorContext.Provider
-            value={{
-              日志信息,
-              更新日志信息,
-              模拟DPS结果,
-              更新模拟DPS结果,
-              模拟器弹窗展示,
-              更新模拟器弹窗展示,
-              cycle,
-              setCycle,
-              大橙武模拟,
-              加速值,
-              更新加速值,
-              网络延迟,
-              更新网络延迟,
-              启用团队增益快照,
-              更新启用团队增益快照,
-              奇穴信息,
-              更新奇穴信息,
-              奇穴弹窗展示,
-              更新奇穴弹窗展示,
-              自定义循环保存弹窗,
-              设置自定义循环保存弹窗,
-              添加技能弹窗显示,
-              更新添加技能弹窗显示,
-              添加设置,
-              更新添加设置,
-              起手Buff配置,
-              更新起手Buff配置,
-              秘籍信息,
-              更新秘籍信息,
-              增益启用,
-              更新增益启用,
-              高亮团队快照,
-              更新高亮团队快照,
-              截图模式,
-              设置截图模式,
-            }}
-          >
-            <CycleComponent 打开循环模拟器={打开循环模拟器} />
-            {/* {CycleComponent} */}
-          </CycleSimulatorContext.Provider>
+          <战斗曲线联动Provider>
+            <CycleSimulatorContext.Provider
+              value={{
+                日志信息,
+                更新日志信息,
+                模拟DPS结果,
+                更新模拟DPS结果,
+                模拟器弹窗展示,
+                更新模拟器弹窗展示,
+                cycle,
+                setCycle,
+                大橙武模拟,
+                加速值,
+                更新加速值,
+                网络延迟,
+                更新网络延迟,
+                启用团队增益快照,
+                更新启用团队增益快照,
+                奇穴信息,
+                更新奇穴信息,
+                奇穴弹窗展示,
+                更新奇穴弹窗展示,
+                自定义循环保存弹窗,
+                设置自定义循环保存弹窗,
+                添加技能弹窗显示,
+                更新添加技能弹窗显示,
+                添加设置,
+                更新添加设置,
+                起手Buff配置,
+                更新起手Buff配置,
+                秘籍信息,
+                更新秘籍信息,
+                增益启用,
+                更新增益启用,
+                高亮团队快照,
+                更新高亮团队快照,
+                截图模式,
+                设置截图模式,
+                团队快照容器,
+                设置团队快照容器,
+                当前副本事件方案名称,
+                更新当前副本事件方案名称,
+                当前副本事件方案,
+                当前副本事件实例列表,
+                副本事件编辑器展示,
+                更新副本事件编辑器展示,
+                循环技能拖拽中,
+                更新循环技能拖拽中,
+              }}
+            >
+              <CycleComponent 打开循环模拟器={打开循环模拟器} />
+              {/* {CycleComponent} */}
+            </CycleSimulatorContext.Provider>
+          </战斗曲线联动Provider>
         </React.Suspense>
       ) : null}
       <Button
         danger
-        size='small'
+        id='Guide_循环模拟'
+        className={'cycle-cycle-btn'}
         onClick={() => {
-          更新模拟器弹窗展示(true)
           打开循环模拟器()
         }}
+        // type='primary'
       >
+        {/* <img className={'cycle-cycle-btn-img'} src='https://icon.jx3box.com/icon/17411.png' /> */}
         循环模拟
       </Button>
     </>
   ) : (
     <Tooltip title='该心法暂不支持循环模拟功能'>
-      <Button danger size='small' disabled className={'cycle-disabled-btn'}>
+      <Button danger disabled className={'cycle-cycle-btn'}>
+        {/* <img className={'cycle-cycle-btn-img'} src='https://icon.jx3box.com/icon/17411.png' /> */}
         循环模拟
       </Button>
     </Tooltip>

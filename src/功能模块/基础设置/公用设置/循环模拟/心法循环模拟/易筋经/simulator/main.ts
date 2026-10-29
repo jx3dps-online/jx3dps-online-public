@@ -27,7 +27,8 @@ import {
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
 import { 获取加速等级, 获取实际帧数 } from '@/工具函数/data'
 import { 团队增益轴类型 } from '@/@types/团队增益'
-import 判断团队增益快照Buff from '@/数据/团队增益/tools'
+import { 副本事件实例类型 } from '@/@types/副本事件'
+import 判断团队增益快照Buff, { 判断副本事件快照Buff } from '@/数据/团队增益/tools'
 
 import 普渡四方 from './技能类/普渡四方'
 import 韦陀献杵 from './技能类/韦陀献杵'
@@ -51,6 +52,7 @@ import { 选中秘籍信息 } from '@/@types/秘籍'
 import 特效腰坠 from '../../通用/通用技能/特效腰坠'
 import { 基础GCD帧 } from '../constant'
 import { 每秒郭氏帧 } from '@/数据/常量'
+import 获取技能等级信息 from '@/数据/数据工具/获取技能等级信息'
 
 const { 技能系数 } = 获取当前数据()
 
@@ -67,6 +69,7 @@ export interface SimulatorCycleProps {
   启用血量消耗计算?: boolean
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
+  副本事件实例列表?: 副本事件实例类型[]
   起手Buff配置?: 起手Buff配置
 }
 
@@ -103,6 +106,7 @@ class 循环主类 {
   启用团队增益快照 = false
   启用斩杀 = false
   团队增益轴: 团队增益轴类型 = {}
+  副本事件实例列表: 副本事件实例类型[] = []
   启用血量消耗计算 = false
 
   // 初始化创建
@@ -118,6 +122,7 @@ class 循环主类 {
     this.网络延迟 = props.网络延迟
     this.启用团队增益快照 = !!props.启用团队增益快照
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
+    this.副本事件实例列表 = props.副本事件实例列表 ? props.副本事件实例列表 : []
     // 根据奇穴和装备情况修改buff的数据
     this.Buff和Dot数据 = 根据奇穴修改buff数据(this.奇穴, this.秘籍)
     // 根据奇穴和装备情况修改技能的数据
@@ -380,13 +385,10 @@ class 循环主类 {
   // 添加战斗日志
   添加战斗日志(log: 循环日志数据类型) {
     const { 日志时间 = this.当前时间, ...rest } = log
-    this.战斗日志 = [
-      ...(this.战斗日志 || []),
-      {
-        日志时间: 日志时间,
-        ...rest,
-      },
-    ]
+    this.战斗日志.push({
+      日志时间: 日志时间,
+      ...rest,
+    })
   }
 
   // 造成伤害
@@ -399,7 +401,10 @@ class 循环主类 {
     技能等级 = 1,
     快照检测Buff列表: string[] = [],
   ) {
-    const 当前技能数据 = 技能系数?.find((item) => item.技能名称 === 来源)
+    const 当前技能数据 = 获取技能等级信息(
+      技能系数?.find((item) => item.技能名称 === 来源),
+      技能等级,
+    )
     const 技能增益列表 = 当前技能数据?.技能增益列表 || []
 
     const 有关的buff列表 =
@@ -447,10 +452,12 @@ class 循环主类 {
     }
 
     if (this.启用团队增益快照) {
-      const 团队增益buff列表 = 判断团队增益快照Buff({
-        团队增益轴: this.团队增益轴,
-        判定帧: this.当前时间 || 0,
-      })
+      const 团队增益buff列表 = this.副本事件实例列表?.length
+        ? 判断副本事件快照Buff(this.副本事件实例列表, this.当前时间 || 0)
+        : 判断团队增益快照Buff({
+            团队增益轴: this.团队增益轴,
+            判定帧: this.当前时间 || 0,
+          })
       if (团队增益buff列表?.length) {
         总增益列表 = 总增益列表?.concat(团队增益buff列表)
       }
@@ -458,7 +465,7 @@ class 循环主类 {
 
     if (!隐藏日志) {
       this.添加战斗日志({
-        日志: 来源,
+        日志: 当前技能数据.技能名称 || 来源,
         日志类型: '造成伤害',
         日志时间: 造成时间,
         buff列表: 总增益列表 || [],
@@ -779,8 +786,8 @@ class 循环主类 {
 
   // 其他调用函数，供外层调用
   // 模拟函数，一个技能的释放生命周期
-  模拟() {
-    for (let i = 0; i < this.测试循环.length; i++) {
+  模拟(起始索引 = 0) {
+    for (let i = 起始索引; i < this.测试循环.length; i++) {
       if (i === 0) {
         // this.技能类实例集合.心络.初始化心络(this.起手回能帧)
       }

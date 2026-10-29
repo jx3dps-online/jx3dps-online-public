@@ -8,6 +8,7 @@ interface AddCycleSkillModalProps {
   处理循环结果对象: { 完整循环: 循环基础技能数据类型[] }
   模拟信息: 模拟信息类型
   大橙武模拟: boolean
+  盾压重置方式?: '期望' | '概率' | '手动'
   奇穴信息: string[]
   添加设置: { 位置: string; 索引 }
   添加技能弹窗显示: boolean
@@ -20,6 +21,7 @@ function AddCycleSkillModal(props: AddCycleSkillModalProps) {
     处理循环结果对象,
     模拟信息,
     大橙武模拟,
+    盾压重置方式,
     添加设置,
     添加技能弹窗显示,
     关闭弹窗,
@@ -48,6 +50,7 @@ function AddCycleSkillModal(props: AddCycleSkillModalProps) {
         处理循环结果对象={处理循环结果对象}
         模拟信息={模拟信息}
         大橙武模拟={大橙武模拟}
+        盾压重置方式={盾压重置方式}
         奇穴信息={奇穴信息}
         插入技能
       />

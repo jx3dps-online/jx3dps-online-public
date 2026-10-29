@@ -1,0 +1,363 @@
+/*! 分山劲「分山绝云宏」系列攻略共用排版：主题色 #c14c11（分山劲）
+    风格约定：简约 + 少量主题色装饰；不用深色大块，不照搬无方 */
+.content {
+  --fsj-accent: #c14c11;
+  --fsj-accent-deep: #a03c0e;
+  --fsj-line: rgba(193, 76, 17, 0.18);
+  --fsj-soft: rgba(193, 76, 17, 0.05);
+  --fsj-ink: rgba(0, 0, 0, 0.88);
+
+  counter-reset: fsj-section;
+  font-size: 14px;
+  color: var(--fsj-ink);
+
+  p {
+    margin: 0 0 10px;
+    line-height: 1.85;
+  }
+
+  a {
+    color: var(--fsj-accent);
+  }
+
+  /* 来源信息卡：复用「标签」组件，三行结构：作者 / 攻略站 / 群号 */
+  .source {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 0 14px;
+    padding: 10px 14px;
+    border: 1px solid var(--fsj-line);
+    border-radius: 8px;
+
+    a {
+      text-decoration: none;
+    }
+
+    .groups {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
+
+  /* 文章大标题 */
+  h1 {
+    margin: 0 0 16px;
+    padding: 14px 16px;
+    border: 1px solid var(--fsj-line);
+    border-left: 4px solid var(--fsj-accent);
+    border-radius: 8px;
+    background: var(--fsj-soft);
+    color: var(--fsj-accent-deep);
+    font-size: 20px;
+    font-weight: 650;
+    line-height: 1.5;
+  }
+
+  /* 小节标题：左竖条 + 自动编号（01 / 02 …） */
+  h3 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0 12px;
+    padding-left: 10px;
+    border-left: 3px solid var(--fsj-accent);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    counter-increment: fsj-section;
+
+    &::before {
+      content: counter(fsj-section, decimal-leading-zero);
+      color: rgba(193, 76, 17, 0.5);
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 1px;
+    }
+  }
+
+  h4 {
+    margin: 16px 0 8px;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+
+  /* 要点列表：主题色圆点 + 粗体标签上色 */
+  ul {
+    margin: 0 0 12px;
+    padding-left: 4px;
+    list-style: none;
+
+    li {
+      position: relative;
+      margin-bottom: 6px;
+      padding-left: 16px;
+      line-height: 1.85;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 10px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--fsj-accent);
+        opacity: 0.55;
+      }
+
+      b {
+        color: var(--fsj-accent);
+      }
+
+      ul {
+        margin: 6px 0 0;
+        padding-left: 14px;
+      }
+    }
+  }
+
+  ol {
+    margin: 0 0 12px;
+    padding-left: 22px;
+
+    li {
+      margin-bottom: 6px;
+      line-height: 1.85;
+
+      &::marker {
+        color: var(--fsj-accent);
+        font-weight: 600;
+      }
+    }
+  }
+
+  /* 折叠块：原生 details/summary，箭头旋转指示 */
+  details {
+    margin: 12px 0;
+    border: 1px solid var(--fsj-line);
+    border-radius: 8px;
+    background: #fff;
+
+    summary {
+      display: flex;
+      align-items: center;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--fsj-ink);
+      list-style: none;
+      user-select: none;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::before {
+        content: '▸';
+        margin-right: 8px;
+        color: var(--fsj-accent);
+        transition: transform 0.15s ease;
+      }
+
+      &:hover {
+        color: var(--fsj-accent-deep);
+      }
+    }
+
+    > :not(summary) {
+      margin-left: 12px;
+      margin-right: 12px;
+    }
+
+    > :not(summary):last-child {
+      margin-bottom: 12px;
+    }
+  }
+
+  details[open] {
+    border-color: rgba(193, 76, 17, 0.32);
+    background: var(--fsj-soft);
+
+    summary {
+      border-bottom: 1px dashed var(--fsj-line);
+
+      &::before {
+        transform: rotate(90deg);
+      }
+    }
+
+    > :not(summary):first-of-type {
+      margin-top: 12px;
+    }
+  }
+
+  /* 高亮条：blockquote 默认为提示，加 .warning 变警告色 */
+  blockquote {
+    margin: 12px 0;
+    padding: 10px 14px;
+    border-left: 3px solid var(--fsj-accent);
+    border-radius: 0 8px 8px 0;
+    background: var(--fsj-soft);
+    color: rgba(0, 0, 0, 0.82);
+
+    p {
+      margin: 0;
+    }
+
+    p + p {
+      margin-top: 8px;
+    }
+  }
+
+  .warning {
+    border-left-color: #d8892b;
+    background: #fdf6e9;
+    color: #7a5a20;
+  }
+
+  .danger {
+    border-left-color: #cf3f3f;
+    background: #fdf0f0;
+    color: #8f2f2f;
+  }
+
+  /* 行内高亮：mark = 重点标记 */
+  mark {
+    padding: 0 4px;
+    border-radius: 4px;
+    background: rgba(193, 76, 17, 0.12);
+    color: var(--fsj-accent-deep);
+    font-weight: 600;
+  }
+
+  /* 按键：kbd = 游戏键位说明 */
+  kbd {
+    padding: 1px 6px;
+    border: 1px solid #d9d9d9;
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    background: #fafafa;
+    color: rgba(0, 0, 0, 0.75);
+    font-family: inherit;
+    font-size: 12px;
+  }
+
+  code {
+    padding: 2px 6px;
+    background: rgba(193, 76, 17, 0.07);
+    border: 1px solid rgba(193, 76, 17, 0.16);
+    border-radius: 5px;
+    color: var(--fsj-accent-deep);
+    font-family: 'Cascadia Code', Consolas, 'Courier New', 'Microsoft YaHei', monospace;
+    font-size: 12.5px;
+    word-break: break-all;
+  }
+
+  /* 代码块：字体统一等宽；仅顶层 pre 有浅彩底，宏等组件内部的 pre 保持单框 */
+  pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    font-family: 'Cascadia Code', Consolas, 'Courier New', 'Microsoft YaHei', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+
+    code {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font-size: inherit;
+    }
+  }
+
+  > pre {
+    margin: 12px 0;
+    padding: 12px 14px;
+    background: #fbf2ed;
+    border: 1px solid var(--fsj-line);
+    border-radius: 8px;
+    overflow-x: auto;
+    color: #6b4232;
+  }
+
+  /* 宏块外框与代码块同色系（:has 现代浏览器可用，不支持时降级为组件默认灰底） */
+  div:has(> pre) {
+    background: #fbf2ed;
+    border: 1px solid var(--fsj-line);
+    border-radius: 8px;
+  }
+
+  /* 表格：朴素细线，无背景色 */
+  table {
+    width: 100%;
+    margin: 12px 0;
+    border-collapse: collapse;
+    font-size: 13px;
+
+    th,
+    td {
+      padding: 7px 10px;
+      border: 1px solid #e5e5e5;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      font-weight: 600;
+    }
+  }
+
+  /* 分割线：两端渐隐 */
+  hr {
+    margin: 20px 0;
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(193, 76, 17, 0.35), transparent);
+  }
+
+  /* 图注 */
+  figcaption {
+    margin: -4px 0 14px;
+    text-align: center;
+    font-size: 12.5px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  input[type='checkbox'] {
+    accent-color: var(--fsj-accent);
+  }
+
+  :global(.ant-image) {
+    display: block;
+    margin: 10px auto 14px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  /* 视频模块兜底：iframe 不超出栏宽 */
+  iframe {
+    display: block;
+    max-width: 100%;
+    border: 0;
+  }
+
+  /* 提示行：虚线注释样式 */
+  .hint {
+    margin: -4px 0 14px;
+    padding: 6px 12px;
+    background: rgba(193, 76, 17, 0.04);
+    border: 1px dashed rgba(193, 76, 17, 0.3);
+    border-radius: 6px;
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}

@@ -4,10 +4,13 @@
 
 import 循环主类 from './main'
 import type { SimulatorCycleProps } from './main'
+import { 执行宏标记循环 } from '../../通用/宏解释/通用/宏循环回放'
 
 const 模拟循环 = (props: SimulatorCycleProps) => {
   const 模拟实例 = new 循环主类(props)
-  模拟实例.模拟()
+  执行宏标记循环(模拟实例)
+
+  模拟实例.解析伤害装备()
 
   模拟实例.日志排序()
 
@@ -16,6 +19,9 @@ const 模拟循环 = (props: SimulatorCycleProps) => {
 
   return {
     最终日志: 模拟实例.战斗日志,
+    当前武器ID: 模拟实例.当前武器ID,
+    当前武器为橙武: 模拟实例.大橙武模拟,
+    武器切换记录: 模拟实例.武器切换记录,
     当前自身buff列表: 模拟实例.当前自身buff列表,
     当前目标buff列表: 模拟实例.当前目标buff列表,
     角色状态信息: 模拟实例.角色状态信息,

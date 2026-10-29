@@ -36,3 +36,12 @@
 .fumo-name-blue {
   color: rgb(0, 126, 255);
 }
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .fumo-select.ant-select.ant-select-in-form-item {
+    width: 100%;
+  }
+  .fumo-diff-right {
+    margin-left: 8px;
+  }
+}

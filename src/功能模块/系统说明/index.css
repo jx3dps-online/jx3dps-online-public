@@ -15,3 +15,36 @@
 .service-tip {
   margin-left: 0px;
 }
+@media (min-width: 761px) {
+  .title-tip {
+    right: 24px;
+    height: 36px;
+    align-items: center;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .title-tip > * {
+    flex-shrink: 0;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 900px) {
+  .title-tip {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .title-tip {
+    position: static;
+    order: 10;
+    display: block;
+    width: 100%;
+    padding: 8px 48px 8px 4px;
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+  }
+}

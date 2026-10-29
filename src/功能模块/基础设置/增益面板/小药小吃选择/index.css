@@ -19,7 +19,6 @@
   flex: 1;
 }
 
-
 .xiaochi-diff-item {
   display: flex;
   align-items: center;
@@ -38,10 +37,22 @@
   border-radius: 4px;
 }
 
+.xiaochi-jin {
+  color: #f90;
+}
+
 .xiaochi-zi {
-  color:#ff2dff
+  color: #ff2dff;
 }
 
 .xiaochi-lan {
-  color: rgb(0, 126, 255)
+  color: rgb(0, 126, 255);
+}
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .zengyi-xiaochi-title {
+    flex-shrink: 0;
+  }
+  .zengyi-xiaochi-select {
+    min-width: 0;
+  }
 }

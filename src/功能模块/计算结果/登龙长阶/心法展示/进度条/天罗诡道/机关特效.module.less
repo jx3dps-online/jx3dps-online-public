@@ -1,0 +1,362 @@
+.特效 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+.阶段 {
+  transition: opacity 1.3s ease;
+}
+.薄雾 ellipse {
+  opacity: 0.45;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.气缕 {
+  opacity: 0.35;
+  transform-box: view-box;
+  transform-origin: 57% 50%;
+}
+.柔光 {
+  filter: blur(6px);
+  opacity: 0.6;
+}
+.翼纹,
+.导槽,
+.电弧,
+.轨光 {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.翼纹 path {
+  stroke: #d0e9ff;
+  stroke-width: 1.5;
+  stroke-dasharray: 12 88;
+  opacity: 0.25;
+}
+.导槽 path {
+  stroke: #d4caff;
+  stroke-width: 2.4;
+  stroke-dasharray: 16 84;
+  opacity: 0.55;
+}
+.流光,
+.火星,
+.蓄能,
+.轨光,
+.尖芒,
+.散星 {
+  opacity: 0;
+}
+.呼吸 {
+  opacity: 0.4;
+}
+.转轮,
+.内环 {
+  transform-origin: 0 0;
+}
+.金环,
+.内环,
+.环光 {
+  fill: none;
+  stroke-width: 1.8;
+}
+.金环 {
+  stroke: #f1dbab;
+  stroke-dasharray: 25 15 4 15;
+  opacity: 0.65;
+}
+.内环 {
+  stroke: #c9e6ff;
+  stroke-dasharray: 12 28;
+  opacity: 0.5;
+}
+.环光 {
+  stroke: #fff0d0;
+  stroke-width: 2.4;
+}
+.光点 {
+  fill: #fff4de;
+  filter: drop-shadow(0 0 4px #9fcfff);
+}
+.电弧 {
+  stroke: #d9eeff;
+  stroke-width: 1.7;
+  opacity: 0.2;
+}
+.火星,
+.散星 {
+  fill: #cce6ff;
+}
+.轨光 {
+  stroke: #e6edff;
+  stroke-width: 3;
+  stroke-dasharray: 12 88;
+  stroke-dashoffset: 12;
+}
+.尖芒 path {
+  stroke: #e5f4ff;
+  stroke-width: 1.4;
+}
+.正在达成 .传光 {
+  visibility: hidden;
+}
+.特效[data-active='false'] .阶段 {
+  transition: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .特效[data-active='true'] {
+    .薄雾 ellipse {
+      animation: tlgd-mist 7.8s ease-in-out -1.8s infinite;
+      &:nth-child(2) {
+        animation-duration: 9.6s;
+        animation-delay: -5s;
+      }
+      &:nth-child(3) {
+        animation-duration: 8.6s;
+        animation-delay: -3.6s;
+      }
+    }
+    .气缕 {
+      animation: tlgd-wisp 5.6s ease-out infinite;
+      animation-delay: calc(var(--tlgd-index) * -1.86s);
+    }
+    .翼纹 path {
+      animation: tlgd-wing 4.8s ease-out infinite;
+      animation-delay: calc(var(--tlgd-index) * -1.6s);
+    }
+    .导槽 path {
+      animation: tlgd-channel 4.8s linear infinite;
+      &:nth-child(2) {
+        animation-delay: -1.6s;
+      }
+      &:nth-child(3) {
+        animation-delay: -3.2s;
+      }
+    }
+    .流光 {
+      animation: tlgd-scan 7.2s ease-in-out -2s infinite;
+    }
+    .呼吸 {
+      animation: tlgd-core 5.8s ease-in-out -1.4s infinite;
+    }
+    .转轮 {
+      animation: tlgd-wheel 18s linear infinite;
+    }
+    .内环 {
+      animation: tlgd-wheel 25s linear reverse infinite;
+    }
+    .电弧 {
+      animation: tlgd-arc 5.6s ease-in-out -1.2s infinite;
+    }
+    .火星 {
+      animation: tlgd-spark 4.6s ease-out var(--tlgd-delay) infinite;
+    }
+    .传光 {
+      .蓄能 {
+        animation: tlgd-charge 8.4s ease-in-out infinite;
+      }
+      .轨光 {
+        animation: tlgd-transfer 8.4s ease-in-out infinite;
+      }
+      .尖芒 {
+        animation: tlgd-tip 8.4s ease-in-out infinite;
+      }
+    }
+    .达成 {
+      animation: tlgd-complete 3.6s linear both;
+      .蓄能 {
+        animation: tlgd-charge 3.6s ease-in-out both;
+      }
+      .轨光 {
+        animation: tlgd-transfer 3.6s ease-in-out both;
+      }
+      .尖芒 {
+        animation: tlgd-tip 3.6s ease-in-out both;
+      }
+      .散星 {
+        animation: tlgd-scatter 1.3s ease-out 1.8s both;
+      }
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .阶段 {
+    transition: none;
+  }
+}
+@keyframes tlgd-mist {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: translate(6px, 1px) scale(0.95);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(-10px, -3px) scale(1.03);
+  }
+}
+@keyframes tlgd-wisp {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.92);
+  }
+  25% {
+    opacity: 0.85;
+  }
+  65% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-24px, -2px) scale(1.04, 0.98);
+  }
+}
+@keyframes tlgd-wing {
+  0% {
+    stroke-dashoffset: 12;
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.8;
+  }
+  64% {
+    opacity: 0.4;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+@keyframes tlgd-channel {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+@keyframes tlgd-scan {
+  0%,
+  12% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  28%,
+  68% {
+    opacity: 0.5;
+  }
+  88%,
+  100% {
+    transform: translateX(1180px);
+    opacity: 0;
+  }
+}
+@keyframes tlgd-core {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+@keyframes tlgd-wheel {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes tlgd-arc {
+  0%,
+  34%,
+  61%,
+  100% {
+    opacity: 0;
+  }
+  43% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.26;
+  }
+  55% {
+    opacity: 0.68;
+  }
+}
+@keyframes tlgd-spark {
+  0%,
+  14% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5);
+  }
+  30% {
+    opacity: 0.8;
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: translate(var(--tlgd-x), var(--tlgd-y)) scale(0.2);
+  }
+}
+@keyframes tlgd-charge {
+  0%,
+  35%,
+  100% {
+    opacity: 0;
+  }
+  16% {
+    opacity: 0.9;
+  }
+}
+@keyframes tlgd-transfer {
+  0%,
+  16% {
+    stroke-dashoffset: 12;
+    opacity: 0;
+  }
+  23% {
+    opacity: 0.95;
+  }
+  52% {
+    stroke-dashoffset: -88;
+    opacity: 0.9;
+  }
+  60%,
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+@keyframes tlgd-tip {
+  0%,
+  48%,
+  76%,
+  100% {
+    opacity: 0;
+  }
+  57% {
+    opacity: 0.95;
+  }
+}
+@keyframes tlgd-complete {
+  0%,
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes tlgd-scatter {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  18% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(20px, calc(var(--tlgd-direction) * 12px));
+  }
+}

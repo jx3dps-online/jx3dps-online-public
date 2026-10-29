@@ -1,131 +1,236 @@
-.cycle {
-  border: 2px solid #ddd;
-  margin: 12px 0;
-  padding: 8px;
+.弹窗 {
+  :global(.ant-modal-body) {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100dvh - 180px);
+  }
+}
+
+.工具栏 {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  background: #f7f9fc;
+  border: 1px solid #e8edf3;
   border-radius: 8px;
-
-  // &.baseline {
-  //   border-color: var(--ant-primary-color);
-  //   background-color: #f0f0f0;
-  // }
 }
 
-.cycleTitle {
-  border-bottom: 1px solid #ddd;
-  background: #fff;
-  line-height: 24px;
-  font-size: 18px;
-  margin-bottom: 12px;
-  padding: 8px 8px 12px;
+.说明 {
+  margin: 0 0 12px;
+  color: #434b58;
+}
+
+.操作行,
+.序列开关,
+.循环标题,
+.循环操作,
+.参数 {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 8px;
 }
 
-.cycleTitleWrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.cycleTitleIcon {
-  color: #d4380d;
-}
-
-.checkboxGroup {
-  display: flex;
-  align-items: center;
+.操作行 {
   flex-wrap: wrap;
-  padding: 0 8px;
+  gap: 12px;
 }
 
-.checkbox {
-  width: calc((100% - 16px) / 2);
-  height: 42px;
-  line-height: 42px;
-  font-size: 16px;
-  display: inline-flex;
-  border: 1px solid #ddd;
-  padding: 0 12px;
+.序列开关 {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.提示 {
+  margin: 10px 0 0;
+  color: #7c8593;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.循环列表 {
+  min-height: 0;
+  overflow-y: auto;
+  margin-top: 12px;
+  padding-right: 6px;
+  scrollbar-gutter: stable;
+}
+
+.循环 {
+  border: 1px solid #e4e8ee;
+  padding: 16px;
   border-radius: 8px;
-  margin: 8px 0;
-  transition: 0.2s;
 
-  &:hover,
-  &:global(.ant-checkbox-wrapper-checked) {
-    background-color: var(--ant-primary-color);
-    .title,
-    .value {
-      color: #fff !important;
-    }
-
-    .subText {
-      color: rgba(255, 255, 255, 0.6);
-    }
+  & + & {
+    margin-top: 12px;
   }
 }
 
-.wrap {
-  display: inline-flex;
-  height: 32px;
-  line-height: 32px;
-}
-
-.wrap + .wrap {
-  margin-left: 24px;
-}
-
-.title {
-  color: var(--ant-primary-color);
-  margin-right: 4px;
-  width: 80px;
-  transition: 0.2s;
-}
-
-.value {
-  font-weight: 500;
-  color: #000;
-  display: inline-flex;
+.循环头部 {
+  display: flex;
   align-items: center;
-  min-width: 70px;
-  transition: 0.2s;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
-.subText {
-  color: #999;
-  margin-left: 6px;
-  transition: 0.2s;
+.循环标题 {
+  flex-wrap: wrap;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+
+  :global(.ant-tag) {
+    margin: 0;
+    font-weight: 400;
+  }
 }
 
-.tag {
-  color: #fff;
-  text-align: center;
-  padding: 0 8px;
-  border-radius: 4px;
+.档位数量 {
+  color: #8c95a3;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.循环操作 {
+  flex-shrink: 0;
+  gap: 4px;
+}
+
+.循环选项 {
+  margin: 0;
+}
+
+.档位列表 {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.档位 {
+  margin: 0;
+  padding: 10px 12px;
+  min-height: 44px;
+  border: 1px solid #e5e8ed;
+  border-radius: 6px;
+  align-items: center;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+
+  & > span:last-child {
+    flex: 1;
+    min-width: 0;
+    padding-right: 0;
+  }
+
+  &:hover {
+    background: #fafbfd;
+    border-color: #becbdc;
+  }
+
+  &:global(.ant-checkbox-wrapper-checked) {
+    background: color-mix(in srgb, var(--ant-primary-color, #365e9f) 6%, #fff);
+    border-color: color-mix(in srgb, var(--ant-primary-color, #365e9f) 35%, #fff);
+  }
+}
+
+.档位内容 {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.档位参数 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  font-size: 16px;
+}
+
+.参数 {
+  min-width: 0;
+  gap: 6px;
   line-height: 24px;
-  height: 24px;
-  display: inline-block;
-  &.tag_0 {
-    background: #4d4d4d;
+}
+
+.参数名,
+.延迟说明 {
+  color: #7c8593;
+  font-size: 14px;
+}
+
+.参数名,
+.延迟标记 {
+  flex-shrink: 0;
+}
+
+.参数值 {
+  min-width: 0;
+  color: #303846;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.延迟标记 {
+  min-width: 20px;
+  padding: 0 4px;
+  border-radius: 4px;
+  text-align: center;
+  background: #f0f1f3;
+  color: #626b78;
+
+  &.延迟_1 {
+    background: #f0f7e9;
+    color: #527e2b;
   }
 
-  &.tag_1 {
-    background: #389e0d;
+  &.延迟_2 {
+    background: #eaf2fc;
+    color: #386da6;
   }
 
-  &.tag_2 {
-    background: #096dd9;
+  &.延迟_3 {
+    background: #fff0e8;
+    color: #b86b37;
   }
 
-  &.tag_3 {
-    background: #d4380d;
+  &.延迟_4 {
+    background: #e8f5f4;
+    color: #35857f;
   }
 
-  &.tag_4 {
-    background: #05888f;
+  &.延迟_5 {
+    background: #f4edfa;
+    color: #8654aa;
+  }
+}
+
+.快照 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: #8c95a3;
+  font-size: 12px;
+
+  strong {
+    color: #58677b;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (max-width: 800px) {
+  .档位列表 {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  &.tag_5 {
-    background: #8b0dd4;
+  .循环头部 {
+    flex-wrap: wrap;
+  }
+
+  .序列开关 {
+    margin-left: 0;
   }
 }

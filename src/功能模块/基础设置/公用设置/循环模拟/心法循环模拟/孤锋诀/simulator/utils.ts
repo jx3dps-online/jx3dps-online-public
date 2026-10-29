@@ -37,6 +37,13 @@ export const 根据奇穴修改buff数据 = (奇穴: string[], 加速值) => {
           obj.最大层数 = 4
         }
         break
+      case '洄涛':
+        if (判断奇穴('洄涛')) {
+          obj.最大层数 = 24
+        } else {
+          obj.最大层数 = 4
+        }
+        break
       default:
         break
     }

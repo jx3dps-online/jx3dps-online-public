@@ -1,0 +1,320 @@
+@upColor: hsl(140, 60%, 40%);
+@downColor: #f34242;
+@textColor: rgba(0, 0, 0, 0.88);
+@textSecondary: rgba(0, 0, 0, 0.45);
+@textTertiary: rgba(0, 0, 0, 0.25);
+@borderColor: #f0f0f0;
+
+.汇总 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border: 1px solid @borderColor;
+  border-radius: 10px;
+  background: #fafafa;
+  font-variant-numeric: tabular-nums;
+}
+
+.提升 {
+  border-color: fade(@upColor, 22%);
+  background: linear-gradient(135deg, fade(@upColor, 9%), fade(@upColor, 2%));
+
+  .差值 {
+    color: @upColor;
+  }
+}
+
+.下降 {
+  border-color: fade(@downColor, 22%);
+  background: linear-gradient(135deg, fade(@downColor, 8%), fade(@downColor, 2%));
+
+  .差值 {
+    color: @downColor;
+  }
+}
+
+.标签 {
+  font-size: 12px;
+  line-height: 18px;
+  color: @textSecondary;
+}
+
+.秒伤区 {
+  min-width: 0;
+}
+
+.秒伤行 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 10px;
+}
+
+.新秒伤 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  color: @textColor;
+}
+
+.差值 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.原秒伤 {
+  font-size: 12px;
+  line-height: 18px;
+  color: @textSecondary;
+}
+
+.副指标区 {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.副指标 {
+  padding: 0 16px;
+
+  & + & {
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.副指标值 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+  color: @textColor;
+  white-space: nowrap;
+
+  .旧值 {
+    font-size: 13px;
+    font-weight: 400;
+  }
+}
+
+.列表区 {
+  max-height: 56vh;
+  margin: 12px -8px 0 0;
+  padding-right: 8px;
+  overflow-y: auto;
+}
+
+.部位行 {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 12px;
+  padding: 8px 0;
+
+  & + & {
+    border-top: 1px solid @borderColor;
+  }
+}
+
+.部位名 {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 36px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.变更区 {
+  min-width: 0;
+}
+
+.换装 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.装备 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 36px;
+  padding: 0 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.空装备 {
+  font-size: 13px;
+  color: @textTertiary;
+  cursor: default;
+
+  &:hover {
+    background: none;
+  }
+}
+
+.图标 {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.装备信息 {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.名称,
+.品级 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.名称 {
+  font-size: 13px;
+  line-height: 18px;
+  color: @textColor;
+}
+
+.橙武名 {
+  font-weight: 600;
+  color: #d46b08;
+}
+
+.品级 {
+  font-size: 12px;
+  line-height: 16px;
+  color: @textSecondary;
+}
+
+.旧装备 {
+  .图标 {
+    opacity: 0.5;
+    filter: grayscale(0.4);
+  }
+
+  .名称 {
+    color: @textSecondary;
+    text-decoration: line-through;
+  }
+}
+
+.新装备 {
+  .名称 {
+    color: var(--ant-primary-color);
+  }
+
+  .品级 {
+    font-weight: 500;
+  }
+}
+
+.子项列表 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  padding: 6px 0;
+}
+
+.换装 + .子项列表 {
+  padding: 4px 0 0 6px;
+}
+
+.子项 {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  font-size: 13px;
+  line-height: 24px;
+}
+
+.子项类型 {
+  flex-shrink: 0;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 12px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.旧值 {
+  color: @textSecondary;
+  overflow-wrap: anywhere;
+}
+
+.新值 {
+  font-weight: 500;
+  color: @textColor;
+  overflow-wrap: anywhere;
+}
+
+.箭头 {
+  flex-shrink: 0;
+  justify-self: center;
+  font-size: 10px;
+  color: @textTertiary;
+}
+
+.空态 {
+  padding: 24px 0 8px;
+}
+
+.空态提示 {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #fafafa;
+  font-size: 13px;
+}
+
+@media (max-width: 576px) {
+  .汇总 {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 14px;
+  }
+
+  .副指标 {
+    flex: 1;
+    min-width: 0;
+    padding: 0 10px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .部位行 {
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .换装 {
+    grid-template-columns: minmax(0, 1fr) 10px minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .装备 {
+    padding: 0 2px;
+  }
+}

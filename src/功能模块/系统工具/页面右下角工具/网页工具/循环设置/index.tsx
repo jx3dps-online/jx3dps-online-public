@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { App, Button, message, Table } from 'antd'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import useCycle from '@/hooks/use-cycle'
 import { 更新当前自定义循环列表 } from '@/store/data'
 import 导入弹窗 from './导入循环'
@@ -10,9 +10,8 @@ import 循环详情弹窗 from './循环详情弹窗'
 import 合并循环弹窗 from './合并循环弹窗'
 import './index.css'
 
-const { 缓存映射 } = 获取当前数据()
-
 function 循环设置() {
+  const { 缓存映射 } = use心法数据()
   const { modal } = App.useApp()
   const { 全部循环 = [] } = useCycle()
   const [导入弹窗设置, 设置导入弹窗设置] = useState<boolean>(false)
@@ -32,7 +31,7 @@ function 循环设置() {
       'href',
       'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(data)),
     )
-    element.setAttribute('download', '计算器数据迁移.json')
+    element.setAttribute('download', '导出循环.json')
     element.style.display = 'none'
     document.body.appendChild(element)
     element.click()
@@ -61,7 +60,7 @@ function 循环设置() {
       }
     })
     localStorage?.setItem(缓存映射.自定义循环, JSON.stringify(保存信息))
-  }, [自定义循环列表])
+  }, [自定义循环列表, 缓存映射])
 
   return (
     <div>

@@ -42,6 +42,20 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1)
 }
 
+// 仅线上构建需要校验 WASM 产物存在；本地构建（含 build:localWindows / build:portable）
+// 不再删除 public/jcl-wasm 源产物，避免每次打包清空用户已生成的 JCL 解析产物。
+const shouldUseJclWasm =
+  process.env.REACT_APP_BUILD_TYPE !== 'local' ||
+  process.env.REACT_APP_JCL_CONVERTER?.trim() === 'wasm'
+if (shouldUseJclWasm) {
+  const jclWasmManifest = path.join(paths.appPublic, 'jcl-wasm', 'manifest.json')
+  if (!fs.existsSync(jclWasmManifest)) {
+    throw new Error(
+      'public/jcl-wasm 产物不存在，请先准备 JCL 解析产物后再构建',
+    )
+  }
+}
+
 const argv = process.argv.slice(2)
 const writeStatsJson = argv.indexOf('--stats') !== -1
 

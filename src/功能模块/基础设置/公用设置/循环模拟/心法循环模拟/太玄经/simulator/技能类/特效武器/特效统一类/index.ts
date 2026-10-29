@@ -9,6 +9,17 @@ class 特效统一类 extends 有CD技能通用类 {
   static 雷亟_作用次数 = 10
   static 天麟踏星坠_作用次数 = 1
 
+  更新技能运行数据(新数据) {
+    if (
+      this === this.模拟循环.技能类实例集合.召唤麒麟 ||
+      this === this.模拟循环.技能类实例集合.召唤凤凰
+    ) {
+      Object.assign(this.技能运行数据, 新数据)
+    } else {
+      super.更新技能运行数据(新数据)
+    }
+  }
+
   特效NPC存活判定() {
     return !!this.模拟循环.当前自身buff列表['起符']?.当前层数
   }
@@ -21,6 +32,7 @@ class 特效统一类 extends 有CD技能通用类 {
       this.模拟循环.当前时间,
       1,
       this.模拟循环.召唤麒麟快照buff列表,
+      this.模拟循环.召唤麒麟快照装备ID,
     )
   }
 
@@ -57,6 +69,7 @@ class 特效统一类 extends 有CD技能通用类 {
 
   清理快照() {
     this.模拟循环.召唤麒麟快照buff列表 = []
+    this.模拟循环.召唤麒麟快照装备ID = undefined
   }
 }
 

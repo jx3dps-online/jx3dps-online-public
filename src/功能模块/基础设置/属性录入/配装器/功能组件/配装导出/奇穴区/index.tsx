@@ -1,13 +1,12 @@
 import React, { useMemo } from 'react'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { useAppSelector } from '@/hooks'
 import styles from './index.module.less'
-
-const { 奇穴数据 } = 获取当前数据()
 
 const 兜底图片 = 'https://icon.jx3box.com/icon/13.png'
 
 const 奇穴区 = () => {
+  const { 奇穴数据 } = use心法数据()
   const 当前奇穴信息 = useAppSelector((state) => state?.data?.当前奇穴信息)
   const 增益启用 = useAppSelector((state) => state?.data?.增益启用)
 

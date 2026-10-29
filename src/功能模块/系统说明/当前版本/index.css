@@ -92,3 +92,44 @@
   margin-right: 6px;
   width: 16px;
 }
+
+.log-modal-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.log-modal-title-actions {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .log-wrap {
+    position: static;
+    order: -2;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    font-size: 12px;
+    line-height: 24px;
+  }
+  .log-line .ant-timeline-item-content {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .log-right {
+    order: -1;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .log-version {
+    text-align: left;
+  }
+  .log-date {
+    text-align: right;
+  }
+}

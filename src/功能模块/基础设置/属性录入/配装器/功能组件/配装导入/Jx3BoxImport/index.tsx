@@ -1,6 +1,9 @@
-import { Alert, Button, Input, Image, Modal, Spin, message } from 'antd'
+import { getPzDataById } from '@/api'
+import { Alert, Button, Input, Image, Modal, Spin } from 'antd'
 import React, { useState } from 'react'
 import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
+
+import { getEquipData } from './util'
 
 import './index.css'
 import { 数据埋点 } from '@/工具函数/tools/log'
@@ -24,22 +27,20 @@ function Jx3BoxImport({ onOk }) {
     setData(undefined)
     setErrorMsg('')
     const apiId = propsId || id
-    console.log('apiId', apiId)
-    message.warning('开源仓库不包含接口实现，请自行实现')
+    const res: any = await getPzDataById({ id: apiId })
+    setLoading(false)
+    if (!res.code) {
+      const getData = getPzData(res.data)
+      console.log('getData', getData)
+      if (getData?.msg) {
+        setErrorMsg(getData?.msg)
+      } else {
+        setData(getData)
+      }
+    } else {
+      setErrorMsg(res.msg)
+    }
     return
-    // setLoading(false)
-    // if (!res.code) {
-    //   const getData = getPzData(res.data)
-    //   console.log('getData', getData)
-    //   if (getData?.msg) {
-    //     setErrorMsg(getData?.msg)
-    //   } else {
-    //     setData(getData)
-    //   }
-    // } else {
-    //   setErrorMsg(res.msg)
-    // }
-    // return
   }
 
   const handleClickImport = () => {
@@ -139,3 +140,23 @@ function Jx3BoxImport({ onOk }) {
 export default Jx3BoxImport
 
 // 获取配装数据
+const getPzData = (data) => {
+  // 获取展示信息
+  const showData = {
+    display_name: data?.pz_author_info?.display_name,
+    user_avatar: data?.pz_author_info?.user_avatar,
+    title: data?.title,
+  }
+  let equipData = null
+  let msg: any = ''
+  if (data?.snapshot) {
+    const { equip, errorMsg } = getEquipData(data?.snapshot)
+    if (equip) {
+      equipData = equip
+    }
+    if (errorMsg) {
+      msg = errorMsg
+    }
+  }
+  return { showData, equipData, msg }
+}

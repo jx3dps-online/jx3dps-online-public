@@ -1,5 +1,5 @@
 // 技能循环显示技能单元
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { Badge, Dropdown, Space, Tooltip } from 'antd'
 import { CloseCircleFilled } from '@ant-design/icons'
 import classNames from 'classnames'
@@ -10,7 +10,9 @@ import 多段倒读条作用次数弹窗 from '../../../../通用/通用组件/�
 import 团队覆盖高亮 from '../../../../通用/通用组件/循环技能显示组件/团队覆盖高亮'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import BuffItem from '../../../../通用/通用组件/循环技能显示组件/BuffItem'
+import { use联动悬停 } from '../../../../通用/通用组件/战斗曲线弹窗/use联动悬停'
 import styles from './index.module.less'
+import 通用样式 from '../../../../通用/通用组件/循环技能显示组件/index.module.less'
 
 interface CycleSkillItemProps {
   技能: 显示循环技能类型
@@ -64,11 +66,17 @@ function CycleSkillItem(props: CycleSkillItemProps) {
   const 当前异常 = 模拟信息?.循环执行结果 === '异常' ? (技能?.index || 0) === 索引 : false
 
   const 技能释放结果 = 技能?.技能释放记录结果 || {}
+  const 主动延迟 = 技能?.额外信息?.延迟 ?? undefined
 
   const [多段作用次数弹窗, 修改多段作用次数弹窗] = useState(false)
 
+  const { 进入联动, 清除联动 } = use联动悬停(技能释放时间)
+
+  const 是否设置了buff标记 = useRef(false)
+
   const 判断有无重要buff标记 = () => {
     if (技能释放结果?.造成buff数据?.buff名称) {
+      是否设置了buff标记.current = true
       更新buff覆盖数据(
         [技能释放结果?.造成buff数据?.buff开始时间, 技能释放结果?.造成buff数据?.buff结束时间],
         技能索引,
@@ -85,6 +93,10 @@ function CycleSkillItem(props: CycleSkillItemProps) {
   }
 
   const 卸除重要buff标记 = () => {
+    if (!是否设置了buff标记.current) {
+      return
+    }
+    是否设置了buff标记.current = false
     更新buff覆盖数据([], 0)
   }
 
@@ -210,7 +222,7 @@ function CycleSkillItem(props: CycleSkillItemProps) {
       ...技能,
       额外信息: {
         ...技能?.额外信息,
-        作用次数: e,
+        作用次数: e === 技能.可中断倒读条最大跳数 ? undefined : e,
       },
     })
   }
@@ -228,7 +240,17 @@ function CycleSkillItem(props: CycleSkillItemProps) {
       className={'cycle-simulator-setting-skill-drag' + `${判断千枝绽蕊()}`}
     >
       <Dropdown menu={{ items: 下拉菜单, onClick: beforeOnClick }} trigger={['contextMenu']}>
-        <div className={cls} onMouseEnter={判断有无重要buff标记} onMouseLeave={卸除重要buff标记}>
+        <div
+          className={cls}
+          onMouseEnter={() => {
+            判断有无重要buff标记()
+            进入联动()
+          }}
+          onMouseLeave={() => {
+            卸除重要buff标记()
+            清除联动()
+          }}
+        >
           <Tooltip
             title={
               <div>
@@ -263,7 +285,7 @@ function CycleSkillItem(props: CycleSkillItemProps) {
                   : null}
                 {是否异常 ? (
                   当前异常 ? (
-                    <p>异常：{模拟信息?.循环异常信息?.异常信息}</p>
+                    <p>异常：{模拟信息?.循环异常信息?.异常信息?.信息}</p>
                   ) : (
                     <p>前置技能异常</p>
                   )
@@ -273,6 +295,9 @@ function CycleSkillItem(props: CycleSkillItemProps) {
           >
             <img className={styles.skillImage} src={图标} />
           </Tooltip>
+          {主动延迟 ? (
+            <span className={通用样式.delayTag}>{主动延迟 === 'GCD' ? 'G' : 主动延迟}</span>
+          ) : null}
           <CloseCircleFilled
             className={styles.close}
             onClick={() => 删除循环技能(技能?.index || 0)}
@@ -297,7 +322,10 @@ function CycleSkillItem(props: CycleSkillItemProps) {
       <多段倒读条作用次数弹窗
         key='in-cycle-wrapper-modal'
         open={多段作用次数弹窗}
-        defaulValue={技能?.额外信息?.作用次数 || 0}
+        defaulValue={Math.min(
+          技能?.额外信息?.作用次数 || 技能.可中断倒读条最大跳数 || 1,
+          技能.可中断倒读条最大跳数 || 1,
+        )}
         onCancel={() => 修改多段作用次数弹窗(false)}
         onSubmit={修改多段作用次数}
         maxHit={技能?.可中断倒读条最大跳数 || 1}

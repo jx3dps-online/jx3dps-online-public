@@ -1,0 +1,46 @@
+.灵力区 {
+  width: 100%;
+  max-width: 440px;
+  min-height: 77.28px;
+  aspect-ratio: 3 / 0.805;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.灵力行 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  :global(.cycle-status-bar-title) {
+    width: 80px;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
+.灵力条 {
+  display: flex;
+  align-items: center;
+  width: 150px;
+}
+
+.图形 {
+  display: block;
+  width: 80.5%;
+  height: auto;
+}
+
+.数值 {
+  font-size: 88px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  fill: #fff;
+  stroke: #231924;
+  stroke-width: 12px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+  pointer-events: none;
+}

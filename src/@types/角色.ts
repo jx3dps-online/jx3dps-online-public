@@ -55,11 +55,6 @@ export interface 角色基础属性类型 {
    */
   加速等级: number
   /**
-   * @name 破招值
-   * @description 游戏内显示的具体无双值
-   */
-  破招值: number
-  /**
    * @name 武器伤害_最小值
    */
   武器伤害_最小值: number

@@ -1,0 +1,320 @@
+.drawer {
+  :global(.ant-drawer-body) {
+    padding: 16px;
+    background: #f7f8fa;
+  }
+}
+
+.drawerTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.drawerPlacement {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.sectionHeaderClickable {
+  cursor: pointer;
+  user-select: none;
+  &:hover .sectionTitle {
+    color: #1677ff;
+  }
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f1f1f;
+  padding-left: 8px;
+  border-left: 3px solid #1677ff;
+  line-height: 20px;
+}
+
+.sectionActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sectionTip {
+  font-size: 14px;
+  color: #999;
+}
+
+.schemeSelect {
+  width: 100%;
+}
+
+.schemeOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.schemeOptionName {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.schemeOptionActions {
+  display: flex;
+  gap: 10px;
+  margin-left: 12px;
+}
+
+.schemeOptionLink {
+  color: #1677ff;
+}
+
+.schemeOptionDelete {
+  color: #ff4d4f;
+}
+
+.schemeAddWrap {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+}
+
+.schemeAddWrap :global(.ant-input) {
+  flex: 1;
+}
+
+.settingRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settingLabel {
+  font-size: 15px;
+  color: #333;
+}
+
+.settingDivider {
+  width: 1px;
+  height: 16px;
+  background: #e5e5e5;
+  margin: 0 6px;
+}
+
+.timeText {
+  color: #999;
+  font-size: 14px;
+}
+
+.addRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.addSelect {
+  flex: 1;
+  max-width: 460px;
+}
+
+.addOptionWrap {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.addIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+
+.addDesc {
+  margin-left: 8px;
+  color: #999;
+  font-size: 14px;
+}
+
+.overlapWarn {
+  display: inline-block;
+  background: #fff1f0;
+  color: #cf1322;
+  border: 1px solid #ffa39e;
+  border-radius: 4px;
+  padding: 1px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    background: #ffe7e6;
+  }
+}
+
+.timelineWrap {
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  padding: 8px;
+  background: #fff;
+}
+
+.syncToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.syncToggleLabel {
+  font-size: 14px;
+  color: #333;
+}
+
+.detailPanel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  border: 1px solid #d6e4ff;
+  border-radius: 4px;
+  padding: 8px 12px;
+  background: #f5f8ff;
+  margin-top: 10px;
+}
+
+.detailTitle {
+  font-weight: bold;
+  font-size: 15px;
+  color: #333;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #333;
+}
+
+.instanceList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.instanceItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+  &:hover {
+    background: #f5f7fa;
+  }
+}
+
+.instanceItemActive {
+  border-color: #1677ff;
+  background: #eef4ff;
+}
+
+.instanceItemOverlap {
+  border-color: #ff7875;
+  background: #fff1f0;
+}
+
+.instanceIcon {
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.instanceName {
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+  min-width: 90px;
+}
+
+.instancePhase {
+  font-size: 14px;
+  color: #666;
+}
+
+.instanceTime {
+  font-size: 14px;
+  color: #555;
+  font-variant-numeric: tabular-nums;
+}
+
+.instanceDuration {
+  font-size: 14px;
+  color: #999;
+}
+
+.instanceTag {
+  margin-left: 0;
+}
+
+.instanceDelete {
+  margin-left: auto;
+  color: #999;
+  cursor: pointer;
+  &:hover {
+    color: #ff4d4f;
+  }
+}
+
+.instanceEmpty {
+  text-align: center;
+  color: #999;
+  padding: 16px 0;
+  font-size: 14px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px 0;
+  color: #999;
+  font-size: 14px;
+}
+
+.autoFillBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

@@ -1,13 +1,12 @@
-import { 获取实际帧数 } from '@/工具函数/data'
-import 循环模拟技能基础数据 from '../../../constant/skill'
 import 有CD技能通用类 from '../../通用类/有CD技能通用类'
+import type { 循环基础技能数据类型 } from '../../type'
 
 class 蝎心 extends 有CD技能通用类 {
-  static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '蝎心')
+  技能数据?: 循环基础技能数据类型
 
   constructor(模拟循环) {
     super(模拟循环)
-    蝎心.技能数据 = 模拟循环?.技能基础数据?.find((item) => item.技能名称 === '蝎心')
+    this.技能数据 = 模拟循环?.技能基础数据?.find((item) => item.技能名称 === '蝎心')
     this.初始化技能运行数据()
   }
   释放() {}
@@ -17,7 +16,7 @@ class 蝎心 extends 有CD技能通用类 {
       return 0
     }
 
-    return this.获取实际加速帧数(蝎心.技能数据?.读条时间, this.模拟循环.加速值)
+    return this.获取实际加速帧数(this.技能数据?.读条时间, this.模拟循环.加速值)
   }
 
   读条(读条开始时间: number) {
@@ -122,4 +121,4 @@ class 蝎心 extends 有CD技能通用类 {
 
 export default 蝎心
 
-export const 蝎心类型 = typeof 蝎心
+export type 蝎心类型 = 蝎心

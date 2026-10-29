@@ -1,13 +1,14 @@
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { 根据id获取装备数据 } from '@/数据/装备'
 import { 大附魔ID } from '@/数据/常量/装备常量'
 import 五彩石映射 from '@/数据/常量/五彩石映射.json'
-import 附魔映射 from '@/数据/常量/附魔映射'
+import { 解析外部附魔ID } from '@/数据/附魔/查询'
 import DecompressLUAData from './util'
 import {
   DaFuMoMap,
   EquipPositionMap,
   JCLEquipPositionMap,
-  五彩石转换,
+  归一五彩石名称,
   五行石映射,
 } from '../统一映射枚举'
 import { 装备属性信息模型 } from '@/@types/装备'
@@ -19,7 +20,7 @@ export const getEquipData = (data) => {
   // 解析解密装备数据
   const decompressData = DecompressLUAData(data) || {}
 
-  const { 装备数据, 五彩石, 功法 } = 获取当前数据()
+  const { 装备数据, 五彩石, 功法, 附魔 } = 获取当前数据()
 
   const 全部五彩石数据 = 五彩石?.[6]
 
@@ -37,10 +38,6 @@ export const getEquipData = (data) => {
     const 镶嵌孔列表 = item?.aDiamondEnchant
     const 识别大附魔ID = item?.dwTemporaryEnchantID
     const 五彩石ID = item?.dwItemFEAEnchantID
-    const 实际附魔 = 附魔映射?.[附魔ID] || ''
-    if (item?.dwPermanentEnchantID && !实际附魔 && +item?.dwPermanentEnchantID !== 420) {
-      未内置附魔列表.push(item?.dwPermanentEnchantID)
-    }
 
     let 装备部位 = JCLEquipPositionMap?.[部位ID]
     const 镶嵌孔数据 = 镶嵌孔列表?.map((item) => 五行石映射?.[item] || 8)
@@ -50,8 +47,11 @@ export const getEquipData = (data) => {
     if (装备部位 === '戒指_2') {
       装备部位 = '戒指'
     }
+    const 来源附魔ID = 解析外部附魔ID(附魔ID, 装备部位)
+    const 实际附魔 = 附魔?.some((entry) => entry.id === 来源附魔ID) ? 来源附魔ID : undefined
+    if (附魔ID && !实际附魔 && +附魔ID !== 420) 未内置附魔列表.push(String(附魔ID))
     if (装备部位) {
-      const 装备原始数据 = 装备数据[装备部位]?.find((data) => +(data.id || 0) === +装备ID)
+      const 装备原始数据 = 根据id获取装备数据(装备数据, 装备部位, 装备ID)
 
       if (装备原始数据) {
         equip[装备位置映射] = {
@@ -91,14 +91,7 @@ export const getEquipData = (data) => {
           if (五彩石ID) {
             let 五彩石名称 = 五彩石映射?.enchant_id?.[五彩石ID]
             if (五彩石名称) {
-              if (功法 !== '天罗诡道') {
-                // 对内功五彩石做映射
-                Object.keys(五彩石转换).forEach((key) => {
-                  if (五彩石名称?.includes(key)) {
-                    五彩石名称 = 五彩石名称.replace(key, 五彩石转换[key])
-                  }
-                })
-              }
+              五彩石名称 = 归一五彩石名称(五彩石名称, 功法)
 
               if (
                 !全部五彩石数据?.some(

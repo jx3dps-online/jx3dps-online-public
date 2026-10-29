@@ -9,10 +9,11 @@ import { Tooltip } from 'antd'
 
 interface 开场Buff类型 {
   原始Buff数据: Buff枚举
+  起手可选DOT?: string[]
 }
 
 const 开场Buff: React.FC<开场Buff类型> = (props) => {
-  const { 原始Buff数据 } = props
+  const { 原始Buff数据, 起手可选DOT } = props
   const { 起手Buff配置, 更新起手Buff配置 } = useContext(CycleSimulatorContext)
 
   const [配置弹窗展示, 设置配置弹窗展示] = useState(false)
@@ -72,6 +73,7 @@ const 开场Buff: React.FC<开场Buff类型> = (props) => {
       )}
       <开场Buff配置弹窗
         原始Buff数据={原始Buff数据}
+        起手可选DOT={起手可选DOT}
         open={配置弹窗展示}
         onClose={() => 设置配置弹窗展示(false)}
       />

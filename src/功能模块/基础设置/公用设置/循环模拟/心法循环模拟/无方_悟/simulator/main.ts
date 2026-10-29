@@ -31,9 +31,9 @@ import 沾衣未妨悟 from './技能类/沾衣未妨悟'
 import 并蒂夺株悟 from './技能类/并蒂夺株悟'
 import 苍棘缚地悟 from './技能类/苍棘缚地悟'
 import 凌然天风悟 from './技能类/凌然天风悟'
-import 唤醒 from './技能类/唤醒'
-import 易命 from './技能类/易命'
-import 损毁 from './技能类/损毁'
+// import 唤醒 from './技能类/唤醒'
+// import 易命 from './技能类/易命'
+// import 损毁 from './技能类/损毁'
 import 特效腰坠 from '../../通用/通用技能/特效腰坠'
 
 import 中毒 from './DOT类/中毒'
@@ -43,7 +43,8 @@ import 获取当前数据 from '@/数据/数据工具/获取当前数据'
 import { 获取加速等级, 获取实际帧数 } from '@/工具函数/data'
 import 换行 from './技能类/换行'
 import { 团队增益轴类型 } from '@/@types/团队增益'
-import 判断团队增益快照Buff from '@/数据/团队增益/tools'
+import { 副本事件实例类型 } from '@/@types/副本事件'
+import 判断团队增益快照Buff, { 判断副本事件快照Buff } from '@/数据/团队增益/tools'
 import { 起手Buff配置 } from '../../通用/通用框架/类型定义/Buff'
 import { 技能额外信息分隔符, 获取起手Buff配置 } from '../../通用/通用函数'
 import { 选中秘籍信息 } from '@/@types/秘籍'
@@ -63,6 +64,7 @@ export interface SimulatorCycleProps {
   周期性忽略延迟?: number
   启用团队增益快照?: boolean
   团队增益轴?: 团队增益轴类型
+  副本事件实例列表?: 副本事件实例类型[]
   起手Buff配置?: 起手Buff配置
   启用斩杀?: boolean
   斩杀起始秒数?: number
@@ -98,8 +100,11 @@ class 循环主类 {
   待生效事件队列: 待生效事件[] = []
   启用团队增益快照 = false
   团队增益轴: 团队增益轴类型 = {}
+  副本事件实例列表: 副本事件实例类型[] = []
   忽略延迟技能: string[] = []
   周期性忽略延迟 = 0
+  已释放GCD技能数 = 0
+  上个GCD技能可补偿延迟 = false
   启用斩杀 = false
   斩杀起始秒数 = 0
   当前技能索引 = 0
@@ -116,6 +121,7 @@ class 循环主类 {
     this.网络延迟 = props.网络延迟
     this.启用团队增益快照 = !!props.启用团队增益快照
     this.团队增益轴 = props.团队增益轴 ? props.团队增益轴 : {}
+    this.副本事件实例列表 = props.副本事件实例列表 ? props.副本事件实例列表 : []
     this.启用斩杀 = !!props.启用斩杀
     this.斩杀起始秒数 = props.斩杀起始秒数 ?? 0
     // 根据奇穴和装备情况修改buff的数据
@@ -154,9 +160,6 @@ class 循环主类 {
       '凌然天风·悟': new 凌然天风悟(this),
       '并蒂夺株·悟': new 并蒂夺株悟(this),
       '苍棘缚地·悟': new 苍棘缚地悟(this),
-      唤醒: new 唤醒(this),
-      易命: new 易命(this),
-      损毁: new 损毁(this),
       中毒: new 中毒(this),
       换行: new 换行(this),
       特效腰坠: new 特效腰坠(this),
@@ -433,10 +436,12 @@ class 循环主类 {
     )
 
     if (this.启用团队增益快照) {
-      const 团队增益buff列表 = 判断团队增益快照Buff({
-        团队增益轴: this.团队增益轴,
-        判定帧: 造成时间 - (this.初次伤害时间 || 0) || 0,
-      })
+      const 团队增益buff列表 = this.副本事件实例列表?.length
+        ? 判断副本事件快照Buff(this.副本事件实例列表, 造成时间 - (this.初次伤害时间 || 0) || 0)
+        : 判断团队增益快照Buff({
+            团队增益轴: this.团队增益轴,
+            判定帧: 造成时间 - (this.初次伤害时间 || 0) || 0,
+          })
       if (团队增益buff列表?.length) {
         总增益列表 = 总增益列表?.concat(团队增益buff列表)
       }
@@ -483,11 +488,21 @@ class 循环主类 {
       }
     }
 
-    let 延迟等待 = i > 0 && GCD ? this.网络延迟 : 0
-    if (this.周期性忽略延迟 <= 0 && this?.忽略延迟技能?.includes(当前技能?.技能名称)) {
-      延迟等待 = 0
-    } else if (this.周期性忽略延迟 > 0 && i % (this.周期性忽略延迟 + 1) < 1) {
-      延迟等待 = 0
+    const 是否为GCD技能 = !!当前技能?.技能GCD组 && 当前技能.技能释放后添加GCD > 0
+    let 延迟等待 = 0
+    if (是否为GCD技能 && this.已释放GCD技能数 > 0) {
+      延迟等待 = this.网络延迟
+      if (this.周期性忽略延迟 > 0) {
+        const 衔接索引 = this.已释放GCD技能数 - 1
+        const 免延迟比例 = 1 / (this.周期性忽略延迟 + 1)
+        // 只按有效衔接分配离散延迟，倒读条补偿不改变后续周期位置。
+        if (Math.ceil((衔接索引 + 1) * 免延迟比例) > Math.ceil(衔接索引 * 免延迟比例)) {
+          延迟等待 = 0
+        }
+      }
+      if (this.上个GCD技能可补偿延迟) {
+        延迟等待 = 0
+      }
     }
     const 技能计划释放时间 = this.当前时间 + GCD + 延迟等待
 
@@ -557,6 +572,15 @@ class 循环主类 {
         ...技能释放记录结果,
       },
     })
+
+    if (当前技能.技能GCD组 && 当前技能.技能释放后添加GCD > 0) {
+      this.已释放GCD技能数 += 1
+      this.上个GCD技能可补偿延迟 =
+        是否为读条技能 &&
+        !!当前技能.是否为倒读条技能 &&
+        this.忽略延迟技能.includes(当前技能.技能名称) &&
+        (技能实例.是否完整读条?.() ?? true)
+    }
   }
 
   清空buff调用函数(对象: '自身' | '目标') {

@@ -14,10 +14,12 @@ interface StatusBarProps {
   日志信息: 循环日志数据类型[]
   模拟DPS结果: 当前计算结果类型
   模拟函数: (e: any) => void
+  战斗曲线面板展示?: boolean
+  切换战斗曲线面板?: (open?: boolean) => void
 }
 
 function StatusBar(props: StatusBarProps) {
-  const { 模拟信息, 日志信息, 模拟DPS结果, 模拟函数 } = props
+  const { 模拟信息, 日志信息, 模拟DPS结果, 模拟函数, 战斗曲线面板展示, 切换战斗曲线面板 } = props
 
   return (
     <div className={'cycle-status-bar'}>
@@ -38,6 +40,8 @@ function StatusBar(props: StatusBarProps) {
         日志信息={日志信息}
         模拟DPS结果={模拟DPS结果}
         模拟函数={模拟函数}
+        战斗曲线面板展示={战斗曲线面板展示}
+        切换战斗曲线面板={切换战斗曲线面板}
       />
     </div>
   )

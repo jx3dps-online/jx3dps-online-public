@@ -58,7 +58,7 @@ export interface 技能类实例集合 {
   鬼星开穴?: any
   返闭惊魂?: any
   镇星入舆?: any
-  镇星二段?: any
+  // 镇星二段?: any
   奇门飞宫?: any
   连极阵?: any
   连极阵_解?: any
@@ -78,6 +78,9 @@ export interface 技能类实例集合 {
   天麟踏星坠?: any
   起符?: any
   召唤麒麟?: any
+  召唤凤凰?: any
+  '附灵·煌符'?: any
+  切换武器?: any
 }
 
 export interface 技能GCD组 {
@@ -146,6 +149,7 @@ export interface 循环基础技能数据类型 {
    * 显示类型
    */
   显示类型?: '大橙武模拟' | '奇穴技能'
+  特效武器技能?: boolean
   /**
    * 依赖奇穴名
    * 没传入则用技能名称判断
@@ -208,11 +212,24 @@ export interface 循环基础技能数据类型 {
 }
 
 export interface 额外信息类型 {
+  目标武器ID?: number
   延迟?: number | 'GCD'
+  召唤物?: '麒麟' | '凤凰'
 }
 
 export interface 角色状态信息类型 {
-  星运: number // -5 ~ 5 -5代表寒，默认0
+  星运: number
+  麒麟已施符?: boolean
+  凤凰已施符?: boolean
+  累计获得星运?: number
+  起手星运?: number
+  星运来源统计?: Record<string, { 获得星运: number; 溢出星运: number }>
+  累计消耗星运?: number
+  累计溢出星运?: number
+  星运溢出记录?: { 时间: number; 技能名称: string; 溢出星运: number }[]
+  星运上限?: number
+  鬼遁免费变卦次数?: number
+  鬼遁强化水坎?: boolean
 }
 
 // Dot数据
@@ -284,6 +301,11 @@ export interface BuffDTO {
    */
   最多延长次数?: number
   /**
+   * 延长后最大持续时间
+   * 延长后允许达到的剩余持续时间上限，未定义则不限制
+   */
+  延长后最大持续时间?: number
+  /**
    * 已延长次数
    * 一个buff持续时间内最多延长次数，未定义可以一直延长
    */
@@ -335,6 +357,10 @@ export interface ShowCycle {
 }
 
 export interface 循环日志数据类型 {
+  日志顺序?: number
+  装备ID?: number
+  武器持有序号?: number
+  召唤装备快照?: boolean
   /**
    * 日志
    */
@@ -386,6 +412,9 @@ export type 日志类型 =
   | '循环异常'
 
 export interface 模拟信息类型 {
+  当前武器ID?: number
+  当前武器为橙武?: boolean
+  武器切换记录?: { 时间: number; 顺序: number; 装备ID: number; 武器持有序号: number }[]
   角色状态信息: 角色状态信息类型
   当前自身buff列表: Buff枚举
   当前目标buff列表: Buff枚举

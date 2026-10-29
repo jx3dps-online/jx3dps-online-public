@@ -1,5 +1,4 @@
 import 循环模拟技能基础数据 from '../../../constant/skill'
-import cangyi from '../../../assets/dandao.png'
 import 有CD技能通用类 from '../../通用类/有CD技能通用类'
 
 class 裂海横天 extends 有CD技能通用类 {
@@ -19,6 +18,13 @@ class 裂海横天 extends 有CD技能通用类 {
     if (this.模拟循环.当前自身buff列表?.['沧逸']?.当前层数) {
       this.模拟循环.添加buff?.({ 名称: '倾怒', 对象: '自身' })
       this.模拟循环.卸除buff?.({ 名称: '沧逸', 对象: '自身' })
+
+      if (this.模拟循环.校验奇穴是否存在?.('洄涛')) {
+        this.获得洄涛('倾怒')
+        this.获得洄涛('倾怒')
+        this.获得洄涛('倾怒')
+        // this.获得洄涛('倾怒')
+      }
     } else {
       this.模拟循环.添加buff?.({ 名称: '沧逸', 对象: '自身' })
       this.模拟循环.卸除buff?.({ 名称: '倾怒', 对象: '自身' })

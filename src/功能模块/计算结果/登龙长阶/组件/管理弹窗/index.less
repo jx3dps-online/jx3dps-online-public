@@ -1,0 +1,512 @@
+.dragon-manager-wrap {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.dragon-manager {
+  --dragon-theme: #3c649c;
+  --dragon-ink: #355784;
+  --dragon-ink: color-mix(in srgb, var(--dragon-theme) 72%, #20232b);
+  --dragon-tint: #f3f6fa;
+  --dragon-tint: color-mix(in srgb, var(--dragon-theme) 5%, #fff);
+  top: 6vh;
+  padding-bottom: 6vh;
+  max-width: calc(100vw - 28px);
+  color: #2c3039;
+
+  .ant-modal-content {
+    padding: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 24px 100px #0006;
+  }
+
+  .ant-modal-close {
+    top: 20px;
+    right: 20px;
+  }
+
+  .ant-btn {
+    box-shadow: none;
+  }
+
+  // .ant-btn-primary {
+  //   background: var(--dragon-ink);
+  //   border-color: var(--dragon-ink);
+  //   &:not(:disabled):hover {
+  //     background: var(--dragon-theme);
+  //     border-color: var(--dragon-theme);
+  //   }
+  // }
+  .ant-btn-link {
+    color: var(--dragon-ink);
+  }
+
+  .ant-alert {
+    margin-bottom: 18px;
+  }
+}
+
+.dragon-manager-heading {
+  position: relative;
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid #e9ecf1;
+  background: linear-gradient(110deg, var(--dragon-tint), #fff 85%);
+
+  .dragon-manager-eyebrow {
+    display: block;
+    color: var(--dragon-ink);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.5;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #242b36;
+  }
+
+  p {
+    position: absolute;
+    right: 58px;
+    top: 29px;
+    margin: 0;
+    color: #9297a2;
+    font-size: 12px;
+  }
+}
+
+.dragon-manager-content {
+  padding: 24px 32px 26px;
+}
+
+.dragon-manager-current {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 27px;
+
+  .dragon-manager-current-label {
+    white-space: nowrap;
+    color: #666e7b;
+    font-size: 13px;
+
+    i {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: var(--dragon-ink);
+      vertical-align: 2px;
+    }
+  }
+
+  .dragon-manager-current-detail {
+    min-width: 0;
+
+    strong {
+      display: block;
+      color: #303846;
+      line-height: 1.5;
+      font-size: 16px;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    span {
+      display: block;
+      color: #858c97;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  }
+
+  &.is-empty .dragon-manager-current-detail strong {
+    font-weight: 500;
+    color: #747c88;
+  }
+}
+
+.dragon-manager-section-heading {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+
+  h3 {
+    color: #333b47;
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  h3 span {
+    color: #9299a4;
+    margin-left: 6px;
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+.dragon-manager-muted {
+  color: #8a919c;
+  font-size: 12px;
+}
+
+.dragon-manager-source {
+  border-top: 1px solid #eaedf2;
+  border-bottom: 1px solid #eaedf2;
+  padding: 22px 0;
+  margin-bottom: 24px;
+}
+
+.dragon-manager-source-select {
+  width: 100%;
+  height: 40px;
+
+  .ant-select-selector {
+    border-color: #dce1e8 !important;
+    background: #fcfcfd !important;
+  }
+}
+
+.dragon-manager-source-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+
+  > div {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .ant-btn {
+    height: 34px;
+    font-size: 13px;
+    padding-inline: 13px;
+  }
+}
+
+.dragon-manager-source-hint {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #89909c;
+}
+
+.dragon-manager-new-goal {
+  padding: 18px;
+  margin-top: 18px;
+  background: var(--dragon-tint);
+  border-radius: 8px;
+}
+
+.dragon-manager-new-goal label,
+.dragon-manager-rename label {
+  display: block;
+  color: #586170;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.dragon-manager-name-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .ant-input-affix-wrapper {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .ant-btn {
+    flex-shrink: 0;
+    font-size: 13px;
+  }
+}
+
+.dragon-manager-field-error {
+  margin: 8px 0 0;
+  color: #c33e46;
+  font-size: 12px;
+}
+
+.dragon-manager-goal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  > .dragon-manager-goal {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 4px;
+  }
+}
+
+.dragon-manager-goal-cycle {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 12px;
+  min-width: 0;
+
+  > p {
+    grid-column: 1 / -1;
+  }
+
+  .dragon-route-picker {
+    min-width: 0;
+
+    label {
+      flex-shrink: 0;
+    }
+
+    .ant-select {
+      min-width: 0;
+      max-width: 200px;
+    }
+  }
+}
+
+.dragon-manager-goal {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: space-between;
+  border: 1px solid #e9ecf1;
+  border-radius: 8px;
+  padding: 15px 16px;
+  transition:
+    border-color 160ms,
+    background 160ms;
+
+  &.is-focused {
+    background: var(--dragon-tint);
+    border-color: #cbd6e6;
+    border-color: color-mix(in srgb, var(--dragon-theme) 22%, #e5e8ed);
+  }
+}
+
+.dragon-manager-goal-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.dragon-manager-goal-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .ant-tag {
+    margin-inline-end: 0;
+  }
+
+  strong {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #303845;
+    overflow-wrap: anywhere;
+  }
+}
+
+.dragon-manager-goal-date {
+  justify-self: end;
+  border-radius: 3px;
+  color: #9faaba;
+  background-color: #ffffff0b;
+  padding: 1px 6px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.dragon-manager-focus-badge {
+  font-size: 11px;
+  line-height: 20px;
+  color: var(--dragon-ink);
+  white-space: nowrap;
+
+  .anticon {
+    margin-right: 3px;
+  }
+}
+
+.dragon-manager-goal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+
+  .ant-btn {
+    font-size: 12px;
+    height: 28px;
+  }
+
+  .ant-btn-text {
+    color: #6d7788;
+  }
+
+  .ant-btn-icon-only {
+    font-size: 18px;
+    width: 24px;
+  }
+}
+
+.dragon-manager-rename {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.dragon-manager-no-goals {
+  padding: 26px 20px;
+  text-align: center;
+  border: 1px dashed #dce1e9;
+  border-radius: 8px;
+
+  strong {
+    font-size: 16px;
+    font-weight: 500;
+    color: #667183;
+  }
+
+  p {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: #9299a5;
+    line-height: 1.8;
+  }
+}
+
+.dragon-manager-footnote {
+  padding: 15px 32px;
+  border-top: 1px solid #edf0f4;
+  color: #939aa4;
+  font-size: 12px;
+  background: #fafbfc;
+  line-height: 1.8;
+}
+
+.dragon-manager-delete-name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+@media (max-height: 800px) {
+  .dragon-manager {
+    top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .dragon-manager-heading {
+    padding-block: 20px;
+
+    h2 {
+      font-size: 22px;
+    }
+  }
+
+  .dragon-manager-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .dragon-manager-current {
+    margin-bottom: 20px;
+  }
+
+  .dragon-manager-source {
+    padding-block: 18px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dragon-manager {
+    top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .dragon-manager-heading {
+    padding: 24px 20px 20px;
+
+    h2 {
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    p {
+      display: none;
+    }
+  }
+
+  .dragon-manager-content {
+    padding: 20px;
+  }
+
+  .dragon-manager-current {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .dragon-manager-source-actions {
+    align-items: stretch;
+    flex-direction: column;
+
+    > div {
+      justify-content: flex-end;
+    }
+  }
+
+  .dragon-manager-goal {
+    gap: 8px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 14px;
+  }
+
+  .dragon-manager-goal-actions {
+    align-self: flex-end;
+  }
+
+  .dragon-manager-goal-list > .dragon-manager-goal {
+    grid-template-columns: minmax(0, 1fr);
+
+    .dragon-manager-goal-actions {
+      justify-self: end;
+    }
+  }
+
+  .dragon-manager-name-form {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    .ant-input-affix-wrapper {
+      flex-basis: 100%;
+    }
+  }
+
+  .dragon-manager-new-goal {
+    padding: 14px;
+  }
+
+  .dragon-manager-footnote {
+    padding: 14px 20px;
+  }
+
+  .dragon-manager-muted {
+    font-size: 11px;
+  }
+}

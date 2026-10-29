@@ -1,0 +1,61 @@
+/*! 分山劲_悟「白皮书」攻略补充排版：技能条目 / 配装内嵌等
+    通用排版复用 分山劲/统一样式.module.less，此处只补白皮书特有的结构 */
+
+.skill {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 12px;
+
+  .skillIcon {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    border: 1px solid rgba(193, 76, 17, 0.2);
+  }
+
+  .skillBody {
+    flex: 1;
+    min-width: 0;
+
+    p {
+      margin: 0 0 4px;
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(0, 0, 0, 0.78);
+    }
+
+    :global(.skillName) {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 2px;
+
+      b {
+        color: #a03c0e;
+        font-size: 14.5px;
+      }
+
+      .skillId {
+        color: rgba(0, 0, 0, 0.4);
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .skillCd {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 12.5px;
+      }
+    }
+  }
+}
+
+.pzFrame {
+  display: block;
+  width: 100%;
+  height: 620px;
+  border: 1px solid rgba(193, 76, 17, 0.18);
+  border-radius: 8px;
+  background: #fff;
+}

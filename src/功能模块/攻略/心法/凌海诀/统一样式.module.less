@@ -1,0 +1,133 @@
+/*! 凌海诀攻略共用排版：主题色 #5d607b（凌海诀）
+    风格约定：白底浅色、以主题色做细节点缀；不放大块深色，不照搬无方
+    尺寸约定：字号与间距一律用 em / inherit，由攻略容器的 --guide-font 驱动，
+    这样从 1080p 到 4K 都是等比缩放，不会出现「字变大了、间距没跟上」 */
+.正文 {
+  --lhj-accent: #5d607b;
+  --lhj-line: rgba(93, 96, 123, 0.18);
+  --lhj-soft: rgba(93, 96, 123, 0.06);
+  --lhj-muted: rgba(0, 0, 0, 0.5);
+
+  color: rgba(0, 0, 0, 0.85);
+  /* 跟随攻略容器连续缩放（--guide-font 是按容器宽度 clamp 出来的） */
+  font-size: inherit;
+
+  p {
+    margin: 0 0 0.65em;
+    line-height: 1.85;
+  }
+
+  a {
+    color: var(--lhj-accent);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  h3 {
+    margin: 1.6em 0 0.8em;
+    padding-left: 0.65em;
+    border-left: 3px solid var(--lhj-accent);
+    font-size: 1.15em;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  h4 {
+    margin: 1.05em 0 0.5em;
+    font-size: 1.04em;
+    font-weight: 600;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 0.8em;
+    padding-left: 1.4em;
+  }
+
+  li {
+    margin: 0.25em 0;
+    line-height: 1.8;
+  }
+
+  code {
+    padding: 0.06em 0.33em;
+    border-radius: 4px;
+    background: var(--lhj-soft);
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 0.93em;
+  }
+
+  mark {
+    padding: 0 0.27em;
+    background: rgba(93, 96, 123, 0.14);
+    color: inherit;
+  }
+}
+
+/* 来源信息卡：复用「标签」组件，纵向排列 */
+.来源 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5em;
+  margin: 0 0 0.9em;
+  padding: 0.65em 0.9em;
+  border: 1px solid var(--lhj-line);
+  border-radius: 8px;
+  background: var(--lhj-soft);
+
+  a {
+    text-decoration: none;
+  }
+}
+
+/* 提示条 */
+.提示 {
+  margin: 0 0 0.9em;
+  padding: 0.5em 0.8em;
+  border-left: 3px solid var(--lhj-accent);
+  border-radius: 0 6px 6px 0;
+  background: var(--lhj-soft);
+}
+
+/* 表格 */
+.表格 {
+  width: 100%;
+  margin: 0 0 0.8em;
+  border-collapse: collapse;
+  font-size: 0.96em;
+
+  th,
+  td {
+    padding: 0.45em 0.65em;
+    border: 1px solid var(--lhj-line);
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.7;
+  }
+
+  th {
+    background: var(--lhj-soft);
+    font-weight: 600;
+  }
+}
+
+/* 次要说明 */
+.次要 {
+  color: var(--lhj-muted);
+  font-size: 0.93em;
+  line-height: 1.8;
+}
+
+/* 页脚：参考信息与出处 */
+.脚注 {
+  margin-top: 1.2em;
+  padding-top: 0.8em;
+  border-top: 1px dashed var(--lhj-line);
+  color: var(--lhj-muted);
+  font-size: 0.93em;
+  line-height: 1.9;
+}

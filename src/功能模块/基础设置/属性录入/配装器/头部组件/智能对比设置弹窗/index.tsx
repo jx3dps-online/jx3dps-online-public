@@ -2,14 +2,23 @@ import { Checkbox, Divider, Modal, Space, Tooltip } from 'antd'
 import React from 'react'
 
 const 智能对比设置弹窗 = (props) => {
-  const { 对比显示百分比, 设置对比显示百分比, 对比加速, 设置对比加速, open, onCancel } = props
+  const {
+    对比显示百分比,
+    设置对比显示百分比,
+    对比加速,
+    设置对比加速,
+    候选按收益排序,
+    设置候选按收益排序,
+    open,
+    onCancel,
+  } = props
 
   return (
     <Modal
       title={'智能对比设置'}
       footer={false}
       open={open}
-      width={460}
+      width={600}
       onCancel={() => onCancel()}
     >
       <Space style={{ paddingTop: 12 }} split={<Divider type='vertical' />}>
@@ -24,6 +33,11 @@ const 智能对比设置弹窗 = (props) => {
         <Checkbox checked={对比加速} onChange={(e) => 设置对比加速(e?.target?.checked)}>
           <Tooltip title={'关闭后，若该部位为加速装备，则非加速装备不会参与智能对比；反之同理'}>
             <div>允许跨加速对比</div>
+          </Tooltip>
+        </Checkbox>
+        <Checkbox checked={候选按收益排序} onChange={(e) => 设置候选按收益排序(e?.target?.checked)}>
+          <Tooltip title={'开启后，候选列表按秒伤收益从高到低排序，收益最高置顶'}>
+            <div>候选按收益排序</div>
           </Tooltip>
         </Checkbox>
       </Space>

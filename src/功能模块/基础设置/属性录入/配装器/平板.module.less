@@ -1,0 +1,295 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.部位卡片 {
+  display: contents;
+}
+
+.弹窗滚动容器 {
+  overscroll-behavior: none;
+}
+
+@media (min-width: 761px) and (max-width: 1024px) and (any-pointer: coarse) {
+  .弹窗 {
+    top: 24px;
+    max-width: calc(100% - 16px);
+    padding-bottom: 8px;
+
+    :global {
+      .ant-modal-content {
+        min-width: 0;
+        max-height: ~'calc(100dvh - 48px - env(safe-area-inset-bottom, 0px))';
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .ant-modal-header {
+        position: relative;
+        z-index: 2;
+        padding-right: 24px;
+        padding-bottom: 12px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+        background: #fff;
+        pointer-events: none;
+      }
+
+      .ant-modal-header .ant-btn,
+      .ant-modal-header .ant-checkbox-wrapper,
+      .ant-modal-header .ant-tag {
+        pointer-events: auto;
+      }
+
+      .ant-modal-content > .ant-modal-body {
+        position: relative;
+        z-index: 1;
+        overflow-y: auto;
+        overscroll-behavior: none;
+        min-height: 0;
+        padding-top: 0;
+        scroll-padding-top: 12px;
+      }
+
+      .ant-modal-footer {
+        flex-shrink: 0;
+        padding-top: 12px;
+      }
+
+      .zhuangbei-input-set-modal-title,
+      .zhuangbei-input-set-modal-title-left {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-start;
+      }
+
+      .zhuangbei-input-set-modal-title-operate {
+        margin: 0;
+      }
+
+      .zhuangbei-diff-btn {
+        margin-left: 0;
+      }
+
+      .zhuangbei-diff-btn-wrap {
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .zhuangbei-input-set-modal-form {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .zhuangbei-input-set-modal-form-left,
+      .zhuangbei-input-set-modal-form-right {
+        width: 100%;
+        min-width: 0;
+        padding: 0;
+      }
+
+      .zhuangbei-input-set-modal-form-right {
+        border: 1px solid #eef0f4;
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      .ant-form-item-label {
+        text-align: left;
+        padding-bottom: 8px;
+      }
+
+      .ant-form-item-row {
+        display: block;
+      }
+
+      .ant-form-item-control {
+        width: 100%;
+        min-width: 0;
+        flex: none;
+      }
+
+      .ant-form-item {
+        margin-bottom: 10px;
+      }
+
+      .zhuangbei-footer-actions,
+      .zhuangbei-target-info,
+      .zhuangbei-target-operation {
+        width: 100%;
+        min-width: 0;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .zhuangbei-target-card {
+        max-width: 100%;
+        height: auto;
+        overflow-wrap: anywhere;
+        word-break: normal;
+        padding: 6px 10px;
+      }
+
+      .zhuangbei-role-card {
+        flex: 1;
+        min-width: 0;
+      }
+    }
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .部位卡片,
+  .五彩石 {
+    display: block;
+    min-width: 0;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #fff, #fefefe);
+    box-shadow: 0 6px 8px #0000000d;
+  }
+
+  .部位卡片 :global(.ant-form-item:last-child) {
+    margin-bottom: 0;
+  }
+
+  .五彩石 {
+    margin-bottom: 0;
+    box-shadow: none;
+
+    :global {
+      .ant-form-item {
+        margin-bottom: 0;
+      }
+
+      .wucaishi-xuanze-wrap {
+        display: grid;
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 8px;
+      }
+
+      .wucaishi-xuanze-dengji,
+      .wucaishi-xuanze {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  }
+}
+
+.结果面板 {
+  display: contents;
+}
+
+.结果面板 > summary {
+  display: none;
+}
+
+@media (min-width: 761px) and (max-width: 1024px) and (any-pointer: coarse) {
+  .结果面板 {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .结果面板 > summary {
+    display: list-item;
+    color: var(--ant-primary-color);
+    cursor: pointer;
+    padding-bottom: 12px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) and (any-pointer: coarse) {
+  .弹窗 :global(.zhuangbei-input-set-modal-title-operate) {
+    width: 100%;
+  }
+
+  .弹窗 :global(.移动最优按钮) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .弹窗 :global(.移动最优按钮 .ant-btn) {
+    width: 100%;
+    min-width: 0;
+    height: 36px;
+    margin: 0;
+    font-size: 12px;
+    padding-inline: 8px;
+  }
+
+  .弹窗 :global(.移动最优按钮 .zhuangbei-scope-wrap) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+  }
+
+  .弹窗 :global(.移动最优按钮 .zhuangbei-scope-wrap > div:first-child) {
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .弹窗 :global(.移动最优按钮 .zhuangbei-scope-wrap > .ant-btn) {
+    width: auto;
+  }
+
+  .弹窗 :global(.移动最优按钮 .zhuangbei-scrop-out-tag) {
+    margin: 0;
+  }
+
+  .固定秒伤 {
+    padding-bottom: 10px;
+    text-align: left;
+  }
+
+  .固定秒伤:empty {
+    display: none;
+  }
+
+  .固定秒伤 :global {
+    .dps-diff {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .dps-diff-item {
+      margin: 0;
+      min-width: 0;
+    }
+
+    .dps-diff-title,
+    .dps-diff-percent {
+      font-size: 12px;
+      margin-bottom: 4px;
+      line-height: 18px;
+    }
+
+    .dps-diff-dps {
+      font-size: 22px;
+      padding: 4px 6px;
+      line-height: 26px;
+    }
+
+    .dps-diff-error-text {
+      font-size: 12px;
+      line-height: 26px;
+    }
+  }
+}

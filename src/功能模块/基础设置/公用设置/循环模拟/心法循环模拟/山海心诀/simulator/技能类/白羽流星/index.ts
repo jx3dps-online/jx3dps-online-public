@@ -3,8 +3,8 @@ import 循环模拟技能基础数据 from '../../../constant/skill'
 import { ERROR_ACTION } from '../../utils'
 import 有CD技能通用类 from '../../通用类/有CD技能通用类'
 
-import moshiyinyu from '../../../assets/Skill/moshiyinyu.png'
-import chifengmingjiao from '../../../assets/Skill/chifengmingjiao.png'
+const moshiyinyu = 'https://icon.jx3box.com/icon/19600.png'
+const chifengmingjiao = 'https://icon.jx3box.com/icon/19597.png'
 
 class 白羽流星 extends 有CD技能通用类 {
   static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '白羽流星')
@@ -18,7 +18,12 @@ class 白羽流星 extends 有CD技能通用类 {
   }
 
   技能释放后更新运行数据() {
-    // 丛云隐月，释放后重置技能CD
+    if (
+      this.模拟循环.校验奇穴是否存在('灼心') &&
+      this.模拟循环.当前自身buff列表['乘黄之威']?.当前层数
+    ) {
+      return
+    }
     if (白羽流星.技能数据) {
       this?.模拟循环?.技能释放后更新运行数据?.(白羽流星.技能数据, this)
     }

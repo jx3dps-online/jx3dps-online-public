@@ -1,0 +1,49 @@
+.cycle-cycle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cycle-cycle-btn-img {
+  width: 22px;
+  height: 22px;
+  margin-right: 0px;
+}
+
+@media (max-width: 760px) and (orientation: portrait),
+  (any-pointer: coarse) and (orientation: portrait) {
+  .cycle-cycle-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (any-pointer: coarse) {
+  .cycle-simulator-modal.ant-modal {
+    max-width: calc(100% - 24px);
+    padding-bottom: 0;
+  }
+
+  .cycle-simulator-modal > .ant-modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - 24px);
+    padding: 16px;
+    overflow: hidden;
+  }
+
+  .cycle-simulator-modal > .ant-modal-content > .ant-modal-header {
+    flex: none;
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .cycle-simulator-modal > .ant-modal-content > .ant-modal-body {
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-top: 12px;
+  }
+}

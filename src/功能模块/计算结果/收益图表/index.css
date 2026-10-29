@@ -1,6 +1,6 @@
 .income-wrap {
   width: 100%;
-  height: calc(100vh - 350px);
+  height: calc(100vh - 400px);
   position: relative;
 }
 
@@ -13,7 +13,7 @@
   bottom: 0;
   margin: auto;
   width: 100%;
-  height: calc(100vh - 350px);
+  height: calc(100vh - 400px);
 }
 
 .income-custom {
@@ -64,4 +64,25 @@
   color: #fff;
   cursor: pointer;
   margin-left: 12px;
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .income-wrap,
+  .income-custom,
+  .income-chart {
+    height: 320px;
+  }
+  .income-type-wrapper {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+  .income-type-select-radio {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 0;
+  }
+  .income-type-select-button {
+    margin-left: 0;
+  }
 }

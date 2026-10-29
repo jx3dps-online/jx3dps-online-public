@@ -15,6 +15,13 @@
   margin-top: -4px;
 }
 
+.dps-count-modal-title-main {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+}
+
 .dps-line-header {
   display: flex;
   font-size: 18px;
@@ -38,7 +45,7 @@
   left: 0;
   width: 100%;
   z-index: 200;
-  transition: .2s;
+  transition: 0.2s;
   padding: 0 8px;
 }
 
@@ -54,7 +61,7 @@
   height: 26px;
   background-color: var(--ant-primary-color);
   opacity: 0.3;
-  z-index: 100
+  z-index: 100;
 }
 
 .dps-total {
@@ -119,4 +126,23 @@
 .dps-count-detail-tick {
   display: block;
   width: 24px;
+}
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .dps-count-modal .ant-modal-body {
+    overflow-x: auto;
+    max-height: 75dvh;
+  }
+  .dps-count-modal-title {
+    height: auto;
+    min-height: 22px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .dps-skill-count {
+    min-width: 640px;
+  }
+  .dps-line-header,
+  .dps-line {
+    font-size: 13px;
+  }
 }

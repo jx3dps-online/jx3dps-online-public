@@ -1,13 +1,9 @@
-import 循环模拟技能基础数据 from '../../../constant/skill'
 import 有CD技能通用类 from '../../通用类/有CD技能通用类'
 import { 每秒郭氏帧 } from '@/数据/常量'
 
 class 蛊虫献祭 extends 有CD技能通用类 {
-  static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '蛊虫献祭')
-
   constructor(模拟循环) {
     super(模拟循环)
-    蛊虫献祭.技能数据 = 模拟循环?.技能基础数据?.find((item) => item.技能名称 === '蛊虫献祭')
     this.初始化技能运行数据()
   }
 
@@ -56,4 +52,4 @@ class 蛊虫献祭 extends 有CD技能通用类 {
 
 export default 蛊虫献祭
 
-export const 蛊虫献祭类型 = typeof 蛊虫献祭
+export type 蛊虫献祭类型 = 蛊虫献祭

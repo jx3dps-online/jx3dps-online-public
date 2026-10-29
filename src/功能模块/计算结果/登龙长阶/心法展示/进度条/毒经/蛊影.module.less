@@ -1,0 +1,43 @@
+.蛊影 {
+  position: absolute;
+  inset: 0;
+  transform: translate(-8%, -15%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.蛇影 {
+  width: 100%;
+  height: 100%;
+  opacity: calc(var(--dj-swirl) * 0.32);
+  filter: grayscale(0.5) brightness(1.65);
+}
+
+.蛇图腾 {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  opacity: 0.88;
+}
+
+.已达成 {
+  filter: grayscale(0.5) brightness(1.8);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .蛇图腾 {
+    animation: dj-totem-breathe 6s ease-in-out infinite;
+  }
+}
+
+@keyframes dj-totem-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}

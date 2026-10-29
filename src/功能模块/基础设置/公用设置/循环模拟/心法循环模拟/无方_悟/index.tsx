@@ -33,6 +33,15 @@ import CycleSimulatorContext from '../../context'
 import { 根据奇穴修改buff数据 } from './simulator/utils'
 import DelaySettingModal from '../通用/通用组件/技能延迟弹窗'
 import { 生成实际技能序列 } from '../通用/通用函数'
+import { 战斗曲线面板 } from '../通用/通用组件/战斗曲线弹窗'
+import { use战斗曲线 } from '../通用/通用组件/战斗曲线弹窗/use战斗曲线'
+import { 监听增益类型 } from '../通用/通用组件/战斗曲线弹窗/增益泳道'
+
+// 心法监听增益：爆发 buff 作为泳道展示在战斗曲线上
+const 监听增益列表: 监听增益类型[] = [{ 名称: '烬灭', 颜色: '#2f9e44' }].map((item) => ({
+  ...item,
+  图标: 原始Buff数据?.[item.名称]?.图标,
+}))
 
 function CycleSimulator() {
   const {
@@ -64,6 +73,7 @@ function CycleSimulator() {
     更新添加设置,
     起手Buff配置,
     增益启用,
+    当前副本事件实例列表,
   } = useContext(CycleSimulatorContext)
 
   const [模拟信息, 更新模拟信息] = useState<模拟信息类型>({
@@ -97,6 +107,7 @@ function CycleSimulator() {
   const [启用斩杀, 更新启用斩杀] = useState<boolean>(false)
   const [斩杀起始秒数, 更新斩杀起始秒数] = useState<number>(0)
   const 团队增益轴 = useAppSelector((state) => state?.data?.团队增益轴)
+  const 副本事件实例列表 = 当前副本事件实例列表
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -122,6 +133,7 @@ function CycleSimulator() {
     加速值,
     奇穴信息,
     团队增益轴,
+    副本事件实例列表,
     起手Buff配置,
     启用斩杀,
     斩杀起始秒数,
@@ -147,6 +159,7 @@ function CycleSimulator() {
       周期性忽略延迟,
       启用团队增益快照,
       团队增益轴,
+      副本事件实例列表,
       起手Buff配置,
       启用斩杀,
       斩杀起始秒数,
@@ -203,6 +216,20 @@ function CycleSimulator() {
       计算结果技能列表: 计算结果技能列表,
     })
   }
+
+  // 战斗曲线通用逻辑
+  const 战斗曲线 = use战斗曲线({
+    日志信息,
+    总战斗用时帧: 模拟信息?.当前时间 || 0,
+    团队增益轴,
+    副本事件实例列表,
+    启用团队增益快照,
+    增益启用,
+    监听增益列表,
+    日志转循环: getDpsCycle,
+    奇穴信息,
+    秘籍信息,
+  })
 
   const 获取单技能实时计算函数 = (data: 循环日志数据类型[]) => {
     const 技能伤害详情数据: 技能伤害详情类型[] = []
@@ -376,6 +403,8 @@ function CycleSimulator() {
             启用团队增益快照={启用团队增益快照}
             更新启用团队增益快照={更新启用团队增益快照}
             快速导入默认循环={快速导入默认循环}
+            战斗曲线数据={战斗曲线.曲线数据}
+            on生成战斗曲线={战斗曲线.计算曲线数据}
           />
         }
         centered
@@ -410,6 +439,8 @@ function CycleSimulator() {
             模拟DPS结果={模拟DPS结果}
             奇穴信息={奇穴信息}
             模拟函数={simulator}
+            战斗曲线面板展示={战斗曲线.战斗曲线面板展示}
+            切换战斗曲线面板={战斗曲线.切换战斗曲线面板}
           />
           {/* // 循环展示模块 */}
           <循环技能容器组件
@@ -421,6 +452,7 @@ function CycleSimulator() {
             底部标识={底部标识函数}
             点击下拉菜单={点击下拉菜单}
             允许操作列表={['插入技能', '删除后续', '设置延迟']}
+            压缩高度={战斗曲线.战斗曲线面板展示 ? 战斗曲线.压缩高度 : 0}
           />
         </div>
         {/* 添加循环按钮组 */}
@@ -432,6 +464,18 @@ function CycleSimulator() {
           大橙武模拟={大橙武模拟}
           奇穴信息={奇穴信息}
         />
+        {/* 战斗曲线底部滑出面板 */}
+        {战斗曲线.战斗曲线面板展示 ? (
+          <战斗曲线面板
+            open={战斗曲线.战斗曲线面板展示}
+            onClose={() => 战斗曲线.切换战斗曲线面板(false)}
+            曲线数据={战斗曲线.曲线数据}
+            增益泳道列表={战斗曲线.增益泳道列表}
+            onRefresh={战斗曲线.计算曲线数据}
+            高度={战斗曲线.面板高度}
+            on高度变化={战斗曲线.设置面板高度}
+          />
+        ) : null}
         {/* 保存自定义循环弹窗 */}
         <保存自定义循环弹窗
           自定义循环保存弹窗={自定义循环保存弹窗}

@@ -5,6 +5,7 @@
 import type { 心法配置类型 } from '@/心法模块/interface'
 
 import 默认数据 from './默认数据'
+import 加速阈值 from './默认数据/加速阈值'
 import 计算循环 from './计算循环'
 import 奇穴数据 from './奇穴'
 import 技能系数, { 技能增益 } from './技能系数'
@@ -12,6 +13,7 @@ import 端游孤锋决数据 from '../孤锋诀/index'
 
 const 心法配置: 心法配置类型 = {
   ...端游孤锋决数据,
+  加速阈值,
   模块负责人: '唐宋',
   名称: '孤锋诀_悟',
   简写: 'w_gfj',

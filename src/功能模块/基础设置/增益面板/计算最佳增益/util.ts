@@ -1,6 +1,5 @@
+import { 小药小吃数据类型 } from '@/@types/小药小吃'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
-
-const { 阵眼, 小药小吃, 主属性 } = 获取当前数据()
 
 export const 计算部位枚举 = {
   阵眼: '阵眼',
@@ -11,48 +10,81 @@ export const 计算部位枚举 = {
   食品增强: '食品增强',
 }
 
+// 同一小吃部位内，同属性组合只保留数值最高的小吃（不区分品级颜色）
+const 获取部位候选小吃 = (小吃列表: 小药小吃数据类型[]) => {
+  const candidates: Array<{
+    item: 小药小吃数据类型
+    gains: Record<string, number>
+    shape: string
+  }> = []
+  for (const item of 小吃列表) {
+    const gains: Record<string, number> = {}
+    item?.增益集合?.forEach(({ 属性, 值 }) => {
+      gains[属性] = (gains[属性] || 0) + 值
+    })
+    const attrs = Object.keys(gains).sort()
+    const shape = attrs.join('|')
+    if (
+      candidates.some(
+        (c) => c.shape === shape && attrs.every((attr) => c.gains[attr] >= gains[attr]),
+      )
+    ) {
+      continue
+    }
+    for (let i = candidates.length - 1; i >= 0; i--) {
+      if (
+        candidates[i].shape === shape &&
+        attrs.every((attr) => gains[attr] >= candidates[i].gains[attr])
+      ) {
+        candidates.splice(i, 1)
+      }
+    }
+    candidates.push({ item, gains, shape })
+  }
+  return candidates.map((c) => c.item)
+}
+
 export const 初始化所有组合 = (计算部位, 是否过滤加速?: boolean) => {
+  const { 阵眼, 小药小吃, 主属性 } = 获取当前数据()
   const res = {}
-  // 先找出该装备部位支持的同种类的最大数值的附魔
   Object.keys(计算部位枚举)
     .filter((key) => 计算部位?.includes(key))
     .forEach((key) => {
       if (!res?.[key]) {
         res[key] = []
       }
-      小药小吃?.forEach((item) => {
-        if (item?.小吃部位?.includes(计算部位枚举[key] as any) && item?.小吃品级 !== '蓝') {
-          const 小吃名称 = item?.小吃名称
-          const 小吃增益类型 = item?.小吃名称?.split('（')?.[1]?.split('）')?.[0]
-
-          // 判断主属性问题
-          if (['力道', '身法', '根骨', '元气']?.includes(小吃增益类型)) {
-            if (小吃增益类型 !== 主属性) {
-              return
-            }
-          }
-
-          // 判断是否过滤加速
-          if (是否过滤加速) {
-            if (小吃增益类型 === '加速') {
-              return
-            }
-          }
-
-          if (!res?.[key]?.includes(小吃名称)) {
-            res[key].push(小吃名称)
-          }
-        }
-      })
       if (key === '阵眼') {
         阵眼?.forEach((item) => {
-          const 阵眼名称 = item?.阵眼名称
-          res[key].push(阵眼名称)
+          res[key].push(item?.阵眼名称)
         })
+        return
       }
+      const 本部位小吃 = (小药小吃 || []).filter((item) => {
+        if (!item?.小吃部位?.includes(计算部位枚举[key] as any)) {
+          return false
+        }
+        const 小吃增益类型 = item?.小吃名称?.split('（')?.[1]?.split('）')?.[0]
+
+        // 判断主属性问题
+        if (['力道', '身法', '根骨', '元气']?.includes(小吃增益类型)) {
+          return 小吃增益类型 === 主属性
+        }
+
+        // 判断是否过滤加速
+        if (是否过滤加速 && 小吃增益类型 === '加速') {
+          return false
+        }
+
+        return true
+      })
+      // 同一部位同属性只保留数值最高的小吃
+      获取部位候选小吃(本部位小吃).forEach((item) => {
+        if (!res?.[key]?.includes(item?.小吃名称)) {
+          res[key].push(item?.小吃名称)
+        }
+      })
     })
 
-  // 先找出该装备部位支持的同种类的最大数值的附魔
   const generateCombinationsRes = generateCombinations(res)
   const filterUniqueObjectsRes = filterUniqueObjects(generateCombinationsRes)
 
@@ -60,8 +92,12 @@ export const 初始化所有组合 = (计算部位, 是否过滤加速?: boolean
 }
 // 对数据进行排列组合，组合出所有的可能性
 function generateCombinations(data) {
-  const keys = Object.keys(data)
+  const keys = Object.keys(data).filter((key) => (data[key] || [])?.length > 0)
   const results: any[] = []
+
+  if (!keys.length) {
+    return results
+  }
 
   function generate(index, currentCombination) {
     if (index === keys.length) {

@@ -22,7 +22,6 @@ function 配装方案导入({ visible, onClose, onOk }) {
 
   const items = [
     { label: '插件导入', key: 'my' },
-    { label: '角色导入', key: 'account' },
     { label: '魔盒导入', key: 'jx3box' },
     { label: 'JCL导入', key: 'jcl' },
     { label: '配装器导入', key: 'jx3dps' },

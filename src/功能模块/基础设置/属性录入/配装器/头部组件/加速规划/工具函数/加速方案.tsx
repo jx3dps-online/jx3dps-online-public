@@ -1,11 +1,17 @@
-function findCombinationsBag(arr, target, limit = 20) {
-  const maxValue = target + Math.max(...arr.map((i) => i.value))
-  const minValue = Math.min(...arr.map((i) => i.value))
-  const results = new Array(maxValue).fill(undefined).fill(undefined)
+interface 加速数据项 {
+  value: number
+  type: string
+}
+
+function findCombinationsBag(arr: 加速数据项[], target: number, limit = 20) {
+  const 所有加速值 = arr.map((i) => i.value)
+  const maxValue = target + Math.max(...所有加速值)
+  const minValue = Math.min(...所有加速值)
+  const results: any[] = Array.from({ length: maxValue })
   const conbinations: any[] = []
 
   for (let i = minValue; i < maxValue; i++) {
-    const rowResults = new Array(arr.length).fill(undefined).fill(undefined)
+    const rowResults: any[] = Array.from({ length: arr.length })
     for (let j = 0; j < arr.length; j++) {
       if (arr[j].value === i) {
         // 当前加速值刚好等于i
@@ -48,7 +54,7 @@ function findCombinationsBag(arr, target, limit = 20) {
   return conbinations
 }
 
-export function closestCombinations(arr, target, limit = 50) {
+export function closestCombinations(arr: 加速数据项[], target: number, limit = 50) {
   const combinationsBag = findCombinationsBag(arr, target, limit)
 
   // const combinations = findCombinations(arr, target)

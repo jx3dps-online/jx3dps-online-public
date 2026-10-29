@@ -55,6 +55,22 @@
   color: #f34242;
 }
 
+.zhuangbei-miaoshu-label-huixin {
+  color: #b55705;
+}
+
+.zhuangbei-miaoshu-label-huixiao {
+  color: #730675;
+}
+
+.zhuangbei-miaoshu-label-pofang {
+  color: #086257;
+}
+
+.zhuangbei-miaoshu-label-jiasu {
+  color: #0d4c79;
+}
+
 .zhuangbei-miaoshu-label-texiao {
   color: transparent;
   display: inline-flex;
@@ -85,4 +101,27 @@
 
 .equip-diff-change .ant-select-selector {
   border-color: #f34242 !important;
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .zhuangbei-select {
+    width: 100%;
+    min-width: 0;
+  }
+  .zhuangbei-select-item-wrap {
+    min-width: 0;
+    overflow: hidden;
+  }
+  .zhuangbei-select-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .zhuangbei-select-level,
+  .zhuangbei-select-img {
+    flex-shrink: 0;
+  }
+  .zhuangbei-select .zhuangbei-select-shuoming {
+    display: none;
+  }
 }

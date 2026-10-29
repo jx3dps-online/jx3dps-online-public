@@ -1,0 +1,175 @@
+.状态区域 {
+  margin-bottom: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+
+  .状态栏 {
+    margin-bottom: 0;
+    border: 0;
+    box-shadow: none;
+  }
+}
+
+.武器面板 {
+  padding: 8px 12px;
+
+  summary {
+    cursor: pointer;
+  }
+}
+
+.操作栏 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 6px 10px;
+}
+
+.标题 {
+  margin-right: auto;
+  color: var(--ant-primary-color);
+  font-weight: 500;
+}
+
+.内容 {
+  border-top: 1px solid #f0f0f0;
+}
+
+.固定 {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  box-shadow: 0 3px 8px #00000014;
+
+  .内容 {
+    max-height: 36vh;
+    max-height: ~'min(36dvh, 320px)';
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (any-pointer: coarse) {
+  .状态栏 {
+    display: grid;
+    grid-template-columns: minmax(170px, 1fr) repeat(2, minmax(0, 1fr)) minmax(220px, 1.2fr);
+    grid-template-areas: '星运 自身 目标 结果';
+    align-items: start;
+    gap: 8px 12px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-color: #e5e7eb;
+    border-radius: 8px;
+    box-shadow: none;
+
+    > :global(.cycle-status-bar-content:first-child) {
+      grid-area: 星运;
+    }
+
+    > :global(.cycle-status-bar-buff-content:nth-child(2)) {
+      grid-area: 自身;
+    }
+
+    > :global(.cycle-status-bar-buff-content:nth-child(3)) {
+      grid-area: 目标;
+    }
+
+    :global {
+      .cycle-status-bar-content,
+      .cycle-status-bar-buff-content,
+      .cycle-status-bar-content.cycle-status-energy-content {
+        width: auto;
+        min-width: 0;
+        margin-left: 0;
+      }
+
+      .cycle-status-bar-body {
+        height: auto;
+        min-height: 36px;
+        flex-wrap: wrap;
+      }
+
+      .cycle-status-bar-ruiyi {
+        width: 100%;
+        max-width: 200px;
+      }
+
+      .taixuan-energy-totals span {
+        white-space: normal;
+      }
+
+      .cycle-bar-dps-res {
+        grid-area: 结果;
+        width: 100%;
+        max-width: 320px;
+        min-width: 0;
+        margin-left: 0;
+      }
+
+      .cycle-dps-res-success-content {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        grid-template-areas: '统计 统计' '秒伤 用时';
+        gap: 8px 12px;
+        justify-content: start;
+      }
+
+      .cycle-dps-res-success-text-content {
+        display: contents;
+      }
+
+      .cycle-dps-res-success-text-content > div:first-child {
+        grid-area: 用时;
+      }
+
+      .cycle-dps-res-num {
+        grid-area: 秒伤;
+        width: auto;
+        padding-right: 12px;
+        margin: 0;
+        font-size: 26px;
+        line-height: 32px;
+      }
+
+      .cycle-dps-res-success-text {
+        width: auto;
+        margin: 0;
+        font-size: 13px;
+        line-height: 20px;
+      }
+
+      .cycle-dps-res-icons {
+        grid-area: 统计;
+        display: flex;
+        gap: 8px;
+        margin: 0;
+      }
+
+      .cycle-dps-res-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        margin-top: 0;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) and (any-pointer: coarse) and (orientation: portrait) {
+  .状态栏 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: '星运 自身' '结果 目标';
+  }
+}
+
+@media (max-width: 480px) {
+  .状态栏 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: '星运 自身' '星运 目标' '结果 结果';
+  }
+}

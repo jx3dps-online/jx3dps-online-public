@@ -9,40 +9,27 @@ const 使用须知 = () => {
         title='使用说明'
         content={
           <div>
-            <p>1、录制你的JCL战斗文件{`(格式后缀为.jcl)`}</p>
+            <p>1、录制 JCL 战斗文件，支持 .jcl 和 .txt 格式。</p>
             <p>
-              2、打开魔盒下载
-              <a href='https://www.jx3box.com/bps/83133' target='_blank' rel='noreferrer'>
-                考拉大佬的Formulator
-              </a>
+              2、无方、冰心诀、紫霞功可直接上传文件；按需填写目标等级、最大时间和玩家 ID，然后点击
+              <span className='tools-jcl-info-modal-tip-btn'>转换 JCL</span>。
             </p>
             <p>
-              3、打开Formulator，点击<span className='tools-jcl-info-modal-tip-btn'>请上传JCL</span>
-              <p>
-                若上传后无反应，说明Formulator未对该JCL对应的职业/奇穴等进行兼容，请移步魔盒联系考拉大佬
-              </p>
-            </p>
-            <p>
-              4、选择<span className='tools-jcl-info-modal-tip-btn'>一键大附魔</span>
-              ，点击<span className='tools-jcl-info-modal-tip-btn'>开始模拟</span>
-            </p>
-            <p>
-              5、点击<span className='tools-jcl-info-modal-tip-btn'>导出上一次模拟结果！</span>
-              ，并在你放置.jcl文件的文件夹下找到相同名字的.json文件
-            </p>
-            <p>
-              6、打开网页计算器JCL战斗解析，复制JSON文件内容至
+              3、转换成功后会自动选择心法并填入 JSON；也可以直接将已有 JSON 粘贴到
               <span className='tools-jcl-info-modal-tip-btn'>数据</span>输入框。
-              选择对应的心法、战斗时间
             </p>
             <p>
-              7、点击
-              <span className='tools-jcl-info-modal-tip-btn'>获取数据</span>
+              4、填写<span className='tools-jcl-info-modal-tip-btn'>战斗时间</span>
+              时，建议使用 DPS 统计时间 +1 秒；超过实际战斗时长会自行截断。
+            </p>
+            <p>
+              5、选择团队增益轴计算方式和是否记录伤害数据，然后点击
+              <span className='tools-jcl-info-modal-tip-btn'>解析数据</span>生成计算循环。
             </p>
             <p style={{ marginBottom: 8 }}>
-              8、如果该职业支持直接将解析数据保存为计算循环，可点击
-              <span className='tools-jcl-info-modal-tip-btn'>保存循环</span>
-              按钮。直接生成外部可计算循环。
+              6、确认结果后可点击
+              <span className='tools-jcl-info-modal-tip-btn'>保存循环</span>或
+              <span className='tools-jcl-info-modal-tip-btn'>复制</span>。
             </p>
           </div>
         }

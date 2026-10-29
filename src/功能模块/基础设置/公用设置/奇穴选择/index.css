@@ -1,7 +1,3 @@
-.qixue-set-button {
-  width: calc(50% - 4px);
-}
-
 .qixue-set-drawer-title-wrap {
   display: flex;
   align-items: center;
@@ -33,7 +29,7 @@
 }
 
 .qixue-set-item {
-  width: 90px;
+  /* width: 90px; */
   margin: 0 12px;
 }
 

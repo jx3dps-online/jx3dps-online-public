@@ -1,0 +1,154 @@
+.骨纹流光,
+.蛊雾 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.骨纹流光 {
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  overflow: hidden;
+  i {
+    display: block;
+    width: 20%;
+    height: 100%;
+    opacity: 0;
+    background: linear-gradient(100deg, transparent, #d797b1aa 35%, #fff2eccc 55%, transparent 85%);
+  }
+}
+
+.红丝 {
+  stroke: #e17b98;
+  stroke-opacity: var(--dj-mist);
+  stroke-width: 2.4;
+  stroke-dasharray: 180 780;
+  stroke-dashoffset: -200;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 3px #b4457755);
+  path:last-child {
+    stroke: #dcc0ef;
+    stroke-width: 1.6;
+    stroke-dashoffset: -440;
+  }
+}
+.光尘 circle {
+  opacity: 0.65;
+  filter: drop-shadow(0 0 3px #d897b3);
+}
+
+.蛊心 {
+  opacity: calc(0.55 * var(--dj-core));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.游丝 {
+  stroke: #e3c4d8;
+  stroke-width: 2;
+  stroke-dasharray: 170 825;
+  opacity: 0.65;
+  filter: drop-shadow(0 0 3px #b86f9d88);
+  path:last-child {
+    stroke: #d98f9f;
+    stroke-dasharray: 60 400;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .骨纹流光 i {
+    animation: dj-shimmer 8s ease-in-out infinite;
+  }
+  .红丝 path {
+    animation: dj-thread 9s linear infinite;
+  }
+  .红丝 path:last-child {
+    animation-delay: -4s;
+  }
+  .光尘 circle {
+    animation: dj-dust calc(7s + var(--dj-index) * 0.3s) ease-in-out infinite;
+    animation-delay: calc(var(--dj-index) * -0.8s);
+  }
+
+  .蛊心 {
+    animation: dj-core 5.4s ease-in-out infinite;
+  }
+  .游丝 path {
+    animation: dj-spirit 12s linear infinite;
+  }
+  .游丝 path:last-child {
+    animation: dj-coil 8s linear infinite;
+  }
+}
+
+@keyframes dj-shimmer {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  15%,
+  75% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateX(500%);
+    opacity: 0;
+  }
+}
+@keyframes dj-thread {
+  from {
+    stroke-dashoffset: 120;
+  }
+  to {
+    stroke-dashoffset: -840;
+  }
+}
+@keyframes dj-dust {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(-10px, 4px);
+  }
+  40% {
+    opacity: 0.95;
+  }
+  90% {
+    opacity: 0;
+    transform: translate(18px, -16px);
+  }
+}
+@keyframes dj-core {
+  0%,
+  100% {
+    opacity: calc(0.32 * var(--dj-core));
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: calc(0.98 * var(--dj-core));
+    transform: scale(1.18);
+  }
+}
+@keyframes dj-spirit {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: -895;
+  }
+}
+@keyframes dj-coil {
+  from {
+    stroke-dashoffset: 70;
+  }
+  to {
+    stroke-dashoffset: -390;
+  }
+}
+
+@supports not (mask-image: linear-gradient(#000, transparent)) {
+  .骨纹流光 {
+    display: none;
+  }
+}

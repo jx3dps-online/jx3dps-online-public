@@ -1,7 +1,7 @@
-export function generateCombinations(arr, length) {
-  const result = new Set() // 使用 Set 来避免重复
+export function generateCombinations(arr: number[], length: number): number[][] {
+  const result = new Set<string>() // 使用 Set 来避免重复
 
-  function backtrack(current) {
+  function backtrack(current: number[]) {
     // 如果当前组合达到指定长度，将其加入结果
     if (current.length === length) {
       // 检查是否为全零组合
@@ -11,7 +11,7 @@ export function generateCombinations(arr, length) {
           current
             .slice()
             .sort((a, b) => a - b)
-            .join(',')
+            .join(','),
         )
       }
       return
@@ -28,5 +28,5 @@ export function generateCombinations(arr, length) {
   backtrack([])
 
   // 将 Set 中的字符串转换回数组并解析为数字数组
-  return Array.from(result).map((item: any) => item.split(',').map(Number))
+  return Array.from(result).map((item) => item.split(',').map(Number))
 }

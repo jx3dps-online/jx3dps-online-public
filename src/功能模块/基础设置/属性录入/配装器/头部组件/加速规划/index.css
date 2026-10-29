@@ -39,22 +39,26 @@
   /* justify-content: space-between; */
 }
 
-
 .haste-project-target-operate {
   margin-left: 12px;
 }
 
 .haste-project-operate-delete {
   margin-left: 8px;
-  color: #ff0000
+  color: #ff0000;
 }
 
 .haste-project-operate-delete:hover {
-  color: #ff4d4f
+  color: #ff4d4f;
 }
 
 .haste-project-form-item-50 {
   width: calc(50% - 24px);
+  margin-right: 24px;
+}
+
+.haste-project-form-item-25 {
+  width: calc(25% - 24px);
   margin-right: 24px;
 }
 

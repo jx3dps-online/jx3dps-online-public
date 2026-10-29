@@ -131,6 +131,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
                 return false
               }
               if (item?.显示类型 === '奇穴技能') {
+                if (item.技能名称 === '一阳来复' && !奇穴信息.includes('蛰微')) return false
                 const 依赖名称 = item?.依赖奇穴名 || item?.技能名称
                 return 奇穴信息?.includes(依赖名称)
               }
@@ -154,21 +155,23 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
       <div className={`cycle-simulator-setting-item cycle-simulator-setting-fast-item`}>
         <span className={'ztg-cycle-btn-type'}>快捷添加</span>
         <Row className={'cycle-simulator-setting-quick'} gutter={[16, 8]}>
-          {快捷添加数据.map((item) => {
-            return (
-              <Col span={8} key={item?.名称}>
-                {/* <Tooltip title={item?.技能序列?.join(' ')}> */}
-                <Tag
-                  color={item?.color || 'blue'}
-                  onClick={() => 批量新增循环技能(item)}
-                  className={'cycle-simulator-setting-quick-item'}
-                >
-                  {item?.名称}
-                </Tag>
-                {/* </Tooltip> */}
-              </Col>
-            )
-          })}
+          {快捷添加数据
+            .filter((item) => !item.依赖奇穴?.some((奇穴) => !奇穴信息.includes(奇穴)))
+            .map((item) => {
+              return (
+                <Col span={8} key={item?.名称}>
+                  {/* <Tooltip title={item?.技能序列?.join(' ')}> */}
+                  <Tag
+                    color={item?.color || 'blue'}
+                    onClick={() => 批量新增循环技能(item)}
+                    className={'cycle-simulator-setting-quick-item'}
+                  >
+                    {item?.名称}
+                  </Tag>
+                  {/* </Tooltip> */}
+                </Col>
+              )
+            })}
         </Row>
       </div>
     </div>

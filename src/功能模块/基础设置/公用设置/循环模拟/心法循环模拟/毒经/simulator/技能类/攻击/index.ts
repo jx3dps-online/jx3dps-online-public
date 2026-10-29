@@ -41,4 +41,4 @@ class 攻击 extends 有CD技能通用类 {
 
 export default 攻击
 
-export const 攻击类型 = typeof 攻击
+export type 攻击类型 = 攻击

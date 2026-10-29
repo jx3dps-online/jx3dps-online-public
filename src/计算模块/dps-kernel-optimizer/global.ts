@@ -1,20 +1,25 @@
-// 等级因素
+// 等级因子
 const LevelFactor = (level: number) => {
   let res = 0
-  if (level <= 15) {
-    res = 50
-  } else if (15 <= level && level < 90) {
-    res = 4 * level - 10
-  } else if (90 <= level && level < 95) {
-    res = 85 * (level - 90) + 350
-  } else if (95 <= level && level < 100) {
-    res = 185 * (level - 95) + 775
-  } else if (100 <= level && level < 110) {
-    res = 205 * (level - 100) + 1700
-  } else if (110 <= level && level < 130) {
-    res = 450 * (level - 110) + 3750
+  // if (level <= 15) {
+  //   res = 50
+  // } else if (15 <= level && level < 90) {
+  //   res = 4 * level - 10
+  // } else if (90 <= level && level < 95) {
+  //   res = 85 * (level - 90) + 350
+  // } else if (95 <= level && level < 100) {
+  //   res = 185 * (level - 95) + 775
+  // } else if (100 <= level && level < 110) {
+  //   res = 205 * (level - 100) + 1700
+  // } else if (110 <= level && level < 130) {
+  //   res = 450 * (level - 110) + 3750
+  // }
+  if (level <= 30) {
+    return 330
+  } else {
+    return 33 * level - 660
   }
-  return res
+  // return res
 }
 
 // 计算基础常量
@@ -28,7 +33,6 @@ export const GlobalParams = (level: number) => {
   const BOSS防御 = BaseGlobalParams.fPhysicsShieldParam * levelFactor
   const 破防 = BaseGlobalParams.fOvercomeParam * levelFactor
   const 加速 = BaseGlobalParams.fHasteRate * levelFactor
-  const 破招 = BaseGlobalParams.fSurplusParam * levelFactor
   const 外防 = BaseGlobalParams.fPhysicsShieldParam * levelFactor
   const 内防 = BaseGlobalParams.fMagicShieldParam * levelFactor
   const 化劲 = BaseGlobalParams.fDecriticalStrikePowerParam * levelFactor
@@ -36,7 +40,7 @@ export const GlobalParams = (level: number) => {
 
   const 御劲减会效 = BaseGlobalParams.fToughnessDecirDamageCof * levelFactor
 
-  return { 会心, 会效, 命中, 无双, BOSS防御, 破防, 加速, 破招, 外防, 内防, 化劲, 御劲, 御劲减会效 }
+  return { 会心, 会效, 命中, 无双, BOSS防御, 破防, 加速, 外防, 内防, 化劲, 御劲, 御劲减会效 }
 }
 
 // 基础计算系数
@@ -55,6 +59,6 @@ export const BaseGlobalParams = {
   fOvercomeParam: 9.53, // 破防
   fHasteRate: 11.695, // 加速
   fToughnessDecirDamageCof: 2.557, // 御劲减会效
-  fSurplusParam: 13.192, // 破招
+  // fSurplusParam: 13.192, // 破招
   fAssistedPowerCof: 9.53, // 侠客属性
 }

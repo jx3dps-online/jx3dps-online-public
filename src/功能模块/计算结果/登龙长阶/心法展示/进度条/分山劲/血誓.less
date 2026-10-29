@@ -1,0 +1,225 @@
+.blood-oath {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 260px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+
+  .blood-oath-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    > span {
+      font-family: 'SimSun', 'STSong', serif;
+      font-size: 16px;
+      letter-spacing: 3px;
+      color: #d9c6b8;
+    }
+
+    > div {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    b {
+      font-size: 29px;
+      font-weight: 500;
+      color: #f3e0bd;
+      font-variant-numeric: tabular-nums;
+    }
+
+    small {
+      font-size: 13px;
+      margin-left: 2px;
+    }
+
+    em {
+      font-size: 12px;
+      font-style: normal;
+      color: #a89b8e;
+    }
+  }
+
+  // 白狼河北：993×300 透明横幅，容器按原图比例占满列宽
+  .blood-oath-art {
+    position: relative;
+    aspect-ratio: 993 / 300;
+    isolation: isolate;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      transition:
+        opacity 1.2s ease,
+        filter 1.2s ease,
+        clip-path 1.2s ease;
+    }
+
+    // 未成之誓：铁色石刻
+    .blood-oath-base {
+      filter: saturate(0.1) brightness(0.5);
+    }
+
+    // 誓约复苏：彩色自左向右扫过
+    .blood-oath-reveal {
+      clip-path: inset(0 calc(100% - var(--oath-progress)) 0 0);
+      filter: drop-shadow(0 0 5px rgba(255, 138, 77, 0.3));
+    }
+  }
+
+  .blood-oath-aura {
+    position: absolute;
+    inset: 12% 4%;
+    background: radial-gradient(
+      ellipse,
+      color-mix(in srgb, var(--dragon-theme) 42%, #f2e6d8) 0%,
+      transparent 65%
+    );
+    opacity: calc(var(--oath-awaken) * 0.4);
+    filter: blur(12px);
+    animation: oath-breath 5s ease-in-out infinite;
+  }
+
+  .blood-oath-snow {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    pointer-events: none;
+
+    i {
+      position: absolute;
+      left: calc(10% + var(--flake) * 11%);
+      top: 12%;
+      width: 2px;
+      height: 2px;
+      background: #eef3f8;
+      border-radius: 50%;
+      box-shadow: 0 0 5px #dce7ef;
+      animation: oath-snowfall calc(3.2s + var(--flake) * 0.3s) linear infinite;
+      animation-delay: calc(var(--flake) * -0.7s);
+    }
+  }
+
+  .blood-oath-track {
+    position: relative;
+    height: 2px;
+    margin: 2px 3% 0;
+    background: rgba(255, 255, 255, 0.07);
+
+    > i {
+      display: block;
+      width: var(--oath-progress);
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--dragon-theme) 55%, #6b4a3a),
+        var(--dragon-gold)
+      );
+      transition: width 1.3s ease;
+    }
+
+    > span {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      top: -1px;
+      transform: rotate(45deg);
+      background: #485365;
+    }
+
+    > .is-lit {
+      background: #d8c4a2;
+    }
+  }
+
+  &.stage-0 .blood-oath-reveal {
+    opacity: 0;
+  }
+
+  &.stage-2 .blood-oath-snow {
+    opacity: 0.25;
+  }
+
+  &.stage-3 .blood-oath-snow {
+    opacity: 0.55;
+  }
+
+  // 达成（神勇之怒，怒而色不变）：金光满绘；非达成最多到 stage-3
+  &.stage-4 {
+    .blood-oath-caption > span {
+      color: var(--dragon-gold);
+    }
+
+    .blood-oath-reveal {
+      filter: drop-shadow(0 0 8px rgba(232, 197, 141, 0.55));
+    }
+
+    .blood-oath-aura {
+      opacity: calc(var(--oath-awaken) * 0.55);
+    }
+
+    .blood-oath-snow {
+      opacity: 0.8;
+    }
+  }
+}
+
+@keyframes oath-snowfall {
+  from {
+    transform: translate(0, -12px);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.8;
+  }
+
+  85% {
+    opacity: 0.5;
+  }
+
+  to {
+    transform: translate(-18px, 64px);
+    opacity: 0;
+  }
+}
+
+@keyframes oath-breath {
+  50% {
+    opacity: calc(var(--oath-awaken) * 0.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blood-oath *,
+  .blood-oath img {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@container dragon-stair (max-width: 580px) {
+  .blood-oath {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    flex-basis: 100%;
+    margin-top: 12px;
+  }
+}
+
+// 矮屏收一屏：contain 居中留白，不裁切狼首
+@media (max-height: 950px) and (min-width: 1100px) {
+  .blood-oath .blood-oath-art {
+    max-height: 118px;
+  }
+}

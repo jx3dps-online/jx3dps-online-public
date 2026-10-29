@@ -1,15 +1,14 @@
 import React, { useMemo, useState } from 'react'
 import { Alert, Checkbox, Drawer } from 'antd'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { 团队增益类型枚举, 团队增益选项数据类型, 增益选项数据类型 } from '@/@types/团队增益'
 import { 秒伤计算 } from '@/计算模块/计算函数'
 import 团队增益图标 from '../团队增益图标'
 import styles from './index.module.less'
 
-const { 团队增益 = [] } = 获取当前数据()
-
 function 团队增益轴设置弹窗({ open, onCancel }) {
+  const { 团队增益 = [] } = use心法数据()
   const 增益数据 = useAppSelector((state) => state.data.增益数据)
   const 增益启用 = useAppSelector((state) => state?.data?.增益启用)
   const 当前计算结果 = useAppSelector((state) => state.data.当前计算结果)
@@ -86,7 +85,7 @@ function 团队增益轴设置弹窗({ open, onCancel }) {
       })
     整合增益.sort((a, b) => b.秒伤差值 - a.秒伤差值)
     return 整合增益
-  }, [增益数据, open, 增益启用, 当前计算结果, 仅看已启用, 仅看旗舰, 团队增益类型过滤])
+  }, [增益数据, open, 增益启用, 当前计算结果, 仅看已启用, 仅看旗舰, 团队增益类型过滤, 团队增益])
 
   const 最大增益提升值 = useMemo(() => {
     if (显示增益数据?.length) {
@@ -105,7 +104,8 @@ function 团队增益轴设置弹窗({ open, onCancel }) {
       footer={null}
       width={804}
       placement='left'
-      mask={false}
+      maskClosable
+      styles={{ mask: { background: 'transparent' } }}
       destroyOnClose
     >
       <Alert

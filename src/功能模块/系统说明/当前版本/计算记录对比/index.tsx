@@ -1,12 +1,10 @@
 import React, { useMemo } from 'react'
 import styles from './index.module.less'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 计算记录类型 } from '@/@types/计算'
 import { useAppSelector } from '@/hooks'
 import useCycle from '@/hooks/use-cycle'
 import { Divider } from 'antd'
-
-const { 缓存映射 } = 获取当前数据()
 
 const enum 记录对比状态 {
   伤害变更 = '伤害变更',
@@ -14,6 +12,7 @@ const enum 记录对比状态 {
 }
 
 const 计算记录对比 = () => {
+  const { 缓存映射 } = use心法数据()
   const 当前计算结果 = useAppSelector((state) => state?.data?.当前计算结果)
   const { 全部循环 = [] } = useCycle()
 
@@ -45,7 +44,7 @@ const 计算记录对比 = () => {
       console.error(e, '获取计算记录失败')
     }
     return 差异对比
-  }, [当前计算结果, 全部循环])
+  }, [当前计算结果, 全部循环, 缓存映射])
 
   const 循环变更组件 = () => {
     return (

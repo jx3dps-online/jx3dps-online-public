@@ -1,0 +1,175 @@
+.进度条 {
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+
+.标题 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.武器名 {
+  font-family: 'STKaiti', 'KaiTi', serif;
+  font-size: 17px;
+  letter-spacing: 3px;
+  color: #c4d8d5;
+  white-space: nowrap;
+}
+
+.完成度 {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-left: auto;
+  white-space: nowrap;
+
+  b {
+    font-size: 29px;
+    font-weight: 500;
+    color: #f3e0bd;
+    font-variant-numeric: tabular-nums;
+  }
+
+  small {
+    font-size: 13px;
+    margin-left: 2px;
+  }
+
+  em {
+    font-size: 12px;
+    font-style: normal;
+    color: #aeb9c9;
+  }
+}
+
+.武器 {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4.8 / 1;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.画布 {
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  width: 92%;
+  aspect-ratio: 3 / 1;
+  transform: translateY(-40%);
+
+  > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    user-select: none;
+    -webkit-mask-size: calc(200% + 12px) 100%;
+    mask-size: calc(200% + 12px) 100%;
+    -webkit-mask-position: calc(100% - var(--weapon-progress)) 0;
+    mask-position: calc(100% - var(--weapon-progress)) 0;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+}
+
+.暗态 {
+  opacity: 0.2;
+  filter: grayscale(0.8) saturate(0.4) brightness(0.65);
+  -webkit-mask-image: linear-gradient(90deg, transparent calc(50% - 6px), #000 calc(50% + 6px));
+  mask-image: linear-gradient(90deg, transparent calc(50% - 6px), #000 calc(50% + 6px));
+}
+
+.亮态 {
+  opacity: var(--xcj-opacity);
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(50% - 6px), transparent calc(50% + 6px));
+  mask-image: linear-gradient(90deg, #000 calc(50% - 6px), transparent calc(50% + 6px));
+}
+
+.已达成 .亮态 {
+  filter: drop-shadow(0 0 2px #98d8b835);
+}
+
+.刻度 {
+  position: relative;
+  height: 2px;
+  margin: 4px 3% 0;
+  background: #ffffff13;
+
+  > i {
+    display: block;
+    width: var(--weapon-progress);
+    height: 100%;
+    background: linear-gradient(90deg, #789893, #71c5bd, #ead4b1);
+  }
+
+  > span {
+    position: absolute;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    transform: translateX(-50%) rotate(45deg);
+    background: #485365;
+  }
+
+  > .已点亮 {
+    background: #d8c4a2;
+  }
+}
+
+.已达成 .武器名 {
+  color: #ead4b1;
+}
+
+@container dragon-stair (max-width: 580px) {
+  .进度条 {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    flex-basis: 100%;
+    margin-top: 12px;
+  }
+}
+
+@container dragon-stair (max-width: 320px) {
+  .武器名 {
+    flex-basis: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .进度条:not(.忙碌) {
+    .画布 > img {
+      transition:
+        mask-position 1.1s ease,
+        -webkit-mask-position 1.1s ease;
+    }
+    .刻度 > i {
+      transition: width 1.1s ease;
+    }
+  }
+}
+
+@supports not (
+  (mask-image: linear-gradient(#000, transparent)) or
+    (-webkit-mask-image: linear-gradient(#000, transparent))
+) {
+  .亮态 {
+    display: none;
+  }
+  .已达成 {
+    .暗态 {
+      display: none;
+    }
+    .亮态 {
+      display: block;
+    }
+  }
+}

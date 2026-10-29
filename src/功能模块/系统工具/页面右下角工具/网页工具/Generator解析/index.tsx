@@ -3,15 +3,14 @@ import { Button, Upload, message } from 'antd'
 import { 循环详情 } from '@/@types/循环'
 import 保存循环弹窗 from './保存循环弹窗'
 import styles from './index.module.less'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { InboxOutlined } from '@ant-design/icons'
 import 解析Generator主函数 from './tool'
-
-const { 名称: 心法名称 } = 获取当前数据()
 
 const { Dragger } = Upload
 
 function Generator解析() {
+  const { 名称: 心法名称 } = use心法数据()
   const [结果数据, 更新结果数据] = useState<循环详情>()
   const [奇穴数据, 更新奇穴数据] = useState<string[]>()
   const [异常数据, 更新异常数据] = useState<any>()

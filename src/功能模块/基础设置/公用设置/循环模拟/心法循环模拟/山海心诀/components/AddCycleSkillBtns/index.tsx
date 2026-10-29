@@ -16,6 +16,7 @@ interface AddCycleSkillBtnsProps {
   奇穴信息: string[]
   宠物顺序?: string[]
   更新宠物顺序?: (e: string[]) => void
+  插入技能?: boolean // 插入技能时不禁用技能
 }
 
 function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
@@ -28,6 +29,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
     奇穴信息,
     宠物顺序,
     更新宠物顺序,
+    插入技能,
   } = props
 
   const 批量新增循环技能 = (数据: 快捷添加数据类型) => {
@@ -75,6 +77,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
                   完整循环={处理循环结果对象?.完整循环 || []}
                   技能={item}
                   模拟信息={模拟信息}
+                  插入技能={插入技能}
                 />
               )
             })}
@@ -95,6 +98,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
                   完整循环={处理循环结果对象?.完整循环 || []}
                   技能={item}
                   模拟信息={模拟信息}
+                  插入技能={插入技能}
                 />
               )
             })}
@@ -124,6 +128,7 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
                   完整循环={处理循环结果对象?.完整循环 || []}
                   技能={item}
                   模拟信息={模拟信息}
+                  插入技能={插入技能}
                 />
               )
             })}

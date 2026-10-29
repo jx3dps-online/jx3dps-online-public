@@ -1,0 +1,124 @@
+.仙气 {
+  fill: none;
+  pointer-events: none;
+}
+.云雾 ellipse {
+  opacity: 0.26;
+  transform-box: fill-box;
+  transform-origin: center;
+  &:nth-child(2) {
+    fill-opacity: 0.7;
+  }
+}
+.雾带,
+.游丝 {
+  path:nth-child(n + 3) {
+    stroke-opacity: 0.65;
+  }
+}
+.雾带 path {
+  stroke-width: 8;
+  stroke-linecap: round;
+  opacity: 0.34;
+  &:nth-child(even) {
+    stroke-width: 5;
+    opacity: 0.25;
+  }
+}
+.游丝 path {
+  stroke-width: 0.8;
+  stroke-dasharray: 25 75;
+  stroke-linecap: round;
+  opacity: 0.24;
+}
+.星屑 circle {
+  fill: #bde8f3;
+  opacity: 0.28;
+  &:nth-child(3n) {
+    fill: #e8d6a3;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .流动 {
+    .云雾 ellipse {
+      animation: lhj-cloud 9s ease-in-out -2s infinite;
+      &:nth-child(2) {
+        animation-duration: 10.8s;
+        animation-delay: -5s;
+      }
+      &:nth-child(3) {
+        animation-duration: 12s;
+        animation-delay: -8s;
+      }
+    }
+    .雾带 path {
+      stroke-dasharray: 62 38;
+      animation: lhj-mist 7.2s linear infinite;
+      animation-delay: calc(var(--lhj-drift) * -1.8s);
+    }
+    .游丝 path {
+      animation: lhj-thread 6.4s linear infinite;
+      animation-delay: calc(var(--lhj-drift) * -1.6s);
+    }
+    .星屑 circle {
+      animation: lhj-spindrift 5.8s ease-out infinite;
+      animation-delay: calc(var(--lhj-drift) * -0.97s);
+    }
+  }
+}
+@keyframes lhj-cloud {
+  0%,
+  100% {
+    opacity: 0.05;
+    transform: translate(3px, 1px) scale(0.94);
+  }
+  48% {
+    opacity: 0.48;
+    transform: translate(-6px, -2px) scale(1.04);
+  }
+}
+@keyframes lhj-mist {
+  0% {
+    stroke-dashoffset: 90;
+    opacity: 0;
+  }
+  24% {
+    opacity: 0.4;
+  }
+  66% {
+    opacity: 0.28;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+@keyframes lhj-thread {
+  0% {
+    stroke-dashoffset: 70;
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.55;
+  }
+  70% {
+    opacity: 0.26;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+@keyframes lhj-spindrift {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-220px, calc((var(--lhj-drift) - 2.5) * 9px));
+  }
+}

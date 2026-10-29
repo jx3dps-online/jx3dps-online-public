@@ -126,6 +126,11 @@ export interface 循环基础技能数据类型 {
    */
   技能释放后添加GCD: number
   /**
+   * @name 最小GCD
+   * 加速无法突破的最小GCD限制
+   */
+  最小GCD?: number
+  /**
    * 技能GCD组
    */
   技能GCD组?: '单刀' | '双刀' | '自身'

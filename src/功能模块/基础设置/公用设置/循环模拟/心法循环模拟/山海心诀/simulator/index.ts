@@ -4,10 +4,11 @@
 
 import 循环主类 from './main'
 import type { SimulatorCycleProps } from './main'
+import { 执行宏标记循环 } from '../../通用/宏解释/通用/宏循环回放'
 
 const 模拟循环 = (props: SimulatorCycleProps) => {
   const 模拟实例 = new 循环主类(props)
-  模拟实例.模拟()
+  执行宏标记循环(模拟实例)
 
   模拟实例.日志排序()
 

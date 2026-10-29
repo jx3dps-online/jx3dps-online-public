@@ -1,0 +1,193 @@
+.装备标题 {
+  display: contents;
+}
+
+.部位名称 {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .装备选择 {
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+
+    :global {
+      .zhuangbei-form-item-left-1,
+      .zhuangbei-form-item-left-2,
+      .zhuangbei-form-item-left-3,
+      .zhuangbei-form-item-left-4 {
+        width: 100%;
+        min-width: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .装备标题 {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+  }
+
+  .部位名称 {
+    display: block;
+    color: var(--ant-primary-color);
+    font-weight: 600;
+  }
+
+  .装备细节 {
+    border-top: 1px solid #eef0f4;
+    padding-top: 10px;
+
+    > summary {
+      cursor: pointer;
+      color: var(--ant-primary-color);
+      font-size: 13px;
+    }
+  }
+
+  .装备细节内容 {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 12px;
+  }
+
+  .精炼镶嵌 {
+    display: grid;
+    grid-template-columns: 66px minmax(0, 1fr);
+    gap: 10px;
+
+    :global {
+      .zhuangbei-form-item-left-3::before,
+      .zhuangbei-form-item-left-4::before {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .zhuangbei-form-item-left-3::before {
+        content: '精炼';
+      }
+
+      .zhuangbei-form-item-left-4::before {
+        content: '镶嵌';
+      }
+
+      .xiangqian-select-wrap {
+        flex-wrap: wrap;
+      }
+
+      .xiangqian-item {
+        flex: 1 0 60px;
+      }
+    }
+  }
+
+  .附魔,
+  .大附魔 {
+    min-width: 0;
+  }
+
+  .字段名称 {
+    margin-bottom: 6px;
+  }
+
+  .大附魔 :global(.ant-select) {
+    width: 100%;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) and (any-pointer: coarse) {
+  .装备选择 {
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+
+    :global {
+      .zhuangbei-form-item-left-1,
+      .zhuangbei-form-item-left-2,
+      .zhuangbei-form-item-left-3,
+      .zhuangbei-form-item-left-4 {
+        width: 100%;
+        min-width: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .装备标题 {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+  }
+
+  .部位名称 {
+    display: block;
+    color: var(--ant-primary-color);
+    font-weight: 600;
+  }
+
+  .装备细节 {
+    border-top: 1px solid #eef0f4;
+    padding-top: 10px;
+
+    > summary {
+      cursor: pointer;
+      color: var(--ant-primary-color);
+      font-size: 13px;
+    }
+  }
+
+  .装备细节内容 {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 12px;
+  }
+
+  .精炼镶嵌 {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 10px;
+
+    :global {
+      .zhuangbei-form-item-left-3::before,
+      .zhuangbei-form-item-left-4::before {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .zhuangbei-form-item-left-3::before {
+        content: '精炼';
+      }
+
+      .zhuangbei-form-item-left-4::before {
+        content: '镶嵌';
+      }
+
+      .xiangqian-select-wrap {
+        flex-wrap: wrap;
+      }
+
+      .xiangqian-item {
+        flex: 1 0 60px;
+      }
+    }
+  }
+
+  .附魔,
+  .大附魔 {
+    min-width: 0;
+  }
+
+  .字段名称 {
+    margin-bottom: 6px;
+  }
+
+  .大附魔 :global(.ant-select) {
+    width: 100%;
+  }
+}

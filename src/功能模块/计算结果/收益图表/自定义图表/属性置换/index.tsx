@@ -5,17 +5,20 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Col, Popover, Row, Switch, Tooltip } from 'antd'
 import { useAppDispatch, useAppSelector } from '@/hooks'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 秒伤计算 } from '@/计算模块/计算函数'
-import { 收益增益属性计算, 获取当前各属性最大附魔 } from '../../工具'
+import { 收益增益属性计算, 获取附魔收益列表 } from '../../工具'
 import { 置换数据信息类型, 置换结果数据类型 } from './interface'
 import { CrownFilled } from '@ant-design/icons'
 import './index.css'
 
-// 会效收益从175%至300%
-const 收益列表 = 获取当前各属性最大附魔()?.filter((item) => !['武伤', '会效']?.includes(item?.收益))
-// 过滤武伤和会效
-
 function 属性置换收益() {
+  const { 附魔 } = use心法数据()
+  // 会效按会心附魔数值补入；武伤、全能不参与置换
+  const 收益列表 = useMemo(
+    () => 获取附魔收益列表(附魔).filter((item) => !['武伤', '全能'].includes(item.收益)),
+    [附魔],
+  )
   const [置换结果数据, 更新置换结果数据] = useState<置换结果数据类型[]>([])
   const [置换数据信息, 更新置换数据信息] = useState<置换数据信息类型>({
     最大值: 0,
@@ -30,7 +33,7 @@ function 属性置换收益() {
 
   useEffect(() => {
     初始化置换结果数据()
-  }, [当前计算结果?.秒伤])
+  }, [当前计算结果?.秒伤, 收益列表])
 
   const 初始化置换结果数据 = () => {
     const 结果数据 = 获取属性置换图表数据()

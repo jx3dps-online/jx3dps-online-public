@@ -6,12 +6,17 @@ import './index.css'
 import { downloadCSV } from '@/工具函数/help'
 const { Dragger } = Upload
 
+const isLocalBuild = process.env.REACT_APP_BUILD_TYPE === 'local'
+
 function JclSkillDaoru() {
   const [loading, setLoading] = useState<boolean>(false)
   const [shuju, setShuju] = useState<any>()
   const workerRef = useRef<Worker | null>(null)
 
   useEffect(() => {
+    if (isLocalBuild) {
+      return
+    }
     // 创建 Worker 实例
     workerRef.current = new Worker(new URL('./worker.ts', import.meta.url))
 
@@ -54,6 +59,10 @@ function JclSkillDaoru() {
   }
 
   const handleFileChange = (e) => {
+    if (isLocalBuild) {
+      message.info('本地版本暂不支持该导入功能，请使用网页版')
+      return
+    }
     const file = e
     const reader = new FileReader()
     reader.readAsText(file)

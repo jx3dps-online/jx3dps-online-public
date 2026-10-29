@@ -4,12 +4,9 @@
  */
 import { 增益选项数据类型 } from '@/@types/团队增益'
 import { 属性类型 } from '@/@types/属性'
-import { 自身属性系数 } from '@/数据/常量'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
-import { 按数字生成数组 } from './help'
-import { 获取阈值 } from '@/页面/加速计算/utils'
-
-const { 小药小吃, 基础GCD = 1.5 } = 获取当前数据()
+import { 获取阈值 } from './加速阈值'
+export { 获取实际帧数, 获取倒读条实际帧数分布 } from './加速阈值'
 
 // 由于存在负数（贪破），使用位预算需要额外判断，这里继续使用Math.floor
 // 经过测试 Math.floor / 1024 和 >>> 10 的位运算逻辑性能差距小于10% 为兼容性考虑不采用位运算
@@ -29,40 +26,23 @@ export const 获取非郭氏加成值 = (原值 = 0, 郭氏值 = 0) => {
   return 原值 + (郭氏值 ? 获取非郭氏结果值(原值, 郭氏值) : 0)
 }
 
+export const 获取加速等级分界 = (): number[] => {
+  const { 基础GCD = 1.5 } = 获取当前数据()
+  return 基础GCD === 1.5 ? [10, 445, 928, 1452, 2024] : [10, 682, 1452, 2340]
+}
+
 export const 获取加速等级 = (number) => {
-  if (基础GCD === 1.5) {
-    return (number || 0) < 206
-      ? 0
-      : number < 9232
-      ? 1
-      : number < 19285
-      ? 2
-      : number < 30158
-      ? 3
-      : number < 42057
-      ? 4
-      : 5
-  } else {
-    // 1秒GCD
-    return (number || 0) < 206
-      ? 0
-      : number < 14156
-      ? 1
-      : number < 30158
-      ? 2
-      : number < 48622
-      ? 3
-      : number < 70163
-      ? 4
-      : 5
-  }
+  const 加速值 = number || 0
+  return 获取加速等级分界().filter((分界) => 加速值 >= 分界).length
 }
 
 export const 获取档位加速值 = () => {
+  const { 基础GCD = 1.5 } = 获取当前数据()
   return 获取阈值(基础GCD === 1.5 ? 24 : 16, 5)
 }
 
 export const 计算增益数据中加速值 = (增益数据: 增益选项数据类型) => {
+  const { 小药小吃 } = 获取当前数据()
   let number = 0
   ;(增益数据.小吃 || []).forEach((item) => {
     const 当前小药 = 小药小吃.find((a) => a.小吃名称 === item)
@@ -75,41 +55,4 @@ export const 计算增益数据中加速值 = (增益数据: 增益选项数据�
     }
   })
   return number
-}
-
-// 郭氏加速等级 atHasteBasePercentAdd
-// 郭氏额外加速百分比 atUnlimitHasteBasePercentAdd
-// 普通加速最高25% 郭值256
-export const 获取实际帧数 = (原始帧数, 加速等级, 郭氏加速等级 = 0, 郭氏额外加速百分比 = 0) => {
-  const 郭氏普通加速百分比 = Math.min(
-    256,
-    Math.floor((1024 * 加速等级) / 自身属性系数.急速) + 郭氏加速等级
-  )
-  return Math.floor((1024 * 原始帧数) / (郭氏普通加速百分比 + 郭氏额外加速百分比 + 1024))
-}
-
-/**
- * @param 作用总间隔 channelFrame
- * @param 单次作用间隔 channelInterval
- */
-export const 获取倒读条实际帧数分布 = (
-  作用总间隔,
-  单次作用间隔,
-  加速等级,
-  郭氏加速百分比 = 0,
-  郭氏额外加速百分比 = 0,
-  作用次数?
-) => {
-  const 加速后实际总间隔 = 获取实际帧数(作用总间隔, 加速等级, 郭氏加速百分比, 郭氏额外加速百分比)
-  const 实际作用次数 = 作用次数 ? 作用次数 : Math.floor((作用总间隔 || 0) / (单次作用间隔 || 1))
-  const 作用间隔基础帧数 = Math.floor(加速后实际总间隔 / 实际作用次数)
-  const 作用间隔余数 = 加速后实际总间隔 - 作用间隔基础帧数 * 实际作用次数
-  const 作用次数数组 = 按数字生成数组(实际作用次数).map((_, index) => {
-    if (index < 作用间隔余数) {
-      return 作用间隔基础帧数 + 1
-    } else {
-      return 作用间隔基础帧数
-    }
-  })
-  return 作用次数数组
 }

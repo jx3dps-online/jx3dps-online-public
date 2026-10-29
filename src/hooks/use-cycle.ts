@@ -21,9 +21,10 @@ interface 计算循环依赖数据 {
   自定义循环列表: 循环数据[]
 }
 
-const { 计算循环 } = 获取当前数据()
-
 function useCycle(props?: UseCycleProps): 获取计算循环结果 {
+  // 注意：useCycle 会被非 React 环境（store 初始化/加载角色时）调用，
+  // 因此这里不能用 hook 取心法数据，改用运行时读取当前心法数据。
+  const { 计算循环 } = 获取当前数据()
   const { 覆盖数据, 使用内存数据 = true } = props || { 使用内存数据: true, 覆盖数据: {} }
   let 计算数据: 计算循环依赖数据 = 使用内存数据
     ? {

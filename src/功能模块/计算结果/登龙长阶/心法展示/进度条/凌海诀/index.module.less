@@ -1,0 +1,280 @@
+.进度条 {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+.标题 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  > span {
+    font-family: 'STKaiti', 'KaiTi', serif;
+    font-size: 17px;
+    letter-spacing: 3px;
+    color: #d4e2dc;
+  }
+  > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  b {
+    font-size: 29px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: #f3dfab;
+  }
+  small {
+    margin-left: 2px;
+    font-size: 13px;
+  }
+  em {
+    font-size: 12px;
+    font-style: normal;
+    color: #b5bac5;
+  }
+}
+.武器区域 {
+  position: relative;
+  aspect-ratio: 50 / 11;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+}
+.仙舆 {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.伞体 {
+  opacity: var(--lhj-light);
+}
+.中轴 {
+  fill: none;
+  stroke: #c1d8d9;
+  stroke-width: 5.5;
+}
+.伞柄 {
+  filter: saturate(0.65);
+}
+.伞面 {
+  position: absolute;
+  inset: 0;
+  opacity: var(--lhj-light);
+}
+.折伞画布 {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.静态伞 {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: -23.636%;
+  left: 0;
+}
+.静态雪伞 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.海光 {
+  position: absolute;
+  inset: 0;
+  > i {
+    position: absolute;
+    inset: 10% 5% 8% 7%;
+    background:
+      radial-gradient(ellipse at 64% 50%, #c3e5dc26, transparent 55%),
+      radial-gradient(ellipse at 36% 60%, #a4c5d41c, transparent 48%);
+    opacity: 0.6;
+  }
+}
+.风线 {
+  fill: none;
+  stroke-width: 0.9;
+  path {
+    transform-origin: 50% 50%;
+  }
+}
+.流光 {
+  opacity: 0;
+}
+.海沫 {
+  fill: #d8e9e3;
+  > g {
+    opacity: 0;
+    &:nth-child(3n) {
+      fill: #c7c7a4;
+    }
+  }
+}
+.涟漪 {
+  fill: none;
+  stroke: #c8dcce;
+  stroke-width: 0.8;
+  opacity: 0.22;
+  transform-origin: 660px 177px;
+}
+.进度轨 {
+  position: relative;
+  height: 2px;
+  margin: 2px 3% 0;
+  background: #ffffff13;
+  > i {
+    display: block;
+    width: var(--lhj-progress);
+    height: 100%;
+    background: linear-gradient(90deg, #789ca3, #badbd4 60%, #e4ce9a);
+  }
+  > span {
+    position: absolute;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    transform: rotate(45deg);
+    background: #6f7a81;
+  }
+  > .已点亮 {
+    background: #c9d6bd;
+  }
+}
+.已达成 {
+  .标题 > span {
+    color: #eddbab;
+  }
+  .进度轨 > i {
+    box-shadow: 0 0 4px #c7dacc55;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .进度条[aria-busy='false'] {
+    .伞面,
+    .伞体,
+    .海光 {
+      transition: opacity 1.1s ease;
+    }
+    .进度轨 > i {
+      transition: width 1.1s ease;
+    }
+    .海光 > i {
+      animation: lhj-breathe 7.5s ease-in-out -2s infinite;
+    }
+    .风线 path {
+      animation: lhj-wind 8s ease-in-out infinite;
+      &:nth-child(2) {
+        animation-delay: -3.2s;
+        animation-duration: 9s;
+      }
+      &:nth-child(3) {
+        animation-delay: -5.6s;
+        animation-duration: 10s;
+      }
+    }
+    .流光 {
+      animation: lhj-flow 6.8s ease-in-out -1s infinite;
+    }
+    .海沫 > g {
+      animation: lhj-mote calc(6.4s + var(--lhj-mote) * 0.19s) ease-in-out infinite;
+      animation-delay: calc(var(--lhj-mote) * -0.86s);
+    }
+    .涟漪 {
+      animation: lhj-ripple 8s ease-out -1.5s infinite;
+    }
+  }
+}
+@keyframes lhj-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.03);
+  }
+}
+@keyframes lhj-wind {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: translate(-10px, 3px);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(9px, -3px);
+  }
+}
+@keyframes lhj-flow {
+  0% {
+    opacity: 0;
+    transform: translateX(-140px);
+  }
+  15%,
+  45% {
+    opacity: 0.9;
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: translateX(1000px);
+  }
+}
+@keyframes lhj-mote {
+  0% {
+    opacity: 0;
+    transform: translate(-8px, 5px) scale(0.6);
+  }
+  25% {
+    opacity: 0.7;
+  }
+  70% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(35px, -12px) scale(0.9);
+  }
+}
+@keyframes lhj-ripple {
+  0%,
+  30% {
+    opacity: 0;
+    transform: scale(0.75, 0.65);
+  }
+  45% {
+    opacity: 0.3;
+  }
+  90%,
+  100% {
+    opacity: 0;
+    transform: scale(1.12, 1.1);
+  }
+}
+@container dragon-stair (max-width: 580px) {
+  .进度条 {
+    flex-basis: 100%;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+
+@container dragon-stair (max-width: 320px) {
+  .标题 > span {
+    flex-basis: 100%;
+  }
+  .标题 > div {
+    margin-left: auto;
+  }
+}

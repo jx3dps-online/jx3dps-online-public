@@ -2,6 +2,7 @@
   "name": "jx3dps-online",
   "version": "0.0.1",
   "private": true,
+  "packageManager": "pnpm@10.34.5",
   "dependencies": {
     "@ant-design/happy-work-theme": "^1.0.1",
     "@ant-design/icons": "^5.3.7",
@@ -20,6 +21,7 @@
     "luadata": "^1.0.3",
     "node-localstorage": "^3.0.5",
     "numeric": "^1.2.6",
+    "pyodide": "0.29.4",
     "qrcode.react": "^4.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -89,6 +91,7 @@
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-dev-server": "^4.15.1",
     "workbox-webpack-plugin": "^7.3.0",
+    "ws": "8.20.0",
     "xlsx": "^0.18.5"
   },
   "optionalDependencies": {
@@ -103,22 +106,27 @@
     "build:analyzer": "cross-env BUILD_ANALYZER=true GENERATE_SOURCEMAP=false PUBLIC_URL=/ node --max-old-space-size=4096 scripts/build.js",
     "build:local": "GENERATE_SOURCEMAP=false REACT_APP_BUILD_TYPE=local PUBLIC_URL=./ node --max-old-space-size=4096 scripts/build.js",
     "build:localWindows": "cross-env GENERATE_SOURCEMAP=false REACT_APP_BUILD_TYPE=local PUBLIC_URL=./ node --max-old-space-size=4096 scripts/build.js",
+    "buildGetDps": "GET_DPS=true node scripts/build.js",
     "test": "node scripts/test.js",
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build",
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,less,md}": [
+    "*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "oxlint --fix"
+    ],
+    "*.{json,css,less,md}": [
+      "prettier --write"
     ]
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "chrome >= 87",
+      "edge >= 87",
+      "firefox >= 78",
+      "safari >= 14"
     ],
     "development": [
       "last 1 chrome version",
@@ -156,6 +164,7 @@
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+      "^@/(.*)$": "<rootDir>/src/$1",
       "^src/(.*)$": "<rootDir>/src/$1"
     },
     "moduleFileExtensions": [

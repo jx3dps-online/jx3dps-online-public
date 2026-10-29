@@ -1,12 +1,12 @@
+import { 根据外部附魔属性获取ID } from '@/数据/附魔/查询'
 import { 属性简写枚举 } from '@/@types/枚举'
 import { 装备位置部位枚举 } from '@/@types/装备'
 import 获取当前数据 from '@/数据/数据工具/获取当前数据'
-import { 五彩石转换 } from '../统一映射枚举'
-
-const { 附魔, 功法 } = 获取当前数据()
+import { 归一五彩石名称 } from '../统一映射枚举'
 
 // 获取配装数据
 export const getEquipData = (data) => {
+  const { 功法, 主属性 } = 获取当前数据()
   const equip: any = {}
   Object.keys(EquipPositionMap).forEach((item) => {
     equip[EquipPositionMap[item]] = undefined
@@ -19,7 +19,13 @@ export const getEquipData = (data) => {
         const 附魔属性 = basicData?.enhance?.Attribute1ID
         const 附魔值 = basicData?.enhance?.Attribute1Value1
 
-        const 附魔数据判断 = 附魔?.find((item) => item?.附魔名称 === `${附魔属性}+${附魔值}`)
+        const 附魔数据判断 = 根据外部附魔属性获取ID(
+          附魔属性,
+          Number(附魔值),
+          装备位置部位枚举[EquipPositionMap[item]],
+          功法,
+          主属性,
+        )
         if (!属性简写枚举[附魔属性]) {
           console.warn(`存在计算器未内置附魔${附魔属性}${附魔值}`)
         }
@@ -44,8 +50,7 @@ export const getEquipData = (data) => {
               镶嵌宝石等级: a?.level,
             }
           }),
-          附魔:
-            属性简写枚举[附魔属性] && 附魔值 ? `${属性简写枚举[附魔属性]}+${附魔值}` : undefined,
+          附魔: 附魔数据判断,
         }
 
         // 判断大附魔
@@ -56,19 +61,11 @@ export const getEquipData = (data) => {
         if (item === 'PRIMARY_WEAPON' && basicData?.stone) {
           let 五彩石名称 = basicData?.stone.Name
 
-          if (功法 !== '天罗诡道') {
-            Object.keys(五彩石转换).forEach((key) => {
-              if (五彩石名称?.includes(key)) {
-                五彩石名称 = 五彩石名称.replace(key, 五彩石转换[key])
-              }
-            })
-          }
-
-          equip.五彩石 = 五彩石名称
+          equip.五彩石 = 归一五彩石名称(五彩石名称, 功法)
         }
       }
     })
-  } catch (e) {
+  } catch {
     msg = '获取方案异常'
   }
   return {

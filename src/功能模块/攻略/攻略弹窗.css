@@ -1,0 +1,28 @@
+.jx3-guide-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.jx3-guide-modal-loading {
+  position: fixed;
+  inset: 40px;
+  z-index: 2000;
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jx3-guide-tip-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jx3-guide-tip-btns {
+  display: flex;
+  gap: 8px;
+}

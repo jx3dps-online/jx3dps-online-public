@@ -11,6 +11,7 @@ interface AddCycleSkillModalProps {
   大橙武模拟: boolean
   奇穴信息: string[]
   秘籍信息: 选中秘籍信息
+  武器切换可用?: boolean
   添加设置: { 位置: string; 索引 }
   添加技能弹窗显示: boolean
   关闭弹窗: () => void
@@ -24,6 +25,7 @@ function AddCycleSkillModal(props: AddCycleSkillModalProps) {
     大橙武模拟,
     奇穴信息,
     秘籍信息,
+    武器切换可用,
     添加设置,
     添加技能弹窗显示,
     关闭弹窗,
@@ -53,6 +55,7 @@ function AddCycleSkillModal(props: AddCycleSkillModalProps) {
         大橙武模拟={大橙武模拟}
         奇穴信息={奇穴信息}
         秘籍信息={秘籍信息}
+        武器切换可用={武器切换可用}
         自动三才={false}
         插入技能
       />

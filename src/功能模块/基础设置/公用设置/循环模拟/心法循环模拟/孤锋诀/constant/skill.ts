@@ -3,36 +3,32 @@ import { 基础GCD帧 } from '.'
 import { 每秒郭氏帧 } from '@/数据/常量'
 
 // 技能图标引入
-import cang from '../assets/Skill/cang.png'
+const cang = 'https://icon.jx3box.com/icon/17573.png'
 // import chifeng from '../assets/Skill/chifeng.png'
-import duan from '../assets/Skill/duan.png'
-import gu from '../assets/Skill/gu.png'
-import heng from '../assets/Skill/heng.png'
-import jue from '../assets/Skill/jue.png'
-import liu from '../assets/Skill/liu.png'
-import mie from '../assets/Skill/mie.png'
-import ting from '../assets/Skill/ting.png'
+const duan = 'https://icon.jx3box.com/icon/17572.png'
+const gu = 'https://icon.jx3box.com/icon/17575.png'
+const heng = 'https://icon.jx3box.com/icon/17574.png'
+const jue = 'https://icon.jx3box.com/icon/17569.png'
+const liu = 'https://icon.jx3box.com/icon/17580.png'
+const mie = 'https://icon.jx3box.com/icon/17576.png'
+const ting = 'https://icon.jx3box.com/icon/17568.png'
 // import you from '../assets/Skill/you.png'
-import xing from '../assets/Skill/xing.png'
-import cw from '../assets/Skill/cw.png'
-import cw_quxiao from '../assets/Skill/cw_quxiao.png'
+const xing = 'https://icon.jx3box.com/icon/17567.png'
+const cw = 'https://icon.jx3box.com/icon/17801.png'
+const cw_quxiao = 'https://cdn.arkwish.com/jx3dps/simc/cw_quxiao_20260906_031.png'
 
 // Buff图标引入
 
-import shipo from '../assets/Buff/shipo.png'
-import yuji from '../assets/Buff/yuji.png'
-import qiangfeng from '../assets/Buff/qiangfeng.png'
-import lianfeng from '../assets/Buff/lianfeng.png'
-import mieying from '../assets/Buff/mieying.png'
-import pozhan from '../assets/Buff/pozhan.png'
-import changsuo from '../assets/Buff/changsuo.png'
-import xinglian from '../assets/Buff/xinglian.png'
-import canglian from '../assets/Buff/canglian.png'
+const shipo = 'https://icon.jx3box.com/icon/17571.png'
+const mieying = 'https://icon.jx3box.com/icon/17576.png'
+const pozhan = 'https://icon.jx3box.com/icon/17764.png'
+const changsuo = 'https://icon.jx3box.com/icon/18247.png'
+const xinglian = 'https://icon.jx3box.com/icon/17567.png'
+const canglian = 'https://icon.jx3box.com/icon/17573.png'
 // import shenxing from '../assets/Buff/shenxing.png'
-import liulan from '../assets/Buff/liulan.png'
-import liuxue from '../assets/Buff/liuxue.png'
-import liangen from '../assets/Buff/liangen.png'
-import jieyuan from '../assets/Buff/jieyuan.png'
+const liulan = 'https://icon.jx3box.com/icon/17742.png'
+const liuxue = 'https://icon.jx3box.com/icon/17574.png'
+const jieyuan = 'https://icon.jx3box.com/icon/17759.png'
 import { 通用Buff数据, 通用循环模拟技能基础数据 } from '../../通用/通用技能/通用技能定义'
 
 const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
@@ -143,9 +139,10 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
   },
   {
     技能名称: '裂海横天',
-    技能释放后添加GCD: 每秒郭氏帧,
+    技能释放后添加GCD: 每秒郭氏帧 * 0.5,
+    最小GCD: 每秒郭氏帧 * 0.5,
     技能CD: 每秒郭氏帧 * 10,
-    最大充能层数: 2,
+    最大充能层数: 3,
     造成伤害次数: 0,
     技能GCD组: '自身',
     技能类型: '其他',
@@ -339,7 +336,7 @@ export const 原始Buff数据: Buff枚举 = {
     类型: '自身',
     名称: '洄涛',
     备注: '施展《破浪三式》套路招式命中当前目标时，会尝试消耗1层“洄涛”为其添加1层“破绽”',
-    最大层数: 24,
+    最大层数: 4,
     最大持续时间: 每秒郭氏帧 * 120,
     图标: 'https://icon.jx3box.com/icon/17728.png',
   },

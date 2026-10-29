@@ -1,22 +1,319 @@
+.cycle-chart-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px 12px 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+/* 曲线绘图区（G2 图表 + 悬停遮罩/光标） */
+.cycle-chart-plot {
+  position: relative;
+  flex: 1;
+  min-height: 100px;
+}
+
 .cycle-line-count-chart {
-  width: 100%;
-  height: 500px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-.cycle-buff-count-text {
-  width: 100%;
-  padding: 24px;
+/* 与 G2 绘图区完全对齐的覆盖层 */
+.cycle-chart-overlay {
+  position: absolute;
+  left: 96px;
+  right: 90px;
+  top: 20px;
+  bottom: 36px;
+  pointer-events: none;
 }
 
-.cycle-buff-count-text-wrap {
-  font-size: 20px;
+/* 投影遮罩：选中增益的覆盖区间叠加在曲线上 */
+.cycle-chart-shade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
-.cycle-buff-count-text-label {
-  color: #999;
-}
-
-.cycle-buff-count-text-value {
-  color: var(--ant-primary-color);
+.cycle-chart-shade-layer {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-size: 11px;
   font-weight: 600;
+  line-height: 1;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* 悬停竖向光标（曲线区，向下延伸到 x 轴，与泳道光标连通） */
+.cycle-chart-cursor {
+  position: absolute;
+  top: 0;
+  bottom: -36px;
+  width: 1px;
+  background: rgba(60, 60, 60, 0.7);
+  pointer-events: none;
+}
+
+/* 悬停信息浮层（跟随鼠标） */
+.cycle-chart-hover-tip {
+  position: absolute;
+  z-index: 10;
+  min-width: 120px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid #ececec;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.cycle-chart-hover-tip-time {
+  color: #999;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.cycle-chart-hover-tip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  line-height: 18px;
+}
+
+.cycle-chart-hover-tip-row span {
+  color: #666;
+}
+
+.cycle-chart-hover-tip-row b {
+  color: #1f1f1f;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.cycle-chart-hover-tip-buffs {
+  margin-top: 2px;
+  color: var(--ant-primary-color, #365e9f);
+  font-weight: 500;
+}
+
+/* 图例 */
+.cycle-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  padding: 4px 16px 10px 16px;
+  min-height: 20px;
+}
+
+.cycle-chart-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: rgba(3, 10, 26, 0.75);
+  user-select: none;
+}
+
+.cycle-chart-legend-body {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.cycle-chart-legend-body:hover {
+  opacity: 0.75;
+}
+
+.cycle-chart-legend-hidden .cycle-chart-legend-body {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.cycle-chart-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.cycle-chart-legend-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.cycle-chart-legend-name {
+  line-height: 16px;
+}
+
+/* 投影开关（点击投影到曲线） */
+.cycle-chart-legend-proj {
+  width: 11px;
+  height: 11px;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.cycle-chart-legend-proj:hover {
+  border-color: #888;
+}
+
+.cycle-chart-legend-proj-active {
+  border-color: transparent;
+}
+
+/* 增益泳道 */
+.cycle-chart-lanes {
+  display: flex;
+  margin-top: 0;
+}
+
+.cycle-chart-lane-labels {
+  flex-shrink: 0;
+}
+
+.cycle-chart-lane-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  overflow: hidden;
+}
+
+.cycle-chart-lane-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.cycle-chart-lane-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.cycle-chart-lane-name {
+  font-size: 12px;
+  color: rgba(3, 10, 26, 0.75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cycle-chart-lane-tracks {
+  position: relative;
+  flex: 1;
+}
+
+.cycle-chart-lane-track {
+  position: relative;
+  height: 26px;
+}
+
+.cycle-chart-lane-seg {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  border-radius: 3px;
+  opacity: 0.38;
+}
+
+.cycle-chart-lane-seg-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* 悬停竖向光标（泳道区，与曲线区光标对齐） */
+.cycle-chart-lane-cursor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(60, 60, 60, 0.7);
+  pointer-events: none;
+}
+
+/* 底部滑出嵌入面板 */
+.cycle-chart-panel {
+  position: relative;
+  border-top: 1px solid rgba(3, 10, 26, 0.08);
+  background: rgba(255, 255, 255, 0.6);
+  animation: cycle-chart-panel-slide 0.24s ease;
+}
+
+@keyframes cycle-chart-panel-slide {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cycle-chart-panel-resize {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  cursor: ns-resize;
+  z-index: 5;
+}
+
+.cycle-chart-panel-resize:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.cycle-chart-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px 0;
+}
+
+.cycle-chart-panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(3, 10, 26, 0.85);
+}
+
+.cycle-chart-panel-actions {
+  display: inline-flex;
+  gap: 12px;
+}
+
+.cycle-chart-panel-btn {
+  font-size: 13px;
+  color: var(--ant-primary-color, #365e9f);
+  cursor: pointer;
+  user-select: none;
+}
+
+.cycle-chart-panel-btn:hover {
+  opacity: 0.75;
 }

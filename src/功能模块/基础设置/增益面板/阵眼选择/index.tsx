@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { Select, SelectProps, Tooltip } from 'antd'
 import { 秒伤计算 } from '@/计算模块/计算函数'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 阵眼数据类型 } from '@/数据/阵眼/interface'
 import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import './index.css'
@@ -13,12 +13,12 @@ const PaiMingMap = {
   3: `${GLOBAL_CDN_PREFIX}/paiming_3.png`,
 }
 
-const { 阵眼 } = 获取当前数据()
 interface 阵眼选择类型 extends SelectProps {
   开启智能对比?: boolean
 }
 
 const 阵眼选择: React.FC<阵眼选择类型> = (props) => {
+  const { 阵眼 } = use心法数据()
   const { 开启智能对比, ...rest } = props
   const 增益数据 = useAppSelector((state) => state?.data?.增益数据)
   const 增益启用 = useAppSelector((state) => state?.data?.增益启用)

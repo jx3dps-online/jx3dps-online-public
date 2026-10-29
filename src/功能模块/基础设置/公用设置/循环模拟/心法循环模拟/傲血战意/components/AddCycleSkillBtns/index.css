@@ -1,0 +1,50 @@
+
+.cycle-simulator-setting-fast-item {
+  width: 320px;
+}
+
+.cycle-simulator-setting-quick {
+  width: 320px;
+  padding-left: 12px;
+}
+
+.cycle-simulator-setting-quick-item {
+  display: block;
+  width: 100%;
+  padding: 4px 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.cycle-simulator-setting-quick-item:hover {
+  font-weight: 500;
+}
+
+.cycle-add-btn {
+  border-radius: 4px;
+}
+
+.cycle-add-btn-wrap {
+  position: relative;
+}
+
+.cycle-add-btn-count {
+  position: absolute;
+  right: -7px;
+  bottom: -5px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--ant-primary-color);
+  opacity: 0.9;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  border: 1px solid #fff;
+}

@@ -1,0 +1,53 @@
+.循环设置 {
+  div:has(> :global(.cycle-simulator-setting-skill-drag)) {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 70px;
+    row-gap: 16px;
+  }
+
+  :global(.cycle-simulator-setting-skill-drag) {
+    margin-bottom: 6px;
+  }
+}
+
+.灵力标识 {
+  display: flex;
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  width: 100%;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  z-index: 4;
+}
+
+.日灵,
+.月魂 {
+  width: 50%;
+}
+
+.日灵 {
+  color: var(--ant-primary-color);
+}
+
+.月魂 {
+  color: #1677ff;
+}
+
+.光明相覆盖 {
+  display: flex;
+  position: absolute;
+  bottom: -8px;
+  left: -8px;
+  top: -8px;
+  right: -8px;
+  margin: auto;
+  pointer-events: none;
+  z-index: 0;
+  background-color: rgba(255, 145, 55, 0.3);
+}

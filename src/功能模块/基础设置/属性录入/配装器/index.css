@@ -11,12 +11,12 @@
   text-align: right;
 }
 
-.zhuangbei-input-set-modal .ant-modal-content {
+/* .zhuangbei-input-set-modal .ant-modal-content {
   min-width: 1178px;
   min-height: 116px;
   max-height: calc(100vh - 32px);
   overflow-y: auto;
-}
+} */
 
 .zhuangbei-input-set-modal .ant-form-item.jisuan {
   text-align: right;
@@ -199,4 +199,96 @@
   font-size: 16px;
   line-height: 22px;
   margin-bottom: 6px;
+}
+
+.zhuangbei-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zhuangbei-footer-cycle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (pointer: coarse) {
+  .zhuangbei-footer-cycle {
+    gap: 8px;
+  }
+  .zhuangbei-footer-cycle .common-item {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+  .zhuangbei-footer-cycle > .ant-btn {
+    flex-shrink: 0;
+  }
+}
+
+.zhuangbei-role-card {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  max-width: 220px;
+  padding: 0 10px;
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.zhuangbei-role-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.zhuangbei-role-name {
+  font-size: 14px;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.zhuangbei-role-server {
+  font-size: 12px;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.zhuangbei-target-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 640px;
+  text-align: left;
+}
+
+.zhuangbei-target-operation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.zhuangbei-target-card {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--ant-primary-color);
+  border-radius: 6px;
+  background: #fff;
+  word-break: keep-all;
+}
+
+.zhuangbei-target-card-title {
+  color: var(--ant-primary-color);
 }

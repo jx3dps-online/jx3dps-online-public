@@ -2,12 +2,15 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Alert, Button, Spin, Upload, message } from 'antd'
 import { InboxOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
+import { 根据id获取装备数据 } from '@/数据/装备'
 import { 装备位置部位枚举, 装备属性信息模型, 装备类型枚举, 选择装备数据类型 } from '@/@types/装备'
 const { Dragger } = Upload
-const { 装备数据, 附魔 } = 获取当前数据()
+
+const isLocalBuild = process.env.REACT_APP_BUILD_TYPE === 'local'
 
 function JCL装备导入({ onOk }) {
+  const { 装备数据, 附魔 } = use心法数据()
   const [loading, setLoading] = useState<boolean>(false)
   const workerRef = useRef<Worker | null>(null)
   const [解析结果, 更新解析结果] = useState<{
@@ -34,6 +37,9 @@ function JCL装备导入({ onOk }) {
   }
 
   useEffect(() => {
+    if (isLocalBuild) {
+      return
+    }
     // 创建 Worker 实例
     workerRef.current = new Worker(new URL('./worker.ts', import.meta.url))
 
@@ -54,7 +60,7 @@ function JCL装备导入({ onOk }) {
     return () => {
       workerRef.current?.terminate()
     }
-  }, [])
+  }, [装备数据, 附魔])
 
   const 初始化装备数据 = (data) => {
     const 最终装备对象: { [key: string]: 选择装备数据类型 } = {}
@@ -68,14 +74,17 @@ function JCL装备导入({ onOk }) {
         return
       }
       const 装备部位 = 装备位置部位枚举[部位索引]
-      const 找到对应装备 = 装备数据[装备部位]?.find((item) => item?.id === 数据?.id)
+      const 找到对应装备 = 根据id获取装备数据(装备数据, 装备部位, 数据?.id)
       if (找到对应装备) {
         支持的装备.push({ ...找到对应装备, 装备部位 })
-        let 附魔名称 = undefined
+        let 附魔ID: number | undefined = undefined
+        if (数据?.未支持附魔ID) 未支持附魔.push(数据.未支持附魔ID)
         if (数据?.附魔) {
-          const 判断附魔是否存在 = 附魔?.find((a) => a?.附魔名称 === 数据?.附魔)
+          const 判断附魔是否存在 = 附魔?.find(
+            (a) => a?.id === 数据?.附魔 && a.附魔支持部位.includes(装备部位),
+          )
           if (判断附魔是否存在) {
-            附魔名称 = 数据?.附魔
+            附魔ID = 数据?.附魔
           } else {
             未支持附魔.push(数据?.附魔)
           }
@@ -92,7 +101,7 @@ function JCL装备导入({ onOk }) {
               }
             }) || [],
           装备部位,
-          附魔: 附魔名称,
+          附魔: 附魔ID,
         }
       } else {
         if (数据?.id) {
@@ -103,7 +112,7 @@ function JCL装备导入({ onOk }) {
           当前精炼等级: 6,
           镶嵌孔数组: [],
           装备部位,
-          附魔: '',
+          附魔: undefined,
         }
       }
     })
@@ -116,6 +125,10 @@ function JCL装备导入({ onOk }) {
   }
 
   const handleFileChange = (e) => {
+    if (isLocalBuild) {
+      message.info('本地版本暂不支持该导入功能，请使用网页版')
+      return
+    }
     const file = e
     const reader = new FileReader()
     reader.readAsText(file)

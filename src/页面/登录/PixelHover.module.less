@@ -1,0 +1,164 @@
+.stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.模糊背景 {
+  display: ~'var(--背景补边显示, none)';
+  position: absolute;
+  inset: -120px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(40px) brightness(0.45);
+  pointer-events: none;
+}
+
+// 设计尺寸容器：内部背景与人物共用同一坐标系，统一等比缩放
+.viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // 背景压暗，数值越小越暗（可自行调节）
+  filter: brightness(0.45);
+  -webkit-mask-image: linear-gradient(
+    ~'var(--背景渐隐方向, to right)',
+    transparent,
+    #000 ~'var(--背景渐隐宽度, 0px)',
+    #000 ~'calc(100% - var(--背景渐隐宽度, 0px))',
+    transparent
+  );
+  mask-image: linear-gradient(
+    ~'var(--背景渐隐方向, to right)',
+    transparent,
+    #000 ~'var(--背景渐隐宽度, 0px)',
+    #000 ~'calc(100% - var(--背景渐隐宽度, 0px))',
+    transparent
+  );
+}
+
+.char {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  will-change: opacity, filter;
+  transform: translateZ(0);
+  transition:
+    opacity 0.25s ease,
+    filter 0.25s ease;
+  // 默认态：半透明 + 模糊
+  opacity: 0;
+  cursor: pointer;
+  filter: blur(2px);
+}
+
+.highlight {
+  // 高亮态：清晰 + 光晕边缘
+  opacity: 1;
+  filter: blur(0px) drop-shadow(0 0 12px rgba(255, 255, 255, 0.9))
+    drop-shadow(0 0 24px rgba(255, 255, 255, 0.55));
+}
+
+// 心法选择弹窗
+.popupMask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.popup {
+  min-width: 220px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.popupTitle {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+}
+
+.popupList {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.popupItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  background: rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    background: rgba(9, 102, 160, 0.12);
+  }
+}
+
+.popupIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.popupName {
+  font-size: 13px;
+  color: #333;
+}
+
+// 切出遮罩：以 logo PNG 的不透明区域为形状，用对应门派立绘从左到右铺满，
+// 空白（透明）区域不遮罩，动画结束触发跳转
+.切入遮罩 {
+  position: fixed;
+  z-index: 6;
+}
+
+.切入立绘 {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center;
+  clip-path: inset(0 100% 0 0);
+  animation: zhezhaolevel 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes zhezhaolevel {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}

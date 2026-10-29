@@ -1,0 +1,225 @@
+.流光,
+.实体,
+.传光,
+.达成,
+.气流 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.流光 {
+  opacity: 0.8;
+}
+.实体 {
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.气流 {
+  opacity: calc(var(--gfj-wisp) * 0.8);
+}
+.气缕 {
+  transform-box: view-box;
+  transform-origin: 29% 50%;
+  opacity: 0.7;
+}
+.气雾 {
+  filter: blur(5px);
+  opacity: 0.7;
+}
+.裂隙范围 {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(26% 35%, 46% 40%, 70% 39%, 97% 44%, 97% 50%, 65% 48%, 43% 47%, 28% 59%);
+}
+.光束 {
+  position: absolute;
+  left: 23%;
+  top: 30%;
+  width: 12%;
+  height: 32%;
+  background: linear-gradient(100deg, transparent, #ed465a80 30%, #ffe2bde6 60%, transparent);
+  filter: blur(1px);
+  opacity: 0;
+}
+.星芒 {
+  position: absolute;
+  width: 5%;
+  height: 15%;
+  background: radial-gradient(ellipse, #fff9ed, #d6b9ff70 20%, transparent 62%);
+  opacity: 0;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 46% 8%;
+    background: linear-gradient(90deg, transparent, #fff6ef, transparent);
+  }
+  &::after {
+    inset: 8% 46%;
+    background: linear-gradient(transparent, #f0dcff, transparent);
+  }
+}
+.刀尖 {
+  left: 93%;
+  top: 41.5%;
+}
+.护手 {
+  position: absolute;
+  left: 24%;
+  top: 35%;
+  width: 12%;
+  height: 32%;
+  background: radial-gradient(ellipse, #fff1de, #e8baff99 17%, #be5baf30 40%, transparent 65%);
+  opacity: 0;
+}
+.达成 {
+  opacity: 0;
+}
+.散星 {
+  position: absolute;
+  left: 95%;
+  top: 49%;
+  > i {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: #f0d8ff;
+    box-shadow: 0 0 4px #c397eb;
+    opacity: 0;
+  }
+}
+.正在达成 > .传光,
+.正在达成 > .刀尖 {
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .气缕 {
+    animation: gfj-hilt-wisp 6.4s ease-out infinite;
+    animation-delay: calc(var(--gfj-wisp-index) * -2.1s);
+  }
+  .传光 .光束 {
+    animation: gfj-crack-light 8.4s ease-in-out infinite;
+  }
+  .流光 > .刀尖 {
+    animation: gfj-tip-star 8.4s ease-in-out infinite;
+  }
+  .达成 {
+    animation: gfj-complete 3.6s linear both;
+    .护手 {
+      animation: gfj-guard-flash 1.2s ease-out both;
+    }
+    .光束 {
+      animation: gfj-complete-light 2s ease-in-out 0.35s both;
+    }
+    .刀尖 {
+      animation: gfj-guard-flash 1.2s ease-out 1.9s both;
+    }
+    .散星 > i {
+      animation: gfj-scatter 1.4s ease-out 2s both;
+    }
+  }
+}
+@keyframes gfj-hilt-wisp {
+  0% {
+    transform: translate(0, 0) scale(0.86);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-2.8%, -3%) scale(1.05, 0.8);
+    opacity: 0;
+  }
+}
+@keyframes gfj-crack-light {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.9;
+  }
+  28% {
+    transform: translateX(550%);
+    opacity: 0.8;
+  }
+  34%,
+  100% {
+    transform: translateX(600%);
+    opacity: 0;
+  }
+}
+@keyframes gfj-tip-star {
+  0%,
+  24%,
+  41%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  29% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+}
+@keyframes gfj-complete {
+  0%,
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes gfj-guard-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+}
+@keyframes gfj-complete-light {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(600%);
+    opacity: 0;
+  }
+}
+@keyframes gfj-scatter {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(12px, calc(var(--gfj-scatter) * 13px));
+    opacity: 0;
+  }
+}

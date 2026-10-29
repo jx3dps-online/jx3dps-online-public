@@ -1,8 +1,10 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
+import { Form, Modal, Select } from 'antd'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import { 循环基础技能数据类型, 技能GCD组, 模拟信息类型 } from '../../simulator/type'
 import { ERROR_ACTION } from '../../simulator/utils'
 import CommonAddCycleSkillBtn from '../../../通用/通用组件/循环技能添加按钮'
+import { 切换武器选项 } from '../../武器切换'
 
 interface AddCycleSkillBtnProps {
   技能: 循环基础技能数据类型
@@ -12,6 +14,7 @@ interface AddCycleSkillBtnProps {
   模拟信息: 模拟信息类型
   style?: any
   插入技能?: boolean // 插入技能时不禁用技能
+  武器切换可用?: boolean
 }
 
 interface 异常信息数据 {
@@ -22,31 +25,36 @@ interface 异常信息数据 {
 
 // 添加循环技能按钮组件
 const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
-  const { 技能, 模拟信息, 完整循环, onClick: propsClick, 插入技能, ...rest } = props
+  const { 技能, 模拟信息, 完整循环, onClick: propsClick, 插入技能, 武器切换可用, ...rest } = props
+  const [武器弹窗显示, 设置武器弹窗显示] = useState(false)
+  const [目标武器ID, 设置目标武器ID] = useState(46733)
 
   const 释放等待CD = 计算可以释放时技能CD(模拟信息, 技能)
   const 技能当前层数 = 计算技能当前层数(模拟信息, 技能)
 
   const 异常信息: 异常信息数据 = useMemo(() => {
     let 禁用信息 = {}
+    const 起符召唤物 = 技能.额外信息?.召唤物 ?? '麒麟'
+    const 起符召唤物已施符 =
+      起符召唤物 === '麒麟' ? 模拟信息.角色状态信息.麒麟已施符 : 模拟信息.角色状态信息.凤凰已施符
+    if (技能.技能名称 === '切换武器' && !武器切换可用) {
+      return { 是否禁用: true, 异常描述: '当前无法添加切换武器，请检查开关和配装' }
+    }
     if (!插入技能) {
       if (技能?.技能名称 === '点掉橙武' && !模拟信息?.当前自身buff列表?.['橙武']?.当前层数) {
         禁用信息 = {
           是否禁用: true,
           异常描述: ERROR_ACTION?.BUFF错误?.信息,
         }
-      } else if (
-        技能?.技能名称 === '御前星' &&
-        !(
-          模拟信息?.当前自身buff列表?.['星芒']?.当前层数 &&
-          模拟信息?.当前自身buff列表?.['星芒']?.当前层数 > 0
-        )
-      ) {
+      } else if (技能?.技能名称 === '御前星' && (模拟信息?.角色状态信息?.星运 || 0) < 10) {
         禁用信息 = {
           是否禁用: true,
-          异常描述: ERROR_ACTION?.BUFF错误?.信息,
+          异常描述: ERROR_ACTION?.星运不足?.信息,
         }
-      } else if (技能?.技能名称 === '起符' && !模拟信息?.当前自身buff列表?.['麒麟']?.当前层数) {
+      } else if (
+        技能?.技能名称 === '起符' &&
+        (!模拟信息?.当前自身buff列表?.[起符召唤物]?.当前层数 || 起符召唤物已施符)
+      ) {
         禁用信息 = {
           是否禁用: true,
           异常描述: ERROR_ACTION?.BUFF错误?.信息,
@@ -55,7 +63,9 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
         技能?.技能名称 === '化卦坠符' &&
         (!模拟信息?.当前自身buff列表?.['起符']?.当前层数 ||
           !模拟信息?.当前自身buff列表?.['麒麟']?.当前层数 ||
-          模拟信息?.当前自身buff列表?.['应卦震符']?.当前层数)
+          模拟信息?.角色状态信息?.麒麟已施符 ||
+          模拟信息?.当前自身buff列表?.['应卦震符']?.当前层数 ||
+          模拟信息?.当前自身buff列表?.['化卦坠符']?.当前层数)
       ) {
         禁用信息 = {
           是否禁用: true,
@@ -65,22 +75,40 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
         技能?.技能名称 === '应卦震符' &&
         (!模拟信息?.当前自身buff列表?.['起符']?.当前层数 ||
           !模拟信息?.当前自身buff列表?.['麒麟']?.当前层数 ||
-          模拟信息?.当前自身buff列表?.['化卦坠符']?.当前层数)
+          模拟信息?.角色状态信息?.麒麟已施符 ||
+          模拟信息?.当前自身buff列表?.['化卦坠符']?.当前层数 ||
+          模拟信息?.当前自身buff列表?.['应卦震符']?.当前层数)
       ) {
         禁用信息 = {
           是否禁用: true,
           异常描述: ERROR_ACTION?.BUFF错误?.信息,
         }
-      } else if (技能?.技能名称 === '变卦' && (模拟信息?.角色状态信息?.星运 || 0) < 50) {
-        禁用信息 = {
-          是否禁用: true,
-          异常描述: `${ERROR_ACTION?.星运不足?.信息}（需要50点）`,
-        }
-      } else if (技能?.技能名称 === '镇星二段' && !模拟信息?.当前自身buff列表?.['入舆']?.当前层数) {
+      } else if (
+        技能?.技能名称 === '附灵·煌符' &&
+        (!模拟信息?.当前自身buff列表?.['凤凰起符']?.当前层数 ||
+          !模拟信息?.当前自身buff列表?.['凤凰']?.当前层数 ||
+          模拟信息?.角色状态信息?.凤凰已施符 ||
+          模拟信息?.当前自身buff列表?.['附灵·煌符']?.当前层数)
+      ) {
         禁用信息 = {
           是否禁用: true,
           异常描述: ERROR_ACTION?.BUFF错误?.信息,
         }
+      } else if (
+        ['变卦', '变水卦', '变山卦', '变火卦'].includes(技能?.技能名称) &&
+        !(模拟信息?.角色状态信息?.鬼遁免费变卦次数 || 0) &&
+        (模拟信息?.角色状态信息?.星运 || 0) < (技能?.技能名称 === '变卦' ? 50 : 40)
+      ) {
+        const 所需星运 = 技能?.技能名称 === '变卦' ? 50 : 40
+        禁用信息 = {
+          是否禁用: true,
+          异常描述: `${ERROR_ACTION?.星运不足?.信息}（需要${50}点）`,
+        }
+        // } else if (技能?.技能名称 === '镇星二段' && !模拟信息?.当前自身buff列表?.['入舆']?.当前层数) {
+        // 禁用信息 = {
+        // 是否禁用: true,
+        // 异常描述: ERROR_ACTION?.BUFF错误?.信息,
+        // }
       }
     }
     if (释放等待CD > 0 && 技能?.最大充能层数 && 技能?.最大充能层数 > 1) {
@@ -98,9 +126,15 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
     } else {
       return { ...禁用信息 }
     }
-  }, [释放等待CD, 技能, 模拟信息, 插入技能, 完整循环])
+  }, [释放等待CD, 技能, 模拟信息, 插入技能, 完整循环, 武器切换可用])
 
   const onClick = (额外信息) => {
+    if (技能.技能名称 === '切换武器') {
+      if (!武器切换可用) return
+      设置目标武器ID(切换武器选项.find((项) => 插入技能 || 项.value !== 模拟信息.当前武器ID)!.value)
+      设置武器弹窗显示(true)
+      return
+    }
     propsClick?.({
       ...技能,
       额外信息: {
@@ -111,15 +145,46 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
   }
 
   return (
-    <CommonAddCycleSkillBtn
-      {...rest}
-      模拟信息={模拟信息 as any}
-      技能={技能}
-      技能当前层数={技能当前层数}
-      onClick={onClick}
-      异常信息={异常信息}
-      完整循环={完整循环}
-    />
+    <>
+      <CommonAddCycleSkillBtn
+        {...rest}
+        模拟信息={模拟信息 as any}
+        技能={技能}
+        技能当前层数={技能当前层数}
+        onClick={onClick}
+        异常信息={异常信息}
+        完整循环={完整循环}
+      />
+      {技能.技能名称 === '切换武器' ? (
+        <Modal
+          open={武器弹窗显示}
+          title='选择切换武器'
+          onCancel={() => 设置武器弹窗显示(false)}
+          okButtonProps={{
+            disabled: !武器切换可用 || (!插入技能 && 目标武器ID === 模拟信息.当前武器ID),
+          }}
+          onOk={() => {
+            if (!武器切换可用 || (!插入技能 && 目标武器ID === 模拟信息.当前武器ID)) return
+            propsClick?.({ ...技能, 额外信息: { ...技能.额外信息, 目标武器ID } })
+            设置武器弹窗显示(false)
+          }}
+        >
+          <Form style={{ paddingTop: 24 }}>
+            <Form.Item label='目标武器' required>
+              <Select
+                aria-label='添加切换目标武器'
+                value={目标武器ID}
+                onChange={设置目标武器ID}
+                options={切换武器选项.map((项) => ({
+                  ...项,
+                  disabled: !插入技能 && 项.value === 模拟信息.当前武器ID,
+                }))}
+              />
+            </Form.Item>
+          </Form>
+        </Modal>
+      ) : null}
+    </>
   )
 }
 

@@ -2,7 +2,6 @@ import { Buff枚举, 循环基础技能数据类型, 日志类型 } from '../sim
 import { 基础GCD帧 } from '.'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import { 通用Buff数据, 通用循环模拟技能基础数据 } from '../../通用/通用技能/通用技能定义'
-import 凤凰蛊 from '../simulator/技能类/凤凰蛊'
 
 // 技能图标引入
 

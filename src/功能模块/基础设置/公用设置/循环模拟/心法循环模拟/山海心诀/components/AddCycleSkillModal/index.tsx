@@ -49,6 +49,7 @@ function AddCycleSkillModal(props: AddCycleSkillModalProps) {
         模拟信息={模拟信息}
         大橙武模拟={大橙武模拟}
         奇穴信息={奇穴信息}
+        插入技能
       />
     </Drawer>
   )

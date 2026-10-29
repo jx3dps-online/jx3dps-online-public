@@ -1,0 +1,92 @@
+.进度条 {
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+.标题 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  > span {
+    font-family: 'STKaiti', 'KaiTi', serif;
+    font-size: 17px;
+    letter-spacing: 3px;
+    color: #e0d7bd;
+  }
+  > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  b {
+    font-size: 29px;
+    font-weight: 500;
+    color: #f3e0bd;
+    font-variant-numeric: tabular-nums;
+  }
+  small {
+    margin-left: 2px;
+    font-size: 13px;
+  }
+  em {
+    font-size: 12px;
+    font-style: normal;
+    color: #aeb9c9;
+  }
+}
+.画面 {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1000 / 160;
+  margin: 8px 0;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+}
+.进度轨 {
+  position: relative;
+  height: 2px;
+  margin: 10px 8px 0;
+  background: #d1d3e01b;
+  > i {
+    display: block;
+    height: 100%;
+    width: var(--yly-progress);
+    background: linear-gradient(90deg, #9cbed3, #c6b4e3 65%, #ecd7a9);
+  }
+  > span {
+    position: absolute;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    background: #74899d;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  > .已点亮 {
+    background: #d8cba9;
+  }
+}
+@container dragon-stair (max-width: 580px) {
+  .进度条 {
+    flex-basis: 100%;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+@container dragon-stair (max-width: 320px) {
+  .标题 {
+    > span {
+      flex-basis: 100%;
+    }
+    > div {
+      margin-left: auto;
+    }
+  }
+}

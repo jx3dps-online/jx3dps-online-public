@@ -1,0 +1,229 @@
+.内容 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: calc(100vh - 132px);
+  max-height: 900px;
+  overflow-y: auto;
+}
+
+.配置区 {
+  flex: none;
+  padding: 14px 16px 4px;
+  border: 1px solid var(~'--对比-边框');
+  border-radius: 8px;
+  background: var(~'--对比-底色');
+}
+
+.对象区 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.对象分组 {
+  min-width: 0;
+}
+
+.分组标题 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  > span {
+    color: var(~'--对比-次字');
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+.勾选列表 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.勾选项 {
+  margin-inline-start: 0;
+  padding: 5px 9px;
+  border: 1px solid var(~'--对比-边框');
+  border-radius: 6px;
+  background: var(~'--对比-背景');
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+
+  &:global(.ant-checkbox-wrapper-checked) {
+    border-color: var(~'--对比-主色');
+    background: var(~'--对比-主色浅');
+  }
+}
+
+.目标来源 {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(~'--对比-次字');
+  font-size: 12px;
+}
+
+.来源选择 {
+  min-width: 120px;
+  max-width: 260px;
+}
+
+.循环区 {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(~'--对比-边框');
+
+  .分组标题 {
+    margin: 0;
+  }
+}
+
+.选择框 {
+  position: relative;
+  min-width: 0;
+}
+
+.选择器 {
+  width: 100%;
+}
+
+.筛选内容 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.范围设置,
+.计算状态 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.工具栏 {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.次要文字 {
+  color: var(~'--对比-次字');
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.完成状态,
+.最高 {
+  color: var(~'--对比-成功');
+  font-weight: 600;
+}
+
+.表格 {
+  flex: none;
+}
+
+.名称内容,
+.加速概要,
+.详情表头 {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.行名称 {
+  font-weight: 500;
+}
+
+.加速数值 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-variant-numeric: tabular-nums;
+
+  strong {
+    font-size: 15px;
+  }
+}
+
+.数量标签 {
+  padding: 0 5px;
+  border-radius: 4px;
+  background: var(~'--对比-底色');
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.加速来源 {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+
+  > span {
+    flex: none;
+    color: var(~'--对比-次字');
+  }
+}
+
+.循环表头 > div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.简易表头,
+.秒伤格 {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.秒伤格 {
+  display: block;
+  padding: 3px 0;
+  border-radius: 4px;
+  scroll-margin-inline-start: 360px;
+  scroll-margin-inline-end: 12px;
+}
+
+.定位格 {
+  outline: 2px solid var(~'--对比-主色');
+  outline-offset: 2px;
+  background: var(~'--对比-主色浅');
+}
+
+.空结果 {
+  display: grid;
+  flex: 1;
+  min-height: 200px;
+  place-items: center;
+}
+
+@media (max-width: 760px) {
+  .对象区 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .循环区 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+}

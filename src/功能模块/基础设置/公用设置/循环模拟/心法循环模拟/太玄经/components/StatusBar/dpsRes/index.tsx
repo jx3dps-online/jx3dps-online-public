@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import { Alert, message, Tooltip } from 'antd'
+import { Alert, Tooltip } from 'antd'
 import {
   PieChartOutlined,
   CalendarOutlined,
   AlignLeftOutlined,
   LineChartOutlined,
 } from '@ant-design/icons'
-import { 技能伤害详情类型 } from '@/功能模块/基础设置/公用设置/循环模拟/typs'
-import 战斗曲线弹窗 from '../../../../通用/通用组件/战斗曲线弹窗'
 
 import { 循环日志数据类型, 模拟信息类型 } from '../../../simulator/type'
 import BattleLogModal from './components/BattleLogModal'
@@ -21,10 +19,12 @@ interface DpsResProps {
   模拟信息: 模拟信息类型
   模拟DPS结果: 当前计算结果类型
   模拟函数: (e: any) => any
+  战斗曲线面板展示?: boolean
+  切换战斗曲线面板?: (open?: boolean) => void
 }
 
 function DpsRes(props: DpsResProps) {
-  const { 模拟信息, 日志信息, 模拟DPS结果, 模拟函数 } = props
+  const { 模拟信息, 日志信息, 模拟DPS结果, 模拟函数, 战斗曲线面板展示, 切换战斗曲线面板 } = props
   // buff分析
   const [buffCountModalOpen, setBuffCountModalOpen] = useState<boolean>(false)
 
@@ -32,25 +32,6 @@ function DpsRes(props: DpsResProps) {
   const [logModalOpen, setLogModalOpen] = useState<boolean>(false)
   // 技能统计
   const [countModal, setCountModal] = useState<boolean>(false)
-
-  // 战斗曲线弹窗
-  const [战斗曲线弹窗展示, 设置战斗曲线弹窗展示] = useState<boolean>(false)
-  const [技能伤害详情数据, 设置技能伤害详情数据] = useState<技能伤害详情类型[]>([])
-
-  const 打开战斗曲线弹窗 = (open) => {
-    if (open) {
-      const res = 模拟函数({ 实时计算: true, 更新展示: false })
-      if (res?.技能伤害详情数据?.length) {
-        设置技能伤害详情数据(res?.技能伤害详情数据)
-        设置战斗曲线弹窗展示(true)
-      } else {
-        message.error('获取战斗曲线失败')
-      }
-    } else {
-      设置技能伤害详情数据([])
-      设置战斗曲线弹窗展示(false)
-    }
-  }
 
   return (
     <div
@@ -75,7 +56,7 @@ function DpsRes(props: DpsResProps) {
               <div>
                 <span className={'cycle-dps-res-success-text'}>战斗用时</span>
                 <span className={'cycle-dps-res-success-text cycle-dps-res-success-highlight'}>
-                  {模拟DPS结果?.秒伤计算时间}秒
+                  {Number(模拟DPS结果.秒伤计算时间.toFixed(4))}秒
                 </span>
               </div>
               <div className={'cycle-dps-res-icons'}>
@@ -99,8 +80,10 @@ function DpsRes(props: DpsResProps) {
                 </Tooltip>
                 <Tooltip title='战斗曲线' placement='left'>
                   <LineChartOutlined
-                    className={'cycle-dps-res-icon'}
-                    onClick={() => 打开战斗曲线弹窗(true)}
+                    className={`cycle-dps-res-icon ${
+                      战斗曲线面板展示 ? 'cycle-dps-res-icon-active' : ''
+                    }`}
+                    onClick={() => 切换战斗曲线面板?.()}
                   />
                 </Tooltip>
               </div>
@@ -131,14 +114,6 @@ function DpsRes(props: DpsResProps) {
           onCancel={() => setBuffCountModalOpen(false)}
           日志={日志信息}
           总战斗用时={模拟信息?.当前时间}
-        />
-      )}
-      {/* 战斗曲线弹窗 */}
-      {战斗曲线弹窗展示 && (
-        <战斗曲线弹窗
-          open={战斗曲线弹窗展示}
-          onCancel={() => 打开战斗曲线弹窗(false)}
-          技能伤害详情数据={技能伤害详情数据}
         />
       )}
     </div>

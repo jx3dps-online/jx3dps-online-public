@@ -23,7 +23,7 @@ function 精炼等级选择(props: 精炼等级选择入参) {
         {list.map((item) => {
           const 是最大等级 = item === 装备数据?.最大精炼等级
           return (
-            <Select.Option key={item} label={item}>
+            <Select.Option key={item} value={item} label={item}>
               <div
                 className={`${是否未精炼满 && !是最大等级 ? 'jinglian-not-max' : ''} ${
                   是否未精炼满 && 是最大等级 ? 'jinglian-max' : ''

@@ -1,14 +1,13 @@
 import React, { forwardRef, useEffect, useMemo, useState } from 'react'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import styles from './index.module.less'
 import { 奇穴数据类型 } from '@/@types/奇穴'
 import { Modal, Popover } from 'antd'
 
-const { 奇穴数据 = [] } = 获取当前数据()
-
 const 兜底图片 = 'https://icon.jx3box.com/icon/13.png'
 
 const 混池奇穴: React.FC<any> = forwardRef((props: any, _) => {
+  const { 奇穴数据 = [] } = use心法数据()
   const { value, onChange } = props || {}
 
   const [modalOpen, setModalOpen] = useState<boolean>(false)

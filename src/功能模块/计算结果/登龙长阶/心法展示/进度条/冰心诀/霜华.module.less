@@ -1,0 +1,247 @@
+.霜华 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.冰纹 {
+  opacity: var(--bxj-ice-opacity);
+}
+.冰纹移动 {
+  filter: saturate(0.45);
+}
+.寒气,
+.霜丝 {
+  fill: none;
+  stroke-linecap: round;
+}
+.寒气 {
+  stroke-width: 12px;
+  filter: blur(5px);
+  opacity: 0.48;
+  > path:last-child {
+    opacity: 0.8;
+  }
+}
+.霜丝 {
+  stroke: #e2d9ed;
+  stroke-width: 1.4px;
+  opacity: 0.52;
+  stroke-dasharray: 105 790;
+  stroke-dashoffset: -210;
+  > path:last-child {
+    stroke: #dde7ef;
+    stroke-dashoffset: -390;
+  }
+}
+.霜屑 {
+  fill: #eee7f3;
+  opacity: 0.5;
+  transform: rotate(calc(var(--bxj-index) * 27deg));
+  filter: drop-shadow(0 0 2px #e4dff080);
+}
+.浮冰 {
+  opacity: 0.45;
+  transform: rotate(calc(var(--bxj-index) * 38deg));
+  filter: drop-shadow(0 0 2px #dee2f077);
+  > path:first-child {
+    fill: #c6d4e866;
+    stroke: #eee4f4;
+    stroke-width: 0.9px;
+  }
+  > path:last-child {
+    fill: none;
+    stroke: #e5dcea;
+    stroke-width: 0.7px;
+  }
+}
+.晶心 {
+  opacity: 0.4;
+  > path {
+    fill: #f6edf5;
+    opacity: 0.75;
+  }
+}
+.剑尖星芒 {
+  fill: #f4e9ef;
+  opacity: 0.24;
+}
+.冰晶簇 {
+  stroke-linejoin: bevel;
+}
+.晶片 {
+  fill: #cddded24;
+  stroke: #eff2fa;
+  stroke-width: 1.3px;
+  opacity: 0.35;
+  filter: drop-shadow(0 0 2px #e4def066);
+}
+.刃上冰簇 {
+  opacity: 0.3;
+  > path {
+    fill: #dfe8f133;
+    stroke: #eee7f5;
+    stroke-width: 0.8px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .晶片 {
+    animation: bxj-condense 7.8s ease-in-out infinite;
+    animation-delay: calc(var(--bxj-index) * -0.72s);
+  }
+  .刃上冰簇 {
+    animation: bxj-blade-frost 9s ease-in-out infinite;
+    animation-delay: calc(-1s - var(--bxj-index) * 4.5s);
+  }
+  .冰纹移动 {
+    animation: bxj-ice 16s linear infinite;
+  }
+  .寒气 > path {
+    animation: bxj-mist 7.6s ease-in-out infinite;
+  }
+  .寒气 > path:last-child {
+    animation-delay: -3.8s;
+  }
+  .霜丝 > path {
+    animation: bxj-wisp 9s linear -1s infinite;
+  }
+  .霜丝 > path:last-child {
+    animation-delay: -5.5s;
+  }
+  .霜屑 {
+    animation: bxj-frost calc(6s + var(--bxj-index) * 0.25s) ease-in-out infinite;
+    animation-delay: calc(var(--bxj-index) * -0.83s);
+  }
+  .浮冰 {
+    animation: bxj-crystal calc(8s + var(--bxj-index) * 0.4s) ease-in-out infinite;
+    animation-delay: calc(var(--bxj-index) * -1.8s);
+  }
+  .晶心 {
+    animation: bxj-core 5.6s ease-in-out infinite;
+    animation-delay: calc(var(--bxj-index) * -2.8s);
+  }
+  .剑尖星芒 {
+    animation: bxj-tip 8.4s ease-in-out infinite;
+    animation-delay: calc(-2s - var(--bxj-index) * 4.2s);
+  }
+}
+@keyframes bxj-condense {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.86);
+  }
+  38% {
+    opacity: 0.68;
+    transform: scale(1);
+  }
+  72% {
+    opacity: 0.35;
+    transform: scale(1.08);
+  }
+}
+@keyframes bxj-blade-frost {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  32% {
+    opacity: 0.7;
+    transform: scale(0.92);
+  }
+  47% {
+    opacity: 0.46;
+    transform: scale(1);
+  }
+  76% {
+    opacity: 0;
+    transform: translate(10px, -3px) scale(1.12);
+  }
+}
+@keyframes bxj-ice {
+  to {
+    transform: translateX(1000px);
+  }
+}
+@keyframes bxj-mist {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: translate(0, 3px);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate(8px, -4px);
+  }
+}
+@keyframes bxj-wisp {
+  0% {
+    stroke-dashoffset: 110;
+    opacity: 0;
+  }
+  20%,
+  75% {
+    opacity: 0.85;
+  }
+  100% {
+    stroke-dashoffset: -790;
+    opacity: 0;
+  }
+}
+@keyframes bxj-frost {
+  0% {
+    transform: translate(-8px, 7px) rotate(-20deg);
+    opacity: 0;
+  }
+  28% {
+    opacity: 0.85;
+  }
+  72% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(27px, -12px) rotate(38deg);
+    opacity: 0;
+  }
+}
+@keyframes bxj-crystal {
+  0%,
+  100% {
+    transform: translate(-5px, 5px) rotate(-18deg) scale(0.7);
+    opacity: 0.14;
+  }
+  50% {
+    transform: translate(13px, -7px) rotate(25deg) scale(1);
+    opacity: 0.66;
+  }
+}
+@keyframes bxj-core {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scale(1.08);
+  }
+}
+@keyframes bxj-tip {
+  0%,
+  60%,
+  100% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  68% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  78% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}

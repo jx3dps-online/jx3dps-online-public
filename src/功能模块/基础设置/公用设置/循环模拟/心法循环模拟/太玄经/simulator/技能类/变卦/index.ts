@@ -1,6 +1,5 @@
 import 循环模拟技能基础数据 from '../../../constant/skill'
 import 变卦统一类 from '../../通用类/变卦统一类'
-import { ERROR_ACTION } from '../../utils'
 
 class 变卦 extends 变卦统一类 {
   static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '变卦')
@@ -11,22 +10,8 @@ class 变卦 extends 变卦统一类 {
     this.初始化技能运行数据()
   }
 
-  释放() {
-    if ((this.模拟循环?.角色状态信息?.星运 || 0) < 50) {
-      return {
-        可以释放: false,
-        异常信息: ERROR_ACTION.星运不足,
-      }
-    }
-    return { 可以释放: true }
-  }
-
   命中() {
-    let 消耗 = 40
-    if (this.模拟循环.秘籍['变卦']?.includes('顺序变卦')) {
-      消耗 = 50
-    }
-    this.消耗星运(消耗, '变卦')
+    this.结算变卦星运('变卦')
     const 当前存在祝由释放允许 = this.模拟循环.当前自身buff列表?.['祝由释放允许']?.当前层数
     const 当前卦象 = this.判断当前卦象()
     this.卦象清除()

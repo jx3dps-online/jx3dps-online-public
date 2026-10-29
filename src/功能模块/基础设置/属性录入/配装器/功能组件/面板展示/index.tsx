@@ -3,23 +3,32 @@ import React, { useMemo, useState } from 'react'
 import { Tooltip } from 'antd'
 import classnames from 'classnames'
 import { 装备信息数据类型 } from '@/@types/装备'
+import type { 计算循环覆盖类型 } from '@/计算模块/计算函数'
 import { useAppSelector } from '@/hooks'
 import { 获取角色需要展示的面板数据 } from '@/功能模块/基础设置/面板信息/工具'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 获取面板显示数据数值, 获取面板显示数据 } from '@/功能模块/基础设置/面板信息'
 import './index.css'
 
 interface 面板展示入参 {
   当前装备信息: 装备信息数据类型
+  /**
+   * @name 对比装备信息
+   * 属性涨跌的比较基准；不传则回退到页面当前装备（正常编辑模式）。
+   */
+  对比装备信息?: 装备信息数据类型 | null
+  循环覆盖?: 计算循环覆盖类型
 }
 
-const { 主属性 } = 获取当前数据()
-
 function 面板展示(props: 面板展示入参) {
-  const { 当前装备信息 } = props
-  // 原始最终属性
-  const 装备信息 = useAppSelector((state) => state?.data?.装备信息)
-  const 当前奇穴信息 = useAppSelector((state) => state?.data?.当前奇穴信息)
+  const { 主属性 } = use心法数据()
+  const { 当前装备信息, 对比装备信息, 循环覆盖 } = props
+  // 页面方案装备（正常模式下作为涨跌基准）
+  const 页面装备信息 = useAppSelector((state) => state?.data?.装备信息)
+  const 基准装备信息 = 对比装备信息 === undefined ? 页面装备信息 : 对比装备信息
+  const 页面奇穴信息 = useAppSelector((state) => state?.data?.当前奇穴信息)
+  // 与秒伤引擎采用同一份奇穴，避免面板和 DPS 各算各的。
+  const 当前奇穴信息 = 循环覆盖?.更新奇穴数据?.length ? 循环覆盖.更新奇穴数据 : 页面奇穴信息
   const 增益数据 = useAppSelector((state) => state?.data?.增益数据)
   const 增益启用 = useAppSelector((state) => state?.data?.增益启用)
   const [显示增益后面板, 切换显示增益后面板] = useState<boolean>(false)
@@ -35,8 +44,11 @@ function 面板展示(props: 面板展示入参) {
   }
 
   const 显示数据 = useMemo(() => {
-    const 计算后的原始最终属性 = 获取计算后原始属性(装备信息)
     const 计算后的当前显示属性 = 获取计算后原始属性(当前装备信息)
+    if (基准装备信息 === null) {
+      return { 数据: 计算后的当前显示属性, 对比枚举: {} }
+    }
+    const 计算后的原始最终属性 = 获取计算后原始属性(基准装备信息)
 
     const 对比枚举 = {}
     Object.keys(计算后的当前显示属性).forEach((key) => {
@@ -45,12 +57,12 @@ function 面板展示(props: 面板展示入参) {
         原始属性数值 > 计算后的当前显示属性[key]
           ? '变低'
           : 原始属性数值 < 计算后的当前显示属性[key]
-          ? '变高'
-          : '-1'
+            ? '变高'
+            : '-1'
     })
 
     return { 数据: 计算后的当前显示属性, 对比枚举 }
-  }, [当前装备信息, 当前奇穴信息, 装备信息, 增益数据, 增益启用, 显示增益后面板])
+  }, [当前装备信息, 当前奇穴信息, 基准装备信息, 增益数据, 增益启用, 显示增益后面板])
 
   const mapKeyList = [
     '装分',
@@ -61,7 +73,6 @@ function 面板展示(props: 面板展示入参) {
     '会效',
     '破防',
     '无双',
-    '破招',
     '全能',
     '加速',
   ]
@@ -97,7 +108,7 @@ function 面板展示(props: 面板展示入参) {
             ? 对比枚举结果 === '变高'
               ? 'zhuangbei-character-content-upper'
               : 'zhuangbei-character-content-down'
-            : ''
+            : '',
         )
         return (
           <div
@@ -147,7 +158,6 @@ export const 显示文案和实际属性枚举 = {
   会心: '会心等级',
   会效: '会心效果等级',
   破防: '破防等级',
-  破招: '破招值',
   无双: '无双等级',
   全能: '全能等级',
   加速: '加速等级',

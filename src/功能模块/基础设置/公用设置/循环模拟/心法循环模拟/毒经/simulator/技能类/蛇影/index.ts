@@ -1,21 +1,21 @@
 import { 获取实际帧数 } from '@/工具函数/data'
 import { 每秒郭氏帧 } from '@/数据/常量'
-import 循环模拟技能基础数据 from '../../../constant/skill'
 import 有CD技能通用类 from '../../通用类/有CD技能通用类'
+import type { 循环基础技能数据类型 } from '../../type'
 
 class 蛇影 extends 有CD技能通用类 {
-  static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '蛇影')
+  技能数据?: 循环基础技能数据类型
 
   constructor(模拟循环) {
     super(模拟循环)
-    蛇影.技能数据 = 模拟循环?.技能基础数据?.find((item) => item.技能名称 === '蛇影')
+    this.技能数据 = 模拟循环?.技能基础数据?.find((item) => item.技能名称 === '蛇影')
     this.初始化技能运行数据()
   }
 
   获取读条时间() {
     const 基础读条时间 = this.模拟循环.校验奇穴是否存在('蛇悉')
       ? 每秒郭氏帧 * 1.25
-      : 蛇影.技能数据?.读条时间
+      : this.技能数据?.读条时间
     if (this.模拟循环.当前自身buff列表?.['降厄']?.当前层数) {
       return 获取实际帧数(基础读条时间, this.模拟循环.加速值, 0, 512)
     }
@@ -71,4 +71,4 @@ class 蛇影 extends 有CD技能通用类 {
 
 export default 蛇影
 
-export const 蛇影类型 = typeof 蛇影
+export type 蛇影类型 = 蛇影

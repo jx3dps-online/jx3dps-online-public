@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import styles from './index.module.less'
 import ExportContext from '../context'
 
-const { 系统配置 } = 获取当前数据()
-
 const 图标区 = () => {
+  const { 系统配置 } = use心法数据()
   const { 显示数据 } = useContext(ExportContext)
 
   return (

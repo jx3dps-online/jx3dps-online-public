@@ -1,0 +1,289 @@
+.剑气 {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.后景,
+.前景 {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 1;
+  transform: translateY(-50%);
+  overflow: visible;
+}
+.环底,
+.阳弧,
+.阴弧,
+.刻线,
+.气带,
+.气线,
+.游光,
+.星屑,
+.剑尖,
+.汇光 {
+  fill: none;
+  stroke-linecap: round;
+}
+.环底 {
+  stroke: #cfc3e9;
+  stroke-width: 1;
+  opacity: 0.2;
+}
+.阳弧 {
+  stroke: #fff0e6;
+  stroke-width: 1.8;
+  opacity: 0.7;
+}
+.阴弧 {
+  stroke: #c2b6ee;
+  stroke-width: 1.7;
+  opacity: 0.6;
+}
+.刻线 {
+  stroke: #d6c6eb;
+  stroke-width: 1;
+  opacity: 0.5;
+}
+.光点,
+.阳眼 {
+  fill: #fff1e9;
+}
+.阳面 {
+  fill: #fff5ed;
+  opacity: 0.6;
+}
+.阴面 {
+  fill: #302d35;
+  opacity: 0.48;
+}
+.阴眼 {
+  fill: #39333f;
+  opacity: 0.65;
+}
+.内环 {
+  opacity: 0.94;
+}
+.气带 {
+  stroke: #c9b5ef;
+  stroke-width: 6;
+  opacity: 0.12;
+  filter: blur(2px);
+}
+.气线 {
+  stroke: #e5dbf7;
+  stroke-width: 1;
+  opacity: 0.27;
+}
+.游光 {
+  stroke: #fff1e8;
+  stroke-width: 2;
+  stroke-dasharray: 12 88;
+  opacity: 0.75;
+}
+.后环 {
+  .气带 {
+    opacity: 0.08;
+  }
+  .气线 {
+    opacity: 0.18;
+  }
+  .游光 {
+    opacity: 0.45;
+  }
+}
+.引气 path {
+  fill: none;
+  stroke-width: 1.6;
+  stroke-dasharray: 30 70;
+  stroke-dashoffset: 30;
+  opacity: 0;
+}
+.剑脊流光,
+.达成流光,
+.剑尖,
+.达成 {
+  opacity: 0;
+}
+.星屑 {
+  stroke: #ede2fb;
+  stroke-width: 1.2;
+  opacity: 0.25;
+}
+.剑尖 {
+  stroke: #fff4ec;
+  stroke-width: 1.6;
+}
+.汇光 {
+  stroke: #f1e5ff;
+  stroke-width: 2;
+  opacity: 0;
+}
+.剑气[data-complete='true'] .剑脊流光 {
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .剑气[data-active='true'] {
+    .紫气 {
+      animation: zxg-mist 7s ease-in-out infinite;
+    }
+    .外环 {
+      animation: zxg-turn 22s linear reverse infinite;
+    }
+    .内环 {
+      animation: zxg-turn 28s linear infinite;
+    }
+    .游光 {
+      animation: zxg-trace 10s linear infinite;
+    }
+    .气环[data-orbit='1'] .游光 {
+      animation-duration: 14s;
+      animation-direction: reverse;
+      animation-delay: -3.4s;
+    }
+    .引气 path {
+      animation: zxg-breath 7.2s ease-in-out infinite;
+      &:nth-child(2) {
+        animation-delay: -3.6s;
+      }
+    }
+    .剑脊流光 {
+      animation: zxg-sweep 8.4s ease-in-out infinite;
+    }
+    .剑尖 {
+      animation: zxg-tip 8.4s ease-in-out infinite;
+    }
+    .星屑 {
+      animation: zxg-star 5.8s ease-out infinite;
+      animation-delay: calc(var(--zxg-star) * -0.63s);
+    }
+    .达成 {
+      animation: zxg-complete 3.6s linear both;
+      .汇光 {
+        animation: zxg-gather 1.4s ease-out both;
+      }
+      .达成流光 {
+        animation: zxg-complete-sweep 2s ease-in-out 0.4s both;
+      }
+    }
+  }
+}
+@keyframes zxg-mist {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateX(-8px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(8px);
+  }
+}
+@keyframes zxg-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes zxg-trace {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+@keyframes zxg-breath {
+  0% {
+    stroke-dashoffset: 30;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.55;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0;
+  }
+}
+@keyframes zxg-sweep {
+  0%,
+  8% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  14% {
+    opacity: 0.8;
+  }
+  40% {
+    opacity: 0.65;
+  }
+  48%,
+  100% {
+    opacity: 0;
+    transform: translateX(750px);
+  }
+}
+@keyframes zxg-tip {
+  0%,
+  36%,
+  57%,
+  100% {
+    opacity: 0;
+  }
+  44% {
+    opacity: 0.85;
+  }
+}
+@keyframes zxg-star {
+  0% {
+    opacity: 0;
+    transform: translate(0, 5px);
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(15px, -13px);
+  }
+}
+@keyframes zxg-complete {
+  0%,
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes zxg-gather {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  30% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+}
+@keyframes zxg-complete-sweep {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  15% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(750px);
+  }
+}

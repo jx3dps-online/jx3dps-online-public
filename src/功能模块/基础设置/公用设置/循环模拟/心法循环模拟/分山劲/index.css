@@ -75,10 +75,9 @@
 }
 
 .cycle-not-support {
-  color: #F34242;
+  color: #f34242;
   font-size: 14px;
 }
-
 
 .cycle-simulator-setting-item {
   display: flex;
@@ -86,7 +85,7 @@
   justify-content: space-between;
 }
 
-.cycle-simulator-setting-item+.cycle-simulator-setting-item {
+.cycle-simulator-setting-item + .cycle-simulator-setting-item {
   margin-left: 4px;
 }
 
@@ -99,7 +98,7 @@
 }
 
 .cycle-qixue-set-button {
-  width: unset
+  width: unset;
 }
 
 .cycle-simulator-setting-res {
@@ -126,7 +125,7 @@
   padding: 4px;
   width: 100%;
   margin: -4px;
-  transition: .2s;
+  transition: 0.2s;
   position: relative;
 }
 
@@ -157,7 +156,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .cycle-turn-operate-btn {
@@ -219,7 +218,7 @@
   /* margin: 0 0 0 12px; */
 }
 
-.cycle-simulator-dps-res-text>span {
+.cycle-simulator-dps-res-text > span {
   margin-right: 8px;
 }
 
@@ -234,7 +233,7 @@
 }
 
 .cycle-simulator-dps-res {
-  color: #F34242;
+  color: #f34242;
   font-size: 16px;
 }
 
@@ -253,7 +252,7 @@
   width: 24px;
   height: 70px;
   line-height: 70px;
-  background: url('./assets/fenlei.png');
+  background: url('https://cdn.arkwish.com/jx3dps/simc/fenlei_20260906_020.png');
   background-size: cover;
   writing-mode: vertical-lr;
   text-align: center;
@@ -284,12 +283,12 @@
 }
 
 .cycle-add-btn .cycle-add-btn {
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .cycle-add-btn-text {
   text-align: center;
-  transition: .2s;
+  transition: 0.2s;
   font-weight: 500;
   line-height: 14px;
   padding-top: 4px;

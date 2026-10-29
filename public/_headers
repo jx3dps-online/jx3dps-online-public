@@ -1,0 +1,11 @@
+/jcl-wasm/manifest.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+/jcl-wasm/*.wasm
+  Content-Type: application/wasm
+
+/jcl-wasm/*.zip
+  Content-Type: application/zip
+
+/jcl-wasm/versions/*
+  Cache-Control: public, max-age=31536000, immutable

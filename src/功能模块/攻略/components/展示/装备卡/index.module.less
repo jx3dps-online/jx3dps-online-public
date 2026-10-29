@@ -1,0 +1,65 @@
+.guide-equip-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.guide-equip-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.guide-equip-card-icon {
+  position: relative;
+  width: 36px;
+  height: 36px;
+}
+
+.guide-equip-card-icon-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+}
+
+.guide-equip-card-icon-border {
+  position: absolute;
+  inset: 0;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+}
+
+.guide-equip-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.guide-equip-card-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.guide-equip-card-name {
+  font-size: 0.87em;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+}
+
+.guide-equip-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.guide-equip-card-level {
+  font-size: 0.8em;
+  color: rgba(0, 0, 0, 0.85);
+}

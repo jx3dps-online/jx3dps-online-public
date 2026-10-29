@@ -1,0 +1,16 @@
+.dragon-blade {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+@container dragon-stair (max-width: 580px) {
+  .dragon-blade {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    flex-basis: 100%;
+    margin-top: 12px;
+  }
+}

@@ -2,30 +2,28 @@ import { Buff枚举, 循环基础技能数据类型, 日志类型 } from '../sim
 import { 基础GCD帧 } from '.'
 import { 每秒郭氏帧 } from '@/数据/常量'
 // 技能图标引入
-import yinfenghuanling from '../assets/Skill/yinfenghuanling.png'
-import chilvzhaoye from '../assets/Skill/chilvzhaoye.png'
-import jinfengcu from '../assets/Skill/jinfengcu.png'
-import chifengmingjiao from '../assets/Skill/chifengmingjiao.png'
-import moshiyinyu from '../assets/Skill/moshiyinyu.png'
-import yinyucu from '../assets/Skill/yinyucu.png'
-import baiyuliuxing from '../assets/Skill/baiyuliuxing.png'
-import chaoyiwanhui from '../assets/Skill/chaoyiwanhui.png'
-import hangengxiaojian from '../assets/Skill/hangengxiaojian.png'
-import jinwujianzhui from '../assets/Skill/jinwujianzhui.png'
-import zhuangshengxiaomeng from '../assets/Skill/zhuangshengxiaomeng.png'
+const yinfenghuanling = 'https://icon.jx3box.com/icon/19613.png'
+const chilvzhaoye = 'https://icon.jx3box.com/icon/20320.png'
+const jinfengcu = 'https://icon.jx3box.com/icon/19617.png'
+const chifengmingjiao = 'https://icon.jx3box.com/icon/19597.png'
+const moshiyinyu = 'https://icon.jx3box.com/icon/19600.png'
+const yinyucu = 'https://icon.jx3box.com/icon/19599.png'
+const baiyuliuxing = 'https://icon.jx3box.com/icon/19604.png'
+const hangengxiaojian = 'https://icon.jx3box.com/icon/19616.png'
+const jinwujianzhui = 'https://icon.jx3box.com/icon/19607.png'
+const zhuangshengxiaomeng = 'https://icon.jx3box.com/icon/20244.png'
 // Buff图标引入
-import guanchuan from '../assets/Buff/guanchuan.png'
-import biaohu from '../assets/Buff/biaohu.png'
-import chengqi from '../assets/Buff/chengqi.png'
-import peixian from '../assets/Buff/peixian.png'
+const guanchuan = 'https://icon.jx3box.com/icon/20313.png'
+const biaohu = 'https://icon.jx3box.com/icon/19606.png'
+const chengqi = 'https://icon.jx3box.com/icon/19613.png'
+const peixian = 'https://icon.jx3box.com/icon/20298.png'
 // 宠物图标引入
-
-import daxiang from '../assets/Chongwu/daxiang.png'
-import lang from '../assets/Chongwu/lang.png'
-import shizi from '../assets/Chongwu/shizi.png'
-import xiong from '../assets/Chongwu/xiong.png'
-import yezhu from '../assets/Chongwu/yezhu.png'
-import ying from '../assets/Chongwu/ying.png'
+const daxiang = 'https://icon.jx3box.com/icon/102005.png'
+const lang = 'https://icon.jx3box.com/icon/102003.png'
+const shizi = 'https://icon.jx3box.com/icon/102001.png'
+const xiong = 'https://icon.jx3box.com/icon/102004.png'
+const yezhu = 'https://icon.jx3box.com/icon/102000.png'
+const ying = 'https://icon.jx3box.com/icon/102002.png'
 import { 通用Buff数据, 通用循环模拟技能基础数据 } from '../../通用/通用技能/通用技能定义'
 
 const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
@@ -82,6 +80,8 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
   {
     技能名称: '弛风鸣角',
     技能释放后添加GCD: 基础GCD帧,
+    共用调息技能: '白羽流星',
+    是否为倒读条技能: true,
     技能GCD组: '公共',
     技能类型: '箭系',
     图标: chifengmingjiao,
@@ -92,6 +92,7 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
   {
     技能名称: '没石饮羽',
     技能释放后添加GCD: 基础GCD帧,
+    共用调息技能: '白羽流星',
     技能GCD组: '公共',
     技能类型: '箭系',
     消耗箭数: 3,
@@ -100,18 +101,17 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     显示类型: '奇穴技能',
     依赖奇穴名: '灼心',
   },
-  {
-    技能名称: '朝仪万汇',
-    技能释放后添加GCD: 基础GCD帧,
-    技能CD: 每秒郭氏帧 * 40,
-    技能GCD组: '公共',
-    技能类型: '箭系',
-    图标: chaoyiwanhui,
-    是否为倒读条技能: true,
-    技能原始名称: '朝仪万汇',
-    显示类型: '奇穴技能',
-    依赖奇穴名: '朝仪万汇',
-  },
+  // {
+  //   技能名称: '朝仪万汇',
+  //   技能释放后添加GCD: 基础GCD帧,
+  //   技能CD: 每秒郭氏帧 * 40,
+  //   技能GCD组: '公共',
+  //    技能类型: '箭系',
+  //    是否为倒读条技能: true,
+  //   技能原始名称: '朝仪万汇',
+  //   显示类型: '奇穴技能',
+  //   依赖奇穴名: '朝仪万汇',
+  // },
   {
     技能名称: '聚势摧霆',
     技能释放后添加GCD: 基础GCD帧,
@@ -188,6 +188,16 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     技能类型: '其他',
     图标: 'https://icon.jx3box.com/icon/20316.png',
     技能原始名称: '游雾乘云',
+    不显示标鹄层数: true,
+  },
+  {
+    技能名称: '澄神醒梦',
+    图标: 'https://icon.jx3box.com/icon/19591.png',
+    技能释放后添加GCD: 0,
+    技能GCD组: '自身',
+    技能CD: 每秒郭氏帧 * 30,
+    技能类型: '其他',
+    技能原始名称: '澄神醒梦',
     不显示标鹄层数: true,
   },
   {
@@ -278,9 +288,16 @@ export const 原始Buff数据: Buff枚举 = {
     类型: '自身',
     名称: '乘黄之威',
     最大层数: 1,
-    最大持续时间: 每秒郭氏帧 * 9999,
+    最大持续时间: 每秒郭氏帧 * 3,
     图标: 'https://icon.jx3box.com/icon/20273.png',
-    备注: '自身最大气血值降低30%,施展“游雾乘云”、“澄神醒梦”时，获得乘黄之威',
+    备注: '游雾乘云、澄神醒梦期间每秒获得，附带伤害触发时刷新持续时间',
+  },
+  澄神醒梦: {
+    图标: 'https://icon.jx3box.com/icon/19591.png',
+    类型: '自身',
+    名称: '澄神醒梦',
+    最大层数: 1,
+    最大持续时间: 每秒郭氏帧 * 8,
   },
   // Buff
   标鹄: {
@@ -350,10 +367,10 @@ export const 原始Buff数据: Buff枚举 = {
   连珠: {
     类型: '自身',
     名称: '连珠',
-    最大层数: 2,
-    最大持续时间: 每秒郭氏帧 * 17,
+    最大层数: 1,
+    最大持续时间: 每秒郭氏帧 * 19,
     图标: 'https://icon.jx3box.com/icon/19597.png',
-    备注: '每层“连珠”期间受到自身的“标鹄”提高20%。',
+    备注: '“连珠”期间受到自身的“标鹄”提高40%。',
   },
   诸怀: {
     类型: '自身',

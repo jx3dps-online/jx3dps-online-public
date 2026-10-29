@@ -1,0 +1,369 @@
+.进度条 {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 230px;
+  max-width: 560px;
+  padding: 0 4px 6px;
+}
+
+.标题 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  > span {
+    font-family: 'STKaiti', 'KaiTi', serif;
+    font-size: 17px;
+    letter-spacing: 3px;
+    color: #d7cfe4;
+  }
+  > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  b {
+    font-size: 29px;
+    font-weight: 500;
+    color: #f3e0bd;
+    font-variant-numeric: tabular-nums;
+  }
+  small {
+    margin-left: 2px;
+    font-size: 13px;
+  }
+  em {
+    font-size: 12px;
+    font-style: normal;
+    color: #aeb9c9;
+  }
+}
+
+.武器区域 {
+  position: relative;
+  padding-top: 23.255814%;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.画布 {
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  width: 92%;
+  padding-top: 30.666667%;
+  transform: translateY(-50%);
+}
+
+.素笔,
+.揭示 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  // 端点把 12px 柔边移出画布；底图和成品全程互补。
+  -webkit-mask-size: calc(200% + 12px) 100%;
+  mask-size: calc(200% + 12px) 100%;
+  -webkit-mask-position: calc(100% - var(--hjy-progress)) 0;
+  mask-position: calc(100% - var(--hjy-progress)) 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.素笔 {
+  opacity: 0.2;
+  -webkit-mask-image: linear-gradient(90deg, transparent calc(50% - 6px), #000 calc(50% + 6px));
+  mask-image: linear-gradient(90deg, transparent calc(50% - 6px), #000 calc(50% + 6px));
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    // 等比校准图片，外层进度遮罩保持原坐标；参数来自两图 Alpha 轮廓比对。
+    transform-origin: 0 0;
+    transform: translate(3.1%, 1.5%) scale(0.949);
+  }
+}
+
+.揭示 {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(50% - 6px), transparent calc(50% + 6px));
+  mask-image: linear-gradient(90deg, #000 calc(50% - 6px), transparent calc(50% + 6px));
+}
+
+.成品 {
+  opacity: var(--hjy-opacity);
+  filter: saturate(0.9);
+}
+
+.墨雾 {
+  opacity: calc(var(--hjy-aura) * 0.32);
+  > i {
+    position: absolute;
+    inset: 30% 4% 20% 18%;
+    background: radial-gradient(ellipse, #ba8beaa6, #8e60bc33 45%, transparent 72%);
+    opacity: 0.7;
+    filter: blur(4px);
+  }
+}
+
+.流光 {
+  opacity: calc(0.3 + var(--hjy-aura) * 0.7);
+}
+.笔面 {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  > i {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(
+      105deg,
+      transparent 10%,
+      #c6a4ff55 30%,
+      #fff2cf 50%,
+      #ead4fc88 62%,
+      transparent 86%
+    );
+    opacity: 0;
+  }
+}
+
+.墨锋 {
+  opacity: calc(var(--hjy-ink) * 0.75);
+  > i {
+    position: absolute;
+    left: 2%;
+    top: 47%;
+    width: 7%;
+    height: 21%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, #f4d9ffcc, #c28af7a6 23%, #9758db40 48%, transparent 72%);
+    opacity: 0.5;
+  }
+}
+
+.珠光 {
+  opacity: var(--hjy-core);
+  > i {
+    position: absolute;
+    left: 76.8%;
+    top: 20.8%;
+    width: 9%;
+    height: 27%;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff1cce6, #fa8fa5b3 20%, #d5588059 42%, transparent 70%);
+    opacity: 0.45;
+  }
+}
+
+.棋子 {
+  opacity: calc(0.35 + var(--hjy-stones) * 0.65);
+  > i {
+    position: absolute;
+    left: calc(22% + var(--hjy-stone) * 9%);
+    top: 36%;
+    width: calc(4.2px + var(--hjy-stone) * 0.2px);
+    height: calc(4.2px + var(--hjy-stone) * 0.2px);
+    border-radius: 50%;
+    border: 1px solid #efdbbd80;
+    background: radial-gradient(circle at 35% 30%, #fff8e9, #d7cbbb);
+    box-shadow: 0 0 4px #e8ce9c59;
+    opacity: 0.4;
+    &:nth-child(even) {
+      top: 70%;
+      border-color: #c5a2e3b3;
+      background: radial-gradient(circle at 35% 30%, #85719c, #282033 70%);
+      box-shadow: 0 0 4px #c4a2ea59;
+    }
+  }
+}
+
+.棋纹,
+.棋环 {
+  position: absolute;
+  left: 75.3%;
+  top: 16.3%;
+  width: 12%;
+  height: 36%;
+  border-radius: 50%;
+  opacity: 0.42;
+}
+.棋纹 {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 11px, #dfcba54d 11px 12px),
+    repeating-linear-gradient(90deg, transparent 0 11px, #dfcba54d 11px 12px);
+  transform: rotate(-12deg);
+}
+.棋环 {
+  border: 1px solid #e2c28b66;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 47%;
+    left: -2px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #fff2d6;
+    box-shadow: 0 0 4px #f2d5ab80;
+  }
+  &::after {
+    left: auto;
+    right: -2px;
+    background: #514163;
+    border: 1px solid #ddbbeb;
+  }
+}
+
+.进度轨 {
+  position: relative;
+  height: 2px;
+  margin: 2px 3% 0;
+  background: #ffffff13;
+  > i {
+    display: block;
+    width: var(--hjy-progress);
+    height: 100%;
+    background: linear-gradient(90deg, #9875c6, #dcc4ef, #e7c98f);
+  }
+  > span {
+    position: absolute;
+    top: -1px;
+    width: 4px;
+    height: 4px;
+    transform: rotate(45deg);
+    background: #51465e;
+  }
+  > .已点亮 {
+    background: #dfc9ed;
+  }
+}
+.已达成 {
+  .标题 > span {
+    color: #ead4b1;
+  }
+  .进度轨 > i {
+    box-shadow: 0 0 5px #bd98e659;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .素笔,
+  .揭示 {
+    transition:
+      -webkit-mask-position 1.2s ease,
+      mask-position 1.2s ease,
+      opacity 1.2s ease;
+  }
+  .进度轨 > i {
+    transition: width 1.2s ease;
+  }
+  .笔面 > i {
+    animation: hjy-brush-flow 5.2s ease-in-out -1.3s infinite;
+  }
+  .进度条[aria-busy='false'] .珠光 > i {
+    animation: hjy-orb-breathe 5.6s ease-in-out -1.2s infinite;
+  }
+  .进度条[aria-busy='false'] .墨锋 > i {
+    animation: hjy-orb-breathe 6.2s ease-in-out -2.5s infinite;
+  }
+  .棋子 > i {
+    animation: hjy-stone-float calc(5.5s + var(--hjy-stone) * 0.3s) ease-in-out infinite;
+    animation-delay: calc(var(--hjy-stone) * -1.3s);
+  }
+  .已达成[aria-busy='false'] .墨雾 > i,
+  .棋纹 {
+    animation: hjy-mist-breathe 8s ease-in-out -3s infinite;
+  }
+  .棋环 {
+    animation: hjy-chess-orbit 9s linear infinite;
+  }
+}
+
+@keyframes hjy-brush-flow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  10%,
+  50% {
+    opacity: 0.9;
+  }
+  75%,
+  100% {
+    transform: translateX(500%);
+    opacity: 0;
+  }
+}
+@keyframes hjy-orb-breathe {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+}
+@keyframes hjy-stone-float {
+  0% {
+    transform: translate(0, 3px);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.85;
+  }
+  75% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(13px, -12px);
+    opacity: 0;
+  }
+}
+@keyframes hjy-mist-breathe {
+  50% {
+    opacity: 0.45;
+  }
+}
+@keyframes hjy-chess-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@supports not (
+  (mask-image: linear-gradient(#000, transparent)) or
+    (-webkit-mask-image: linear-gradient(#000, transparent))
+) {
+  .揭示 {
+    display: none;
+  }
+  .已达成 {
+    .素笔 {
+      opacity: 0;
+    }
+    .成品 {
+      display: block;
+    }
+  }
+}
+
+@container dragon-stair (max-width: 580px) {
+  .进度条 {
+    flex-basis: 100%;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    margin-top: 12px;
+  }
+}

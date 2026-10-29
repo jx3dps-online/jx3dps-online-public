@@ -1,7 +1,7 @@
 /**
  * 装备选择
  */
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useEffect, useMemo, useRef, useState } from 'react'
 import classnames from 'classnames'
 import { Button, message, Popover, Select } from 'antd'
 import { BulbOutlined } from '@ant-design/icons'
@@ -10,18 +10,20 @@ import ImageComponent from '@/组件/图片展示'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { 装备部位枚举 } from '@/@types/枚举'
 import {
-  副本精简特效枚举,
   装备位置部位枚举,
   装备属性信息模型,
   装备特效枚举,
   装备类型枚举,
   装备选择范围类型,
-  试炼之地特效枚举,
+  装备信息数据类型,
 } from '@/@types/装备'
-import { 秒伤计算 } from '@/计算模块/计算函数'
-import { 属性类型 } from '@/@types/属性'
+import { 获取装备数据描述 } from '../../../工具函数/获取装备数据描述'
+import { 对比结果条目 } from '@/@types/配装指导'
+import type { 计算循环覆盖类型 } from '@/计算模块/计算函数'
 
 import 根据表单选项获取装备信息 from '../../../工具函数/根据表单选项获取装备信息'
+import { 根据部位索引获取装备 } from '../../../工具函数/装备表单转换'
+import { 计算候选收益, 候选装备信息, 格式化收益文本 } from '../../../工具函数/计算候选收益'
 import { 获取最大精炼等级 } from '..'
 
 import 装备详情容器 from './装备详情容器'
@@ -29,6 +31,7 @@ import 渐变特效文字 from './渐变特效文字'
 import styles from './index.module.less'
 import './index.css'
 import classNames from 'classnames'
+import use移动端 from '@/hooks/use移动端'
 
 interface 装备部位选择入参 {
   value?: number // 装备ID
@@ -37,13 +40,23 @@ interface 装备部位选择入参 {
   装备数据列表: 装备属性信息模型[]
   部位: 装备部位枚举
   部位索引: string
-  排序索引: number
   默认镶嵌宝石等级: number
   form: any
   开启装备智能对比: boolean
   对比显示百分比: boolean
   对比加速: boolean
+  候选按收益排序: boolean
   装备选择范围: 装备选择范围类型
+  /**
+   * @name 对比装备信息
+   * 红色标记的基准；传 null 表示不标红，不传则回退到页面当前装备。
+   */
+  对比装备信息?: 装备信息数据类型 | null
+  /**
+   * @name 循环覆盖
+   * 目标编辑时用目标循环/奇穴/秘籍计算候选收益。
+   */
+  循环覆盖?: 计算循环覆盖类型
 }
 
 function 装备部位选择(props: 装备部位选择入参, ref) {
@@ -51,47 +64,51 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
     装备数据列表,
     部位,
     部位索引,
-    排序索引,
     默认镶嵌宝石等级,
     allValue,
     form,
     开启装备智能对比,
     对比显示百分比,
     对比加速,
+    候选按收益排序,
     装备选择范围,
+    对比装备信息,
+    循环覆盖,
     onChange,
     ...options
   } = props
 
+  const 移动端 = use移动端()
   const 当前计算结果 = useAppSelector((state) => state?.data?.当前计算结果)
-  const 当前装备信息 = useAppSelector((state) => state?.data?.装备信息)
-  const [dpsUpList, setDpsUpList] = useState<
-    {
-      uuid: string
-      dpsUp: number | string
-      dpsPercent: string
-      id?: number
-    }[]
-  >()
+  const 页面装备信息 = useAppSelector((state) => state?.data?.装备信息)
+  const 当前装备信息 = 对比装备信息 === undefined ? 页面装备信息 : 对比装备信息
+  const 高亮属性 = useAppSelector((state) => state?.system?.网页设置?.行为偏好?.配装器高亮属性)
+  const [dpsUpList, setDpsUpList] = useState<对比结果条目[]>()
   const [loading, setLoading] = useState<boolean>(false)
   const dispatch = useAppDispatch()
   // 组件初始化存储第一次进入得装备ID
 
   const 原始装备ID = useMemo(() => {
-    const 装备ID = 当前装备信息?.装备列表?.find(
-      (a: any, index) => 装备位置部位枚举[部位索引] === a?.装备部位 && index === 排序索引,
-    )?.id
-    return 装备ID
-  }, [当前装备信息, 排序索引])
+    return 根据部位索引获取装备(当前装备信息?.装备列表, 部位索引)?.id
+  }, [当前装备信息, 部位索引])
 
   const 是否更换装备 = useMemo(() => {
-    if (allValue?.id && 原始装备ID) {
-      return 原始装备ID !== allValue?.id
-    }
-    return false
+    return 原始装备ID !== allValue?.id
   }, [原始装备ID, allValue])
 
   const 实际装备列表 = useMemo(() => {
+    const 当前选中装备 = 装备数据列表?.find((item) => item?.id === allValue?.id)
+    const 去重过滤 = (列表) =>
+      列表?.filter((item) => {
+        if (item.重复装备id) {
+          return item.id === allValue?.id
+        }
+        if (当前选中装备?.重复装备id === item.id) {
+          return false
+        }
+        return true
+      })
+
     if (
       装备选择范围?.品级范围?.length ||
       装备选择范围?.词条类型?.length ||
@@ -137,34 +154,45 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
         })
       }
 
-      return 新列表
+      return 去重过滤(新列表)
     } else {
-      return 装备数据列表
+      return 去重过滤(装备数据列表)
     }
-  }, [装备数据列表, 装备选择范围, 部位])
+  }, [装备数据列表, 装备选择范围, 部位, allValue?.id])
 
   const 当前镶嵌等级数组 = useMemo(() => {
     return allValue?.镶嵌孔数组?.map((item) => item.镶嵌宝石等级) || []
   }, [allValue])
 
+  // 加速对比需以真实当前装备为准：它可能因品级范围过滤而不在实际装备列表里
   const 当前选择装备 = useMemo(() => {
-    return 实际装备列表.find((a) => a.id === allValue?.id)
-  }, [allValue, 实际装备列表])
+    return 装备数据列表.find((a) => a.id === allValue?.id)
+  }, [allValue, 装备数据列表])
+
+  // 请求序号：下拉关闭或重新打开后，丢弃上一次未完成计算的结果
+  const 请求序号 = useRef(0)
+  useEffect(() => {
+    请求序号.current++
+    setDpsUpList(undefined)
+    setLoading(false)
+    return () => {
+      请求序号.current++
+    }
+  }, [循环覆盖])
 
   // 获取dps提升装备列表
-  const getDpsUpList = (获取最佳装备?) => {
-    if (开启装备智能对比) {
+  const getDpsUpList = async (获取最佳装备?) => {
+    if (开启装备智能对比 || 获取最佳装备) {
+      const 本次序号 = ++请求序号.current
       setLoading(true)
+      // 先让出主线程，保证下拉与 loading 状态先渲染，再进行密集计算
+      await new Promise((resolve) => setTimeout(resolve, 0))
       // 获取旧装备列表
       const 当前装备列表信息 = form?.getFieldsValue()
       const 当前装备信息 = 根据表单选项获取装备信息(当前装备列表信息)
 
-      const { 秒伤: 旧秒伤 } = dispatch(
-        秒伤计算({ 更新装备信息: 当前装备信息, 计算技能详情: false }),
-      )
-
       // 传入新的装备
-      const newDpsUpList = 实际装备列表
+      const 候选装备信息列表: (候选装备信息 & { 装备id?: number })[] = 实际装备列表
         .filter((item) => {
           let 加速对比条件 = false
           if (!对比加速) {
@@ -187,22 +215,21 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
                   加速对比条件
                 )
               } else {
-                return item.装备品级 >= 18900 && 加速对比条件
+                return item.装备品级 >= 0 && 加速对比条件
               }
             } else {
               if (部位 === '武器') {
-                return item.装备品级 >= 18900 && item.装备特效 !== 装备特效枚举.大橙武特效
+                return item.装备品级 >= 0 && item.装备特效 !== 装备特效枚举.大橙武特效
               }
-              return item.装备品级 >= 18900 && 加速对比条件
+              return item.装备品级 >= 0 && 加速对比条件
             }
           }
-          const 基本条件 = item.装备品级 >= 18900 || item.装备特效 === 装备特效枚举.大橙武特效
+          const 基本条件 = item.装备品级 >= 0 || item.装备特效 === 装备特效枚举.大橙武特效
 
           return 基本条件 && 加速对比条件
         })
         .map((item) => {
           const 装备最大精炼等级 = 获取最大精炼等级(item)
-          // const 切换后精炼等级 = 当前精炼等级 > 装备最大精炼等级 ? 装备最大精炼等级 : 当前精炼等级
 
           const 新装备数据 = {
             ...allValue,
@@ -222,36 +249,37 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
             [`${部位索引}`]: 新装备数据,
           })
 
-          const { 秒伤: 更新后秒伤 } = dispatch(
-            秒伤计算({ 更新装备信息: 更新后装备信息, 计算技能详情: false }),
-          )
-
-          const 旧伤害 = 旧秒伤 || 当前计算结果?.秒伤
-
-          const 秒伤差异 = 更新后秒伤 ? 更新后秒伤 - 旧伤害 : 旧伤害 ? '更换后加速不匹配' : ''
-          const dpsPercent = 更新后秒伤
-            ? 旧伤害
-              ? ((+秒伤差异 / 旧伤害) * 100).toFixed(2)
-              : ''
-            : ''
           return {
-            uuid: `${item?.uid}${item?.id}` || '',
-            id: item?.id,
-            dpsUp: 秒伤差异,
-            dpsPercent: dpsPercent,
+            id: `${item?.uid}${item?.id}` || '',
+            装备id: item?.id,
+            装备信息: 更新后装备信息,
           }
         })
 
+      const 结果 = await 计算候选收益({
+        当前装备信息,
+        候选装备信息列表,
+        dispatch,
+        旧秒伤兜底: 循环覆盖 ? undefined : 当前计算结果?.秒伤,
+        循环覆盖,
+      })
+
+      console.log('结果', 结果)
+
+      if (请求序号.current !== 本次序号) {
+        // 计算期间下拉已关闭或已发起新计算，丢弃本次结果
+        return
+      }
       setLoading(false)
-      if (newDpsUpList?.length) {
+      if (结果?.length) {
         if (!获取最佳装备) {
-          setDpsUpList(newDpsUpList)
+          setDpsUpList(结果)
         }
         // 过滤因加速导致无法计算的情况
-        const upDpsList = newDpsUpList?.filter((item) => Math.abs(+item.dpsUp) >= 0)
+        const upDpsList = 结果?.filter((item) => !item.加速不匹配)
         upDpsList?.sort((a, b) => +b.dpsUp - +a.dpsUp)
-        const maxId = upDpsList?.[0]?.id || undefined
-        return maxId
+        const 最优候选 = 候选装备信息列表?.find((c) => c.id === upDpsList?.[0]?.id)
+        return 最优候选?.装备id
       }
     }
   }
@@ -284,6 +312,19 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
     选择最佳装备: 选择最佳装备,
   }))
 
+  const 排序后装备列表 = useMemo(() => {
+    if (!候选按收益排序 || !dpsUpList?.length) {
+      return 实际装备列表
+    }
+    return [...实际装备列表].sort((a, b) => {
+      const aItem = dpsUpList?.find((up) => up.id === `${a?.uid}${a?.id}`)
+      const bItem = dpsUpList?.find((up) => up.id === `${b?.uid}${b?.id}`)
+      const aDps = !aItem || aItem.加速不匹配 ? -Infinity : aItem.dpsUp
+      const bDps = !bItem || bItem.加速不匹配 ? -Infinity : bItem.dpsUp
+      return bDps - aDps
+    })
+  }, [实际装备列表, dpsUpList, 候选按收益排序])
+
   const cls = classNames('zhuangbei-select', { 'equip-diff-change': 是否更换装备 })
 
   return (
@@ -293,12 +334,14 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
         loading={loading}
         className={cls}
         placeholder={`请选择${部位}`}
-        popupMatchSelectWidth={440}
+        popupMatchSelectWidth={移动端 ? undefined : 440}
         optionFilterProp='label'
         onDropdownVisibleChange={(e) => {
           if (e) {
             getDpsUpList()
           } else {
+            请求序号.current++
+            setLoading(false)
             setDpsUpList([])
           }
         }}
@@ -317,10 +360,15 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
         onChange={onChange}
         {...options}
       >
-        {实际装备列表.map((item, i) => {
-          const upItem = dpsUpList?.find((up) => up.uuid === `${item?.uid}${item?.id}`) || {
+        {排序后装备列表.map((item, i) => {
+          const upItem = dpsUpList?.find((up) => up.id === `${item?.uid}${item?.id}`) || {
+            id: '',
             dpsUp: 0,
             dpsPercent: 0,
+            属性差: {},
+            装分差: 0,
+            加速不匹配: false,
+            已收藏: false,
           }
           return (
             <Select.Option
@@ -329,7 +377,7 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
               value={item.id}
               label={item.装备名称}
             >
-              <装备详情容器 装备数据={item} 当前装备信息={allValue}>
+              <装备详情容器 装备数据={item} 当前装备信息={allValue} 属性差={upItem?.属性差}>
                 <div className={`zhuangbei-select-item-wrap`} translate='no'>
                   {item?.图标ID ? (
                     <ImageComponent
@@ -348,12 +396,21 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
                   </span>
                   <span className={'zhuangbei-select-shuoming'}>
                     {`(`}
+                    {item.装备类型 === 装备类型枚举.门派套装 && (
+                      <span className={classnames('zhuangbei-miaoshu-label', styles.套装标记)}>
+                        套装
+                      </span>
+                    )}
                     {(获取装备数据描述(item) || []).map((a) => {
                       const 装备描述文本样式 = classnames(
                         'zhuangbei-miaoshu-label',
                         a === '精简' ? 'zhuangbei-miaoshu-label-jingjian' : '',
                         a === '特效' ? 'zhuangbei-miaoshu-label-texiao' : '',
                         a === 'PVX' ? 'zhuangbei-miaoshu-label-pvx' : '',
+                        高亮属性 && a === '会心' ? 'zhuangbei-miaoshu-label-huixin' : '',
+                        高亮属性 && a === '会效' ? 'zhuangbei-miaoshu-label-huixiao' : '',
+                        高亮属性 && a === '破防' ? 'zhuangbei-miaoshu-label-pofang' : '',
+                        高亮属性 && a === '加速' ? 'zhuangbei-miaoshu-label-jiasu' : '',
                       )
 
                       return (
@@ -380,10 +437,7 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
                     <span
                       className={`zhuangbei-diff ${+upItem?.dpsUp > 0 ? 'dps-up-color' : 'dps-low-color'}`}
                     >
-                      {+upItem?.dpsUp > 0 ? '+' : ''}
-                      {对比显示百分比 && upItem?.dpsPercent
-                        ? `${upItem?.dpsPercent}%`
-                        : `${upItem?.dpsUp}`}
+                      {格式化收益文本(upItem?.dpsUp, upItem?.dpsPercent, 对比显示百分比)}
                     </span>
                   ) : null}
                   <span className={'zhuangbei-select-level'}>{item.装备品级}</span>
@@ -393,7 +447,7 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
           )
         })}
       </Select>
-      {开启装备智能对比 ? (
+      {开启装备智能对比 && !移动端 ? (
         <Popover
           title='选择当前提升最大(Beta)'
           placement='right'
@@ -425,59 +479,4 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
 
 export default forwardRef(装备部位选择)
 
-export const 获取装备数据描述 = (data: 装备属性信息模型, 携带描述 = true, 携带增益 = true) => {
-  const { 装备增益, 装备类型, 装备特效 } = data
-  const strList: string[] = []
-  if (携带描述) {
-    if ([装备类型枚举.特效武器].includes(装备类型) || 装备特效 === '门派特效武器') {
-      strList.push('特效')
-    }
-    if ([装备类型枚举.PVX].includes(装备类型)) {
-      strList.push('PVX')
-    }
-    if (
-      data?.装备特效 === 装备特效枚举.风特效腰坠 ||
-      (装备特效 && 副本精简特效枚举?.[装备特效]) ||
-      (装备特效 && 试炼之地特效枚举?.[装备特效])
-    ) {
-      strList.push('特效')
-    } else if ([装备类型枚举.副本精简, 装备类型枚举.试炼精简].includes(装备类型)) {
-      strList.push('精简')
-    }
-  }
-  if (携带增益) {
-    装备增益.forEach((item) => {
-      switch (item.属性) {
-        case 属性类型.全会心等级:
-        case 属性类型.外功会心等级:
-        case 属性类型.内功会心等级:
-          strList.push('会心')
-          break
-        case 属性类型.全会心效果等级:
-        case 属性类型.外功会心效果等级:
-        case 属性类型.内功会心效果等级:
-          strList.push('会效')
-          break
-        case 属性类型.全破防等级:
-        case 属性类型.外功破防等级:
-        case 属性类型.内功破防等级:
-          strList.push('破防')
-          break
-        case 属性类型.无双等级:
-          strList.push('无双')
-          break
-        case 属性类型.破招值:
-          strList.push('破招')
-          break
-        case 属性类型.全能等级:
-          strList.push('全能')
-          break
-        case 属性类型.加速等级:
-          strList.push('加速')
-          break
-      }
-    })
-  }
-
-  return strList
-}
+export { 获取装备数据描述 } from '../../../工具函数/获取装备数据描述'

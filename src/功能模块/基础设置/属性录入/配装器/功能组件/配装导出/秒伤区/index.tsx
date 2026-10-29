@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import { Divider, Tooltip } from 'antd'
 import { useAppSelector } from '@/hooks'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import 团队增益图标 from '@/功能模块/基础设置/增益面板/团队增益选择/团队增益图标'
 import useCycle from '@/hooks/use-cycle'
 import { 阵眼数据类型 } from '@/数据/阵眼/interface'
@@ -11,9 +11,8 @@ import 配装推荐 from './配装推荐'
 import styles from './index.module.less'
 import ExportContext from '../context'
 
-const { 团队增益 = [], 阵眼, 小药小吃 } = 获取当前数据()
-
 const 秒伤区 = () => {
+  const { 团队增益 = [], 阵眼, 小药小吃 } = use心法数据()
   const { 更换装备后秒伤, 是否展示伤害 } = useContext(ExportContext)
 
   const 当前计算结果 = useAppSelector((state) => state?.data?.当前计算结果)
@@ -55,16 +54,23 @@ const 秒伤区 = () => {
     if (!增益启用) {
       return [] as any
     } else {
-      const 数据 = 增益数据?.小吃?.map((item) => {
-        return 小药小吃?.find((a) => a?.小吃名称 === item)
+      const 已见 = new Set<string>()
+      const 数据: 小药小吃数据类型[] = []
+      ;(增益数据?.小吃 || []).forEach((item) => {
+        const 小吃 = 小药小吃?.find((a) => a?.小吃名称 === item)
+        if (小吃 && !已见.has(小吃?.小吃名称)) {
+          已见.add(小吃?.小吃名称)
+          数据.push(小吃)
+        }
       })
-      return (数据 || [])?.filter((item) => item)
+      return 数据
     }
-  }, [增益数据, 增益启用, 阵眼])
+  }, [增益数据, 增益启用, 阵眼, 小药小吃])
 
   const 延迟数据 = useMemo(() => {
     if (计算循环详情?.循环延迟要求 !== undefined) {
-      return 延迟设定?.find((item) => item?.value === 计算循环详情?.循环延迟要求)?.label
+      const 标签 = 延迟设定?.find((item) => item?.value === 计算循环详情?.循环延迟要求)?.label
+      return 标签?.replace(/[（(][^）)]*[）)]/g, '')
     } else {
       return undefined
     }
@@ -75,7 +81,7 @@ const 秒伤区 = () => {
       <div className={styles.header}>
         <div className={styles.dps}>
           <h1 className={styles.dpsNum}>
-            {是否展示伤害 ? 更换装备后秒伤 || 当前计算结果?.秒伤 : '-------'}
+            {是否展示伤害 ? (更换装备后秒伤 ?? 当前计算结果?.秒伤) : '-------'}
           </h1>
           <span className={styles.dpsTip}>数值仅供参考</span>
         </div>

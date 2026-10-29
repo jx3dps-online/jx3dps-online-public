@@ -12,6 +12,7 @@ interface AddCycleSkillBtnProps {
   模拟信息: 模拟信息类型
   style?: any
   插入技能?: boolean // 插入技能时不禁用技能
+  体态不符自动切换?: boolean // 开启后体态不符的技能不禁用，由模拟器自动盾回/盾飞切换
 }
 
 interface 异常信息数据 {
@@ -22,7 +23,15 @@ interface 异常信息数据 {
 
 // 添加循环技能按钮组件
 const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
-  const { 技能, 模拟信息, onClick: propsClick, className, 插入技能, ...rest } = props
+  const {
+    技能,
+    模拟信息,
+    onClick: propsClick,
+    className,
+    插入技能,
+    体态不符自动切换,
+    ...rest
+  } = props
 
   const 释放等待CD = 计算可以释放时技能CD(模拟信息, 技能)
   const 技能当前层数 = 计算技能当前层数(模拟信息, 技能)
@@ -54,9 +63,12 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
       // 把血怒、阵云、业火归类为另一类，并且在擎刀、擎盾体态都能释放
       // 偃守孤旌期间无法使用非苍雪刀套路招式（可以使用轻功）
       if (
-        (技能?.技能类型 !== '其他' &&
+        (!体态不符自动切换 &&
+          技能?.技能类型 !== '其他' &&
           技能?.体态 &&
           模拟信息?.角色状态信息?.体态 !== 技能?.体态 &&
+          // 盾飞/盾回的切体态是延迟事件：有待生效切换且目标正是该技能体态时不禁用（模拟器会等待切换完成）
+          模拟信息?.待生效体态切换 !== 技能?.体态 &&
           !飞击校验()) ||
         偃守孤旌禁用非苍雪刀技能()
       ) {
@@ -73,6 +85,15 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
         禁用信息 = {
           是否禁用: true,
           异常描述: ERROR_ACTION?.BUFF错误?.信息,
+        }
+      } else if (
+        技能?.技能名称 === '盾猛' &&
+        模拟信息?.当前自身buff列表?.['飞盾0.5秒无法使用盾猛']?.当前层数
+      ) {
+        // 盾飞施展后获得飞盾(8873)，0.5秒内无法施展盾猛
+        禁用信息 = {
+          是否禁用: true,
+          异常描述: '飞盾0.5秒无法使用盾猛',
         }
       }
     }
@@ -91,7 +112,7 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
     } else {
       return { ...禁用信息 }
     }
-  }, [释放等待CD, 技能, 模拟信息, 插入技能])
+  }, [释放等待CD, 技能, 模拟信息, 插入技能, 体态不符自动切换])
 
   const onClick = (额外信息) => {
     if (异常信息?.是否禁用) {
@@ -114,10 +135,10 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
       return 'https://icon.jx3box.com/icon/6699.png'
     }
     if (技能?.技能名称 === '盾刀') {
-      if (模拟信息?.当前自身buff列表?.['盾刀标记']?.当前层数 === 1) {
-        return 'https://icon.jx3box.com/icon/6328.png'
-      } else if (模拟信息?.当前自身buff列表?.['盾刀标记']?.当前层数 === 2) {
+      if (模拟信息?.当前自身buff列表?.['盾刀三段标记']?.当前层数) {
         return 'https://icon.jx3box.com/icon/6329.png'
+      } else if (模拟信息?.当前自身buff列表?.['盾刀二段标记']?.当前层数) {
+        return 'https://icon.jx3box.com/icon/6328.png'
       } else {
         return 'https://icon.jx3box.com/icon/6327.png'
       }

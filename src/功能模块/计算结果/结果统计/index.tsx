@@ -1,6 +1,7 @@
 import { Button, Checkbox, message, Modal, Tooltip } from 'antd'
 import React, { useMemo, useState } from 'react'
 import { useAppSelector } from '@/hooks'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 当前计算结果类型 } from '@/@types/输出'
 import 技能结果详情容器 from './技能结果详情容器'
 import { 获取技能统计数据 } from './util'
@@ -13,14 +14,15 @@ function 结果统计({
   title = '技能统计' as any,
   计算结果 = {} as Partial<当前计算结果类型>,
 }) {
+  const { 技能统计处理 } = use心法数据()
   const 当前计算结果 = useAppSelector((state) => state?.data?.当前计算结果)
   const 显示计算结果 = { ...当前计算结果, ...计算结果 }
 
   const [合并同名技能, 设置合并同名技能] = useState<boolean>(true)
 
   const sortDpsList = useMemo(() => {
-    return 获取技能统计数据(显示计算结果, 合并同名技能)
-  }, [显示计算结果, 合并同名技能])
+    return 获取技能统计数据(显示计算结果, 合并同名技能, 技能统计处理)
+  }, [显示计算结果, 合并同名技能, 技能统计处理])
 
   const 一键截图 = () => {
     const element: any = document.getElementById('dps-skill-count-content') // 获取要截图的元素
@@ -62,7 +64,7 @@ function 结果统计({
       centered
       title={
         <div className={'dps-count-modal-title'}>
-          <div>
+          <div className={'dps-count-modal-title-main'}>
             <span>{title || '技能统计'}</span>
             <Button size='small' style={{ marginLeft: 8 }} onClick={一键截图}>
               统计截图

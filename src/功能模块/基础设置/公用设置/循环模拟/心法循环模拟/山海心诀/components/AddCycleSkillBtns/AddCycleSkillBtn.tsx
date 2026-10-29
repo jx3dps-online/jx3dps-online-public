@@ -4,8 +4,8 @@ import { 每秒郭氏帧 } from '@/数据/常量'
 import classNames from 'classnames'
 import { Badge, Tooltip } from 'antd'
 import { ERROR_ACTION } from '../../simulator/utils'
-import moshiyinyu from '../../assets/Skill/moshiyinyu.png'
-import chifengmingjiao from '../../assets/Skill/chifengmingjiao.png'
+const moshiyinyu = 'https://icon.jx3box.com/icon/19600.png'
+const chifengmingjiao = 'https://icon.jx3box.com/icon/19597.png'
 
 interface AddCycleSkillBtnProps {
   技能: 循环基础技能数据类型
@@ -15,6 +15,7 @@ interface AddCycleSkillBtnProps {
   模拟信息: 模拟信息类型
   style?: any
   奇穴信息?: string[]
+  插入技能?: boolean // 插入技能时不禁用技能
 }
 
 interface 异常信息数据 {
@@ -25,7 +26,8 @@ interface 异常信息数据 {
 
 // 添加循环技能按钮组件
 const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
-  const { 技能, 模拟信息, onClick, className, 奇穴信息, ...rest } = props
+  const { 技能, 模拟信息, onClick, className, 奇穴信息, 插入技能, ...rest } = props
+  const 灼心生效 = 奇穴信息?.includes('灼心') && !!模拟信息.当前自身buff列表['乘黄之威']?.当前层数
 
   const 释放等待CD = 计算可以释放时技能CD(模拟信息, 技能)
   const 技能当前层数 = 计算技能当前层数(模拟信息, 技能)
@@ -35,6 +37,9 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
     const 唤灵印层数 = Object.values(模拟信息?.角色状态信息?.换灵印)?.filter((a) => !!a).length
     const 校验层数 = 奇穴信息?.includes('星烨') ? 2 : 1
     const 汇灵合契校验层数 = 4
+    if (插入技能) {
+      return { ...禁用信息 }
+    }
 
     if (
       技能?.技能名称 === '白羽流星' &&
@@ -57,7 +62,8 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
       }
     } else if (
       技能?.技能名称 === '没石饮羽' &&
-      !模拟信息?.当前自身buff列表?.['乘黄之威']?.当前层数
+      !灼心生效 &&
+      !模拟信息.当前自身buff列表['饮羽簇追']?.当前层数
     ) {
       禁用信息 = {
         是否禁用: true,
@@ -65,12 +71,15 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
       }
     } else if (
       技能?.技能名称 === '弛风鸣角' &&
-      !模拟信息?.当前自身buff列表?.['乘黄之威']?.当前层数
+      !灼心生效 &&
+      !模拟信息.当前自身buff列表['劲风簇追']?.当前层数
     ) {
       禁用信息 = {
         是否禁用: true,
         异常描述: ERROR_ACTION?.BUFF错误?.信息,
       }
+    } else if (技能.技能名称 === '澄神醒梦' && 模拟信息.当前自身buff列表['游雾乘云']?.当前层数) {
+      禁用信息 = { 是否禁用: true, 异常描述: '骑乘期间无法施展澄神醒梦' }
     } else if (技能?.技能名称 === '游雾乘云' && 唤灵印层数 < 校验层数) {
       禁用信息 = {
         是否禁用: true,
@@ -103,7 +112,7 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
     } else {
       return { ...禁用信息 }
     }
-  }, [释放等待CD, 技能, 模拟信息])
+  }, [释放等待CD, 技能, 模拟信息, 奇穴信息, 灼心生效])
 
   // 点击前判断是否可以释放
   const beforeOnClick = () => {
@@ -154,7 +163,7 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
 
 export default AddCycleSkillBtn
 const 计算可以释放时技能CD = (模拟信息: 模拟信息类型, 技能: 循环基础技能数据类型) => {
-  const 技能运行状态 = 模拟信息?.当前各技能运行状态?.[技能?.技能名称]
+  const 技能运行状态 = 模拟信息?.当前各技能运行状态?.[技能.共用调息技能 || 技能.技能名称]
   const 待充能时间点 = 技能运行状态?.待充能时间点
 
   if (待充能时间点?.length) {
@@ -176,7 +185,7 @@ const 计算可以释放时技能CD = (模拟信息: 模拟信息类型, 技能:
 }
 
 const 计算技能当前层数 = (模拟信息: 模拟信息类型, 技能: 循环基础技能数据类型) => {
-  const 技能运行状态 = 模拟信息?.当前各技能运行状态?.[技能?.技能名称]
+  const 技能运行状态 = 模拟信息?.当前各技能运行状态?.[技能.共用调息技能 || 技能.技能名称]
   return (技能?.最大充能层数 || 1) - (技能运行状态?.待充能时间点?.length || 0)
 }
 

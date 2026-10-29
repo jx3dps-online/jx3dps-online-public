@@ -28,6 +28,7 @@
   display: flex;
   align-items: center;
   font-size: 14px;
+
   :global {
     .ant-btn {
       margin-left: 8px;
@@ -60,4 +61,58 @@
 
 .select {
   height: 22px;
+}
+
+@media (max-width: 760px), (max-width: 1024px) and (any-pointer: coarse) {
+  .header {
+    height: auto;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 32px;
+  }
+
+  .wrapper {
+    flex: none;
+    gap: 12px;
+    white-space: nowrap;
+  }
+
+  .title,
+  .help {
+    margin: 0;
+  }
+
+  .btns {
+    width: 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    :global(.ant-btn) {
+      height: 32px;
+      margin-left: 0;
+      padding-inline: 10px;
+    }
+  }
+
+  .btnItem {
+    flex: none;
+    min-height: 32px;
+    padding: 0;
+    border: 0;
+    white-space: nowrap;
+  }
+
+  .btnLabel {
+    flex: none;
+  }
+
+  .input {
+    width: 80px;
+  }
+
+  .select {
+    min-width: 110px;
+  }
 }

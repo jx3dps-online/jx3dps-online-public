@@ -1,0 +1,225 @@
+.正文 {
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 16px;
+
+  > details > summary {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 20px 0 14px;
+    padding: 10px 14px;
+    border: 1px solid #7b5ea7;
+    border-radius: 8px;
+    background: #f0ebf8;
+    color: #7b5ea7;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  > h2,
+  > details > h2 {
+    margin: 28px 0 14px;
+    padding-left: 12px;
+    border-left: 4px solid #7b5ea7;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  > details > h3 {
+    margin: 22px 0 10px;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  > p,
+  > details > p {
+    margin: 0 0 14px;
+    line-height: 1.85;
+    font-size: 16px;
+  }
+
+  > :global(.ant-image),
+  > details > :global(.ant-image) {
+    display: block;
+    margin: 12px 0 20px;
+    max-width: 100%;
+  }
+
+  > img,
+  > details > img {
+    max-width: 100%;
+  }
+
+  .目录 {
+    margin: 0 0 20px;
+    padding: 12px 16px 14px;
+    border: 1px solid #e3dcf0;
+    border-radius: 8px;
+    background: #faf8fd;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    a {
+      color: #7b5ea7;
+      text-decoration: none;
+
+      &:hover {
+        color: #5f4586;
+        text-decoration: underline;
+      }
+
+      &:focus-visible {
+        outline: 2px solid #7b5ea7;
+        outline-offset: 2px;
+      }
+    }
+
+    > ul > li {
+      & + li {
+        margin-top: 10px;
+      }
+
+      > a {
+        font-weight: 600;
+      }
+
+      > ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 6px;
+
+        a {
+          display: inline-block;
+          padding: 2px 8px;
+          border-radius: 4px;
+          background: #f0ebf8;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .目录标题 {
+    margin-bottom: 8px;
+    color: #7b5ea7;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+}
+
+.星运说明 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin: 12px 0 14px;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    > span {
+      white-space: nowrap;
+    }
+  }
+}
+
+.提示 {
+  margin: 8px 0 14px;
+  padding-left: 10px;
+  border-left: 2px solid #e3dcf0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+  line-height: 1.7;
+
+  > p {
+    margin: 0;
+  }
+
+  strong {
+    color: #7b5ea7;
+    font-weight: 600;
+  }
+}
+
+.开篇说明 {
+  margin-top: 12px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.5;
+
+  > p {
+    margin: 0;
+  }
+}
+
+.宏段落 {
+  --guide-macro-background: #f0ebf8;
+  --guide-macro-border-color: #e3dcf0;
+  margin: 20px 0 24px;
+  padding: 16px 18px;
+  border: 1px solid #e3dcf0;
+  border-radius: 8px;
+  background: #fff;
+
+  > h3 {
+    margin: 0 0 12px;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    scroll-margin-top: 16px;
+  }
+
+  > p {
+    margin: 0 0 8px;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+}
+
+.表格容器 {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 10px 12px;
+    border: 1px solid #e3dcf0;
+    text-align: left;
+  }
+
+  thead th {
+    background: #f0ebf8;
+    white-space: nowrap;
+  }
+
+  tbody th {
+    min-width: 7em;
+    font-weight: 400;
+  }
+
+  td:first-child,
+  td:nth-child(3) {
+    text-align: center;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #faf8fd;
+  }
+}

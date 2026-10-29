@@ -1,3 +1,6 @@
+export const 技能参与截止时间计算 = (技能: string) =>
+  !技能.includes('DOT') && !/#(?:27451|3121)(?:-|$)/.test(技能)
+
 export default {
   // JCL中stack（层数）的枚举，常用语多层dot的使用。这里直接用
   StackMap: {

@@ -9,17 +9,24 @@ import { QuestionCircleOutlined } from '@ant-design/icons'
 
 interface 开场Buff配置弹窗类型 extends DrawerProps {
   原始Buff数据: Buff枚举
+  起手可选DOT?: string[]
 }
 
 const 开场Buff配置弹窗: React.FC<开场Buff配置弹窗类型> = (props) => {
-  const { open, onClose, 原始Buff数据 } = props
+  const { open, onClose, 原始Buff数据, 起手可选DOT = [] } = props
   const { 起手Buff配置, 更新起手Buff配置 } = useContext(CycleSimulatorContext)
 
   const [起手配置编辑对象, 设置起手配置编辑对象] = useState<起手Buff[]>([])
 
   useEffect(() => {
     if (open) {
-      设置起手配置编辑对象(Object.values(起手Buff配置))
+      设置起手配置编辑对象(
+        Object.values(起手Buff配置).map((item) =>
+          item.名称 && 起手可选DOT.includes(item.名称) && item.层数 !== undefined
+            ? { ...item, 层数: Math.min(item.层数, 原始Buff数据[item.名称].最大层数) }
+            : { ...item },
+        ),
+      )
     } else {
       设置起手配置编辑对象([])
     }
@@ -84,6 +91,13 @@ const 开场Buff配置弹窗: React.FC<开场Buff配置弹窗类型> = (props) =
         message='重点注意，设置某些Buff时需要考虑获得该buff的技能的冷却时间，请针对冷却时间的影响自行修改循环内该技能的释放时机'
         style={{ marginBottom: 24 }}
       />
+      {起手可选DOT.length > 0 && (
+        <Alert
+          type='info'
+          message='起手持续伤害按起手自身Buff生成快照，不还原此前已消失的增益；开始前已跳出的伤害不计入本次模拟。'
+          style={{ marginBottom: 24 }}
+        />
+      )}
       {起手配置编辑对象?.map((item, index) => {
         // 找到该Buff数据
         const 该Buff数据 = item?.名称 ? 原始Buff数据?.[item?.名称] : undefined
@@ -99,8 +113,7 @@ const 开场Buff配置弹窗: React.FC<开场Buff配置弹窗类型> = (props) =
                 size='large'
               >
                 {Object.values(原始Buff数据)
-                  // 过滤DOT
-                  ?.filter((a: any) => !a?.伤害频率)
+                  .filter((buff) => !('伤害频率' in buff) || 起手可选DOT.includes(buff.名称))
                   .map((buff) => {
                     return (
                       <Select.Option
@@ -115,7 +128,9 @@ const 开场Buff配置弹窗: React.FC<开场Buff配置弹窗类型> = (props) =
                           <div className={styles.nameWrap}>
                             <div className={styles.nameTextWrap}>
                               <img className={styles.img} src={buff?.图标} />
-                              <span className={styles.nameText}>{buff?.名称}</span>
+                              <span className={styles.nameText}>
+                                {buff.名称}{'伤害频率' in buff ? '（持续伤害）' : ''}
+                              </span>
                             </div>
                             <span className={buff?.类型 === '自身' ? styles.self : styles.target}>
                               {buff?.类型}
@@ -154,7 +169,8 @@ const 开场Buff配置弹窗: React.FC<开场Buff配置弹窗类型> = (props) =
                         以模拟起点为0秒时计算，预设提前获得该Buff的具体时间点，例：开打前10秒猴戏buff
                         A，则设置为-10秒
                       </p>
-                      <p>若该buff最大持续时间为30秒，则进入战斗后该buff剩余，30-10 = 20秒</p>
+                      <p>普通Buff若持续30秒，提前10秒获得，进入战斗后剩余20秒。</p>
+                      <p>持续伤害按加速后的剩余跳伤队列计算持续时间。</p>
                       <p>默认值为最大持续时间的一半</p>
                     </div>
                   }
@@ -165,7 +181,7 @@ const 开场Buff配置弹窗: React.FC<开场Buff配置弹窗类型> = (props) =
               </h1>
               <Select
                 size='large'
-                value={item?.获得时间 || undefined}
+                value={item.获得时间}
                 placeholder='设置提前获得的秒数'
                 onChange={(e) => 设置Buff数据(e, '获得时间', index)}
                 allowClear

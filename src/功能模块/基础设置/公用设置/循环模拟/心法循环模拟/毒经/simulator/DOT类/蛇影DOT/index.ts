@@ -59,4 +59,4 @@ class 蛇影DOT extends 通用DOT类 {
 
 export default 蛇影DOT
 
-export const 蛇影DOT类型 = typeof 蛇影DOT
+export type 蛇影DOT类型 = 蛇影DOT

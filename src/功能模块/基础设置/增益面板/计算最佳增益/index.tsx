@@ -4,17 +4,17 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { RiseOutlined } from '@ant-design/icons'
 import { 秒伤计算 } from '@/计算模块/计算函数'
-import 获取当前数据 from '@/数据/数据工具/获取当前数据'
+import { use心法数据 } from '@/心法模块/心法上下文'
 import { 数据埋点 } from '@/工具函数/tools/log'
 import { 增益选项数据类型 } from '@/@types/团队增益'
 
 import { 初始化所有组合, 计算部位枚举 } from './util'
 import './index.css'
 
-const { 性能功能关闭数组, 名称: 心法名称, 小药小吃 } = 获取当前数据()
 const 全部部位 = Object.keys(计算部位枚举)
 
 function 计算最佳增益({ 保存数据并计算 }) {
+  const { 性能功能关闭数组, 名称: 心法名称, 小药小吃 } = use心法数据()
   const { modal } = App.useApp()
 
   const 当前秒伤 = useAppSelector((state) => state.data?.当前计算结果)?.秒伤 || 0
@@ -47,7 +47,7 @@ function 计算最佳增益({ 保存数据并计算 }) {
 
   useEffect(() => {
     初始化(当前选择计算部位, 是否过滤加速)
-  }, [当前选择计算部位, 是否过滤加速])
+  }, [当前选择计算部位, 是否过滤加速, 增益数据, 小药小吃])
 
   // 当前计算部位属性对比
   const 当前增益展示 = useMemo(() => {

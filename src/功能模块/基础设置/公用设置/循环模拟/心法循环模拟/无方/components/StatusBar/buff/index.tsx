@@ -70,7 +70,10 @@ function Buff(props: BuffProps) {
                   >
                     {item.名称 !== '经脉循行' &&
                     item.名称 !== '千枝绽蕊' &&
-                    item.名称 !== '千枝伏藏'
+                    item.名称 !== '千枝伏藏' &&
+                    item.名称 !== '无方内力回复' &&
+                    item.名称 !== '潮生' &&
+                    item.名称 !== '臣使'
                       ? +剩余时间秒 > 0
                         ? 剩余时间秒
                         : null

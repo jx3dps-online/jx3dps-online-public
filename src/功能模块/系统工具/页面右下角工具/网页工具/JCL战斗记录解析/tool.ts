@@ -1,7 +1,7 @@
 import { message } from 'antd'
 import { 循环技能详情, 循环详情, 技能增益列表数据 } from '@/@types/循环'
 
-import commonMap from './common'
+import commonMap, { 技能参与截止时间计算 } from './common'
 
 import 凌海诀 from './职业技能映射枚举/凌海诀.json'
 import 分山劲 from './职业技能映射枚举/分山劲.json'
@@ -17,13 +17,17 @@ import 毒经 from './职业技能映射枚举/毒经.json'
 import 易筋经 from './职业技能映射枚举/易筋经.json'
 import 北傲诀 from './职业技能映射枚举/北傲诀.json'
 import 焚影圣诀 from './职业技能映射枚举/焚影圣诀.json'
+import 冰心诀 from './职业技能映射枚举/冰心诀.json'
 import 紫霞功 from './职业技能映射枚举/紫霞功.json'
 import 周天功 from './职业技能映射枚举/周天功.json'
 import 周天功悟 from './职业技能映射枚举/周天功悟.json'
+import 分山劲悟 from './职业技能映射枚举/分山劲悟.json'
+import 傲血战意 from './职业技能映射枚举/傲血战意.json'
 import 笑尘诀 from './职业技能映射枚举/笑尘诀.json'
 import 天罗诡道 from './职业技能映射枚举/天罗诡道.json'
 import 判断团队增益快照Buff from '@/数据/团队增益/tools'
 import { 每秒郭氏帧 } from '@/数据/常量'
+import { getJclDamageStats } from './jclService'
 
 const hrefDev = location?.href?.includes?.('localhost')
 
@@ -40,13 +44,15 @@ export const 心法枚举 = {
   紫霞功: 紫霞功,
   笑尘诀: 笑尘诀,
   天罗诡道,
+  冰心诀,
   '山海心诀·悟': 山海心诀悟,
   '无方·悟': 无方悟,
   '太玄经·悟': 太玄经悟,
   '凌海诀·悟': 凌海诀悟,
   '花间游·悟': 花间游悟,
   '周天功·悟': 周天功悟,
-  焚影圣诀: 焚影圣诀,
+  '分山劲·悟': 分山劲悟,
+  ...(hrefDev ? { 焚影圣诀: 焚影圣诀, 傲血战意: 傲血战意 } : {}),
 }
 
 const 无界统一buff = ['70161', '70188', '70163', '70162', '70167', '70345', '70729', '70973']
@@ -61,6 +67,8 @@ const DOT直接生成层数心法 = [
   '分山劲',
   '北傲诀',
   '焚影圣诀',
+  '冰心诀',
+  '傲血战意',
   '笑尘诀',
   '天罗诡道',
 ]
@@ -68,6 +76,7 @@ const DOT直接生成层数心法 = [
 const 跳过解析技能 = ['38966', '40788']
 
 const 跳过解析增益 = [
+  '15455',
   '4761', // 水特效
   '29608',
   '29536',
@@ -228,7 +237,7 @@ export const 战斗数据转换 = ({
             const 造成伤害时间 = time?.[0] || 0
             if (造成伤害时间 <= 最大时间 * 16 && 造成伤害时间 >= 最小时间 * 16) {
               if (typeof 造成伤害时间 === 'number') {
-                if (战斗时间 < 造成伤害时间) {
+                if (技能参与截止时间计算(key) && 战斗时间 < 造成伤害时间) {
                   战斗时间 = 造成伤害时间
                   if (!心法数据枚举?.过滤截止战斗时间?.includes(获取技能ID)) {
                     if (直伤最终时间 < 战斗时间) {
@@ -285,12 +294,23 @@ export const 战斗数据转换 = ({
           const buffTick = buffSplit?.[2] || 1
 
           if (!跳过解析增益?.includes(buffId)) {
+            if (buffId === '15455') {
+              const 腰带增益名称 = +bufflevel === 2 ? '大附魔_伤腰_快照·2' : '大附魔_伤腰_快照'
+              if (!list.includes(腰带增益名称)) {
+                list.push(腰带增益名称)
+              }
+              return
+            }
+
             // 无界统一buff，例70161增伤 70188易伤 统一处理
             if (无界统一buff?.includes(buffId)) {
               buffId = `${buffId}_${bufflevel}`
             }
 
-            let 增益名称 = 心法数据枚举?.buff?.[buffId] || 心法数据枚举?.buff?.[`;${buffId}`]
+            let 增益名称 =
+              心法数据枚举?.buff?.[`${buffId}_${bufflevel}`] ||
+              心法数据枚举?.buff?.[buffId] ||
+              心法数据枚举?.buff?.[`;${buffId}`]
             if (增益名称 && 心法数据枚举?.Buff带等级?.includes(buffId)) {
               增益名称 = `${增益名称}·${bufflevel}`
             }
@@ -329,8 +349,16 @@ export const 战斗数据转换 = ({
         Object.keys(JSONData?.[currentKey])?.forEach((gain) => {
           if (gain) {
             if (gain === '||') {
-              const 数量 = 判断时间函数(JSONData?.[currentKey]?.[gain]?.timeline)
+              const 数据信息 = JSONData[currentKey][gain]
+              const 数量 = 判断时间函数(数据信息.timeline)
               技能总数 = 技能总数 + 数量
+              if (记录伤害数据 && 数量) {
+                技能增益列表.push({
+                  增益名称: '',
+                  增益技能数: 数量,
+                  伤害数据: getJclDamageStats(数据信息, 最小时间 * 16, 最大时间 * 16),
+                })
+              }
             } else {
               const 获取buff列表 = gain
                 ?.replaceAll('|', ',')
@@ -341,15 +369,15 @@ export const 战斗数据转换 = ({
                 if (导入启用团队快照) {
                   const 时间轴 = JSONData?.[currentKey]?.[gain]?.timeline || []
                   const 原来buff列表String = buff实际列表?.join(',')
-                  const 增益对象数量组 = {
-                    [原来buff列表String]: 0,
+                  const 增益对象时间轴组: Record<string, number[][]> = {
+                    [原来buff列表String]: [],
                   }
                   时间轴?.forEach((time) => {
                     if (time?.length) {
                       const 造成伤害时间 = time?.[0] || 0
                       if (造成伤害时间 <= 最大时间 * 16 && 造成伤害时间 >= 最小时间 * 16) {
                         if (typeof 造成伤害时间 === 'number') {
-                          if (战斗时间 < 造成伤害时间) {
+                          if (技能参与截止时间计算(key) && 战斗时间 < 造成伤害时间) {
                             战斗时间 = 造成伤害时间
                             if (!心法数据枚举?.过滤截止战斗时间?.includes(获取技能ID)) {
                               if (直伤最终时间 < 战斗时间) {
@@ -380,22 +408,32 @@ export const 战斗数据转换 = ({
                         }
                         if (团队增益列表?.length) {
                           const buff名称组 = `${原来buff列表String},${团队增益列表?.join(',')}`
-                          增益对象数量组[buff名称组] = (增益对象数量组[buff名称组] || 0) + 1
+                          if (!增益对象时间轴组[buff名称组]) 增益对象时间轴组[buff名称组] = []
+                          增益对象时间轴组[buff名称组].push(time)
                         } else {
-                          增益对象数量组[原来buff列表String] =
-                            增益对象数量组[原来buff列表String] + 1
+                          增益对象时间轴组[原来buff列表String].push(time)
                         }
                       }
                     }
                   })
 
-                  Object.keys(增益对象数量组)?.forEach((buff列表) => {
-                    const 数量 = 增益对象数量组[buff列表] || 0
+                  Object.keys(增益对象时间轴组)?.forEach((buff列表) => {
+                    const 分组时间轴 = 增益对象时间轴组[buff列表]
+                    const 数量 = 分组时间轴.length
                     if (数量) {
                       技能总数 = 技能总数 + 数量
                       技能增益列表.push({
                         增益名称: buff列表,
                         增益技能数: 数量,
+                        ...(记录伤害数据
+                          ? {
+                              伤害数据: getJclDamageStats(
+                                { ...JSONData[currentKey][gain], timeline: 分组时间轴 },
+                                最小时间 * 16,
+                                最大时间 * 16,
+                              ),
+                            }
+                          : {}),
                       })
                     }
                   })
@@ -411,12 +449,7 @@ export const 战斗数据转换 = ({
                     const 数据信息 = JSONData?.[currentKey]?.[gain]
                     增益实际情况 = {
                       ...增益实际情况,
-                      伤害数据: {
-                        命中伤害: 数据信息?.damage,
-                        会心伤害: 数据信息?.critical_damage,
-                        会心率: 数据信息?.critical_strike,
-                        期望伤害: 数据信息?.expected_damage,
-                      },
+                      伤害数据: getJclDamageStats(数据信息, 最小时间 * 16, 最大时间 * 16),
                     }
                   }
                   技能增益列表.push(增益实际情况)
