@@ -8,6 +8,7 @@ import {
   根据奇穴修改buff数据,
   根据奇穴秘籍修改技能数据,
   转化buff和增益名称,
+  获取大扇子技能限制,
 } from './utils'
 
 import {
@@ -26,6 +27,8 @@ import {
 import 玳弦急曲 from './技能类/玳弦急曲'
 import 心鼓弦 from './技能类/心鼓弦'
 import 鹊踏枝 from './技能类/鹊踏枝'
+import 大扇子 from './技能类/大扇子'
+import { 大扇子P2技能数据 } from '../constant/大扇子'
 import 繁音急节 from './技能类/繁音急节'
 import 剑破虚空 from './技能类/剑破虚空'
 import 剑气长江 from './技能类/剑气长江'
@@ -86,6 +89,7 @@ class 循环主类 {
     剑舞: 0,
     钗燕技能记录: {},
     当前加速: 0,
+    大扇子P2技能序列: [],
   }
   当前自身buff列表: Buff枚举 = {}
   当前目标buff列表: Buff枚举 = {}
@@ -137,6 +141,7 @@ class 循环主类 {
       剑舞: props?.起手剑舞 || 0,
       钗燕技能记录: {},
       当前加速: props.加速值,
+      大扇子P2技能序列: [],
     }
     this.待生效事件队列 = []
     // 模拟初始化
@@ -158,6 +163,15 @@ class 循环主类 {
       玳弦急曲: new 玳弦急曲(this),
       心鼓弦: new 心鼓弦(this),
       鹊踏枝: new 鹊踏枝(this),
+      倾: new 大扇子(this, '倾'),
+      拧: new 大扇子(this, '拧'),
+      仰: new 大扇子(this, '仰'),
+      使用大扇子: new 大扇子(this, '使用大扇子'),
+      绫罗红波: new 大扇子(this, '绫罗红波'),
+      退出大扇子: new 大扇子(this, '退出大扇子'),
+      ...Object.fromEntries(
+        大扇子P2技能数据.map((技能) => [技能.技能名称, new 大扇子(this, 技能.技能名称)]),
+      ),
       繁音急节: new 繁音急节(this),
       剑破虚空: new 剑破虚空(this),
       剑气长江: new 剑气长江(this),
@@ -255,6 +269,12 @@ class 循环主类 {
         if (!只添加日志) {
           if (对象 === '自身') {
             delete this.当前自身buff列表[名称]
+            if (名称 === '大扇子' || 名称 === '大扇子·P2') {
+              this.GCD组.大扇子 = 0
+              delete this.角色状态信息.大扇子前一个技能
+              delete this.角色状态信息.大扇子分支
+              this.角色状态信息.大扇子P2技能序列 = []
+            }
           } else {
             delete this.当前目标buff列表[名称]
           }
@@ -431,11 +451,12 @@ class 循环主类 {
     const 有关的buff列表 =
       技能增益列表
         ?.filter((item) => {
-          const 当前增益数据 = 转化buff和增益名称(item.增益名称, this.当前自身buff列表)
+          const buff列表 = item.增益计算位置 === '目标' ? this.当前目标buff列表 : this.当前自身buff列表
+          const 当前增益数据 = 转化buff和增益名称(item.增益名称, buff列表)
           if (!当前增益数据 && item.增益名称.includes('·')) {
             const 当前增益数据 = 转化buff和增益名称(
               item.增益名称.split('·')[0],
-              this.当前自身buff列表,
+              buff列表,
             )
             return 当前增益数据?.当前层数 === +item.增益名称.split('·')[1]
           }
@@ -544,7 +565,10 @@ class 循环主类 {
   增加技能GCD(当前技能: 循环基础技能数据类型) {
     // GCD处理
     if (当前技能?.技能GCD组) {
-      const 实际添加GCD = 获取实际帧数(当前技能?.技能释放后添加GCD, this.获取实际加速值())
+      const 实际添加GCD =
+        当前技能.技能GCD组 === '大扇子'
+          ? 当前技能.技能释放后添加GCD
+          : 获取实际帧数(当前技能.技能释放后添加GCD, this.获取实际加速值())
       let 待更新GCD组: string = 当前技能.技能GCD组 as string
       if (当前技能.技能GCD组 === '自身') {
         待更新GCD组 = 当前技能?.技能名称
@@ -613,7 +637,8 @@ class 循环主类 {
       const buff对象 = buff列表[key]
       const buff应该消失时间 = (buff对象?.刷新时间 || 0) + (buff对象?.最大持续时间 || 0)
       const 消失层数 = buff对象?.自然消失失去层数 || buff对象?.最大层数
-      if (buff应该消失时间 < this.当前时间) {
+      const 是大扇子状态 = 对象 === '自身' && (key === '大扇子' || key === '大扇子·P2')
+      if (buff应该消失时间 < this.当前时间 || (是大扇子状态 && buff应该消失时间 === this.当前时间)) {
         if (对象 === '自身' && key === '钗燕') {
           // 26287到期脚本只删除五种本体标记，仙姿标记保留至各自到期。
           this.清除钗燕计数(true, buff应该消失时间)
@@ -807,6 +832,16 @@ class 循环主类 {
           this.技能GCD和CD处理(等待CD, 技能预估释放时间, 当前技能, 技能实例)
           // 用实际施展时的状态初始化读条，不能提前获得仙姿或使用等待期间已过期的加速。
           this.清空已经消失的buff()
+          const 大扇子技能限制 = 获取大扇子技能限制(
+            当前技能,
+            this.当前自身buff列表,
+            this.当前时间,
+            this.角色状态信息,
+          )
+          if (大扇子技能限制) {
+            this.技能释放异常({ 可以释放: false, 异常信息: 大扇子技能限制 }, 当前技能, i)
+            break
+          }
           const 读条时间 = 技能实例?.获取读条时间?.(i) || 0
           const 是否为读条技能 = !!读条时间 || !!当前技能.是否为倒读条技能
           if (是否为读条技能) {

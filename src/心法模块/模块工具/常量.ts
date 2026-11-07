@@ -1,5 +1,6 @@
 // 全局CDN常量
-export const GLOBAL_CDN_PREFIX = 'https://cdn.arkwish.com/jx3dps'
+// export const GLOBAL_CDN_PREFIX = 'https://cdn.arkwish.com/jx3dps'
+export const GLOBAL_CDN_PREFIX = 'https://dps.arkwish.com/image'
 
 export enum 属性类型 {
   // 体制、气血，蓝量相关

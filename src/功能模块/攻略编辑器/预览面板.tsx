@@ -83,10 +83,14 @@ export default function 预览面板({ 文档 }: { 文档: 攻略文档 }) {
             { label: '自适应', value: 0 },
             { label: '1080px', value: 1080 },
             { label: '1920px', value: 1920 },
+            { label: '4K', value: 3840 },
           ]}
           onChange={(值) => 设置宽度(Number(值))}
         />
-        <span>{文档.模式 === '计算结果' ? '结果面板参考尺寸 · 只读' : '全屏弹窗 · 只读'}</span>
+        <span>
+          {文档.模式 === '计算结果' ? '结果面板参考尺寸 · 只读' : '全屏弹窗 · 只读'}
+          {宽度 >= 3840 ? ' · 按 3840px 宽渲染，等比缩至容器' : ''}
+        </span>
       </div>
       {超时 && <Alert type='warning' message='预览加载较慢或失败，可点击重新加载重试' />}
       <div ref={容器} className={styles.预览窗口}>

@@ -8,24 +8,28 @@ import {
   Menu,
   message,
   Modal,
-  Popover,
   Select,
   Tooltip,
 } from 'antd'
-import React, { useContext, useId, useMemo, useState } from 'react'
+import React, { lazy, Suspense, useContext, useId, useMemo, useState } from 'react'
 import { useAppSelector } from '@/hooks'
 import { 延迟设定 } from '@/数据/常量'
 import 秘籍选择抽屉 from '@/功能模块/基础设置/公用设置/秘籍选择/drawer'
 import 团队增益快照 from '../../../通用/通用组件/团队增益快照'
 import { 判断有无橙武循环数据, 生成实际技能序列, 获取实际技能数据 } from '../../../通用/通用函数'
 import { 循环基础技能数据类型 } from '../../通用框架/类型定义/技能'
-import { 循环数据 } from '@/@types/循环'
 import styles from './index.module.less'
 import { 获取档位加速值 } from '@/工具函数/data'
 import CycleSimulatorContext from '../../../../context'
 import { 曲线数据点 } from '../战斗曲线弹窗/use战斗曲线'
 import 循环草稿 from '../循环草稿'
 import 异步内容 from '@/功能模块/功能说明/异步内容'
+import type { 批量模拟配置 as 批量模拟配置类型 } from '../批量合并循环/类型'
+import { 转换快速导入循环, 快速导入循环类型 } from '../../通用函数'
+import { use心法数据 } from '@/心法模块/心法上下文'
+import { 模拟器配置环境, 读取心法配置, 复用心法配置, 获取模拟参数配置 } from '../心法配置/环境'
+
+const 批量合并循环 = lazy(() => import('../批量合并循环'))
 
 const 加载模拟器引导 = () => import('@/功能模块/新手引导/模拟器引导')
 
@@ -44,13 +48,13 @@ interface CycleModalHeaderProps {
   更新启用团队增益快照: (e: boolean) => void
   模拟信息: any
   大橙武模拟: boolean
-  快速导入默认循环: Partial<循环数据>[]
+  快速导入默认循环: 快速导入循环类型[]
   加速档位配置?: { 加速档位: number; 加速值: number }[]
   战斗曲线数据?: 曲线数据点[]
   on生成战斗曲线?: () => void
   拆分循环文本?: (文本: string) => string[]
   转换技能序列?: (节点: string[]) => 循环基础技能数据类型[]
-  筛选循环?: (列表: Partial<循环数据>[], 大橙武模拟: boolean) => Partial<循环数据>[]
+  筛选循环?: (列表: 快速导入循环类型[], 大橙武模拟: boolean) => 快速导入循环类型[]
   保存禁止原因?: string
   前置操作?: React.ReactNode
 }
@@ -95,15 +99,30 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
   } = useContext(CycleSimulatorContext)
 
   const 自定义循环 = useAppSelector((state) => state?.data?.自定义循环列表)
+  const 心法数据 = use心法数据()
+  const 配置环境 = useContext(模拟器配置环境)
 
   const [秘籍选择抽屉展示, 更新秘籍选择抽屉展示] = useState<boolean>(false)
   const [工具展开, 设置工具展开] = useState(true)
   const [手动导入展示, 设置手动导入展示] = useState(false)
   const [导入文本, 设置导入文本] = useState('')
+  const [批量合并展示, 设置批量合并展示] = useState(false)
   const 工具区域编号 = useId()
 
-  const 默认循环选项 = 筛选循环(快速导入默认循环, 大橙武模拟)
-  const 自定义循环选项 = 筛选循环(自定义循环, 大橙武模拟)
+  const 批量默认循环 = 心法数据.计算循环.filter((循环) => 循环.多挡位序列配置)
+  const 默认循环数据 = 转换快速导入循环([
+    ...快速导入默认循环.filter(
+      (循环) =>
+        !批量默认循环.some(
+          (批量循环) =>
+            (循环.来源循环名称 || 循环.名称) === 批量循环.名称 || 循环.名称 === 批量循环.标题,
+        ),
+    ),
+    ...批量默认循环,
+  ])
+  const 默认循环选项 = 筛选循环(默认循环数据, 大橙武模拟)
+  const 展开自定义循环 = 转换快速导入循环(自定义循环)
+  const 自定义循环选项 = 筛选循环(展开自定义循环, 大橙武模拟)
 
   const 默认转换技能序列 = (节点: string[]) =>
     节点
@@ -116,11 +135,7 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
       })
       .filter((item) => item)
 
-  const 快捷添加循环 = (名称, 类型 = '默认') => {
-    const 数据源 = 类型 === '默认' ? 快速导入默认循环 : 自定义循环
-
-    const 当前循环数据: any = 数据源?.find((item) => item.名称 === 名称)
-
+  const 快捷添加循环 = (当前循环数据: 快速导入循环类型) => {
     let 技能序列信息: 循环基础技能数据类型[]
     if (转换技能序列) {
       try {
@@ -136,6 +151,12 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
     let 额外配置信息 = {}
     if (当前循环数据?.额外配置信息) {
       额外配置信息 = 当前循环数据?.额外配置信息
+    }
+    if (当前循环数据?.模拟器配置) {
+      读取心法配置(
+        [配置环境.current?.起手配置区, 配置环境.current?.配置区],
+        当前循环数据.模拟器配置,
+      )
     }
     快速导入循环(技能序列信息, { ...额外配置信息 })
     if (当前循环数据?.奇穴) {
@@ -234,27 +255,22 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
     更新增益启用(checked)
   }
 
+  const 区域 = 配置环境.current
+  const 批量模拟配置: 批量模拟配置类型 | undefined = 模拟信息.模拟参数 && {
+    心法: 心法数据.名称,
+    参数: {
+      ...获取模拟参数配置(模拟信息.模拟参数),
+      ...读取心法配置([区域?.起手配置区, 区域?.配置区]),
+    },
+    原始Buff数据: 区域?.原始Buff数据 || 模拟信息.原始Buff数据 || {},
+    起手可选DOT: 区域?.起手可选DOT,
+    渲染配置: 区域 && ((配置, 更新) => 复用心法配置([区域.起手配置区, 区域.配置区], 配置, 更新)),
+  }
+
   return (
     <div id='Guide_模拟设置' className={styles.header}>
       <div className={styles.wrapper} style={{ flexShrink: 0 }}>
         <h1 className={styles.title}>循环模拟</h1>
-        <Popover
-          content={
-            <div>
-              <p>1、点击下方技能按钮添加至循环内</p>
-              <p>2、可以整行删除、复制本行到最后一行</p>
-              <p>3、可以在单行内拖动改变技能顺序</p>
-              <p>
-                更多使用说明详见：
-                <a href='https://www.jx3box.com/tool/75292' target='_blank' rel='noreferrer'>
-                  使用手册及FAQ
-                </a>
-              </p>
-            </div>
-          }
-        >
-          <span className={styles.help}>如何使用</span>
-        </Popover>
         <异步内容 加载={加载模拟器引导} 参数={{ 模拟信息, 设置工具展开 }} />
         <Button
           size='small'
@@ -309,7 +325,7 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
           </Dropdown>
         </div>
         <div className={styles.btnItem}>
-          <span className={styles.btnLabel}>网络延迟</span>
+          <span className={styles.btnLabel}>延迟</span>
           <Select
             size='small'
             className={styles.select}
@@ -331,9 +347,10 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
         <Dropdown
           overlay={
             <Menu>
-              {默认循环选项?.map((item) => {
+              {默认循环选项?.map((item, index) => {
                 return (
-                  <Menu.Item key={item?.名称} onClick={() => 快捷添加循环(item?.名称)}>
+                  <Menu.Item key={`default_${index}`} onClick={() => 快捷添加循环(item)}>
+                    {item.来源循环名称 ? `${item.来源循环名称} / ` : ''}
                     {item?.名称}
                   </Menu.Item>
                 )
@@ -341,7 +358,8 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
               {自定义循环选项?.length
                 ? 自定义循环选项.map((item, index) => {
                     return (
-                      <Menu.Item key={index} onClick={() => 快捷添加循环(item?.名称, '自定义')}>
+                      <Menu.Item key={`custom_${index}`} onClick={() => 快捷添加循环(item)}>
+                        {item.来源循环名称 ? `${item.来源循环名称} / ` : ''}
                         {item?.名称}
                       </Menu.Item>
                     )
@@ -351,24 +369,31 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
               <Menu.Item key='ctrlv' onClick={粘贴导入}>
                 粘贴导入
               </Menu.Item>
+              <Menu.Item
+                key='batch-merge'
+                disabled={!批量模拟配置 || !!保存禁止原因}
+                onClick={() => 设置批量合并展示(true)}
+              >
+                批量合并计算循环
+              </Menu.Item>
             </Menu>
           }
         >
-          <Button size='small'>导入循环</Button>
+          <Button size='small'>导入</Button>
         </Dropdown>
         <Button size='small' onClick={() => 导出循环()} disabled={cycle?.length < 1}>
-          导出循环
+          导出
         </Button>
         <循环草稿 技能基础数据={模拟信息.技能基础数据} />
         {更新奇穴弹窗展示 ? (
           <Tooltip title={'本奇穴设置只会在循环模拟器内生效，不影响外部'}>
             <Button size='small' onClick={() => 更新奇穴弹窗展示?.(true)}>
-              奇穴设置
+              奇穴
             </Button>
           </Tooltip>
         ) : null}
         <Button size='small' onClick={() => 更新秘籍选择抽屉展示(true)}>
-          秘籍设置
+          秘籍
         </Button>
         <Button size='small' onClick={() => 清空循环()} danger>
           清空循环
@@ -386,7 +411,7 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
             onClick={() => 设置自定义循环保存弹窗(true)}
             disabled={cycle?.length < 1 || 模拟信息?.循环执行结果 === '异常' || !!保存禁止原因}
           >
-            保存为自定义循环
+            保存循环
           </Button>
         </Tooltip>
       </div>
@@ -421,6 +446,16 @@ function CycleModalHeader(props: CycleModalHeaderProps) {
         open={秘籍选择抽屉展示}
         onClose={() => 更新秘籍选择抽屉展示(false)}
       />
+      {批量合并展示 && 批量模拟配置 && (
+        <Suspense fallback={null}>
+          <批量合并循环
+            key={批量模拟配置.心法}
+            配置={批量模拟配置}
+            技能数据={模拟信息.技能基础数据}
+            onClose={() => 设置批量合并展示(false)}
+          />
+        </Suspense>
+      )}
     </div>
   )
 }

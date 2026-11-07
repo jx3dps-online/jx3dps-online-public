@@ -8,7 +8,15 @@ import Generator装备导入 from './Generator装备导入'
 import './index.css'
 import MYImport from './MYImport'
 
-function 配装方案导入({ visible, onClose, onOk }) {
+function 配装方案导入({
+  visible,
+  onClose,
+  onOk,
+}: {
+  visible: boolean
+  onClose: () => void
+  onOk: (装备: any) => void
+}) {
   const [active, setActive] = useState('my')
 
   const beforeClose = () => {
@@ -44,14 +52,14 @@ function 配装方案导入({ visible, onClose, onOk }) {
       className={'pz-daoru-modal'}
       title={
         <div>
-          <Tabs className={'pz-daoru-tabs'} items={items} onChange={setActive} />
+          <Tabs className={'pz-daoru-tabs'} activeKey={active} items={items} onChange={setActive} />
         </div>
       }
       open={visible}
       centered
       onCancel={() => beforeClose()}
       footer={null}
-      width={600}
+      width={640}
     >
       {CycleComponent}
     </Modal>

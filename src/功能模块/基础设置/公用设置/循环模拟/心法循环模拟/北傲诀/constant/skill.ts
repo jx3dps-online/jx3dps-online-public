@@ -1,7 +1,7 @@
 import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import type { Buff枚举, 循环基础技能数据类型, 日志类型 } from '../simulator/type'
 import { 通用Buff数据, 通用循环模拟技能基础数据 } from '../../通用/通用技能/通用技能定义'
-const 点掉叠霜图标 = `${GLOBAL_CDN_PREFIX}/20261025/remove-dieshuang.png`
+const 点掉叠霜图标 = `${GLOBAL_CDN_PREFIX}/remove-dieshuang-64d7408df9.webp`
 
 export const 支持奇穴 = [
   '斩狂枭',

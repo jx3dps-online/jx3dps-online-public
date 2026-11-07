@@ -55,16 +55,21 @@ export const 判断有无橙武循环数据 = (循环, 大橙武启用) => {
   }
 }
 
-export const 转换快速导入循环 = (循环列表: Partial<循环数据>[]): Partial<循环数据>[] =>
+export type 快速导入循环类型 = Partial<循环数据> & { 来源循环名称?: string }
+
+export const 转换快速导入循环 = (循环列表: 快速导入循环类型[]): 快速导入循环类型[] =>
   循环列表.flatMap((循环) => {
     const 多挡位序列 = 循环.多挡位序列
     const 基础数据 = { ...循环 }
     delete 基础数据.多挡位序列
+    delete 基础数据.多挡位序列配置
     delete 基础数据.循环详情
 
     if (多挡位序列 && Object.keys(多挡位序列).length) {
       return Object.entries(多挡位序列).map(([名称, 技能序列]) => ({
         ...基础数据,
+        ...循环.多挡位序列配置?.[名称],
+        来源循环名称: 循环.名称,
         名称,
         标题: 名称,
         技能序列,

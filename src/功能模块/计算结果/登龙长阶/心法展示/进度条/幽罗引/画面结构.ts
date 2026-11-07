@@ -1,7 +1,7 @@
 import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import 创建遮罩, { 创建元素 } from './遮罩'
-const 执轮手图片 = `${GLOBAL_CDN_PREFIX}/20261025/zhilunshou-gongbi.png`
-const 伶影图片 = `${GLOBAL_CDN_PREFIX}/20261025/lingying-qianqing.png`
+const 执轮手图片 = `${GLOBAL_CDN_PREFIX}/zhilunshou-gongbi-b8070af393.webp`
+const 伶影图片 = `${GLOBAL_CDN_PREFIX}/lingying-qianqing-74e5c50d30.webp`
 export function 获取人物布局() {
   const 比例 = 136 / 543,
     横坐标 = 950 - 2172 * 比例,

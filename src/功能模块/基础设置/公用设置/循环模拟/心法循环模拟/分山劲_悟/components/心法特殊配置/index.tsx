@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { 批量配置编辑 } from '../../../通用/通用组件/心法配置/环境'
 import styles from './index.module.less'
 import { Checkbox, Select, Tooltip } from 'antd'
 interface 心法特殊配制类型 {
@@ -22,6 +23,7 @@ const 橙武降CD方式选项: { value: '概率' | '期望'; label: string }[] =
 ]
 
 function 心法特殊配置(props: 心法特殊配制类型) {
+  const 批量编辑中 = useContext(批量配置编辑)
   const {
     忽略延迟技能,
     更新忽略延迟技能,
@@ -52,7 +54,7 @@ function 心法特殊配置(props: 心法特殊配制类型) {
       <div className={styles.配置项}>
         <Tooltip title='根据战斗时间推算50%血量斩杀线出现的时间点，从该时间点开始计算绝刀斩杀，该功能仅在当战斗时间≥30秒时生效。'>
           <span className={styles.斩杀时间块}>
-            {斩杀开始秒数
+            {!批量编辑中 && 斩杀开始秒数
               ? `战斗时间第 ${斩杀开始秒数} 秒开始计算斩杀`
               : '战斗时间第 ? 秒开始计算斩杀'}
           </span>

@@ -1,8 +1,9 @@
 import { Button, Checkbox, Select, Tooltip } from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './index.module.less'
 import { 按数字生成数组 } from '@/工具函数/help'
 import 循环模拟技能基础数据 from '../../constant/skill'
+import { 批量配置编辑 } from '../../../通用/通用组件/心法配置/环境'
 
 interface 心法特殊配制类型 {
   忽略延迟技能: string[]
@@ -76,6 +77,7 @@ export function 起手配置(props: 起手配置类型) {
 }
 
 function 心法特殊配置(props: 心法特殊配制类型) {
+  const 批量编辑中 = useContext(批量配置编辑)
   const {
     忽略延迟技能,
     更新忽略延迟技能,
@@ -95,9 +97,9 @@ function 心法特殊配置(props: 心法特殊配制类型) {
         checked={启用回蓝五彩石}
         onChange={(e) => 更新启用回蓝五彩石(e.target.checked)}
       >
-        潮生（{已手动调整回蓝五彩石 ? '已手动覆盖' : '跟随配装'}）
+        潮生（{批量编辑中 || 已手动调整回蓝五彩石 ? '已手动覆盖' : '跟随配装'}）
       </Checkbox>
-      {已手动调整回蓝五彩石 && (
+      {!批量编辑中 && 已手动调整回蓝五彩石 && (
         <Button type='link' size='small' onClick={恢复跟随配装}>
           恢复跟随配装
         </Button>

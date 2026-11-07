@@ -1,3 +1,4 @@
+import { 试炼装备名称匹配 } from '@/数据/常量/装备常量'
 import {
   ModalProps,
   Spin,
@@ -90,7 +91,7 @@ const 识别装备对比: React.FC<ModalProps> = () => {
     Object.keys(装备数据).map((装备部位) => {
       const 当前部位数据 = 装备数据[装备部位]
       当前部位数据.forEach((装备) => {
-        if (装备?.装备名称?.includes('无修')) {
+        if (试炼装备名称匹配.test(装备.装备名称)) {
           const 秒伤变化 = getEquipDiffDps({ ...装备, 装备部位 })
           list.push({
             id: 装备?.id,

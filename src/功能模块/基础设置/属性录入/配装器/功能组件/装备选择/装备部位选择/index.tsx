@@ -5,6 +5,7 @@ import React, { forwardRef, useImperativeHandle, useEffect, useMemo, useRef, use
 import classnames from 'classnames'
 import { Button, message, Popover, Select } from 'antd'
 import { BulbOutlined } from '@ant-design/icons'
+import { 试炼特效集合, 试炼装备名称匹配 } from '@/数据/常量/装备常量'
 
 import ImageComponent from '@/组件/图片展示'
 import { useAppDispatch, useAppSelector } from '@/hooks'
@@ -139,14 +140,15 @@ function 装备部位选择(props: 装备部位选择入参, ref) {
           if (!是否过滤) {
             if (装备选择范围?.过滤类型?.includes('精简')) {
               是否过滤 = !!(
-                item?.装备类型 === 装备类型枚举.副本精简 && !item?.装备特效?.includes('试炼')
+                item?.装备类型 === 装备类型枚举.副本精简 && !试炼特效集合.has(item.装备特效 || '')
               )
             }
           }
 
           if (!是否过滤) {
-            if (装备选择范围?.过滤类型?.includes('无修')) {
-              是否过滤 = item?.装备名称?.includes('无修')
+            if (装备选择范围?.过滤类型?.includes('试炼')) {
+              是否过滤 =
+                试炼装备名称匹配.test(item.装备名称) || 试炼特效集合.has(item.装备特效 || '')
             }
           }
 

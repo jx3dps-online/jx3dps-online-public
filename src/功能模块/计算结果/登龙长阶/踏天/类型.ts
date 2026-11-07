@@ -6,8 +6,6 @@ export interface 踏天配置 {
   版本: string
   维护人: string
   校验时间: string
-  开启进度阈值?: number
-  门槛: { 配装: 配装原始数据; 循环名称: string }
   路线: Partial<Record<踏天路线, { 配装: 配装原始数据; 循环名称: string }>>
 }
 export interface 踏天认可 {
@@ -29,7 +27,7 @@ export interface 踏天状态 {
   }
 }
 export const 踏天目标id = (路线: 踏天路线) => '踏天境:' + 路线
-export const 踏天开启进度阈值 = 0.1
+export const 踏天开启秒伤比例 = 0.91
 export const 踏天主动完成比例 = 0.98
 export const 踏天阶位 = [
   { 键: '问道', 阈值: 0 },

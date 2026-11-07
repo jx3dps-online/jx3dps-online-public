@@ -52,7 +52,7 @@ const 宏5 = [
 
 export default function 攻略() {
   return (
-    <攻略容器 标题='【苍生猪食】蓬莱橙武循环' 模式='计算结果'>
+    <攻略容器 标题='【苍生猪食】蓬莱橙武循环' 模式='全屏'>
       <div className={样式.正文}>
         <div className={样式.来源}>
           <标签 左='作者' 右='小鹿辞' />

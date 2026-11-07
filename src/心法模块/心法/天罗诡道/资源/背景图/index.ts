@@ -1,6 +1,6 @@
 import { GLOBAL_CDN_PREFIX } from '@/心法模块/模块工具/常量'
 
-const ImgBg_1 = `${GLOBAL_CDN_PREFIX}/bg_tlgd_1.jpg`
-const ImgBg_2 = `${GLOBAL_CDN_PREFIX}/bg/tlgd.png`
+const ImgBg_1 = `${GLOBAL_CDN_PREFIX}/bg_tlgd_1-5eae27f748.jpg`
+const ImgBg_2 = `${GLOBAL_CDN_PREFIX}/tlgd-8425f16e5d.webp`
 
 export default [ImgBg_1, ImgBg_2]

@@ -1,3 +1,4 @@
+import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import { Buff枚举, 循环基础技能数据类型, 日志类型 } from '../simulator/type'
 import { 基础GCD帧 } from '.'
 import { 每秒郭氏帧 } from '@/数据/常量'
@@ -15,7 +16,7 @@ const ting = 'https://icon.jx3box.com/icon/17568.png'
 // import you from '../assets/Skill/you.png'
 const xing = 'https://icon.jx3box.com/icon/17567.png'
 const cw = 'https://icon.jx3box.com/icon/17801.png'
-const cw_quxiao = 'https://cdn.arkwish.com/jx3dps/simc/cw_quxiao_20260906_031.png'
+const cw_quxiao = `${GLOBAL_CDN_PREFIX}/cw_quxiao_20260906_031-e4cbb65c49.webp`
 
 // Buff图标引入
 

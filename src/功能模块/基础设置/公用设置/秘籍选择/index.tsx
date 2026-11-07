@@ -4,7 +4,7 @@ import { use心法数据 } from '@/心法模块/心法上下文'
 import { Button, Tooltip } from 'antd'
 import 秘籍选择抽屉 from './drawer'
 import './index.css'
-const miji = `${GLOBAL_CDN_PREFIX}/20261025/miji.png`
+const miji = `${GLOBAL_CDN_PREFIX}/miji-9d386de6e3.webp`
 
 function 秘籍选择() {
   const { 心法所属端 } = use心法数据()

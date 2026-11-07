@@ -6,7 +6,7 @@ import type { 登阶进度属性 } from '../类型'
 import 伞面 from './伞面'
 import 仙气 from './仙气'
 import 样式 from './index.module.less'
-const 素伞 = `${GLOBAL_CDN_PREFIX}/20261025/xianyu-susan.png`
+const 素伞 = `${GLOBAL_CDN_PREFIX}/xianyu-susan-2ffc1d8f40.webp`
 
 const 阶段名称 = ['敛剑作骨', '青云化羽', '蜃影凝神', '乘风蹈海', '墟海引归']
 

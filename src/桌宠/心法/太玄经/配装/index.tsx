@@ -1,12 +1,12 @@
 import { Flex } from 'antd'
 import { useLayoutEffect, useRef, useState } from 'react'
 import 配装 from '@/功能模块/攻略/components/配装'
-import 子不语十人毕业 from './子不语十人毕业.json'
-import 子不语普通毕业 from './子不语PT毕业.json'
-import 子不语英雄毕业 from './子不语YX毕业.json'
-import 紫武十人毕业 from './紫武十人毕业.json'
-import 紫武普通毕业 from './紫武PT毕业.json'
-import 紫武英雄毕业 from './紫武YX毕业.json'
+import 子不语十人毕业 from '@/心法模块/心法/太玄经/推荐配装/子不语十人毕业.json'
+import 子不语普通毕业 from '@/心法模块/心法/太玄经/推荐配装/子不语PT毕业.json'
+import 子不语英雄毕业 from '@/心法模块/心法/太玄经/推荐配装/子不语YX毕业.json'
+import 紫武十人毕业 from '@/心法模块/心法/太玄经/推荐配装/紫武十人毕业.json'
+import 紫武普通毕业 from '@/心法模块/心法/太玄经/推荐配装/紫武PT毕业.json'
+import 紫武英雄毕业 from '@/心法模块/心法/太玄经/推荐配装/紫武YX毕业.json'
 import styles from './index.module.less'
 
 export default function 推荐配装({ 标题边框 = false }: { 标题边框?: boolean } = {}) {

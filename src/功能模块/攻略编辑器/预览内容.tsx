@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { Button, ConfigProvider } from 'antd'
+import antdZhCN from 'antd/locale/zh_CN'
 import { 心法Provider } from '@/心法模块/心法上下文'
 import { 攻略展示上下文 } from '@/功能模块/攻略/展示上下文'
 import * as 组件 from '@/功能模块/攻略/components'
@@ -55,11 +56,9 @@ function 内存状态(文档: 攻略文档, 数据: 数据类型): RootState {
 const 渲染 = (项: 内容节点 | string, key: string): React.ReactNode => {
   if (typeof 项 === 'string') return 项
   const 类型 = (组件[项.标签] || 项.标签) as React.ElementType
-  return React.createElement(
-    类型,
-    { ...项.属性, key },
-    项.子?.map((子, i) => 渲染(子, `${key}-${i}`)),
-  )
+  // 空子节点必须传 undefined：<br>、<img> 这类 void 元素一旦带上 children 就会抛错
+  const 子 = 项.子?.length ? 项.子.map((项, i) => 渲染(项, `${key}-${i}`)) : undefined
+  return React.createElement(类型, { ...项.属性, key }, 子)
 }
 
 export default function 预览内容({ 文档, 数据 }: { 文档: 攻略文档; 数据: 数据类型 }) {
@@ -72,7 +71,7 @@ export default function 预览内容({ 文档, 数据 }: { 文档: 攻略文档;
   )
   const 正文 = 构建正文(文档)
   return (
-    <ConfigProvider theme={{ token: { colorPrimary: 数据.系统配置.主题色 } }}>
+    <ConfigProvider locale={antdZhCN} theme={{ token: { colorPrimary: 数据.系统配置.主题色 } }}>
       <心法Provider value={数据}>
         <Provider store={状态}>
           <div ref={设置计算结果节点} className={styles.结果参考面板} />

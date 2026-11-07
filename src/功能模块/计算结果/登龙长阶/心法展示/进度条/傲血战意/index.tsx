@@ -3,8 +3,8 @@ import type { CSSProperties } from 'react'
 import { Tooltip } from 'antd'
 import type { 登阶进度属性 } from '../类型'
 import 样式 from './index.module.less'
-const 素刃 = `${GLOBAL_CDN_PREFIX}/20261025/changqiang-suren.png`
-const 寒锋凌日 = `${GLOBAL_CDN_PREFIX}/20261025/changqiang-hanfenglingri.png`
+const 素刃 = `${GLOBAL_CDN_PREFIX}/changqiang-suren-0a161714d4.webp`
+const 寒锋凌日 = `${GLOBAL_CDN_PREFIX}/changqiang-hanfenglingri-3c7a5a2f42.webp`
 
 const 阶段名称 = ['蓄势待发', '初露锋芒', '寒光渐盛', '寒锋凌日', '此愿已成']
 

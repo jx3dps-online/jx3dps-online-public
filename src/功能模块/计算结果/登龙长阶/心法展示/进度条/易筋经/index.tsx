@@ -4,8 +4,8 @@ import type { CSSProperties } from 'react'
 import { Tooltip } from 'antd'
 import type { 登阶进度属性 } from '../类型'
 import 样式 from './index.module.less'
-const 素杖 = `${GLOBAL_CDN_PREFIX}/20261025/chanzhang-suzhang.png`
-const 万骨回澜 = `${GLOBAL_CDN_PREFIX}/20261025/chanzhang-wanguhuilan.png`
+const 素杖 = `${GLOBAL_CDN_PREFIX}/chanzhang-suzhang-3ec4dccd8f.webp`
+const 万骨回澜 = `${GLOBAL_CDN_PREFIX}/chanzhang-wanguhuilan-6c0b6b2e47.webp`
 
 const 阶段名称 = ['素杖初成', '金芒初现', '莲光渐盛', '万骨回澜', '此愿已成']
 

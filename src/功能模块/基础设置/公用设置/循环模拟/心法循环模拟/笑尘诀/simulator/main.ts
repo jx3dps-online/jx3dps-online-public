@@ -85,7 +85,7 @@ class 循环主类 {
     this.团队增益轴 = props.团队增益轴 || {}
     this.副本事件实例列表 = props.副本事件实例列表 || []
     this.Buff和Dot数据 = 根据奇穴修改buff数据(this.奇穴)
-    this.技能基础数据 = 根据奇穴修改技能数据(this.奇穴)
+    this.技能基础数据 = 根据奇穴修改技能数据(this.奇穴, this.秘籍)
     this.角色状态信息 = {
       体态: props.起手Buff配置?.逍遥?.层数 ? '逍遥' : '常态',
       内力: Math.min(100, Math.max(0, props.起手内力 ?? 100)),

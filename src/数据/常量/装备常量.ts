@@ -1,4 +1,8 @@
 import 装备品级数据 from './装备品级.json'
+import { 试炼之地特效枚举 } from '@/@types/装备'
+
+export const 试炼装备名称匹配 = /无观|无修/
+export const 试炼特效集合 = new Set<string>(Object.values(试炼之地特效枚举))
 
 export const 大附魔ID = {
   英雄: [

@@ -6,20 +6,22 @@ import type { 角色基础属性类型 } from '@/@types/角色'
 import type { 技能统计处理函数 } from '@/@types/输出'
 
 import type { 踏天配置 } from '@/功能模块/计算结果/登龙长阶/踏天/类型'
+import type { 目标库配置 } from '@/功能模块/计算结果/登龙长阶/目标库/类型'
 
 // 心法配置类型
 export interface 心法配置类型 {
-  /** 按需加载推荐配装；未注册的心法保持普通登龙长阶。 */
+  /** 按需加载踏天配置；未注册的心法保持普通登龙长阶。 */
   踏天境?: () => Promise<{ default: 踏天配置 }>
+  目标库?: () => Promise<{ default: 目标库配置 }>
   /**
    * @name 模块负责人
    * @description 对应魔盒的模块负责人
    */
   模块负责人: string
   /**
-   * @name 邀请使用
+   * @name 暂时下架
    */
-  邀请使用?: boolean
+  暂时下架?: boolean
   /**
    * @name 数据提供
    * 本心法模块的数据提供者

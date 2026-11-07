@@ -1,8 +1,10 @@
 import type { 技能增益列表类型 } from '@/@types/技能'
 import { 属性类型 } from '@/@types/属性'
 import 内功通用增益 from './通用增益'
+import { 大扇子外功增益 } from '../大扇子'
 
 const 通用增益: 技能增益列表类型[] = [
+  ...大扇子外功增益,
   ...内功通用增益.filter((增益) => 增益.依赖奇穴 === '芳姿畅音'),
   {
     // 10081

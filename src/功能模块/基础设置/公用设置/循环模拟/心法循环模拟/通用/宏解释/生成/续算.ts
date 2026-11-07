@@ -16,6 +16,7 @@ export const 解析续算宏 = (
   const 行文本 = 文本.split(/\r\n|\n|\r/)
   return 配置.页[0].语句.map((行) => {
     if (行.命令 === 'mcast') throw new Error('续算不支持超级宏调用')
+    if (行.目标) throw new Error('生成和压缩续算暂不支持指定目标命令')
     const 索引 = 动作.findIndex((项) => 项.技能 === 行.技能 && 项.命令 === 行.命令)
     if (索引 < 0) throw new Error('续算宏包含当前目标循环没有的动作：' + 行.技能)
     const 内容 = 行文本[行.行号 - 1].trim().replace(/^\/(?:cast|fcast)\s+/, '')

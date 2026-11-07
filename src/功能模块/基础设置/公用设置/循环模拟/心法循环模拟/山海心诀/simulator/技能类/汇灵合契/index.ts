@@ -8,6 +8,7 @@ class 汇灵合契 extends 有CD技能通用类 {
   static 技能数据 = 循环模拟技能基础数据?.find((item) => item.技能名称 === '汇灵合契')
   static 领胡首次攻击间隔 = 36
   static 领胡攻击间隔 = 24
+  已施展领胡 = false
 
   constructor(模拟循环) {
     super(模拟循环)
@@ -16,6 +17,9 @@ class 汇灵合契 extends 有CD技能通用类 {
   }
 
   释放() {
+    if (this.模拟循环.校验奇穴是否存在('领胡') && !this.已施展领胡) {
+      return { 可以释放: true }
+    }
     const 唤灵印层数 = Object.values(this.模拟循环?.角色状态信息?.换灵印)?.filter((a) => !!a).length
     if (唤灵印层数 < 4) {
       return {
@@ -27,9 +31,24 @@ class 汇灵合契 extends 有CD技能通用类 {
     }
   }
 
+  技能释放后更新运行数据() {
+    const 技能数据 = this.模拟循环.技能基础数据.find((技能) => 技能.技能名称 === '汇灵合契')!
+    const 技能CD =
+      this.模拟循环.校验奇穴是否存在('领胡') && !this.已施展领胡
+        ? 每秒郭氏帧 * 30
+        : 技能数据.技能CD!
+    this.模拟循环.技能释放后更新运行数据(技能数据, this, 技能CD)
+  }
+
   命中() {
     this.保存释放记录()
-    this.消耗唤灵印()
+    if (this.模拟循环.校验奇穴是否存在('领胡') && !this.已施展领胡) {
+      this.已施展领胡 = true
+      // Lua“体外版汇灵合契”首次免印仍执行四次承契处理。
+      for (let i = 0; i < 4; i++) this.模拟循环.获得承契()
+    } else {
+      this.消耗唤灵印()
+    }
     this.释放领胡()
   }
 

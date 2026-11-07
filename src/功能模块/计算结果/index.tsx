@@ -39,7 +39,13 @@ type 循环要求分组 = {
   加速列表: string[]
 }
 
-function 计算结果() {
+function 计算结果({
+  攻略弹窗打开,
+  设置攻略弹窗打开,
+}: {
+  攻略弹窗打开: boolean
+  设置攻略弹窗打开: (打开: boolean) => void
+}) {
   const { 名称, 系统配置, 缓存映射, 五彩石 } = use心法数据()
   const 当前五彩石名称 = useAppSelector((state) => state.data.装备信息.五彩石)
   const 增益面板显示状态 = useAppSelector((state) => state?.system?.增益面板显示状态)
@@ -48,7 +54,6 @@ function 计算结果() {
   const 当前计算循环名称 = useAppSelector((state) => state?.data?.当前计算循环名称)
   const [技能统计弹窗, 打开技能统计弹窗] = useState<boolean>(false)
   const [初始化, 设置初始化] = useState<boolean>(false)
-  const [攻略弹窗打开, 设置攻略弹窗打开] = useState<boolean>(false)
   const [攻略提示弹窗打开, 设置攻略提示弹窗打开] = useState<boolean>(false)
   const [dps宽度, 设置dps宽度] = useState<number>(0)
 

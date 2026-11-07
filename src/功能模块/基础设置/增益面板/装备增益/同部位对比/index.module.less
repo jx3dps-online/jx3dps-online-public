@@ -1,0 +1,140 @@
+.弹窗 {
+  max-width: calc(100vw - 32px);
+  top: 32px;
+}
+
+.当前装备 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.筛选栏 {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.排序栏 {
+  display: flex;
+  gap: 4px;
+
+  :global(.ant-select) {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.计算进度 {
+  margin: 12px 0;
+  color: #888;
+  font-size: 12px;
+}
+
+.当前标记 {
+  flex-shrink: 0;
+  color: #cf1322;
+}
+
+.装备名称 {
+  cursor: help;
+}
+
+.属性简介 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+
+  :global(.ant-tag) {
+    margin-inline-end: 0;
+  }
+}
+
+.增加 {
+  color: #389e0d;
+}
+
+.减少 {
+  color: #cf1322;
+}
+
+.容量图例 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 8px;
+  color: #888;
+  font-size: 12px;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  i {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+}
+
+.容量条 {
+  position: relative;
+  height: 30px;
+  font-size: 12px;
+}
+
+.容量底色 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.普通容量,
+.普通属性秒伤 {
+  background: var(--ant-primary-color);
+  opacity: 0.25;
+}
+
+.加速容量 {
+  background: #ffe58f;
+}
+
+.特效容量,
+.特效秒伤 {
+  background: var(--ant-primary-color);
+  opacity: 0.55;
+}
+
+.容量数值 {
+  position: relative;
+  display: block;
+  padding: 0 6px;
+  overflow: hidden;
+  line-height: 30px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.秒伤分段 {
+  position: absolute;
+  height: 100%;
+}
+
+.秒伤零线 {
+  position: absolute;
+  height: 100%;
+  border-left: 1px solid #888;
+}
+
+@media (max-width: 700px) {
+  .筛选栏 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

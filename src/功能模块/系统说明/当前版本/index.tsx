@@ -1,5 +1,5 @@
 import { Button, Modal, Timeline } from 'antd'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import log_data from '@/更新日志'
 import { use心法数据 } from '@/心法模块/心法上下文'
 import 心法枚举 from '@/数据/静态数据/心法枚举.json'
@@ -8,12 +8,16 @@ import { 更新当前引导步骤, 更新新手引导流程状态 } from '@/stor
 import { filterLogContent } from './logFilter'
 import './index.css'
 
-function Log() {
+const 默认目标引导 = lazy(() => import('@/功能模块/新手引导/默认目标引导'))
+
+function 版本内容() {
   const { 缓存映射, 名称: 心法名称 } = use心法数据()
   const dispatch = useAppDispatch()
   const 引导开启 = useAppSelector((state) => state.system.新手引导流程状态)
   const 等待引导结束 = useRef(false)
   const 引导已经开启 = useRef(false)
+  const [启动检查完成, 设置启动检查完成] = useState(false)
+  const 公告关闭中 = useRef(false)
 
   // 更新日志
   const [visible, setVisible] = useState(false)
@@ -51,12 +55,16 @@ function Log() {
     const storageVersion = localStorage.getItem(缓存映射.日志版本)
     const storageNotice = localStorage.getItem(缓存映射.使用说明)
     if (storageNotice && (!storageVersion || storageVersion !== log_data?.[0]?.version)) {
+      设置启动检查完成(false)
       setNewVersionModalVisible(true)
+    } else if (storageNotice) {
+      设置启动检查完成(true)
     }
   }
 
   const handleCloseNew = () => {
     localStorage?.setItem(缓存映射.日志版本, log_data?.[0]?.version)
+    公告关闭中.current = true
     setNewVersionModalVisible(false)
   }
 
@@ -117,6 +125,7 @@ function Log() {
         {includeAnnouncementButton && (
           <Button
             onClick={() => {
+              设置启动检查完成(false)
               setVisible(false)
               setShowAll(false)
               setNewVersionModalVisible(true)
@@ -155,6 +164,12 @@ function Log() {
         centered
         open={newVersionModalVisible && !引导开启 && !noticeVisible}
         onCancel={handleCloseNew}
+        afterClose={() => {
+          if (公告关闭中.current) {
+            公告关闭中.current = false
+            设置启动检查完成(true)
+          }
+        }}
         footer={
           <Button onClick={handleCloseNew} type='primary'>
             知道了
@@ -228,8 +243,16 @@ function Log() {
         <p>严禁使用本计算器进行跨心法/门派比较。</p>
         <p>一切数据仅供参考，最终解释权归作者所有。</p>
       </Modal>
+      <Suspense fallback={null}>
+        <默认目标引导
+          允许={启动检查完成 && !newVersionModalVisible && !noticeVisible && !visible && !引导开启}
+        />
+      </Suspense>
     </div>
   )
 }
 
-export default Log
+export default function Log() {
+  const { 名称 } = use心法数据()
+  return <版本内容 key={名称} />
+}

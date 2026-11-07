@@ -1,15 +1,13 @@
+import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import type { 桌宠配置 as 桌宠配置类型 } from '@/桌宠/interface'
 import { 分山劲问题集 } from './问题集'
-const 待机动画 =
-  'https://cdn.arkwish.com/jx3dps/pet/fsj/%E5%BE%85%E6%9C%BA%E5%8A%A8%E7%94%BB_20260906_103.png'
-const 待机 = 'https://cdn.arkwish.com/jx3dps/pet/fsj/%E5%BE%85%E6%9C%BA_20260906_102.png'
-const 待机摇尾巴 =
-  'https://cdn.arkwish.com/jx3dps/pet/fsj/%E5%BE%85%E6%9C%BA%E6%91%87%E5%B0%BE%E5%B7%B4_20260906_104.png'
-const 噘嘴 = 'https://cdn.arkwish.com/jx3dps/pet/fsj/%E5%99%98%E5%98%B4_20260906_105.png'
-const 噘嘴摇尾巴 =
-  'https://cdn.arkwish.com/jx3dps/pet/fsj/%E5%99%98%E5%98%B4%E6%91%87%E5%B0%BE%E5%B7%B4_20260906_106.png'
-const 喷火 = 'https://cdn.arkwish.com/jx3dps/pet/fsj/%E5%96%B7%E7%81%AB_20260906_107.png'
-const 血怒 = 'https://cdn.arkwish.com/jx3dps/pet/fsj/%E8%A1%80%E6%80%92_20260906_108.png'
+const 待机动画 = `${GLOBAL_CDN_PREFIX}/image-c71ee83d98.png`
+const 待机 = `${GLOBAL_CDN_PREFIX}/image-f404043e45.webp`
+const 待机摇尾巴 = `${GLOBAL_CDN_PREFIX}/image-37afe82cd3.webp`
+const 噘嘴 = `${GLOBAL_CDN_PREFIX}/image-77af11a859.webp`
+const 噘嘴摇尾巴 = `${GLOBAL_CDN_PREFIX}/image-2ed3419e8e.webp`
+const 喷火 = `${GLOBAL_CDN_PREFIX}/image-024f6ea507.webp`
+const 血怒 = `${GLOBAL_CDN_PREFIX}/image-69b9f9650e.webp`
 
 /**
  * @name 分山劲 - 桌宠配置（小狮子）
@@ -94,7 +92,7 @@ const 桌宠配置: 桌宠配置类型 = {
     经典问题集: 分山劲问题集,
   },
 
-  尺寸: { 宽: 308, 高: 273 },
+  尺寸: { 宽: '10%', 比例: 273 / 308 },
   气泡: { 宽: 380, 主题色: '#c14c11' },
 }
 

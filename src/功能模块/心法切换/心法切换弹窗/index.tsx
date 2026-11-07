@@ -32,7 +32,7 @@ const 心法切换弹窗: React.FC<ModalProps> = (props) => {
       if (DEV) {
         可看到心法.push(key)
       } else {
-        if (res[key]?.邀请使用) {
+        if (res[key]?.暂时下架) {
           if (res[key]?.简写) {
             可邀请心法[res[key]?.简写] = key
           }

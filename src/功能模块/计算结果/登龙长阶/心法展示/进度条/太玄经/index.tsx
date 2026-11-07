@@ -9,7 +9,7 @@ import 幻狐 from './幻狐'
 import { 悬挂样式 } from './悬挂配置'
 import 样式 from './index.module.less'
 
-const 子不语 = `${GLOBAL_CDN_PREFIX}/20261029/zibuyu.png`
+const 子不语 = `${GLOBAL_CDN_PREFIX}/zibuyu-1b6092ac84.webp`
 
 const 阶段名称 = ['灵灯未醒', '初窥星门', '渐悟星运', '星神降世']
 

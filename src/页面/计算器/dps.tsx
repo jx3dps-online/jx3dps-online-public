@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Provider } from 'react-redux'
 import { App as AntdApp, ConfigProvider, notification } from 'antd'
 import dayjs from 'dayjs'
@@ -51,12 +51,13 @@ const 已完成心法: string[] = [
   '天罗诡道',
   '焚影圣诀',
   // '周天功_悟',
-  // '孤锋诀_悟',
+  '孤锋诀_悟',
 ]
 
 function 主页面() {
+  const [攻略弹窗打开, 设置攻略弹窗打开] = useState(false)
   const 移动端 = use移动端()
-  const { 系统配置, 名称, 邀请使用 } = use心法数据()
+  const { 系统配置, 名称, 暂时下架 } = use心法数据()
   const 主题色 = 系统配置?.主题色 || '#dca53e'
 
   // 同步 antd 全局静态主题（Modal / notification 等非受控组件）
@@ -72,14 +73,14 @@ function 主页面() {
         placement: 'top',
       })
     }
-    if (邀请使用 && location.hostname === 'localhost') {
+    if (暂时下架 && location.hostname === 'localhost') {
       notification.error({
-        message: `内部使用`,
-        description: `${名称} 计算器为个人内部学习，不对外开放，请开发者不要在任何公开场合谈论谈论该模块，感谢合作。`,
+        message: `暂时下架`,
+        description: `${名称} 暂时下架`,
         placement: 'top',
       })
     }
-  }, [名称, 邀请使用])
+  }, [名称, 暂时下架])
 
   return (
     <Provider store={store}>
@@ -96,8 +97,8 @@ function 主页面() {
             <AntdApp>
               <Layout>
                 <系统说明 />
-                <基础设置 />
-                <计算结果 />
+                <基础设置 查看攻略={() => 设置攻略弹窗打开(true)} />
+                <计算结果 攻略弹窗打开={攻略弹窗打开} 设置攻略弹窗打开={设置攻略弹窗打开} />
                 <系统工具 />
                 <心法切换 />
                 <异步内容 加载={加载新手引导} 参数={{}} />

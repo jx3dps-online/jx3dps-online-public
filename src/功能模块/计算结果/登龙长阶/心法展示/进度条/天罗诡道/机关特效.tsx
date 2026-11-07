@@ -2,7 +2,7 @@ import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import 光翼 from './光翼'
 import 样式 from './机关特效.module.less'
-const 武器 = `${GLOBAL_CDN_PREFIX}/20261025/huiting-touming.png`
+const 武器 = `${GLOBAL_CDN_PREFIX}/huiting-touming-76a539197a.webp`
 
 const 下缘气流 =
   'M597 203C557 230 524 262 462 267C414 271 374 282 333 296C384 291 428 286 470 282C533 277 579 235 597 203Z'

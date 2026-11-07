@@ -4,13 +4,13 @@ import 绘制伞体 from './伞体绘制'
 import 绘制雪晶伞 from './雪晶伞面'
 import 创建龙纹流光 from './龙纹流光'
 import 样式 from './index.module.less'
-const 绢纹 = `${GLOBAL_CDN_PREFIX}/20261025/xianyu-longwenjuan.png`
-const 素伞 = `${GLOBAL_CDN_PREFIX}/20261025/xianyu-susan.png`
-const 微开伞 = `${GLOBAL_CDN_PREFIX}/20261025/xianyu-weikai.png`
-const 龙纹 = `${GLOBAL_CDN_PREFIX}/20261025/xianyu-longwen.png`
-const 冰晶伞骨 = `${GLOBAL_CDN_PREFIX}/20261025/bingjing-sangu.png`
-const 雪花合拢 = `${GLOBAL_CDN_PREFIX}/20261025/xuehuasan-helong.png`
-const 雪花微开 = `${GLOBAL_CDN_PREFIX}/20261025/xuehuasan-weikai.png`
+const 绢纹 = `${GLOBAL_CDN_PREFIX}/xianyu-longwenjuan-bbd76bcb4b.webp`
+const 素伞 = `${GLOBAL_CDN_PREFIX}/xianyu-susan-2ffc1d8f40.webp`
+const 微开伞 = `${GLOBAL_CDN_PREFIX}/xianyu-weikai-8ee3743b29.webp`
+const 龙纹 = `${GLOBAL_CDN_PREFIX}/xianyu-longwen-c6377e9536.webp`
+const 冰晶伞骨 = `${GLOBAL_CDN_PREFIX}/bingjing-sangu-addea9b588.webp`
+const 雪花合拢 = `${GLOBAL_CDN_PREFIX}/xuehuasan-helong-22693fb821.webp`
+const 雪花微开 = `${GLOBAL_CDN_PREFIX}/xuehuasan-weikai-32fe932ea5.webp`
 
 export default function 伞面({
   进度,
@@ -36,10 +36,18 @@ export default function 伞面({
 
   useEffect(() => {
     const 节点 = 画布.current!
+    节点.dataset.shareReady = 'false'
+    节点.dataset.shareError = 'false'
     const 画笔 = 节点.getContext('2d')
-    if (!画笔) return
+    if (!画笔) {
+      节点.dataset.shareError = 'true'
+      return
+    }
     const 材质 = new Image()
     const 龙纹图片 = new Image()
+    材质.crossOrigin = 'anonymous'
+    龙纹图片.crossOrigin = 'anonymous'
+    let 龙纹就绪 = 雪花
     let 绘制龙纹: ReturnType<typeof 创建龙纹流光>
     const 减少动态 = window.matchMedia('(prefers-reduced-motion: reduce)')
     let 已卸载 = false
@@ -56,6 +64,7 @@ export default function 伞面({
       画笔.setTransform(节点.width / 1000, 0, 0, 节点.height / 220, 0, 0)
       if (雪花) 绘制雪晶伞(画笔, 材质, 当前进度, 转角)
       else 绘制伞体(画笔, 材质, 当前进度, 转角, 绘制龙纹?.(当前进度, 流光时间))
+      节点.dataset.shareReady = String(龙纹就绪)
     }
     const 可播放 = () => 可见 && !document.hidden && !状态.current.忙碌 && !减少动态.matches
     const 循环 = (时间: number) => {
@@ -100,6 +109,8 @@ export default function 伞面({
     材质.onerror = () => {
       if (已卸载) return
       图片就绪 = false
+      节点.dataset.shareReady = 'false'
+      节点.dataset.shareError = 'true'
       更新就绪(false)
       cancelAnimationFrame(帧号)
     }
@@ -108,7 +119,11 @@ export default function 伞面({
       龙纹图片.onload = () => {
         if (已卸载) return
         绘制龙纹 = 创建龙纹流光(龙纹图片)
+        龙纹就绪 = true
         同步()
+      }
+      龙纹图片.onerror = () => {
+        if (!已卸载) 节点.dataset.shareError = 'true'
       }
       龙纹图片.src = 龙纹
     }
@@ -133,6 +148,7 @@ export default function 伞面({
       材质.onload = null
       材质.onerror = null
       龙纹图片.onload = null
+      龙纹图片.onerror = null
     }
   }, [更新就绪, 雪花])
 

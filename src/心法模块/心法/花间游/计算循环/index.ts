@@ -6,9 +6,11 @@ import type { 循环数据 } from '@/@types/循环'
  */
 
 // 循环
-import 紫武_流离 from './紫武_流离.json'
-import 橙武_流离 from './橙武_流离.json'
+// import 紫武_流离 from './紫武_流离.json'
+import 紫武_流离_2 from './紫武流离·5分钟.json'
+// import 橙武_流离 from './橙武_流离.json'
+import 橙武_流离_2 from './橙武流离·5分钟.json'
 
-const 计算循环: 循环数据[] = [紫武_流离, 橙武_流离] as 循环数据[]
+const 计算循环: 循环数据[] = [紫武_流离_2, 橙武_流离_2] as 循环数据[]
 
 export default 计算循环

@@ -12,6 +12,7 @@ import {
   Select,
   Space,
   Spin,
+  Tooltip,
 } from 'antd'
 import { use心法数据 } from '@/心法模块/心法上下文'
 import { 获取心法加速阈值 } from '@/数据/加速阈值'
@@ -22,6 +23,7 @@ import { 装备位置部位枚举, 装备选择范围类型 } from '@/@types/装
 import type { 计算循环覆盖类型 } from '@/计算模块/计算函数'
 
 import use模拟退火寻优 from './use模拟退火寻优'
+import { 获取计算线程数 } from './计算线程池'
 
 const 全部部位: string[] = Object.keys(装备位置部位枚举)
 
@@ -67,12 +69,14 @@ function 全局寻优(props: 全局寻优类型) {
   const [loading, setLoading] = useState(false)
   const 取消标记 = useRef(false)
   const 放弃搜索标记 = useRef(false)
+  const 搜索请求序号 = useRef(0)
   const [设置form] = Form.useForm()
   useEffect(() => {
     设置form.setFieldValue('目标加速阈值', undefined)
   }, [心法.名称, 设置form])
   const 额外寻优范围: string[] | undefined = Form.useWatch('额外寻优范围', 设置form)
   const 参与小附魔 = !!额外寻优范围?.includes('小附魔')
+  const 线程使用比例 = Form.useWatch('线程使用比例', 设置form) ?? 50
 
   const 寻优 = use模拟退火寻优({
     form,
@@ -94,7 +98,9 @@ function 全局寻优(props: 全局寻优类型) {
   ]
 
   const 开始搜索 = () => {
+    const 本次请求 = ++搜索请求序号.current
     设置form.validateFields().then(async (values) => {
+      if (本次请求 !== 搜索请求序号.current) return
       取消标记.current = false
       放弃搜索标记.current = false
       setLoading(true)
@@ -106,6 +112,7 @@ function 全局寻优(props: 全局寻优类型) {
           是否放弃: () => 放弃搜索标记.current,
         },
       )
+      if (本次请求 !== 搜索请求序号.current) return
       setLoading(false)
       if (已出结果) {
         onOpenChange(false)
@@ -114,6 +121,7 @@ function 全局寻优(props: 全局寻优类型) {
   }
 
   const 取消搜索 = () => {
+    搜索请求序号.current++
     if (loading) {
       放弃搜索标记.current = true
       取消标记.current = true
@@ -156,8 +164,9 @@ function 全局寻优(props: 全局寻优类型) {
             layout='vertical'
             initialValues={{
               搜索轮数: 10,
-              循环轮数: 5,
-              装备扰动数量: 3,
+              循环轮数: 8,
+              装备扰动数量: 5,
+              线程使用比例: 50,
               额外寻优范围: [],
               不使用橙武: false,
               不使用精品及挑战附魔: false,
@@ -173,6 +182,36 @@ function 全局寻优(props: 全局寻优类型) {
                   rules={[{ required: true }]}
                 >
                   <InputNumber min={1} max={50} precision={0} style={{ width: '100%' }} />
+                </Form.Item>
+              </Col>
+              <Col xs={12} sm={6}>
+                <Form.Item
+                  label='计算线程'
+                  tooltip='按浏览器可用逻辑处理器数量分配后台计算线程，实际 CPU 占用取决于任务规模'
+                >
+                  <Tooltip
+                    title={
+                      线程使用比例
+                        ? `最多使用 ${获取计算线程数(线程使用比例)} 个后台线程`
+                        : '使用主线程计算'
+                    }
+                  >
+                    <span style={{ display: 'block' }}>
+                      <Form.Item name='线程使用比例' noStyle>
+                        <Select
+                          disabled={loading}
+                          style={{ width: '100%' }}
+                          options={[
+                            { label: '主线程（关闭多线程）', value: 0 },
+                            { label: '25%', value: 25 },
+                            { label: '50%（默认）', value: 50 },
+                            { label: '75%', value: 75 },
+                            { label: '100%', value: 100 },
+                          ]}
+                        />
+                      </Form.Item>
+                    </span>
+                  </Tooltip>
                 </Form.Item>
               </Col>
               <Col xs={12} sm={6}>
@@ -224,7 +263,7 @@ function 全局寻优(props: 全局寻优类型) {
                   <Form.Item
                     name='上限装分'
                     label='装分上限'
-                    tooltip='填写后结果装分不超过该值，并额外搜索镶嵌等级；换装沿用当前精炼等级'
+                    tooltip='填写后结果装分不超过该值；精炼等级参与寻优，并额外搜索镶嵌等级'
                   >
                     <InputNumber
                       min={1}

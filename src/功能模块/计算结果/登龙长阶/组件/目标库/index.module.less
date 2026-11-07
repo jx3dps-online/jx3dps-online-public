@@ -1,0 +1,71 @@
+.列表 {
+  display: grid;
+  gap: 12px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.条目 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    '标题 选择'
+    '描述 来源';
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.标题 {
+  grid-area: 标题;
+  align-self: start;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.描述 {
+  grid-area: 描述;
+  align-self: end;
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.来源 {
+  grid-area: 来源;
+  align-self: end;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: right;
+  white-space: nowrap;
+  color: #666;
+  font-size: 12px;
+}
+.选择 {
+  grid-area: 选择;
+  align-self: start;
+  justify-self: end;
+}
+
+.错误 {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 480px) {
+  .条目 {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      '标题'
+      '选择'
+      '描述'
+      '来源';
+    gap: 12px;
+  }
+}

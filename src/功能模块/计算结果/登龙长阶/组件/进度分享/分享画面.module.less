@@ -1,0 +1,207 @@
+.画面 {
+  --dragon-gold: var(--share-accent);
+  --dragon-muted: #b5bac5;
+  --dragon-accent: var(--share-accent);
+  position: relative;
+  isolation: isolate;
+  width: 960px;
+  padding: 32px 32px 26px;
+  overflow: hidden;
+  background: #141721;
+  color: #e4e9ef;
+  font-family: 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  transform-origin: top left;
+  &,
+  * {
+    box-sizing: border-box;
+  }
+  > header,
+  > section,
+  > footer {
+    position: relative;
+    z-index: 3;
+  }
+}
+.背景 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right 34%;
+  z-index: 0;
+}
+.蒙层 {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: ~'var(--分享蒙层)';
+  z-index: 1;
+}
+.边框 {
+  position: absolute;
+  inset: 18px;
+  border: 1px solid var(--share-line);
+  z-index: 2;
+  pointer-events: none;
+}
+.页眉 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--share-line);
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  strong {
+    font:
+      31px 'STKaiti',
+      'KaiTi',
+      serif;
+    letter-spacing: 7px;
+  }
+  small {
+    max-width: 380px;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+    color: #aeb8c6;
+  }
+}
+.心法图标 {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.主视觉 {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr) 150px;
+  gap: 20px;
+  align-items: center;
+  min-height: 190px;
+  padding: 24px 0;
+}
+.进度 {
+  min-width: 0;
+  [role='progressbar'] > :first-child > :nth-child(2) {
+    display: none;
+  }
+}
+.目标 {
+  > span {
+    color: var(--share-accent);
+    letter-spacing: 4px;
+  }
+  h2 {
+    margin: 12px 0 0;
+    color: #e7ebf2;
+    font:
+      30px/1.4 'STKaiti',
+      'KaiTi',
+      serif;
+    overflow-wrap: anywhere;
+  }
+}
+.完成度 {
+  border-left: 1px solid var(--share-line);
+  padding-left: 18px;
+  strong {
+    font:
+      50px/1.1 Georgia,
+      serif;
+    color: #e9c88c;
+    letter-spacing: -2px;
+    white-space: nowrap;
+  }
+  small {
+    font-size: 24px;
+    margin-left: 4px;
+  }
+  > span {
+    display: block;
+    margin-top: 9px;
+    color: #b3bdcb;
+    letter-spacing: 3px;
+    font-size: 13px;
+  }
+}
+.属性 {
+  border-top: 1px solid var(--share-line);
+  padding: 14px 0;
+  margin-top: 14px;
+  p {
+    margin: 0 0 12px;
+    color: #adb7c5;
+    font-size: 12px;
+  }
+}
+.属性列表 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    > span,
+    > em {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+  }
+  small {
+    font-size: 12px;
+    color: #adb7c5;
+  }
+  span,
+  em {
+    font-size: 14px;
+    font-style: normal;
+  }
+  em {
+    color: var(--share-accent);
+  }
+}
+.页脚 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border-top: 1px solid var(--share-line);
+  margin-top: 17px;
+  padding-top: 23px;
+  p {
+    margin: 0;
+    max-width: 600px;
+    overflow-wrap: anywhere;
+    font:
+      22px/1.6 'STKaiti',
+      'KaiTi',
+      serif;
+    letter-spacing: 3px;
+    color: #d3dbe6;
+  }
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: right;
+    color: #c5cdd9;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  small {
+    display: block;
+    color: #8c97a8;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-top: 5px;
+  }
+}

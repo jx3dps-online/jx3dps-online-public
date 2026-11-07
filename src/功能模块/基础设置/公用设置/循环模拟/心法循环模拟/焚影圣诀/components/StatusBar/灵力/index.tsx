@@ -3,9 +3,9 @@ import React, { useEffect, useId, useState } from 'react'
 import { Progress } from 'antd'
 import styles from './index.module.less'
 import { 角色状态信息类型 } from '../../../simulator/type'
-const 底图 = `${GLOBAL_CDN_PREFIX}/20261025/progress-bar-base.png`
-const 金色覆盖图 = `${GLOBAL_CDN_PREFIX}/20261025/orange-progress-aligned.png`
-const 蓝色覆盖图 = `${GLOBAL_CDN_PREFIX}/20261025/blue-progress-aligned.png`
+const 底图 = `${GLOBAL_CDN_PREFIX}/progress-bar-base-54e1d4566a.webp`
+const 金色覆盖图 = `${GLOBAL_CDN_PREFIX}/orange-progress-aligned-f93e84a899.webp`
+const 蓝色覆盖图 = `${GLOBAL_CDN_PREFIX}/blue-progress-aligned-d7f30be348.webp`
 
 const 灵力槽 = [
   {

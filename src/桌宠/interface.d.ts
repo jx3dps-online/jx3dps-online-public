@@ -25,8 +25,10 @@ export interface 桌宠尺寸 {
 // ── 资源（CDN url 或 本地 import() 产物，框架无差别处理）──
 export interface 桌宠资源 {
   资源: string
-  类型?: 'gif' | 'png' | 'webp' | '序列帧'
-  序列帧?: { 帧: string[]; 间隔毫秒: number; 循环?: boolean }
+  类型?: 'gif' | 'png' | 'webp' | 'webm' | '序列帧'
+  循环?: boolean
+  兼容资源?: { 资源: string; 类型?: 'gif' | 'png' | 'webp' }
+  序列帧?: { 帧: (string | 桌宠资源)[]; 间隔毫秒: number; 循环?: boolean }
   // 非循环动画时长，播完自动回退
   单次时长毫秒?: number
   // 动画结束回退到哪个状态，默认 '待机'
@@ -112,6 +114,8 @@ export interface 桌宠配置 {
   }
 
   尺寸?: 桌宠尺寸
+  // 相对画布四边的内缩百分比，范围外不拦截页面点击。
+  交互区域?: { 上: number; 右: number; 下: number; 左: number }
   默认位置?: { x?: number; y?: number }
   气泡?: { 宽?: number; 主题色?: string }
 }

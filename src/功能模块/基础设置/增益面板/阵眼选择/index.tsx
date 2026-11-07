@@ -8,9 +8,9 @@ import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import './index.css'
 
 const PaiMingMap = {
-  1: `${GLOBAL_CDN_PREFIX}/paiming_1.png`,
-  2: `${GLOBAL_CDN_PREFIX}/paiming_2.png`,
-  3: `${GLOBAL_CDN_PREFIX}/paiming_3.png`,
+  1: `${GLOBAL_CDN_PREFIX}/paiming_1-8e687858d3.webp`,
+  2: `${GLOBAL_CDN_PREFIX}/paiming_2-dc6c3c6e56.webp`,
+  3: `${GLOBAL_CDN_PREFIX}/paiming_3-942dd89d7c.webp`,
 }
 
 interface 阵眼选择类型 extends SelectProps {

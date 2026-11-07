@@ -15,6 +15,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { use心法数据 } from '@/心法模块/心法上下文'
 import { 装备属性信息模型, 装备类型枚举 } from '@/@types/装备'
+import { 试炼装备名称匹配 } from '@/数据/常量/装备常量'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import 根据装备信息获取基础属性 from '@/功能模块/基础设置/属性录入/配装器/工具函数/根据装备信息获取基础属性'
 import { 获取角色默认基础属性 } from '@/工具函数/init/默认数据'
@@ -25,9 +26,9 @@ import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import Map from './map.json'
 import './index.css'
 
-const 教程_1 = `${GLOBAL_CDN_PREFIX}/help_equip_1.png`
-const 教程_2 = `${GLOBAL_CDN_PREFIX}/help_equip_2.png`
-const 教程_3 = `${GLOBAL_CDN_PREFIX}/help_equip_3.png`
+const 教程_1 = `${GLOBAL_CDN_PREFIX}/help_equip_1-d08ce486d4.webp`
+const 教程_2 = `${GLOBAL_CDN_PREFIX}/help_equip_2-a9ba945e1a.webp`
+const 教程_3 = `${GLOBAL_CDN_PREFIX}/help_equip_3-d129e0128d.webp`
 
 const 高性价比常数 = 5
 const 低性价比常数 = 3
@@ -81,7 +82,7 @@ const 识别装备对比: React.FC<ModalProps> = () => {
     Object.keys(装备数据).map((装备部位) => {
       const 当前部位数据 = 装备数据[装备部位]
       当前部位数据.forEach((装备) => {
-        if (!装备?.装备名称?.includes('无修')) {
+        if (!试炼装备名称匹配.test(装备.装备名称)) {
           let 装备牌子映射 = ''
           // 门派牌子转换
           if (装备?.装备类型 === 装备类型枚举.门派套装) {
@@ -153,7 +154,7 @@ const 识别装备对比: React.FC<ModalProps> = () => {
     const 找到对应装备数据 = equipData?.current?.find(
       (item: any) => item?.装备名称 === name || item?.装备牌子映射 === name,
     )
-    if (找到对应装备数据 && !name?.includes('无修')) {
+    if (找到对应装备数据 && !试炼装备名称匹配.test(name)) {
       const 被替换的装备 = 装备信息.装备列表.find(
         (item) => item.装备部位 === 找到对应装备数据?.装备部位,
       )

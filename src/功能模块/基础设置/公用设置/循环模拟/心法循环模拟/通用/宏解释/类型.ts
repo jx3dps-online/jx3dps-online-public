@@ -1,3 +1,5 @@
+export type 宏目标 = '自身' | '目标'
+
 export type 比较符 = '=' | '<' | '>' | '<=' | '>=' | '~='
 
 export type 宏条件 =
@@ -9,6 +11,7 @@ export type 宏条件 =
       对象: '自身' | '目标'
       名称: string
       同ID名称?: string[]
+      按ID?: boolean
       比较: 比较符
       值: number
       时间: boolean
@@ -19,7 +22,7 @@ export type 宏条件 =
   | {
       类型: '技能'
       名称: string
-      字段: '冷却帧' | '充能'
+      字段: '冷却帧' | '总冷却帧' | '充能'
       比较: 比较符
       值: number | 'max'
       充能技能?: boolean
@@ -28,6 +31,7 @@ export type 宏条件 =
 export interface 技能宏语句 {
   行号: number
   命令: 'cast' | 'fcast'
+  目标?: 宏目标
   技能: string
   条件?: 宏条件
   自动技能?: boolean
@@ -53,6 +57,7 @@ export interface 增益状态 {
 export interface 技能状态 {
   调息帧: number
   冷却帧: number
+  总冷却帧: number
   阻塞帧: number
   充能: number
   最大充能?: number
@@ -87,6 +92,7 @@ export interface 心法说明 {
   充能技能?: string[]
   调息查询技能?: string[]
   调息依赖?: Record<string, string[]>
+  指定目标?: Record<string, 宏目标[]>
   技能显示名称?: Record<string, string>
   数值字段: string[]
   小数字段: string[]
@@ -126,6 +132,7 @@ export interface 释放轨迹 {
   行号: number
   技能: string
   自动技能?: boolean
+  目标?: 宏目标
   额外信息?: Record<string, number>
   时间: number
   决策前: 宏状态
@@ -207,7 +214,7 @@ export interface 心法运行接口 {
   说明: 心法说明
   奇穴: string[]
   获取状态: () => 宏状态
-  可以释放技能?: (技能: string) => boolean
+  可以释放技能?: (技能: string, 目标?: 宏目标) => boolean
   获取实际技能名称?: (技能: string) => string
   获取技能释放时间?: (技能: string) => number
   获取释放计划?: (技能: string) => 释放计划 | undefined
@@ -215,7 +222,7 @@ export interface 心法运行接口 {
   推进时间: (时间: number) => void
   下个事件时间: () => number
   获取事件来源?: () => 等待来源[]
-  释放技能: (技能: string) => Record<string, number> | void
+  释放技能: (技能: string, 目标?: 宏目标) => Record<string, number> | void
   结束读条: (中断: boolean) => Record<string, number> | undefined
   获取日志: () => 宏运行结果['日志']
   获取引导跳时刻?: () => number[]

@@ -2,6 +2,7 @@ import 循环模拟技能基础数据, { 原始Buff数据 } from '../constant/sk
 import type { Buff枚举, BuffDTO, DotDTO, 技能GCD组, 循环基础技能数据类型 } from './type'
 import type { 起手Buff配置 } from '../../通用/通用框架/类型定义/Buff'
 import type { 选中秘籍信息 } from '@/@types/秘籍'
+import { 判断秘籍减冷却 } from '../../通用/通用函数'
 
 export const 获取内力消耗 = (
   技能: 循环基础技能数据类型,
@@ -27,8 +28,10 @@ export const 根据奇穴修改buff数据 = (奇穴: string[]): Buff枚举 => ({
   },
 })
 
-export const 根据奇穴修改技能数据 = (奇穴: string[]) =>
+export const 根据奇穴修改技能数据 = (奇穴: string[], 秘籍: 选中秘籍信息) =>
   循环模拟技能基础数据.map((技能) => {
+    if (技能.技能名称 === '龙战于野')
+      return { ...技能, 技能CD: 技能.技能CD! - 判断秘籍减冷却(技能.技能名称, 秘籍) }
     if (技能.技能名称 === '龙跃于渊' && 奇穴.includes('御龙')) return { ...技能, 技能CD: 128 }
     if (技能.技能名称 === '恶狗拦路' && 奇穴.includes('反截')) return { ...技能, 技能CD: 240 }
     if (技能.技能名称 === '笑醉狂' && 奇穴.includes('酣饮'))

@@ -1,8 +1,19 @@
 import { 通知引导保存 } from '@/功能模块/新手引导/界面状态'
 import { CloseOutlined } from '@ant-design/icons'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import html2canvas from 'html2canvas'
-import { App, Button, Dropdown, Form, Input, message, Modal, ModalProps, Typography } from 'antd'
+import {
+  App,
+  Button,
+  Dropdown,
+  Form,
+  Input,
+  message,
+  Modal,
+  ModalProps,
+  Spin,
+  Typography,
+} from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { 装备信息数据类型, 装备位置部位枚举, 装备选择范围类型, 大附魔部位枚举 } from '@/@types/装备'
 import { useAppDispatch, useAppSelector } from '@/hooks'
@@ -51,6 +62,8 @@ import 平板样式 from './平板.module.less'
 import use移动端 from '@/hooks/use移动端'
 import './index.css'
 
+const 目标库弹窗 = lazy(() => import('@/功能模块/计算结果/登龙长阶/组件/目标库'))
+
 function 配装器(props: ModalProps) {
   const { open, onCancel } = props
   const [平板, 设置平板] = useState(
@@ -72,6 +85,7 @@ function 配装器(props: ModalProps) {
   }, [])
   const dispatch = useAppDispatch()
   const { 名称: 心法, 计算循环, 装备数据, 缓存映射 } = use心法数据()
+  const 目标文案 = 获取文案(心法)
   const { modal } = App.useApp()
   const 页面数据 = useAppSelector((state) => state.data)
   const 当前角色 = 页面数据.当前角色
@@ -123,6 +137,7 @@ function 配装器(props: ModalProps) {
   const [导出弹窗, 设置导出弹窗] = useState(false)
   const [目标JSON操作, 设置目标JSON操作] = useState<'导入' | '导出'>()
   const [目标JSON文本, 设置目标JSON文本] = useState('')
+  const [目标库打开, 设置目标库打开] = useState(false)
   const [另存为弹窗, 设置另存为弹窗] = useState(false)
   // 方案对比暂时隐藏（见文件顶部说明）
   // const [方案对比弹窗展示, 设置方案对比弹窗展示] = useState(false)
@@ -161,6 +176,7 @@ function 配装器(props: ModalProps) {
       设置初始化(false)
       设置导入弹窗(false)
       设置目标JSON操作(undefined)
+      设置目标库打开(false)
       设置另存为弹窗(false)
     }
   }, [open])
@@ -566,6 +582,9 @@ function 配装器(props: ModalProps) {
               {!目标编辑 ? 角色卡片 : null}
               {目标编辑 ? (
                 <div className='zhuangbei-target-operation'>
+                  <Typography.Text type='danger' className={手机样式.目标独立提示}>
+                    本页面和 配装器“保存角色”是独立的，只会更新目标
+                  </Typography.Text>
                   <div className='zhuangbei-target-card'>
                     <span className='zhuangbei-target-card-title'>
                       <b>正在调整目标</b>：
@@ -581,6 +600,7 @@ function 配装器(props: ModalProps) {
                     导入目标配装
                   </Button>
                   <Button onClick={导出目标配装}>导出目标配装</Button>
+                  <Button onClick={() => 设置目标库打开(true)}>{目标文案['目标库.标题']}</Button>
                   <Button
                     id='Guide_保存目标'
                     type='primary'
@@ -643,12 +663,7 @@ function 配装器(props: ModalProps) {
                       工具 <DownOutlined />
                     </Button>
                   </Dropdown>
-                  <Button
-                    id='Guide_7'
-                    style={{ marginLeft: 12 }}
-                    type='primary'
-                    onClick={() => onOk()}
-                  >
+                  <Button id='Guide_7' type='primary' onClick={() => onOk()}>
                     保存角色
                   </Button>
                 </>
@@ -722,6 +737,23 @@ function 配装器(props: ModalProps) {
         </Form>
       </div>
 
+      {open && 目标编辑 && 目标库打开 && (
+        <Suspense fallback={<Spin />}>
+          <目标库弹窗
+            用途='编辑'
+            onClose={() => 设置目标库打开(false)}
+            onSelect={(选择) => {
+              const 表单 = 装备信息转表单值(选择.装备)
+              检查导入品级范围(表单)
+              初始化表单(选择.装备)
+              更新当前装备信息(选择.装备)
+              设置编辑循环(选择.循环)
+              message.success(目标文案['目标库.已选配装'])
+              return true
+            }}
+          />
+        </Suspense>
+      )}
       <Modal
         open={!!目标JSON操作}
         title={目标JSON操作 === '导入' ? '导入目标配装' : '导出目标配装'}
@@ -748,7 +780,9 @@ function 配装器(props: ModalProps) {
 
       <配装导入
         visible={导入弹窗}
-        onClose={() => 设置导入弹窗(false)}
+        onClose={() => {
+          设置导入弹窗(false)
+        }}
         onOk={(表单值) => {
           检查导入品级范围(表单值)
           保存数据并计算(表单值)

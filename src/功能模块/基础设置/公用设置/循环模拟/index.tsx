@@ -1,3 +1,4 @@
+import { 模拟器配置环境提供器 } from './心法循环模拟/通用/通用组件/心法配置/环境'
 /**
  * 当前只内置了部分心法的循环模拟
  */
@@ -240,7 +241,9 @@ function 循环模拟() {
                 更新循环技能拖拽中,
               }}
             >
-              <CycleComponent 打开循环模拟器={打开循环模拟器} />
+              <模拟器配置环境提供器>
+                <CycleComponent 打开循环模拟器={打开循环模拟器} />
+              </模拟器配置环境提供器>
               {/* {CycleComponent} */}
             </CycleSimulatorContext.Provider>
           </战斗曲线联动Provider>

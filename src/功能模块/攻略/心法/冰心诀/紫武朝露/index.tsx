@@ -1,11 +1,12 @@
 import { useRef } from 'react'
+import 英雄推荐配装 from '../推荐配装/展示'
 import { Typography } from 'antd'
 import { 攻略容器, 奇穴展示, 连招, 配装 } from '../../../components'
 import 朝露循环 from '@/心法模块/心法/冰心诀/计算循环/紫武朝露.json'
 import 循环序列 from './循环序列.json'
-import 十人配装 from '../紫武盈袖/948加速10人.json'
-import 普通配装 from '../紫武盈袖/948加速25人普通.json'
-import 高加速配装 from '../紫武盈袖/1521加速25人普通.json'
+import 十人配装 from '@/心法模块/心法/冰心诀/推荐配装/紫武盈袖_948加速10人.json'
+import 普通配装 from '@/心法模块/心法/冰心诀/推荐配装/紫武盈袖_948加速25人普通.json'
+import 高加速配装 from '@/心法模块/心法/冰心诀/推荐配装/紫武盈袖_1521加速25人普通.json'
 import styles from '../紫武盈袖/index.module.less'
 
 const 章节 = ['奇穴', '芳姿', '加速', '流派', '手动细节', '循环图', '配装及属性分析', '推荐配装']
@@ -28,7 +29,7 @@ export default function 紫武朝露攻略() {
   const 正文 = useRef<HTMLElement>(null)
 
   return (
-    <攻略容器 标题='冰心诀 · 紫武朝露攻略' 模式='计算结果'>
+    <攻略容器 标题='冰心诀 · 紫武朝露攻略' 模式='全屏'>
       <article className={styles.攻略} ref={正文}>
         <details className={styles.导航} open>
           <summary>章节导航</summary>
@@ -53,7 +54,7 @@ export default function 紫武朝露攻略() {
         </details>
         <div className={styles.说明}>
           <p>作者：长倦</p>
-          <p>最近更新：2026/10/29</p>
+          <p>最近更新：2026-11-05，新增25YX推荐配装及精简解析。</p>
         </div>
         <h2 id='chaolu-section-1' tabIndex={-1}>
           奇穴
@@ -164,6 +165,7 @@ export default function 紫武朝露攻略() {
         <配装 名称='紫武朝露 · 948加速 · 25人PT' 配装数据={普通配装} 视图='配装页面' />
         <h3>1521加速 · 25人PT</h3>
         <配装 名称='紫武朝露 · 1521加速 · 25人PT' 配装数据={高加速配装} 视图='配装页面' />
+        <英雄推荐配装 />
       </article>
     </攻略容器>
   )

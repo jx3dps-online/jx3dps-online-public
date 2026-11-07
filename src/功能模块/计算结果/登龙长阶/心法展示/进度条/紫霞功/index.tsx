@@ -4,8 +4,8 @@ import { Tooltip } from 'antd'
 import type { 登阶进度属性 } from '../类型'
 import 剑气 from './剑气'
 import 样式 from './index.module.less'
-const 暗态 = `${GLOBAL_CDN_PREFIX}/20261025/chitongzhaoye-antai.png`
-const 亮态 = `${GLOBAL_CDN_PREFIX}/20261025/chitongzhaoye-liangtai.png`
+const 暗态 = `${GLOBAL_CDN_PREFIX}/chitongzhaoye-antai-7513db1d35.webp`
+const 亮态 = `${GLOBAL_CDN_PREFIX}/chitongzhaoye-liangtai-9f64fdf5ba.webp`
 
 export default function 紫霞功进度({
   百分比,

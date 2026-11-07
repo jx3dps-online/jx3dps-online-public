@@ -4,7 +4,7 @@ import { Tooltip } from 'antd'
 import type { 登阶进度属性 } from '../类型'
 import 渐进光效 from './光效'
 import 样式 from './index.module.less'
-const 青龙映夜 = `${GLOBAL_CDN_PREFIX}/20261025/qinglongyingye-jincou.png`
+const 青龙映夜 = `${GLOBAL_CDN_PREFIX}/qinglongyingye-jincou-92df6de5e7.webp`
 
 export default function 笑尘诀进度({
   百分比,

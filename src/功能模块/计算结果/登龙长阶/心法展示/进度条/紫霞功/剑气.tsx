@@ -2,7 +2,7 @@ import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import type { 登阶进度属性 } from '../类型'
 import 样式 from './剑气.module.less'
-const 成品 = `${GLOBAL_CDN_PREFIX}/20261025/chitongzhaoye-liangtai.png`
+const 成品 = `${GLOBAL_CDN_PREFIX}/chitongzhaoye-liangtai-9f64fdf5ba.webp`
 
 const 气环路径 = [
   'M-152 0A152 51 0 1 1 152 0A152 51 0 1 1 -152 0',

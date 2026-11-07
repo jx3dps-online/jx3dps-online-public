@@ -55,9 +55,17 @@ class 通用DOT类 extends 技能统一类 {
 
   获取当前快照buff() {
     const 快照增益 = 获取快照增益()
-    const 快照Buff列表 = ['繁音急节', '嗔怒', '元君', '剑舞长空', '化冰'].concat(
-      快照增益.map((item) => item.增益名称),
-    )
+    const 快照Buff列表 = [
+      '繁音急节',
+      '嗔怒',
+      '元君',
+      '剑舞长空',
+      '化冰',
+      '醉心',
+      '出云',
+      '梅雨',
+      '傲雪暗香',
+    ].concat(快照增益.map((item) => item.增益名称))
     const buff列表: string[] = []
     快照Buff列表?.forEach((buff) => {
       if (this.模拟循环?.当前自身buff列表?.[buff]?.当前层数) {

@@ -5,7 +5,7 @@ import { 获取烟雾素材, 烟雾区域 } from './烟雾素材'
 import 武器样式 from './index.module.less'
 import 样式 from './魂灯特效.module.less'
 
-const 子不语 = `${GLOBAL_CDN_PREFIX}/20261029/zibuyu.png`
+const 子不语 = `${GLOBAL_CDN_PREFIX}/zibuyu-1b6092ac84.webp`
 
 const 烟流路径 =
   'M186 211C166 211 139 221 119 207S110 180 122 161C135 141 177 137 208 121S230 91 243 70C255 44 278 42 290 60S294 98 313 115C335 135 352 113 362 92S388 68 402 85C416 105 403 124 436 126C453 134 471 133 484 131'
@@ -19,19 +19,33 @@ const 烟流遮罩 = `data:image/svg+xml,${encodeURIComponent(
 
 export default function 魂灯特效() {
   const [烟雾素材, 设置烟雾素材] = useState<string[]>([])
+  const [加载失败, 设置加载失败] = useState(false)
 
   useEffect(() => {
     const 图像 = new Image()
     图像.crossOrigin = 'anonymous'
-    图像.onload = () => 设置烟雾素材(获取烟雾素材(图像))
+    图像.onload = () => {
+      try {
+        设置烟雾素材(获取烟雾素材(图像))
+      } catch {
+        设置加载失败(true)
+      }
+    }
+    图像.onerror = () => 设置加载失败(true)
     图像.src = 子不语
     return () => {
       图像.onload = null
+      图像.onerror = null
     }
   }, [])
 
   return (
-    <div className={样式.魂灯} aria-hidden='true'>
+    <div
+      className={样式.魂灯}
+      aria-hidden='true'
+      data-share-ready={烟雾素材.length > 0}
+      data-share-error={加载失败}
+    >
       {[false, true].map((随悬偶) => (
         <div key={String(随悬偶)} className={随悬偶 ? 武器样式.悬偶 : 武器样式.固定部分}>
           <div className={随悬偶 ? 武器样式.悬偶内容 : undefined}>

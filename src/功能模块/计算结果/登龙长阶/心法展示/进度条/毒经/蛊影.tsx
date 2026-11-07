@@ -1,7 +1,7 @@
 import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import 样式 from './蛊影.module.less'
 
-const 蛇图腾 = `${GLOBAL_CDN_PREFIX}/20261029/jushe-tuteng.png`
+const 蛇图腾 = `${GLOBAL_CDN_PREFIX}/jushe-tuteng-96ab2bd4c8.webp`
 
 export default function 蛊影({ 阶段 }: { 阶段: number }) {
   return (

@@ -18,6 +18,7 @@ const 模拟循环 = (props: SimulatorCycleProps) => {
   const 当前DOT运行状态 = 模拟实例.获取各DOT的运行状态()
 
   return {
+    模拟参数: props,
     最终日志: 模拟实例.战斗日志,
     当前武器ID: 模拟实例.当前武器ID,
     当前武器为橙武: 模拟实例.大橙武模拟,

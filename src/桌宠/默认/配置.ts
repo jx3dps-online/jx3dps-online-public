@@ -1,3 +1,4 @@
+import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 /**
  * @name 默认 - 桌宠配置
  * 未配置专属桌宠的心法统一使用本配置（考拉 DJ）。
@@ -5,33 +6,28 @@
  */
 import type { 桌宠配置 as 桌宠配置类型 } from '@/桌宠/interface'
 
-const 待机 = 'https://cdn.arkwish.com/jx3dps/pet/default/%E5%BE%85%E6%9C%BA_20260906_096.gif'
-const 主动交互 =
-  'https://cdn.arkwish.com/jx3dps/pet/default/%E4%B8%BB%E5%8A%A8%E4%BA%A4%E4%BA%92_20260906_097.gif'
-const 点击交互 =
-  'https://cdn.arkwish.com/jx3dps/pet/default/%E7%82%B9%E5%87%BB%E4%BA%A4%E4%BA%92_20260906_098.gif'
-const 问答交互 =
-  'https://cdn.arkwish.com/jx3dps/pet/default/%E9%97%AE%E7%AD%94%E4%BA%A4%E4%BA%92_20260906_099.gif'
-const 拖拽向左 =
-  'https://cdn.arkwish.com/jx3dps/pet/default/%E6%8B%96%E6%8B%BD%E5%90%91%E5%B7%A6_20260906_100.gif'
-const 拖拽向右 =
-  'https://cdn.arkwish.com/jx3dps/pet/default/%E6%8B%96%E6%8B%BD%E5%90%91%E5%8F%B3_20260906_101.gif'
+const 待机 = `${GLOBAL_CDN_PREFIX}/default-35af17fe89df.webp`
+const 主动交互 = `${GLOBAL_CDN_PREFIX}/default-610ed72d1ec0.webp`
+const 点击交互 = `${GLOBAL_CDN_PREFIX}/default-520598e61b89.webp`
+const 问答交互 = `${GLOBAL_CDN_PREFIX}/default-4fadc62a406a.webp`
+const 拖拽向左 = `${GLOBAL_CDN_PREFIX}/default-3c3a49552c82.webp`
+const 拖拽向右 = `${GLOBAL_CDN_PREFIX}/default-3386f7670458.webp`
 
 const 桌宠配置: 桌宠配置类型 = {
   名称: '默认',
   启用: true,
 
-  待机资源: { 资源: 主动交互, 类型: 'gif' },
+  待机资源: { 资源: 主动交互, 类型: 'webp' },
 
   状态资源: {
-    主动交互: { 资源: 待机, 类型: 'gif' },
-    点击交互: { 资源: 点击交互, 类型: 'gif' },
-    问答交互: { 资源: 问答交互, 类型: 'gif' },
+    主动交互: { 资源: 待机, 类型: 'webp' },
+    点击交互: { 资源: 点击交互, 类型: 'webp' },
+    问答交互: { 资源: 问答交互, 类型: 'webp' },
   },
 
   拖拽方向资源: {
-    左: { 资源: 拖拽向左, 类型: 'gif' },
-    右: { 资源: 拖拽向右, 类型: 'gif' },
+    左: { 资源: 拖拽向左, 类型: 'webp' },
+    右: { 资源: 拖拽向右, 类型: 'webp' },
   },
 
   主动交互: {
@@ -45,7 +41,7 @@ const 桌宠配置: 桌宠配置类型 = {
     经典问题集: [],
   },
 
-  尺寸: { 宽: 134, 高: 146 },
+  尺寸: { 宽: '7%', 比例: 146 / 134 },
   气泡: { 宽: 400 },
 }
 

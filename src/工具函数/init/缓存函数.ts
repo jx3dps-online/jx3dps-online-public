@@ -183,7 +183,7 @@ export const 加载缓存装备选择范围 = (): 装备选择范围类型 => {
             ? 缓存值.词条类型.filter((值) => typeof 值 === 'string')
             : [],
           过滤类型: Array.isArray(缓存值.过滤类型)
-            ? 缓存值.过滤类型.filter((值) => typeof 值 === 'string')
+            ? 缓存值.过滤类型.filter((值) => ['试炼', '特效', '精简'].includes(值))
             : [],
         }
       }

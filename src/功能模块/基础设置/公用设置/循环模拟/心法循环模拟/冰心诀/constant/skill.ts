@@ -1,3 +1,4 @@
+import { 大扇子技能数据, 大扇子Buff数据 } from './大扇子'
 import { Buff枚举, 循环基础技能数据类型, 日志类型 } from '../simulator/type'
 import { 基础GCD帧 } from '.'
 import { 每秒郭氏帧 } from '@/数据/常量'
@@ -87,7 +88,7 @@ const 循环模拟技能基础数据: 循环基础技能数据类型[] = [
     技能类型: '其他',
     图标: 'https://icon.jx3box.com/icon/21962.png',
   },
-
+  ...大扇子技能数据,
   {
     技能名称: '触发橙武',
     技能释放后添加GCD: 0,
@@ -128,6 +129,7 @@ export enum 技能GCD组 {
 
 // Map预备数据
 export const 原始Buff数据: Buff枚举 = {
+  ...大扇子Buff数据,
   // Buff
   芳姿畅音: {
     类型: '自身',

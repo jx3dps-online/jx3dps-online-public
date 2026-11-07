@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { lazy, Suspense, useEffect, useState } from 'react'
 import {
   Alert,
   Button,
@@ -8,6 +8,7 @@ import {
   Modal,
   message,
   Space,
+  Spin,
   Tag,
   Typography,
 } from 'antd'
@@ -24,7 +25,10 @@ import type { 目标JSON数据 } from '@/角色/目标导入导出'
 import { 登阶循环限制 } from '../../领域/循环'
 import { 获取文案, 填充文案, 武器类型显示 } from '../../文案'
 import 登阶循环选择 from '../循环选择/index'
+import 样式 from './index.module.less'
 import './index.less'
+
+const 目标库弹窗 = lazy(() => import('../目标库'))
 
 interface 管理弹窗属性 {
   踏天目标区域?: React.ReactNode
@@ -33,6 +37,7 @@ interface 管理弹窗属性 {
   新增目标: () => void
   编辑目标: (id: string) => void
   切换聚焦: (id: string) => void
+  复制内置目标: (目标: 目标JSON数据) => Promise<boolean>
 }
 
 const 记录日期 = (时间: number) =>
@@ -52,6 +57,7 @@ export default function 管理弹窗({
   新增目标,
   编辑目标,
   切换聚焦,
+  复制内置目标,
   踏天目标区域,
 }: 管理弹窗属性) {
   const { 名称: 心法, 系统配置, 计算循环 } = use心法数据()
@@ -73,6 +79,7 @@ export default function 管理弹窗({
   const [导入名称, 设置导入名称] = useState('')
   const [JSON操作, 设置JSON操作] = useState<'导入' | '导出'>()
   const [JSON文本, 设置JSON文本] = useState('')
+  const [目标库打开, 设置目标库打开] = useState(false)
 
   useEffect(() => {
     if (open) {
@@ -81,6 +88,7 @@ export default function 管理弹窗({
       设置待删除(undefined)
       设置待导入(undefined)
       设置JSON操作(undefined)
+      设置目标库打开(false)
     }
   }, [open, 心法])
 
@@ -170,6 +178,14 @@ export default function 管理弹窗({
                 {文案['管理弹窗.目标列表']} <span>{池.目标.length + (计划.踏天 ? 1 : 0)}</span>
               </h3>
               <Space wrap>
+                <Button
+                  id='Guide_目标库'
+                  size='small'
+                  onClick={() => 设置目标库打开(true)}
+                  disabled={!当前角色}
+                >
+                  {文案['目标库.标题']}
+                </Button>
                 <Button
                   size='small'
                   onClick={() => {
@@ -355,6 +371,11 @@ export default function 管理弹窗({
           </section>
         </div>
       </Modal>
+      {open && 目标库打开 && (
+        <Suspense fallback={<Spin />}>
+          <目标库弹窗 用途='复制' onClose={() => 设置目标库打开(false)} onSelect={复制内置目标} />
+        </Suspense>
+      )}
       <Modal
         open={!!JSON操作}
         title={JSON操作 === '导入' ? 文案['通用.导入目标'] : 文案['通用.导出目标']}
@@ -389,22 +410,28 @@ export default function 管理弹窗({
         cancelText={文案['通用.取消']}
         style={主题样式}
       >
-        <p>{文案['管理弹窗.导入.说明']}</p>
-        <Input
-          aria-label={文案['管理弹窗.导入.aria.名称']}
-          value={导入名称}
-          onChange={(事件) => 设置导入名称(事件.target.value)}
-          maxLength={40}
-          showCount
-          onPressEnter={保存导入目标}
-        />
-        {待导入 && (
-          <登阶循环选择
-            装备={待导入.装备}
-            value={待导入.循环}
-            onChange={(循环) => 设置待导入({ ...待导入, 循环 })}
-          />
-        )}
+        <div className={样式.导入内容}>
+          <p className={样式.说明}>{文案['管理弹窗.导入.说明']}</p>
+          <div className={样式.名称字段}>
+            <label htmlFor='dragon-import-goal-name'>{文案['新建目标.标签.目标名称']}</label>
+            <Input
+              id='dragon-import-goal-name'
+              aria-label={文案['管理弹窗.导入.aria.名称']}
+              value={导入名称}
+              onChange={(事件) => 设置导入名称(事件.target.value)}
+              maxLength={40}
+              showCount
+              onPressEnter={保存导入目标}
+            />
+          </div>
+          {待导入 && (
+            <登阶循环选择
+              装备={待导入.装备}
+              value={待导入.循环}
+              onChange={(循环) => 设置待导入({ ...待导入, 循环 })}
+            />
+          )}
+        </div>
       </Modal>
       <Modal
         open={!!待删除}

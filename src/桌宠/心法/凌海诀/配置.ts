@@ -1,24 +1,57 @@
+import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 /**
  * @name 凌海诀 - 桌宠配置
  */
-import type { 桌宠配置 as 桌宠配置类型 } from '@/桌宠/interface'
+import type { 桌宠资源, 桌宠配置 as 桌宠配置类型 } from '@/桌宠/interface'
 
-const 坐姿 = 'https://cdn.arkwish.com/jx3dps/pet/lhj/%E5%9D%90%E5%A7%BF_20260906_109.gif'
-const 起飞 = 'https://cdn.arkwish.com/jx3dps/pet/lhj/%E8%B5%B7%E9%A3%9E_20260906_110.gif'
-const 坐姿2 = 'https://cdn.arkwish.com/jx3dps/pet/lhj/%E5%9D%90%E5%A7%BF2_20260906_111.gif'
-const 浮游 = 'https://cdn.arkwish.com/jx3dps/pet/lhj/%E6%B5%AE%E6%B8%B8_20260906_112.gif'
+const 坐姿: 桌宠资源 = {
+  资源: `${GLOBAL_CDN_PREFIX}/lhj-0f7cb1d4d6d3.webm`,
+  类型: 'webm',
+  循环: true,
+  兼容资源: {
+    资源: `${GLOBAL_CDN_PREFIX}/lhj-0f7cb1d4d6d3.gif`,
+    类型: 'gif',
+  },
+}
+const 起飞: 桌宠资源 = {
+  资源: `${GLOBAL_CDN_PREFIX}/lhj-eb74755247e3.webm`,
+  类型: 'webm',
+  循环: true,
+  兼容资源: {
+    资源: `${GLOBAL_CDN_PREFIX}/lhj-eb74755247e3.gif`,
+    类型: 'gif',
+  },
+}
+const 坐姿2: 桌宠资源 = {
+  资源: `${GLOBAL_CDN_PREFIX}/lhj-49c2086a8311.webm`,
+  类型: 'webm',
+  循环: true,
+  兼容资源: {
+    资源: `${GLOBAL_CDN_PREFIX}/lhj-49c2086a8311.gif`,
+    类型: 'gif',
+  },
+}
+const 浮游: 桌宠资源 = {
+  资源: `${GLOBAL_CDN_PREFIX}/lhj-4f3cae1f63ff.webm`,
+  类型: 'webm',
+  循环: true,
+  兼容资源: {
+    资源: `${GLOBAL_CDN_PREFIX}/lhj-4f3cae1f63ff.gif`,
+    类型: 'gif',
+  },
+}
 
 const 桌宠配置: 桌宠配置类型 = {
   名称: '凌海诀',
   启用: true,
 
-  待机资源: { 资源: 坐姿2, 类型: 'gif' },
+  待机资源: 坐姿2,
 
   状态资源: {
-    主动交互: { 资源: 起飞, 类型: 'gif', 单次时长毫秒: 4000 },
-    点击交互: { 资源: 坐姿, 类型: 'gif' },
-    问答交互: { 资源: 浮游, 类型: 'gif' },
-    拖拽中: { 资源: 浮游, 类型: 'gif', 尺寸: { 宽: 220, 高: 220 } },
+    主动交互: { ...起飞, 单次时长毫秒: 4000 },
+    点击交互: 坐姿,
+    问答交互: 浮游,
+    拖拽中: 浮游,
   },
 
   主动交互: {
@@ -61,7 +94,7 @@ const 桌宠配置: 桌宠配置类型 = {
     ],
   },
 
-  尺寸: { 宽: 200, 高: 200 },
+  尺寸: { 宽: '10%', 比例: 1 },
   气泡: { 宽: 380, 主题色: '#5d607b' },
 }
 

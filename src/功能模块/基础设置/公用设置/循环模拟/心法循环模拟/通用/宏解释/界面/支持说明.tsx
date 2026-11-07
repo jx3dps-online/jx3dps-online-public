@@ -18,8 +18,8 @@ export default function 支持说明({ 说明 }: { 说明: 心法说明 }) {
                 可用技能：{说明.技能.map((名称) => 说明.技能显示名称?.[名称] || 名称).join('、')}
               </p>
               <p>
-                仅用于 skill_notin_cd 的查询：{说明.调息查询技能?.join('、')}。 查询包含绑定的 GCD
-                与独立 CD，有充能仍需检查 GCD，不包含资源或体态限制。 骑御也可用查询 ID
+                仅用于 skill_notin_cd / cd 的查询：{说明.调息查询技能?.join('、')}。 查询包含绑定的
+                GCD 与独立 CD，有充能仍需检查 GCD，不包含资源或体态限制。 骑御也可用查询 ID
                 605；这些查询不开放为释放动作。
               </p>
               <p>
@@ -43,6 +43,14 @@ export default function 支持说明({ 说明 }: { 说明: 心法说明 }) {
               <p>
                 Buff 不存在时，正向层数或时间判断为假，不按 0 层判断；nobuff / tnobuff 检查不存在。
               </p>
+              <p>
+                buffid / nobuffid / buffidtime 只查询已映射的自身 Buff 数字
+                ID；多个原状态沿用任一匹配。 /casttoself、/casttotarget 仅开放已核对的指定目标组合：
+                {Object.entries(说明.指定目标 || {})
+                  .map(([技能, 目标]) => 技能 + '→' + 目标.join('/'))
+                  .join('、') || '无'}
+                。 不支持的组合会报错；指定目标动作暂不用于宏生成或压缩。
+              </p>
               {说明.永久增益 && (
                 <p>
                   永久 Buff 仅支持存在和层数判断，不支持 bufftime / tbufftime：
@@ -51,18 +59,24 @@ export default function 支持说明({ 说明 }: { 说明: 心法说明 }) {
                     .join('；')}
                 </p>
               )}
-              {说明.无计时增益 && (
+              {Object.values(说明.无计时增益 || {}).some((名称) => 名称.length > 0) && (
                 <p>
-                  原模拟器仅提供层数，不支持 bufftime / tbufftime：
-                  {Object.entries(说明.无计时增益)
+                  以下状态只支持存在和层数，不支持 bufftime / tbufftime / buffidtime：
+                  {Object.entries(说明.无计时增益 || {})
                     .map(([对象, 名称]) => 对象 + '：' + 名称.join('、'))
                     .join('；')}
                 </p>
               )}
               <p>
                 {说明.数值字段.join('、')}、buff / nobuff、tbuff / tnobuff、bufftime /
-                tbufftime、skill_energy、skill_notin_cd、last_skill、skill /
+                tbufftime、buffid / nobuffid /
+                buffidtime、skill_energy、skill_notin_cd、cd、last_skill、skill /
                 noskill。比较符：=、~=、&gt;、&lt;、&gt;=、&lt;=。&amp; 与 | 等优先级、右结合。
+              </p>
+              <p>
+                cd:技能名&lt;3 按剩余总冷却秒数比较，包含绑定的 GCD
+                和额外调息。计时充能算到全部充回，
+                透支算到全部偿还；资源恢复次数不推算回满时间。skill_notin_cd 仍按当前可用充能判断。
               </p>
               <p>
                 {说明.翻页体态 ? '支持不翻页或按体态翻页；宏模式二选一。' : ''}

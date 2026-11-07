@@ -60,3 +60,8 @@ tsconfig.tsbuildinfo
 .codebuddy
 .pnpm-store
 .deepseek
+
+/node/report.cjs
+/report.html
+/node/report-diff.cjs
+/report-diff.html

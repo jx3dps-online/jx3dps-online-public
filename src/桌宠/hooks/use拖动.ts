@@ -107,6 +107,9 @@ export const use拖动 = ({
   拖拽方向变化回调.current = on拖拽方向变化
   点击回调.current = on点击
 
+  const 清理拖动 = useRef<(() => void) | null>(null)
+  useEffect(() => () => 清理拖动.current?.(), [])
+
   const 位置Ref = useRef(位置)
   位置Ref.current = 位置
 
@@ -141,6 +144,7 @@ export const use拖动 = ({
         return
       }
       事件.preventDefault()
+      清理拖动.current?.()
 
       const 起始指针X = 事件.clientX
       const 起始指针Y = 事件.clientY
@@ -185,10 +189,14 @@ export const use拖动 = ({
         } else {
           点击回调.current?.()
         }
-        window.removeEventListener('pointermove', onPointerMove)
-        window.removeEventListener('pointerup', onPointerUp)
+        清理拖动.current?.()
       }
 
+      清理拖动.current = () => {
+        window.removeEventListener('pointermove', onPointerMove)
+        window.removeEventListener('pointerup', onPointerUp)
+        清理拖动.current = null
+      }
       window.addEventListener('pointermove', onPointerMove)
       window.addEventListener('pointerup', onPointerUp)
     },

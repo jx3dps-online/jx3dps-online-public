@@ -1,7 +1,10 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { Checkbox, Tooltip } from 'antd'
+import { Button, Checkbox, Tooltip } from 'antd'
+import { BookOutlined } from '@ant-design/icons'
 import { use心法数据 } from '@/心法模块/心法上下文'
+import useCycle from '@/hooks/use-cycle'
+import { 获取攻略组件 } from '@/功能模块/攻略/注册表'
 import { 更新特殊配置 } from '@/store/data'
 import { 触发秒伤计算 } from '@/计算模块/计算函数'
 import classNames from 'classnames'
@@ -21,9 +24,11 @@ import 增益面板 from './增益面板'
 
 import './index.css'
 
-function 基础设置() {
+function 基础设置({ 查看攻略 }: { 查看攻略: () => void }) {
   const dispatch = useAppDispatch()
   const { 名称 } = use心法数据()
+  const { 当前循环信息 } = useCycle()
+  const 有循环攻略 = !!获取攻略组件(当前循环信息?.攻略key)
   const 特殊配置 = useAppSelector((state) => state.data.特殊配置)
   const 增益面板显示状态 = useAppSelector((state) => state?.system?.增益面板显示状态)
   const 新手引导流程状态 = useAppSelector((state) => state?.system?.新手引导流程状态)
@@ -71,6 +76,13 @@ function 基础设置() {
           <div className={'basic-set-btns'}>
             <增益详情入口 />
           </div>
+          {有循环攻略 && (
+            <div className={'basic-set-btns'}>
+              <Button className='basic-set-full-btn' onClick={查看攻略}>
+                循环攻略
+              </Button>
+            </div>
+          )}
           {/* <a
             href='https://docs.qq.com/form/page/DZFdVeWFITkNodEJB'
             target='_blank'

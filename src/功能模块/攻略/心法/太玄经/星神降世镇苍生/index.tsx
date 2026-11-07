@@ -3,8 +3,8 @@ import { lazy, MouseEvent, Suspense } from 'react'
 import { 攻略容器, 宏, 奇穴展示, 连招, 视频, 图片 } from '../../../components'
 import 样式 from './index.module.less'
 
-const 配装发育一图流 = `${GLOBAL_CDN_PREFIX}/20261029/gear-progression-flowchart.png`
-const 循环一图流 = `${GLOBAL_CDN_PREFIX}/20261029/rotation-flowchart.png`
+const 配装发育一图流 = `${GLOBAL_CDN_PREFIX}/gear-progression-flowchart-886cc17ac3.webp`
+const 循环一图流 = `${GLOBAL_CDN_PREFIX}/rotation-flowchart-0c290d70aa.webp`
 
 const 推荐配装 = lazy(() => import('@/桌宠/心法/太玄经/配装'))
 

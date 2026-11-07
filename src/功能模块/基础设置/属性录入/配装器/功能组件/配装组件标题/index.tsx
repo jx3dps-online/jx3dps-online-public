@@ -81,9 +81,31 @@ function 配装组件标题({
     })
   }
 
+  const 一键镶嵌按钮 = (
+    <Dropdown
+      trigger={['click']}
+      menu={{
+        items: [
+          { label: '6级', key: '6', onClick: () => setAllXiangQian(6) },
+          { label: '7级', key: '7', onClick: () => setAllXiangQian(7) },
+          { label: '8级', key: '8', onClick: () => setAllXiangQian(8) },
+        ],
+      }}
+    >
+      <Button
+        type={移动端 ? 'primary' : 'default'}
+        size={移动端 ? 'middle' : 'small'}
+        className={移动端 ? undefined : 'zhuangbei-form-set-btn'}
+      >
+        一键镶嵌
+      </Button>
+    </Dropdown>
+  )
+
   if (移动端) {
     return (
       <>
+        {一键镶嵌按钮}
         <Button
           type='primary'
           onClick={切换装备细节展开}
@@ -115,19 +137,7 @@ function 配装组件标题({
       </div>
       <div className='zhuangbei-form-left-4'>
         <h1 className='zhuangbei-form-title'>镶嵌</h1>
-        <Dropdown
-          menu={{
-            items: [
-              { label: '6级', key: '6', onClick: () => setAllXiangQian(6) },
-              { label: '7级', key: '7', onClick: () => setAllXiangQian(7) },
-              { label: '8级', key: '8', onClick: () => setAllXiangQian(8) },
-            ],
-          }}
-        >
-          <Button size='small' className={'zhuangbei-form-set-btn'}>
-            一键镶嵌
-          </Button>
-        </Dropdown>
+        {一键镶嵌按钮}
       </div>
       <div className='zhuangbei-form-left-5'>
         <h1 className='zhuangbei-form-title'>大附魔</h1>

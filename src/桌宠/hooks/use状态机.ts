@@ -83,6 +83,7 @@ export const use状态机 = ({ 配置, 名称, on执行行为 }: 状态机参数
   const 拖拽消息定时器 = useRef<ReturnType<typeof setTimeout>[]>([])
   const 冷却记录 = useRef<Record<string, number>>({})
   const 是否已进入调度 = useRef(false)
+  const 自动播放暂停 = useRef(false)
 
   // 全部问题集（自身 + 全局默认）。只有全部题目都提供完整元数据时才启用排序，避免改变旧配置顺序。
   const 全部问题集 = useMemo(() => {
@@ -147,10 +148,19 @@ export const use状态机 = ({ 配置, 名称, on执行行为 }: 状态机参数
     拖拽消息定时器.current = []
   }, [清除展示定时器, 清除调度定时器])
 
+  const 结束已松手的拖拽 = useCallback(() => {
+    if (!拖拽记录.current) return true
+    if (拖拽记录.current.按住) return false
+    清除全部定时器()
+    拖拽记录.current = null
+    动画播放.current = null
+    return true
+  }, [清除全部定时器])
+
   // 展示主动消息
   const 展示主动消息 = useCallback(
     (消息: 主动交互消息) => {
-      if (拖拽记录.current || 保持问答动作.current) return
+      if (自动播放暂停.current || 拖拽记录.current || 保持问答动作.current) return
       设置覆盖资源(undefined)
       清除展示定时器()
       设置当前状态('主动交互')
@@ -170,6 +180,7 @@ export const use状态机 = ({ 配置, 名称, on执行行为 }: 状态机参数
   // 调度下一次定时随机主动交互
   const 调度下一次随机 = useCallback(() => {
     清除调度定时器()
+    if (自动播放暂停.current) return
     if (!可用状态.has('主动交互')) {
       return
     }
@@ -238,7 +249,7 @@ export const use状态机 = ({ 配置, 名称, on执行行为 }: 状态机参数
 
   // 点击桌宠 → 点击交互
   const 点击桌宠 = useCallback(() => {
-    if (拖拽记录.current) return
+    if (!结束已松手的拖拽()) return
     if (!可用状态.has('点击交互')) {
       return
     }
@@ -249,7 +260,7 @@ export const use状态机 = ({ 配置, 名称, on执行行为 }: 状态机参数
       设置当前状态('点击交互')
     }
     设置气泡数据({ 类型: '问题列表', 问题列表: 全部问题集 })
-  }, [可用状态, 全部问题集, 清除全部定时器, 配置])
+  }, [可用状态, 全部问题集, 清除全部定时器, 配置, 结束已松手的拖拽])
 
   // 收尾：若配置了「点击收尾」资源则单次播放后回待机，否则直接回待机
   // （问答列表关闭 / 答案气泡自动消失，两条路径共用）
@@ -272,15 +283,15 @@ export const use状态机 = ({ 配置, 名称, on执行行为 }: 状态机参数
 
   // 关闭气泡 → （若配置了「点击收尾」资源则先播收尾动画）→ 待机
   const 关闭气泡 = useCallback(() => {
-    if (拖拽记录.current) return
+    if (!结束已松手的拖拽()) return
     清除展示定时器()
     进入收尾或待机()
-  }, [清除展示定时器, 进入收尾或待机])
+  }, [清除展示定时器, 进入收尾或待机, 结束已松手的拖拽])
 
   // 选择问题 → 问答交互 + 执行行为
   const 选择问题 = useCallback(
     (问题: 经典问题) => {
-      if (拖拽记录.current) return
+      if (!结束已松手的拖拽()) return
       清除展示定时器()
       if (!保持问答动作.current) {
         设置覆盖资源(undefined)
@@ -302,7 +313,7 @@ export const use状态机 = ({ 配置, 名称, on执行行为 }: 状态机参数
       // 答案气泡自动消失后：与关闭气泡一致，若配置了「点击收尾」则先播收尾动画
       展示定时器.current = setTimeout(进入收尾或待机, 时长)
     },
-    [清除展示定时器, on执行行为, 进入收尾或待机, 配置],
+    [清除展示定时器, on执行行为, 进入收尾或待机, 配置, 结束已松手的拖拽],
   )
 
   const 播放拖拽阶段 = useCallback(
@@ -344,12 +355,43 @@ export const use状态机 = ({ 配置, 名称, on执行行为 }: 状态机参数
     [配置, 进入收尾或待机, 调度下一次随机],
   )
 
-  const 动画加载完成 = useCallback((资源: 桌宠资源) => {
-    const 播放 = 动画播放.current
-    if (!播放 || 播放.资源 !== 资源 || 播放.已开始) return
-    播放.已开始 = true
-    展示定时器.current = setTimeout(播放.完成, 资源.单次时长毫秒)
-  }, [])
+  const 动画加载完成 = useCallback(
+    (资源: 桌宠资源, 已播放毫秒 = 0) => {
+      if (自动播放暂停.current) {
+        自动播放暂停.current = false
+        调度下一次随机()
+      }
+      const 播放 = 动画播放.current
+      if (!播放 || 播放.资源 !== 资源 || 播放.已开始) return
+      播放.已开始 = true
+      展示定时器.current = setTimeout(播放.完成, Math.max(0, (资源.单次时长毫秒 ?? 0) - 已播放毫秒))
+    },
+    [调度下一次随机],
+  )
+
+  const 动画加载失败 = useCallback(
+    (资源: 桌宠资源) => {
+      const 记录 = 拖拽记录.current
+      if (!记录) {
+        自动播放暂停.current = true
+        清除全部定时器()
+        设置覆盖资源(undefined)
+        设置当前状态('待机')
+        设置气泡数据(null)
+        return
+      }
+      if (记录.阶段 === '衔接' || 记录.动画[记录.阶段] !== 资源) return
+      清除全部定时器()
+      拖拽记录.current = null
+      动画播放.current = null
+      衔接结束时间.current = 0
+      设置覆盖资源(undefined)
+      设置当前状态('待机')
+      设置气泡数据(null)
+      调度下一次随机()
+    },
+    [清除全部定时器, 调度下一次随机],
+  )
 
   const 开始拖拽 = useCallback(() => {
     拖拽消息定时器.current.forEach(clearTimeout)
@@ -412,6 +454,7 @@ export const use状态机 = ({ 配置, 名称, on执行行为 }: 状态机参数
     当前状态,
     覆盖资源,
     动画加载完成,
+    动画加载失败,
     气泡数据,
     点击桌宠,
     关闭气泡,

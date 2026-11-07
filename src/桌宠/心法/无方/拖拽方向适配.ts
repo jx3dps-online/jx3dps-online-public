@@ -1,8 +1,8 @@
-const 拖拽向左 =
-  'https://cdn.arkwish.com/jx3dps/pet/wf/%E6%8B%96%E6%8B%BD%E5%90%91%E5%B7%A6_20260906_118.gif'
-const 拖拽向右 =
-  'https://cdn.arkwish.com/jx3dps/pet/wf/%E6%8B%96%E6%8B%BD%E4%B8%AD_20260906_115.gif'
+import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import type { 拖拽方向 } from '@/桌宠/interface'
+
+const 拖拽向左 = `${GLOBAL_CDN_PREFIX}/wf-808dcc2e8143.webp`
+const 拖拽向右 = `${GLOBAL_CDN_PREFIX}/wf-4576beb9062c.webp`
 
 export type { 拖拽方向 } from '@/桌宠/interface'
 

@@ -5,9 +5,9 @@ import type { 登阶进度属性 } from '../类型'
 import 流光 from './流光'
 import 样式 from './index.module.less'
 import './横刀.less'
-const 素刃 = `${GLOBAL_CDN_PREFIX}/20261025/yixijianhan-suren.png`
-const 成品 = `${GLOBAL_CDN_PREFIX}/20261025/yixijianhan-chengpin.png`
-const 星河 = `${GLOBAL_CDN_PREFIX}/20261025/yixijianhan-xinghe.png`
+const 素刃 = `${GLOBAL_CDN_PREFIX}/yixijianhan-suren-0390637e6e.webp`
+const 成品 = `${GLOBAL_CDN_PREFIX}/yixijianhan-chengpin-15c115b43a.webp`
+const 星河 = `${GLOBAL_CDN_PREFIX}/yixijianhan-xinghe-f1b2914543.webp`
 
 const 阶段名称 = ['素刃初成', '微隙初明', '星河渐现', '一隙见瀚', '此愿已成']
 

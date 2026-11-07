@@ -1,0 +1,172 @@
+.弹窗 {
+  max-width: calc(100vw - 40px);
+  top: 30px;
+  :global(.ant-modal-content) {
+    padding: 22px;
+    border: 1px solid var(--share-line);
+    background: #171b20;
+  }
+  :global(.ant-modal-title) {
+    color: #e2e6ee;
+    font-family: 'Noto Serif SC', 'Songti SC', serif;
+    letter-spacing: 3px;
+    font-size: 20px;
+  }
+  :global(.ant-modal-header) {
+    margin-bottom: 20px;
+    background: transparent;
+  }
+}
+.布局 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 24px;
+  align-items: start;
+}
+.预览区 {
+  min-width: 0;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #4b5360 transparent;
+  padding: 16px;
+  background: #080c1059;
+  border-radius: 10px;
+  border: 1px solid #ffffff0a;
+}
+.预览标题 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  color: #b5beca;
+  font-size: 13px;
+  small {
+    color: #7c858e;
+    font-size: 11px;
+  }
+}
+.画面容器 {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 10px 36px #0008;
+}
+.缩放 {
+  width: 960px;
+  transform-origin: top left;
+}
+.配置区 {
+  min-width: 0;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #4b5360 transparent;
+  padding-right: 4px;
+  color: #bec5cf;
+  font-size: 13px;
+  fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+  }
+  :global(.ant-alert) {
+    margin-top: 12px;
+  }
+}
+.背景标题 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.背景列表 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 8px;
+  padding-bottom: 6px;
+  button {
+    padding: 2px;
+    border: 1px solid #ffffff1c;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    min-width: 0;
+    height: 46px;
+    overflow: hidden;
+    &[aria-pressed='true'] {
+      border-color: var(--share-accent);
+    }
+    &:disabled {
+      cursor: wait;
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+}
+.背景位置 {
+  padding: 0 12px;
+}
+.标签 {
+  display: flex;
+  justify-content: space-between;
+  margin: 18px 0 10px;
+  b {
+    color: var(--share-accent);
+    font-weight: 500;
+  }
+}
+.开关组 {
+  margin-top: 22px;
+  border-top: 1px solid #ffffff0e;
+  padding-top: 8px;
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 0;
+  }
+}
+.导出按钮 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 24px;
+  button {
+    height: 39px;
+  }
+}
+@media (max-width: 900px) {
+  .弹窗 {
+    top: 16px;
+    max-width: calc(100vw - 20px);
+    :global(.ant-modal-content) {
+      padding: 16px;
+    }
+  }
+  .布局 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .预览区 {
+    padding: 8px;
+    max-height: 65vh;
+  }
+  .配置区 {
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+  .预览标题 small {
+    display: none;
+  }
+  .导出按钮 {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,9 +1,10 @@
 import { Checkbox, Select, Tooltip } from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './index.module.less'
 import { 按数字生成数组 } from '@/工具函数/help'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { 更新特殊配置 } from '@/store/data'
+import { 批量配置编辑 } from '../../../通用/通用组件/心法配置/环境'
 
 interface 心法特殊配制类型 {
   起手星运: number
@@ -16,16 +17,19 @@ interface 心法特殊配制类型 {
 function 心法特殊配置(props: 心法特殊配制类型) {
   const { 起手星运, 星运上限, 更新起手星运, 断御前星延迟, 更新断御前星延迟 } = props
   const dispatch = useAppDispatch()
+  const 批量编辑中 = useContext(批量配置编辑)
   const 武器切换功能启用 = useAppSelector((state) => state.data.特殊配置.武器切换功能启用 ?? true)
 
   return (
     <>
-      <Checkbox
-        checked={武器切换功能启用}
-        onChange={(e) => dispatch(更新特殊配置({ 键: '武器切换功能启用', 值: e.target.checked }))}
-      >
-        武器切换
-      </Checkbox>
+      {!批量编辑中 && (
+        <Checkbox
+          checked={武器切换功能启用}
+          onChange={(e) => dispatch(更新特殊配置({ 键: '武器切换功能启用', 值: e.target.checked }))}
+        >
+          武器切换
+        </Checkbox>
+      )}
       <span className={styles.label}>断御前星延迟</span>
       <Tooltip title='断前人为延迟损失' placement='left'>
         <Select

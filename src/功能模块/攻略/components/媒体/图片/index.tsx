@@ -9,10 +9,11 @@ interface 图片类型 {
   width?: number | string
   /** 展示高度，支持数字（px）或字符串（如 '200px'）；只传高度时宽度按比例自适应 */
   高度?: number | string
+  style?: React.CSSProperties
 }
 
 function 图片(props: 图片类型) {
-  const { src, alt, width, 高度 } = props
+  const { src, alt, width, 高度, style } = props
   // 尺寸规则：
   // - 不传尺寸：按**原图像素**显示，最多撑满正文列宽（maxWidth:100%）。
   //   上一版卡死 maxWidth:560px，把 980px 宽的循环图硬缩到 560，4K 下更显小；
@@ -26,7 +27,7 @@ function 图片(props: 图片类型) {
       width={width}
       height={高度}
       fallback={兜底图片}
-      style={{ borderRadius: 6, maxWidth: '100%' }}
+      style={{ borderRadius: 6, maxWidth: '100%', ...style }}
     />
   )
 }

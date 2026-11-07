@@ -6,8 +6,6 @@ import { 踏天阶位 } from './类型'
 
 interface 属性 {
   比例?: number
-  门槛秒伤?: number
-  门槛循环: string
   已完成: boolean
   主动完成时间?: number
   历史完成时间?: number
@@ -16,8 +14,6 @@ interface 属性 {
 }
 export default function 踏天境界({
   比例,
-  门槛秒伤,
-  门槛循环,
   已完成,
   主动完成时间,
   历史完成时间,

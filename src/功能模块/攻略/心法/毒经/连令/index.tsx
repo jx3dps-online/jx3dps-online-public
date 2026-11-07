@@ -19,7 +19,7 @@ const 切宏示意图 = 'https://cdn.jx3box.com/upload/post/2026/10/12/125668_26
 
 export default function 连令攻略() {
   return (
-    <攻略容器 标题='「连缘」两段宏（紫武）' 模式='计算结果'>
+    <攻略容器 标题='「连缘」两段宏（紫武）' 模式='全屏'>
       <div className={样式.正文}>
         <div className={样式.来源}>
           <标签 左='作者' 右='莴苣' />

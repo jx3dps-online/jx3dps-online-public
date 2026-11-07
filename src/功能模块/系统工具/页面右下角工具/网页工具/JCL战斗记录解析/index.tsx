@@ -48,6 +48,7 @@ function JCL战斗记录解析() {
   const [JCL最大时间, 设置JCL最大时间] = useState<number>()
   const [JCL玩家ID, 设置JCL玩家ID] = useState('')
   const [JCL转换阶段, 设置JCL转换阶段] = useState('')
+  const [JCL转换错误, 设置JCL转换错误] = useState('')
   const 待提示Buff = JCL预览
     ? (JCL预览.diagnostics?.unknownBuffIds || []).filter(
         (id) => !心法枚举[JCL预览.player.kungfuName]?.不提示Buff?.includes(id),
@@ -167,6 +168,7 @@ function JCL战斗记录解析() {
       return
     }
     设置JCL转换阶段(JCL_PROVIDER === 'wasm' ? '转换 JCL' : '请求远程服务')
+    设置JCL转换错误('')
     try {
       const result = await convertJclFile(file, {
         targetLevel: JCL目标等级,
@@ -191,7 +193,8 @@ function JCL战斗记录解析() {
       message.success(`转换成功，玩家：${result.player.name}`)
     } catch (error) {
       设置JCL预览(undefined)
-      message.error(error instanceof Error ? error.message : 'JCL 转换失败')
+      设置JCL转换错误(error instanceof Error ? error.message : 'JCL 转换失败')
+      message.error('JCL 转换失败，请查看下方提示')
     } finally {
       setLoading(false)
       设置JCL转换阶段('')
@@ -295,6 +298,22 @@ function JCL战斗记录解析() {
                   : `${JCL_PROVIDER_NAME}：${JCL_PROVIDER_ERROR}`
             }
           />
+          {JCL转换错误 && (
+            <Alert
+              type='error'
+              showIcon
+              message='JCL 转换失败，请联系长倦（QQ：313333432）'
+              description={
+                <>
+                  <div>请提供原始 JCL 文件和错误详情，以便排查未支持的奇穴或 BUFF ID 等问题。</div>
+                  <details>
+                    <summary>错误详情</summary>
+                    {JCL转换错误}
+                  </details>
+                </>
+              }
+            />
+          )}
           {JCL预览 && (
             <div className='tools-jcl-preview'>
               <Descriptions size='small' column={3} bordered>
@@ -312,7 +331,12 @@ function JCL战斗记录解析() {
                   type='warning'
                   showIcon
                   message='转换存在未识别数据'
-                  description={`技能 ${JCL预览.diagnostics?.unknownSkillIds?.join(', ') || '无'}；Buff ${待提示Buff.join(', ') || '无'}；奇穴 ${JCL预览.diagnostics?.unknownTalentIds?.join(', ') || '无'}`}
+                  description={
+                    <>
+                      <div>{`技能 ${JCL预览.diagnostics?.unknownSkillIds?.join(', ') || '无'}；BUFF ${待提示Buff.join(', ') || '无'}；奇穴 ${JCL预览.diagnostics?.unknownTalentIds?.join(', ') || '无'}`}</div>
+                      <div>请联系长倦（QQ：313333432），并提供原始 JCL 文件及提示中的 ID。</div>
+                    </>
+                  }
                 />
               )}
               <div className='tools-jcl-preview-hint'>

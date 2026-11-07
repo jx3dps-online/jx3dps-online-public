@@ -17,6 +17,7 @@ export const 读取教师结果 = (
       实际技能名称: string
       额外信息: Record<string, number> | null
     }
+    if (额外信息?.宏目标 !== undefined) throw new Error('宏生成教师暂不支持指定目标动作')
     if (实际技能名称 !== 记录.技能名称) throw new Error('原循环动作与实际释放记录不一致')
     const 引导 = 引导记录[索引]
     const 作用次数 =

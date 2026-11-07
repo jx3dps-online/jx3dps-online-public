@@ -11,7 +11,6 @@ import React, {
 import type { CSSProperties, ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { App, Dropdown, Modal } from 'antd'
-import { animated, useTransition } from '@react-spring/web'
 import { use心法数据 } from '@/心法模块/心法上下文'
 import { useAppDispatch } from '@/hooks'
 import {
@@ -28,8 +27,8 @@ import { use拖动 } from './hooks/use拖动'
 import { 注册行为, 执行行为 as 执行注册行为, 注销行为 } from './工具/行为注册表'
 import { 预加载资源组 } from './工具/资源加载'
 import { 隐藏存储前缀, 桌宠切换隐藏事件名 } from './工具/隐藏'
-import { 解析尺寸为像素, use屏幕宽度, use桌宠尺寸 } from './工具/尺寸'
-import type { 桌宠像素尺寸 } from './工具/尺寸'
+import { use屏幕宽度, use桌宠尺寸 } from './工具/尺寸'
+import 渲染资源 from './渲染资源'
 import styles from './index.module.less'
 
 // 桌宠配置懒加载：显式登记拥有专属桌宠的心法。
@@ -44,6 +43,9 @@ const 桌宠配置加载器: Record<string, () => Promise<{ default: 桌宠配�
   太玄经: () => import('./心法/太玄经/配置'),
   孤锋诀: () => import('./心法/孤锋诀/配置'),
   毒经: () => import('./心法/毒经/配置'),
+  花间游: () => import('./心法/花间游/配置'),
+  焚影圣诀: () => import('./心法/焚影圣诀/配置'),
+  山海心诀: () => import('./心法/山海心诀/配置'),
 }
 
 // 默认桌宠：未配置专属桌宠的心法统一使用
@@ -69,66 +71,6 @@ const 获取显示资源 = (配置: 桌宠配置, 状态: 桌宠状态, 拖拽�
   return 配置.待机资源
 }
 
-const 序列帧图片: React.FC<{ 资源: 桌宠资源; 尺寸: 桌宠像素尺寸 }> = ({ 资源, 尺寸 }) => {
-  const { 帧 = [], 间隔毫秒 = 100, 循环 = true } = 资源.序列帧 || {}
-  const [当前帧, 设置当前帧] = useState(0)
-
-  useEffect(() => {
-    if (帧.length <= 1) {
-      return
-    }
-    const 定时器 = setInterval(() => {
-      设置当前帧((上一帧) => {
-        if (上一帧 + 1 >= 帧.length) {
-          return 循环 ? 0 : 上一帧
-        }
-        return 上一帧 + 1
-      })
-    }, 间隔毫秒)
-    return () => clearInterval(定时器)
-  }, [帧, 间隔毫秒, 循环])
-
-  if (!帧.length) {
-    return null
-  }
-  return (
-    <img
-      src={帧[当前帧]}
-      className={styles.petImg}
-      width={尺寸.宽}
-      height={尺寸.高}
-      draggable={false}
-      alt='桌宠'
-    />
-  )
-}
-
-const 渲染资源: React.FC<{
-  资源?: 桌宠资源
-  尺寸: 桌宠像素尺寸
-  屏宽: number
-  on加载完成: (资源: 桌宠资源) => void
-}> = ({ 资源, 尺寸, 屏宽, on加载完成 }) => {
-  if (!资源) {
-    return null
-  }
-  const 实际尺寸 = 解析尺寸为像素(资源?.尺寸, 屏宽, 尺寸)
-  if (资源?.类型 === '序列帧') {
-    return <序列帧图片 资源={资源} 尺寸={实际尺寸} />
-  }
-  return (
-    <img
-      src={资源?.资源}
-      onLoad={() => on加载完成(资源)}
-      className={styles.petImg}
-      width={实际尺寸.宽}
-      height={实际尺寸.高}
-      draggable={false}
-      alt='桌宠'
-    />
-  )
-}
-
 interface 桌宠视图参数 {
   配置: 桌宠配置
   名称: string
@@ -145,6 +87,7 @@ const 桌宠视图 = ({ 配置, 名称, 主题色, 切换隐藏 }: 桌宠视图�
 
   const 屏宽 = use屏幕宽度()
   const 基础尺寸 = use桌宠尺寸(屏宽, 配置?.尺寸)
+  const 交互区域 = 配置.交互区域
   const [当前拖拽方向, 设置当前拖拽方向] = useState<拖拽方向>('右')
 
   // 执行行为（弹窗/跳转/自定义）
@@ -170,6 +113,7 @@ const 桌宠视图 = ({ 配置, 名称, 主题色, 切换隐藏 }: 桌宠视图�
     当前状态,
     覆盖资源,
     动画加载完成,
+    动画加载失败,
     气泡数据,
     点击桌宠,
     关闭气泡,
@@ -197,41 +141,47 @@ const 桌宠视图 = ({ 配置, 名称, 主题色, 切换隐藏 }: 桌宠视图�
   const 当前资源 = 覆盖资源 || 获取显示资源(配置, 当前状态, 当前拖拽方向)
   const 尺寸 = use桌宠尺寸(屏宽, 当前资源?.尺寸, 配置?.尺寸)
 
+  const [媒体可用, 设置媒体可用] = useState(false)
+  const 处理媒体就绪 = useCallback(
+    (资源: 桌宠资源, 已播放毫秒 = 0) => {
+      设置媒体可用(true)
+      动画加载完成(资源, 已播放毫秒)
+    },
+    [动画加载完成, 当前状态, 配置, 当前拖拽方向],
+  )
+  useEffect(() => {
+    if (媒体可用 && 当前状态 === '待机') {
+      return 预加载资源组([获取显示资源(配置, '点击交互', 当前拖拽方向)])
+    }
+  }, [媒体可用, 当前状态, 配置, 当前拖拽方向])
+  const 取消拖拽预加载 = useRef<(() => void) | null>(null)
+  useEffect(() => () => 取消拖拽预加载.current?.(), [])
+  const 处理媒体失败 = useCallback(
+    (资源: 桌宠资源) => {
+      设置媒体可用(false)
+      动画加载失败(资源)
+    },
+    [动画加载失败],
+  )
+  const 处理拖拽开始 = useCallback(() => {
+    const 动画 =
+      当前状态 === '点击交互' || 当前状态 === '问答交互' ? 配置.拖拽动画?.问答 : 配置.拖拽动画?.常规
+    取消拖拽预加载.current?.()
+    取消拖拽预加载.current = 预加载资源组(
+      动画 ? [动画.提起, 动画.待机, 动画.放下] : [配置.拖拽方向资源?.左, 配置.拖拽方向资源?.右],
+    )
+    开始拖拽()
+  }, [配置, 当前状态, 开始拖拽])
+
   const { 位置, onPointerDown } = use拖动({
     心法: 名称,
     尺寸: 基础尺寸,
     默认位置: 配置?.默认位置,
-    启用: true,
-    on拖动开始: 开始拖拽,
+    启用: 媒体可用,
+    on拖动开始: 处理拖拽开始,
     on拖动结束: 结束拖拽,
     on拖拽方向变化: 设置当前拖拽方向,
     on点击: 处理点击,
-  })
-
-  // 预加载常用资源
-  useEffect(() => {
-    预加载资源组([
-      获取显示资源(配置, '待机', 当前拖拽方向)?.资源,
-      获取显示资源(配置, '主动交互', 当前拖拽方向)?.资源,
-      获取显示资源(配置, '点击交互', 当前拖拽方向)?.资源,
-      获取显示资源(配置, '问答交互', 当前拖拽方向)?.资源,
-      配置.状态资源?.拖拽中?.资源,
-      配置.状态资源?.点击收尾?.资源,
-      配置.拖拽方向资源?.左?.资源,
-      配置.拖拽方向资源?.右?.资源,
-      ...Object.values(配置.拖拽动画 || {}).flatMap((动画) =>
-        Object.values(动画).map((资源) => 资源.资源),
-      ),
-    ])
-  }, [配置, 当前拖拽方向])
-
-  // 状态切换交叉淡入淡出
-  const transitions = useTransition([{ 状态: 当前状态, 资源: 当前资源 }], {
-    keys: (item) => `${item.状态}-${item.资源?.资源 ?? ''}`,
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: { duration: 配置.拖拽动画 && 覆盖资源 ? 0 : 220 },
   })
 
   const 弹窗内容组件 = useMemo(() => {
@@ -288,7 +238,11 @@ const 桌宠视图 = ({ 配置, 名称, 主题色, 切换隐藏 }: 桌宠视图�
 
   return createPortal(
     <>
-      <div id='Guide_桌宠' className={styles.petContainer} style={{ left: 位置.x, top: 位置.y }}>
+      <div
+        id='Guide_桌宠'
+        className={styles.petContainer}
+        style={{ left: 位置.x, top: 位置.y, pointerEvents: 交互区域 ? 'none' : undefined }}
+      >
         {气泡数据 && (
           <div className={styles.bubbleWrap} style={气泡位置.样式} ref={气泡Ref}>
             <气泡
@@ -318,14 +272,33 @@ const 桌宠视图 = ({ 配置, 名称, 主题色, 切换隐藏 }: 桌宠视图�
         >
           <div
             className={styles.petWrap}
-            style={{ width: 尺寸.宽, height: 尺寸.高 }}
+            style={{
+              width: 尺寸.宽,
+              height: 尺寸.高,
+              pointerEvents: !媒体可用 || 交互区域 ? 'none' : undefined,
+            }}
             onPointerDown={onPointerDown}
           >
-            {transitions((弹簧, { 资源 }) => (
-              <animated.div style={{ ...弹簧, position: 'absolute', inset: 0 }}>
-                <渲染资源 资源={资源} 尺寸={尺寸} 屏宽={屏宽} on加载完成={动画加载完成} />
-              </animated.div>
-            ))}
+            <渲染资源
+              资源={当前资源}
+              激活标识={当前状态}
+              尺寸={尺寸}
+              屏宽={屏宽}
+              on加载完成={处理媒体就绪}
+              on加载失败={处理媒体失败}
+            />
+            {交互区域 && (
+              <div
+                className={styles.交互区域}
+                style={{
+                  pointerEvents: 媒体可用 ? 'auto' : 'none',
+                  top: 交互区域.上 + '%',
+                  right: 交互区域.右 + '%',
+                  bottom: 交互区域.下 + '%',
+                  left: 交互区域.左 + '%',
+                }}
+              />
+            )}
           </div>
         </Dropdown>
       </div>
@@ -354,7 +327,8 @@ const 桌宠 = () => {
   const { modal } = App.useApp()
   const { 名称, 系统配置 = {} as any } = use心法数据()
 
-  const [配置, 设置配置] = useState<桌宠配置 | null>(null)
+  const [已加载配置, 设置配置] = useState<{ 名称: string; 配置: 桌宠配置 | null } | null>(null)
+  const 配置 = 已加载配置?.名称 === 名称 ? 已加载配置.配置 : null
   const [是否隐藏, 设置是否隐藏] = useState(() => {
     try {
       return localStorage.getItem(`${隐藏存储前缀}${名称}`) === '1'
@@ -383,12 +357,12 @@ const 桌宠 = () => {
     加载器()
       .then((模块) => {
         if (!已取消) {
-          设置配置(模块?.default || null)
+          设置配置({ 名称, 配置: 模块.default })
         }
       })
       .catch(() => {
         if (!已取消) {
-          设置配置(null)
+          设置配置({ 名称, 配置: null })
         }
       })
     return () => {
@@ -452,7 +426,7 @@ const 桌宠 = () => {
 
   const 主题色 = 配置?.气泡?.主题色 || 系统配置?.主题色 || '#dca53e'
 
-  return <桌宠视图 配置={配置} 名称={名称} 主题色={主题色} 切换隐藏={切换隐藏} />
+  return <桌宠视图 key={名称} 配置={配置} 名称={名称} 主题色={主题色} 切换隐藏={切换隐藏} />
 }
 
 export default 桌宠

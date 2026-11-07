@@ -1,0 +1,291 @@
+.工具栏 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0px 0 12px;
+
+  strong {
+    font-size: 18px;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.说明 {
+  margin: 6px 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #888;
+}
+
+.加载 {
+  padding: 40px 16px;
+  text-align: center;
+
+  p {
+    margin-top: 18px;
+  }
+}
+
+.小标题 {
+  margin: 20px 0 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.图表内容 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.图表 {
+  flex: 1;
+  min-width: 0;
+  height: 240px;
+}
+
+.图例 {
+  flex: 1;
+  min-width: 0;
+  max-height: 240px;
+  overflow: auto;
+}
+
+.图例项 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.色块 {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.图例名称 {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .图表内容 {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .图表,
+  .图例 {
+    width: 100%;
+    flex: auto;
+  }
+}
+
+.收益条目 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.条目内容 {
+  flex: 1;
+  min-width: 0;
+}
+
+.条目名称 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+
+  :global(.ant-tag) {
+    flex-shrink: 0;
+    margin-inline-end: 0;
+  }
+}
+
+.部位名称 {
+  flex-shrink: 0;
+  color: #1677ff;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.对比按钮 {
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.来源标题,
+.来源说明 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.来源说明 {
+  color: #888;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.特征属性,
+.装备品级 {
+  flex-shrink: 0;
+  color: #888;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.套装标记 {
+  color: #008080;
+}
+
+.精简标记 {
+  color: #f34242;
+}
+
+.特效标记 {
+  color: #d013d0;
+}
+
+.大橙武标记,
+.小橙武标记 {
+  color: #f90;
+}
+
+.加速提示 {
+  color: #cf1322;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.收益数值 {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 4px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+
+  strong {
+    font-size: 16px;
+  }
+
+  span {
+    color: #888;
+    font-size: 14px;
+  }
+}
+
+.表格容器 {
+  overflow-x: auto;
+}
+
+.容量表 {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+
+  th,
+  td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: right;
+    white-space: nowrap;
+
+    &:first-child {
+      text-align: left;
+      min-width: 360px;
+      max-width: 440px;
+    }
+  }
+
+  th {
+    color: #888;
+    font-weight: 400;
+  }
+}
+
+.未折算 {
+  margin-top: 20px;
+
+  :global(.ant-tag) {
+    margin-top: 8px;
+    white-space: normal;
+  }
+}
+
+.效用图 {
+  margin: 20px 0;
+}
+
+.效用图行 {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr) 60px;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 0;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+
+  > :last-child {
+    text-align: right;
+  }
+}
+
+.效用刻度 {
+  position: relative;
+  height: 18px;
+  color: #ad6800;
+
+  span {
+    position: absolute;
+    white-space: nowrap;
+    transform: translateX(-50%);
+  }
+}
+
+.效用轨道 {
+  position: relative;
+  height: 12px;
+  border-radius: 3px;
+  background: #f5f5f5;
+}
+
+.效用条 {
+  position: absolute;
+  height: 100%;
+  border-radius: 3px;
+}
+
+.效用平均线,
+.效用零线 {
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  border-left: 1px dashed #d48806;
+}
+
+.效用零线 {
+  border-left: 1px solid #d9d9d9;
+}
+
+.未比较条目 {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}

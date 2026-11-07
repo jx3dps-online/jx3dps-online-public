@@ -4,7 +4,7 @@ import 心法数据 from '@/数据/静态数据/心法数据.json'
 import { 读取收藏门派, 写入收藏门派 } from '@/工具函数/收藏心法'
 import styles from './index.module.less'
 
-const 所有心法 = Object.values(心法数据).filter((心法: any) => !心法?.邀请使用)
+const 所有心法 = Object.values(心法数据).filter((心法: any) => !心法?.暂时下架)
 
 function 心法收藏(props: { open?: boolean }) {
   const { open } = props

@@ -21,11 +21,11 @@ import classNames from 'classnames'
 import { 属性简写枚举 } from '@/@types/枚举'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { 属性类型 } from '@/@types/属性'
-import { 品级筛选范围, 赛季最高品级 } from '@/数据/常量/装备常量'
+import { 品级筛选范围, 赛季最高品级, 试炼装备名称匹配 } from '@/数据/常量/装备常量'
 
 const 英雄品 = 品级筛选范围.英雄
 const 普通品 = 品级筛选范围.普通
-const 类型 = ['散件', '精简', '无修', '橙武']
+const 类型 = ['散件', '精简', '无观', '橙武']
 
 const 装备速查 = () => {
   const { 装备数据 } = use心法数据()
@@ -72,8 +72,8 @@ const 装备速查 = () => {
         }
       })
       .filter((item) => {
-        if (item?.装备名称?.includes('无修')) {
-          return values?.类型?.includes('无修')
+        if (试炼装备名称匹配.test(item.装备名称)) {
+          return values?.类型?.includes('无观')
         } else if (item?.装备类型 === 装备类型枚举.副本精简) {
           return values?.类型?.includes('精简')
         } else if (item?.装备类型 === 装备类型枚举.橙武) {

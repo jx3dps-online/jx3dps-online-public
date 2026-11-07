@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
-import { Alert, Button, message, Modal, Space, Tooltip } from 'antd'
+import { Alert, Button, Dropdown, message, Modal, Space, Tooltip } from 'antd'
 import {
+  DownOutlined,
   FileTextOutlined,
   UndoOutlined,
   RedoOutlined,
@@ -14,6 +15,7 @@ import styles from './index.module.less'
 export default function 稿件操作({
   新建,
   导入,
+  导入现有攻略,
   导出,
   保存,
   保存状态,
@@ -24,6 +26,7 @@ export default function 稿件操作({
 }: {
   新建: () => void
   导入: (文件: File) => Promise<void>
+  导入现有攻略: () => void
   导出: () => void
   保存: (覆盖?: boolean) => void
   保存状态: string
@@ -54,9 +57,23 @@ export default function 稿件操作({
             <Button icon={<RedoOutlined />} disabled={!可重做} onClick={() => 撤销重做(true)} />
           </Tooltip>
           <Button onClick={() => 新建()}>新建</Button>
-          <Button icon={<UploadOutlined />} onClick={() => 文件.current?.click()}>
-            导入
-          </Button>
+          <Dropdown
+            trigger={['click']}
+            menu={{
+              items: [
+                { key: 'file', label: '从文件导入（JSON 稿件 / TSV 表格）' },
+                { key: 'guide', label: '导入现有攻略' },
+              ],
+              onClick: ({ key }) => {
+                if (key === 'file') 文件.current?.click()
+                else 导入现有攻略()
+              },
+            }}
+          >
+            <Button icon={<UploadOutlined />}>
+              导入 <DownOutlined />
+            </Button>
+          </Dropdown>
           <Button type='primary' icon={<DownloadOutlined />} onClick={() => 导出()}>
             导出稿件
           </Button>
@@ -66,7 +83,7 @@ export default function 稿件操作({
         hidden
         ref={文件}
         type='file'
-        accept='.json,application/json'
+        accept='.json,.tsv,.txt,application/json,text/tab-separated-values,text/plain'
         onChange={(事件) => {
           const 选中 = 事件.target.files?.[0]
           事件.target.value = ''

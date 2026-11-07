@@ -1,24 +1,62 @@
-import type { 桌宠配置 as 桌宠配置类型 } from '@/桌宠/interface'
+import type { 桌宠资源, 桌宠配置 as 桌宠配置类型 } from '@/桌宠/interface'
 import { 太玄经问题集 } from './问题集'
 
-const 常规提起: string = 'https://cdn.arkwish.com/jx3dps/pet/txj/mojingtiqi_qiehuan.GIF'
-const 常规提起待机: string = 'https://cdn.arkwish.com/jx3dps/pet/txj/mojingtiqi_daiji.GIF'
-const 常规放下: string = 'https://cdn.arkwish.com/jx3dps/pet/txj/changguifangxia.GIF'
-const 问答提起: string = 'https://cdn.arkwish.com/jx3dps/pet/txj/wendatiqi.GIF'
-const 问答提起待机: string = 'https://cdn.arkwish.com/jx3dps/pet/txj/wendatiqidaiji.GIF'
-const 问答放下: string = 'https://cdn.arkwish.com/jx3dps/pet/txj/wendafangxia.GIF'
+const 常规提起: 桌宠资源 = {
+  资源: 'http://to0dscbif.hn-bkt.clouddn.com/%E5%B8%B8%E8%A7%84%E6%8F%90%E8%B5%B7.GIF',
+  类型: 'gif',
+  循环: false,
+}
+const 常规提起待机: 桌宠资源 = {
+  资源: 'http://to0dscbif.hn-bkt.clouddn.com/%E5%B8%B8%E8%A7%84%E6%8F%90%E8%B5%B7%E5%BE%85%E6%9C%BA.GIF',
+  类型: 'gif',
+  循环: true,
+}
+const 常规放下: 桌宠资源 = {
+  资源: 'http://to0dscbif.hn-bkt.clouddn.com/%E5%B8%B8%E8%A7%84%E6%94%BE%E4%B8%8B.GIF',
+  类型: 'gif',
+  循环: true,
+}
+const 问答提起: 桌宠资源 = {
+  资源: 'http://to0dscbif.hn-bkt.clouddn.com/%E9%97%AE%E7%AD%94%E6%8F%90%E8%B5%B7.GIF',
+  类型: 'gif',
+  循环: false,
+}
+const 问答提起待机: 桌宠资源 = {
+  资源: 'http://to0dscbif.hn-bkt.clouddn.com/%E9%97%AE%E7%AD%94%E6%8F%90%E8%B5%B7%E5%BE%85%E6%9C%BA.GIF',
+  类型: 'gif',
+  循环: true,
+}
+const 问答放下: 桌宠资源 = {
+  资源: 'http://to0dscbif.hn-bkt.clouddn.com/%E9%97%AE%E7%AD%94%E6%94%BE%E4%B8%8B.GIF',
+  类型: 'gif',
+  循环: true,
+}
 
-const 常规待机 = 'https://cdn.arkwish.com/jx3dps/pet/txj/%E5%B8%B8%E8%A7%84%E5%BE%85%E6%9C%BA.gif'
-const 常规切换问答衔接动画 =
-  'https://cdn.arkwish.com/jx3dps/pet/txj/%E5%B8%B8%E8%A7%84%E5%88%87%E6%8D%A2%E9%97%AE%E7%AD%94%E8%A1%94%E6%8E%A5%E5%8A%A8%E7%94%BB.gif'
-const 问答待机 = 'https://cdn.arkwish.com/jx3dps/pet/txj/%E9%97%AE%E7%AD%94%E5%BE%85%E6%9C%BA.gif'
-const 问答切换常规衔接动画 =
-  'https://cdn.arkwish.com/jx3dps/pet/txj/%E9%97%AE%E7%AD%94%E5%88%87%E6%8D%A2%E5%B8%B8%E8%A7%84%E8%A1%94%E6%8E%A5%E5%8A%A8%E7%94%BB.gif'
+const 常规待机: 桌宠资源 = {
+  资源: 'http://to0dscbif.hn-bkt.clouddn.com/%E5%B8%B8%E8%A7%84%E5%BE%85%E6%9C%BA.gif',
+  类型: 'gif',
+  循环: true,
+}
+const 常规切换问答衔接动画: 桌宠资源 = {
+  资源: 'http://to0dscbif.hn-bkt.clouddn.com/%E5%B8%B8%E8%A7%84%E5%88%87%E6%8D%A2%E9%97%AE%E7%AD%94%E8%A1%94%E6%8E%A5%E5%8A%A8%E7%94%BB.gif',
+  类型: 'gif',
+  循环: true,
+}
+const 问答待机: 桌宠资源 = {
+  资源: 'http://to0dscbif.hn-bkt.clouddn.com/%E9%97%AE%E7%AD%94%E5%BE%85%E6%9C%BA.gif',
+  类型: 'gif',
+  循环: true,
+}
+const 问答切换常规衔接动画: 桌宠资源 = {
+  资源: 'http://to0dscbif.hn-bkt.clouddn.com/%E9%97%AE%E7%AD%94%E5%88%87%E6%8D%A2%E5%B8%B8%E8%A7%84%E8%A1%94%E6%8E%A5%E5%8A%A8%E7%94%BB.gif',
+  类型: 'gif',
+  循环: true,
+}
 
 // 素材实测时长（GIF 帧延迟累加）：
 // - 衔接动画 ×2：1800ms（9 帧 × 200ms）
 // - 待机动画 ×2：1400ms（7 帧，天然循环）
-// 素材均为 2048×2048 母版，展示按 尺寸 等比缩放。
+// 当前素材为 2048×2048，保留原帧时长，展示按 尺寸 等比缩放。
 //
 // 注意：GIF 播满一轮后浏览器会自动从头再循环。状态切换定时器若与 GIF 总时长
 // 相同，定时器的毫秒级抖动会让循环开头多露出 1~2 帧（动作出现「重播一小段」）。
@@ -43,14 +81,13 @@ const 桌宠配置: 桌宠配置类型 = {
   名称: '太玄经',
   启用: true,
 
-  待机资源: { 资源: 常规待机, 类型: 'gif' },
+  待机资源: 常规待机,
 
   拖拽动画: {
     常规: {
-      提起: { 资源: 常规提起, 类型: 'gif', 单次时长毫秒: 1000 - 衔接动画单帧毫秒 },
+      提起: { ...常规提起, 单次时长毫秒: 1000 - 衔接动画单帧毫秒 },
       待机: {
-        资源: 常规提起待机,
-        类型: 'gif',
+        ...常规提起待机,
         消息: '大胆！放开本王！',
         延迟消息: [
           { 等待毫秒: 4000, 文本: '放本王下来！你这个……循环都打不明白的凡人！' },
@@ -60,14 +97,13 @@ const 桌宠配置: 桌宠配置类型 = {
           { 等待毫秒: 35000, 文本: '天天不干正事儿！你手没提酸吗？！' },
         ],
       },
-      放下: { 资源: 常规放下, 类型: 'gif', 单次时长毫秒: 2000 - 衔接动画单帧毫秒 },
-      恢复: { 资源: 常规待机, 类型: 'gif' },
+      放下: { ...常规放下, 单次时长毫秒: 2000 - 衔接动画单帧毫秒 },
+      恢复: 常规待机,
     },
     问答: {
-      提起: { 资源: 问答提起, 类型: 'gif', 单次时长毫秒: 800 - 衔接动画单帧毫秒 },
+      提起: { ...问答提起, 单次时长毫秒: 800 - 衔接动画单帧毫秒 },
       待机: {
-        资源: 问答提起待机,
-        类型: 'gif',
+        ...问答提起待机,
         消息: '大胆！放开本王！',
         延迟消息: [
           { 等待毫秒: 4000, 文本: '凡人！本王好心允许你发问！你就这样对待本王！' },
@@ -77,14 +113,14 @@ const 桌宠配置: 桌宠配置类型 = {
           { 等待毫秒: 35000, 文本: '本王腿都蹬累了，你还有耐心啊？' },
         ],
       },
-      放下: { 资源: 问答放下, 类型: 'gif', 单次时长毫秒: 1000 - 衔接动画单帧毫秒 },
-      恢复: { 资源: 问答待机, 类型: 'gif' },
+      放下: { ...问答放下, 单次时长毫秒: 1000 - 衔接动画单帧毫秒 },
+      恢复: 问答待机,
     },
   },
 
   状态资源: {
     点击交互: {
-      资源: 常规切换问答衔接动画,
+      资源: 常规切换问答衔接动画.资源,
       类型: '序列帧',
       序列帧: {
         帧: [常规切换问答衔接动画, 问答待机],
@@ -92,10 +128,9 @@ const 桌宠配置: 桌宠配置类型 = {
         循环: false,
       },
     },
-    问答交互: { 资源: 问答待机, 类型: 'gif' },
+    问答交互: 问答待机,
     点击收尾: {
-      资源: 问答切换常规衔接动画,
-      类型: 'gif',
+      ...问答切换常规衔接动画,
       单次时长毫秒: 衔接动画截断毫秒,
     },
   },

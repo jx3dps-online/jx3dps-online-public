@@ -3,7 +3,7 @@ import React from 'react'
 import { Tooltip } from 'antd'
 import type { 登阶进度属性 } from '../类型'
 import './血誓.less'
-const 白狼河北 = `${GLOBAL_CDN_PREFIX}/20261025/bailanghebei-jindutiao.png`
+const 白狼河北 = `${GLOBAL_CDN_PREFIX}/bailanghebei-jindutiao-0620ffa9bd.webp`
 
 /** 五阶段：0 霜刃初开；25/50/75 语出「血勇之怒，怒而面赤；脉勇之怒，怒而面青；骨勇之怒，怒而面白」；100 神勇之怒，怒而色不变。 */
 const 阶段文案 = [

@@ -98,6 +98,13 @@ const 结果弹窗 = (props: 结果弹窗类型) => {
       const 部位名: string = 装备位置部位枚举[部位索引]
       const 大附魔键 = 大附魔部位枚举[部位名]
       const 子项: 变更子项[] = []
+      if (有变更('精炼', 部位索引)) {
+        子项.push({
+          类型名: '精炼',
+          旧: String(初始表单值?.[部位索引]?.当前精炼等级 ?? 0),
+          新: String(最优表单值?.[部位索引]?.当前精炼等级 ?? 0),
+        })
+      }
       if (有变更('附魔', 部位索引)) {
         子项.push({
           类型名: '小附魔',
@@ -158,6 +165,7 @@ const 结果弹窗 = (props: 结果弹窗类型) => {
   return (
     <Modal
       title='全局寻优结果'
+      maskClosable={false}
       open={open}
       onCancel={onCancel}
       onOk={onApply}

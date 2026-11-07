@@ -5,6 +5,8 @@ import AddCycleSkillBtn from './AddCycleSkillBtn'
 import { 快捷添加数据, 快捷添加数据类型 } from './快捷添加'
 import './index.css'
 import { 获取实际技能数据 } from '../../../通用/通用函数'
+import { useAppSelector } from '@/hooks'
+import { use心法数据 } from '@/心法模块/心法上下文'
 
 interface AddCycleSkillBtnsProps {
   新增循环技能: (data: 循环基础技能数据类型) => void
@@ -19,6 +21,12 @@ interface AddCycleSkillBtnsProps {
 }
 
 function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
+  const 武器ID = useAppSelector(
+    (state) => state.data.装备信息.装备列表.find((装备) => 装备.装备部位 === '武器')?.id,
+  )
+  const { 装备数据 } = use心法数据()
+  const 已装备大扇子 =
+    装备数据.武器.find((装备) => 装备.id === 武器ID)?.装备名称 === '血影天宇舞姬'
   const {
     新增循环技能,
     批量新增循环,
@@ -114,6 +122,36 @@ function AddCycleSkillBtns(props: AddCycleSkillBtnsProps) {
             })}
         </Space>
       </div>
+      {已装备大扇子 && (
+        <div className={'cycle-simulator-setting-item'}>
+          <span className={'ztg-cycle-btn-type'}>大扇子</span>
+          <Space className={'cycle-simulator-setting-skills'} size={[8, 16]} wrap>
+            {模拟信息?.技能基础数据
+              ?.filter((item) => !item?.创建循环不可选 && item?.技能类型 === '大扇子')
+              .filter((item) => {
+                if (item.技能名称 === '退出大扇子') return true
+                if (模拟信息.当前自身buff列表['大扇子·P2']?.当前层数) {
+                  return item.大扇子阶段 === 'P2'
+                }
+                if (模拟信息.当前自身buff列表.大扇子?.当前层数) {
+                  return item.大扇子阶段 === 'P1'
+                }
+                return item.技能名称 === '使用大扇子'
+              })
+              .map((item) => (
+                <AddCycleSkillBtn
+                  onClick={() => 新增循环技能(item)}
+                  key={item.技能名称}
+                  className={'ztg-cycle-simulator-setting-btn'}
+                  完整循环={处理循环结果对象?.完整循环 || []}
+                  技能={item}
+                  模拟信息={模拟信息}
+                  插入技能={插入技能}
+                />
+              ))}
+          </Space>
+        </div>
+      )}
       <div className={'cycle-simulator-setting-item'}>
         <span className={'ztg-cycle-btn-type'}>其他</span>
         <Space className={'cycle-simulator-setting-skills'} size={[8, 16]} wrap>

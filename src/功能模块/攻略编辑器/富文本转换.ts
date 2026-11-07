@@ -3,8 +3,18 @@ import type { 内容节点 } from './类型'
 export function 安全地址(值: unknown): string {
   const 地址 = String(值 || '').trim()
   if (!地址) return ''
-  const 解析 = new URL(地址)
-  if (!['http:', 'https:'].includes(解析.protocol)) throw new Error('地址仅支持 http 或 https')
+  // 页内锚点（#章节）在攻略里很常见，new URL 解析相对地址会直接抛错，这里放行
+  if (地址.startsWith('#')) return 地址
+  // 位图 data URI：站内部分攻略由生成器把图片内联进源码，导入时会带出这种地址。
+  // 只放行 png/jpeg/gif/webp，不放 svg（svg 里能塞脚本）。
+  if (/^data:image\/(?:png|jpe?g|gif|webp);base64,[a-z0-9+/=\s]+$/i.test(地址)) return 地址
+  let 解析: URL
+  try {
+    解析 = new URL(地址)
+  } catch {
+    throw new Error('地址需为 http/https 链接、# 开头的页内锚点，或 base64 位图')
+  }
+  if (!['http:', 'https:'].includes(解析.protocol)) throw new Error('地址仅支持 http / https')
   return 解析.href
 }
 export function 视频地址(类型: string, 值: unknown): string {
@@ -47,7 +57,7 @@ const 禁止标签 = new Set([
 ])
 export function 富文本节点(内容: unknown): (内容节点 | string)[] {
   const 文本 = String(内容 || '')
-  if (文本.length > 102400) throw new Error('单个富文本字段超过 100 KiB')
+  // 富文本字段不再限制单字段体积；稿件整体仍受 2 MiB 上限保护（见 草稿.保存 / 导入文档）
   const 文档 = new DOMParser().parseFromString(文本, 'text/html')
   const 转换 = (节点: Node, 深度: number): (内容节点 | string)[] => {
     if (深度 > 50) throw new Error('富文本嵌套过深')

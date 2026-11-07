@@ -1,11 +1,11 @@
 import { Space } from 'antd'
 import { 配装, 图片 } from '../../../components'
-import 十人基础 from './配装数据/10人基础.json'
-import 普通配装 from './配装数据/普通配装.json'
-import 英雄平民 from './配装数据/英雄平民.json'
-import 普通烛微 from './配装数据/普通烛微.json'
-import 橙武配装 from '@/心法模块/心法/孤锋诀/推荐配装/橙武.json'
-import 紫武配装 from '@/心法模块/心法/孤锋诀/推荐配装/紫武.json'
+import 十人基础 from '@/心法模块/心法/孤锋诀/推荐配装/10人基础.json'
+import 普通配装 from '@/心法模块/心法/孤锋诀/推荐配装/普通配装.json'
+import 英雄平民 from '@/心法模块/心法/孤锋诀/推荐配装/英雄平民.json'
+import 普通烛微 from '@/心法模块/心法/孤锋诀/推荐配装/普通烛微.json'
+import 橙武配装 from '@/心法模块/心法/孤锋诀/推荐配装/踏天_橙武.json'
+import 紫武配装 from '@/心法模块/心法/孤锋诀/推荐配装/踏天_紫武.json'
 
 export default function 推荐配装() {
   return (

@@ -4,8 +4,8 @@ import { Tooltip } from 'antd'
 import type { 登阶进度属性 } from '../类型'
 import 霜华 from './霜华'
 import 样式 from './双兵.module.less'
-const 素剑 = `${GLOBAL_CDN_PREFIX}/20261025/liexin-sujian.png`
-const 成品 = `${GLOBAL_CDN_PREFIX}/20261025/liexin-chengpin.png`
+const 素剑 = `${GLOBAL_CDN_PREFIX}/liexin-sujian-c6426e240f.webp`
+const 成品 = `${GLOBAL_CDN_PREFIX}/liexin-chengpin-c006f64804.webp`
 
 const 阶段名称 = ['素剑藏锋', '霜光初映', '剑舞凝霜', '锋冽心明', '此愿已成']
 

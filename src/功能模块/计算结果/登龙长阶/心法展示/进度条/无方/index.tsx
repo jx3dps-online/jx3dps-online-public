@@ -3,8 +3,8 @@ import { useId } from 'react'
 import { Tooltip } from 'antd'
 import type { 登阶进度属性 } from '../类型'
 import 样式 from './卷轴.module.less'
-const 卷轴 = `${GLOBAL_CDN_PREFIX}/20261025/xinghe-juanzhou.png`
-const 双轴 = `${GLOBAL_CDN_PREFIX}/20261025/juanzhou-shuangzhou.png`
+const 卷轴 = `${GLOBAL_CDN_PREFIX}/xinghe-juanzhou-b232360e3b.webp`
+const 双轴 = `${GLOBAL_CDN_PREFIX}/juanzhou-shuangzhou-c95d89deb2.webp`
 
 // 按 2048×768 原图标定各阶段的卷面上、下连接点；轴与切口共用这组坐标。
 const 连接点 = [

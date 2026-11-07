@@ -3,7 +3,7 @@ import { useId } from 'react'
 import type { CSSProperties } from 'react'
 import 样式 from './蛊雾.module.less'
 
-const 成品 = `${GLOBAL_CDN_PREFIX}/20261029/tuigu-chengpin.png`
+const 成品 = `${GLOBAL_CDN_PREFIX}/tuigu-chengpin-727478f9b8.webp`
 
 const 光尘位置 = Array.from({ length: 28 }, (_, 序号) => [
   80 + ((序号 * 137) % 850),

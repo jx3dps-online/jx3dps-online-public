@@ -24,6 +24,7 @@ import {
 import 简写映射 from '@/心法模块/简写映射.json'
 import { 确保心法数据已加载 } from '@/数据/数据工具/获取当前数据'
 import type { 数据类型 } from '@/@types/数据'
+import type { 攻略文档 } from '@/功能模块/攻略编辑器/类型'
 import { 生成id } from '@/工具函数/本地存储'
 import { 组件目录, 新建块 } from '@/功能模块/攻略编辑器/组件定义'
 import { 导入文档, 新建文档, 心法列表 } from '@/功能模块/攻略编辑器/文档'
@@ -33,6 +34,8 @@ import 稿件设置 from '@/功能模块/攻略编辑器/稿件设置'
 import 导出面板 from '@/功能模块/攻略编辑器/导出面板'
 import 预览面板 from '@/功能模块/攻略编辑器/预览面板'
 import 稿件操作 from '@/功能模块/攻略编辑器/稿件操作'
+import 导入面板 from '@/功能模块/攻略编辑器/导入面板'
+import { 解析TSV, 统计TSV } from '@/功能模块/攻略编辑器/tsv'
 import 内容导航 from '@/功能模块/攻略编辑器/内容导航'
 import styles from '@/功能模块/攻略编辑器/index.module.less'
 
@@ -45,6 +48,7 @@ export default function 攻略编辑器() {
   const [活动块, 设置活动块] = useState(文档.blocks[0]?.id)
   const [设置打开, 设置设置打开] = useState(false)
   const [导出打开, 设置导出打开] = useState(false)
+  const [导入面板打开, 设置导入面板打开] = useState(false)
   const [组件库, 设置组件库] = useState(false)
   const [目录显示, 设置目录显示] = useState(true)
   const [窄屏页, 设置窄屏页] = useState('编辑')
@@ -124,6 +128,21 @@ export default function 攻略编辑器() {
   const 导入 = async (输入: File) => {
     try {
       if (输入.size > 2 * 1024 * 1024) throw new Error('稿件超过 2 MiB')
+      // TSV：按表格数据追加到当前稿件末尾，不动已有内容
+      if (/\.tsv$/i.test(输入.name) || /\.txt$/i.test(输入.name)) {
+        const 块列表 = 解析TSV(await 输入.text())
+        if (文档.blocks.length + 块列表.length > 500)
+          throw new Error(
+            `追加后超过 500 个内容块（当前 ${文档.blocks.length}，新增 ${块列表.length}）`,
+          )
+        const 统计 = 统计TSV(块列表)
+        修改({ ...文档, blocks: [...文档.blocks, ...块列表] })
+        设置活动块(块列表[0].id)
+        message.success(
+          `已追加 ${统计.表格数} 张表格 / ${统计.列表数} 个列表，共 ${统计.行数} 行（可撤销）`,
+        )
+        return
+      }
       const 内容 = 导入文档(await 输入.text(), true)
       确认替换(() => {
         修改(内容)
@@ -133,6 +152,13 @@ export default function 攻略编辑器() {
     } catch (异常) {
       message.error((异常 as Error).message)
     }
+  }
+  const 应用预置攻略 = (内容: 攻略文档) => {
+    确认替换(() => {
+      修改(内容)
+      设置活动块(内容.blocks[0]?.id)
+      message.success(`已导入《${内容.标题 || 内容.攻略名}》，可继续编辑`)
+    })
   }
   const 主题色 = 数据?.系统配置.主题色 || '#5d607b'
   return (
@@ -150,6 +176,7 @@ export default function 攻略编辑器() {
         <稿件操作
           新建={() => 确认替换(() => 修改(新建文档(文档.心法)))}
           导入={导入}
+          导入现有攻略={() => 设置导入面板打开(true)}
           导出={() => 设置导出打开(true)}
           保存={保存}
           保存状态={保存状态}
@@ -312,6 +339,12 @@ export default function 攻略编辑器() {
         </Drawer>
 
         {导出打开 && <导出面板 文档={文档} 关闭={() => 设置导出打开(false)} />}
+        <导入面板
+          打开={导入面板打开}
+          关闭={() => 设置导入面板打开(false)}
+          选择={应用预置攻略}
+          当前心法={文档.心法}
+        />
       </div>
     </ConfigProvider>
   )

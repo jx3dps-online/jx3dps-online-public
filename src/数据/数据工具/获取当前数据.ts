@@ -77,10 +77,10 @@ export const 确保心法数据已加载 = (心法名: string): Promise<数据�
 }
 
 // web 初始化入口：按心法名加载 → 设置当前心法 + 外观
-export const 初始化心法数据 = async (心法名: string) => {
+export const 初始化心法数据 = async (心法名: string, 更新页面外观 = true) => {
   const 数据 = await 确保心法数据已加载(心法名)
   当前心法名 = 心法名
-  应用心法外观(数据)
+  if (更新页面外观) 应用心法外观(数据)
   return 数据
 }
 

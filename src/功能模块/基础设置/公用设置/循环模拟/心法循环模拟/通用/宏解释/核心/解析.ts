@@ -1,5 +1,6 @@
 import type { 比较符, 宏条件, 宏配置, 宏语句, 心法说明 } from '../类型'
 import { 获取增益能力 } from './条件能力'
+import { 校验指定目标 } from './判定'
 
 const 比较式 = /^(.+?)(>=|<=|~=|=|>|<)([+-]?(?:\d+(?:\.\d*)?|\.\d+))$/
 const 资源比较式 = /^(.+?)(>=|<=|~=|=|>|<)([a-z_]+)$/
@@ -79,15 +80,19 @@ const 解析原子 = (文本: string, 说明: 心法说明): 宏条件 => {
       取反: 奇穴[1] === 'noskill',
     }
   }
-  const 增益 = 文本.match(/^(bufftime|tbufftime|buff|tbuff|nobuff|tnobuff):(.+)$/)
+  const 增益 = 文本.match(
+    /^(buffidtime|buffid|nobuffid|bufftime|tbufftime|buff|tbuff|nobuff|tnobuff):(.+)$/,
+  )
   if (增益) {
     const 前缀 = 增益[1]
     const 带比较 = 增益[2].match(比较式)
     const 对象 = 前缀.startsWith('t') ? '目标' : '自身'
     const 输入 = 带比较?.[1] || 增益[2]
+    const 按ID = 前缀.includes('id')
+    if (按ID && !/^\d+$/.test(输入)) throw new Error(前缀 + ' 只接受数字 Buff ID')
     const 能力 = 获取增益能力(说明, 对象, 输入)
-    const 同ID名称 = 说明.增益ID?.[能力.名称]?.[对象] ? 能力.实体 : undefined
-    const 名称 = 能力.名称
+    const 同ID名称 = 按ID || 说明.增益ID?.[能力.名称]?.[对象] ? 能力.实体 : undefined
+    const 名称 = 按ID ? String(Number(输入)) : 能力.名称
     const 时间 = 前缀.endsWith('time')
     if (时间 && 能力.无计时)
       throw new Error('原模拟器未提供增益倒计时：' + 输入 + '；请使用存在或层数条件')
@@ -104,9 +109,30 @@ const 解析原子 = (文本: string, 说明: 心法说明): 宏条件 => {
       对象,
       名称,
       ...(同ID名称 ? { 同ID名称 } : {}),
+      ...(按ID ? { 按ID: true } : {}),
       时间,
       取反,
       比较: (带比较?.[2] || '>') as 比较符,
+      值,
+    }
+  }
+  if (文本.startsWith('cd:')) {
+    const 总冷却 = 文本.match(
+      /^cd:(.+?)(>=|<=|~=|=|>|<)([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)$/,
+    )
+    if (!总冷却) throw new Error('cd 条件需要技能、比较符和剩余秒数，例如 cd:盾猛<3')
+    const 值 = Number(总冷却[3])
+    if (!Number.isFinite(值) || 值 < 0) throw new Error('cd 比较秒数必须有限且非负')
+    return {
+      类型: '技能',
+      名称: 绑定名称(
+        总冷却[1],
+        [...说明.技能, ...(说明.调息查询技能 || [])],
+        说明.映射.技能,
+        '技能',
+      ),
+      字段: '总冷却帧',
+      比较: 总冷却[2] as 比较符,
       值,
     }
   }
@@ -171,8 +197,11 @@ export const 解析宏 = (文本: string, 说明: 心法说明): 宏配置 => {
         体态 = 名称 ? 说明.体态别名[名称] : undefined
         return
       }
-      const 命令 = 文本.match(/^\/(cast|fcast|mcast)\s+(.+)$/)
-      if (!命令) throw new Error('格式应为 /cast、/fcast [条件] 技能名或 /mcast [条件] 宏名')
+      const 命令 = 文本.match(/^\/(casttoself|casttotarget|cast|fcast|mcast)\s+(.+)$/)
+      if (!命令)
+        throw new Error(
+          '格式应为 /cast、/fcast、/casttoself、/casttotarget [条件] 技能名或 /mcast [条件] 宏名',
+        )
       if (命令[1] !== 'mcast' && /&amp;|&lt;|&gt;/.test(文本))
         throw new Error('文本含 HTML 转义，请粘贴纯文本宏')
       let 技能 = 命令[2].trim()
@@ -206,10 +235,14 @@ export const 解析宏 = (文本: string, 说明: 心法说明): 宏配置 => {
         语句.push({ 行号: 索引 + 1, 命令: 'mcast', 宏: 技能, 条件 })
       } else {
         const 名称 = 绑定名称(技能, 说明.技能, 说明.映射.技能, '动作技能')
+        const 目标 =
+          命令[1] === 'casttoself' ? '自身' : 命令[1] === 'casttotarget' ? '目标' : undefined
+        校验指定目标(名称, 目标, 说明)
         语句.push({
           行号: 索引 + 1,
           命令: 命令[1] === 'fcast' && 说明.支持打断 !== false ? 'fcast' : 'cast',
           技能: 名称,
+          ...(目标 ? { 目标 } : {}),
           条件,
         })
       }

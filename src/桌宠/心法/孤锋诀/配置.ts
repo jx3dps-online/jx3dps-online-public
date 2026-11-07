@@ -1,25 +1,52 @@
+import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 /**
  * @name 孤锋诀 - 桌宠配置
  */
-import type { 桌宠配置 as 桌宠配置类型 } from '@/桌宠/interface'
+import type { 桌宠资源, 桌宠配置 as 桌宠配置类型 } from '@/桌宠/interface'
 
-const 待机 = 'https://cdn.arkwish.com/jx3dps/pet/gfj/dz_1.gif'
-const 点击交互 = 'https://cdn.arkwish.com/jx3dps/pet/gfj/dz_2.gif'
-const 拖拽 = 'https://cdn.arkwish.com/jx3dps/pet/gfj/dz_3.gif'
-const 问答交互 = 'https://cdn.arkwish.com/jx3dps/pet/gfj/dz_4.gif'
-const 主动交互 = 'https://cdn.arkwish.com/jx3dps/pet/gfj/dz_5.gif'
+const 待机: 桌宠资源 = {
+  资源: `${GLOBAL_CDN_PREFIX}/dz_1.webm`,
+  类型: 'webm',
+  循环: true,
+  兼容资源: { 资源: `${GLOBAL_CDN_PREFIX}/dz_1.gif`, 类型: 'gif' },
+}
+const 点击交互: 桌宠资源 = {
+  资源: `${GLOBAL_CDN_PREFIX}/dz_2.webm`,
+  类型: 'webm',
+  循环: true,
+  兼容资源: { 资源: `${GLOBAL_CDN_PREFIX}/dz_2.gif`, 类型: 'gif' },
+}
+const 拖拽: 桌宠资源 = {
+  资源: `${GLOBAL_CDN_PREFIX}/dz_3.webm`,
+  类型: 'webm',
+  循环: true,
+  兼容资源: { 资源: `${GLOBAL_CDN_PREFIX}/dz_3.gif`, 类型: 'gif' },
+}
+const 问答交互: 桌宠资源 = {
+  资源: `${GLOBAL_CDN_PREFIX}/dz_4.webm`,
+  类型: 'webm',
+  循环: true,
+  兼容资源: { 资源: `${GLOBAL_CDN_PREFIX}/dz_4.gif`, 类型: 'gif' },
+}
+const 主动交互: 桌宠资源 = {
+  // 资源: `${GLOBAL_CDN_PREFIX}/dz_5.webm`,
+  资源: `${GLOBAL_CDN_PREFIX}/dz_4.webm`,
+  类型: 'webm',
+  循环: true,
+  兼容资源: { 资源: `${GLOBAL_CDN_PREFIX}/dz_4.gif`, 类型: 'gif' },
+}
 
 const 桌宠配置: 桌宠配置类型 = {
   名称: '孤锋诀',
   启用: true,
 
-  待机资源: { 资源: 待机, 类型: 'gif' },
+  待机资源: 待机,
 
   状态资源: {
-    主动交互: { 资源: 主动交互, 类型: 'gif', 单次时长毫秒: 4000 },
-    点击交互: { 资源: 点击交互, 类型: 'gif' },
-    问答交互: { 资源: 问答交互, 类型: 'gif', 单次时长毫秒: 4000 },
-    拖拽中: { 资源: 拖拽, 类型: 'gif' },
+    主动交互: { ...主动交互, 单次时长毫秒: 4000 },
+    点击交互: 点击交互,
+    问答交互: { ...问答交互, 单次时长毫秒: 4000 },
+    拖拽中: 拖拽,
   },
 
   主动交互: {

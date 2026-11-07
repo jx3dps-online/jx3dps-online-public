@@ -69,6 +69,9 @@ export interface 循环数据 {
   多挡位序列?: {
     [key: string]: string[]
   }
+  多挡位序列配置?: Record<string, 循环序列配置>
+  模拟器配置?: Record<string, any>
+  武器类型?: '橙武' | '紫武'
   /**
    * @name 起手Buff配置
    */
@@ -81,6 +84,7 @@ export interface 循环数据 {
 }
 
 export interface 循环详情 {
+  技能序列名称?: string
   /**
    * @name 覆盖率
    * 用作循环部分数据的覆盖率
@@ -121,6 +125,13 @@ export interface 循环详情 {
    * 支持伤害校验
    */
   支持伤害校验?: boolean
+}
+
+export interface 循环序列配置 {
+  起手Buff配置?: 循环数据['起手Buff配置']
+  额外配置信息?: 循环数据['额外配置信息']
+  模拟器配置?: 循环数据['模拟器配置']
+  武器类型?: 循环数据['武器类型']
 }
 
 export interface 循环技能详情 {

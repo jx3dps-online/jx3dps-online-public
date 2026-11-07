@@ -9,9 +9,9 @@ class ErrorBoundary extends React.Component {
     this.state = { hasError: false, error: null, errorInfo: null, collapse: [] }
   }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(error) {
     // 更新 state 以便下次渲染能够显示回退 UI
-    return { hasError: true }
+    return { hasError: true, error }
   }
 
   componentDidCatch(error, errorInfo) {
@@ -38,15 +38,31 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if ((this.state as any).hasError) {
+      const 错误 = (this.state as any).error as (Error & { code?: string }) | null
+      const 资源加载失败 =
+        错误?.name === 'ChunkLoadError' ||
+        错误?.code === 'CSS_CHUNK_LOAD_FAILED' ||
+        /^Loading (?:CSS )?chunk [\s\S]+ failed\./i.test(错误?.message || '')
       // 自定义的错误信息
       return (
         <div className={styles.main} translate='no'>
           <div>
-            <h1 className={styles.title}>发生错误</h1>
-            <p className={styles.tip}>建议使用最新版本的 Chrome/Edge 浏览器访问</p>
-            <p className={styles.tip} style={{ color: 'red' }}>
-              如果您启用了“翻译”功能，请关闭后再使用
-            </p>
+            <h1 className={styles.title}>{资源加载失败 ? '页面资源加载失败' : '发生错误'}</h1>
+            {资源加载失败 ? (
+              <>
+                <p className={styles.tip}>可能是网站更新或网络异常导致。</p>
+                <p className={styles.tip}>
+                  请先刷新页面；若仍失败，请按 <strong>Ctrl + F5</strong> 强制刷新。
+                </p>
+              </>
+            ) : (
+              <>
+                <p className={styles.tip}>建议使用最新版本的 Chrome/Edge 浏览器访问</p>
+                <p className={styles.tip} style={{ color: 'red' }}>
+                  如果您启用了“翻译”功能，请关闭后再使用
+                </p>
+              </>
+            )}
             <div>
               <Button
                 className={styles.btn}
@@ -57,9 +73,11 @@ class ErrorBoundary extends React.Component {
               >
                 刷新页面
               </Button>
-              <Button className={styles.btn} danger onClick={() => this.clearCache()}>
-                清除缓存
-              </Button>
+              {!资源加载失败 && (
+                <Button className={styles.btn} danger onClick={() => this.clearCache()}>
+                  清除缓存
+                </Button>
+              )}
             </div>
             <Collapse defaultActiveKey={['error_info']} className={styles.error}>
               <Collapse.Panel header='错误详情' key='error_info'>

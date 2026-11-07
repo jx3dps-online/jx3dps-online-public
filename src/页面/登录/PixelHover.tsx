@@ -1,34 +1,33 @@
 import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
-import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
+import React, { useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react'
 import styles from './PixelHover.module.less'
 import { 移动端媒体查询 } from '@/hooks/use移动端'
-const cj = `${GLOBAL_CDN_PREFIX}/20261025/cangjian.png`
-const cangyun = `${GLOBAL_CDN_PREFIX}/20261025/cangyun.png`
+const cj = `${GLOBAL_CDN_PREFIX}/cangjian-d2d111615f.webp`
+const cangyun = `${GLOBAL_CDN_PREFIX}/cangyun-24c19581ad.webp`
 
-const mainBg = 'https://cdn.arkwish.com/jx3dps/home/main_bg_20260906_075.jpg'
-const txj = 'https://cdn.arkwish.com/jx3dps/home/txj_2_465_725.png'
-const gfj = 'https://cdn.arkwish.com/jx3dps/home/gfj_545_769_20260906_085.png'
-const bxj = 'https://cdn.arkwish.com/jx3dps/home/bxj_20260906_077.png'
-const yjj = 'https://cdn.arkwish.com/jx3dps/home/yjj_440_482_20260906_094.png'
-const dj = 'https://cdn.arkwish.com/jx3dps/home/dj_425_508_20260906_082.png'
-const bd = 'https://cdn.arkwish.com/jx3dps/home/bd_299_378_20260906_076.png'
-const cg = 'https://cdn.arkwish.com/jx3dps/home/cg_873_375_20260906_078.png'
-const cy = 'https://cdn.arkwish.com/jx3dps/home/cy_854_490_20260906_081.png'
-const ds = 'https://cdn.arkwish.com/jx3dps/home/ds_372_500_20260906_083.png'
-const gb = 'https://cdn.arkwish.com/jx3dps/home/gb_254_473_20260906_084.png'
-const hj = 'https://cdn.arkwish.com/jx3dps/home/hj_406_478_20260906_086.png'
-const lx = 'https://cdn.arkwish.com/jx3dps/home/lx_359_240_20260906_087.png'
-const mj = 'https://cdn.arkwish.com/jx3dps/home/mj_349_317_20260906_088.png'
-const pl = 'https://cdn.arkwish.com/jx3dps/home/pl_411_601_20260906_089.png'
-const tc = 'https://cdn.arkwish.com/jx3dps/home/tc_777_578_20260906_090.png'
-const tm = 'https://cdn.arkwish.com/jx3dps/home/tm_312_497_20260906_091.png'
-const wl = 'https://cdn.arkwish.com/jx3dps/home/wl_269_376_20260906_093.png'
-const yz = 'https://cdn.arkwish.com/jx3dps/home/yz_296_344_20260906_095.png'
+const txj = `${GLOBAL_CDN_PREFIX}/txj_2_465_725-0162c5a106.webp`
+const gfj = `${GLOBAL_CDN_PREFIX}/gfj_545_769_20260906_085-4e29b7593d.webp`
+const bxj = `${GLOBAL_CDN_PREFIX}/bxj_20260906_077-c26c24fd6c.webp`
+const yjj = `${GLOBAL_CDN_PREFIX}/yjj_440_482_20260906_094-f9bd0268f7.webp`
+const dj = `${GLOBAL_CDN_PREFIX}/dj_425_508_20260906_082-efdf2e8523.webp`
+const bd = `${GLOBAL_CDN_PREFIX}/bd_299_378_20260906_076-edfe0b2d1b.webp`
+const cg = `${GLOBAL_CDN_PREFIX}/cg_873_375_20260906_078-b544432f9b.webp`
+const cy = `${GLOBAL_CDN_PREFIX}/cy_854_490_20260906_081-b12e31b144.webp`
+const ds = `${GLOBAL_CDN_PREFIX}/ds_372_500_20260906_083-3c35c5fcaf.webp`
+const gb = `${GLOBAL_CDN_PREFIX}/gb_254_473_20260906_084-9486da89f0.webp`
+const hj = `${GLOBAL_CDN_PREFIX}/hj_406_478_20260906_086-f90fdd69eb.webp`
+const lx = `${GLOBAL_CDN_PREFIX}/lx_359_240_20260906_087-c103881f08.webp`
+const mj = `${GLOBAL_CDN_PREFIX}/mj_349_317_20260906_088-89c5bb14f0.webp`
+const pl = `${GLOBAL_CDN_PREFIX}/pl_411_601_20260906_089-b0b4979809.webp`
+const tc = `${GLOBAL_CDN_PREFIX}/tc_777_578_20260906_090-0fa47ec626.webp`
+const tm = `${GLOBAL_CDN_PREFIX}/tm_312_497_20260906_091-ebc4b2d7a0.webp`
+const wl = `${GLOBAL_CDN_PREFIX}/wl_269_376_20260906_093-77c00b6673.webp`
+const yz = `${GLOBAL_CDN_PREFIX}/yz_296_344_20260906_095-9348366ec0.webp`
 
 // 透明度判定阈值：alpha > 该值即视为命中（边缘抗锯齿像素 alpha 较小，可适当调大）
 const ALPHA_THRESHOLD = 0
 
-// 背景图设计分辨率（须与 main_bg.jpg 自然分辨率一致，2560 x 1440）
+// 背景与人物共用固定设计坐标，不随加载图片的分辨率改变。
 const DESIGN_WIDTH = 2560
 const DESIGN_HEIGHT = 1440
 const 横向单侧裁剪比例 = 0.05
@@ -220,6 +219,8 @@ const PixelHover = React.forwardRef<PixelHoverHandle, PixelHoverProps>(
     const pixelsRef = useRef<Map<number, PixelData>>(new Map())
     const rectRef = useRef<DOMRect | null>(null)
     const transformRef = useRef({ scale: 1, offsetX: 0, offsetY: 0 })
+    const [背景图宽度, 设置背景图宽度] = useState<1920 | 2560>()
+    const 背景图 = 背景图宽度 ? `${GLOBAL_CDN_PREFIX}/main-bg-w${背景图宽度}-q75.webp` : undefined
     const [highlightIndex, setHighlightIndex] = useState(-1)
     const highlightIndexRef = useRef(-1)
     const [选择弹窗, set选择弹窗] = useState<心法选项[] | null>(null)
@@ -361,7 +362,7 @@ const PixelHover = React.forwardRef<PixelHoverHandle, PixelHoverProps>(
 
     // 依据窗口尺寸计算统一缩放与居中偏移，并应用到 viewport（设计尺寸容器）。
     // 屏幕坐标 <-> 设计坐标 的换算：design = (client - offset) / scale。
-    useEffect(() => {
+    useLayoutEffect(() => {
       const update = () => {
         const stage = stageRef.current
         const viewport = viewportRef.current
@@ -382,15 +383,28 @@ const PixelHover = React.forwardRef<PixelHoverHandle, PixelHoverProps>(
         const offsetX = (rect.width - DESIGN_WIDTH * scale) / 2
         const offsetY = (rect.height - DESIGN_HEIGHT * scale) / 2
         const 留边宽度 = 移动端 ? 0 : Math.max(offsetX, offsetY, 0)
+        const 所需像素宽度 = Math.round(DESIGN_WIDTH * scale * window.devicePixelRatio)
+        设置背景图宽度((原宽度) => (原宽度 === 2560 || 所需像素宽度 > 1920 ? 2560 : 1920))
         transformRef.current = { scale, offsetX, offsetY }
         viewport.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`
         stage.style.setProperty('--背景补边显示', 留边宽度 > 0 ? 'block' : 'none')
         viewport.style.setProperty('--背景渐隐方向', offsetX > 0 ? 'to right' : 'to bottom')
         viewport.style.setProperty('--背景渐隐宽度', `${Math.min(40, 留边宽度) / scale}px`)
       }
+      let 分辨率查询 = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`)
+      const 处理像素密度变化 = () => {
+        分辨率查询.removeEventListener('change', 处理像素密度变化)
+        update()
+        分辨率查询 = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`)
+        分辨率查询.addEventListener('change', 处理像素密度变化)
+      }
       update()
       window.addEventListener('resize', update)
-      return () => window.removeEventListener('resize', update)
+      分辨率查询.addEventListener('change', 处理像素密度变化)
+      return () => {
+        window.removeEventListener('resize', update)
+        分辨率查询.removeEventListener('change', 处理像素密度变化)
+      }
     }, [])
 
     // 图片加载完成后，在离屏 canvas 绘制一次，缓存整张图 RGBA 像素
@@ -519,7 +533,7 @@ const PixelHover = React.forwardRef<PixelHoverHandle, PixelHoverProps>(
         <div className={styles.stage} ref={stageRef}>
           <div
             className={styles.模糊背景}
-            style={{ backgroundImage: `url("${mainBg}")` }}
+            style={{ backgroundImage: 背景图 ? `url("${背景图}")` : undefined }}
             aria-hidden='true'
           />
           <div
@@ -527,7 +541,7 @@ const PixelHover = React.forwardRef<PixelHoverHandle, PixelHoverProps>(
             ref={viewportRef}
             style={{ width: DESIGN_WIDTH, height: DESIGN_HEIGHT }}
           >
-            <img className={styles.bg} src={mainBg} alt='' draggable={false} />
+            <img className={styles.bg} src={背景图} alt='' draggable={false} />
             {CHARACTERS.map((char, index) => (
               <img
                 key={index}

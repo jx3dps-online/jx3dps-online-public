@@ -31,7 +31,10 @@ const 装备区 = () => {
           装备?.装备类型 === 装备类型枚举?.橙武 ? 图标?.橙色装备边框 : 图标?.紫色装备边框
 
         const 最大精炼等级 = 装备?.装备类型 === 装备类型枚举?.橙武 ? 8 : 6
-        const 装备特征描述 = 获取装备数据描述(装备, true, false)
+        const 装备特征描述 = [
+          ...(装备.装备类型 === 装备类型枚举.门派套装 ? ['套装'] : []),
+          ...获取装备数据描述(装备, true, false),
+        ]
         const 装备结果描述 = 获取装备数据描述(装备, false, true)
         const 是否有大附魔 = 判断是否存在大附魔(当前装备?.装备部位, 当前装备信息?.装备增益)
 
@@ -58,6 +61,7 @@ const 装备区 = () => {
                         item === '精简' ? styles.jingjian : '',
                         item === '特效' ? styles.texiao : '',
                         item === 'PVX' ? styles.pvx : '',
+                        item === '套装' ? styles.套装标记 : '',
                       )
                       return (
                         <span className={cls} key={`导出装备_特征_${装备?.id}_${index}_${item}`}>

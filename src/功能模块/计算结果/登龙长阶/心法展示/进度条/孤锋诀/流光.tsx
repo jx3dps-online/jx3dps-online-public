@@ -2,7 +2,7 @@ import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import type { 登阶进度属性 } from '../类型'
 import 样式 from './流光.module.less'
-const 成品 = `${GLOBAL_CDN_PREFIX}/20261025/yixijianhan-chengpin.png`
+const 成品 = `${GLOBAL_CDN_PREFIX}/yixijianhan-chengpin-15c115b43a.webp`
 
 const 气流路径 = [
   'M 292 165 C 269 140 250 133 222 131 C 191 129 172 107 134 95 C 172 124 189 151 221 154 C 248 155 271 175 292 165 Z',

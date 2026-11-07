@@ -1,0 +1,179 @@
+.过滤 {
+  margin: 20px 0;
+}
+
+.加载 {
+  padding: 32px 16px;
+  text-align: center;
+
+  p {
+    margin-top: 16px;
+  }
+}
+
+.条目 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.信息 {
+  min-width: 0;
+}
+
+.名称 {
+  font-size: 14px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.名称行 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.标签 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #888;
+}
+
+.收益 {
+  flex-shrink: 0;
+  text-align: right;
+
+  strong {
+    display: block;
+    font-size: 16px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  small {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+.收益说明 {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin: 16px 0 4px;
+  font-size: 12px;
+}
+
+.分类标签 {
+  font-weight: 600;
+}
+
+.效果 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  flex: 1;
+  min-width: 160px;
+  color: #595959;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.图表区域 {
+  padding: 16px;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+}
+
+.图表标题 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.图表说明 {
+  margin: 0 0 8px;
+  color: #888;
+  font-size: 12px;
+}
+
+.图表内容 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.扇形图 {
+  flex: 1;
+  min-width: 0;
+  height: 240px;
+}
+
+.图例 {
+  flex: 1;
+  min-width: 0;
+  max-height: 240px;
+  overflow: auto;
+}
+
+.图例项 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 12px;
+}
+
+.色块 {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.图例名称 {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.收益条 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--ant-primary-color);
+  opacity: 0.65;
+}
+
+@media (max-width: 480px) {
+  .图表内容 {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .扇形图,
+  .图例 {
+    width: 100%;
+    flex: auto;
+  }
+  .条目 {
+    gap: 8px;
+  }
+
+  .收益 strong {
+    font-size: 14px;
+  }
+
+  .收益 small {
+    display: block;
+  }
+}

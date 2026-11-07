@@ -6,8 +6,8 @@ import 蛊雾 from './蛊雾'
 import 蛊影 from './蛊影'
 import 样式 from './index.module.less'
 
-const 素笛 = `${GLOBAL_CDN_PREFIX}/20261029/tuigu-sudi.png`
-const 成品 = `${GLOBAL_CDN_PREFIX}/20261029/tuigu-chengpin.png`
+const 素笛 = `${GLOBAL_CDN_PREFIX}/tuigu-sudi-ede965cccf.webp`
+const 成品 = `${GLOBAL_CDN_PREFIX}/tuigu-chengpin-727478f9b8.webp`
 
 const 阶段名称 = ['素骨初成', '丝引微光', '灵蛇渐醒', '蜕骨流辉', '此愿已成']
 

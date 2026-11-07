@@ -1,7 +1,7 @@
 import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import type { CSSProperties } from 'react'
 import 样式 from './光效.module.less'
-const 青龙映夜 = `${GLOBAL_CDN_PREFIX}/20261025/qinglongyingye-jincou.png`
+const 青龙映夜 = `${GLOBAL_CDN_PREFIX}/qinglongyingye-jincou-92df6de5e7.webp`
 
 const 酒气路径 = [
   'M248 150 C270 111 315 123 362 99 S453 123 533 93 S651 67 724 83',

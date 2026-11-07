@@ -6,14 +6,11 @@ import { 登阶武器类型, 登阶循环限制 } from '../领域/循环'
 import { 获取文案, 填充文案, 武器类型显示 } from '../文案'
 import type { 配装目标 } from '@/角色/类型'
 import { 有效配装装备 } from '@/角色/计划'
-import { 踏天目标id, 踏天开启进度阈值 } from './类型'
+import { 踏天目标id } from './类型'
 import type { 踏天配置, 踏天路线 } from './类型'
 
 export function 解析踏天参考(配置: 踏天配置, 心法: 数据类型, 路线: 踏天路线) {
   const 文案 = 获取文案(心法.名称)
-  const 阈值 = 配置.开启进度阈值 ?? 踏天开启进度阈值
-  if (!Number.isFinite(阈值) || 阈值 < 0 || 阈值 > 1)
-    throw new Error(文案['踏天.配置.开启阈值无效'])
   const 解析 = (配装: 配装原始数据, 循环名称: string, 预期: 踏天路线, 来源: string): 配装目标 => {
     // 禁止引擎静默忽略空槽、下架 ID 后仍把结果当成完整参考。
     const 表单 = 配装 as Record<string, any>
@@ -48,16 +45,29 @@ export function 解析踏天参考(配置: 踏天配置, 心法: 数据类型, �
   }
   const 目标配置 = 配置.路线[路线]
   if (!目标配置) throw new Error(文案['踏天.配置.路线未配置'])
-  const 目标 = 解析(目标配置.配装, 目标配置.循环名称, 路线, 路线 + '.json')
-  const 门槛 = 解析(配置.门槛.配装, 配置.门槛.循环名称, '紫武', '门槛.json')
+  const 目标 = 解析(目标配置.配装, 目标配置.循环名称, 路线, '踏天_' + 路线 + '.json')
   return {
     目标,
-    门槛,
-    阈值,
-    签名: JSON.stringify([配置.版本, 路线, 目标.装备, 目标.循环, 门槛.装备, 门槛.循环]),
+    签名: JSON.stringify([配置.版本, 路线, 目标.装备, 目标.循环]),
   }
 }
 export type 踏天参考 = ReturnType<typeof 解析踏天参考>
+
+export function 踏天参考签名相同(已存签名?: string, 当前签名?: string) {
+  if (!已存签名 || !当前签名) return false
+  if (已存签名 === 当前签名) return true
+  try {
+    const 旧签名 = JSON.parse(已存签名)
+    // 旧记录末尾包含门槛配装及循环；终点未变时保留玩家的主动完成记录。
+    return (
+      Array.isArray(旧签名) &&
+      旧签名.length === 6 &&
+      JSON.stringify(旧签名.slice(0, 4)) === 当前签名
+    )
+  } catch {
+    return false
+  }
+}
 
 export function use踏天参考(心法: 数据类型, 路线: 踏天路线) {
   const 文案 = 获取文案(心法.名称)

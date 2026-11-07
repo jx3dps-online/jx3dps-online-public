@@ -1,15 +1,15 @@
 {
   "format": 2,
   "pyodideVersion": "0.29.4",
-  "version": "cc6e39922b4639a07e0b420b460f9c892aac122fb326ce3eb508f551f39c44c7",
-  "basePath": "versions/cc6e39922b4639a07e0b420b460f9c892aac122fb326ce3eb508f551f39c44c7/",
+  "version": "68d33a7a0aac6fc70d98cfdccda9002ab252b8177084d6f512d2a02ab9ac490c",
+  "basePath": "versions/68d33a7a0aac6fc70d98cfdccda9002ab252b8177084d6f512d2a02ab9ac490c/",
   "worker": {
     "path": "worker.js",
     "sha256": "725f1666ca67eada55268b174ea974d807e8d7b637ff9b7c4af6637869914ca6"
   },
   "pythonArchive": {
     "path": "jcl-python.zip",
-    "sha256": "9a46ad1a9221b3a9594da15f64c1db5927e2778e55539c09477bccf9452a13e9",
+    "sha256": "bda48eb90fe337e378b642538be0b9208eb37fe95bf0b948b64f02f646aad5db",
     "files": [
       "app/__init__.py",
       "app/convert.py",

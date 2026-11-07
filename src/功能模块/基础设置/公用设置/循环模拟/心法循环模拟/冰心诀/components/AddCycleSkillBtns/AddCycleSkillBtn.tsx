@@ -3,7 +3,8 @@ import { 每秒郭氏帧 } from '@/数据/常量'
 import { 循环基础技能数据类型, 技能GCD组, 模拟信息类型 } from '../../simulator/type'
 import classNames from 'classnames'
 import { Badge, Tooltip } from 'antd'
-import { ERROR_ACTION } from '../../simulator/utils'
+import { ERROR_ACTION, 获取大扇子技能限制 } from '../../simulator/utils'
+import styles from './index.module.less'
 
 interface AddCycleSkillBtnProps {
   技能: 循环基础技能数据类型
@@ -30,7 +31,16 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
 
   const 异常信息: 异常信息数据 = useMemo(() => {
     let 禁用信息 = {}
-    if (!插入技能) {
+    if (!插入技能 || 技能.大扇子阶段 === 'P2') {
+      const 大扇子技能限制 = 获取大扇子技能限制(
+        技能,
+        模拟信息.当前自身buff列表,
+        模拟信息.当前时间,
+        模拟信息.角色状态信息,
+      )
+      if (大扇子技能限制) {
+        return { 是否禁用: true, 异常描述: 大扇子技能限制 }
+      }
       if (技能?.技能名称 === '点掉橙武' && !模拟信息?.当前自身buff列表?.['橙武']?.当前层数) {
         禁用信息 = {
           是否禁用: true,
@@ -80,6 +90,10 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
   }
 
   const cls = classNames(className, 异常信息?.是否禁用 ? 'cycle-simulator-setting-btn-error' : '')
+  const 高亮P2技能 =
+    技能.大扇子阶段 === 'P2' &&
+    !!模拟信息.当前自身buff列表['大扇子·P2']?.当前层数 &&
+    !异常信息.是否禁用
 
   const 技能显示信息 = useMemo(() => {
     return 技能
@@ -89,7 +103,10 @@ const AddCycleSkillBtn: React.FC<AddCycleSkillBtnProps> = (props) => {
     <div onClick={beforeOnClick} className={cls} {...rest}>
       <Tooltip title={异常信息?.异常描述 || 技能?.说明 || ''}>
         <Badge count={异常信息?.角标数字} className={'cycle-add-btn-wrap'} offset={[0, 0]}>
-          <img className={`cycle-add-btn`} src={技能显示信息?.图标} />
+          <img
+            className={classNames('cycle-add-btn', 高亮P2技能 && styles.高亮技能)}
+            src={技能显示信息?.图标}
+          />
           {技能?.最大充能层数 && 技能?.最大充能层数 !== 1 ? (
             <span className={'cycle-add-btn-count'}>{技能当前层数}</span>
           ) : null}

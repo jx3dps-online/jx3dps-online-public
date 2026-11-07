@@ -3,7 +3,7 @@ import { 装备相同, 配对装备 } from '../领域/计算'
 import type { 登阶分析, 登阶差异 } from '../领域/类型'
 import { 计算完成度 } from '../领域/完成度'
 import { 填充文案 } from '../文案'
-import { 踏天主动完成比例 } from './类型'
+import { 踏天主动完成比例, 踏天开启秒伤比例 } from './类型'
 import type { 登阶文案 } from '../文案'
 import type { 踏天状态, 踏天认可 } from './类型'
 
@@ -122,15 +122,17 @@ export const 可主动踏天 = (当前?: number, 目标?: number) =>
   有效秒伤(当前) && 有效秒伤(目标) && 当前 >= 目标 * 踏天主动完成比例
 export function 计算踏天完成度(
   输入: Parameters<typeof 计算完成度>[0],
-  门槛: number | undefined,
   文案: 登阶文案,
 ): ReturnType<typeof 计算完成度> {
-  if (!有效秒伤(门槛) || !有效秒伤(输入.目标DPS) || 输入.目标DPS <= 门槛) {
+  if (!有效秒伤(输入.目标DPS)) {
     return {
       完成度: undefined,
       待评估原因: 文案['踏天.计算.待评估'],
       部位比例: 0,
     }
   }
-  return 计算完成度({ ...输入, 起点容量: undefined, 起点DPS: 门槛 }, 文案)
+  return 计算完成度(
+    { ...输入, 起点容量: undefined, 起点DPS: 输入.目标DPS * 踏天开启秒伤比例 },
+    文案,
+  )
 }

@@ -4,7 +4,7 @@ import { Tooltip } from 'antd'
 import type { 登阶进度属性 } from '../类型'
 import 机关特效 from './机关特效'
 import 样式 from './index.module.less'
-const 武器 = `${GLOBAL_CDN_PREFIX}/20261025/huiting-touming.png`
+const 武器 = `${GLOBAL_CDN_PREFIX}/huiting-touming-76a539197a.webp`
 
 export default function 天罗诡道进度({
   百分比,

@@ -11,6 +11,8 @@ import type { 团队增益选项数据类型 } from '@/@types/团队增益'
 import 团队增益选择 from './团队增益选择'
 import 小药小吃选择 from './小药小吃选择'
 import 阵眼选择 from './阵眼选择'
+import 心法增益 from './心法增益'
+import 装备增益 from './装备增益'
 import 计算最佳增益 from './计算最佳增益'
 import './index.css'
 import styles from './index.module.less'
@@ -129,6 +131,13 @@ function 增益面板() {
       />
       <小药小吃选择 保存数据并计算={保存角色增益数据} 开启智能对比={开启智能对比} />
       <团队增益选择 保存数据并计算={(newData) => 保存团队增益(newData?.团队增益 || [])} />
+      <section className={styles.收益分析} aria-label='收益分析'>
+        <h2 className={`zengyi-title-text ${styles.收益标题}`}>收益分析</h2>
+        <div className={styles.收益入口}>
+          <心法增益 />
+          <装备增益 />
+        </div>
+      </section>
     </div>
   )
 }

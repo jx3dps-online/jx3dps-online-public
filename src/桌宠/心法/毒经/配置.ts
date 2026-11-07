@@ -1,19 +1,19 @@
 import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import type { 桌宠配置 as 桌宠配置类型 } from '@/桌宠/interface'
-const 待机1 = `${GLOBAL_CDN_PREFIX}/20261025/idle-1.gif`
-const 待机2 = `${GLOBAL_CDN_PREFIX}/20261025/idle-2.gif`
-const 拖拽 = `${GLOBAL_CDN_PREFIX}/20261025/drag.png`
+const 待机1 = `${GLOBAL_CDN_PREFIX}/idle-1.webp`
+const 待机2 = `${GLOBAL_CDN_PREFIX}/idle-2.webp`
+const 拖拽 = `${GLOBAL_CDN_PREFIX}/drag-7bca9ebf22.webp`
 
 const 桌宠配置: 桌宠配置类型 = {
   名称: '毒经',
   启用: true,
 
-  待机资源: { 资源: 待机1, 类型: 'gif' },
+  待机资源: { 资源: 待机1, 类型: 'webp' },
 
   状态资源: {
-    点击交互: { 资源: 待机2, 类型: 'gif' },
-    问答交互: { 资源: 待机2, 类型: 'gif' },
-    拖拽中: { 资源: 拖拽, 类型: 'png' },
+    点击交互: { 资源: 待机2, 类型: 'webp' },
+    问答交互: { 资源: 待机2, 类型: 'webp' },
+    拖拽中: { 资源: 拖拽, 类型: 'webp' },
   },
 
   点击交互: {
@@ -33,7 +33,7 @@ const 桌宠配置: 桌宠配置类型 = {
     ],
   },
 
-  尺寸: { 宽: 200, 高: 200 },
+  尺寸: { 宽: '10%', 比例: 1 },
 }
 
 export default 桌宠配置

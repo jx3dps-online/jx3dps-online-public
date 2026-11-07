@@ -2,8 +2,8 @@ import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import { useId, type CSSProperties } from 'react'
 import 剑舞 from './剑舞'
 import 样式 from './霜华.module.less'
-const 成品 = `${GLOBAL_CDN_PREFIX}/20261025/liexin-chengpin.png`
-const 冰纹 = `${GLOBAL_CDN_PREFIX}/20261025/liudong-bingwen.png`
+const 成品 = `${GLOBAL_CDN_PREFIX}/liexin-chengpin-c006f64804.webp`
+const 冰纹 = `${GLOBAL_CDN_PREFIX}/liudong-bingwen-ae89826dd5.webp`
 
 const 霜屑位置 = [
   [220, 105],

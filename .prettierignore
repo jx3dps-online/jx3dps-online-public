@@ -1,1 +1,5 @@
 public/jcl-wasm
+
+# 攻略编辑器的预置稿件是 npm run guides:sync 的生成产物，
+# 由生成器负责格式；被 prettier 改写会让 guides:check 误判为不同步。
+src/功能模块/攻略编辑器/预置稿件

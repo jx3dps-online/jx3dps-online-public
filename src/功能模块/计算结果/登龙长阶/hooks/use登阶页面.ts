@@ -12,6 +12,8 @@ import type { 配装快照, 配装循环 } from '@/角色/类型'
 import { use角色计划 } from '@/角色/use角色计划'
 import { use目标池 } from '@/角色/use目标池'
 import { 保存角色配装 } from '@/角色/状态'
+import type { 目标JSON数据 } from '@/角色/目标导入导出'
+import { 通知引导目标复制, 引导遮罩层级 } from '@/功能模块/新手引导/界面状态'
 import { 登阶武器类型, 登阶循环限制, 提取配装循环 } from '../领域/循环'
 import {
   重建登阶装备,
@@ -22,7 +24,7 @@ import {
 } from '../领域/计算'
 import type { 登阶差异, 登阶建议 } from '../领域/类型'
 import { 计算足迹收益 } from '../领域/足迹'
-import { use踏天参考, 解析踏天参考 } from '../踏天/配置'
+import { use踏天参考, 解析踏天参考, 踏天参考签名相同 } from '../踏天/配置'
 import { 装备签名 } from '../踏天/计算'
 import { 踏天目标id } from '../踏天/类型'
 import { 数字 } from '../领域/格式化'
@@ -38,7 +40,7 @@ export default function use登阶页面() {
   const 数据 = useAppSelector((state) => state.data)
   const 当前角色 = 数据.当前角色
   const { 计划, 存储: 计划存储, 读取错误 } = use角色计划(当前角色?.id)
-  const { 池, 存储: 目标池存储 } = use目标池(名称)
+  const { 池, 存储: 目标池存储, 读取错误: 目标池读取错误 } = use目标池(名称)
   const 读取 = () => 计划存储?.读取() || 计划
   const 更新踏天: NonNullable<typeof 计划存储>['更新踏天'] = (预期, 踏天, 聚焦) => {
     if (!计划存储) throw new Error(文案['通用.角色计划未就绪'])
@@ -155,7 +157,6 @@ export default function use登阶页面() {
     目标,
     普通目标绑定?.起点,
     参考?.签名,
-    推荐.配置?.开启进度阈值,
     计划.踏天,
     踏天中,
   ])
@@ -252,6 +253,53 @@ export default function use登阶页面() {
     dispatch(触发秒伤计算({ 是否更新显示计算结果: true }))
   }
 
+  const 复制内置目标 = async (目标: 目标JSON数据) => {
+    if (!当前角色) throw new Error(文案['通用.角色未就绪'])
+    if (!目标池存储) throw new Error(文案['通用.目标池未就绪'])
+    if (!计划存储) throw new Error(文案['通用.角色计划未就绪'])
+    if ((当前武器类型 === '橙武') !== (登阶武器类型(目标.装备) === '橙武')) {
+      const 确认 = await new Promise<boolean>((完成) =>
+        Modal.confirm({
+          zIndex: dispatch((_, 获取状态) => 获取状态().system.新手引导流程状态)
+            ? 引导遮罩层级 + 1
+            : undefined,
+          title: 文案['页面.确认.跨橙武.标题'],
+          content: 文案['页面.确认.跨橙武.内容'],
+          okText: 文案['页面.确认.跨橙武.确定'],
+          cancelText: 文案['通用.取消'],
+          onOk: () => 完成(true),
+          onCancel: () => 完成(false),
+        }),
+      )
+      if (!确认) return false
+    }
+    const 角色id = dispatch((_, 获取状态) => 获取状态().data.当前角色?.id)
+    if (角色id !== 当前角色.id) throw new Error(文案['通用.角色未就绪'])
+    const 已有 = 目标池存储.读取().目标
+    const 错误 = 目标池存储.读取错误() || 计划存储.读取错误()
+    if (错误) throw new Error(错误)
+    let 新名称 = 目标.名称
+    let 序号 = 2
+    while (已有.some((项) => 项.名称 === 新名称)) {
+      新名称 = 填充文案(文案['目标库.副本名'], { 名称: 目标.名称.slice(0, 30), 序号: 序号++ })
+    }
+    const id = 目标池存储.新增目标(目标.装备, 新名称, 目标.循环)
+    try {
+      计划存储.聚焦目标(id, { 装备: 数据.装备信息, 循环: 页面循环 })
+    } catch (错误) {
+      message.warning(
+        填充文案(文案['目标库.绑定失败'], {
+          原因: 错误 instanceof Error ? 错误.message : 文案['通用.保存失败'],
+        }),
+      )
+      return true
+    }
+    设置管理(false)
+    通知引导目标复制(id, 当前角色.id, 名称)
+    message.success(文案['目标库.已复制'])
+    return true
+  }
+
   const 结果 = use登阶分析({
     名称,
     当前,
@@ -297,7 +345,7 @@ export default function use登阶页面() {
   const 主动完成有效 =
     踏天中 &&
     !!当前 &&
-    主动完成记录?.参考签名 === 参考?.签名 &&
+    踏天参考签名相同(主动完成记录?.参考签名, 参考?.签名) &&
     主动完成记录?.路线 === 计划.踏天?.路线 &&
     !!主动完成记录 &&
     装备签名(主动完成记录.配装.装备) === 装备签名(当前.装备)
@@ -313,12 +361,11 @@ export default function use登阶页面() {
     : 0
   const 展示达成 = 踏天中 ? !!踏天已完成 : 已达成 && 完成度可算
   // 与 分析/完成度 同用「结果范围」守卫：重算期间沿用旧结果，按钮与文案不闪。
-  const 开启进度 = 结果?.范围 === 结果范围 ? 结果?.开启进度 : undefined
+  const 达标结果 = 结果?.范围 === 结果范围 ? 结果?.踏天达标 : undefined
   const 踏天进度状态 = 结果?.范围 === 结果范围 ? 结果?.踏天进度状态 : undefined
-  const 踏天达标 = !!参考 && 开启进度 !== undefined && 开启进度 > 参考.阈值
-  const 踏天未满 =
-    !!参考 && ((开启进度 !== undefined && 开启进度 <= 参考.阈值) || 踏天进度状态 === '已达参考终点')
-  const 可开启 = !计划.踏天 && 踏天达标
+  const 踏天达标 = !!参考 && 达标结果 === true
+  const 踏天未满 = !!参考 && 达标结果 === false
+  const 可开启 = !计划.踏天 && 结果匹配 && 踏天达标
   const 初窥门径 = !计划.踏天 && 踏天未满
   const 踏天原因 =
     推荐.错误 || (踏天进度状态 ? 获取踏天进度状态文案(文案, 踏天进度状态) : undefined)
@@ -544,12 +591,14 @@ export default function use登阶页面() {
   const 当前与目标循环不一致 = 目标循环数据 && 当前循环?.名称 !== 目标循环数据.名称
 
   return {
+    目标池读取错误,
     名称,
     数据,
     计划,
     聚焦目标,
     切换聚焦,
     创建目标,
+    复制内置目标,
     读取错误,
     当前,
     踏天中,

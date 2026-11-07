@@ -1,16 +1,17 @@
 import { useRef } from 'react'
+import 英雄推荐配装 from '../推荐配装/展示'
 import { 攻略容器, 奇穴展示, 配装 } from '../../../components'
 import 武学助手循环 from '@/心法模块/心法/冰心诀/计算循环/武学助手.json'
-import 十人配装 from '../紫武盈袖/948加速10人.json'
-import 普通配装 from '../紫武盈袖/948加速25人普通.json'
-import 高加速配装 from '../紫武盈袖/1521加速25人普通.json'
+import 十人配装 from '@/心法模块/心法/冰心诀/推荐配装/紫武盈袖_948加速10人.json'
+import 普通配装 from '@/心法模块/心法/冰心诀/推荐配装/紫武盈袖_948加速25人普通.json'
+import 高加速配装 from '@/心法模块/心法/冰心诀/推荐配装/紫武盈袖_1521加速25人普通.json'
 import styles from '../紫武盈袖/index.module.less'
 
 export default function 武学助手攻略() {
   const 正文 = useRef<HTMLElement>(null)
 
   return (
-    <攻略容器 标题='冰心诀 · 武学助手攻略' 模式='计算结果'>
+    <攻略容器 标题='冰心诀 · 武学助手攻略' 模式='全屏'>
       <article className={styles.攻略} ref={正文}>
         <details className={styles.导航} open>
           <summary>章节导航</summary>
@@ -35,7 +36,7 @@ export default function 武学助手攻略() {
         </details>
         <div className={styles.说明}>
           <p>作者：长倦</p>
-          <p>最近更新：2026/10/29</p>
+          <p>最近更新：2026-11-05，新增25YX推荐配装及精简解析。</p>
         </div>
 
         <h2 id='bingxin-section-1' tabIndex={-1}>
@@ -48,7 +49,10 @@ export default function 武学助手攻略() {
         <h2 id='bingxin-section-2' tabIndex={-1}>
           注意事项
         </h2>
-        <p>待补充</p>
+        <p>
+          武学助手理论木桩差距不到5%，但实战停手或处理机制会出现繁音外的芳姿给了玳弦的情况，导致后面的循环全乱。如果介意的话，建议去魔盒拿一个一键宏，出现停手情况后回来先按会儿一键宏，待正确用出芳姿后再切换武学助手。
+        </p>
+        <p>同理，CW玩家不推荐直接按武学助手，建议在使用魔盒的CW宏打完CW后，再按武学助手。</p>
 
         <h2 id='bingxin-section-3' tabIndex={-1}>
           配装及属性分析
@@ -79,6 +83,7 @@ export default function 武学助手攻略() {
         <配装 名称='武学助手 · 948加速 · 25人PT' 配装数据={普通配装} 视图='配装页面' />
         <h3>1521加速 · 25人PT</h3>
         <配装 名称='武学助手 · 1521加速 · 25人PT' 配装数据={高加速配装} 视图='配装页面' />
+        <英雄推荐配装 />
       </article>
     </攻略容器>
   )

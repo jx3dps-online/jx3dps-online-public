@@ -192,7 +192,7 @@ export default function 一键宏攻略() {
           <图片
             src='https://cdn.jx3box.com/upload/post/2026/10/24/513519_3192276.png'
             alt='孤锋诀技能数参考'
-            高度={300}
+            style={{ width: '200px' }}
           />
         </details>
       </孤锋诀攻略排版>

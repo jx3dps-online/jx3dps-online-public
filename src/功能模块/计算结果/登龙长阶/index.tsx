@@ -1,7 +1,7 @@
 import React from 'react'
 import { use报告引导界面 } from '@/功能模块/新手引导/界面状态'
 import 详情弹窗 from './组件/详情弹窗'
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { Button, Select, Spin, Tag, Tooltip } from 'antd'
 import {
   AimOutlined,
@@ -12,6 +12,7 @@ import {
   RiseOutlined,
   UnorderedListOutlined,
   SettingOutlined,
+  ShareAltOutlined,
   TrophyOutlined,
   WarningFilled,
 } from '@ant-design/icons'
@@ -30,6 +31,7 @@ import './index.less'
 import './踏天/index.less'
 
 const 踏天境界 = lazy(() => import('./踏天/境界'))
+const 进度分享 = lazy(() => import('./组件/进度分享'))
 
 // 筛选值与领域比较保持代码常量，展示文案由字典提供，避免心法覆盖后联动失效。
 const 建议筛选列表 = [
@@ -40,12 +42,14 @@ const 建议筛选列表 = [
 ] as const
 
 export default function 登龙长阶() {
+  const 页面 = use登阶页面()
   const {
     名称,
     计划,
     聚焦目标,
     切换聚焦,
     创建目标,
+    复制内置目标,
     读取错误,
     当前,
     踏天中,
@@ -115,8 +119,19 @@ export default function 登龙长阶() {
     足迹,
     差异分组,
     当前与目标循环不一致,
-  } = use登阶页面()
+  } = 页面
   const 文案 = 获取文案(名称)
+  const [分享打开, 设置分享打开] = useState(false)
+  useEffect(() => {
+    if (!当前 || !目标) 设置分享打开(false)
+  }, [当前, 目标])
+  const 分享禁用原因 =
+    读取错误 ||
+    页面.目标池读取错误 ||
+    错误 ||
+    不匹配原因 ||
+    待评估原因 ||
+    (!结果匹配 || 忙碌 || !分析 ? 文案['分享.等待分析'] : '')
   const [新建目标弹窗展示, 设置新建目标弹窗展示] = useState(false)
   use报告引导界面('目标管理打开', 管理)
   use报告引导界面('目标命名打开', 新建目标弹窗展示)
@@ -194,8 +209,18 @@ export default function 登龙长阶() {
               onChange={(id) => 切换聚焦(id)}
             />
           )}
-          {当前 && 目标 && !不匹配原因 && !踏天中 && (
-            <Button ghost onClick={计划有变}>
+          {当前 && 目标 && !分享禁用原因 && (
+            <Button
+              ghost
+              icon={<ShareAltOutlined />}
+              disabled={!!分享禁用原因}
+              onClick={() => 设置分享打开(true)}
+            >
+              {文案['分享.标题']}
+            </Button>
+          )}
+          {当前 && 目标 && !踏天中 && (
+            <Button id='Guide_更新目标' ghost onClick={计划有变}>
               {文案['通用.更新目标']}
             </Button>
           )}
@@ -318,8 +343,6 @@ export default function 登龙长阶() {
                 <Suspense fallback={<p className='dragon-muted'>{文案['主卡.境界加载中']}</p>}>
                   <踏天境界
                     比例={结果匹配 && !不匹配原因 ? 完成度结果?.秒伤比例 : undefined}
-                    门槛秒伤={结果匹配 ? 结果?.门槛秒伤 : undefined}
-                    门槛循环={参考.门槛.循环?.名称 || ''}
                     已完成={!!踏天已完成}
                     主动完成时间={主动完成有效 ? 主动完成记录?.时间 : undefined}
                     历史完成时间={!主动完成有效 ? 主动完成记录?.时间 : undefined}
@@ -522,6 +545,7 @@ export default function 登龙长阶() {
         }}
         编辑目标={编辑目标}
         切换聚焦={切换聚焦}
+        复制内置目标={复制内置目标}
         踏天目标区域={
           计划.踏天 ? (
             <article className='dragon-manager-goal dragon-heaven-goal'>
@@ -610,6 +634,11 @@ export default function 登龙长阶() {
         渲染建议={渲染建议}
       />
 
+      {分享打开 && 当前 && 目标 && (
+        <Suspense fallback={null}>
+          <进度分享 页面={页面} 关闭={() => 设置分享打开(false)} />
+        </Suspense>
+      )}
       <成长足迹
         显示足迹={显示足迹}
         设置显示足迹={设置显示足迹}

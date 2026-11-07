@@ -4,7 +4,7 @@ import { 星符素材 } from './星符素材'
 import 踏星行 from './踏星行'
 import 样式 from './幻狐.module.less'
 
-const 幻狐金线动作 = `${GLOBAL_CDN_PREFIX}/20261029/huanhu-jinxian-dongzuo.png`
+const 幻狐金线动作 = `${GLOBAL_CDN_PREFIX}/huanhu-jinxian-dongzuo-a6bbf3cd56.webp`
 
 export default function 幻狐() {
   return (

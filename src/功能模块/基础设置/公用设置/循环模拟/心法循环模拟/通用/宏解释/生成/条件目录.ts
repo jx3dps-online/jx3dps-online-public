@@ -10,7 +10,9 @@ export const 校验生成条件 = (文本: string, 说明: 心法说明, 允许�
     throw new Error('生成和压缩宏的数字判断最多保留一位小数：' + 文本)
   解析条件(文本, 说明)
   for (const 项 of 分项) {
-    const 增益 = 项.match(/^(bufftime|tbufftime|buff|tbuff|nobuff|tnobuff):([^<>=~]+)/)
+    const 增益 = 项.match(
+      /^(buffidtime|buffid|nobuffid|bufftime|tbufftime|buff|tbuff|nobuff|tnobuff):([^<>=~]+)/,
+    )
     if (!增益) continue
     const 前缀 = 增益[1]
     const 输入 = 增益[2]

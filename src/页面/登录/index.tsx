@@ -1,3 +1,4 @@
+import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import React, { useEffect, useRef, useState } from 'react'
 import { Dropdown } from 'antd'
 import use移动端 from '@/hooks/use移动端'
@@ -10,7 +11,7 @@ import 心法数据 from '@/数据/静态数据/心法数据.json'
 import { 读取收藏门派, 写入收藏门派 } from '@/工具函数/收藏心法'
 import { 简写转心法名 } from '@/心法模块/模块工具/获取心法数据'
 
-const logo = 'https://cdn.arkwish.com/jx3dps/home/logo_20260906_074.png'
+const logo = `${GLOBAL_CDN_PREFIX}/logo_20260906_074-3eeeb8d59d.webp`
 
 const App: React.FC = () => {
   const navigate = useNavigate()
@@ -46,8 +47,8 @@ const App: React.FC = () => {
     return () => window.clearTimeout(timer)
   }, [])
 
-  // 心法图标列表：仅展示非邀请使用心法
-  const 所有心法 = Object.values(心法数据).filter((心法: any) => !心法?.邀请使用)
+  // 心法图标列表：仅展示非暂时下架心法
+  const 所有心法 = Object.values(心法数据).filter((心法: any) => !心法?.暂时下架)
   const 收藏列表 = 收藏门派
     .map((简写) => 所有心法.find((心法: any) => 心法?.简写 === 简写))
     .filter(Boolean)

@@ -1,0 +1,236 @@
+.对比 {
+  padding: 20px 16px 16px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.5);
+}
+.对比行 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+.标题 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 4px 16px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--share-line);
+  h3 {
+    margin: 0;
+    color: #dfe6ef;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  > span {
+    color: #dfe6ef;
+    font-size: 23px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  small {
+    margin-left: 7px;
+    font-size: 12px;
+    color: #a7b1c1;
+  }
+}
+.目标标题 {
+  h3,
+  > span {
+    color: #e9c88c;
+  }
+}
+.装备列表 {
+  display: grid;
+}
+.装备 {
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) 76px;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 4px;
+  min-height: 90px;
+  border-bottom: 1px solid #ffffff14;
+}
+.图标 {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  background: #23202e;
+  display: grid;
+  place-items: center;
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+  .装备边框 {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  small {
+    position: absolute;
+    z-index: 2;
+    bottom: 3px;
+    left: 3px;
+    padding: 0 2px;
+    background: #000d;
+    color: #e5e9ef;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+}
+.达成标记 {
+  position: absolute;
+  z-index: 2;
+  bottom: -7px;
+  right: -6px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  color: #52c41a;
+  font-size: 16px;
+  pointer-events: none;
+}
+.部位镶嵌 {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+  padding-bottom: 20px;
+}
+.部位 {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #aeb8c6;
+  text-align: right;
+}
+.信息 {
+  min-width: 0;
+}
+.名称 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 7px;
+  color: #f0eafa;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  small {
+    white-space: nowrap;
+    color: #a8b5c8;
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+.特征 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 7px;
+  margin-top: 3px;
+  color: #21f688;
+  font-size: 13px;
+  line-height: 1.4;
+  .精简 {
+    color: #ffe700;
+  }
+  .特效 {
+    color: #78ffff;
+  }
+  .套装 {
+    color: rgb(0, 128, 128);
+  }
+}
+.明细 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px 9px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #b8c2d0;
+  line-height: 1.5;
+  > span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-wrap: anywhere;
+  }
+  img {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+}
+.镶嵌 {
+  display: flex;
+  justify-content: flex-end;
+  gap: 3px;
+  img,
+  .空孔 {
+    width: 23px;
+    height: 23px;
+    border-radius: 2px;
+  }
+}
+.空孔 {
+  border: 1px solid #ffffff38;
+  background: #0006;
+}
+.已达成,
+.目标装备 {
+  background: var(--share-tint);
+}
+.已认可 .部位 {
+  color: var(--share-accent);
+}
+.未达成,
+.未设目标 {
+  .图标 {
+    filter: grayscale(0.85);
+    opacity: 0.5;
+  }
+  .名称 {
+    color: #7c7c87;
+    small {
+      color: #747580;
+    }
+  }
+  .明细 {
+    color: #7c7c87;
+  }
+  .特征 {
+    opacity: 0.5;
+  }
+  .镶嵌,
+  .明细 img {
+    filter: grayscale(0.85);
+    opacity: 0.5;
+  }
+}
+.五彩石 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 9px;
+  padding: 16px 4px 0;
+  color: #dac8e7;
+  font-size: 13px;
+  img {
+    width: 27px;
+    height: 27px;
+  }
+  small {
+    margin-left: auto;
+    color: var(--share-accent);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}

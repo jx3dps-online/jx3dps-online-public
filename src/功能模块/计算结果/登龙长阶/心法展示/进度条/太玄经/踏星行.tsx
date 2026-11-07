@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react'
 import { 星符素材 } from './星符素材'
 import 样式 from './踏星行.module.less'
 
-const 紫云 = `${GLOBAL_CDN_PREFIX}/20261029/taxingxing-ziyun.png`
+const 紫云 = `${GLOBAL_CDN_PREFIX}/taxingxing-ziyun-c3b7bb07e0.webp`
 
 const 紫雾 = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="128" height="96" viewBox="0 0 128 96"><defs><radialGradient id="fog"><stop stop-color="#a080d4" stop-opacity=".85"/><stop offset=".5" stop-color="#8761b0" stop-opacity=".6"/><stop offset="1" stop-color="#60417e" stop-opacity="0"/></radialGradient><filter id="soft" x="-25%" y="-35%" width="150%" height="170%"><feTurbulence type="fractalNoise" baseFrequency=".045 .065" numOctaves="3" seed="17" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="16" xChannelSelector="R" yChannelSelector="G"/><feGaussianBlur stdDeviation="1.2"/></filter></defs><g fill="url(#fog)" filter="url(#soft)"><ellipse cx="64" cy="52" rx="44" ry="26"/><ellipse cx="43" cy="39" rx="25" ry="22"/><ellipse cx="86" cy="39" rx="24" ry="20"/></g></svg>')}`
 

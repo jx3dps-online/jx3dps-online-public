@@ -7,7 +7,7 @@ import styles from './index.module.less'
 
 export default function 武学助手攻略() {
   return (
-    <攻略容器 标题='无方 · 武学助手攻略' 模式='计算结果'>
+    <攻略容器 标题='无方 · 武学助手攻略' 模式='全屏'>
       <无方攻略排版>
         <blockquote>
           <p>
@@ -18,7 +18,7 @@ export default function 武学助手攻略() {
           </p>
           <strong>作者：长倦</strong>
         </blockquote>
-        <p>最近更新：2026-10-29</p>
+        <p>最近更新：2026-11-05，新增25YX推荐配装及精简解析。</p>
         <h2>奇穴</h2>
         <奇穴展示 奇穴={武学助手循环.奇穴} />
 

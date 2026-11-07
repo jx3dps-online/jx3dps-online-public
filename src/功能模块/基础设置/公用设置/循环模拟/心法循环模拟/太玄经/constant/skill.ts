@@ -1,15 +1,16 @@
+import { GLOBAL_CDN_PREFIX } from '@/工具函数/const'
 import { Buff枚举, 循环基础技能数据类型, 日志类型 } from '../simulator/type'
 import { 基础GCD帧 } from '.'
 import { 每秒郭氏帧 } from '@/数据/常量'
 import { 通用Buff数据, 通用循环模拟技能基础数据 } from '../../通用/通用技能/通用技能定义'
 
-const 起火卦 = 'https://cdn.arkwish.com/jx3dps/simc/起火卦_20260906_065.jpg'
-const 起山卦 = 'https://cdn.arkwish.com/jx3dps/simc/起山卦_20260906_066.jpg'
-const 起水卦 = 'https://cdn.arkwish.com/jx3dps/simc/起水卦_20260906_067.jpg'
-const 变火卦 = 'https://cdn.arkwish.com/jx3dps/simc/变火卦_20260906_068.jpg'
-const 变山卦 = 'https://cdn.arkwish.com/jx3dps/simc/变山卦_20260906_062.jpg'
-const 变水卦 = 'https://cdn.arkwish.com/jx3dps/simc/变水卦_20260906_063.jpg'
-const 变卦 = 'https://cdn.arkwish.com/jx3dps/simc/变卦_20260906_064.jpg'
+const 起火卦 = `${GLOBAL_CDN_PREFIX}/image-dcfaa6aa74.jpg`
+const 起山卦 = `${GLOBAL_CDN_PREFIX}/image-9ac672d7b6.jpg`
+const 起水卦 = `${GLOBAL_CDN_PREFIX}/image-e0570714de.jpg`
+const 变火卦 = `${GLOBAL_CDN_PREFIX}/image-27f5746120.jpg`
+const 变山卦 = `${GLOBAL_CDN_PREFIX}/image-33d2e0148b.jpg`
+const 变水卦 = `${GLOBAL_CDN_PREFIX}/image-70f4bb2836.jpg`
+const 变卦 = `${GLOBAL_CDN_PREFIX}/image-0bcca1ed89.webp`
 
 // 技能图标引入
 // 13

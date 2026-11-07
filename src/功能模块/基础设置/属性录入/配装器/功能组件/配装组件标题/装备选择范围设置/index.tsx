@@ -24,7 +24,7 @@ const 装备词条 = {
 }
 
 const 过滤词条 = {
-  无修: 'red',
+  试炼: 'red',
   特效: 'purple',
   精简: 'magenta',
 }

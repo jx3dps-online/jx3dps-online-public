@@ -4,8 +4,8 @@ import { Tooltip } from 'antd'
 import type { 登阶进度属性 } from '../类型'
 import 圣火特效 from './圣火特效'
 import 样式 from './index.module.less'
-const 暗态 = `${GLOBAL_CDN_PREFIX}/20261025/shenghuodu-antai.png`
-const 亮态 = `${GLOBAL_CDN_PREFIX}/20261025/shenghuodu-liangtai.png`
+const 暗态 = `${GLOBAL_CDN_PREFIX}/shenghuodu-antai-ab28ed3557.webp`
+const 亮态 = `${GLOBAL_CDN_PREFIX}/shenghuodu-liangtai-378d275771.webp`
 
 export default function 焚影圣诀进度({
   百分比,

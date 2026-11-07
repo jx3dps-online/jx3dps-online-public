@@ -1,8 +1,8 @@
 import { GLOBAL_CDN_PREFIX } from '@/心法模块/模块工具/常量'
 // import ImgBg_1 from './bg.png'
 
-const ImgBg_1 = `${GLOBAL_CDN_PREFIX}/bg_yjj_1.jpg`
-const ImgBg_2 = `${GLOBAL_CDN_PREFIX}/bg/yjj.png`
+const ImgBg_1 = `${GLOBAL_CDN_PREFIX}/bg_yjj_1-cd164dc056.jpg`
+const ImgBg_2 = `${GLOBAL_CDN_PREFIX}/yjj-cd13b7f3d7.webp`
 // const ImgBg_2 = `${GLOBAL_CDN_PREFIX}/bg_txj_2.png`
 // const ImgBg_3 = `${GLOBAL_CDN_PREFIX}/bg_txj_3.png`
 // const ImgBg_4 = `${GLOBAL_CDN_PREFIX}/bg_txj_4.png`

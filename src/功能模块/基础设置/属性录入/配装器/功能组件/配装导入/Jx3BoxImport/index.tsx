@@ -8,8 +8,8 @@ import { getEquipData } from './util'
 import './index.css'
 import { 数据埋点 } from '@/工具函数/tools/log'
 
-const Img_Help_1 = `${GLOBAL_CDN_PREFIX}/help_daoru_1.png`
-const Img_Help_2 = `${GLOBAL_CDN_PREFIX}/help_daoru_2.png`
+const Img_Help_1 = `${GLOBAL_CDN_PREFIX}/help_daoru_1-61a08f6114.webp`
+const Img_Help_2 = `${GLOBAL_CDN_PREFIX}/help_daoru_2-e8fb47884a.webp`
 
 function Jx3BoxImport({ onOk }) {
   const [loading, setLoading] = useState(false)

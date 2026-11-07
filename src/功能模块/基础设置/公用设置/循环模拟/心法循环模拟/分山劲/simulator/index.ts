@@ -28,6 +28,7 @@ const 模拟循环 = (props: SimulatorCycleProps) => {
     : undefined
 
   return {
+    模拟参数: props,
     最终日志: 模拟实例.战斗日志,
     当前自身buff列表: 模拟实例.当前自身buff列表,
     当前目标buff列表: 模拟实例.当前目标buff列表,

@@ -20,7 +20,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = (props) => {
   const { children } = props
-  const { 系统配置 = {} as any, 邀请使用, 简写 } = use心法数据()
+  const { 系统配置 = {} as any, 暂时下架, 简写 } = use心法数据()
   const 背景色渐变 = 系统配置?.背景色渐变 || 默认系统渐变色(系统配置?.主题色)
   const 背景图片显示状态 = useAppSelector((state) => state?.system?.背景图片显示状态)
   const 配装器弹窗显示状态 = useAppSelector((state) => state.system.配装器弹窗显示状态)
@@ -115,7 +115,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
     const hrefDev = location.href?.includes('localhost')
     const DEV = hrefDev
     let 允许访问 = false
-    if (邀请使用) {
+    if (暂时下架) {
       允许访问 = DEV
     } else {
       允许访问 = true
@@ -140,7 +140,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
       }
     }
     return 允许访问
-  }, [location, 邀请使用])
+  }, [location, 暂时下架])
 
   const 是否展示迁移公告 = location?.href?.includes?.('jx3.btcsg.top')
 
@@ -179,7 +179,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
             banner
             closable
             onClose={关闭收藏提示}
-            message='网址已升级：您访问的是旧收藏地址，请重新收藏当前浏览器地址栏中的新网址。'
+            message='您是从旧的收藏地址访问的，如：“xxx/dps?xf=gfj”，现网站已更新为“xxx/dps/gfj”，请重新收藏当前地址。'
           />
         ) : null}
         {显示测试环境信息 ? (

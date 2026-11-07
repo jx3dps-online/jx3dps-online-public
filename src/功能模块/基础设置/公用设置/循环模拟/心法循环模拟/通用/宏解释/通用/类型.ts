@@ -12,13 +12,15 @@ export interface 心法耦合表 {
   奇穴?: Record<string, string>
   增益ID?: Record<string, { 自身?: string[]; 目标?: string[] }>
   永久增益?: 心法说明['永久增益']
+  无计时增益?: 心法说明['无计时增益']
+  指定目标?: 心法说明['指定目标']
   禁用增益?: 心法说明['禁用增益']
   隐藏增益?: 心法说明['隐藏增益']
   自身增益: Record<string, string>
   目标增益: Record<string, string>
   增益体态: Record<string, number>
   状态增益别名: Record<string, { 奇穴: string; 名称: string }>
-  增益层数来源?: Record<string, { 名称: string; 层数: number }[]>
+  增益层数来源?: Record<string, { 名称: string; 层数: number; 对象?: '自身' | '目标' }[]>
   增益资源来源?: Record<string, { 路径: string; 奇穴?: string }>
   DOT: string[]
   字段: Record<string, string>
